@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>Github Pages LaTeX Formula issues (Fluid)</title>
+    <link href="/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/"/>
+    <url>/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Github-Pages-LaTeX-Formula-issues-Fluid"><a href="#Github-Pages-LaTeX-Formula-issues-Fluid" class="headerlink" title="Github Pages LaTeX Formula issues (Fluid)"></a>Github Pages LaTeX Formula issues (Fluid)</h1><p>A summary of common LaTeX rendering issues and their solutions when deploying with Hexo and the Fluid theme on GitHub Pages.</p><p>position: <code>theme/fluid/layout/_partials/head.ejs</code><br>add at the bottom:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;&lt;/script&gt;<br>&lt;script&gt;<br>window.MathJax = &#123;<br>  tex: &#123;<br>    inlineMath: [[&#x27;$&#x27;, &#x27;$&#x27;], [&#x27;\\(&#x27;, &#x27;\\)&#x27;]]<br>  &#125;<br>&#125;;<br>&lt;/script&gt;<br>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Blog</category>
+      
+      <category>Troubleshooting</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>GitHub Pages</tag>
+      
+      <tag>MathJax</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2025/05/28/hello-world/"/>
     <url>/2025/05/28/hello-world/</url>
