@@ -4,13 +4,67 @@
   
   
   <entry>
+    <title>MathJax</title>
+    <link href="/2025/05/28/MathJax/"/>
+    <url>/2025/05/28/MathJax/</url>
+    
+    <content type="html"><![CDATA[<p>$$<br>\mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}<br>$$</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DecisionTree</title>
+    <link href="/2025/05/28/DecisionTree/"/>
+    <url>/2025/05/28/DecisionTree/</url>
+    
+    <content type="html"><![CDATA[<h2 id="pre-information"><a href="#pre-information" class="headerlink" title="pre information"></a>pre information</h2><p>sample group $D$</p><p>attribute $a$</p><h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><p>$$<br>p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)<br>$$</p><p>$$<br>\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_k<br>$$</p><h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a &#x3D; \{a^1, a^2, \ldots, a^V \}$</p><p>$ D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}$</p><p>$$<br>\text{Gain}(D, a) &#x3D; Ent(D) - \sum_{v &#x3D; 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p><h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3><p>$$<br>\text{Gain_ratio}(D,a) &#x3D; \frac{Gain(D,a)}{IV(a)}<br>$$</p><p>$$<br>\text{IV}(a) &#x3D; -\sum_{v &#x3D; 1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}<br>$$</p><h3 id="Gini-index"><a href="#Gini-index" class="headerlink" title="Gini index"></a>Gini index</h3><p>$$<br>\text{Gini}(D^v) &#x3D; \sum_{k &#x3D; 1}^{|\mathscr{Y}|}\sum_{k’ \neq k}p_k p_{k’}<br>$$</p><p>$$<br>\text{Gini}(D^v) &#x3D; 1 - \sum_{k &#x3D; 1}^{|\mathscr{Y}|}p_k^{2}<br>$$</p><p>$$<br>\text{Gini_index}(D,a) &#x3D; \sum_{v &#x3D; 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)<br>$$</p><h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h3 id="test-1"><a href="#test-1" class="headerlink" title="test 1"></a>test 1</h3><blockquote><p><strong>Table 1: Loan Application Sample Dataset</strong><br>This table presents the features of 15 applicants (Age, Employed, Owns House, Credit Status) and their loan application results (Class). This dataset is commonly used for training and analyzing decision tree algorithms.</p></blockquote><table><thead><tr><th>ID</th><th>Age</th><th>Employed</th><th>Owns House</th><th>Credit Status</th><th>Class</th></tr></thead><tbody><tr><td>1</td><td>Young</td><td>No</td><td>No</td><td>Fair</td><td>No</td></tr><tr><td>2</td><td>Young</td><td>No</td><td>No</td><td>Good</td><td>No</td></tr><tr><td>3</td><td>Young</td><td>Yes</td><td>No</td><td>Good</td><td>Yes</td></tr><tr><td>4</td><td>Young</td><td>Yes</td><td>Yes</td><td>Fair</td><td>Yes</td></tr><tr><td>5</td><td>Young</td><td>No</td><td>No</td><td>Fair</td><td>No</td></tr><tr><td>6</td><td>Middle-aged</td><td>No</td><td>No</td><td>Fair</td><td>No</td></tr><tr><td>7</td><td>Middle-aged</td><td>No</td><td>No</td><td>Good</td><td>No</td></tr><tr><td>8</td><td>Middle-aged</td><td>Yes</td><td>Yes</td><td>Good</td><td>Yes</td></tr><tr><td>9</td><td>Middle-aged</td><td>No</td><td>Yes</td><td>Excellent</td><td>Yes</td></tr><tr><td>10</td><td>Middle-aged</td><td>No</td><td>Yes</td><td>Excellent</td><td>Yes</td></tr><tr><td>11</td><td>Senior</td><td>No</td><td>Yes</td><td>Excellent</td><td>Yes</td></tr><tr><td>12</td><td>Senior</td><td>No</td><td>Yes</td><td>Good</td><td>Yes</td></tr><tr><td>13</td><td>Senior</td><td>Yes</td><td>No</td><td>Good</td><td>Yes</td></tr><tr><td>14</td><td>Senior</td><td>Yes</td><td>No</td><td>Excellent</td><td>Yes</td></tr><tr><td>15</td><td>Senior</td><td>No</td><td>No</td><td>Fair</td><td>No</td></tr></tbody></table><h4 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h4><p><strong>Firstly</strong></p><p>$$<br>\text{Ent}(D) &#x3D; -(\frac{9}{15}\log_2\frac{9}{15} + \frac{6}{15}\log_2\frac{6}{15}) &#x3D; 0.971<br>$$<br>Then</p><span style = "color : gray">$$\text{Gain}(D, \text{'Age'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)$$</span><p>$$<br>\text{Gain}(D,\text{‘Age’}) &#x3D; 0.971 + \frac{1}{3} \times (\frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}) &#x3D; 0.083<br>$$</p><span style = "color : gray">$$\text{Gain}(D, \text{'Employed'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)$$</span><p>$$<br>\text{Gain}(D,\text{‘Employed’}) &#x3D; 0.971 + \frac{10}{15} \times (\frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10}) + \frac{5}{10} \times (\frac{5}{5}\log_2\frac{5}{5}) &#x3D; 0.324<br>$$</p><span style = "color : gray">$$\text{Gain}(D, \text{'Owns House'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)$$</span><p>$$<br>\text{Gain}(D,\text{‘Owns House’}) &#x3D; 0.971 + \frac{9}{15} \times (\frac{3}{9} \log_2 \frac{3}{9} + \frac{6}{9} \log_2 \frac{6}{9}) + \frac{6}{15} \times (\frac{6}{6} \log_2 \frac{6}{6}) &#x3D; \mathbf{0.420}<br>$$</p><span style = "color : gray">$$\text{Gain}(D, \text{'Credit Status'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)$$</span><p>$$<br>\text{Gain}(D, \text{‘Credit Status’}) &#x3D; 0.971 + \frac{5}{15} \times (\frac{4}{5} \log_2 \frac{4}{5} + \frac{1}{5} \log_2 \frac{1}{5}) + \frac{6}{15} \times (\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}) + \frac{4}{15} \times (\frac{4}{4} \log_2 \frac{4}{4})<br>$$</p><p>$$<br>&#x3D; 0.363<br>$$</p><p>Since attribute <strong>‘Owns House’</strong> has the highest information gain, it is selected as the optimal feature. Dividing D by attribute ‘Owns House’, we get two data sets($D_1$ and $D_2$). All labels in $D_1$ are ‘yes’, so we set $D_1$ as a leaf node with label ‘yes’. But for $D_2$, we need divide it.</p><pre><code class=" mermaid">graph TD    A[Owns House] -- yes --&gt; B[&quot;yes, D1&quot;]    A[Owns House] -- no --&gt; C[&quot;D2&quot;]</code></pre><div align = "center"><strong> Figure 1: first step </strong></div><p>next</p><p>$$<br>\text{Ent}(D_2) &#x3D; -\frac{6}{9} \log_2 \frac{6}{9} -\frac{3}{9} \log_2 \frac{3}{9} &#x3D; 0.918<br>$$</p><p>$$<br>\text{Gain}(D_2, \text{‘Age’}) &#x3D; 0.918 + \frac{4}{9} \times (\frac{1}{4} \log_2 \frac{1}{4} + \frac{3}{4} \log_2 \frac{3}{4}) + \frac{2}{9} \times (\frac{2}{2} \ log_2 \frac{2}{2}) + \frac{3}{9} \times (\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}) &#x3D; 0.251<br>$$</p><p>$$<br>\text{Gain}(D_2, \text{‘Employed’}) &#x3D; 0.918 + \frac{6}{9} \times (\frac{6}{6} \log_2 \frac{6}{6}) + \frac{3}{9} \times (\frac{3}{3} \log_2 \frac{3}{3}) &#x3D; 0.918<br>$$</p><p>$$<br>\text{Gain}(D_2, \text{‘Credit Status’}) &#x3D; 0.918 + \frac{4}{9} \times (\frac{4}{4} \log_2 \frac{4}{4}) + \frac{4}{9} \times (2 \times \frac{2}{4} \log_2 \frac{2}{4}) + \frac{1}{9} \times \frac{1}{1} \log_2 \frac{1}{1} &#x3D; 0.474<br>$$</p><p>Since attribute <strong>‘Employed’</strong> has the highest information gain, it is selected as the optimal feature. Apparently, we get the final result.</p><pre><code class=" mermaid">graph TD    A[Owns House] -- yes --&gt; B[&quot;yes&quot;]    A[Owns House] -- no --&gt; C[&quot;Employed&quot;]    C[&quot;Employed&quot;] -- yes --&gt; D[&quot;yes&quot;]    C[&quot;Employed&quot;] -- no --&gt; E[&quot;no&quot;]</code></pre><div align = "center"><strong> Figure 2: finial decision tree </strong></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>Machine Learning</category>
+      
+      <category>Statistical Learning Methods</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>algorithm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>HMM</title>
     <link href="/2025/05/27/HMM/"/>
     <url>/2025/05/27/HMM/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="A-brief-introduction-to-HMM"><a href="#A-brief-introduction-to-HMM" class="headerlink" title="A brief introduction to HMM"></a>A brief introduction to HMM</h2><p>HMM(Hidden Markov Model)</p>]]></content>
     
     
+    <categories>
+      
+      <category>Machine Learning</category>
+      
+      <category>Statistical Learning Methods</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>algorithm</tag>
+      
+    </tags>
     
   </entry>
   
