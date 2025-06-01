@@ -240,13 +240,43 @@ window.MathJax = {
                 
 
 <div class="list-group">
-  <p class="h4">5 posts in total</p>
+  <p class="h4">10 posts in total</p>
   <hr>
   
   
     
       
       <p class="h5">2025</p>
+    
+    <a href="/2025/06/01/CRF/" class="list-group-item list-group-item-action">
+      <time>06-01</time>
+      <div class="list-group-item-title">CRF</div>
+    </a>
+  
+    
+    <a href="/2025/05/30/The-Network-Layer/" class="list-group-item list-group-item-action">
+      <time>05-30</time>
+      <div class="list-group-item-title">The Network Layer</div>
+    </a>
+  
+    
+    <a href="/2025/05/30/AdaBoost/" class="list-group-item list-group-item-action">
+      <time>05-30</time>
+      <div class="list-group-item-title">AdaBoost</div>
+    </a>
+  
+    
+    <a href="/2025/05/30/SVM/" class="list-group-item list-group-item-action">
+      <time>05-30</time>
+      <div class="list-group-item-title">SVM</div>
+    </a>
+  
+    
+    <a href="/2025/05/28/Pushdown-Automation/" class="list-group-item list-group-item-action">
+      <time>05-28</time>
+      <div class="list-group-item-title">Pushdown Automation</div>
+    </a>
+  
     
     <a href="/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/" class="list-group-item list-group-item-action">
       <time>05-28</time>
@@ -399,5 +429,20 @@ window.MathJax = {
   <noscript>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

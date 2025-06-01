@@ -244,7 +244,7 @@ window.MathJax = {
                 
 
 <div class="text-center tagcloud">
-  <a href="/tags/GitHub-Pages/" style="font-size: 15px; color: #bbe">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 15px; color: #bbe">Hexo</a> <a href="/tags/MathJax/" style="font-size: 15px; color: #bbe">MathJax</a> <a href="/tags/algorithm/" style="font-size: 30px; color: #337ab7">algorithm</a>
+  <a href="/tags/Control-Plane/" style="font-size: 15px; color: #bbe">Control Plane</a> <a href="/tags/GitHub-Pages/" style="font-size: 15px; color: #bbe">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 15px; color: #bbe">Hexo</a> <a href="/tags/MathJax/" style="font-size: 15px; color: #bbe">MathJax</a> <a href="/tags/Network-Layer/" style="font-size: 15px; color: #bbe">Network Layer</a> <a href="/tags/Networking/" style="font-size: 15px; color: #bbe">Networking</a> <a href="/tags/Routing/" style="font-size: 15px; color: #bbe">Routing</a> <a href="/tags/algorithm/" style="font-size: 30px; color: #337ab7">algorithm</a>
 </div>
 
               </div>
@@ -363,5 +363,20 @@ window.MathJax = {
   <noscript>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

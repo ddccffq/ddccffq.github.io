@@ -19,15 +19,15 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="pre informationsample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mat">
+    <meta name="description" content="Background Knowledgesample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DecisionTree">
 <meta property="og:url" content="http://example.com/2025/05/28/DecisionTree/index.html">
 <meta property="og:site_name" content="Learning Journal">
-<meta property="og:description" content="pre informationsample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mat">
+<meta property="og:description" content="Background Knowledgesample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-28T02:12:59.000Z">
-<meta property="article:modified_time" content="2025-05-28T11:49:54.392Z">
+<meta property="article:modified_time" content="2025-06-01T05:55:05.794Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary_large_image">
@@ -244,7 +244,7 @@ window.MathJax = {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          706 words
+          977 words
         
       </span>
     
@@ -255,7 +255,7 @@ window.MathJax = {
         
         
         
-          6 mins
+          9 mins
         
       </span>
     
@@ -310,7 +310,7 @@ window.MathJax = {
             
               <div class="markdown-body">
                 
-                <h2 id="pre-information"><a href="#pre-information" class="headerlink" title="pre information"></a>pre information</h2><p>sample group $D$</p>
+                <h2 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h2><p>sample group $D$</p>
 <p>attribute $a$</p>
 <h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><p>$$<br>p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)<br>$$</p>
 <p>$$<br>\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_k<br>$$</p>
@@ -510,6 +510,47 @@ $$
 </code></pre>
 
 <div align = "center"><strong> Figure 2: finial decision tree </strong></div>
+
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are $N_{tk}$ sort $k &#x3D; 1, 2, \ldots, K$ samples.</p>
+<p><strong>loss function</strong></p>
+<p>$$<br>C_\alpha(T) &#x3D; \sum_{t&#x3D;1}^{|T|}N_tH_t(T) + \alpha |T|<br>$$</p>
+<p><strong>empirical entropy</strong></p>
+<p>$$<br>H_t(T) &#x3D; -\sum_{k}\frac{N_{tk}}{N_t} \log_2 \frac{N_{tk}}{N_t}<br>$$</p>
+<p><strong>combination</strong></p>
+<p>$$<br>C(T) &#x3D; -\sum_{t&#x3D;1}^{|T|}\sum_{k}^{K}N_{tk} \log_2 \frac{N_{tk}}{N_t}<br>$$</p>
+<p>$$<br>C_\alpha(T) &#x3D; C(T) + \alpha |T|<br>$$</p>
+<p><strong>purpose</strong></p>
+<p>$$<br>\min_{T} C_\alpha(T) &#x3D; \sum_{t&#x3D;1}^{|T|}N_tH_t(T) + \alpha |T|<br>$$</p>
+<p><strong>algorithm</strong></p>
+<p>We can define a DP[] and use the idea of dynamic programming to find the optimal pruning</p>
+<ul>
+<li>input data $X &#x3D; \{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \}$</li>
+<li>output $Tree_\alpha$</li>
+</ul>
+<ol>
+<li>for t in T, Calculate $H_t(T)$</li>
+<li>Recursively backtrack from the leaf nodes of the tree upwards, compare $C_\alpha(T_A)$ and $C_\alpha(T_B)$</li>
+<li>return 2</li>
+</ol>
+<h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink" title="Regression Tree"></a>Regression Tree</h3><p>A regression tree corresponds to a partition of the input space and the output values within the partition units.</p>
+<p>input space $M &#x3D; R_1, R_2, \ldots, R_M$, and each space $R_m$ has a output value $c_m$, we can define regression tree model as follow.</p>
+<p><strong>regression tree model</strong><br>$$<br>f(x) &#x3D; \sum_{m&#x3D;1}^{M} c_m I (x \in R_m)<br>$$</p>
+<p><strong>Mean Squared Error</strong><br>$$<br>\sum_{x_i \in R_m} (y_i - f(x_i))^2<br>$$</p>
+<p>$$<br>\hat{c}_m &#x3D; ave(y_i \mid x_i \in R_m)<br>$$</p>
+<p><strong>dividing algorithm</strong></p>
+<ul>
+<li>input: training data $D$</li>
+<li>output: regression tree $f(x)$</li>
+</ul>
+<ol>
+<li>choose $x_j$, its output is $s$. Space $R_1(j, s) &#x3D; \{x \mid y_i \leq s\}$,space $R_2(j, s) &#x3D; \{x \mid y_i &gt; s\}$</li>
+<li>$$\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]$$</li>
+<li>$$\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m &#x3D; 1, 2$$</li>
+<li>repeat 2 and 3</li>
+</ol>
+<h3 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink" title="Classification Tree"></a>Classification Tree</h3><p><strong>Gini index</strong></p>
+<p>$$<br>\text{Gini} (p) &#x3D; \sum_{k &#x3D; 1}^{K} p_k(1 - p_k) &#x3D; 1 - \sum_{k &#x3D; 1}^{K} p_k^2<br>$$</p>
+<p>$$<br>\text{Gini} (D, A) &#x3D; \sum_{v &#x3D; 1}^{\mathscr{Y}} \frac{|D^v|}{|D|} \text{Gini}(D^v)<br>$$</p>
 
                 
               </div>
@@ -949,5 +990,20 @@ $$
   <noscript>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

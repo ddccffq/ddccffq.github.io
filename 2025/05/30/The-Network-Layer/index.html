@@ -1,0 +1,1283 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Dijkstra’s Link-State Algorithm1234567891011121314151617181920N &#x3D; &#123;u&#125;;for (auto a : nodes) &#123;    if (isAdjacent(u, a)) &#123;      D[a] &#x3D; Cost(u, a);      P[a] &#x3D; u;    &#125;    else &amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Network Layer">
+<meta property="og:url" content="http://example.com/2025/05/30/The-Network-Layer/index.html">
+<meta property="og:site_name" content="Learning Journal">
+<meta property="og:description" content="Dijkstra’s Link-State Algorithm1234567891011121314151617181920N &#x3D; &#123;u&#125;;for (auto a : nodes) &#123;    if (isAdjacent(u, a)) &#123;      D[a] &#x3D; Cost(u, a);      P[a] &#x3D; u;    &#125;    else &amp;#1">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2025/05/30/The-Network-Layer/Figure422.jpg">
+<meta property="og:image" content="http://example.com/2025/05/30/The-Network-Layer/P24.jpg">
+<meta property="og:image" content="http://example.com/2025/05/30/The-Network-Layer/P26.png">
+<meta property="article:published_time" content="2025-05-30T13:43:21.000Z">
+<meta property="article:modified_time" content="2025-06-01T01:54:17.758Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="Network Layer">
+<meta property="article:tag" content="Control Plane">
+<meta property="article:tag" content="Routing">
+<meta property="article:tag" content="Networking">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2025/05/30/The-Network-Layer/Figure422.jpg">
+  
+  
+  
+  <title>The Network Layer - Learning Journal</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI","app_key":"dsIWfeJAED3S1uRhbmsE3FJP","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hello!</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="The Network Layer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-30 21:43" pubdate>
+          May 30, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          570 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">The Network Layer</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Dijkstra’s-Link-State-Algorithm"><a href="#Dijkstra’s-Link-State-Algorithm" class="headerlink" title="Dijkstra’s Link-State Algorithm"></a>Dijkstra’s Link-State Algorithm</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp">N = &#123;u&#125;;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> a : nodes) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(u, a)) &#123;<br>      D[a] = <span class="hljs-built_in">Cost</span>(u, a);<br>      P[a] = u;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>      D[a] = INF;<br>      P[a] = a;<br>      &#125;<br>&#125;<br><span class="hljs-keyword">while</span> (! all nodes in N) &#123;<br>    D[a] = <span class="hljs-built_in">min</span>(D)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> b : nodes) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(b ,a)) &#123;<br>          D[b] = <span class="hljs-built_in">min</span>(D[b], <span class="hljs-built_in">Cost</span>(b, a) + D[a])<br>          <span class="hljs-keyword">if</span> (D[b] == <span class="hljs-built_in">Cost</span>(b, a) + D[a]) P[b] = a;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter 4"></a>Chapter 4</h2><h3 id="P-6"><a href="#P-6" class="headerlink" title="P.6"></a>P.6</h3><p><strong>Questions:</strong></p>
+<p>In the text we have used the term connection-oriented service to describe a transport-layer service and connection service for a network-layer service. Why the subtle shades in terminology?</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p>The subtle difference in terminology reflects the distinct roles and responsibilities of the transport and network layers:</p>
+<ul>
+<li><p><strong>Connection-oriented service (Transport Layer):</strong><br>At the transport layer, a connection-oriented service (such as TCP) establishes, maintains, and terminates a logical end-to-end connection. This connection is defined <strong>between two processes</strong> on the end hosts (e.g., two TCP sockets). This service ensures reliable, ordered, and error-checked delivery of data across the entire network path, directly between the communicating applications.</p>
+</li>
+<li><p><strong>Connection service (Network Layer):</strong><br>At the network layer, a connection service (such as a virtual circuit) refers to the establishment of a logical path through the network, typically between routers or switches. This connection is defined <strong>between two hosts</strong> (and their intervening routers in the case of virtual-circuit networks). This path helps guide packets from source to destination but does not necessarily guarantee reliability or ordering. The focus here is on the route and forwarding of packets within the network infrastructure.</p>
+</li>
+</ul>
+<p><strong>In summary:</strong><br>The term “connection-oriented service” at the transport layer emphasizes end-to-end reliability and communication, while “connection service” at the network layer highlights the setup of a path through the network, without necessarily providing full end-to-end guarantees. The nuanced terminology helps clarify the different scopes and guarantees provided by each layer.</p>
+<hr>
+<h3 id="P-9"><a href="#P-9" class="headerlink" title="P.9"></a>P.9</h3><p><strong>Consider a datagram network using 32-bit host addresses. Suppose a router has four links, numbered 0 through 3, and packets are to be forwarded to the link interfaces as follows:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Destination Address Range</th>
+<th align="center">Link Interface</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><div align = "center">11100000 00000000 00000000 00000000<br><strong>through</strong><br>11100000 00111111 11111111 11111111</div></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><div align = "center">11100000 01000000 00000000 00000000<br><strong>through</strong><br>11100000 01000000 11111111 11111111</div></td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"><div align = "center">11100000 01000001 00000000 00000000<br><strong>through</strong><br>11100001 01111111 11111111 11111111</div></td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center"><div align = "center">otherwise</div></td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Questions:</strong></p>
+<p>a. Provide a forwarding table that has four entries, uses longest prefix matching, and forwards packets to the correct link interfaces.</p>
+<p>b. Describe how your forwarding table determines the appropriate link interface for datagrams with destination addresses:  </p>
+<div align = "center">11001000 10010001 01010001 01010101</div>  
+<div align = "center">11100001 01000000 11000011 00111100</div>  
+<div align = "center">11100001 10000000 00010001 01110111</div>
+
+<hr>
+<p><strong>Answer:</strong></p>
+<p><strong>a. Forwarding Table with Longest Prefix Matching</strong></p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th align="center">Link Interface(output)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11100000 00</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td>11100000 01000000</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>1110000</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>otherwise</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<p><strong>Explanation:</strong>  </p>
+<ul>
+<li>Each entry uses the longest prefix that matches the given address range.</li>
+<li>The router checks the destination address against each prefix, starting from the longest, and forwards the packet to the corresponding interface.</li>
+</ul>
+<hr>
+<p><strong>b. Determining the Link Interface for Given Addresses</strong></p>
+<ol>
+<li><p><strong>11001000 10010001 01010001 01010101</strong>  </p>
+<ul>
+<li>This address does <strong>not</strong> match any of the specified prefixes (does not start with 111…), so it is forwarded to <strong>interface 3</strong>.</li>
+</ul>
+</li>
+<li><p><strong>11100001 01000000 11000011 00111100</strong>  </p>
+<ul>
+<li>This address matches the third entry:  <ul>
+<li>Prefix: <code>**1110000**1 01000001 00000000 00000000</code></li>
+<li>So, it is forwarded to <strong>interface 2</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>11100001 10000000 00010001 01110111</strong>  </p>
+<ul>
+<li>This address matches the third entry:  <ul>
+<li>Prefix: <code>**1110000**1 10000000 00010001 01110111</code></li>
+<li>So, it is forwarded to <strong>interface 2</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="P-10"><a href="#P-10" class="headerlink" title="P.10"></a>P.10</h3><p><strong>Consider a datagram network using 8-bit host addresses. Suppose a router uses longest-prefix matching and has the following forwarding table:</strong></p>
+<div align="center">
+
+<table>
+<thead>
+<tr>
+<th align="center">Prefix Match</th>
+<th align="center">Interface</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">00</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">010</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">011</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+</div>
+
+<hr>
+<p><strong>Questions:</strong></p>
+<p>For each of the four interfaces, give the associated range of destination host addresses and the number of addresses in the range.</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<div align="center">
+
+<table>
+<thead>
+<tr>
+<th align="center">Interface</th>
+<th align="center">Destination Address Range</th>
+<th align="right">Number of Addresses</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">00000000 - 00111111</td>
+<td align="right">64</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">01000000 - 01011111</td>
+<td align="right">32</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">01100000 - 01111111<br>10000000 - 10111111</td>
+<td align="right">96</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">11000000 - 11111111</td>
+<td align="right">64</td>
+</tr>
+</tbody></table>
+</div>
+
+<hr>
+<h3 id="P-17"><a href="#P-17" class="headerlink" title="P.17"></a>P.17</h3><p><strong>Question:</strong></p>
+<p>Consider sending a 2400-byte datagram into a link that has an MTU of 700 bytes. Suppose the original datagram is stamped with the identification number 422. How many fragments are generated? What are the values in the various fields in the IP datagram(s) generated related to fragmentation?</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p>According to IPv4 datagram format, each fragment includes a 20-bytes header. So we need $\lceil\frac{2400 - 20}{700 - 20}\rceil &#x3D; 4 $ fragments. Each fragment has the same Version, Header length, Type of service, and so on. What makes them different is as follows:.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Fragment</th>
+<th align="center">Datagram length</th>
+<th align="center">Offset</th>
+<th align="center">Flag</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">700</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">700</td>
+<td align="center">85</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">700</td>
+<td align="center">170</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">380</td>
+<td align="center">255</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="P-18"><a href="#P-18" class="headerlink" title="P.18"></a>P.18</h3><p><strong>Question:</strong></p>
+<p>Suppose datagrams are limited to 1,500 bytes (including header) between source Host A and destination Host B. Assuming a 20-byte IP header, how many datagrams would be required to send an MP3 consisting of 5 million bytes? Explain how you computed your answer.</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p>We need $\lceil\frac{5000000}{1500 - 20}\rceil &#x3D; 3379$ datagrams.</p>
+<hr>
+<h3 id="P-19"><a href="#P-19" class="headerlink" title="P.19"></a>P.19</h3><p><strong>Consider the network setup in Figure 4.22. Suppose that the ISP instead assigns the router the address 24.34.112.235 and that the network address of the home network is 192.168.1&#x2F;24.</strong></p>
+<img src="/2025/05/30/The-Network-Layer/Figure422.jpg" srcset="/img/loading.gif" lazyload class="" title="Network address translation">
+
+<p><strong>Question:</strong></p>
+<p>a. Assign addresses to all interfaces in the home network.</p>
+<p>b. Suppose each host has two ongoing TCP connections, all to port 80 at host 128.119.40.86. Provide the six corresponding entries in the NAT translation table.</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p><strong>a. Address assignments for interfaces in the home network:</strong></p>
+<p>According to Figure 4.22 and the given information.</p>
+<ul>
+<li>Router WAN side address is 24.34.112.235.</li>
+<li>Router LAN side 192.168.1.4</li>
+<li>Host 1 address is 192.168.1.1</li>
+<li>Host 2 address is 192.168.1.2</li>
+<li>Host 3 address is 192.168.1.3</li>
+</ul>
+<p><strong>b. NAT translation table entries</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">WAN side</th>
+<th align="center">LAN side</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">24.34.112.235, 50001</td>
+<td align="center">192.168.1.1, 3345</td>
+</tr>
+<tr>
+<td align="center">24.34.112.235, 50002</td>
+<td align="center">192.168.1.1, 3346</td>
+</tr>
+<tr>
+<td align="center">24.34.112.235, 50003</td>
+<td align="center">192.168.1.2, 3345</td>
+</tr>
+<tr>
+<td align="center">24.34.112.235, 50004</td>
+<td align="center">192.168.1.2, 3346</td>
+</tr>
+<tr>
+<td align="center">24.34.112.235, 50005</td>
+<td align="center">192.168.1.3, 3345</td>
+</tr>
+<tr>
+<td align="center">24.34.112.235, 50006</td>
+<td align="center">192.168.1.3, 3346</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="P-24"><a href="#P-24" class="headerlink" title="P.24"></a>P.24</h3><img src="/2025/05/30/The-Network-Layer/P24.jpg" srcset="/img/loading.gif" lazyload class="" title="P.24 figure">
+<div align = "center"><em>Figure P.24: Example network for dijkstra algorithm</em></div>
+
+<p><strong>Question:</strong></p>
+<p>Consider the following network. With the indicated link costs, use Dijkstra’s shortest-path algorithm to compute the shortest path from x to all network nodes. Show how the algorithm works by computing a table similar to Table 4.3.</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p>$N’ &#x3D; \{x\}$</p>
+<table>
+<thead>
+<tr>
+<th align="center">step</th>
+<th align="center">$D(x)$ $P(x)$</th>
+<th align="center">$D(y)$ $P(y)$</th>
+<th align="center">$D(z)$ $P(z)$</th>
+<th align="center">$D(v)$ $P(v)$</th>
+<th align="center">$D(u)$ $P(u)$</th>
+<th align="center">$D(w)$ $P(w)$</th>
+<th align="center">$D(t)$ $P(t)$</th>
+<th align="center">$N’$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center"><strong>$3$</strong>  $x$</td>
+<td align="center">$\infty$</td>
+<td align="center">$6$      $x$</td>
+<td align="center">$\infty$</td>
+<td align="center">$x$</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">$0$    $x$</td>
+<td align="center"><strong>$6$</strong> $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center">$6$     $v$</td>
+<td align="center">$6$      $x$</td>
+<td align="center">$7$     $v$</td>
+<td align="center">$xv$</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center"><strong>$6$</strong> $v$</td>
+<td align="center">$6$      $x$</td>
+<td align="center">$7$     $v$</td>
+<td align="center">$xvy$</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center">$6$     $v$</td>
+<td align="center"><strong>$6$</strong>  $w$</td>
+<td align="center">$7$     $v$</td>
+<td align="center">$xvyu$</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center">$6$     $v$</td>
+<td align="center">$6$      $x$</td>
+<td align="center"><strong>$7$</strong>  $v$</td>
+<td align="center">$xvyuw$</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center"><strong>$8$</strong> $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center">$6$     $v$</td>
+<td align="center">$6$      $x$</td>
+<td align="center">$7$     $v$</td>
+<td align="center">$xvyuwt$</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">$0$    $x$</td>
+<td align="center">$6$     $x$</td>
+<td align="center">$8$     $x$</td>
+<td align="center">$3$      $x$</td>
+<td align="center">$6$     $v$</td>
+<td align="center">$6$      $x$</td>
+<td align="center">$7$     $v$</td>
+<td align="center">$xvyuwtz$</td>
+</tr>
+</tbody></table>
+<p>So the shortest path from $x$ to all nodes is follow.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Destination</th>
+<th align="center">Shortest Distance</th>
+<th align="center">Path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$x$</td>
+<td align="center">$0$</td>
+<td align="center">$x$</td>
+</tr>
+<tr>
+<td align="center">$v$</td>
+<td align="center">$3$</td>
+<td align="center">$x \to v$</td>
+</tr>
+<tr>
+<td align="center">$y$</td>
+<td align="center">$6$</td>
+<td align="center">$x \to y$</td>
+</tr>
+<tr>
+<td align="center">$w$</td>
+<td align="center">$6$</td>
+<td align="center">$x \to w$</td>
+</tr>
+<tr>
+<td align="center">$u$</td>
+<td align="center">$6$</td>
+<td align="center">$x \to v \to u$</td>
+</tr>
+<tr>
+<td align="center">$t$</td>
+<td align="center">$7$</td>
+<td align="center">$x \to v \to t$</td>
+</tr>
+<tr>
+<td align="center">$z$</td>
+<td align="center">$8$</td>
+<td align="center">$x \to z$</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="P-26"><a href="#P-26" class="headerlink" title="P.26"></a>P.26</h3><img src="/2025/05/30/The-Network-Layer/P26.png" srcset="/img/loading.gif" lazyload class="" title="P.26 figure">
+<div align = "center"><em>Figure P.26: Example network for distance-vector algorithm</em></div>
+
+<p><strong>Question:</strong></p>
+<p>Consider the network shown below, and assume that each node initially knows the costs to each of its neighbors. Consider the distance-vector algorithm and show the distance table entries at node z.</p>
+<hr>
+<p><strong>Answer:</strong></p>
+<p><strong>Node z table:</strong></p>
+<p><em><strong>First round</strong></em></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">cost to</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center">y</td>
+<td align="center">z</td>
+<td align="center">u</td>
+<td align="center">v</td>
+</tr>
+<tr>
+<td align="center">from x</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+</tr>
+<tr>
+<td align="center">from y</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+</tr>
+<tr>
+<td align="center">from z</td>
+<td align="center">2</td>
+<td align="center">$\infty$</td>
+<td align="center">0</td>
+<td align="center">$\infty$</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">from u</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+</tr>
+<tr>
+<td align="center">from v</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+</tr>
+</tbody></table>
+<p><em><strong>Second round</strong></em></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">cost to</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">x</td>
+<td align="center">y</td>
+<td align="center">z</td>
+<td align="center">u</td>
+<td align="center">v</td>
+</tr>
+<tr>
+<td align="center">from x</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">from y</td>
+<td align="center">3</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">2</td>
+<td align="center">$\infty$</td>
+</tr>
+<tr>
+<td align="center">from z</td>
+<td align="center">2</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">7</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td align="center">from u</td>
+<td align="center">$\infty$</td>
+<td align="center">2</td>
+<td align="center">$\infty$</td>
+<td align="center">$\infty$</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">from v</td>
+<td align="center">3</td>
+<td align="center">$\infty$</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">$\infty$</td>
+</tr>
+</tbody></table>
+<p>Because the question only asks to show the distance table entries at node z, we do not need to compute the full routing tables for all nodes. The Second round result about node z is also the finial result.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer-Network/" class="category-chain-item">Computer Network</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Computer-Network/Network-Layer/" class="category-chain-item">Network Layer</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Network-Layer/" class="print-no-link">#Network Layer</a>
+      
+        <a href="/tags/Control-Plane/" class="print-no-link">#Control Plane</a>
+      
+        <a href="/tags/Routing/" class="print-no-link">#Routing</a>
+      
+        <a href="/tags/Networking/" class="print-no-link">#Networking</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>The Network Layer</div>
+      <div>http://example.com/2025/05/30/The-Network-Layer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 30, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/01/CRF/" title="CRF">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CRF</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/30/AdaBoost/" title="AdaBoost">
+                        <span class="hidden-mobile">AdaBoost</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
