@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -25,7 +25,7 @@
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Learning Journal">
 <meta property="og:description" content="All articles are written in English(practicing English expressing),">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ddccffq">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -89,16 +89,19 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
+
+
 
 <body>
   
@@ -130,7 +133,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -142,7 +145,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -154,7 +157,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -166,7 +169,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -178,7 +181,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -243,6 +246,69 @@ window.MathJax = {
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/06/02/MaxEntropy/" target="_self">
+          MaxEntropy
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/06/02/MaxEntropy/" target="_self">
+        <div>
+          Logistic RegressionLogistic Distribution设$X$是连续随机变量，$X$服从 logistic distribution 是指$X$具有下列分布函数和密度函数：  \begin{align} F(x) &= P(X \leq x) = \frac{1}{1 + e^{-(x-\mu)/\gamma}} \tag{1} \\ f(x) &= F'(x) = \f
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-02 10:02" pubdate>
+              2025-06-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/algorithm/">#algorithm</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -458,7 +524,7 @@ window.MathJax = {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/05/30/SVM/" target="_self">
         <div>
-          Linear SVM in Linearly Separable CaseDefine Training Data$$T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}$$ $$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1
+          Linear SVM in Linearly Separable CaseDefine Training Data  T = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1,
         </div>
       </a>
 
@@ -521,7 +587,7 @@ window.MathJax = {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/05/28/Pushdown-Automation/" target="_self">
         <div>
-          Background KnowledgePDA Formal Description$$\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}$$  $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: t
+          Background KnowledgePDA Formal Description \text{PDA} \quad M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: transition
         </div>
       </a>
 
@@ -634,39 +700,6 @@ window.MathJax = {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/05/28/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/28/hello-world/" target="_self">
-        <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-05-28 13:51" pubdate>
-              2025-05-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2025/05/28/MathJax/" target="_self">
           MathJax
         </a>
@@ -675,7 +708,7 @@ window.MathJax = {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/05/28/MathJax/" target="_self">
         <div>
-          $$\mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}$$
+          \mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}
         </div>
       </a>
 
@@ -708,7 +741,7 @@ window.MathJax = {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/05/28/DecisionTree/" target="_self">
         <div>
-          Background Knowledgesample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{
+          Background Knowledgesample group $D$ attribute $a$ information entropy p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_kinfo
         </div>
       </a>
 
@@ -843,7 +876,7 @@ window.MathJax = {
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -851,7 +884,7 @@ window.MathJax = {
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -938,7 +971,7 @@ window.MathJax = {
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

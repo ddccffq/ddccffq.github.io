@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -19,13 +19,13 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Background KnowledgePDA Formal Description$$\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}$$  $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: t">
+    <meta name="description" content="Background KnowledgePDA Formal Description \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: transition">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pushdown Automation">
 <meta property="og:url" content="http://example.com/2025/05/28/Pushdown-Automation/index.html">
 <meta property="og:site_name" content="Learning Journal">
-<meta property="og:description" content="Background KnowledgePDA Formal Description$$\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}$$  $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: t">
-<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Background KnowledgePDA Formal Description \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: transition">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-28T14:06:00.000Z">
 <meta property="article:modified_time" content="2025-05-29T12:59:01.214Z">
 <meta property="article:author" content="ddccffq">
@@ -97,16 +97,19 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
 
 <body>
   
@@ -138,7 +141,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -150,7 +153,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -162,7 +165,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -174,7 +177,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -186,7 +189,7 @@ window.MathJax = {
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -232,7 +235,7 @@ window.MathJax = {
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2025-05-28 22:06" pubdate>
-          May 28, 2025 pm
+          2025年5月28日 晚上
         </time>
       </span>
     
@@ -243,7 +246,7 @@ window.MathJax = {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          305 words
+          294 字
         
       </span>
     
@@ -254,7 +257,7 @@ window.MathJax = {
         
         
         
-          3 mins
+          3 分钟
         
       </span>
     
@@ -288,7 +291,7 @@ window.MathJax = {
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -309,8 +312,8 @@ window.MathJax = {
             
               <div class="markdown-body">
                 
-                <h1 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h1><h2 id="PDA-Formal-Description"><a href="#PDA-Formal-Description" class="headerlink" title="PDA Formal Description"></a>PDA Formal Description</h2><p>$$<br>\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}<br>$$</p>
-<ul>
+                <h1 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h1><h2 id="PDA-Formal-Description"><a href="#PDA-Formal-Description" class="headerlink" title="PDA Formal Description"></a>PDA Formal Description</h2><script type="math/tex; mode=display">
+\text{PDA} \quad M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}</script><ul>
 <li>$Q$: states group</li>
 <li>$\Sigma$: alphabet</li>
 <li>$\Gamma$: stack bottom symbol</li>
@@ -319,37 +322,36 @@ window.MathJax = {
 <li>$Z_0$: start bottom symbol</li>
 <li>$F$: finial state group</li>
 </ul>
-<p>$$<br>\delta : Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \rightarrow 2^{Q \times \Gamma^*} \tag{2}<br>$$</p>
-<h2 id="Instantaneous-Description"><a href="#Instantaneous-Description" class="headerlink" title="Instantaneous Description"></a>Instantaneous Description</h2><p>$$<br>(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^* \tag{3}<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\delta : Q \times (\Sigma \cup \\{\epsilon\\}) \times \Gamma \rightarrow 2^{Q \times \Gamma^*} \tag{2}</script><h2 id="Instantaneous-Description"><a href="#Instantaneous-Description" class="headerlink" title="Instantaneous Description"></a>Instantaneous Description</h2><script type="math/tex; mode=display">
+(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^* \tag{3}</script><ul>
 <li>current state is $q$</li>
 <li>unprocessed input string is $w$</li>
 <li>symbol string in the stack is $\gamma$</li>
 </ul>
 <h2 id="Accepted-Languages"><a href="#Accepted-Languages" class="headerlink" title="Accepted Languages"></a>Accepted Languages</h2><p>There are two methods to describe.</p>
-<p>$$<br>L(M) &#x3D; \{w \mid (q_0, w, Z_0)  \vdash ^* (p, \epsilon, \beta) \text{and} p \in F \} \tag{4}<br>$$</p>
-<p>$$<br>L(M) &#x3D; \{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \} \tag{5}<br>$$</p>
-<h1 id="Construct-PDA-From-Languages"><a href="#Construct-PDA-From-Languages" class="headerlink" title="Construct PDA From Languages"></a>Construct PDA From Languages</h1><pre><code class=" mermaid">graph LR
+<script type="math/tex; mode=display">
+L(M) = \\{w \mid (q_0, w, Z_0)  \vdash ^* (p, \epsilon, \beta) \text{and} p \in F \\} \tag{4}</script><script type="math/tex; mode=display">
+L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</script><h1 id="Construct-PDA-From-Languages"><a href="#Construct-PDA-From-Languages" class="headerlink" title="Construct PDA From Languages"></a>Construct PDA From Languages</h1><pre><code class=" mermaid">graph LR
     A[&quot;Get Grammar&quot;] --&gt; B[&quot;CFG&quot;]
     B[&quot;CFG&quot;] --&gt; C[&quot;GNF&quot;]
     C[&quot;GNF&quot;] --&quot;finial states&quot;--&gt; D[&quot;PDA&quot;]
     C[&quot;GNF&quot;] --&quot;empty stack&quot;--&gt; D[&quot;PDA&quot;]
 </code></pre>
-
-<h1 id="PDA-Transform"><a href="#PDA-Transform" class="headerlink" title="PDA Transform"></a>PDA Transform</h1><h2 id="Finial-State-to-Empty-Stack"><a href="#Finial-State-to-Empty-Stack" class="headerlink" title="Finial State to Empty Stack"></a>Finial State to Empty Stack</h2><p>$$<br>\text{PDA} M_1 &#x3D; (Q, \Sigma, \Gamma, \delta_1, q_0, F) \tag{6}<br>$$</p>
-<p>$$<br>\text{PDA} M_2 &#x3D; (Q \cup \{q_{02}, q_e \}, \Sigma, \Gamma \cup \{Z_{02} \}, \delta_2, q_{02}, Z_{02}, F) \tag{7}<br>$$</p>
-<p>We construct PDA $M_2$ to simulates PDA $M_1’s$ function. And first step, we need to get in PDA $M_1%.</p>
-<p>$$<br>\delta_2(q_{02}, \epsilon, Z_{02}) &#x3D; \{(q_{01}, Z_{01}Z_{02})\} \tag{8}<br>$$</p>
-<p>PDA $M_2$ simulates each none $\epsilon$ step of PDA $M_1$.</p>
-<p>$$<br>\forall (q, a, Z) \in Q \times \Sigma \times \Gamma, \delta_2(q, a, Z) &#x3D; \delta_1(q, a, Z) \tag{9}<br>$$</p>
-<p>PDA $M_2$ completely simulates PDA $M_1$ transition function in none finial states.</p>
-<p>$$<br>\forall (q, Z) \in (Q - F) \times \Gamma, \delta_2(q, \epsilon, Z) &#x3D; \delta_1(q, \epsilon, Z) \tag{10}<br>$$</p>
-<p>In $M_1’s$ finial states, not only should $M_2$ simulates $M_1’s$ $\epsilon% moves, but also simulates accepting moves.</p>
-<p>$$<br>\forall (q, Z) \in F \times \Gamma, \delta_2(q, \epsilon, Z) &#x3D; \delta_1(q, \epsilon, Z) \cup \{(q_e, \epsilon)\} \tag{11}<br>$$</p>
-<p>$M_1’s$ stacks having been empty and in finial states, $M_2% begins to cleat stack.</p>
-<p>$$<br>\forall q \in F, \delta_2(q, \epsilon, Z_{02}) &#x3D; \{(q_e, \epsilon) \} \tag{12}<br>$$</p>
-<p>$$<br>\forall q \in \Gamma \cup \{Z_{02} \}, \delta_2(q_e, \epsilon, Z) &#x3D; \{(q_e, \epsilon) \}<br>$$</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h1 id="PDA-Transform"><a href="#PDA-Transform" class="headerlink" title="PDA Transform"></a>PDA Transform</h1><h2 id="Finial-State-to-Empty-Stack"><a href="#Finial-State-to-Empty-Stack" class="headerlink" title="Finial State to Empty Stack"></a>Finial State to Empty Stack</h2><script type="math/tex; mode=display">
+\text{PDA} M_1 = (Q, \Sigma, \Gamma, \delta_1, q_0, F) \tag{6}</script><script type="math/tex; mode=display">
+\text{PDA} M_2 = (Q \cup \\{q_{02}, q_e \\}, \Sigma, \Gamma \cup \\{Z_{02} \\}, \delta_2, q_{02}, Z_{02}, F) \tag{7}</script><p>We construct PDA $M_2$ to simulates PDA $M_1’s$ function. And first step, we need to get in PDA $M_1%.</p>
+<script type="math/tex; mode=display">
+\delta_2(q_{02}, \epsilon, Z_{02}) = \\{(q_{01}, Z_{01}Z_{02})\\} \tag{8}</script><p>PDA $M_2$ simulates each none $\epsilon$ step of PDA $M_1$.</p>
+<script type="math/tex; mode=display">
+\forall (q, a, Z) \in Q \times \Sigma \times \Gamma, \delta_2(q, a, Z) = \delta_1(q, a, Z) \tag{9}</script><p>PDA $M_2$ completely simulates PDA $M_1$ transition function in none finial states.</p>
+<script type="math/tex; mode=display">
+\forall (q, Z) \in (Q - F) \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \tag{10}</script><p>In $M_1’s$ finial states, not only should $M_2$ simulates $M_1’s$ $\epsilon% moves, but also simulates accepting moves.</p>
+<script type="math/tex; mode=display">
+\forall (q, Z) \in F \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \cup \\{(q_e, \epsilon)\\} \tag{11}</script><p>$M_1’s$ stacks having been empty and in finial states, $M_2% begins to cleat stack.</p>
+<script type="math/tex; mode=display">
+\forall q \in F, \delta_2(q, \epsilon, Z_{02}) = \\{(q_e, \epsilon) \\} \tag{12}</script><script type="math/tex; mode=display">
+\forall q \in \Gamma \cup \\{Z_{02} \\}, \delta_2(q_e, \epsilon, Z) = \\{(q_e, \epsilon) \\}</script><h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
                 
               </div>
             
@@ -393,26 +395,26 @@ window.MathJax = {
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>ddccffq</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>May 28, 2025</div>
+          <div>发布于</div>
+          <div>2025年5月28日</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>许可协议</div>
           <div>
             
               
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
@@ -435,7 +437,7 @@ window.MathJax = {
                       <a href="/2025/05/30/SVM/" title="SVM">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SVM</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -444,7 +446,7 @@ window.MathJax = {
                     
                       <a href="/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/" title="Github Pages LaTeX Formula issues (Fluid)">
                         <span class="hidden-mobile">Github Pages LaTeX Formula issues (Fluid)</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -538,7 +540,7 @@ window.MathJax = {
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -546,7 +548,7 @@ window.MathJax = {
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -769,7 +771,7 @@ window.MathJax = {
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
