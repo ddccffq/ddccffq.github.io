@@ -27,7 +27,7 @@
 <meta property="og:description" content="EM 算法EM 算法通过迭代求 $L(\theta) &#x3D; \log P(Y | \theta)$ 的极大似然估计。每次迭代包含两步：E步，求期望；M步，求极大化。 算法步骤输入：观测变量数据 $Y$，隐变量数据 $Z$，联合分布 $P(Y, Z | \theta)$，条件分布 $P(Z | Y, \theta)$；输出：模型参数$\theta$。 （1）选择参数初始值 $\theta^{(0)}$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-03T04:51:44.000Z">
-<meta property="article:modified_time" content="2025-06-03T06:35:16.618Z">
+<meta property="article:modified_time" content="2025-06-03T13:17:12.733Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -45,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -476,6 +478,11 @@ Q(\theta, \theta^{(i)}) = \sum_{Z} \log P(Y, Z | \theta) P(Z | Y, \theta^{(i)}) 
   
 
 
+  
+  
+
+
+
 
   <script>
   Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
@@ -700,20 +707,5 @@ Q(\theta, \theta^{(i)}) = \sum_{Z} \log P(Y, Z | \theta) P(Z | Y, \theta^{(i)}) 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
