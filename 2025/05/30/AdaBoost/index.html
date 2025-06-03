@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          144 字
+          168 字
         
       </span>
     
@@ -305,30 +305,19 @@
             
               <div class="markdown-body">
                 
-                <h2 id="AdaBoost-Algorithm"><a href="#AdaBoost-Algorithm" class="headerlink" title="AdaBoost Algorithm"></a>AdaBoost Algorithm</h2><p><strong><em>Data Information</em></strong>: training data set $T$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-T& = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\} \\\\
-x_i \in \mathcal{X}& = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N
-\end{align}</script><p><strong><em>Algorithm Process</em></strong></p>
+                <h2 id="AdaBoost-Algorithm"><a href="#AdaBoost-Algorithm" class="headerlink" title="AdaBoost Algorithm"></a>AdaBoost Algorithm</h2><p><em><strong>Data Information</strong></em>: training data set $T$<br>$$<br>\begin{align}<br>T&amp; &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \\<br>x_i \in \mathcal{X}&amp; &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1}, \quad i &#x3D; 1, 2, \ldots, N<br>\end{align}<br>$$</p>
+<p><em><strong>Algorithm Process</strong></em></p>
 <ol>
-<li><p>Initialize training data set weight distribution:</p>
-<script type="math/tex; mode=display">
-D_1 = (w_{11}, w_{12}, \dots, w_{1N}), \quad w_{1i} = \frac{1}{N}, \quad i = 1, 2, \dots, N</script></li>
-<li><p>Training with weight distribution $D_i$.<br> (a) Calculate inaccuracy rate:</p>
-<script type="math/tex; mode=display">
- e_m = \sum_{i=1}^{N} P(G_m(x_i) \neq y_i) = \sum_{i=1}^{N} w_{mi} I(G_m(x_i) \neq y_i)</script><p> (b) Calculate $\alpha_m$:</p>
-<script type="math/tex; mode=display">
- \alpha_m = \frac{1}{2} \ln \frac{1 - e_m}{e_m}</script><p> (c) Update weight distribution:</p>
-<script type="math/tex; mode=display">
- D_{m+1} = (w_{m+1,1}, \dots, w_{m+1, N})</script><script type="math/tex; mode=display">
- w_{m+1,i} = \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))</script><p> $Z_m$ is the normalization factor.</p>
-<script type="math/tex; mode=display">
- Z_m = \sum_{i=1}^{N} w_{mi} \exp(-\alpha_m y_i G_m(x_i))</script></li>
-<li>construct linear classification machine.<script type="math/tex; mode=display">
- f(x) = \sum_{m=1}^{M} \alpha_m G_m(x)</script></li>
-<li>get final classification machine<script type="math/tex; mode=display">
- G(x) = \operatorname{sign}\left( \sum_{m=1}^{M} \alpha_m G_m(x) \right)</script></li>
+<li><p>Initialize training data set weight distribution:<br>$$<br>D_1 &#x3D; (w_{11}, w_{12}, \dots, w_{1N}), \quad w_{1i} &#x3D; \frac{1}{N}, \quad i &#x3D; 1, 2, \dots, N<br>$$</p>
+</li>
+<li><p>Training with weight distribution $D_i$.<br> (a) Calculate inaccuracy rate:<br> $$<br> e_m &#x3D; \sum_{i&#x3D;1}^{N} P(G_m(x_i) \neq y_i) &#x3D; \sum_{i&#x3D;1}^{N} w_{mi} I(G_m(x_i) \neq y_i)<br> $$</p>
+<p> (b) Calculate $\alpha_m$:<br> $$<br> \alpha_m &#x3D; \frac{1}{2} \ln \frac{1 - e_m}{e_m}<br> $$</p>
+<p> (c) Update weight distribution:<br> $$<br> D_{m+1} &#x3D; (w_{m+1,1}, \dots, w_{m+1, N})<br> $$<br> $$<br> w_{m+1,i} &#x3D; \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))<br> $$<br> $Z_m$ is the normalization factor.<br> $$<br> Z_m &#x3D; \sum_{i&#x3D;1}^{N} w_{mi} \exp(-\alpha_m y_i G_m(x_i))<br> $$</p>
+</li>
+<li><p>construct linear classification machine.<br> $$<br> f(x) &#x3D; \sum_{m&#x3D;1}^{M} \alpha_m G_m(x)<br> $$</p>
+</li>
+<li><p>get final classification machine<br> $$<br> G(x) &#x3D; \operatorname{sign}\left( \sum_{m&#x3D;1}^{M} \alpha_m G_m(x) \right)<br> $$</p>
+</li>
 </ol>
 
                 

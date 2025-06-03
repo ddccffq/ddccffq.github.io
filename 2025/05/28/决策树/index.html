@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
+    <meta name="description" content="Background Knowledgesample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树">
 <meta property="og:url" content="http://example.com/2025/05/28/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
 <meta property="og:site_name" content="学习日志">
-<meta property="og:description" content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
+<meta property="og:description" content="Background Knowledgesample group $D$ attribute $a$ information entropy$$p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)$$ $$\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-28T02:12:59.000Z">
 <meta property="article:modified_time" content="2025-06-03T03:50:22.641Z">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          921 字
+          977 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -307,20 +307,19 @@
                 
                 <h2 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h2><p>sample group $D$</p>
 <p>attribute $a$</p>
-<h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><script type="math/tex; mode=display">
-p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><script type="math/tex; mode=display">
-\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script><h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a = \\{a^1, a^2, \ldots, a^V \\}$</p>
-<p>$ D^v = \\{D(\text{attribute}(a) = a^v)\\}$</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, a) = Ent(D) - \sum_{v = 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)</script><h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3><script type="math/tex; mode=display">
-\text{Gain\_ratio}(D,a) = \frac{Gain(D,a)}{IV(a)}</script><script type="math/tex; mode=display">
-\text{IV}(a) = -\sum_{v = 1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><h3 id="Gini-index"><a href="#Gini-index" class="headerlink" title="Gini index"></a>Gini index</h3><script type="math/tex; mode=display">
-\text{Gini}(D^v) = \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k' \neq k}p_k p_{k'}</script><script type="math/tex; mode=display">
-\text{Gini}(D^v) = 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}</script><script type="math/tex; mode=display">
-\text{Gini\_index}(D,a) = \sum_{v = 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)</script><h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h3 id="test-1"><a href="#test-1" class="headerlink" title="test 1"></a>test 1</h3><blockquote>
+<h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><p>$$<br>p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|)<br>$$</p>
+<p>$$<br>\text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_k<br>$$</p>
+<h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a &#x3D; \{a^1, a^2, \ldots, a^V \}$</p>
+<p>$ D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}$</p>
+<p>$$<br>\text{Gain}(D, a) &#x3D; Ent(D) - \sum_{v &#x3D; 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
+<h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3><p>$$<br>\text{Gain_ratio}(D,a) &#x3D; \frac{Gain(D,a)}{IV(a)}<br>$$</p>
+<p>$$<br>\text{IV}(a) &#x3D; -\sum_{v &#x3D; 1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}<br>$$</p>
+<h3 id="Gini-index"><a href="#Gini-index" class="headerlink" title="Gini index"></a>Gini index</h3><p>$$<br>\text{Gini}(D^v) &#x3D; \sum_{k &#x3D; 1}^{|\mathscr{Y}|}\sum_{k’ \neq k}p_k p_{k’}<br>$$</p>
+<p>$$<br>\text{Gini}(D^v) &#x3D; 1 - \sum_{k &#x3D; 1}^{|\mathscr{Y}|}p_k^{2}<br>$$</p>
+<p>$$<br>\text{Gini_index}(D,a) &#x3D; \sum_{v &#x3D; 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)<br>$$</p>
+<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h3 id="test-1"><a href="#test-1" class="headerlink" title="test 1"></a>test 1</h3><blockquote>
 <p><strong>Table 1: Loan Application Sample Dataset</strong><br>This table presents the features of 15 applicants (Age, Employed, Owns House, Credit Status) and their loan application results (Class). This dataset is commonly used for training and analyzing decision tree algorithms.</p>
 </blockquote>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -332,8 +331,7 @@ p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><s
 <th>Class</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>Young</td>
 <td>No</td>
@@ -453,64 +451,75 @@ p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><s
 <td>Fair</td>
 <td>No</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h4 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h4><p><strong>Firstly</strong></p>
-<script type="math/tex; mode=display">
-\text{Ent}(D) = -(\frac{9}{15}\log_2\frac{9}{15} + \frac{6}{15}\log_2\frac{6}{15}) = 0.971</script><p>Then</p>
-<p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Age'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Age'}) = 0.971 + \frac{1}{3} \times (\frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}) = 0.083</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Employed'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Employed'}) = 0.971 + \frac{10}{15} \times (\frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10}) + \frac{5}{10} \times (\frac{5}{5}\log_2\frac{5}{5}) = 0.324</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Owns House'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Owns House'}) = 0.971 + \frac{9}{15} \times (\frac{3}{9} \log_2 \frac{3}{9} + \frac{6}{9} \log_2 \frac{6}{9}) + \frac{6}{15} \times (\frac{6}{6} \log_2 \frac{6}{6}) = \mathbf{0.420}</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Credit Status'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Credit Status'}) = 0.971 + \frac{5}{15} \times (\frac{4}{5} \log_2 \frac{4}{5} + \frac{1}{5} \log_2 \frac{1}{5}) + \frac{6}{15} \times (\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}) + \frac{4}{15} \times (\frac{4}{4} \log_2 \frac{4}{4})</script><script type="math/tex; mode=display">
-= 0.363</script><p>Since attribute <strong>‘Owns House’</strong> has the highest information gain, it is selected as the optimal feature. Dividing D by attribute ‘Owns House’, we get two data sets($D_1$ and $D_2$). All labels in $D_1$ are ‘yes’, so we set $D_1$ as a leaf node with label ‘yes’. But for $D_2$, we need divide it.</p>
+<p>$$<br>\text{Ent}(D) &#x3D; -(\frac{9}{15}\log_2\frac{9}{15} + \frac{6}{15}\log_2\frac{6}{15}) &#x3D; 0.971<br>$$<br>Then</p>
+<span style = "color : gray">
+$$
+\text{Gain}(D, \text{'Age'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)
+$$
+</span>
+
+<p>$$<br>\text{Gain}(D,\text{‘Age’}) &#x3D; 0.971 + \frac{1}{3} \times (\frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}) &#x3D; 0.083<br>$$</p>
+<span style = "color : gray">
+$$
+\text{Gain}(D, \text{'Employed'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)
+$$
+</span>
+
+<p>$$<br>\text{Gain}(D,\text{‘Employed’}) &#x3D; 0.971 + \frac{10}{15} \times (\frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10}) + \frac{5}{10} \times (\frac{5}{5}\log_2\frac{5}{5}) &#x3D; 0.324<br>$$</p>
+<span style = "color : gray">
+$$
+\text{Gain}(D, \text{'Owns House'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)
+$$
+</span>
+
+<p>$$<br>\text{Gain}(D,\text{‘Owns House’}) &#x3D; 0.971 + \frac{9}{15} \times (\frac{3}{9} \log_2 \frac{3}{9} + \frac{6}{9} \log_2 \frac{6}{9}) + \frac{6}{15} \times (\frac{6}{6} \log_2 \frac{6}{6}) &#x3D; \mathbf{0.420}<br>$$</p>
+<span style = "color : gray">
+$$
+\text{Gain}(D, \text{'Credit Status'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)
+$$
+</span>
+
+<p>$$<br>\text{Gain}(D, \text{‘Credit Status’}) &#x3D; 0.971 + \frac{5}{15} \times (\frac{4}{5} \log_2 \frac{4}{5} + \frac{1}{5} \log_2 \frac{1}{5}) + \frac{6}{15} \times (\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}) + \frac{4}{15} \times (\frac{4}{4} \log_2 \frac{4}{4})<br>$$</p>
+<p>$$<br>&#x3D; 0.363<br>$$</p>
+<p>Since attribute <strong>‘Owns House’</strong> has the highest information gain, it is selected as the optimal feature. Dividing D by attribute ‘Owns House’, we get two data sets($D_1$ and $D_2$). All labels in $D_1$ are ‘yes’, so we set $D_1$ as a leaf node with label ‘yes’. But for $D_2$, we need divide it.</p>
 <pre><code class=" mermaid">graph TD
     A[Owns House] -- yes --&gt; B[&quot;yes, D1&quot;]
     A[Owns House] -- no --&gt; C[&quot;D2&quot;]
 </code></pre>
+
 <div align = "center"><strong> Figure 1: first step </strong></div>
 
 <p>next</p>
-<script type="math/tex; mode=display">
-\text{Ent}(D_2) = -\frac{6}{9} \log_2 \frac{6}{9} -\frac{3}{9} \log_2 \frac{3}{9} = 0.918</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Age'}) = 0.918 + \frac{4}{9} \times (\frac{1}{4} \log_2 \frac{1}{4} + \frac{3}{4} \log_2 \frac{3}{4}) + \frac{2}{9} \times (\frac{2}{2} \ log_2 \frac{2}{2}) + \frac{3}{9} \times (\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}) = 0.251</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Employed'}) = 0.918 + \frac{6}{9} \times (\frac{6}{6} \log_2 \frac{6}{6}) + \frac{3}{9} \times (\frac{3}{3} \log_2 \frac{3}{3}) = 0.918</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Credit Status'}) = 0.918 + \frac{4}{9} \times (\frac{4}{4} \log_2 \frac{4}{4}) + \frac{4}{9} \times (2 \times \frac{2}{4} \log_2 \frac{2}{4}) + \frac{1}{9} \times \frac{1}{1} \log_2 \frac{1}{1} = 0.474</script><p>Since attribute <strong>‘Employed’</strong> has the highest information gain, it is selected as the optimal feature. Apparently, we get the final result.</p>
+<p>$$<br>\text{Ent}(D_2) &#x3D; -\frac{6}{9} \log_2 \frac{6}{9} -\frac{3}{9} \log_2 \frac{3}{9} &#x3D; 0.918<br>$$</p>
+<p>$$<br>\text{Gain}(D_2, \text{‘Age’}) &#x3D; 0.918 + \frac{4}{9} \times (\frac{1}{4} \log_2 \frac{1}{4} + \frac{3}{4} \log_2 \frac{3}{4}) + \frac{2}{9} \times (\frac{2}{2} \ log_2 \frac{2}{2}) + \frac{3}{9} \times (\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}) &#x3D; 0.251<br>$$</p>
+<p>$$<br>\text{Gain}(D_2, \text{‘Employed’}) &#x3D; 0.918 + \frac{6}{9} \times (\frac{6}{6} \log_2 \frac{6}{6}) + \frac{3}{9} \times (\frac{3}{3} \log_2 \frac{3}{3}) &#x3D; 0.918<br>$$</p>
+<p>$$<br>\text{Gain}(D_2, \text{‘Credit Status’}) &#x3D; 0.918 + \frac{4}{9} \times (\frac{4}{4} \log_2 \frac{4}{4}) + \frac{4}{9} \times (2 \times \frac{2}{4} \log_2 \frac{2}{4}) + \frac{1}{9} \times \frac{1}{1} \log_2 \frac{1}{1} &#x3D; 0.474<br>$$</p>
+<p>Since attribute <strong>‘Employed’</strong> has the highest information gain, it is selected as the optimal feature. Apparently, we get the final result.</p>
 <pre><code class=" mermaid">graph TD
     A[Owns House] -- yes --&gt; B[&quot;yes&quot;]
     A[Owns House] -- no --&gt; C[&quot;Employed&quot;]
     C[&quot;Employed&quot;] -- yes --&gt; D[&quot;yes&quot;]
     C[&quot;Employed&quot;] -- no --&gt; E[&quot;no&quot;]
 </code></pre>
+
 <div align = "center"><strong> Figure 2: finial decision tree </strong></div>
 
-<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are $N_{tk}$ sort $k = 1, 2, \ldots, K$ samples.</p>
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are $N_{tk}$ sort $k &#x3D; 1, 2, \ldots, K$ samples.</p>
 <p><strong>loss function</strong></p>
-<script type="math/tex; mode=display">
-C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>empirical entropy</strong></p>
-<script type="math/tex; mode=display">
-H_t(T) = -\sum_{k}\frac{N_{tk}}{N_t} \log_2 \frac{N_{tk}}{N_t}</script><p><strong>combination</strong></p>
-<script type="math/tex; mode=display">
-C(T) = -\sum_{t=1}^{|T|}\sum_{k}^{K}N_{tk} \log_2 \frac{N_{tk}}{N_t}</script><script type="math/tex; mode=display">
-C_\alpha(T) = C(T) + \alpha |T|</script><p><strong>purpose</strong></p>
-<script type="math/tex; mode=display">
-\min_{T} C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>algorithm</strong></p>
+<p>$$<br>C_\alpha(T) &#x3D; \sum_{t&#x3D;1}^{|T|}N_tH_t(T) + \alpha |T|<br>$$</p>
+<p><strong>empirical entropy</strong></p>
+<p>$$<br>H_t(T) &#x3D; -\sum_{k}\frac{N_{tk}}{N_t} \log_2 \frac{N_{tk}}{N_t}<br>$$</p>
+<p><strong>combination</strong></p>
+<p>$$<br>C(T) &#x3D; -\sum_{t&#x3D;1}^{|T|}\sum_{k}^{K}N_{tk} \log_2 \frac{N_{tk}}{N_t}<br>$$</p>
+<p>$$<br>C_\alpha(T) &#x3D; C(T) + \alpha |T|<br>$$</p>
+<p><strong>purpose</strong></p>
+<p>$$<br>\min_{T} C_\alpha(T) &#x3D; \sum_{t&#x3D;1}^{|T|}N_tH_t(T) + \alpha |T|<br>$$</p>
+<p><strong>algorithm</strong></p>
 <p>We can define a DP[] and use the idea of dynamic programming to find the optimal pruning</p>
 <ul>
-<li>input data $X = \\{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \\}$</li>
+<li>input data $X &#x3D; \{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \}$</li>
 <li>output $Tree_\alpha$</li>
 </ul>
 <ol>
@@ -519,27 +528,25 @@ C_\alpha(T) = C(T) + \alpha |T|</script><p><strong>purpose</strong></p>
 <li>return 2</li>
 </ol>
 <h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink" title="Regression Tree"></a>Regression Tree</h3><p>A regression tree corresponds to a partition of the input space and the output values within the partition units.</p>
-<p>input space $M = R_1, R_2, \ldots, R_M$, and each space $R_m$ has a output value $c_m$, we can define regression tree model as follow.</p>
-<p><strong>regression tree model</strong></p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</strong></p>
-<script type="math/tex; mode=display">
-\sum_{x_i \in R_m} (y_i - f(x_i))^2</script><script type="math/tex; mode=display">
-\hat{c}_m = ave(y_i \mid x_i \in R_m)</script><p><strong>dividing algorithm</strong></p>
+<p>input space $M &#x3D; R_1, R_2, \ldots, R_M$, and each space $R_m$ has a output value $c_m$, we can define regression tree model as follow.</p>
+<p><strong>regression tree model</strong><br>$$<br>f(x) &#x3D; \sum_{m&#x3D;1}^{M} c_m I (x \in R_m)<br>$$</p>
+<p><strong>Mean Squared Error</strong><br>$$<br>\sum_{x_i \in R_m} (y_i - f(x_i))^2<br>$$</p>
+<p>$$<br>\hat{c}_m &#x3D; ave(y_i \mid x_i \in R_m)<br>$$</p>
+<p><strong>dividing algorithm</strong></p>
 <ul>
 <li>input: training data $D$</li>
 <li>output: regression tree $f(x)$</li>
 </ul>
 <ol>
-<li>choose $x_j$, its output is $s$. Space $R_1(j, s) = \\{x \mid y_i \leq s\\}$,space $R_2(j, s) = \\{x \mid y_i &gt; s\\}$</li>
-<li><script type="math/tex; mode=display">\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script></li>
-<li><script type="math/tex; mode=display">\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m = 1, 2</script></li>
+<li>choose $x_j$, its output is $s$. Space $R_1(j, s) &#x3D; \{x \mid y_i \leq s\}$,space $R_2(j, s) &#x3D; \{x \mid y_i &gt; s\}$</li>
+<li>$$\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]$$</li>
+<li>$$\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m &#x3D; 1, 2$$</li>
 <li>repeat 2 and 3</li>
 </ol>
 <h3 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink" title="Classification Tree"></a>Classification Tree</h3><p><strong>Gini index</strong></p>
-<script type="math/tex; mode=display">
-\text{Gini} (p) = \sum_{k = 1}^{K} p_k(1 - p_k) = 1 - \sum_{k = 1}^{K} p_k^2</script><script type="math/tex; mode=display">
-\text{Gini} (D, A) = \sum_{v = 1}^{\mathscr{Y}} \frac{|D^v|}{|D|} \text{Gini}(D^v)</script>
+<p>$$<br>\text{Gini} (p) &#x3D; \sum_{k &#x3D; 1}^{K} p_k(1 - p_k) &#x3D; 1 - \sum_{k &#x3D; 1}^{K} p_k^2<br>$$</p>
+<p>$$<br>\text{Gini} (D, A) &#x3D; \sum_{v &#x3D; 1}^{\mathscr{Y}} \frac{|D^v|}{|D|} \text{Gini}(D^v)<br>$$</p>
+
                 
               </div>
             
