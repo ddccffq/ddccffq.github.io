@@ -62,7 +62,7 @@
     <link href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/"/>
     <url>/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="上下文无关文法的定义"><a href="#上下文无关文法的定义" class="headerlink" title="上下文无关文法的定义"></a>上下文无关文法的定义</h2><p>定义文法 $G = (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：</p><script type="math/tex; mode=display">\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{均有 } |\beta| \geq |\alpha|, \text{并且 } \alpha \in V</script><h2 id="派生树"><a href="#派生树" class="headerlink" title="派生树"></a>派生树</h2><p>设有 CFG $ G = (V, T, P, S)$，$G$ 的派生树是满足如<br>下条件的有序树。</p><ol><li>树的每个顶点有一个标记 $X$，且 $X \in V \cup T \cup \{\epsilon\}$；</li><li>树根的标记为 $S$；</li><li>如果非叶子顶点 $v$ 标记为 $A$，$v$ 的儿子从左到右依次为$v_1, v_2, \dots, v_n$，并且它们分别标记为$X_1, X_2, \dots, X_n$，则 $A \to X_1 X_2 \cdots X_n \in P$；</li><li>如果 $X$ 是一个<strong>非叶子顶点</strong>的标记，则 $X \in V$；</li><li>如果顶点 $v$ 标记为 $\epsilon$，则 $v$ 是该树的叶子，并且 $v$ 是其父顶点的<strong>惟一儿子</strong>。</li></ol>]]></content>
     
     
     <categories>
