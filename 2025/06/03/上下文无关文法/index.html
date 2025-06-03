@@ -19,24 +19,21 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
+    <meta name="description" content="All articles are written in English(practicing English expressing),">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVM">
-<meta property="og:url" content="http://example.com/2025/05/30/SVM/index.html">
+<meta property="og:title" content="上下文无关文法">
+<meta property="og:url" content="http://example.com/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/index.html">
 <meta property="og:site_name" content="Learning Journal">
-<meta property="og:description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
+<meta property="og:description" content="All articles are written in English(practicing English expressing),">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/05/30/SVM/kernel-trick.png">
-<meta property="article:published_time" content="2025-05-30T02:12:59.000Z">
-<meta property="article:modified_time" content="2025-06-01T08:41:52.508Z">
+<meta property="article:published_time" content="2025-06-03T02:25:03.000Z">
+<meta property="article:modified_time" content="2025-06-03T02:25:18.757Z">
 <meta property="article:author" content="ddccffq">
-<meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/05/30/SVM/kernel-trick.png">
   
   
   
-  <title>SVM - Learning Journal</title>
+  <title>上下文无关文法 - Learning Journal</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -110,7 +107,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 
@@ -226,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SVM"></span>
+            <span id="subtitle" data-typed-text="上下文无关文法"></span>
           
         </div>
 
@@ -237,8 +234,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-30 10:12" pubdate>
-          2025年5月30日 上午
+        <time datetime="2025-06-03 10:25" pubdate>
+          2025年6月3日 上午
         </time>
       </span>
     
@@ -249,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          819 字
+          0 字
         
       </span>
     
@@ -260,7 +257,7 @@
         
         
         
-          7 分钟
+          1 分钟
         
       </span>
     
@@ -310,142 +307,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">SVM</h1>
+            <h1 id="seo-header">上下文无关文法</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Linear-SVM-in-Linearly-Separable-Case"><a href="#Linear-SVM-in-Linearly-Separable-Case" class="headerlink" title="Linear SVM in Linearly Separable Case"></a>Linear SVM in Linearly Separable Case</h2><p><strong>Define Training Data</strong></p>
-<script type="math/tex; mode=display">
-T = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}</script><script type="math/tex; mode=display">x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N</script><p><strong>Define Separating Hyperplane</strong></p>
-<script type="math/tex; mode=display">
-w^* \cdot x + b^* = 0</script><p><strong>Define Classification Decision Function</strong></p>
-<script type="math/tex; mode=display">
-f(x) = \operatorname{sign}(w^* \cdot x + b^*)</script><p><strong>Define Functional Margin</strong></p>
-<script type="math/tex; mode=display">
-\hat{\gamma}_i = y_i (w \cdot x_i + b)</script><script type="math/tex; mode=display">
-\hat{\gamma} = \min_{i = 1, 2, \ldots, N} \hat{\gamma}_i</script><p><strong>Define Geometric Margin</strong></p>
-<script type="math/tex; mode=display">
-\gamma_i = y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)</script><p>$\lVert w \rVert$ is $L_2$ norm</p>
-<script type="math/tex; mode=display">
-\gamma = \min_{i=1, \ldots, N} \gamma_i</script><p><strong>What’s More</strong></p>
-<script type="math/tex; mode=display">
-\gamma_i = \frac{\hat{\gamma}_i}{\lVert w \rVert}</script><p><strong>Maximize Margin</strong><br>Originally, we solve the following question.</p>
-<script type="math/tex; mode=display">
-\max_{w, b} \quad \gamma</script><script type="math/tex; mode=display">
-s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i = 1, 2, \ldots ,N</script><p>We can transform this into a <strong><em>convex quadratic programming problem</em></strong>.</p>
-<script type="math/tex; mode=display">
-\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2</script><script type="math/tex; mode=display">
-s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i = 1, 2, \ldots, N</script><p><strong>Support Vector</strong></p>
-<script type="math/tex; mode=display">
-y_i(w \cdot x_i + b) - 1 = 0</script><p><strong>Margin</strong></p>
-<script type="math/tex; mode=display">
-d = \frac{2}{\lVert w \rVert}</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall y_j > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Linear-SVM"><a href="#Linear-SVM" class="headerlink" title="Linear SVM"></a>Linear SVM</h2><script type="math/tex; mode=display">
-y_i (w \cdot x_i + b) \geq 1 - \xi_i</script><script type="math/tex; mode=display">
-\min_{w, b, \xi} \quad \frac{1}{2} \lVert w \rVert^2 + C \sum_{i = 1}^{N} \xi_i</script><script type="math/tex; mode=display">
-s.t. \quad y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad i = 1, 2, \ldots, N, \quad \xi_i \geq 0</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Hinge-Loss-Functional"><a href="#Hinge-Loss-Functional" class="headerlink" title="Hinge Loss Functional"></a>Hinge Loss Functional</h2><script type="math/tex; mode=display">
-\min_{w, b} \quad \sum_{i = 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2</script><h2 id="Non-linear-SVM"><a href="#Non-linear-SVM" class="headerlink" title="Non-linear SVM"></a>Non-linear SVM</h2><p><strong>Kernel Trick</strong></p>
-<img src="/2025/05/30/SVM/kernel-trick.png" srcset="/img/loading.gif" lazyload class="" title="kernel-trick">
-<div align = "center"><em>Figure 1: Example for kernel trick</em></div>
-
-<p><strong>Positive Definite Kernel Function</strong></p>
-<p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a symmetric function, $K(x, z)$ is positive definite kernel function $\Leftrightarrow$ $\forall x_i \in \mathcal{X}, \quad i = 1, 2, 3, \dots, m, \quad \text{the gram matrix corresponding ot } K(x, z) \text{is positive semi-definite.}$</p>
-<p><strong>Gram Matrix</strong></p>
-<script type="math/tex; mode=display">K = [K(x_i, x_j)]_{m \times m} \tag{1}</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N} \alpha_i^{\ast} y_i K(x_i \cdot x_j)</script><h2 id="SMO-Algorithm"><a href="#SMO-Algorithm" class="headerlink" title="SMO Algorithm"></a>SMO Algorithm</h2><p><strong><em>Algorithm concept</em></strong></p>
-<p>SMO algorithm is a kind of heuristic algorithm.</p>
-<p><strong><em>Solution methods for quadratic programming with two variables</em></strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i \\\\
-&s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N
-\end{align}</script><p>We choose $\alpha_1, \alpha_2$, fixing other variables $\alpha_i (i = 3, 4, \dots, N)$.<br>Now, we solve following question:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) = \frac{1}{2} K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2 +y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) + y_1\alpha_1\sum_{i=3}^{N}y_i\alpha_iK_{i1} + y_2\alpha_2\sum_{i=3}^{N}y_i\alpha_iK_{i2} \tag{2}
-\\\\
-&s.t. \quad \alpha_1y_1 + \alpha_2y_2 = \sum_{i=3}^{N}y_i\alpha_i = \zeta, \quad 0 \leq \alpha_i \leq C, \quad i = 1, 2 \tag{3}
-\end{align}</script><p>$K_{ij} = K(x_i, x_j),i,j = 1,2, \dots, N$, $\zeta$ is a constant, the constant term in $(2)$ is omitted.</p>
-<p>We consider best optimal question about $\alpha_2$.</p>
-<p>if $ y_1 \neq y_2 $.</p>
-<script type="math/tex; mode=display">
-L = max(0, \alpha_2^{old} - alpha_1^{old}), \quad H = min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{4}</script><p>else.</p>
-<script type="math/tex; mode=display">
-L = max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H = min(C, \alpha_2^{old} + alpha_1^{old}) \tag{5}</script><script type="math/tex; mode=display">
-g(x) = \sum_{i=1}^{N}\alpha_i y_i K(x_i, x) + b</script><script type="math/tex; mode=display">
-E_i = g(x_i) - y_i = \sum_{j=1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i = 1, 2</script><p>Now, we update $\alpha_2$.</p>
-<script type="math/tex; mode=display">
-\alpha_2^{new,unc} = \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta = K_{11} + K_{22} - 2K_{12}</script><script type="math/tex; mode=display">
-\alpha_2^{new} =
-\begin{cases}
-H, &\alpha_2^{new,unc} > H
-\\
-\alpha_2^{new,unc}, &L \leq \alpha_2^{new,unc} \leq H
-\\
-L, &\alpha_2^{new,unc} < L
-\end{cases}</script><p>Next, update $\alpha_1$.</p>
-<script type="math/tex; mode=display">
-\alpha_1^{new} = \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})</script><p><strong><em>Solution methods for selecting variables</em></strong></p>
-<ol>
-<li>select the highest $E_i$ in all nodes as $\alpha_1$.</li>
-<li>select the highest $|E_1 - E_2|$as $\alpha_2$.</li>
-</ol>
-<p><strong><em>Solution methods for calculating threshold b and E</em></strong></p>
-<script type="math/tex; mode=display">
-b_1^{new} = -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
-b_2^{new} = -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
-b^{new} = \frac{b_1^{new} + b_2^{new}}{2}</script><p><strong>What’s more</strong></p>
-<p>updating $E$.</p>
-<script type="math/tex; mode=display">
-E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script><p>$\mathcal{S}$ includes all SV $x_i$.</p>
-
+                
                 
               </div>
             
@@ -463,17 +330,7 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
-  
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Statistical-Learning-Methods/" class="category-chain-item">Statistical Learning Methods</a>
+  <a href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="category-chain-item">形式语言与自动机</a>
   
   
 
@@ -485,13 +342,6 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/algorithm/" class="print-no-link">#algorithm</a>
-      
-    </div>
-  
 </div>
 
 
@@ -500,8 +350,8 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SVM</div>
-      <div>http://example.com/2025/05/30/SVM/</div>
+      <div>上下文无关文法</div>
+      <div>http://example.com/2025/06/03/上下文无关文法/</div>
     </div>
     <div class="license-meta">
       
@@ -513,7 +363,7 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月30日</div>
+          <div>2025年6月3日</div>
         </div>
       
       
@@ -545,9 +395,9 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/30/AdaBoost/" title="AdaBoost">
+                      <a href="/2025/06/03/%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="感知机">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AdaBoost</span>
+                        <span class="hidden-mobile">感知机</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -555,8 +405,8 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/28/Pushdown-Automation/" title="Pushdown Automation">
-                        <span class="hidden-mobile">Pushdown Automation</span>
+                      <a href="/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" title="最大熵模型">
+                        <span class="hidden-mobile">最大熵模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

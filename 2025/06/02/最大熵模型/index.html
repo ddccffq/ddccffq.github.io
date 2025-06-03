@@ -19,21 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Background KnowledgePDA Formal Description \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: transition">
+    <meta name="description" content="Logistic RegressionLogistic Distribution设$X$是连续随机变量，$X$服从 logistic distribution 是指$X$具有下列分布函数和密度函数：  \begin{align} F(x) &amp;&#x3D; P(X \leq x) &#x3D; \frac{1}{1 + e^{-(x-\mu)&#x2F;\gamma}} \tag{1} \\ f(x) &amp;&#x3D; F&#39;(x) &#x3D; \f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pushdown Automation">
-<meta property="og:url" content="http://example.com/2025/05/28/Pushdown-Automation/index.html">
+<meta property="og:title" content="最大熵模型">
+<meta property="og:url" content="http://example.com/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Learning Journal">
-<meta property="og:description" content="Background KnowledgePDA Formal Description \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$: states group $\Sigma$: alphabet $\Gamma$: stack bottom symbol $\delta$: transition">
+<meta property="og:description" content="Logistic RegressionLogistic Distribution设$X$是连续随机变量，$X$服从 logistic distribution 是指$X$具有下列分布函数和密度函数：  \begin{align} F(x) &amp;&#x3D; P(X \leq x) &#x3D; \frac{1}{1 + e^{-(x-\mu)&#x2F;\gamma}} \tag{1} \\ f(x) &amp;&#x3D; F&#39;(x) &#x3D; \f">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-28T14:06:00.000Z">
-<meta property="article:modified_time" content="2025-05-29T12:59:01.214Z">
+<meta property="article:published_time" content="2025-06-02T02:02:23.000Z">
+<meta property="article:modified_time" content="2025-06-03T03:06:08.751Z">
 <meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Pushdown Automation - Learning Journal</title>
+  <title>最大熵模型 - Learning Journal</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -223,7 +224,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Pushdown Automation"></span>
+            <span id="subtitle" data-typed-text="最大熵模型"></span>
           
         </div>
 
@@ -234,8 +235,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-28 22:06" pubdate>
-          2025年5月28日 晚上
+        <time datetime="2025-06-02 10:02" pubdate>
+          2025年6月2日 上午
         </time>
       </span>
     
@@ -246,7 +247,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          294 字
+          2k 字
         
       </span>
     
@@ -257,7 +258,7 @@
         
         
         
-          3 分钟
+          17 分钟
         
       </span>
     
@@ -307,51 +308,155 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Pushdown Automation</h1>
+            <h1 id="seo-header">最大熵模型</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h1><h2 id="PDA-Formal-Description"><a href="#PDA-Formal-Description" class="headerlink" title="PDA Formal Description"></a>PDA Formal Description</h2><script type="math/tex; mode=display">
-\text{PDA} \quad M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}</script><ul>
-<li>$Q$: states group</li>
-<li>$\Sigma$: alphabet</li>
-<li>$\Gamma$: stack bottom symbol</li>
-<li>$\delta$: transition function</li>
-<li>$q_0$: start state</li>
-<li>$Z_0$: start bottom symbol</li>
-<li>$F$: finial state group</li>
+                <h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h3 id="Logistic-Distribution"><a href="#Logistic-Distribution" class="headerlink" title="Logistic Distribution"></a>Logistic Distribution</h3><p>设$X$是连续随机变量，$X$服从 <strong><em>logistic distribution</em></strong> 是指$X$具有下列分布函数和密度函数：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+F(x) &= P(X \leq x) = \frac{1}{1 + e^{-(x-\mu)/\gamma}} \tag{1}
+\\
+f(x) &= F'(x) = \frac{e^{-(x-\mu)/\gamma}}{\gamma\left(1 + e^{-(x-\mu)/\gamma}\right)^2} \tag{2}
+\end{align}</script><h3 id="Binomial-Logistic-Regression-Model"><a href="#Binomial-Logistic-Regression-Model" class="headerlink" title="Binomial Logistic Regression Model"></a>Binomial Logistic Regression Model</h3><p>这是一种二分类模型，这里规定模型输出 $Y \in \{0, 1\}$， 也就是 $y_i \in \{0, 1\}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+P(Y = 0 | x) &= \frac{1}{1 + \exp (1 + \vec{w} \cdot \vec{x} + b)} \tag{3}
+\\
+P(Y = 1 | x) &= \frac{\exp (\vec{w} \cdot \vec{x} + b)}{1 + \exp (1 + \vec{w} \cdot \vec{x} + b)} \tag{4}
+\end{align}</script><p>其中，$x \in \mathbb{R}^n$ 是输入，$w \in \mathbb{R}^n$ 和 $ b \in \mathbb{R}$ 分别是权值向量和偏置，$\vec{w} \cdot \vec{x}$ 是向量内积运算。</p>
+<h3 id="Evaluation-of-Model-Parameters"><a href="#Evaluation-of-Model-Parameters" class="headerlink" title="Evaluation of Model Parameters"></a>Evaluation of Model Parameters</h3><p>采用极大似然估计法估计模型参数，从而得到 <strong><em>logistics regression model</em></strong>。</p>
+<p>我们设</p>
+<script type="math/tex; mode=display">
+P(Y = 1 | x) = \pi(x) \tag{5}</script><p>则得到似然函数为</p>
+<script type="math/tex; mode=display">
+\prod_{i=1}^{N}[\pi(x_i)]^{y_i}[1 - \pi(x_i)]^{1 - y_i} \tag{6}</script><p>经过计算，对数似然函数为</p>
+<script type="math/tex; mode=display">
+L(w) = \sum_{i=1}^{N} [y_i(\vec{w} \cdot \vec{x_i}) - \ln (1 + \exp (\vec{w} \cdot \vec{x_i}))] \tag{7}</script><p>对 $L(w)$ 求极大值，得到 $w$ 的估计值 $\hat{w}$</p>
+<hr>
+<h2 id="Maximum-Entropy-Model"><a href="#Maximum-Entropy-Model" class="headerlink" title="Maximum Entropy Model"></a>Maximum Entropy Model</h2><h3 id="The-Principle-of-Maximum-Entropy"><a href="#The-Principle-of-Maximum-Entropy" class="headerlink" title="The Principle of Maximum Entropy"></a>The Principle of Maximum Entropy</h3><p>最大熵原理的核心在于，使得整个概率模型的熵最大。</p>
+<h3 id="MaxEntropy-Model"><a href="#MaxEntropy-Model" class="headerlink" title="MaxEntropy Model"></a>MaxEntropy Model</h3><p>模型输入 $X \in \mathcal{X} \subseteq \mathbb{R}^n$，输出 $Y \in \mathcal{Y}$，条件概率分布 $P(Y | X)$ 表示对于给定输入 $X$ 以该条件概率输出 $Y$。</p>
+<p>给定训练数据集，可以确定联合分布 $P(X, Y)$ 的经验分布和边缘分布。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\tilde{P}(X = x, Y = y) &= \frac{\nu(X = x, Y = y)}{N} \tag{8}
+\\
+\tilde{P}(X = x) &= \frac{\nu(X = x)}{N} \tag{9}
+\end{align}</script><p>其中 $\nu(X = x, Y = y)$ 是样本 $(x, y)$ 出现的频数。</p>
+<p>接下来介绍特征函数 <strong><em>feature function</em></strong> $f(x,y)$，$f()$ 描述输入 $x$ 与输出 $y$ 之间的某一个事实。</p>
+<script type="math/tex; mode=display">
+f(x, y) =
+\begin{cases}
+1, &\text{satisfying}
+\\
+0, &\text{otherwise} \tag{10}
+\end{cases}</script><p>特征函数关于经验分布的期望值</p>
+<script type="math/tex; mode=display">
+E_{\tilde{P}}(f) = \sum_{x,y} \tilde{P}(x,y) f(x,y) \tag{11}</script><p>特征函数关于模型与经验分布的期望值</p>
+<script type="math/tex; mode=display">
+E_P(f) = \sum_{x,y} \tilde{P}(x) P(y|x) f(x,y) \tag{12}</script><p>如果模型能够获得训练数据中的信息，则可以认为上述两个期望值相等，即</p>
+<script type="math/tex; mode=display">
+E_{\tilde{P}}(f) = E_P(f) \tag{13}</script><p>综上，我们引出最大熵模型。</p>
+<p>假设满足所有约束条件的模型集合为</p>
+<script type="math/tex; mode=display">
+\mathcal{C} \equiv \{P \in \mathcal{P} \mid E_{\tilde{P}}(f_i) = E_P(f_i), \quad i=1,2,\dots,n\} \tag{14}</script><p>定义在条件概率分布 $P(Y|X)$ 上的条件熵为</p>
+<script type="math/tex; mode=display">
+H(P) = -\sum_{x,y} \tilde{P}(x) P(y|x) \ln P(y|x) \tag{15}</script><p>则模型集合 $\mathcal{C}$ 中条件熵 $H(P)$ 最大的模型称为最大熵模型。</p>
+<h3 id="Training-a-Maximum-Entropy-Model"><a href="#Training-a-Maximum-Entropy-Model" class="headerlink" title="Training a Maximum Entropy Model"></a>Training a Maximum Entropy Model</h3><p>类似 <strong>SVM</strong> 的学习过程。给定训练数据集 $T = \{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}$ 以及特征函数 $f_i(x,y), \quad i = 1, 2, \dots, n$，最大熵模型的学习等价于约束最优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\max_{P \in \mathcal{C}} \quad & H(P) = -\sum_{x, y} \tilde{P}(x) P(y \mid x) \ln P(y \mid x)
+\\
+\text{subject to} \quad & E_{\tilde{P}}[f_i] = E_P[f_i], \quad i = 1, 2, \dots, n
+\\
+& \sum_{y} P(y \mid x) = 1
+\end{align*}</script><p>将其换为等价的最小化问题</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\min_{P \in \mathcal{C}} \quad -&H(P) = \sum_{x, y} \tilde{P}(x) P(y \mid x) \ln P(y \mid x) \tag{16}
+\\
+\text{subject to} \quad & E_{\tilde{P}}[f_i] - E_P[f_i]= 0, \quad i = 1, 2, \dots, n \tag{17}
+\\
+& \sum_{y} P(y \mid x) = 1 \tag{18}
+\end{align*}</script><p>将约束最优化问题转换为无约束最优化的对偶问题。引入拉格朗日乘子 $w_0, w_1, \dots, w_n$，定义拉格朗日函数 $L(P, w)$：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+L(P, w) &\equiv -H(P) + w_0 \left(1 - \sum_{y} P(y | x)\right) + \sum_{i = 1}^{n} w_i (E_{\tilde{P}}(f_i) - E_{P}(f_i)) \tag{19}
+\\
+&= \sum_{x,y} \tilde{P}(x) P(y | x) \ln P(y | x) + w_0\left(1 - \sum_{y} P(y | x)\right) +
+\\
+&\sum_{i = 1}^{n} w_i\left(\sum_{x, y} \tilde{P}(x, y) f_i(x, y) - \sum_{x, y} \tilde{P}(x) P(y | x) f_i(x, y) \right)
+\end{align*}</script><p>最优化的原始问题是</p>
+<script type="math/tex; mode=display">
+\min_{P \in \mathcal{C}} \max_{w} L(P, w) \tag{20}</script><p>对偶问题是</p>
+<script type="math/tex; mode=display">
+\max_{w} \min_{P \in \mathcal{C}} L(P, w) \tag{21}</script><p>先解决极小化问题， 记</p>
+<script type="math/tex; mode=display">
+\Psi(w) = \min_{P \in \mathcal{C}} L(P, w) = L(P_w, w) \tag{22}</script><p>求 $L(P, w)$ 对 $P(y | x)$ 的偏导数</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\frac{\partial L(P, w)}{\partial P(y | x)} &= \sum_{x, y} \tilde{P}(x)(\ln P(y | x) + 1) - \sum_{y}w_0 - \sum_{x, y} \left(\tilde{P}(x) \sum_{i = 1}^{n} w_i f_i(x, y) \right)
+\\
+&= \sum_{x, y} \tilde{P} \left(\ln P(y | x) + 1 - w_0 - \sum_{i = 1}^{n} w_i f_i(x, y) \right)
+\end{align*}</script><p>令偏导数等于 $0$， 在 $\tilde{P} &gt; 0$ 的情况下，解得</p>
+<script type="math/tex; mode=display">
+P_w(y | x) = \frac{1}{Z_w(x)} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right) \tag{23}</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z_w(x) = \sum_{y} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right) \tag{24}</script><p>称 $Z_w(x)$ 为归一化因子。</p>
+<p>最后求解对偶问题外部的极大化问题</p>
+<script type="math/tex; mode=display">
+\max_{w} \Psi(w) \tag{25}</script><h3 id="Improved-Iterative-Scaling"><a href="#Improved-Iterative-Scaling" class="headerlink" title="Improved Iterative Scaling"></a>Improved Iterative Scaling</h3><p>已知最大熵模型</p>
+<script type="math/tex; mode=display">
+P_w(y | x) = \frac{1}{Z_w(x)} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)</script><p>其中</p>
+<script type="math/tex; mode=display">
+Z_w(x) = \sum_{y} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)</script><p>对数似然函数为</p>
+<script type="math/tex; mode=display">
+L(w) = \sum_{x, y} \tilde{P}(x, y) \sum_{i = 1}^{n} w_i f_i(x, y) - \sum_{x} \tilde{P}(x) \ln Z_w(x)</script><p>改进迭代算法的思路是，假设最大熵模型当前的参数向量是 $w = (w_1, w_2, \dots, w_n)^{T}$，我们希望找到一个新的参数向量 $w + \delta = (w_1 + \delta_1, \dots, w_n + \delta_n)^{T}$，使得模型的对数似然函数增值。</p>
+<p><strong>算法步骤</strong></p>
+<p><strong>输入</strong>：特征函数 $f_1, f_2, \dots, f_n$；经验分布 $\tilde{P}(X, Y)$；模型 $P_w(y | x)$</p>
+<p><strong>输出</strong>：最优参数值 $w_i^{\ast}$；最优模型 $P_{w^{\ast}}$</p>
+<p><strong>步骤1</strong>：对所有 $i \in \{1, 2, \dots, n\}$，取初值 $w_i = 0$。</p>
+<p><strong>步骤2</strong>：对每一 $i \in \{1, 2, \dots, n\}$，执行以下操作：</p>
+<p>首先，令 $\delta_i$ 为下列方程的解：</p>
+<script type="math/tex; mode=display">
+\sum_{x, y} \tilde{P}(x) P(y | x) f_i(x, y) \exp \left(\delta_i f^{\Sigma}(x, y) \right) = E_{\tilde{P}}(f_i)</script><p>其中，$f^{\Sigma}(x, y)$ 定义为：</p>
+<script type="math/tex; mode=display">
+f^{\Sigma}(x, y) = \sum_{i = 1}^{n} f_i(x, y)</script><p>然后，更新 $w_i$ 的值：</p>
+<script type="math/tex; mode=display">
+w_i \leftarrow w_i + \delta_i</script><p><strong>步骤3</strong>：如果不是所有 $w_i$ 都收敛，则重复步骤2。</p>
+<h3 id="Quasi-Newton-Method-BFGS"><a href="#Quasi-Newton-Method-BFGS" class="headerlink" title="Quasi-Newton Method : BFGS"></a>Quasi-Newton Method : BFGS</h3><p>对最大熵模型而言，</p>
+<script type="math/tex; mode=display">
+P_w(y | x) = \frac{\exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)}{\sum_{y} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)}</script><p>目标函数：</p>
+<script type="math/tex; mode=display">
+\min_{w \in \mathbb{R}^n} f(w) = \sum_{x} \tilde{P}(x) \ln \sum_{y} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right) - \sum_{x, y} \tilde{P}(x, y) \sum_{i = 1}^{n} w_i f_i(x, y)</script><p>相应 $i$ 的梯度有，</p>
+<script type="math/tex; mode=display">
+\frac{\partial f(w)}{\partial w_i} = \sum_{x, y} \tilde{P}(x) P_w(y | x) f_i(x, y) - E_{\tilde{p}}(f_i)</script><p>定义 $g()$</p>
+<script type="math/tex; mode=display">
+g(w) = \left(\frac{\partial f(x)}{\partial w_1}, \frac{\partial f(x)}{\partial w_2}, \dots,\frac{\partial f(x)}{\partial w_n} \right)^T</script><p><strong>算法步骤</strong></p>
+<p><strong>输入</strong>：特征函数 $f_1, f_2, \dots, f_n$；经验分布 $\tilde{P}(X, Y)$；目标函数 $f(w)$；梯度 $g(w) = \nabla f(w)$；精度要求 $\epsilon$<br><strong>输出</strong>：最优参数值 $w_i^{\ast}$；最优模型 $P_{w^{\ast}}$</p>
+<ol>
+<li>选定初始点 $w^{(0)}$，取 $B_0$ 为正定对称矩阵，置 $k = 0$。</li>
+<li>计算 $g_k = g(w^{(k)})$。<br>若 $\lVert g_k \rVert &lt; \epsilon$，则停止计算，得 $w^{*} = w^{(k)}$；否则转第 3 步。</li>
+<li>由 $B_k p_k = -g_k$ 求出 $p_k$。</li>
+<li>一维搜索，求 $\lambda_k$ 使得<script type="math/tex; mode=display">
+ f(w^{(k)} + \lambda_k p_k) = \min_{\lambda \geq 0} f(w^{(k)} + \lambda p_k)</script></li>
+<li>置 $w^{(k + 1)} = w^{(k)} + \lambda_k p_k$。</li>
+<li>计算 $g_{k + 1} = g(w^{(k + 1)})$。<br>若 $\lVert g_{k + 1} \rVert &lt; \epsilon$，则停止计算，得 $w^{*} = w^{(k + 1)}$；否则，按下式求出 $B_{k + 1}$：<script type="math/tex; mode=display">
+ B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k \delta_k^T B_k}{\delta_k^T B_k \delta_k}</script> 其中，<script type="math/tex; mode=display">
+ y_k = g_{k + 1} - g_k, \quad \delta_k = w^{(k + 1)} - w^{(k)}</script></li>
+<li>置 $k = k + 1$，转第 3 步。</li>
+</ol>
+<p><strong>补充说明</strong></p>
+<p>在 BFGS 算法中，$B_k$ 是对目标函数 <strong><em>Hessian</em></strong> 矩阵的近似。初始时 $B_0$ 通常取为单位矩阵或其他对称正定矩阵。每次迭代后，$B_k$ 按如下公式更新：</p>
+<script type="math/tex; mode=display">
+B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k \delta_k^T B_k}{\delta_k^T B_k \delta_k}</script><p>其中，</p>
+<ul>
+<li>$\delta_k = w^{(k + 1)} - w^{(k)}$ 表示参数的变化，</li>
+<li>$y_k = g_{k + 1} - g_k$ 表示梯度的变化。</li>
 </ul>
-<script type="math/tex; mode=display">
-\delta : Q \times (\Sigma \cup \\{\epsilon\\}) \times \Gamma \rightarrow 2^{Q \times \Gamma^*} \tag{2}</script><h2 id="Instantaneous-Description"><a href="#Instantaneous-Description" class="headerlink" title="Instantaneous Description"></a>Instantaneous Description</h2><script type="math/tex; mode=display">
-(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^* \tag{3}</script><ul>
-<li>current state is $q$</li>
-<li>unprocessed input string is $w$</li>
-<li>symbol string in the stack is $\gamma$</li>
-</ul>
-<h2 id="Accepted-Languages"><a href="#Accepted-Languages" class="headerlink" title="Accepted Languages"></a>Accepted Languages</h2><p>There are two methods to describe.</p>
-<script type="math/tex; mode=display">
-L(M) = \\{w \mid (q_0, w, Z_0)  \vdash ^* (p, \epsilon, \beta) \text{and} p \in F \\} \tag{4}</script><script type="math/tex; mode=display">
-L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</script><h1 id="Construct-PDA-From-Languages"><a href="#Construct-PDA-From-Languages" class="headerlink" title="Construct PDA From Languages"></a>Construct PDA From Languages</h1><pre><code class=" mermaid">graph LR
-    A[&quot;Get Grammar&quot;] --&gt; B[&quot;CFG&quot;]
-    B[&quot;CFG&quot;] --&gt; C[&quot;GNF&quot;]
-    C[&quot;GNF&quot;] --&quot;finial states&quot;--&gt; D[&quot;PDA&quot;]
-    C[&quot;GNF&quot;] --&quot;empty stack&quot;--&gt; D[&quot;PDA&quot;]
-</code></pre>
-<h1 id="PDA-Transform"><a href="#PDA-Transform" class="headerlink" title="PDA Transform"></a>PDA Transform</h1><h2 id="Finial-State-to-Empty-Stack"><a href="#Finial-State-to-Empty-Stack" class="headerlink" title="Finial State to Empty Stack"></a>Finial State to Empty Stack</h2><script type="math/tex; mode=display">
-\text{PDA} M_1 = (Q, \Sigma, \Gamma, \delta_1, q_0, F) \tag{6}</script><script type="math/tex; mode=display">
-\text{PDA} M_2 = (Q \cup \\{q_{02}, q_e \\}, \Sigma, \Gamma \cup \\{Z_{02} \\}, \delta_2, q_{02}, Z_{02}, F) \tag{7}</script><p>We construct PDA $M_2$ to simulates PDA $M_1’s$ function. And first step, we need to get in PDA $M_1%.</p>
-<script type="math/tex; mode=display">
-\delta_2(q_{02}, \epsilon, Z_{02}) = \\{(q_{01}, Z_{01}Z_{02})\\} \tag{8}</script><p>PDA $M_2$ simulates each none $\epsilon$ step of PDA $M_1$.</p>
-<script type="math/tex; mode=display">
-\forall (q, a, Z) \in Q \times \Sigma \times \Gamma, \delta_2(q, a, Z) = \delta_1(q, a, Z) \tag{9}</script><p>PDA $M_2$ completely simulates PDA $M_1$ transition function in none finial states.</p>
-<script type="math/tex; mode=display">
-\forall (q, Z) \in (Q - F) \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \tag{10}</script><p>In $M_1’s$ finial states, not only should $M_2$ simulates $M_1’s$ $\epsilon% moves, but also simulates accepting moves.</p>
-<script type="math/tex; mode=display">
-\forall (q, Z) \in F \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \cup \\{(q_e, \epsilon)\\} \tag{11}</script><p>$M_1’s$ stacks having been empty and in finial states, $M_2% begins to cleat stack.</p>
-<script type="math/tex; mode=display">
-\forall q \in F, \delta_2(q, \epsilon, Z_{02}) = \\{(q_e, \epsilon) \\} \tag{12}</script><script type="math/tex; mode=display">
-\forall q \in \Gamma \cup \\{Z_{02} \\}, \delta_2(q_e, \epsilon, Z) = \\{(q_e, \epsilon) \\}</script><h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
+<p>$B_k$ 的更新保证了其对称正定性，并逐步逼近真实的 Hessian 矩阵，从而提升搜索方向的准确性和收敛速度。</p>
+
                 
               </div>
             
@@ -369,7 +474,17 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
     
       <span class="category-chain">
         
-  <a href="/categories/Formal-Languages-and-Automata/" class="category-chain-item">Formal Languages and Automata</a>
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="category-chain-item">统计学习方法</a>
   
   
 
@@ -381,6 +496,13 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
 </div>
 
 
@@ -389,8 +511,8 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Pushdown Automation</div>
-      <div>http://example.com/2025/05/28/Pushdown-Automation/</div>
+      <div>最大熵模型</div>
+      <div>http://example.com/2025/06/02/最大熵模型/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +524,7 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月28日</div>
+          <div>2025年6月2日</div>
         </div>
       
       
@@ -434,9 +556,9 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/30/SVM/" title="SVM">
+                      <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" title="上下文无关文法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SVM</span>
+                        <span class="hidden-mobile">上下文无关文法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -444,8 +566,8 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/" title="Github Pages LaTeX Formula issues (Fluid)">
-                        <span class="hidden-mobile">Github Pages LaTeX Formula issues (Fluid)</span>
+                      <a href="/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" title="���������">
+                        <span class="hidden-mobile">���������</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -498,12 +620,6 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -711,49 +827,6 @@ L(M) = \\{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \\} \tag{5}</sc
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

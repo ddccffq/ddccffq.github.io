@@ -19,21 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="\mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}">
+    <meta name="description" content="Perceptron感知机用于二分类线性问题 感知机的数学定义假设输入空间 $\mathcal{X} \subseteq \mathbb{R}^n$，输出空间是 $\mathcal{Y} &#x3D; \{+1, -1\}$。由输入空间到输出空间的如下函数：  f(x) &#x3D; \operatorname{sign} (w \cdot x + b) \tag{1}称为感知机。其中，$w$ 和 $b$ 为感知机模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MathJax">
-<meta property="og:url" content="http://example.com/2025/05/28/MathJax/index.html">
+<meta property="og:title" content="感知机">
+<meta property="og:url" content="http://example.com/2025/06/03/%E6%84%9F%E7%9F%A5%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Learning Journal">
-<meta property="og:description" content="\mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}">
+<meta property="og:description" content="Perceptron感知机用于二分类线性问题 感知机的数学定义假设输入空间 $\mathcal{X} \subseteq \mathbb{R}^n$，输出空间是 $\mathcal{Y} &#x3D; \{+1, -1\}$。由输入空间到输出空间的如下函数：  f(x) &#x3D; \operatorname{sign} (w \cdot x + b) \tag{1}称为感知机。其中，$w$ 和 $b$ 为感知机模">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-28T02:34:01.000Z">
-<meta property="article:modified_time" content="2025-06-02T03:41:25.310Z">
+<meta property="article:published_time" content="2025-06-03T03:04:29.000Z">
+<meta property="article:modified_time" content="2025-06-03T03:47:17.010Z">
 <meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>MathJax - Learning Journal</title>
+  <title>感知机 - Learning Journal</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -223,7 +224,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MathJax"></span>
+            <span id="subtitle" data-typed-text="感知机"></span>
           
         </div>
 
@@ -234,8 +235,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-28 10:34" pubdate>
-          2025年5月28日 上午
+        <time datetime="2025-06-03 11:04" pubdate>
+          2025年6月3日 上午
         </time>
       </span>
     
@@ -246,7 +247,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14 字
+          411 字
         
       </span>
     
@@ -257,7 +258,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -307,13 +308,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MathJax</h1>
+            <h1 id="seo-header">感知机</h1>
             
             
               <div class="markdown-body">
                 
-                <script type="math/tex; mode=display">
-\mathbf{y},\ \mathcal{Y},\ \mathscr{Y},\ \mathbb{Y},\ \mathfrak{Y},\ \mathrm{Y},\ \mathit{Y}</script>
+                <h2 id="Perceptron"><a href="#Perceptron" class="headerlink" title="Perceptron"></a>Perceptron</h2><p>感知机用于<strong>二分类线性问题</strong></p>
+<h3 id="感知机的数学定义"><a href="#感知机的数学定义" class="headerlink" title="感知机的数学定义"></a>感知机的数学定义</h3><p>假设输入空间 $\mathcal{X} \subseteq \mathbb{R}^n$，输出空间是 $\mathcal{Y} = \{+1, -1\}$。由输入空间到输出空间的如下函数：</p>
+<script type="math/tex; mode=display">
+f(x) = \operatorname{sign} (w \cdot x + b) \tag{1}</script><p>称为感知机。其中，$w$ 和 $b$ 为感知机模型参数，前者叫 weight，后者叫 bias，点乘运算为向量内积。$\operatorname{sign}$ 是符号函数，具体定义如下：</p>
+<script type="math/tex; mode=display">
+\operatorname{sign}(x) =
+\begin{cases}
++1,& x \geq 0
+\\
+-1,& x < 0 \tag{2}
+\end{cases}</script><h3 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h3><p>假设数据集<strong>线性可分</strong>，定义感知机学习的损失函数为：</p>
+<script type="math/tex; mode=display">
+L(w, b) = -\sum_{x_i \in M} y_i(w \cdot x_i + b) \tag{3}</script><p>其中，$M$ 是<strong>误分类点的集合</strong>，我们的目标是极小化 $L(w, b)$。</p>
+<h3 id="感知机学习算法的原始形式"><a href="#感知机学习算法的原始形式" class="headerlink" title="感知机学习算法的原始形式"></a>感知机学习算法的原始形式</h3><p>随机初始化 $w$ 和 $b$，分别记为 $w_0$ 和 $b_0$，然后在训练数据集中选取数据 $(\vec{x_i}, y_i)$；如果 $y_i(\vec{w} \cdot \vec{x_i} + b) \leq 0$,</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&w \leftarrow w + \eta y_i x_i
+\\
+&b \leftarrow b + \eta y_i
+\end{align*}</script><p>重复上述选择更新过程直至没有误分类点。</p>
+<h3 id="感知机学习算法的对偶形式"><a href="#感知机学习算法的对偶形式" class="headerlink" title="感知机学习算法的对偶形式"></a>感知机学习算法的对偶形式</h3><p>与原始形式不同，对原始形式使用拉格朗日对偶化，得到相应的对偶形式。首先初始化系数和偏置 $\alpha \leftarrow 0, b \leftarrow 0$。再在训练集中选取数据 $(x_i, y_i)$；如果 $y_i \left(\sum_{j = 1}^{N} \alpha_j y_j x_j \cdot x_i + b \right) \leq 0$，则更新</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&\alpha_i \leftarrow \alpha_i + \eta
+\\
+&b \leftarrow b + \eta y_i
+\end{align*}</script><p><strong>tips</strong></p>
+<p>可以预处理出所有输入实例间的内积，并将其存为一个矩阵，这个矩阵叫做 Gram 矩阵，</p>
+<script type="math/tex; mode=display">
+\mathbf{G} = [x_i \cdot x_j]_{N \times N}</script>
                 
               </div>
             
@@ -321,6 +350,44 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="category-chain-item">统计学习方法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
   
 </div>
 
@@ -330,8 +397,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MathJax</div>
-      <div>http://example.com/2025/05/28/MathJax/</div>
+      <div>感知机</div>
+      <div>http://example.com/2025/06/03/感知机/</div>
     </div>
     <div class="license-meta">
       
@@ -343,7 +410,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月28日</div>
+          <div>2025年6月3日</div>
         </div>
       
       
@@ -375,18 +442,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/28/Github-Pages-LaTex-Formula-issues-Fluid/" title="Github Pages LaTeX Formula issues (Fluid)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Github Pages LaTeX Formula issues (Fluid)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/28/DecisionTree/" title="������">
-                        <span class="hidden-mobile">������</span>
+                      <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" title="上下文无关文法">
+                        <span class="hidden-mobile">上下文无关文法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -439,6 +500,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -646,6 +713,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
