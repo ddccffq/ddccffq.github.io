@@ -27,7 +27,7 @@
 <meta property="og:description" content="隐马尔科夫模型的定义隐马尔科夫模型有如下两个假设：任意状态只依赖于前一时刻状态和任意时刻的观测只依赖于该时刻的马尔科夫链的状态。设 $Q$ 是所有可能的状态的集合，$V$是所有可能的观测的集合： $$Q &#x3D; {q_1, q_2, \dots, q_N}, \quad V &#x3D; {v_1, v_2, \dots, v_M}$$ 其中，$N$ 是可能的状态数，$M$ 是可能的观测数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-27T13:02:00.000Z">
-<meta property="article:modified_time" content="2025-06-03T09:11:06.978Z">
+<meta property="article:modified_time" content="2025-06-04T01:28:31.264Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.8k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          13 分钟
+          15 分钟
         
       </span>
     
@@ -366,6 +366,16 @@
 <p>$$<br>\begin{align*}<br>Q(\lambda, \bar{\lambda}) &#x3D; &amp;\sum_{I} \log \pi_{i_1} P(O, I |\bar{\lambda}) + \sum_{I} \left(\sum_{t &#x3D; 1}^{T - 1} \log a_{i_t i_{t + 1}} \right) P(O, I |\bar{\lambda}) +<br>\<br>&amp;\sum_{I} \left(\sum_{t &#x3D; 1}^{T} \log b_{i_t}(o_t) \right) P(O, I |\bar{\lambda})<br>\end{align*}<br>$$</p>
 <h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>（1）初始化。对 $n &#x3D; 0$，随机初始化 $\lambda^{(0)}$。<br>（2）递推。对 $n &#x3D; 1, 2, \dots$，</p>
 <p>$$<br>\begin{align*}<br>\alpha_{ij}^{(n + 1)} &amp;&#x3D; \frac{\sum_{t &#x3D; 1}^{T - 1} \xi_t(i, j)}{\sum_{t &#x3D; 1}^{T - 1} \gamma_t(i)}<br>\<br>b_{j}(k)^{(n + 1)} &amp;&#x3D; \frac{\sum_{t &#x3D; 1, o_t &#x3D; v_k}^{T} \gamma_t(j)}{\sum_{t&#x3D; 1}^{T} \gamma_t(j)}<br>\<br>\pi_{i}^{(n + 1)} &amp;&#x3D; \gamma_1(i)<br>\end{align*}<br>$$</p>
+<h2 id="预测算法"><a href="#预测算法" class="headerlink" title="预测算法"></a>预测算法</h2><h3 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h3><p>由公式：<br>$$<br>\gamma_t(i) &#x3D; \frac{\alpha_t(i) \beta_t(i)}{P(O |\lambda)} &#x3D; \frac{\alpha_t(i) \beta_t(i)}{\sum_{j &#x3D; 1}^{N} \alpha_t(j) \alpha_t(j)}<br>$$<br>知，在每一时刻 $t$ 最有可能的状态 $i_t^{\ast}$ 是<br>$$<br>i_t^{\ast} &#x3D; \operatorname{arg} \max_{1 \leq i \leq N} [\gamma_t(i)], \quad t &#x3D; 1, 2, \dots, T \tag{29}<br>$$</p>
+<h3 id="维特比算法"><a href="#维特比算法" class="headerlink" title="维特比算法"></a>维特比算法</h3><p>维特比算法是用动态规划解隐马尔科夫模型的预测问题。</p>
+<h4 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>输入：模型 $\lambda &#x3D; (A, B, \pi)$ 和观测序列 $O &#x3D; (o_1, o_2, \dots, o_T)$；<br>输出：最优路径 $I^{\ast} &#x3D; (i_1^{\ast}, i_2^{\ast}, \dots, i_T^{\ast})$。</p>
+<p>（1）初始化</p>
+<hr>
+<p>$$<br>\begin{align*}<br>\delta_1(i) &#x3D; \pi_i b_i(o_1), \quad i &#x3D; 1, 2, \dots, N<br>\<br>\Psi_1(i) &#x3D; 0, \quad i &#x3D; 1, 2, \dots, N<br>\end{align*}<br>$$</p>
+<hr>
+<p>$$<br>\begin{align}<br>\delta_1(i) &#x3D; \pi_i b_i(o_1), \quad i &#x3D; 1, 2, \dots, N<br>\<br>\Psi_1(i) &#x3D; 0, \quad i &#x3D; 1, 2, \dots, N<br>\end{align}<br>$$</p>
+<hr>
+<p>$$<br>\begin{align*}<br>\delta_1(i) &#x3D; \pi_i b_i(o_1), \quad i &#x3D; 1, 2, \dots, N<br>\\<br>\Psi_1(i) &#x3D; 0, \quad i &#x3D; 1, 2, \dots, N<br>\end{align*}<br>$$</p>
 
                 
               </div>
@@ -799,5 +809,20 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
