@@ -116,18 +116,19 @@ window.MathJax = {
   startup: {
     ready: () => {
       MathJax.startup.defaultReady();
-      // 延迟到 DOM 完全加载后再处理
-      window.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-          const display = node.type.indexOf('mode=display') > -1;
-          const math = node.textContent;
-          const span = document.createElement(display ? 'div' : 'span');
-          span.className = 'mathjax-legacy';
-          span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
-          node.parentNode.replaceChild(span, node);
-        });
-        MathJax.typesetPromise();
+      // 兼容 <script type="math/tex"> 标签
+      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+        const display = node.type.indexOf('mode=display') > -1;
+        const math = node.textContent;
+        // 直接创建 MathJax 支持的标签
+        const span = document.createElement('span');
+        span.className = 'mathjax-legacy';
+        span.setAttribute('data-tex', display ? 'display' : 'inline');
+        span.textContent = math;
+        node.parentNode.replaceChild(span, node);
       });
+      // 重新渲染
+      MathJax.typesetPromise();
     }
   }
 };
