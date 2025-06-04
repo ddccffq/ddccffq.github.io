@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>最大熵模型 | 学习日志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Logistic RegressionLogistic Distribution设$X$是连续随机变量，$X$服从 logistic distribution 是指$X$具有下列分布函数和密度函数：  \begin{align} F(x) &amp;&#x3D; P(X \leq x) &#x3D; \frac{1}{1 + e^{-(x-\mu)&#x2F;\gamma}} \tag{1} \\ f(x) &amp;&#x3D; F&#39;(x) &#x3D; \f">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Logistic RegressionLogistic Distribution设$X$是连续随机变量，$X$服从 logistic distribution 是指$X$具有下列分布函数和密度函数：  \begin{align} F(x) &amp;&#x3D; P(X \leq x) &#x3D; \frac{1}{1 + e^{-(x-\mu)&#x2F;\gamma}} \tag{1} \\ f(x) &amp;&#x3D; F&#39;(x) &#x3D; \f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大熵模型">
 <meta property="og:url" content="http://example.com/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/index.html">
@@ -17,98 +30,288 @@
 <meta property="article:modified_time" content="2025-06-04T01:22:06.697Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="算法">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="学习日志" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>最大熵模型 - 学习日志</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI","app_key":"dsIWfeJAED3S1uRhbmsE3FJP","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+
+
 
   
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">学习日志</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hello!</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="最大熵模型"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-02 10:02" pubdate>
+          2025年6月2日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          2k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-最大熵模型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time class="dt-published" datetime="2025-06-02T02:02:23.000Z" itemprop="datePublished">2025-06-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>►<a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      最大熵模型
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h3 id="Logistic-Distribution"><a href="#Logistic-Distribution" class="headerlink" title="Logistic Distribution"></a>Logistic Distribution</h3><p>设$X$是连续随机变量，$X$服从 <strong><em>logistic distribution</em></strong> 是指$X$具有下列分布函数和密度函数：</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">最大熵模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h3 id="Logistic-Distribution"><a href="#Logistic-Distribution" class="headerlink" title="Logistic Distribution"></a>Logistic Distribution</h3><p>设$X$是连续随机变量，$X$服从 <strong><em>logistic distribution</em></strong> 是指$X$具有下列分布函数和密度函数：</p>
 <script type="math/tex; mode=display">
 \begin{align}
 F(x) &= P(X \leq x) = \frac{1}{1 + e^{-(x-\mu)/\gamma}} \tag{1}
 \\
 f(x) &= F'(x) = \frac{e^{-(x-\mu)/\gamma}}{\gamma\left(1 + e^{-(x-\mu)/\gamma}\right)^2} \tag{2}
-\end{align}</script><h3 id="Binomial-Logistic-Regression-Model"><a href="#Binomial-Logistic-Regression-Model" class="headerlink" title="Binomial Logistic Regression Model"></a>Binomial Logistic Regression Model</h3><p>这是一种二分类模型，这里规定模型输出 $Y \in \{0, 1\}$， 也就是 $y_i \in \{0, 1\}$</p>
+\end{align}</script><h3 id="Binomial-Logistic-Regression-Model"><a href="#Binomial-Logistic-Regression-Model" class="headerlink" title="Binomial Logistic Regression Model"></a>Binomial Logistic Regression Model</h3><p>这是一种二分类模型，这里规定模型输出 $Y \in {0, 1}$， 也就是 $y_i \in {0, 1}$</p>
 <script type="math/tex; mode=display">
 \begin{align}
 P(Y = 0 | x) &= \frac{1}{1 + \exp (1 + \vec{w} \cdot \vec{x} + b)} \tag{3}
@@ -152,7 +355,7 @@ E_{\tilde{P}}(f) = E_P(f) \tag{13}</script><p>综上，我们引出最大熵模�
 \mathcal{C} \equiv \{P \in \mathcal{P} \mid E_{\tilde{P}}(f_i) = E_P(f_i), \quad i=1,2,\dots,n\} \tag{14}</script><p>定义在条件概率分布 $P(Y|X)$ 上的条件熵为</p>
 <script type="math/tex; mode=display">
 H(P) = -\sum_{x,y} \tilde{P}(x) P(y|x) \ln P(y|x) \tag{15}</script><p>则模型集合 $\mathcal{C}$ 中条件熵 $H(P)$ 最大的模型称为最大熵模型。</p>
-<h3 id="Training-a-Maximum-Entropy-Model"><a href="#Training-a-Maximum-Entropy-Model" class="headerlink" title="Training a Maximum Entropy Model"></a>Training a Maximum Entropy Model</h3><p>类似 <strong>SVM</strong> 的学习过程。给定训练数据集 $T = \{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}$ 以及特征函数 $f_i(x,y), \quad i = 1, 2, \dots, n$，最大熵模型的学习等价于约束最优化问题：</p>
+<h3 id="Training-a-Maximum-Entropy-Model"><a href="#Training-a-Maximum-Entropy-Model" class="headerlink" title="Training a Maximum Entropy Model"></a>Training a Maximum Entropy Model</h3><p>类似 <strong>SVM</strong> 的学习过程。给定训练数据集 $T = {(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)}$ 以及特征函数 $f_i(x,y), \quad i = 1, 2, \dots, n$，最大熵模型的学习等价于约束最优化问题：</p>
 <script type="math/tex; mode=display">
 \begin{align*}
 \max_{P \in \mathcal{C}} \quad & H(P) = -\sum_{x, y} \tilde{P}(x) P(y \mid x) \ln P(y \mid x)
@@ -204,9 +407,9 @@ Z_w(x) = \sum_{y} \exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)</script><p>�
 L(w) = \sum_{x, y} \tilde{P}(x, y) \sum_{i = 1}^{n} w_i f_i(x, y) - \sum_{x} \tilde{P}(x) \ln Z_w(x)</script><p>改进迭代算法的思路是，假设最大熵模型当前的参数向量是 $w = (w_1, w_2, \dots, w_n)^{T}$，我们希望找到一个新的参数向量 $w + \delta = (w_1 + \delta_1, \dots, w_n + \delta_n)^{T}$，使得模型的对数似然函数增值。</p>
 <p><strong>算法步骤</strong></p>
 <p><strong>输入</strong>：特征函数 $f_1, f_2, \dots, f_n$；经验分布 $\tilde{P}(X, Y)$；模型 $P_w(y | x)$</p>
-<p><strong>输出</strong>：最优参数值 $w_i^{\ast}$；最优模型 $P_{w^{\ast}}$</p>
-<p><strong>步骤1</strong>：对所有 $i \in \{1, 2, \dots, n\}$，取初值 $w_i = 0$。</p>
-<p><strong>步骤2</strong>：对每一 $i \in \{1, 2, \dots, n\}$，执行以下操作：</p>
+<p><strong>输出</strong>：最优参数值 $w<em>i^{\ast}$；最优模型 $P</em>{w^{\ast}}$</p>
+<p><strong>步骤1</strong>：对所有 $i \in {1, 2, \dots, n}$，取初值 $w_i = 0$。</p>
+<p><strong>步骤2</strong>：对每一 $i \in {1, 2, \dots, n}$，执行以下操作：</p>
 <p>首先，令 $\delta_i$ 为下列方程的解：</p>
 <script type="math/tex; mode=display">
 \sum_{x, y} \tilde{P}(x) P(y | x) f_i(x, y) \exp \left(\delta_i f^{\Sigma}(x, y) \right) = E_{\tilde{P}}(f_i)</script><p>其中，$f^{\Sigma}(x, y)$ 定义为：</p>
@@ -223,7 +426,7 @@ P_w(y | x) = \frac{\exp \left(\sum_{i = 1}^{n} w_i f_i(x, y) \right)}{\sum_{y} \
 \frac{\partial f(w)}{\partial w_i} = \sum_{x, y} \tilde{P}(x) P_w(y | x) f_i(x, y) - E_{\tilde{p}}(f_i)</script><p>定义 $g()$</p>
 <script type="math/tex; mode=display">
 g(w) = \left(\frac{\partial f(x)}{\partial w_1}, \frac{\partial f(x)}{\partial w_2}, \dots,\frac{\partial f(x)}{\partial w_n} \right)^T</script><p><strong>算法步骤</strong></p>
-<p><strong>输入</strong>：特征函数 $f_1, f_2, \dots, f_n$；经验分布 $\tilde{P}(X, Y)$；目标函数 $f(w)$；梯度 $g(w) = \nabla f(w)$；精度要求 $\epsilon$<br><strong>输出</strong>：最优参数值 $w_i^{\ast}$；最优模型 $P_{w^{\ast}}$</p>
+<p><strong>输入</strong>：特征函数 $f<em>1, f_2, \dots, f_n$；经验分布 $\tilde{P}(X, Y)$；目标函数 $f(w)$；梯度 $g(w) = \nabla f(w)$；精度要求 $\epsilon$<br><strong>输出</strong>：最优参数值 $w_i^{\ast}$；最优模型 $P</em>{w^{\ast}}$</p>
 <ol>
 <li>选定初始点 $w^{(0)}$，取 $B_0$ 为正定对称矩阵，置 $k = 0$。</li>
 <li>计算 $g_k = g(w^{(k)})$。<br>若 $\lVert g_k \rVert &lt; \epsilon$，则停止计算，得 $w^{*} = w^{(k)}$；否则转第 3 步。</li>
@@ -231,7 +434,7 @@ g(w) = \left(\frac{\partial f(x)}{\partial w_1}, \frac{\partial f(x)}{\partial w
 <li>一维搜索，求 $\lambda_k$ 使得<script type="math/tex; mode=display">
  f(w^{(k)} + \lambda_k p_k) = \min_{\lambda \geq 0} f(w^{(k)} + \lambda p_k)</script></li>
 <li>置 $w^{(k + 1)} = w^{(k)} + \lambda_k p_k$。</li>
-<li>计算 $g_{k + 1} = g(w^{(k + 1)})$。<br>若 $\lVert g_{k + 1} \rVert &lt; \epsilon$，则停止计算，得 $w^{*} = w^{(k + 1)}$；否则，按下式求出 $B_{k + 1}$：<script type="math/tex; mode=display">
+<li>计算 $g<em>{k + 1} = g(w^{(k + 1)})$。<br>若 $\lVert g</em>{k + 1} \rVert &lt; \epsilon$，则停止计算，得 $w^{*} = w^{(k + 1)}$；否则，按下式求出 $B_{k + 1}$：<script type="math/tex; mode=display">
  B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k \delta_k^T B_k}{\delta_k^T B_k \delta_k}</script> 其中，<script type="math/tex; mode=display">
  y_k = g_{k + 1} - g_k, \quad \delta_k = w^{(k + 1)} - w^{(k)}</script></li>
 <li>置 $k = k + 1$，转第 3 步。</li>
@@ -242,162 +445,448 @@ g(w) = \left(\frac{\partial f(x)}{\partial w_1}, \frac{\partial f(x)}{\partial w
 B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k \delta_k^T B_k}{\delta_k^T B_k \delta_k}</script><p>其中，</p>
 <ul>
 <li>$\delta_k = w^{(k + 1)} - w^{(k)}$ 表示参数的变化，</li>
-<li>$y_k = g_{k + 1} - g_k$ 表示梯度的变化。</li>
+<li>$y<em>k = g</em>{k + 1} - g_k$ 表示梯度的变化。</li>
 </ul>
 <p>$B_k$ 的更新保证了其对称正定性，并逐步逼近真实的 Hessian 矩阵，从而提升搜索方向的准确性和收敛速度。</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" data-id="cmbhiuebo000obcqj3q965jos" data-title="最大熵模型" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
-    <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
         
-          上下文无关文法
-        
+  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="category-chain-item">统计学习方法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>最大熵模型</div>
+      <div>http://example.com/2025/06/02/最大熵模型/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" title="上下文无关文法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">上下文无关文法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" title="条件随机场">
+                        <span class="hidden-mobile">条件随机场</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">条件随机场</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Control-Plane/" rel="tag">Control Plane</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network-Layer/" rel="tag">Network Layer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Networking/" rel="tag">Networking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Routing/" rel="tag">Routing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Control-Plane/" style="font-size: 10px;">Control Plane</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/Network-Layer/" style="font-size: 10px;">Network Layer</a> <a href="/tags/Networking/" style="font-size: 10px;">Networking</a> <a href="/tags/Routing/" style="font-size: 10px;">Routing</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">六月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">五月 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/">朴素贝叶斯法</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/03/%E6%9C%9F%E6%9C%9B%E6%9E%81%E5%A4%A7/">期望极大</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/03/%E6%84%9F%E7%9F%A5%E6%9C%BA/">感知机</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/">上下文无关文法</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/">最大熵模型</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2025 ddccffq<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
