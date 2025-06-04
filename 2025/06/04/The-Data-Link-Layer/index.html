@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=auto>
 
@@ -8,70 +10,67 @@
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
   <link rel="icon" href="/img/fluid.png">
-
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
-
-  <meta name="description"
-    content="Notice !:  Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for CONTENT Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for QUESTION  Introduction and Servic">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="The Data Link Layer">
-  <meta property="og:url" content="http://example.com/2025/06/04/The-Data-Link-Layer/index.html">
-  <meta property="og:site_name" content="学习日志">
-  <meta property="og:description"
-    content="Notice !:  Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for CONTENT Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for QUESTION  Introduction and Servic">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png">
-  <meta property="og:image"
-    content="http://example.com/2025/06/04/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png">
-  <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/Two-dimensional-even-parity.png">
-  <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/CRCSample.png">
-  <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/TDA-and-FDA-example.png">
-  <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/pure-ALOHA-sample.png">
-  <meta property="article:published_time" content="2025-06-04T07:53:36.000Z">
-  <meta property="article:modified_time" content="2025-06-04T13:13:27.162Z">
-  <meta property="article:author" content="ddccffq">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png">
-
-
-
+  
+    <meta name="description" content="Notice !:  Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for CONTENT Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for QUESTION  Introduction and Servic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Data Link Layer">
+<meta property="og:url" content="http://example.com/2025/06/04/The-Data-Link-Layer/index.html">
+<meta property="og:site_name" content="学习日志">
+<meta property="og:description" content="Notice !:  Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for CONTENT Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for QUESTION  Introduction and Servic">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/Two-dimensional-even-parity.png">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/CRCSample.png">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/TDA-and-FDA-example.png">
+<meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/pure-ALOHA-sample.png">
+<meta property="article:published_time" content="2025-06-04T07:53:36.000Z">
+<meta property="article:modified_time" content="2025-06-04T13:13:27.162Z">
+<meta property="article:author" content="ddccffq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png">
+  
+  
+  
   <title>The Data Link Layer - 学习日志</title>
 
-  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-  <link rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  <link rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-  <!-- 主题依赖的图标库，不要自行修改 -->
-  <!-- Do not modify the link that theme dependent icons -->
-
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
-  <link rel="stylesheet" href="/css/main.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-
-  <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
 
@@ -79,1055 +78,904 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = { "hostname": "example.com", "root": "/", "version": "1.9.8", "typing": { "enable": true, "typeSpeed": 70, "cursorChar": "_", "loop": false, "scope": [] }, "anchorjs": { "enable": true, "element": "h1,h2,h3,h4,h5,h6", "placement": "left", "visible": "hover", "icon": "" }, "progressbar": { "enable": true, "height_px": 3, "color": "#29d", "options": { "showSpinner": false, "trickleSpeed": 100 } }, "code_language": { "enable": true, "default": "TEXT" }, "copy_btn": true, "image_caption": { "enable": true }, "image_zoom": { "enable": true, "img_url_replace": ["", ""] }, "toc": { "enable": true, "placement": "left", "headingSelector": "h1,h2,h3,h4,h5,h6", "collapseDepth": 0 }, "lazyload": { "enable": true, "loading_img": "/img/loading.gif", "onlypost": false, "offset_factor": 2 }, "web_analytics": { "enable": true, "follow_dnt": true, "baidu": null, "google": { "measurement_id": null }, "tencent": { "sid": null, "cid": null }, "leancloud": { "app_id": "Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI", "app_key": "dsIWfeJAED3S1uRhbmsE3FJP", "server_url": null, "path": "window.location.pathname", "ignore_local": false }, "umami": { "src": null, "website_id": null, "domains": null, "start_time": "2024-01-01T00:00:00.000Z", "token": null, "api_server": null } }, "search_path": "/local-search.xml", "include_content_in_search": true };
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI","app_key":"dsIWfeJAED3S1uRhbmsE3FJP","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script src="/js/utils.js"></script>
-  <script src="/js/color-schema.js"></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
 
 
 
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- hexo injector head_end start -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
-      },
-      svg: {
-        fontCache: 'global'
-      },
-      options: {
-        enableMenu: false
-      },
-      startup: {
-        ready: () => {
-          MathJax.startup.defaultReady();
-          // 兼容 <script type="math/tex"> 标签
-          document.querySelectorAll('script[type^="math/tex"]').forEach(function (node) {
-            const display = node.type.indexOf('mode=display') > -1;
-            const math = node.textContent;
-            // 直接创建 MathJax 支持的标签
-            const span = document.createElement('span');
-            span.className = 'mathjax-legacy';
-            span.setAttribute('data-tex', display ? 'display' : 'inline');
-            span.textContent = math;
-            node.parentNode.replaceChild(span, node);
-          });
-          // 重新渲染
-          MathJax.typesetPromise();
-        }
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <!-- hexo injector head_end end -->
-  <meta name="generator" content="Hexo 7.3.0">
-</head>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: {
+    fontCache: 'global'
+  },
+  options: {
+    enableMenu: false
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      // 兼容 <script type="math/tex"> 标签
+      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+        const display = node.type.indexOf('mode=display') > -1;
+        const math = node.textContent;
+        // 直接创建 MathJax 支持的标签
+        const span = document.createElement('span');
+        span.className = 'mathjax-legacy';
+        span.setAttribute('data-tex', display ? 'display' : 'inline');
+        span.textContent = math;
+        node.parentNode.replaceChild(span, node);
+      });
+      // 重新渲染
+      MathJax.typesetPromise();
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
-
+  
 
   <header>
+    
 
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hello!</strong>
+    </a>
 
-    <div class="header-inner" style="height: 70vh;">
-      <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-            <strong>Hello!</strong>
-          </a>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-          <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <div class="animated-icon"><span></span><span></span><span></span></div>
-          </button>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-          <!-- Collapsible content -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto text-center">
+  
 
-
-
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="/" target="_self">
-                  <i class="iconfont icon-home-fill"></i>
-                  <span>首页</span>
-                </a>
-              </li>
-
-
-
-
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="/archives/" target="_self">
-                  <i class="iconfont icon-archive-fill"></i>
-                  <span>归档</span>
-                </a>
-              </li>
-
-
-
-
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="/categories/" target="_self">
-                  <i class="iconfont icon-category-fill"></i>
-                  <span>分类</span>
-                </a>
-              </li>
-
-
-
-
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="/tags/" target="_self">
-                  <i class="iconfont icon-tags-fill"></i>
-                  <span>标签</span>
-                </a>
-              </li>
-
-
-
-
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="/about/" target="_self">
-                  <i class="iconfont icon-user-fill"></i>
-                  <span>关于</span>
-                </a>
-              </li>
-
-
-
-              <li class="nav-item" id="search-btn">
-                <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch"
-                  aria-label="Search">
-                  <i class="iconfont icon-search"></i>
-                </a>
-              </li>
-
-
-
-              <li class="nav-item" id="color-toggle-btn">
-                <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-                  <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-                </a>
-              </li>
-
-            </ul>
-          </div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="The Data Link Layer"></span>
+          
         </div>
-      </nav>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-04 15:53" pubdate>
+          2025年6月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          557 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
 
 
-
-      <div id="banner" class="banner" parallax=true
-        style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-        <div class="full-bg-img">
-          <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-            <div class="banner-text text-center fade-in-up">
-              <div class="h2">
-
-                <span id="subtitle" data-typed-text="The Data Link Layer"></span>
-
-              </div>
-
-
-
-              <div class="mt-3">
-
-
-                <span class="post-meta">
-                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2025-06-04 15:53" pubdate>
-                    2025年6月4日 下午
-                  </time>
-                </span>
-
-              </div>
-
-              <div class="mt-1">
-
-                <span class="post-meta mr-2">
-                  <i class="iconfont icon-chart"></i>
-
-                  557 字
-
-                </span>
-
-
-
-                <span class="post-meta mr-2">
-                  <i class="iconfont icon-clock-fill"></i>
-
-
-
-                  5 分钟
-
-                </span>
-
-
-
-
-              </div>
-
-
-
-            </div>
-
-
-          </div>
-        </div>
+        
       </div>
 
+      
     </div>
+  </div>
+</div>
+
+</div>
 
   </header>
 
   <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
 
 
-    <div class="container-fluid nopadding-x">
-      <div class="row nomargin-x">
-        <div class="side-col d-none d-lg-block col-lg-2">
-
-          <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
-            <div id="toc">
-              <p class="toc-header">
-                <i class="iconfont icon-list"></i>
-                <span>目录</span>
-              </p>
-              <div class="toc-body" id="toc-body"></div>
-            </div>
+  </aside>
 
 
+    </div>
 
-          </aside>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">The Data Link Layer</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>Notice !:</strong></p>
+<ul>
+<li>Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for <strong>CONTENT</strong></li>
+<li>Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for <strong>QUESTION</strong></li>
+</ul>
+<h2 id="Introduction-and-Service"><a href="#Introduction-and-Service" class="headerlink" title="Introduction and Service"></a>Introduction and Service</h2><h3 id="Some-terminology"><a href="#Some-terminology" class="headerlink" title="Some terminology"></a>Some terminology</h3><ul>
+<li><strong>Nodes</strong>: hosts and routers;</li>
+<li><strong>Links</strong>: communication channels that connect adjacent nodes along communication path;<ul>
+<li>wired links</li>
+<li>wireless links</li>
+<li>LANs</li>
+</ul>
+</li>
+<li>layer-2 packet is a <strong>frame</strong>, encapsulates datagram.</li>
+</ul>
+<h3 id="Link-layer-context"><a href="#Link-layer-context" class="headerlink" title="Link layer: context"></a>Link layer: context</h3><p>datagram transferred by different link protocols over different links, each  link protocol provides different services.</p>
+<h3 id="Link-Layer-Services"><a href="#Link-Layer-Services" class="headerlink" title="Link Layer Services"></a>Link Layer Services</h3><ul>
+<li><strong>framing, link access</strong><ul>
+<li>encapsulate datagram into frame, adding header, trailer.</li>
+<li>channel access if shared medium.</li>
+<li><strong><em>“MAC”</em></strong> addresses used in frame headers to identify source, dest.</li>
+</ul>
+</li>
+<li><strong>reliable delivery between adjacent nodes</strong><ul>
+<li>seldom used on low bit-error link (fiber, some twisted pair).</li>
+</ul>
+</li>
+<li><strong>flow control</strong><ul>
+<li>pacing between adjacent sending and receiving nodes.</li>
+</ul>
+</li>
+<li><strong>error detection</strong><ul>
+<li>errors caused by signal attenuation, noise.</li>
+<li>receiver detects presence of errors: signals sender for retransmission or drops frame.</li>
+</ul>
+</li>
+<li><strong>error correction</strong><ul>
+<li>receiver identifies and <strong><em>corrects</em></strong> bit error(s) without resorting to retransmission.</li>
+</ul>
+</li>
+<li><strong>half-duplex and full-duplex</strong><ul>
+<li>with half duplex, nodes at both ends of link can transmit, but not at same time.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Where-is-the-link-layer-implemented"><a href="#Where-is-the-link-layer-implemented" class="headerlink" title="Where is the link layer implemented?"></a>Where is the link layer implemented?</h3><ul>
+<li>The <strong>link layer is implemented in every host</strong>.</li>
+<li>It is realized through an <strong>adaptor</strong>, also known as a <strong>Network Interface Card (NIC)</strong>.<ul>
+<li>Examples include: <strong>Ethernet cards</strong>, <strong>PCMCIA cards</strong>, and <strong>802.11 wireless cards</strong>.</li>
+</ul>
+</li>
+<li>The adaptor is responsible for implementing both the <strong>link layer</strong> and the <strong>physical layer</strong>.</li>
+<li>It connects to the host via the <strong>system buses</strong>.</li>
+<li>The adaptor is a <strong>combination of hardware, software, and firmware</strong>.</li>
+</ul>
+<p>📌 In essence, the NIC handles the lower layers of network communication and serves as the interface between the host and the physical network.</p>
+<h3 id="Adaptors-Communicating"><a href="#Adaptors-Communicating" class="headerlink" title="Adaptors Communicating"></a>Adaptors Communicating</h3><img src="/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png" srcset="/img/loading.gif" lazyload class="" title="Adaptors Communicating">
+<h4 id="Sending-Side"><a href="#Sending-Side" class="headerlink" title="Sending Side"></a>Sending Side</h4><ul>
+<li><strong>Encapsulates</strong> the network-layer datagram into a <strong>link-layer frame</strong>.</li>
+<li><strong>Adds</strong>:<ul>
+<li><strong>Error checking bits</strong> (e.g., CRC).</li>
+<li><strong>Reliable data transfer (rdt)</strong> mechanisms (if needed).</li>
+<li><strong>Flow control</strong> to manage data rate between sender and receiver.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Receiving-Side"><a href="#Receiving-Side" class="headerlink" title="Receiving Side"></a>Receiving Side</h4><ul>
+<li><strong>Checks</strong> the frame for:<ul>
+<li><strong>Errors</strong> using error detection codes.</li>
+<li><strong>Reliable data transfer</strong> mechanisms.</li>
+<li><strong>Flow control</strong> compliance.</li>
+</ul>
+</li>
+<li><strong>Extracts</strong> the datagram from the frame.</li>
+</ul>
+<h2 id="Error-Detection-and-Correction"><a href="#Error-Detection-and-Correction" class="headerlink" title="Error Detection and Correction"></a>Error Detection and Correction</h2><img src="/2025/06/04/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png" srcset="/img/loading.gif" lazyload class="">
+<ul>
+<li><p><strong>EDC (Error Detection and Correction bits)</strong>:</p>
+<ul>
+<li>Extra <strong>redundant bits</strong> added to data to detect and possibly correct errors during transmission.</li>
+</ul>
+</li>
+<li><p><strong>D (Data)</strong>:</p>
+<ul>
+<li>The actual data being protected by error checking.</li>
+<li>May include <strong>header fields</strong> along with the payload.</li>
+</ul>
+</li>
+<li><p><strong>Important Notes</strong>:</p>
+<ul>
+<li><strong>Error detection is not 100% reliable</strong>.<ul>
+<li>Some errors may go undetected, though this is <strong>rare</strong>.</li>
+</ul>
+</li>
+<li>A <strong>larger EDC field</strong> generally provides:<ul>
+<li><strong>Better error detection</strong> capability.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Parity-Checks"><a href="#Parity-Checks" class="headerlink" title="Parity Checks"></a>Parity Checks</h3><ul>
+<li><strong>Even Parity Scheme:</strong> the total number of 1s in the $ d + 1 $ bits is even.</li>
+<li><strong>Odd Parity Scheme:</strong> the total number of 1s in the $ d + 1 $ bits is odd.</li>
+</ul>
+<p>If an odd number of 1-valued bits are found with an even parity schemes, the receiver knows that at least one bit error has occurred.</p>
+<h4 id="Two-dimensional-Parity"><a href="#Two-dimensional-Parity" class="headerlink" title="Two-dimensional Parity"></a>Two-dimensional Parity</h4><p>The receiver can thus not only <strong><em>detect</em></strong> the fact that a single bit error has occurred, but can use the column and row indices of the column and row with parity errors to actually identify the bit that was corrupted<br>and <strong><em>correct</em></strong> that error!</p>
+<img src="/2025/06/04/The-Data-Link-Layer/Two-dimensional-even-parity.png" srcset="/img/loading.gif" lazyload class="" title="Two-dimensional even parity">
+<h3 id="Cyclic-Redundancy-Check-CRC"><a href="#Cyclic-Redundancy-Check-CRC" class="headerlink" title="Cyclic Redundancy Check (CRC)"></a>Cyclic Redundancy Check (CRC)</h3><p>An error-detection technique used widely in today;s computer networks is based on <strong>cyclic redundancy check (CRC) codes</strong>. CRC codes are also known as <strong>polynomial codes</strong>, since it is possible to view the bit string to be sent as a polynomial whose coefficients are the $0$ and $1$ values in the bit string, with operations on the bit string interpreted as polynomial arithmetic.</p>
+<p>Consider the $d$-bit piece of data, $D$. The sender and receiver must first agree on an $r + 1$ bit pattern, known as a <strong>generator</strong>, which we will denote as $G$. For a given piece of data, $D$, the sender will choose $r$ additional bits, $R$, and append them to $D$ such that the resulting $d + r$ bit pattern is exactly divisible by $G$.</p>
+<p>The process of error checking with CRCs is thus simple: The receiver divides the $d + r$ received bits by $G$. If the remainder is non-zero, the receiver knows that an error has occurred; otherwise the data is accepted  as being correct.</p>
+<h4 id="How-the-Sender-Computes-R"><a href="#How-the-Sender-Computes-R" class="headerlink" title="How the Sender Computes $R$?"></a>How the Sender Computes $R$?</h4><p>We want find $R$ such that there is an $n$ such that</p>
+<script type="math/tex; mode=display">
+D \cdot 2^r \operatorname{XOR} R = nG</script><p>That is, we want to choose $R$ such that $G$ divides into $D \cdot 2^r \operatorname{XOR} R$ without remainder. If we XOR(that is, add modulo-2, without carry) $R$ to both sides of the above equation, we get</p>
+<script type="math/tex; mode=display">
+D \cdot 2^r = nG \operatorname{XOR} R</script><p>This equation tells us that if we divide $D \cdot 2^r$ by $G$, the value of the remainder is precisely $R$. In other words, we can calculate $R$ as</p>
+<script type="math/tex; mode=display">
+R = \operatorname{remainder} \frac{D \cdot 2^r}{G}</script><p><strong>Summary of the CRC Calculation Process:</strong></p>
+<ol>
+<li><strong>Agree on a generator polynomial $G$</strong> of length $r+1$ bits between sender and receiver.</li>
+<li><strong>Append $r$ zeros</strong> to the original $d$-bit data $D$, forming $D \cdot 2^r$.</li>
+<li><strong>Divide $D \cdot 2^r$ by $G$</strong> using modulo-2 division (XOR operation).</li>
+<li><strong>Obtain the remainder $R$</strong> from the division; $R$ is $r$ bits long.</li>
+<li><strong>Append $R$ to the original data $D$</strong> to form the transmitted message.</li>
+<li><strong>At the receiver</strong>, divide the received $d+r$ bits by $G$:<ul>
+<li>If the remainder is zero, the data is considered correct.</li>
+<li>If not, an error is detected.</li>
+</ul>
+</li>
+</ol>
+<img src="/2025/06/04/The-Data-Link-Layer/CRCSample.png" srcset="/img/loading.gif" lazyload class="" title="CRC Sample">
+<h2 id="Multiple-Access-Links-and-Protocols"><a href="#Multiple-Access-Links-and-Protocols" class="headerlink" title="Multiple Access Links and Protocols"></a>Multiple Access Links and Protocols</h2><h3 id="Two-Types-of-Links"><a href="#Two-Types-of-Links" class="headerlink" title="Two Types of Links"></a>Two Types of Links</h3><h4 id="Point-to-Point-Links"><a href="#Point-to-Point-Links" class="headerlink" title="Point-to-Point Links"></a><strong>Point-to-Point Links</strong></h4><ul>
+<li>Direct connection between two devices.</li>
+<li>Examples:<ul>
+<li><strong>PPP</strong> (Point-to-Point Protocol) for dial-up access.</li>
+<li>Link between an <strong>Ethernet switch and a host</strong>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Broadcast-Links"><a href="#Broadcast-Links" class="headerlink" title="Broadcast Links"></a><strong>Broadcast Links</strong></h4><ul>
+<li>Shared medium used by multiple devices.</li>
+<li>Examples:<ul>
+<li><strong>Old Ethernet</strong> (shared coaxial cable).</li>
+<li><strong>Upstream HFC</strong> (Hybrid Fiber-Coaxial).</li>
+<li><strong>802.11 WiFi</strong> (wireless LAN).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multiple-Access-Protocol"><a href="#Multiple-Access-Protocol" class="headerlink" title="Multiple Access Protocol"></a>Multiple Access Protocol</h3><ul>
+<li>A <strong>single shared broadcast channel</strong> is used by multiple nodes.<ul>
+<li>If two or more nodes transmit at the same time, their signals interfere, causing a <strong>collision</strong>.</li>
+</ul>
+</li>
+<li>A <strong>multiple access protocol</strong> is needed to coordinate transmissions.<ul>
+<li>This protocol is a distributed algorithm that determines when each node can transmit.</li>
+<li>All coordination and communication about channel sharing must occur over the same channel—there is <strong>no separate control channel</strong>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ideal-Multiple-Access-Protocol"><a href="#Ideal-Multiple-Access-Protocol" class="headerlink" title="Ideal Multiple Access Protocol"></a>Ideal Multiple Access Protocol</h4><ul>
+<li>The broadcast channel has a total rate of <strong>R bps</strong>.</li>
+<li>If only one node transmits, it can use the full rate <strong>R</strong>.</li>
+<li>If <strong>M</strong> nodes transmit simultaneously, each gets an average rate of <strong>R/M</strong>.</li>
+<li>The system is <strong>fully decentralized</strong>:<ul>
+<li>No central coordinator.</li>
+<li>No clock or slot synchronization required.</li>
+</ul>
+</li>
+<li>The approach is simple and efficient for sharing the channel.</li>
+</ul>
+<h3 id="MAC-Protocols-a-taxonomy"><a href="#MAC-Protocols-a-taxonomy" class="headerlink" title="MAC Protocols: a taxonomy"></a>MAC Protocols: a taxonomy</h3><h4 id="Three-Broad-Classes-of-MAC-Protocols"><a href="#Three-Broad-Classes-of-MAC-Protocols" class="headerlink" title="Three Broad Classes of MAC Protocols"></a>Three Broad Classes of MAC Protocols</h4><ol>
+<li><p><strong>Channel Partitioning</strong></p>
+<ul>
+<li>The channel is divided into smaller pieces (such as time slots, frequency bands, or codes).</li>
+<li>Each node is allocated a piece for exclusive use.</li>
+</ul>
+</li>
+<li><p><strong>Random Access</strong></p>
+<ul>
+<li>The channel is not divided; all nodes can transmit at any time.</li>
+<li>Collisions may occur, but protocols are designed to detect and recover from collisions.</li>
+</ul>
+</li>
+<li><p><strong>Taking Turns</strong></p>
+<ul>
+<li>Nodes take turns using the channel.</li>
+<li>Nodes with more data to send can take longer turns.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Channel-Partitioning-Protocols"><a href="#Channel-Partitioning-Protocols" class="headerlink" title="Channel Partitioning Protocols"></a>Channel Partitioning Protocols</h3><p><strong>TDM</strong>: time-division multiplexing<br><strong>FDA</strong>: frequency-division multiplexing<br><strong>CDMA</strong>: code division multiple access</p>
+<h4 id="TDM-Time-Division-Multiplexing"><a href="#TDM-Time-Division-Multiplexing" class="headerlink" title="TDM (Time-Division Multiplexing)"></a>TDM (Time-Division Multiplexing)</h4><ul>
+<li><strong>Mechanism:</strong>  <ul>
+<li>Divides time into frames, and each frame into $N$ time slots (for $N$ nodes).</li>
+<li>Each node is assigned a specific time slot in each frame.</li>
+<li>When a node has data to send, it transmits only during its assigned slot.</li>
+</ul>
+</li>
+<li><strong>Example:</strong>  <ul>
+<li>In a four-node TDM system, each node gets one slot per frame, and the slots repeat in a fixed order.</li>
+</ul>
+</li>
+<li><strong>Advantages:</strong>  <ul>
+<li>No collisions; perfectly fair (each node gets $R/N$ bps).</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>  <ul>
+<li>Each node is limited to $R/N$ bps even if others are idle.</li>
+<li>Nodes must wait for their turn, even if they are the only one with data to send.</li>
+</ul>
+</li>
+</ul>
+<h4 id="FDM-Frequency-Division-Multiplexing"><a href="#FDM-Frequency-Division-Multiplexing" class="headerlink" title="FDM (Frequency-Division Multiplexing)"></a>FDM (Frequency-Division Multiplexing)</h4><ul>
+<li><strong>Mechanism:</strong>  <ul>
+<li>Divides the total channel bandwidth ($R$ bps) into $N$ frequency bands, each with bandwidth $R/N$.</li>
+<li>Each node is assigned a <strong>unique frequency band</strong> for exclusive use.</li>
+</ul>
+</li>
+<li><strong>Example:</strong>  <ul>
+<li>In a four-node FDM system, each node gets a $4$ KHz band out of a total $16$ KHz channel.</li>
+</ul>
+</li>
+<li><strong>Advantages:</strong>  <ul>
+<li>No collisions; fair bandwidth allocation.</li>
+</ul>
+</li>
+<li><strong>Drawbacks:</strong>  <ul>
+<li>Each node is limited to R/N bps, even if others are idle (same as TDM).</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/04/The-Data-Link-Layer/TDA-and-FDA-example.png" srcset="/img/loading.gif" lazyload class="">
+<h4 id="CDMA-Code-Division-Multiple-Access"><a href="#CDMA-Code-Division-Multiple-Access" class="headerlink" title="CDMA (Code Division Multiple Access)"></a>CDMA (Code Division Multiple Access)</h4><ul>
+<li><strong>Mechanism:</strong>  <ul>
+<li>Each node is assigned a unique code.</li>
+<li>Nodes encode their data using their code and transmit simultaneously over the same channel.</li>
+<li>Receivers use the sender’s code to decode the intended message, even in the presence of other transmissions.</li>
+</ul>
+</li>
+<li><strong>Features:</strong>  <ul>
+<li>Allows multiple nodes to transmit at the same time without collisions, as long as codes are chosen carefully.</li>
+<li>Widely used in wireless and cellular networks due to its anti-jamming properties.</li>
+</ul>
+</li>
+<li><strong>Note:</strong>  <ul>
+<li>CDMA codes serve a similar role as time slots in TDM and frequency bands in FDM, enabling multiple access to the channel.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Random-Access-Protocols"><a href="#Random-Access-Protocols" class="headerlink" title="Random Access Protocols"></a>Random Access Protocols</h3><ul>
+<li>When a node has a packet to send, it transmits at the full channel data rate $R$.</li>
+<li>There is <strong>no prior coordination</strong> among nodes before transmission.</li>
+<li>If two or more nodes transmit at the same time, a <strong>collision</strong> occurs.</li>
+<li>A <strong>random access MAC protocol</strong> defines:<ul>
+<li><strong><em>How to detect collisions</em></strong>.</li>
+<li><strong><em>How to recover from collisions (e.g., by delaying and retransmitting)</em></strong>.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>  <ul>
+<li>Slotted ALOHA  </li>
+<li>ALOHA  </li>
+<li>CSMA, CSMA/CD, CSMA/CA</li>
+</ul>
+</li>
+</ul>
+<h4 id="Slotted-ALOHA"><a href="#Slotted-ALOHA" class="headerlink" title="Slotted ALOHA"></a>Slotted ALOHA</h4><p><strong>Assumptions:</strong></p>
+<ul>
+<li>All frames are the same size.</li>
+<li>Time is divided into equal-sized slots (each slot = time to transmit one frame).</li>
+<li>Nodes can only begin transmission at the start of a slot.</li>
+<li>All nodes are synchronized.</li>
+<li>If two or more nodes transmit in the same slot, a collision occurs and is detected by all.</li>
+</ul>
+<p><strong>Operation:</strong></p>
+<ul>
+<li>When a node has a new frame, it transmits in the next available slot.</li>
+<li>If there is no collision, the node can send a new frame in the next slot.</li>
+<li>If a collision occurs, the node retransmits the frame in each subsequent slot with probability $p$ until successful.</li>
+</ul>
+<p><strong>Pros of Slotted ALOHA:</strong></p>
+<ul>
+<li>A single active node can continuously transmit at the full channel rate.</li>
+<li>Highly decentralized; only slot synchronization among nodes is needed.</li>
+<li>Simple to implement.</li>
+</ul>
+<p><strong>Cons of Slotted ALOHA:</strong></p>
+<ul>
+<li>Collisions can occur, wasting slots.</li>
+<li>Idle slots may occur, reducing efficiency.</li>
+<li>Nodes may detect collisions before a full packet is transmitted.</li>
+<li>Requires clock synchronization among all nodes.</li>
+</ul>
+<p><strong>Slotted Aloha efficiency</strong></p>
+<ul>
+<li><strong>Efficiency</strong> is defined as the long-run fraction of slots that contain a successful transmission (i.e., exactly one node transmits).</li>
+<li>Suppose there are $N$ nodes, each always has frames to send, and each transmits in a slot with probability $p$.</li>
+<li>The probability that a given node has a successful transmission in a slot:<br>$p(1-p)^{N-1}$</li>
+<li>The probability that any node has a successful transmission in a slot:<br>$Np(1-p)^{N-1}$</li>
+<li><strong>Maximum efficiency</strong> is achieved by choosing $p^*$ that maximizes $Np(1-p)^{N-1}$.</li>
+<li>As $N$ becomes very large, the maximum efficiency approaches:<br>$\boxed{1/e \approx 0.37}$</li>
+<li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions only 37% of the time.</li>
+</ul>
+<h4 id="Pure-unslotted-ALOHA"><a href="#Pure-unslotted-ALOHA" class="headerlink" title="Pure (unslotted) ALOHA"></a>Pure (unslotted) ALOHA</h4><img src="/2025/06/04/The-Data-Link-Layer/pure-ALOHA-sample.png" srcset="/img/loading.gif" lazyload class="">
+<ul>
+<li>Simpler than slotted ALOHA; <strong>no synchronization</strong> required.</li>
+<li>When a frame arrives, the node <strong>transmits immediately</strong>.</li>
+<li><strong>Higher collision probability</strong>:  <ul>
+<li>A frame sent at time $t_0$ will collide with any other frame sent in the interval $[t_0-1, t_0+1]$.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Pure (Unslotted) ALOHA Efficiency:</strong></p>
+<ul>
+<li>Probability of success for a given node:<ul>
+<li>$P(\text{success}) = P(\text{node transmits}) \times P(\text{no other node transmits in } [t_0-1, t_0]) \times P(\text{no other node transmits in } [t_0, t_0+1])$</li>
+<li>$= p \cdot (1-p)^{N-1} \cdot (1-p)^{N-1}$</li>
+<li>$= p \cdot (1-p)^{2(N-1)}$</li>
+</ul>
+</li>
+<li><strong>Maximum efficiency</strong> (choosing optimal $p$ and letting $N \to \infty$):<ul>
+<li>$\boxed{1/(2e) \approx 0.18}$</li>
+</ul>
+</li>
+<li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions only 18% of the time in pure ALOHA.</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Computer-Network/" class="category-chain-item">Computer Network</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Computer-Network/Data-Link-Layer/" class="category-chain-item">Data Link Layer</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
 
 
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>The Data Link Layer</div>
+      <div>http://example.com/2025/06/04/The-Data-Link-Layer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
         </div>
-
-        <div class="col-lg-8 nopadding-x-md">
-          <div class="container nopadding-x-md" id="board-ctn">
-            <div id="board">
-              <article class="post-content mx-auto">
-                <h1 id="seo-header">The Data Link Layer</h1>
-
-
-                <div class="markdown-body">
-
-                  <p><strong>Notice !:</strong></p>
-                  <ul>
-                    <li>Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition for
-                      <strong>CONTENT</strong></li>
-                    <li>Computer Networking_ A Top-Down Approach, Global Edition, 3th Edition for
-                      <strong>QUESTION</strong></li>
-                  </ul>
-                  <h2 id="Introduction-and-Service"><a href="#Introduction-and-Service" class="headerlink"
-                      title="Introduction and Service"></a>Introduction and Service</h2>
-                  <h3 id="Some-terminology"><a href="#Some-terminology" class="headerlink"
-                      title="Some terminology"></a>Some terminology</h3>
-                  <ul>
-                    <li><strong>Nodes</strong>: hosts and routers;</li>
-                    <li><strong>Links</strong>: communication channels that connect adjacent nodes along communication
-                      path;<ul>
-                        <li>wired links</li>
-                        <li>wireless links</li>
-                        <li>LANs</li>
-                      </ul>
-                    </li>
-                    <li>layer-2 packet is a <strong>frame</strong>, encapsulates datagram.</li>
-                  </ul>
-                  <h3 id="Link-layer-context"><a href="#Link-layer-context" class="headerlink"
-                      title="Link layer: context"></a>Link layer: context</h3>
-                  <p>datagram transferred by different link protocols over different links, each link protocol provides
-                    different services.</p>
-                  <h3 id="Link-Layer-Services"><a href="#Link-Layer-Services" class="headerlink"
-                      title="Link Layer Services"></a>Link Layer Services</h3>
-                  <ul>
-                    <li><strong>framing, link access</strong>
-                      <ul>
-                        <li>encapsulate datagram into frame, adding header, trailer.</li>
-                        <li>channel access if shared medium.</li>
-                        <li><strong><em>“MAC”</em></strong> addresses used in frame headers to identify source, dest.
-                        </li>
-                      </ul>
-                    </li>
-                    <li><strong>reliable delivery between adjacent nodes</strong>
-                      <ul>
-                        <li>seldom used on low bit-error link (fiber, some twisted pair).</li>
-                      </ul>
-                    </li>
-                    <li><strong>flow control</strong>
-                      <ul>
-                        <li>pacing between adjacent sending and receiving nodes.</li>
-                      </ul>
-                    </li>
-                    <li><strong>error detection</strong>
-                      <ul>
-                        <li>errors caused by signal attenuation, noise.</li>
-                        <li>receiver detects presence of errors: signals sender for retransmission or drops frame.</li>
-                      </ul>
-                    </li>
-                    <li><strong>error correction</strong>
-                      <ul>
-                        <li>receiver identifies and <strong><em>corrects</em></strong> bit error(s) without resorting to
-                          retransmission.</li>
-                      </ul>
-                    </li>
-                    <li><strong>half-duplex and full-duplex</strong>
-                      <ul>
-                        <li>with half duplex, nodes at both ends of link can transmit, but not at same time.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h3 id="Where-is-the-link-layer-implemented"><a href="#Where-is-the-link-layer-implemented"
-                      class="headerlink" title="Where is the link layer implemented?"></a>Where is the link layer
-                    implemented?</h3>
-                  <ul>
-                    <li>The <strong>link layer is implemented in every host</strong>.</li>
-                    <li>It is realized through an <strong>adaptor</strong>, also known as a <strong>Network Interface
-                        Card (NIC)</strong>.<ul>
-                        <li>Examples include: <strong>Ethernet cards</strong>, <strong>PCMCIA cards</strong>, and
-                          <strong>802.11 wireless cards</strong>.</li>
-                      </ul>
-                    </li>
-                    <li>The adaptor is responsible for implementing both the <strong>link layer</strong> and the
-                      <strong>physical layer</strong>.</li>
-                    <li>It connects to the host via the <strong>system buses</strong>.</li>
-                    <li>The adaptor is a <strong>combination of hardware, software, and firmware</strong>.</li>
-                  </ul>
-                  <p>📌 In essence, the NIC handles the lower layers of network communication and serves as the
-                    interface between the host and the physical network.</p>
-                  <h3 id="Adaptors-Communicating"><a href="#Adaptors-Communicating" class="headerlink"
-                      title="Adaptors Communicating"></a>Adaptors Communicating</h3><img
-                    src="/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png" srcset="/img/loading.gif" lazyload
-                    class="" title="Adaptors Communicating">
-                  <h4 id="Sending-Side"><a href="#Sending-Side" class="headerlink" title="Sending Side"></a>Sending Side
-                  </h4>
-                  <ul>
-                    <li><strong>Encapsulates</strong> the network-layer datagram into a <strong>link-layer
-                        frame</strong>.</li>
-                    <li><strong>Adds</strong>:<ul>
-                        <li><strong>Error checking bits</strong> (e.g., CRC).</li>
-                        <li><strong>Reliable data transfer (rdt)</strong> mechanisms (if needed).</li>
-                        <li><strong>Flow control</strong> to manage data rate between sender and receiver.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h4 id="Receiving-Side"><a href="#Receiving-Side" class="headerlink"
-                      title="Receiving Side"></a>Receiving Side</h4>
-                  <ul>
-                    <li><strong>Checks</strong> the frame for:<ul>
-                        <li><strong>Errors</strong> using error detection codes.</li>
-                        <li><strong>Reliable data transfer</strong> mechanisms.</li>
-                        <li><strong>Flow control</strong> compliance.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Extracts</strong> the datagram from the frame.</li>
-                  </ul>
-                  <h2 id="Error-Detection-and-Correction"><a href="#Error-Detection-and-Correction" class="headerlink"
-                      title="Error Detection and Correction"></a>Error Detection and Correction</h2><img
-                    src="/2025/06/04/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png"
-                    srcset="/img/loading.gif" lazyload class="">
-                  <ul>
-                    <li>
-                      <p><strong>EDC (Error Detection and Correction bits)</strong>:</p>
-                      <ul>
-                        <li>Extra <strong>redundant bits</strong> added to data to detect and possibly correct errors
-                          during transmission.</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <p><strong>D (Data)</strong>:</p>
-                      <ul>
-                        <li>The actual data being protected by error checking.</li>
-                        <li>May include <strong>header fields</strong> along with the payload.</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <p><strong>Important Notes</strong>:</p>
-                      <ul>
-                        <li><strong>Error detection is not 100% reliable</strong>.<ul>
-                            <li>Some errors may go undetected, though this is <strong>rare</strong>.</li>
-                          </ul>
-                        </li>
-                        <li>A <strong>larger EDC field</strong> generally provides:<ul>
-                            <li><strong>Better error detection</strong> capability.</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h3 id="Parity-Checks"><a href="#Parity-Checks" class="headerlink" title="Parity Checks"></a>Parity
-                    Checks</h3>
-                  <ul>
-                    <li><strong>Even Parity Scheme:</strong> the total number of 1s in the $ d + 1 $ bits is even.</li>
-                    <li><strong>Odd Parity Scheme:</strong> the total number of 1s in the $ d + 1 $ bits is odd.</li>
-                  </ul>
-                  <p>If an odd number of 1-valued bits are found with an even parity schemes, the receiver knows that at
-                    least one bit error has occurred.</p>
-                  <h4 id="Two-dimensional-Parity"><a href="#Two-dimensional-Parity" class="headerlink"
-                      title="Two-dimensional Parity"></a>Two-dimensional Parity</h4>
-                  <p>The receiver can thus not only <strong><em>detect</em></strong> the fact that a single bit error
-                    has occurred, but can use the column and row indices of the column and row with parity errors to
-                    actually identify the bit that was corrupted<br>and <strong><em>correct</em></strong> that error!
-                  </p>
-                  <img src="/2025/06/04/The-Data-Link-Layer/Two-dimensional-even-parity.png" srcset="/img/loading.gif"
-                    lazyload class="" title="Two-dimensional even parity">
-                  <h3 id="Cyclic-Redundancy-Check-CRC"><a href="#Cyclic-Redundancy-Check-CRC" class="headerlink"
-                      title="Cyclic Redundancy Check (CRC)"></a>Cyclic Redundancy Check (CRC)</h3>
-                  <p>An error-detection technique used widely in today;s computer networks is based on <strong>cyclic
-                      redundancy check (CRC) codes</strong>. CRC codes are also known as <strong>polynomial
-                      codes</strong>, since it is possible to view the bit string to be sent as a polynomial whose
-                    coefficients are the $0$ and $1$ values in the bit string, with operations on the bit string
-                    interpreted as polynomial arithmetic.</p>
-                  <p>Consider the $d$-bit piece of data, $D$. The sender and receiver must first agree on an $r + 1$ bit
-                    pattern, known as a <strong>generator</strong>, which we will denote as $G$. For a given piece of
-                    data, $D$, the sender will choose $r$ additional bits, $R$, and append them to $D$ such that the
-                    resulting $d + r$ bit pattern is exactly divisible by $G$.</p>
-                  <p>The process of error checking with CRCs is thus simple: The receiver divides the $d + r$ received
-                    bits by $G$. If the remainder is non-zero, the receiver knows that an error has occurred; otherwise
-                    the data is accepted as being correct.</p>
-                  <h4 id="How-the-Sender-Computes-R"><a href="#How-the-Sender-Computes-R" class="headerlink"
-                      title="How the Sender Computes $R$?"></a>How the Sender Computes $R$?</h4>
-                  <p>We want find $R$ such that there is an $n$ such that</p>
-                  <script type="math/tex; mode=display">
-D \cdot 2^r \operatorname{XOR} R = nG</script>
-                  <p>That is, we want to choose $R$ such that $G$ divides into $D \cdot 2^r \operatorname{XOR} R$
-                    without remainder. If we XOR(that is, add modulo-2, without carry) $R$ to both sides of the above
-                    equation, we get</p>
-                  <script type="math/tex; mode=display">
-D \cdot 2^r = nG \operatorname{XOR} R</script>
-                  <p>This equation tells us that if we divide $D \cdot 2^r$ by $G$, the value of the remainder is
-                    precisely $R$. In other words, we can calculate $R$ as</p>
-                  <script type="math/tex; mode=display">
-R = \operatorname{remainder} \frac{D \cdot 2^r}{G}</script>
-                  <p><strong>Summary of the CRC Calculation Process:</strong></p>
-                  <ol>
-                    <li><strong>Agree on a generator polynomial $G$</strong> of length $r+1$ bits between sender and
-                      receiver.</li>
-                    <li><strong>Append $r$ zeros</strong> to the original $d$-bit data $D$, forming $D \cdot 2^r$.</li>
-                    <li><strong>Divide $D \cdot 2^r$ by $G$</strong> using modulo-2 division (XOR operation).</li>
-                    <li><strong>Obtain the remainder $R$</strong> from the division; $R$ is $r$ bits long.</li>
-                    <li><strong>Append $R$ to the original data $D$</strong> to form the transmitted message.</li>
-                    <li><strong>At the receiver</strong>, divide the received $d+r$ bits by $G$:<ul>
-                        <li>If the remainder is zero, the data is considered correct.</li>
-                        <li>If not, an error is detected.</li>
-                      </ul>
-                    </li>
-                  </ol>
-                  <img src="/2025/06/04/The-Data-Link-Layer/CRCSample.png" srcset="/img/loading.gif" lazyload class=""
-                    title="CRC Sample">
-                  <h2 id="Multiple-Access-Links-and-Protocols"><a href="#Multiple-Access-Links-and-Protocols"
-                      class="headerlink" title="Multiple Access Links and Protocols"></a>Multiple Access Links and
-                    Protocols</h2>
-                  <h3 id="Two-Types-of-Links"><a href="#Two-Types-of-Links" class="headerlink"
-                      title="Two Types of Links"></a>Two Types of Links</h3>
-                  <h4 id="Point-to-Point-Links"><a href="#Point-to-Point-Links" class="headerlink"
-                      title="Point-to-Point Links"></a><strong>Point-to-Point Links</strong></h4>
-                  <ul>
-                    <li>Direct connection between two devices.</li>
-                    <li>Examples:<ul>
-                        <li><strong>PPP</strong> (Point-to-Point Protocol) for dial-up access.</li>
-                        <li>Link between an <strong>Ethernet switch and a host</strong>.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h4 id="Broadcast-Links"><a href="#Broadcast-Links" class="headerlink"
-                      title="Broadcast Links"></a><strong>Broadcast Links</strong></h4>
-                  <ul>
-                    <li>Shared medium used by multiple devices.</li>
-                    <li>Examples:<ul>
-                        <li><strong>Old Ethernet</strong> (shared coaxial cable).</li>
-                        <li><strong>Upstream HFC</strong> (Hybrid Fiber-Coaxial).</li>
-                        <li><strong>802.11 WiFi</strong> (wireless LAN).</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h3 id="Multiple-Access-Protocol"><a href="#Multiple-Access-Protocol" class="headerlink"
-                      title="Multiple Access Protocol"></a>Multiple Access Protocol</h3>
-                  <ul>
-                    <li>A <strong>single shared broadcast channel</strong> is used by multiple nodes.<ul>
-                        <li>If two or more nodes transmit at the same time, their signals interfere, causing a
-                          <strong>collision</strong>.</li>
-                      </ul>
-                    </li>
-                    <li>A <strong>multiple access protocol</strong> is needed to coordinate transmissions.<ul>
-                        <li>This protocol is a distributed algorithm that determines when each node can transmit.</li>
-                        <li>All coordination and communication about channel sharing must occur over the same
-                          channel—there is <strong>no separate control channel</strong>.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h4 id="Ideal-Multiple-Access-Protocol"><a href="#Ideal-Multiple-Access-Protocol" class="headerlink"
-                      title="Ideal Multiple Access Protocol"></a>Ideal Multiple Access Protocol</h4>
-                  <ul>
-                    <li>The broadcast channel has a total rate of <strong>R bps</strong>.</li>
-                    <li>If only one node transmits, it can use the full rate <strong>R</strong>.</li>
-                    <li>If <strong>M</strong> nodes transmit simultaneously, each gets an average rate of
-                      <strong>R/M</strong>.</li>
-                    <li>The system is <strong>fully decentralized</strong>:<ul>
-                        <li>No central coordinator.</li>
-                        <li>No clock or slot synchronization required.</li>
-                      </ul>
-                    </li>
-                    <li>The approach is simple and efficient for sharing the channel.</li>
-                  </ul>
-                  <h3 id="MAC-Protocols-a-taxonomy"><a href="#MAC-Protocols-a-taxonomy" class="headerlink"
-                      title="MAC Protocols: a taxonomy"></a>MAC Protocols: a taxonomy</h3>
-                  <h4 id="Three-Broad-Classes-of-MAC-Protocols"><a href="#Three-Broad-Classes-of-MAC-Protocols"
-                      class="headerlink" title="Three Broad Classes of MAC Protocols"></a>Three Broad Classes of MAC
-                    Protocols</h4>
-                  <ol>
-                    <li>
-                      <p><strong>Channel Partitioning</strong></p>
-                      <ul>
-                        <li>The channel is divided into smaller pieces (such as time slots, frequency bands, or codes).
-                        </li>
-                        <li>Each node is allocated a piece for exclusive use.</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <p><strong>Random Access</strong></p>
-                      <ul>
-                        <li>The channel is not divided; all nodes can transmit at any time.</li>
-                        <li>Collisions may occur, but protocols are designed to detect and recover from collisions.</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <p><strong>Taking Turns</strong></p>
-                      <ul>
-                        <li>Nodes take turns using the channel.</li>
-                        <li>Nodes with more data to send can take longer turns.</li>
-                      </ul>
-                    </li>
-                  </ol>
-                  <h3 id="Channel-Partitioning-Protocols"><a href="#Channel-Partitioning-Protocols" class="headerlink"
-                      title="Channel Partitioning Protocols"></a>Channel Partitioning Protocols</h3>
-                  <p><strong>TDM</strong>: time-division multiplexing<br><strong>FDA</strong>: frequency-division
-                    multiplexing<br><strong>CDMA</strong>: code division multiple access</p>
-                  <h4 id="TDM-Time-Division-Multiplexing"><a href="#TDM-Time-Division-Multiplexing" class="headerlink"
-                      title="TDM (Time-Division Multiplexing)"></a>TDM (Time-Division Multiplexing)</h4>
-                  <ul>
-                    <li><strong>Mechanism:</strong>
-                      <ul>
-                        <li>Divides time into frames, and each frame into $N$ time slots (for $N$ nodes).</li>
-                        <li>Each node is assigned a specific time slot in each frame.</li>
-                        <li>When a node has data to send, it transmits only during its assigned slot.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Example:</strong>
-                      <ul>
-                        <li>In a four-node TDM system, each node gets one slot per frame, and the slots repeat in a
-                          fixed order.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Advantages:</strong>
-                      <ul>
-                        <li>No collisions; perfectly fair (each node gets $R/N$ bps).</li>
-                      </ul>
-                    </li>
-                    <li><strong>Drawbacks:</strong>
-                      <ul>
-                        <li>Each node is limited to $R/N$ bps even if others are idle.</li>
-                        <li>Nodes must wait for their turn, even if they are the only one with data to send.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h4 id="FDM-Frequency-Division-Multiplexing"><a href="#FDM-Frequency-Division-Multiplexing"
-                      class="headerlink" title="FDM (Frequency-Division Multiplexing)"></a>FDM (Frequency-Division
-                    Multiplexing)</h4>
-                  <ul>
-                    <li><strong>Mechanism:</strong>
-                      <ul>
-                        <li>Divides the total channel bandwidth ($R$ bps) into $N$ frequency bands, each with bandwidth
-                          $R/N$.</li>
-                        <li>Each node is assigned a <strong>unique frequency band</strong> for exclusive use.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Example:</strong>
-                      <ul>
-                        <li>In a four-node FDM system, each node gets a $4$ KHz band out of a total $16$ KHz channel.
-                        </li>
-                      </ul>
-                    </li>
-                    <li><strong>Advantages:</strong>
-                      <ul>
-                        <li>No collisions; fair bandwidth allocation.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Drawbacks:</strong>
-                      <ul>
-                        <li>Each node is limited to R/N bps, even if others are idle (same as TDM).</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <img src="/2025/06/04/The-Data-Link-Layer/TDA-and-FDA-example.png" srcset="/img/loading.gif" lazyload
-                    class="">
-                  <h4 id="CDMA-Code-Division-Multiple-Access"><a href="#CDMA-Code-Division-Multiple-Access"
-                      class="headerlink" title="CDMA (Code Division Multiple Access)"></a>CDMA (Code Division Multiple
-                    Access)</h4>
-                  <ul>
-                    <li><strong>Mechanism:</strong>
-                      <ul>
-                        <li>Each node is assigned a unique code.</li>
-                        <li>Nodes encode their data using their code and transmit simultaneously over the same channel.
-                        </li>
-                        <li>Receivers use the sender’s code to decode the intended message, even in the presence of
-                          other transmissions.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Features:</strong>
-                      <ul>
-                        <li>Allows multiple nodes to transmit at the same time without collisions, as long as codes are
-                          chosen carefully.</li>
-                        <li>Widely used in wireless and cellular networks due to its anti-jamming properties.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Note:</strong>
-                      <ul>
-                        <li>CDMA codes serve a similar role as time slots in TDM and frequency bands in FDM, enabling
-                          multiple access to the channel.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h3 id="Random-Access-Protocols"><a href="#Random-Access-Protocols" class="headerlink"
-                      title="Random Access Protocols"></a>Random Access Protocols</h3>
-                  <ul>
-                    <li>When a node has a packet to send, it transmits at the full channel data rate $R$.</li>
-                    <li>There is <strong>no prior coordination</strong> among nodes before transmission.</li>
-                    <li>If two or more nodes transmit at the same time, a <strong>collision</strong> occurs.</li>
-                    <li>A <strong>random access MAC protocol</strong> defines:<ul>
-                        <li><strong><em>How to detect collisions</em></strong>.</li>
-                        <li><strong><em>How to recover from collisions (e.g., by delaying and
-                              retransmitting)</em></strong>.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Examples:</strong>
-                      <ul>
-                        <li>Slotted ALOHA </li>
-                        <li>ALOHA </li>
-                        <li>CSMA, CSMA/CD, CSMA/CA</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <h4 id="Slotted-ALOHA"><a href="#Slotted-ALOHA" class="headerlink" title="Slotted ALOHA"></a>Slotted
-                    ALOHA</h4>
-                  <p><strong>Assumptions:</strong></p>
-                  <ul>
-                    <li>All frames are the same size.</li>
-                    <li>Time is divided into equal-sized slots (each slot = time to transmit one frame).</li>
-                    <li>Nodes can only begin transmission at the start of a slot.</li>
-                    <li>All nodes are synchronized.</li>
-                    <li>If two or more nodes transmit in the same slot, a collision occurs and is detected by all.</li>
-                  </ul>
-                  <p><strong>Operation:</strong></p>
-                  <ul>
-                    <li>When a node has a new frame, it transmits in the next available slot.</li>
-                    <li>If there is no collision, the node can send a new frame in the next slot.</li>
-                    <li>If a collision occurs, the node retransmits the frame in each subsequent slot with probability
-                      $p$ until successful.</li>
-                  </ul>
-                  <p><strong>Pros of Slotted ALOHA:</strong></p>
-                  <ul>
-                    <li>A single active node can continuously transmit at the full channel rate.</li>
-                    <li>Highly decentralized; only slot synchronization among nodes is needed.</li>
-                    <li>Simple to implement.</li>
-                  </ul>
-                  <p><strong>Cons of Slotted ALOHA:</strong></p>
-                  <ul>
-                    <li>Collisions can occur, wasting slots.</li>
-                    <li>Idle slots may occur, reducing efficiency.</li>
-                    <li>Nodes may detect collisions before a full packet is transmitted.</li>
-                    <li>Requires clock synchronization among all nodes.</li>
-                  </ul>
-                  <p><strong>Slotted Aloha efficiency</strong></p>
-                  <ul>
-                    <li><strong>Efficiency</strong> is defined as the long-run fraction of slots that contain a
-                      successful transmission (i.e., exactly one node transmits).</li>
-                    <li>Suppose there are $N$ nodes, each always has frames to send, and each transmits in a slot with
-                      probability $p$.</li>
-                    <li>The probability that a given node has a successful transmission in a slot:<br>$p(1-p)^{N-1}$
-                    </li>
-                    <li>The probability that any node has a successful transmission in a slot:<br>$Np(1-p)^{N-1}$</li>
-                    <li><strong>Maximum efficiency</strong> is achieved by choosing $p^*$ that maximizes
-                      $Np(1-p)^{N-1}$.</li>
-                    <li>As $N$ becomes very large, the maximum efficiency approaches:<br>$\boxed{1/e \approx 0.37}$</li>
-                    <li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions
-                      only 37% of the time.</li>
-                  </ul>
-                  <h4 id="Pure-unslotted-ALOHA"><a href="#Pure-unslotted-ALOHA" class="headerlink"
-                      title="Pure (unslotted) ALOHA"></a>Pure (unslotted) ALOHA</h4><img
-                    src="/2025/06/04/The-Data-Link-Layer/pure-ALOHA-sample.png" srcset="/img/loading.gif" lazyload
-                    class="">
-                  <ul>
-                    <li>Simpler than slotted ALOHA; <strong>no synchronization</strong> required.</li>
-                    <li>When a frame arrives, the node <strong>transmits immediately</strong>.</li>
-                    <li><strong>Higher collision probability</strong>: <ul>
-                        <li>A frame sent at time $t_0$ will collide with any other frame sent in the interval $[t_0-1,
-                          t_0+1]$.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <p><strong>Pure (Unslotted) ALOHA Efficiency:</strong></p>
-                  <ul>
-                    <li>Probability of success for a given node:<ul>
-                        <li>$P(\text{success}) = P(\text{node transmits}) \times P(\text{no other node transmits in }
-                          [t_0-1, t_0]) \times P(\text{no other node transmits in } [t_0, t_0+1])$</li>
-                        <li>$= p \cdot (1-p)^{N-1} \cdot (1-p)^{N-1}$</li>
-                        <li>$= p \cdot (1-p)^{2(N-1)}$</li>
-                      </ul>
-                    </li>
-                    <li><strong>Maximum efficiency</strong> (choosing optimal $p$ and letting $N \to \infty$):<ul>
-                        <li>$\boxed{1/(2e) \approx 0.18}$</li>
-                      </ul>
-                    </li>
-                    <li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions
-                      only 18% of the time in pure ALOHA.</li>
-                  </ul>
-
-
-                </div>
-
-                <hr />
-                <div>
-                  <div class="post-metas my-3">
-
-                    <div class="post-meta mr-3 d-flex align-items-center">
-                      <i class="iconfont icon-category"></i>
-
-
-                      <span class="category-chains">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
 
 
 
-                        <span class="category-chain">
-
-                          <a href="/categories/Computer-Network/" class="category-chain-item">Computer Network</a>
-
-
-                          <span>></span>
-
-                          <a href="/categories/Computer-Network/Data-Link-Layer/" class="category-chain-item">Data Link
-                            Layer</a>
-
-
-
-
-
-                        </span>
-
-
-                      </span>
-
-                    </div>
-
-
-                  </div>
-
-
-
-
-
-                  <div class="license-box my-3">
-                    <div class="license-title">
-                      <div>The Data Link Layer</div>
-                      <div>http://example.com/2025/06/04/The-Data-Link-Layer/</div>
-                    </div>
-                    <div class="license-meta">
-
-                      <div class="license-meta-item">
-                        <div>作者</div>
-                        <div>ddccffq</div>
-                      </div>
-
-
-                      <div class="license-meta-item license-meta-date">
-                        <div>发布于</div>
-                        <div>2025年6月4日</div>
-                      </div>
-
-
-
-                      <div class="license-meta-item">
-                        <div>许可协议</div>
-                        <div>
-
-
-
-                          <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                            <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                              <i class="iconfont icon-cc-by"></i>
-                            </span>
-                          </a>
-
-
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="license-icon iconfont"></div>
-                  </div>
-
-
-
-
-                  <div class="post-prevnext my-3">
-                    <article class="post-prev col-6">
-
-
-                    </article>
-                    <article class="post-next col-6">
-
-
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
                       <a href="/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" title="朴素贝叶斯法">
                         <span class="hidden-mobile">朴素贝叶斯法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
-
-                    </article>
-                  </div>
-
+                    
+                  </article>
                 </div>
-
-
-
-
-                <article id="comments" lazyload>
-
-
-                </article>
-
-
-
-              </article>
+              
             </div>
-          </div>
-        </div>
 
-        <div class="side-col d-none d-lg-block col-lg-2">
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
 
 
+          </article>
         </div>
       </div>
     </div>
 
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
 
 
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
 
 
 
 
 
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
-      Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function () {
-        mermaid.initialize({ "theme": "default" });
-
-        Fluid.utils.listenDOMLoaded(function () {
-          Fluid.events.registerRefreshCallback(function () {
-            if ('mermaid' in window) {
-              mermaid.init();
-            }
-          });
-        });
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
       });
-    </script>
+    });
+  });
+</script>
 
 
 
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-
-    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-
-
-
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-            <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <input type="text" id="local-search-input" class="form-control validate">
-              <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-            </div>
-            <div class="list-group" id="local-search-result"></div>
-          </div>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
+  </div>
+</div>
 
+    
 
-
-
+    
   </main>
 
   <footer>
     <div class="footer-inner">
-
-      <div class="footer-content">
-        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i
-          class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank"
-          rel="nofollow noopener"><span>Fluid</span></a>
-      </div>
-
-
-
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
+  
+  
+  
+</div>
 
   </footer>
 
   <!-- Scripts -->
-
-  <script src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js"></script>
-  <link rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({ "showSpinner": false, "trickleSpeed": 100 })
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
     NProgress.start()
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
       NProgress.done();
     })
   </script>
 
 
-  <script src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
-  <script src="/js/events.js"></script>
-  <script src="/js/plugins.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
-  <script src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js"></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
-      (function (window, document) {
-        var typing = Fluid.plugins.typing;
-        var subtitle = document.getElementById('subtitle');
-        if (!subtitle || !typing) {
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
           return;
         }
-        var text = subtitle.getAttribute('data-typed-text');
-
-        typing(text);
-
-      })(window, document);
-  </script>
-
-
-
-
-
-  <script src="/js/img-lazyload.js"></script>
-
-
-
-
-
-
-  <script>
-    Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function () {
-      var toc = jQuery('#toc');
-      if (toc.length === 0 || !window.tocbot) { return; }
-      var boardCtn = jQuery('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      window.tocbot.init(Object.assign({
-        tocSelector: '#toc-body',
-        contentSelector: '.markdown-body',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        scrollSmooth: true,
-        includeTitleTags: true,
-        headingsOffset: -boardTop,
-      }, CONFIG.toc));
-      if (toc.find('.toc-list-item').length > 0) {
-        toc.css('visibility', 'visible');
-      }
-
-      Fluid.events.registerRefreshCallback(function () {
-        if ('tocbot' in window) {
-          tocbot.refresh();
-          var toc = jQuery('#toc');
-          if (toc.length === 0 || !tocbot) {
-            return;
-          }
-          if (toc.find('.toc-list-item').length > 0) {
-            toc.css('visibility', 'visible');
-          }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
         }
-      });
+      }
     });
-  </script>
+  });
+</script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
@@ -1135,130 +983,114 @@ R = \operatorname{remainder} \frac{D \cdot 2^r}{G}</script>
   <script>Fluid.plugins.codeWidget();</script>
 
 
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
 
-  <script>
-    Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function () {
-      window.anchors.options = {
-        placement: CONFIG.anchorjs.placement,
-        visible: CONFIG.anchorjs.visible
-      };
-      if (CONFIG.anchorjs.icon) {
-        window.anchors.options.icon = CONFIG.anchorjs.icon;
-      }
-      var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-      var res = [];
-      for (var item of el) {
-        res.push('.markdown-body > ' + item.trim());
-      }
-      if (CONFIG.anchorjs.placement === 'left') {
-        window.anchors.options.class = 'anchorjs-link-left';
-      }
-      window.anchors.add(res.join(', '));
-
-      Fluid.events.registerRefreshCallback(function () {
-        if ('anchors' in window) {
-          anchors.removeAll();
-          var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-          var res = [];
-          for (var item of el) {
-            res.push('.markdown-body > ' + item.trim());
-          }
-          if (CONFIG.anchorjs.placement === 'left') {
-            anchors.options.class = 'anchorjs-link-left';
-          }
-          anchors.add(res.join(', '));
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
         }
-      });
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
     });
-  </script>
+  });
+</script>
 
 
-
-  <script>
-    Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function () {
-      Fluid.plugins.fancyBox();
-    });
-  </script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
 
   <script>Fluid.plugins.imageCaption();</script>
 
-
-  <script>
-    if (!window.MathJax) {
-      window.MathJax = {
-        tex: {
-          inlineMath: { '[+]': [['$', '$']] }
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
         }
-      };
-    } else {
-      MathJax.startup.document.state(0);
-      MathJax.texReset();
-      MathJax.typeset();
-      MathJax.typesetPromise();
-    }
 
-    Fluid.events.registerRefreshCallback(function () {
-      if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-        MathJax.startup.document.state(0);
-        MathJax.texReset();
-        MathJax.typeset();
-        MathJax.typesetPromise();
-      }
-    });
-  </script>
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
 
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
-  <script src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+  <script defer src="/js/leancloud.js" ></script>
 
-  <script defer src="/js/leancloud.js"></script>
-
-  <script src="/js/local-search.js"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  <!-- 主题的启动项，将它保持在最底部 -->
-  <!-- the boot of the theme, keep it at the bottom -->
-  <script src="/js/boot.js"></script>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
-
+  
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
-
 </html>
