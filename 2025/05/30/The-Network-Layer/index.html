@@ -109,7 +109,6 @@
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -118,9 +117,28 @@ window.MathJax = {
   },
   svg: {
     fontCache: 'global'
+  },
+  options: {
+    enableMenu: false
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      // 兼容 <script type="math/tex"> 标签
+      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+        const display = node.type.indexOf('mode=display') > -1;
+        const math = node.textContent;
+        const span = document.createElement(display ? 'div' : 'span');
+        span.className = 'mathjax-legacy';
+        span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
+        node.parentNode.replaceChild(span, node);
+      });
+      MathJax.typesetPromise();
+    }
   }
 };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 

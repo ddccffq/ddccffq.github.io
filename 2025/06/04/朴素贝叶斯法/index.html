@@ -19,15 +19,15 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="朴素贝叶斯法的学习与分类基本方法设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} &#x3D; \{c_1, c_2, \cdots, c_K \}$。训练数据集  T &#x3D; \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}由 $P(X, Y)$ 独立同分布产生。朴素贝叶斯">
+    <meta name="description" content="朴素贝叶斯法的学习与分类基本方法设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} &#x3D; \{c_1, c_2, \cdots, c_K \}$。训练数据集  T &#x3D; \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}由 $P(X, Y)$ 独立同分布产生。 朴素贝叶">
 <meta property="og:type" content="article">
 <meta property="og:title" content="朴素贝叶斯法">
 <meta property="og:url" content="http://example.com/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/index.html">
 <meta property="og:site_name" content="学习日志">
-<meta property="og:description" content="朴素贝叶斯法的学习与分类基本方法设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} &#x3D; \{c_1, c_2, \cdots, c_K \}$。训练数据集  T &#x3D; \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}由 $P(X, Y)$ 独立同分布产生。朴素贝叶斯">
+<meta property="og:description" content="朴素贝叶斯法的学习与分类基本方法设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} &#x3D; \{c_1, c_2, \cdots, c_K \}$。训练数据集  T &#x3D; \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}由 $P(X, Y)$ 独立同分布产生。 朴素贝叶">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-04T01:59:52.000Z">
-<meta property="article:modified_time" content="2025-06-04T07:07:38.474Z">
+<meta property="article:modified_time" content="2025-06-04T13:14:31.937Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -102,7 +102,6 @@
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -111,9 +110,28 @@ window.MathJax = {
   },
   svg: {
     fontCache: 'global'
+  },
+  options: {
+    enableMenu: false
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      // 兼容 <script type="math/tex"> 标签
+      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+        const display = node.type.indexOf('mode=display') > -1;
+        const math = node.textContent;
+        const span = document.createElement(display ? 'div' : 'span');
+        span.className = 'mathjax-legacy';
+        span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
+        node.parentNode.replaceChild(span, node);
+      });
+      MathJax.typesetPromise();
+    }
   }
 };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
@@ -320,7 +338,8 @@ window.MathJax = {
                 
                 <h2 id="朴素贝叶斯法的学习与分类"><a href="#朴素贝叶斯法的学习与分类" class="headerlink" title="朴素贝叶斯法的学习与分类"></a>朴素贝叶斯法的学习与分类</h2><h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><p>设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} = \{c_1, c_2, \cdots, c_K \}$。训练数据集</p>
 <script type="math/tex; mode=display">
-T = \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}</script><p>由 $P(X, Y)$ 独立同分布产生。<br>朴素贝叶斯法通过训练数据集学习联合概率分布 $P(X, Y)$。具体地，学习以下先验概率分布及条件概率分布。先验概率分布</p>
+T = \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}</script><p>由 $P(X, Y)$ 独立同分布产生。</p>
+<p>朴素贝叶斯法通过训练数据集学习联合概率分布 $P(X, Y)$。具体地，学习以下先验概率分布及条件概率分布。先验概率分布</p>
 <script type="math/tex; mode=display">
 P(Y = c_k), \quad k = 1, 2, \cdots K \tag{1}</script><p>条件概率分布</p>
 <script type="math/tex; mode=display">

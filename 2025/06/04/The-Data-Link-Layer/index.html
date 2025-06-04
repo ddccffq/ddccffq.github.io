@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/TDA-and-FDA-example.png">
 <meta property="og:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/pure-ALOHA-sample.png">
 <meta property="article:published_time" content="2025-06-04T07:53:36.000Z">
-<meta property="article:modified_time" content="2025-06-04T12:47:30.076Z">
+<meta property="article:modified_time" content="2025-06-04T13:13:27.162Z">
 <meta property="article:author" content="ddccffq">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2025/06/04/The-Data-Link-Layer/AdaptorsCommunicating.png">
@@ -108,7 +108,6 @@
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -117,9 +116,28 @@ window.MathJax = {
   },
   svg: {
     fontCache: 'global'
+  },
+  options: {
+    enableMenu: false
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      // 兼容 <script type="math/tex"> 标签
+      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+        const display = node.type.indexOf('mode=display') > -1;
+        const math = node.textContent;
+        const span = document.createElement(display ? 'div' : 'span');
+        span.className = 'mathjax-legacy';
+        span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
+        node.parentNode.replaceChild(span, node);
+      });
+      MathJax.typesetPromise();
+    }
   }
 };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
