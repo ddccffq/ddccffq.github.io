@@ -364,9 +364,9 @@ L(M) = \{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \} \tag{5}</scri
 \end{align*}</script><h3 id="CFG-to-Empty-Stack"><a href="#CFG-to-Empty-Stack" class="headerlink" title="CFG to Empty Stack"></a>CFG to Empty Stack</h3><p>先考虑 $L$ 为不含 $\epsilon$ 的 CFL。$G$ 是该语言对应的 GNF 文法，考虑用 PDA 模拟 GNF 的最左派生。</p>
 <p><strong>公式化构造</strong></p>
 <p>设 GNF $G = (V, T, P, S)$。</p>
-<p>取 PDA $M = ({q}, T, V, \delta, q, S, \Phi)$</p>
-<p>$\forall A \in V, \quad a \in T, \quad \gamma \in V^{\ast}$ 我们有 $\delta(q, a, A) = {(q, \gamma) \mid A \to a\gamma \in P}$</p>
-<p><strong>补充 ${\epsilon}$</strong></p>
+<p>取 PDA $M = (\{q\}, T, V, \delta, q, S, \Phi)$</p>
+<p>$\forall A \in V, \quad a \in T, \quad \gamma \in V^{\ast}$ 我们有 $\delta(q, a, A) = \{(q, \gamma) \mid A \to a\gamma \in P\}$</p>
+<p><strong>补充 $\{\epsilon\}$</strong></p>
 <p>在 $M$ 的基础上，构造 $M_1$，具体是</p>
 <script type="math/tex; mode=display">
 M_1 = (\{q, q_0\}, T, V \cup \{Z\}, \delta_1, q_0, Z, \Phi)</script><p>对于状态转移函数 $\delta_1$，定义如下：</p>

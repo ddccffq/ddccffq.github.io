@@ -371,8 +371,8 @@ P(O | \lambda) = \sum_{i = 1}^{N} \pi_i b_i(o_1) \beta_1(i) \tag{14}</script><p>
 \hat{b_{j}}(k) &= \frac{B_{jk}}{\sum_{k = 1}^{M} B_{jk}}, \quad j = 1, 2, \dots, N; \quad k = 1, 2, \dots, M \tag{23}
 \\[10pt]
 \hat{\pi_{i}} &= \frac{\sum \text{初始状态为$q_i$} }{S} \tag{24}
-\end{align*}</script><p>其中 $A<em>{ij}$ 表示在训练数据中，从状态 $q_i$ 转移到状态 $q_j$ 的<strong>次数总和</strong>。$B</em>{jk}$ 表示在状态 $q_j$ 下，观测到符号 $v_k$ 的<strong>次数总和</strong>。</p>
-<h3 id="Baum-Welch-算法"><a href="#Baum-Welch-算法" class="headerlink" title="Baum-Welch 算法"></a>Baum-Welch 算法</h3><p>假定训练数据只包含 $S$ 个长度为 $T$ 的观测序列 ${O_1, O_2, \dots, O_S}$，我们将观测序列数据看作观测数据 $O$，状态序列数据看做不可观测的隐数据 $I$，那么存在如下概率模型</p>
+\end{align*}</script><p>其中 $A_{ij}$ 表示在训练数据中，从状态 $q_i$ 转移到状态 $q_j$ 的<strong>次数总和</strong>。$B_{jk}$ 表示在状态 $q_j$ 下，观测到符号 $v_k$ 的<strong>次数总和</strong>。</p>
+<h3 id="Baum-Welch-算法"><a href="#Baum-Welch-算法" class="headerlink" title="Baum-Welch 算法"></a>Baum-Welch 算法</h3><p>假定训练数据只包含 $S$ 个长度为 $T$ 的观测序列 $\{O_1, O_2, \dots, O_S\}$，我们将观测序列数据看作观测数据 $O$，状态序列数据看做不可观测的隐数据 $I$，那么存在如下概率模型</p>
 <script type="math/tex; mode=display">
 P(O | \lambda) = \sum_{I} P(O |I, \lambda) P(I |\lambda) \tag{25}</script><p>实际上，这个模型的参数学习可由 EM 算法实现。</p>
 <p>（1）确定完全数据的对数似然函数。完全数据是$(O, I) = (o_1, o_2, \dots, o_T, i_1, i_2, \dots, i_T)$。</p>

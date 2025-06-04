@@ -364,7 +364,7 @@ Z(x) &= \sum_{y} exp\sum_{k=1}^{K} w_kf_k(y,x) \tag{15}
 \begin{align}
 P_w(y|x) = \frac{exp(\vec{w} \cdot \vec{F}(y,x))}{Z_w(x)} \tag{16}
 \end{align}</script><script type="math/tex; mode=display">
-Z_w(x) = \sum_{y}exp(\vec{w} \cdot \vec{F}(y,x)) \tag{17}</script><h3 id="Matrix-Form"><a href="#Matrix-Form" class="headerlink" title="Matrix Form"></a>Matrix Form</h3><p>For each label sequence, we introduce special start point and end point labels, $y<em>0 = \text{start}$ and $y</em>{n+1} = \text{stop}$. For each position in observation sequence $x$ $i =1,2,\dots,n+1$, we can define a matrix $m \in \mathbb{R}^m$</p>
+Z_w(x) = \sum_{y}exp(\vec{w} \cdot \vec{F}(y,x)) \tag{17}</script><h3 id="Matrix-Form"><a href="#Matrix-Form" class="headerlink" title="Matrix Form"></a>Matrix Form</h3><p>For each label sequence, we introduce special start point and end point labels, $y_0 = \text{start}$ and $y_{n+1} = \text{stop}$. For each position in observation sequence $x$ $i =1,2,\dots,n+1$, we can define a matrix $m \in \mathbb{R}^m$</p>
 <script type="math/tex; mode=display">
 \begin{align}
 M_i(x) &= [M_i(y_{i-1}, y_i | x)] \tag{18}

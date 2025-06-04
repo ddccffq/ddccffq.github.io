@@ -309,8 +309,8 @@
 <p>attribute $a$</p>
 <h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><script type="math/tex; mode=display">
 p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><script type="math/tex; mode=display">
-\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script><h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a = \{a^1, a^2, \ldots, a^V \}$</p>
-<p>$ D^v = \{D(\text{attribute}(a) = a^v)\}$</p>
+\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script><h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a = \\{a^1, a^2, \ldots, a^V \\}$</p>
+<p>$ D^v = \\{D(\text{attribute}(a) = a^v)\\}$</p>
 <script type="math/tex; mode=display">
 \text{Gain}(D, a) = Ent(D) - \sum_{v = 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)</script><h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3><script type="math/tex; mode=display">
 \text{Gain\_ratio}(D,a) = \frac{Gain(D,a)}{IV(a)}</script><script type="math/tex; mode=display">
@@ -497,7 +497,7 @@ p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><s
 </code></pre>
 <div align = "center"><strong> Figure 2: finial decision tree </strong></div>
 
-<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N<em>t$ samples and there are $N</em>{tk}$ sort $k = 1, 2, \ldots, K$ samples.</p>
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are $N_{tk}$ sort $k = 1, 2, \ldots, K$ samples.</p>
 <p><strong>loss function</strong></p>
 <script type="math/tex; mode=display">
 C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>empirical entropy</strong></p>
@@ -510,12 +510,12 @@ C_\alpha(T) = C(T) + \alpha |T|</script><p><strong>purpose</strong></p>
 \min_{T} C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>algorithm</strong></p>
 <p>We can define a DP[] and use the idea of dynamic programming to find the optimal pruning</p>
 <ul>
-<li>input data $X = \{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \}$</li>
+<li>input data $X = \\{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \\}$</li>
 <li>output $Tree_\alpha$</li>
 </ul>
 <ol>
 <li>for t in T, Calculate $H_t(T)$</li>
-<li>Recursively backtrack from the leaf nodes of the tree upwards, compare $C<em>\alpha(T_A)$ and $C</em>\alpha(T_B)$</li>
+<li>Recursively backtrack from the leaf nodes of the tree upwards, compare $C_\alpha(T_A)$ and $C_\alpha(T_B)$</li>
 <li>return 2</li>
 </ol>
 <h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink" title="Regression Tree"></a>Regression Tree</h3><p>A regression tree corresponds to a partition of the input space and the output values within the partition units.</p>
@@ -531,7 +531,7 @@ f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</s
 <li>output: regression tree $f(x)$</li>
 </ul>
 <ol>
-<li>choose $x_j$, its output is $s$. Space $R_1(j, s) = \{x \mid y_i \leq s\}$,space $R_2(j, s) = \{x \mid y_i &gt; s\}$</li>
+<li>choose $x_j$, its output is $s$. Space $R_1(j, s) = \\{x \mid y_i \leq s\\}$,space $R_2(j, s) = \\{x \mid y_i &gt; s\\}$</li>
 <li><script type="math/tex; mode=display">\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script></li>
 <li><script type="math/tex; mode=display">\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m = 1, 2</script></li>
 <li>repeat 2 and 3</li>
@@ -639,9 +639,9 @@ f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</s
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/28/MathJax/" title="MathJax">
+                      <a href="/2025/05/28/hexo%E7%95%8C%E9%9D%A2%E5%92%8CGitHub%20page%E7%95%8C%E9%9D%A2%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/" title="hexo界面和GitHub page界面公式问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MathJax</span>
+                        <span class="hidden-mobile">hexo界面和GitHub page界面公式问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
