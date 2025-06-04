@@ -105,16 +105,18 @@ window.MathJax = {
   startup: {
     ready: () => {
       MathJax.startup.defaultReady();
-      // 兼容 <script type="math/tex"> 标签
-      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-        const display = node.type.indexOf('mode=display') > -1;
-        const math = node.textContent;
-        const span = document.createElement(display ? 'div' : 'span');
-        span.className = 'mathjax-legacy';
-        span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
-        node.parentNode.replaceChild(span, node);
+      // 延迟到 DOM 完全加载后再处理
+      window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+          const display = node.type.indexOf('mode=display') > -1;
+          const math = node.textContent;
+          const span = document.createElement(display ? 'div' : 'span');
+          span.className = 'mathjax-legacy';
+          span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
+          node.parentNode.replaceChild(span, node);
+        });
+        MathJax.typesetPromise();
       });
-      MathJax.typesetPromise();
     }
   }
 };
@@ -502,6 +504,57 @@ window.MathJax = {
     
     <div class="category row nomargin-x">
       <a class="category-item collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="形式语言与自动机"
+        id="heading-f87d8908409cdf3431087e4b6ee25103" role="tab" data-toggle="collapse" href="#collapse-f87d8908409cdf3431087e4b6ee25103"
+        aria-expanded="false"
+      >
+        形式语言与自动机
+        <span class="list-group-count"></span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+        <a href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="category-count col-2 col-md-1 col-xm-1">
+          <i class="iconfont icon-articles"></i>
+          <span>2</span>
+        </a>
+      
+      <div class="category-collapse collapse " id="collapse-f87d8908409cdf3431087e4b6ee25103"
+           role="tabpanel" aria-labelledby="heading-f87d8908409cdf3431087e4b6ee25103">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" title="上下文无关文法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">上下文无关文法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="下推自动机"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">下推自动机</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Computer Network"
         id="heading-1b75a42cad6ccbd48a6c682e9b3fd924" role="tab" data-toggle="collapse" href="#collapse-1b75a42cad6ccbd48a6c682e9b3fd924"
         aria-expanded="false"
@@ -613,57 +666,6 @@ window.MathJax = {
       </div>
     </div>
   
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="形式语言与自动机"
-        id="heading-f87d8908409cdf3431087e4b6ee25103" role="tab" data-toggle="collapse" href="#collapse-f87d8908409cdf3431087e4b6ee25103"
-        aria-expanded="false"
-      >
-        形式语言与自动机
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-f87d8908409cdf3431087e4b6ee25103"
-           role="tabpanel" aria-labelledby="heading-f87d8908409cdf3431087e4b6ee25103">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" title="上下文无关文法"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">上下文无关文法</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="下推自动机"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">下推自动机</span>
-        </a>
-      
-    
-  </div>
-
         
       </div>
     </div>
@@ -787,5 +789,20 @@ window.MathJax = {
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

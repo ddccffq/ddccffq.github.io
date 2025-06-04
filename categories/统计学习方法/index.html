@@ -105,16 +105,18 @@ window.MathJax = {
   startup: {
     ready: () => {
       MathJax.startup.defaultReady();
-      // 兼容 <script type="math/tex"> 标签
-      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-        const display = node.type.indexOf('mode=display') > -1;
-        const math = node.textContent;
-        const span = document.createElement(display ? 'div' : 'span');
-        span.className = 'mathjax-legacy';
-        span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
-        node.parentNode.replaceChild(span, node);
+      // 延迟到 DOM 完全加载后再处理
+      window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+          const display = node.type.indexOf('mode=display') > -1;
+          const math = node.textContent;
+          const span = document.createElement(display ? 'div' : 'span');
+          span.className = 'mathjax-legacy';
+          span.innerHTML = (display ? '\[' : '\(') + math + (display ? '\]' : '\)');
+          node.parentNode.replaceChild(span, node);
+        });
+        MathJax.typesetPromise();
       });
-      MathJax.typesetPromise();
     }
   }
 };
@@ -446,5 +448,20 @@ window.MathJax = {
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
