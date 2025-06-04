@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          570 字
+          566 字
         
       </span>
     
@@ -313,7 +313,6 @@
               <div class="markdown-body">
                 
                 <h2 id="Dijkstra’s-Link-State-Algorithm"><a href="#Dijkstra’s-Link-State-Algorithm" class="headerlink" title="Dijkstra’s Link-State Algorithm"></a>Dijkstra’s Link-State Algorithm</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp">N = &#123;u&#125;;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> a : nodes) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(u, a)) &#123;<br>      D[a] = <span class="hljs-built_in">Cost</span>(u, a);<br>      P[a] = u;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>      D[a] = INF;<br>      P[a] = a;<br>      &#125;<br>&#125;<br><span class="hljs-keyword">while</span> (! all nodes in N) &#123;<br>    D[a] = <span class="hljs-built_in">min</span>(D)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> b : nodes) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(b ,a)) &#123;<br>          D[b] = <span class="hljs-built_in">min</span>(D[b], <span class="hljs-built_in">Cost</span>(b, a) + D[a])<br>          <span class="hljs-keyword">if</span> (D[b] == <span class="hljs-built_in">Cost</span>(b, a) + D[a]) P[b] = a;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter 4"></a>Chapter 4</h2><h3 id="P-6"><a href="#P-6" class="headerlink" title="P.6"></a>P.6</h3><p><strong>Questions:</strong></p>
 <p>In the text we have used the term connection-oriented service to describe a transport-layer service and connection service for a network-layer service. Why the subtle shades in terminology?</p>
 <hr>
@@ -328,30 +327,34 @@
 <p><strong>In summary:</strong><br>The term “connection-oriented service” at the transport layer emphasizes end-to-end reliability and communication, while “connection service” at the network layer highlights the setup of a path through the network, without necessarily providing full end-to-end guarantees. The nuanced terminology helps clarify the different scopes and guarantees provided by each layer.</p>
 <hr>
 <h3 id="P-9"><a href="#P-9" class="headerlink" title="P.9"></a>P.9</h3><p><strong>Consider a datagram network using 32-bit host addresses. Suppose a router has four links, numbered 0 through 3, and packets are to be forwarded to the link interfaces as follows:</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Destination Address Range</th>
-<th align="center">Link Interface</th>
+<th style="text-align:center">Destination Address Range</th>
+<th style="text-align:center">Link Interface</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><div align = "center">11100000 00000000 00000000 00000000<br><strong>through</strong><br>11100000 00111111 11111111 11111111</div></td>
-<td align="center">0</td>
+<tbody>
+<tr>
+<td style="text-align:center"><div align = "center">11100000 00000000 00000000 00000000<br><strong>through</strong><br>11100000 00111111 11111111 11111111</div></td>
+<td style="text-align:center">0</td>
 </tr>
 <tr>
-<td align="center"><div align = "center">11100000 01000000 00000000 00000000<br><strong>through</strong><br>11100000 01000000 11111111 11111111</div></td>
-<td align="center">1</td>
+<td style="text-align:center"><div align = "center">11100000 01000000 00000000 00000000<br><strong>through</strong><br>11100000 01000000 11111111 11111111</div></td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
-<td align="center"><div align = "center">11100000 01000001 00000000 00000000<br><strong>through</strong><br>11100001 01111111 11111111 11111111</div></td>
-<td align="center">2</td>
+<td style="text-align:center"><div align = "center">11100000 01000001 00000000 00000000<br><strong>through</strong><br>11100001 01111111 11111111 11111111</div></td>
+<td style="text-align:center">2</td>
 </tr>
 <tr>
-<td align="center"><div align = "center">otherwise</div></td>
-<td align="center">3</td>
+<td style="text-align:center"><div align = "center">otherwise</div></td>
+<td style="text-align:center">3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <p><strong>Questions:</strong></p>
 <p>a. Provide a forwarding table that has four entries, uses longest prefix matching, and forwards packets to the correct link interfaces.</p>
@@ -363,30 +366,34 @@
 <hr>
 <p><strong>Answer:</strong></p>
 <p><strong>a. Forwarding Table with Longest Prefix Matching</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>Header</th>
-<th align="center">Link Interface(output)</th>
+<th style="text-align:center">Link Interface(output)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>11100000 00</td>
-<td align="center">0</td>
+<td style="text-align:center">0</td>
 </tr>
 <tr>
 <td>11100000 01000000</td>
-<td align="center">1</td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
 <td>1110000</td>
-<td align="center">2</td>
+<td style="text-align:center">2</td>
 </tr>
 <tr>
 <td>otherwise</td>
-<td align="center">3</td>
+<td style="text-align:center">3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>Explanation:</strong>  </p>
 <ul>
 <li>Each entry uses the longest prefix that matches the given address range.</li>
@@ -421,118 +428,129 @@
 </ol>
 <hr>
 <h3 id="P-10"><a href="#P-10" class="headerlink" title="P.10"></a>P.10</h3><p><strong>Consider a datagram network using 8-bit host addresses. Suppose a router uses longest-prefix matching and has the following forwarding table:</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Prefix Match</th>
-<th align="center">Interface</th>
+<th style="text-align:center">Prefix Match</th>
+<th style="text-align:center">Interface</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">00</td>
-<td align="center">0</td>
+<tbody>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">0</td>
 </tr>
 <tr>
-<td align="center">010</td>
-<td align="center">1</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
-<td align="center">011</td>
-<td align="center">2</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center">2</td>
 </tr>
 <tr>
-<td align="center">10</td>
-<td align="center">2</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">2</td>
 </tr>
 <tr>
-<td align="center">11</td>
-<td align="center">3</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <p><strong>Questions:</strong></p>
 <p>For each of the four interfaces, give the associated range of destination host addresses and the number of addresses in the range.</p>
 <hr>
 <p><strong>Answer:</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Interface</th>
-<th align="center">Destination Address Range</th>
-<th align="right">Number of Addresses</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Destination Address Range</th>
+<th style="text-align:right">Number of Addresses</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">00000000 - 00111111</td>
-<td align="right">64</td>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">00000000 - 00111111</td>
+<td style="text-align:right">64</td>
 </tr>
 <tr>
-<td align="center">1</td>
-<td align="center">01000000 - 01011111</td>
-<td align="right">32</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">01000000 - 01011111</td>
+<td style="text-align:right">32</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">01100000 - 01111111<br>10000000 - 10111111</td>
-<td align="right">96</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">01100000 - 01111111<br>10000000 - 10111111</td>
+<td style="text-align:right">96</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">11000000 - 11111111</td>
-<td align="right">64</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">11000000 - 11111111</td>
+<td style="text-align:right">64</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="P-17"><a href="#P-17" class="headerlink" title="P.17"></a>P.17</h3><p><strong>Question:</strong></p>
 <p>Consider sending a 2400-byte datagram into a link that has an MTU of 700 bytes. Suppose the original datagram is stamped with the identification number 422. How many fragments are generated? What are the values in the various fields in the IP datagram(s) generated related to fragmentation?</p>
 <hr>
 <p><strong>Answer:</strong></p>
-<p>According to IPv4 datagram format, each fragment includes a 20-bytes header. So we need $\lceil\frac{2400 - 20}{700 - 20}\rceil &#x3D; 4 $ fragments. Each fragment has the same Version, Header length, Type of service, and so on. What makes them different is as follows:.</p>
+<p>According to IPv4 datagram format, each fragment includes a 20-bytes header. So we need $\lceil\frac{2400 - 20}{700 - 20}\rceil = 4 $ fragments. Each fragment has the same Version, Header length, Type of service, and so on. What makes them different is as follows:.</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Fragment</th>
-<th align="center">Datagram length</th>
-<th align="center">Offset</th>
-<th align="center">Flag</th>
+<th style="text-align:center">Fragment</th>
+<th style="text-align:center">Datagram length</th>
+<th style="text-align:center">Offset</th>
+<th style="text-align:center">Flag</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">700</td>
-<td align="center">0</td>
-<td align="center">1</td>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">700</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">700</td>
-<td align="center">85</td>
-<td align="center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">700</td>
+<td style="text-align:center">85</td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">700</td>
-<td align="center">170</td>
-<td align="center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">700</td>
+<td style="text-align:center">170</td>
+<td style="text-align:center">1</td>
 </tr>
 <tr>
-<td align="center">4</td>
-<td align="center">380</td>
-<td align="center">255</td>
-<td align="center">0</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">380</td>
+<td style="text-align:center">255</td>
+<td style="text-align:center">0</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="P-18"><a href="#P-18" class="headerlink" title="P.18"></a>P.18</h3><p><strong>Question:</strong></p>
 <p>Suppose datagrams are limited to 1,500 bytes (including header) between source Host A and destination Host B. Assuming a 20-byte IP header, how many datagrams would be required to send an MP3 consisting of 5 million bytes? Explain how you computed your answer.</p>
 <hr>
 <p><strong>Answer:</strong></p>
-<p>We need $\lceil\frac{5000000}{1500 - 20}\rceil &#x3D; 3379$ datagrams.</p>
+<p>We need $\lceil\frac{5000000}{1500 - 20}\rceil = 3379$ datagrams.</p>
 <hr>
-<h3 id="P-19"><a href="#P-19" class="headerlink" title="P.19"></a>P.19</h3><p><strong>Consider the network setup in Figure 4.22. Suppose that the ISP instead assigns the router the address 24.34.112.235 and that the network address of the home network is 192.168.1&#x2F;24.</strong></p>
+<h3 id="P-19"><a href="#P-19" class="headerlink" title="P.19"></a>P.19</h3><p><strong>Consider the network setup in Figure 4.22. Suppose that the ISP instead assigns the router the address 24.34.112.235 and that the network address of the home network is 192.168.1/24.</strong></p>
 <img src="/2025/05/30/The-Network-Layer/Figure422.jpg" srcset="/img/loading.gif" lazyload class="" title="Network address translation">
-
 <p><strong>Question:</strong></p>
 <p>a. Assign addresses to all interfaces in the home network.</p>
 <p>b. Suppose each host has two ongoing TCP connections, all to port 80 at host 128.119.40.86. Provide the six corresponding entries in the NAT translation table.</p>
@@ -548,38 +566,42 @@
 <li>Host 3 address is 192.168.1.3</li>
 </ul>
 <p><strong>b. NAT translation table entries</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">WAN side</th>
-<th align="center">LAN side</th>
+<th style="text-align:center">WAN side</th>
+<th style="text-align:center">LAN side</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">24.34.112.235, 50001</td>
-<td align="center">192.168.1.1, 3345</td>
+<tbody>
+<tr>
+<td style="text-align:center">24.34.112.235, 50001</td>
+<td style="text-align:center">192.168.1.1, 3345</td>
 </tr>
 <tr>
-<td align="center">24.34.112.235, 50002</td>
-<td align="center">192.168.1.1, 3346</td>
+<td style="text-align:center">24.34.112.235, 50002</td>
+<td style="text-align:center">192.168.1.1, 3346</td>
 </tr>
 <tr>
-<td align="center">24.34.112.235, 50003</td>
-<td align="center">192.168.1.2, 3345</td>
+<td style="text-align:center">24.34.112.235, 50003</td>
+<td style="text-align:center">192.168.1.2, 3345</td>
 </tr>
 <tr>
-<td align="center">24.34.112.235, 50004</td>
-<td align="center">192.168.1.2, 3346</td>
+<td style="text-align:center">24.34.112.235, 50004</td>
+<td style="text-align:center">192.168.1.2, 3346</td>
 </tr>
 <tr>
-<td align="center">24.34.112.235, 50005</td>
-<td align="center">192.168.1.3, 3345</td>
+<td style="text-align:center">24.34.112.235, 50005</td>
+<td style="text-align:center">192.168.1.3, 3345</td>
 </tr>
 <tr>
-<td align="center">24.34.112.235, 50006</td>
-<td align="center">192.168.1.3, 3346</td>
+<td style="text-align:center">24.34.112.235, 50006</td>
+<td style="text-align:center">192.168.1.3, 3346</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="P-24"><a href="#P-24" class="headerlink" title="P.24"></a>P.24</h3><img src="/2025/05/30/The-Network-Layer/P24.jpg" srcset="/img/loading.gif" lazyload class="" title="P.24 figure">
 <div align = "center"><em>Figure P.24: Example network for dijkstra algorithm</em></div>
@@ -588,144 +610,152 @@
 <p>Consider the following network. With the indicated link costs, use Dijkstra’s shortest-path algorithm to compute the shortest path from x to all network nodes. Show how the algorithm works by computing a table similar to Table 4.3.</p>
 <hr>
 <p><strong>Answer:</strong></p>
-<p>$N’ &#x3D; \{x\}$</p>
+<p>$N’ = \\{x\\}$</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">step</th>
-<th align="center">$D(x)$ $P(x)$</th>
-<th align="center">$D(y)$ $P(y)$</th>
-<th align="center">$D(z)$ $P(z)$</th>
-<th align="center">$D(v)$ $P(v)$</th>
-<th align="center">$D(u)$ $P(u)$</th>
-<th align="center">$D(w)$ $P(w)$</th>
-<th align="center">$D(t)$ $P(t)$</th>
-<th align="center">$N’$</th>
+<th style="text-align:center">step</th>
+<th style="text-align:center">$D(x)$ $P(x)$</th>
+<th style="text-align:center">$D(y)$ $P(y)$</th>
+<th style="text-align:center">$D(z)$ $P(z)$</th>
+<th style="text-align:center">$D(v)$ $P(v)$</th>
+<th style="text-align:center">$D(u)$ $P(u)$</th>
+<th style="text-align:center">$D(w)$ $P(w)$</th>
+<th style="text-align:center">$D(t)$ $P(t)$</th>
+<th style="text-align:center">$N’$</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center"><strong>$3$</strong>  $x$</td>
-<td align="center">$\infty$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$\infty$</td>
-<td align="center">$x$</td>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center"><strong>$3$</strong>  $x$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$x$</td>
 </tr>
 <tr>
-<td align="center">1</td>
-<td align="center">$0$    $x$</td>
-<td align="center"><strong>$6$</strong> $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xv$</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center"><strong>$6$</strong> $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xv$</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center"><strong>$6$</strong> $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvy$</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center"><strong>$6$</strong> $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvy$</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center"><strong>$6$</strong>  $w$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyu$</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center"><strong>$6$</strong>  $w$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyu$</td>
 </tr>
 <tr>
-<td align="center">4</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center"><strong>$7$</strong>  $v$</td>
-<td align="center">$xvyuw$</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center"><strong>$7$</strong>  $v$</td>
+<td style="text-align:center">$xvyuw$</td>
 </tr>
 <tr>
-<td align="center">5</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center"><strong>$8$</strong> $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyuwt$</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center"><strong>$8$</strong> $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyuwt$</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyuwtz$</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyuwtz$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>So the shortest path from $x$ to all nodes is follow.</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Destination</th>
-<th align="center">Shortest Distance</th>
-<th align="center">Path</th>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Shortest Distance</th>
+<th style="text-align:center">Path</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$x$</td>
-<td align="center">$0$</td>
-<td align="center">$x$</td>
+<tbody>
+<tr>
+<td style="text-align:center">$x$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$x$</td>
 </tr>
 <tr>
-<td align="center">$v$</td>
-<td align="center">$3$</td>
-<td align="center">$x \to v$</td>
+<td style="text-align:center">$v$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$x \to v$</td>
 </tr>
 <tr>
-<td align="center">$y$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to y$</td>
+<td style="text-align:center">$y$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to y$</td>
 </tr>
 <tr>
-<td align="center">$w$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to w$</td>
+<td style="text-align:center">$w$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to w$</td>
 </tr>
 <tr>
-<td align="center">$u$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to v \to u$</td>
+<td style="text-align:center">$u$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to v \to u$</td>
 </tr>
 <tr>
-<td align="center">$t$</td>
-<td align="center">$7$</td>
-<td align="center">$x \to v \to t$</td>
+<td style="text-align:center">$t$</td>
+<td style="text-align:center">$7$</td>
+<td style="text-align:center">$x \to v \to t$</td>
 </tr>
 <tr>
-<td align="center">$z$</td>
-<td align="center">$8$</td>
-<td align="center">$x \to z$</td>
+<td style="text-align:center">$z$</td>
+<td style="text-align:center">$8$</td>
+<td style="text-align:center">$x \to z$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h3 id="P-26"><a href="#P-26" class="headerlink" title="P.26"></a>P.26</h3><img src="/2025/05/30/The-Network-Layer/P26.png" srcset="/img/loading.gif" lazyload class="" title="P.26 figure">
 <div align = "center"><em>Figure P.26: Example network for distance-vector algorithm</em></div>
@@ -735,128 +765,136 @@
 <hr>
 <p><strong>Answer:</strong></p>
 <p><strong>Node z table:</strong></p>
-<p><em><strong>First round</strong></em></p>
+<p><strong><em>First round</em></strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">cost to</th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">cost to</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center">x</td>
-<td align="center">y</td>
-<td align="center">z</td>
-<td align="center">u</td>
-<td align="center">v</td>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">z</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">v</td>
 </tr>
 <tr>
-<td align="center">from x</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from x</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
 <tr>
-<td align="center">from y</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from y</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
 <tr>
-<td align="center">from z</td>
-<td align="center">2</td>
-<td align="center">$\infty$</td>
-<td align="center">0</td>
-<td align="center">$\infty$</td>
-<td align="center">6</td>
+<td style="text-align:center">from z</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">6</td>
 </tr>
 <tr>
-<td align="center">from u</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from u</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
 <tr>
-<td align="center">from v</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from v</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
-</tbody></table>
-<p><em><strong>Second round</strong></em></p>
+</tbody>
+</table>
+</div>
+<p><strong><em>Second round</em></strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">cost to</th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">cost to</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center">x</td>
-<td align="center">y</td>
-<td align="center">z</td>
-<td align="center">u</td>
-<td align="center">v</td>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">z</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">v</td>
 </tr>
 <tr>
-<td align="center">from x</td>
-<td align="center">2</td>
-<td align="center">3</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">3</td>
+<td style="text-align:center">from x</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">3</td>
 </tr>
 <tr>
-<td align="center">from y</td>
-<td align="center">3</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">2</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from y</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
 <tr>
-<td align="center">from z</td>
-<td align="center">2</td>
-<td align="center">5</td>
-<td align="center">0</td>
-<td align="center">7</td>
-<td align="center">5</td>
+<td style="text-align:center">from z</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">5</td>
 </tr>
 <tr>
-<td align="center">from u</td>
-<td align="center">$\infty$</td>
-<td align="center">2</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">2</td>
+<td style="text-align:center">from u</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">2</td>
 </tr>
 <tr>
-<td align="center">from v</td>
-<td align="center">3</td>
-<td align="center">$\infty$</td>
-<td align="center">6</td>
-<td align="center">1</td>
-<td align="center">$\infty$</td>
+<td style="text-align:center">from v</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$\infty$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>Because the question only asks to show the distance table entries at node z, we do not need to compute the full routing tables for all nodes. The Second round result about node z is also the finial result.</p>
 
                 

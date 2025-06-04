@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Linear SVM in Linearly Separable CaseDefine Training Data$$T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}$$ $$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1">
+    <meta name="description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机">
 <meta property="og:url" content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="学习日志">
-<meta property="og:description" content="Linear SVM in Linearly Separable CaseDefine Training Data$$T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}$$ $$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1">
+<meta property="og:description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png">
 <meta property="article:published_time" content="2025-05-30T02:12:59.000Z">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          947 字
+          819 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          8 分钟
+          7 分钟
         
       </span>
     
@@ -307,118 +307,136 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Linear-SVM-in-Linearly-Separable-Case"><a href="#Linear-SVM-in-Linearly-Separable-Case" class="headerlink" title="Linear SVM in Linearly Separable Case"></a>Linear SVM in Linearly Separable Case</h2><p><strong>Define Training Data</strong><br>$$<br>T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}<br>$$</p>
-<p>$$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1}, \quad i &#x3D; 1, 2, \ldots, N$$</p>
-<p><strong>Define Separating Hyperplane</strong></p>
-<p>$$<br>w^* \cdot x + b^* &#x3D; 0<br>$$</p>
-<p><strong>Define Classification Decision Function</strong></p>
-<p>$$<br>f(x) &#x3D; \operatorname{sign}(w^* \cdot x + b^*)<br>$$</p>
-<p><strong>Define Functional Margin</strong></p>
-<p>$$<br>\hat{\gamma}_i &#x3D; y_i (w \cdot x_i + b)<br>$$</p>
-<p>$$<br>\hat{\gamma} &#x3D; \min_{i &#x3D; 1, 2, \ldots, N} \hat{\gamma}_i<br>$$</p>
-<p><strong>Define Geometric Margin</strong></p>
-<p>$$<br>\gamma_i &#x3D; y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)<br>$$</p>
-<p>$\lVert w \rVert$ is $L_2$ norm</p>
-<p>$$<br>\gamma &#x3D; \min_{i&#x3D;1, \ldots, N} \gamma_i<br>$$</p>
-<p><strong>What’s More</strong></p>
-<p>$$<br>\gamma_i &#x3D; \frac{\hat{\gamma}_i}{\lVert w \rVert}<br>$$</p>
-<p><strong>Maximize Margin</strong><br>Originally, we solve the following question.<br>$$<br>\max_{w, b} \quad \gamma<br>$$</p>
-<p>$$<br>s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i &#x3D; 1, 2, \ldots ,N<br>$$<br>We can transform this into a <em><strong>convex quadratic programming problem</strong></em>.<br>$$<br>\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2<br>$$<br>$$<br>s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>$$</p>
-<p><strong>Support Vector</strong><br>$$<br>y_i(w \cdot x_i + b) - 1 &#x3D; 0<br>$$</p>
-<p><strong>Margin</strong><br>$$<br>d &#x3D; \frac{2}{\lVert w \rVert}<br>$$</p>
-<p><strong>Learning Algorithm</strong></p>
+                <h2 id="Linear-SVM-in-Linearly-Separable-Case"><a href="#Linear-SVM-in-Linearly-Separable-Case" class="headerlink" title="Linear SVM in Linearly Separable Case"></a>Linear SVM in Linearly Separable Case</h2><p><strong>Define Training Data</strong></p>
+<script type="math/tex; mode=display">
+T = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}</script><script type="math/tex; mode=display">x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N</script><p><strong>Define Separating Hyperplane</strong></p>
+<script type="math/tex; mode=display">
+w^* \cdot x + b^* = 0</script><p><strong>Define Classification Decision Function</strong></p>
+<script type="math/tex; mode=display">
+f(x) = \operatorname{sign}(w^* \cdot x + b^*)</script><p><strong>Define Functional Margin</strong></p>
+<script type="math/tex; mode=display">
+\hat{\gamma}_i = y_i (w \cdot x_i + b)</script><script type="math/tex; mode=display">
+\hat{\gamma} = \min_{i = 1, 2, \ldots, N} \hat{\gamma}_i</script><p><strong>Define Geometric Margin</strong></p>
+<script type="math/tex; mode=display">
+\gamma_i = y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)</script><p>$\lVert w \rVert$ is $L_2$ norm</p>
+<script type="math/tex; mode=display">
+\gamma = \min_{i=1, \ldots, N} \gamma_i</script><p><strong>What’s More</strong></p>
+<script type="math/tex; mode=display">
+\gamma_i = \frac{\hat{\gamma}_i}{\lVert w \rVert}</script><p><strong>Maximize Margin</strong><br>Originally, we solve the following question.</p>
+<script type="math/tex; mode=display">
+\max_{w, b} \quad \gamma</script><script type="math/tex; mode=display">
+s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i = 1, 2, \ldots ,N</script><p>We can transform this into a <strong><em>convex quadratic programming problem</em></strong>.</p>
+<script type="math/tex; mode=display">
+\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2</script><script type="math/tex; mode=display">
+s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i = 1, 2, \ldots, N</script><p><strong>Support Vector</strong></p>
+<script type="math/tex; mode=display">
+y_i(w \cdot x_i + b) - 1 = 0</script><p><strong>Margin</strong></p>
+<script type="math/tex; mode=display">
+d = \frac{2}{\lVert w \rVert}</script><p><strong>Learning Algorithm</strong></p>
 <ul>
-<li><p>input: $T$</p>
-</li>
+<li>input: $T$</li>
 <li><p>output: Separating Hyperplane and $f(x)$</p>
 </li>
-<li><p>Solve and get the optimal solution $\alpha^*$.<br>$$<br>\min_{\alpha} \frac{1}{2} \sum_{i&#x3D;1}^{N} \sum_{j&#x3D;1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i&#x3D;1}^{N} \alpha_i<br>$$</p>
-</li>
+<li><p>Solve and get the optimal solution $\alpha^*$.</p>
+<script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
 </ul>
-<p>$$<br>s.t. \quad \sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0, \quad \alpha_i \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>$$</p>
-<p>$$<br>\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
 <li>Calculate.</li>
 </ul>
-<p>$$<br>w^{\ast} &#x3D; \sum_{i&#x3D;1}^{N} \alpha_i^{\ast} y_i x_i<br>$$</p>
-<p>$$<br>\forall y_j &gt; 0, \quad b^\ast &#x3D; y_j - \sum_{i&#x3D;1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)<br>$$</p>
-<h2 id="Linear-SVM"><a href="#Linear-SVM" class="headerlink" title="Linear SVM"></a>Linear SVM</h2><p>$$<br>y_i (w \cdot x_i + b) \geq 1 - \xi_i<br>$$</p>
-<p>$$<br>\min_{w, b, \xi} \quad \frac{1}{2} \lVert w \rVert^2 + C \sum_{i &#x3D; 1}^{N} \xi_i<br>$$</p>
-<p>$$<br>s.t. \quad y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad i &#x3D; 1, 2, \ldots, N, \quad \xi_i \geq 0<br>$$</p>
-<p><strong>Learning Algorithm</strong></p>
+<script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i</script><script type="math/tex; mode=display">
+\forall y_j > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Linear-SVM"><a href="#Linear-SVM" class="headerlink" title="Linear SVM"></a>Linear SVM</h2><script type="math/tex; mode=display">
+y_i (w \cdot x_i + b) \geq 1 - \xi_i</script><script type="math/tex; mode=display">
+\min_{w, b, \xi} \quad \frac{1}{2} \lVert w \rVert^2 + C \sum_{i = 1}^{N} \xi_i</script><script type="math/tex; mode=display">
+s.t. \quad y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad i = 1, 2, \ldots, N, \quad \xi_i \geq 0</script><p><strong>Learning Algorithm</strong></p>
 <ul>
-<li><p>input: $T$</p>
-</li>
+<li>input: $T$</li>
 <li><p>output: Separating Hyperplane and $f(x)$</p>
 </li>
-<li><p>Solve and get the optimal solution $\alpha^*$.<br>$$<br>\min_{\alpha} \frac{1}{2} \sum_{i&#x3D;1}^{N} \sum_{j&#x3D;1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i&#x3D;1}^{N} \alpha_i<br>$$</p>
-</li>
+<li><p>Solve and get the optimal solution $\alpha^*$.</p>
+<script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
 </ul>
-<p>$$<br>s.t. \quad \sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0, \quad C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>$$</p>
-<p>$$<br>\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
 <li>Calculate.</li>
 </ul>
-<p>$$<br>w^{\ast} &#x3D; \sum_{i&#x3D;1}^{N} \alpha_j^{\ast} y_i x_i<br>$$</p>
-<p>$$<br>\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &#x3D; y_j - \sum_{i&#x3D;1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)<br>$$</p>
-<h2 id="Hinge-Loss-Functional"><a href="#Hinge-Loss-Functional" class="headerlink" title="Hinge Loss Functional"></a>Hinge Loss Functional</h2><p>$$<br>\min_{w, b} \quad \sum_{i &#x3D; 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2<br>$$</p>
-<h2 id="Non-linear-SVM"><a href="#Non-linear-SVM" class="headerlink" title="Non-linear SVM"></a>Non-linear SVM</h2><p><strong>Kernel Trick</strong></p>
+<script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
+\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Hinge-Loss-Functional"><a href="#Hinge-Loss-Functional" class="headerlink" title="Hinge Loss Functional"></a>Hinge Loss Functional</h2><script type="math/tex; mode=display">
+\min_{w, b} \quad \sum_{i = 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2</script><h2 id="Non-linear-SVM"><a href="#Non-linear-SVM" class="headerlink" title="Non-linear SVM"></a>Non-linear SVM</h2><p><strong>Kernel Trick</strong></p>
 <img src="/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png" srcset="/img/loading.gif" lazyload class="" title="kernel-trick">
-
 <div align = "center"><em>Figure 1: Example for kernel trick</em></div>
 
 <p><strong>Positive Definite Kernel Function</strong></p>
-<p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a symmetric function, $K(x, z)$ is positive definite kernel function $\Leftrightarrow$ $\forall x_i \in \mathcal{X}, \quad i &#x3D; 1, 2, 3, \dots, m, \quad \text{the gram matrix corresponding ot } K(x, z) \text{is positive semi-definite.}$</p>
+<p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a symmetric function, $K(x, z)$ is positive definite kernel function $\Leftrightarrow$ $\forall x_i \in \mathcal{X}, \quad i = 1, 2, 3, \dots, m, \quad \text{the gram matrix corresponding ot } K(x, z) \text{is positive semi-definite.}$</p>
 <p><strong>Gram Matrix</strong></p>
-<p>$$ K &#x3D; [K(x_i, x_j)]_{m \times m} \tag{1}$$</p>
-<p><strong>Learning Algorithm</strong></p>
+<script type="math/tex; mode=display">K = [K(x_i, x_j)]_{m \times m} \tag{1}</script><p><strong>Learning Algorithm</strong></p>
 <ul>
-<li><p>input: $T$</p>
-</li>
+<li>input: $T$</li>
 <li><p>output: Separating Hyperplane and $f(x)$</p>
 </li>
-<li><p>Solve and get the optimal solution $\alpha^*$.<br>$$<br>\min_{\alpha} \frac{1}{2} \sum_{i&#x3D;1}^{N} \sum_{j&#x3D;1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i&#x3D;1}^{N} \alpha_i<br>$$</p>
-</li>
+<li><p>Solve and get the optimal solution $\alpha^*$.</p>
+<script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
 </ul>
-<p>$$<br>s.t. \quad \sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0, \quad C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>$$</p>
-<p>$$<br>\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
 <li>Calculate.</li>
 </ul>
-<p>$$<br>w^{\ast} &#x3D; \sum_{i&#x3D;1}^{N} \alpha_j^{\ast} y_i x_i<br>$$</p>
-<p>$$<br>\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &#x3D; y_j - \sum_{i&#x3D;1}^{N} \alpha_i^{\ast} y_i K(x_i \cdot x_j)<br>$$</p>
-<h2 id="SMO-Algorithm"><a href="#SMO-Algorithm" class="headerlink" title="SMO Algorithm"></a>SMO Algorithm</h2><p><em><strong>Algorithm concept</strong></em></p>
+<script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
+\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N} \alpha_i^{\ast} y_i K(x_i \cdot x_j)</script><h2 id="SMO-Algorithm"><a href="#SMO-Algorithm" class="headerlink" title="SMO Algorithm"></a>SMO Algorithm</h2><p><strong><em>Algorithm concept</em></strong></p>
 <p>SMO algorithm is a kind of heuristic algorithm.</p>
-<p><em><strong>Solution methods for quadratic programming with two variables</strong></em></p>
-<p>$$<br>\begin{align}<br>&amp;\min_{\alpha} \frac{1}{2} \sum_{i&#x3D;1}^{N} \sum_{j&#x3D;1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i&#x3D;1}^{N} \alpha_i \\<br>&amp;s.t. \quad \sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0, \quad C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>\end{align}<br>$$</p>
-<p>We choose $\alpha_1, \alpha_2$, fixing other variables $\alpha_i (i &#x3D; 3, 4, \dots, N)$.<br>Now, we solve following question:</p>
-<p>$$<br>\begin{align}<br>&amp;\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) &#x3D; \frac{1}{2} K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2 +y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) + y_1\alpha_1\sum_{i&#x3D;3}^{N}y_i\alpha_iK_{i1} + y_2\alpha_2\sum_{i&#x3D;3}^{N}y_i\alpha_iK_{i2} \tag{2}<br>\\<br>&amp;s.t. \quad \alpha_1y_1 + \alpha_2y_2 &#x3D; \sum_{i&#x3D;3}^{N}y_i\alpha_i &#x3D; \zeta, \quad 0 \leq \alpha_i \leq C, \quad i &#x3D; 1, 2 \tag{3}<br>\end{align}<br>$$</p>
-<p>$K_{ij} &#x3D; K(x_i, x_j),i,j &#x3D; 1,2, \dots, N$, $\zeta$ is a constant, the constant term in $(2)$ is omitted.</p>
+<p><strong><em>Solution methods for quadratic programming with two variables</em></strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i \\\\
+&s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N
+\end{align}</script><p>We choose $\alpha_1, \alpha_2$, fixing other variables $\alpha_i (i = 3, 4, \dots, N)$.<br>Now, we solve following question:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) = \frac{1}{2} K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2 +y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) + y_1\alpha_1\sum_{i=3}^{N}y_i\alpha_iK_{i1} + y_2\alpha_2\sum_{i=3}^{N}y_i\alpha_iK_{i2} \tag{2}
+\\\\
+&s.t. \quad \alpha_1y_1 + \alpha_2y_2 = \sum_{i=3}^{N}y_i\alpha_i = \zeta, \quad 0 \leq \alpha_i \leq C, \quad i = 1, 2 \tag{3}
+\end{align}</script><p>$K_{ij} = K(x_i, x_j),i,j = 1,2, \dots, N$, $\zeta$ is a constant, the constant term in $(2)$ is omitted.</p>
 <p>We consider best optimal question about $\alpha_2$.</p>
 <p>if $ y_1 \neq y_2 $.</p>
-<p>$$<br>L &#x3D; max(0, \alpha_2^{old} - alpha_1^{old}), \quad H &#x3D; min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{4}<br>$$</p>
-<p>else.</p>
-<p>$$<br>L &#x3D; max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H &#x3D; min(C, \alpha_2^{old} + alpha_1^{old}) \tag{5}<br>$$</p>
-<p>$$<br>g(x) &#x3D; \sum_{i&#x3D;1}^{N}\alpha_i y_i K(x_i, x) + b<br>$$</p>
-<p>$$<br>E_i &#x3D; g(x_i) - y_i &#x3D; \sum_{j&#x3D;1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i &#x3D; 1, 2<br>$$</p>
-<p>Now, we update $\alpha_2$.</p>
-<p>$$<br>\alpha_2^{new,unc} &#x3D; \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta &#x3D; K_{11} + K_{22} - 2K_{12}<br>$$</p>
-<p>$$<br>\alpha_2^{new} &#x3D;<br>\begin{cases}<br>H, &amp;\alpha_2^{new,unc} &gt; H<br>\<br>\alpha_2^{new,unc}, &amp;L \leq \alpha_2^{new,unc} \leq H<br>\<br>L, &amp;\alpha_2^{new,unc} &lt; L<br>\end{cases}<br>$$</p>
-<p>Next, update $\alpha_1$.</p>
-<p>$$<br>\alpha_1^{new} &#x3D; \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})<br>$$</p>
-<p><em><strong>Solution methods for selecting variables</strong></em></p>
+<script type="math/tex; mode=display">
+L = max(0, \alpha_2^{old} - alpha_1^{old}), \quad H = min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{4}</script><p>else.</p>
+<script type="math/tex; mode=display">
+L = max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H = min(C, \alpha_2^{old} + alpha_1^{old}) \tag{5}</script><script type="math/tex; mode=display">
+g(x) = \sum_{i=1}^{N}\alpha_i y_i K(x_i, x) + b</script><script type="math/tex; mode=display">
+E_i = g(x_i) - y_i = \sum_{j=1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i = 1, 2</script><p>Now, we update $\alpha_2$.</p>
+<script type="math/tex; mode=display">
+\alpha_2^{new,unc} = \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta = K_{11} + K_{22} - 2K_{12}</script><script type="math/tex; mode=display">
+\alpha_2^{new} =
+\begin{cases}
+H, &\alpha_2^{new,unc} > H
+\\
+\alpha_2^{new,unc}, &L \leq \alpha_2^{new,unc} \leq H
+\\
+L, &\alpha_2^{new,unc} < L
+\end{cases}</script><p>Next, update $\alpha_1$.</p>
+<script type="math/tex; mode=display">
+\alpha_1^{new} = \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})</script><p><strong><em>Solution methods for selecting variables</em></strong></p>
 <ol>
 <li>select the highest $E_i$ in all nodes as $\alpha_1$.</li>
 <li>select the highest $|E_1 - E_2|$as $\alpha_2$.</li>
 </ol>
-<p><em><strong>Solution methods for calculating threshold b and E</strong></em></p>
-<p>$$<br>b_1^{new} &#x3D; -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}<br>$$</p>
-<p>$$<br>b_2^{new} &#x3D; -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}<br>$$</p>
-<p>$$<br>b^{new} &#x3D; \frac{b_1^{new} + b_2^{new}}{2}<br>$$</p>
-<p><strong>What’s more</strong></p>
+<p><strong><em>Solution methods for calculating threshold b and E</em></strong></p>
+<script type="math/tex; mode=display">
+b_1^{new} = -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
+b_2^{new} = -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
+b^{new} = \frac{b_1^{new} + b_2^{new}}{2}</script><p><strong>What’s more</strong></p>
 <p>updating $E$.</p>
-<p>$$<br>E_i^{new} &#x3D; \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.<br>$$</p>
-<p>$\mathcal{S}$ includes all SV $x_i$.</p>
+<script type="math/tex; mode=display">
+E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script><p>$\mathcal{S}$ includes all SV $x_i$.</p>
 
                 
               </div>
