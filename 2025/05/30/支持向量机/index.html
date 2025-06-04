@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=auto>
 
@@ -10,63 +8,68 @@
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
   <link rel="icon" href="/img/fluid.png">
-  
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
+
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
-  
-    <meta name="description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
-<meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机">
-<meta property="og:url" content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/index.html">
-<meta property="og:site_name" content="学习日志">
-<meta property="og:description" content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png">
-<meta property="article:published_time" content="2025-05-30T02:12:59.000Z">
-<meta property="article:modified_time" content="2025-06-03T03:48:39.179Z">
-<meta property="article:author" content="ddccffq">
-<meta property="article:tag" content="算法">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png">
-  
-  
-  
+
+  <meta name="description"
+    content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="支持向量机">
+  <meta property="og:url"
+    content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/index.html">
+  <meta property="og:site_name" content="学习日志">
+  <meta property="og:description"
+    content="Linear SVM in Linearly Separable CaseDefine Training Data  T &#x3D; \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1,">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:image"
+    content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png">
+  <meta property="article:published_time" content="2025-05-30T02:12:59.000Z">
+  <meta property="article:modified_time" content="2025-06-03T03:48:39.179Z">
+  <meta property="article:author" content="ddccffq">
+  <meta property="article:tag" content="算法">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image"
+    content="http://example.com/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png">
+
+
+
   <title>支持向量机 - 学习日志</title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+  <!-- 主题依赖的图标库，不要自行修改 -->
+  <!-- Do not modify the link that theme dependent icons -->
+
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+  <link rel="stylesheet" href="/css/main.css" />
 
 
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+
+  <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+
 
 
 
@@ -74,380 +77,455 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI","app_key":"dsIWfeJAED3S1uRhbmsE3FJP","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = { "hostname": "example.com", "root": "/", "version": "1.9.8", "typing": { "enable": true, "typeSpeed": 70, "cursorChar": "_", "loop": false, "scope": [] }, "anchorjs": { "enable": true, "element": "h1,h2,h3,h4,h5,h6", "placement": "left", "visible": "hover", "icon": "" }, "progressbar": { "enable": true, "height_px": 3, "color": "#29d", "options": { "showSpinner": false, "trickleSpeed": 100 } }, "code_language": { "enable": true, "default": "TEXT" }, "copy_btn": true, "image_caption": { "enable": true }, "image_zoom": { "enable": true, "img_url_replace": ["", ""] }, "toc": { "enable": true, "placement": "left", "headingSelector": "h1,h2,h3,h4,h5,h6", "collapseDepth": 0 }, "lazyload": { "enable": true, "loading_img": "/img/loading.gif", "onlypost": false, "offset_factor": 2 }, "web_analytics": { "enable": true, "follow_dnt": true, "baidu": null, "google": { "measurement_id": null }, "tencent": { "sid": null, "cid": null }, "leancloud": { "app_id": "Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI", "app_key": "dsIWfeJAED3S1uRhbmsE3FJP", "server_url": null, "path": "window.location.pathname", "ignore_local": false }, "umami": { "src": null, "website_id": null, "domains": null, "start_time": "2024-01-01T00:00:00.000Z", "token": null, "api_server": null } }, "search_path": "/local-search.xml", "include_content_in_search": true };
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 
 
 
-  
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  svg: {
-    fontCache: 'global'
-  },
-  options: {
-    enableMenu: false
-  },
-  startup: {
-    ready: () => {
-      MathJax.startup.defaultReady();
-      // 兼容 <script type="math/tex"> 标签
-      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-        const display = node.type.indexOf('mode=display') > -1;
-        const math = node.textContent;
-        // 直接创建 MathJax 支持的标签
-        const span = document.createElement('span');
-        span.className = 'mathjax-legacy';
-        span.setAttribute('data-tex', display ? 'display' : 'inline');
-        span.textContent = math;
-        node.parentNode.replaceChild(span, node);
-      });
-      // 重新渲染
-      MathJax.typesetPromise();
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      options: {
+        enableMenu: false
+      },
+      startup: {
+        ready: () => {
+          MathJax.startup.defaultReady();
+          // 兼容 <script type="math/tex"> 标签
+          document.querySelectorAll('script[type^="math/tex"]').forEach(function (node) {
+            const display = node.type.indexOf('mode=display') > -1;
+            const math = node.textContent;
+            // 直接创建 MathJax 支持的标签
+            const span = document.createElement('span');
+            span.className = 'mathjax-legacy';
+            span.setAttribute('data-tex', display ? 'display' : 'inline');
+            span.textContent = math;
+            node.parentNode.replaceChild(span, node);
+          });
+          // 重新渲染
+          MathJax.typesetPromise();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- hexo injector head_end end -->
+  <meta name="generator" content="Hexo 7.3.0">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" />
+  <style>
+    .tikzjax {
+      display: block;
+      text-align: center;
+      user-select: none;
     }
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
+  </style>
+</head>
 
 
 <body>
-  
+
 
   <header>
-    
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Hello!</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    <div class="header-inner" style="height: 70vh;">
+      <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <strong>Hello!</strong>
+          </a>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+          <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <div class="animated-icon"><span></span><span></span><span></span></div>
+          </button>
 
-  
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto text-center">
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="支持向量机"></span>
-          
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/" target="_self">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/archives/" target="_self">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/categories/" target="_self">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/tags/" target="_self">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/about/" target="_self">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </a>
+              </li>
+
+
+
+              <li class="nav-item" id="search-btn">
+                <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch"
+                  aria-label="Search">
+                  <i class="iconfont icon-search"></i>
+                </a>
+              </li>
+
+
+
+              <li class="nav-item" id="color-toggle-btn">
+                <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+                  <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+                </a>
+              </li>
+
+            </ul>
+          </div>
         </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-30 10:12" pubdate>
-          2025年5月30日 上午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          819 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          7 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
+      </nav>
 
 
-        
+
+      <div id="banner" class="banner" parallax=true
+        style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+        <div class="full-bg-img">
+          <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+            <div class="banner-text text-center fade-in-up">
+              <div class="h2">
+
+                <span id="subtitle" data-typed-text="支持向量机"></span>
+
+              </div>
+
+
+
+              <div class="mt-3">
+
+
+                <span class="post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2025-05-30 10:12" pubdate>
+                    2025年5月30日 上午
+                  </time>
+                </span>
+
+              </div>
+
+              <div class="mt-1">
+
+                <span class="post-meta mr-2">
+                  <i class="iconfont icon-chart"></i>
+
+                  819 字
+
+                </span>
+
+
+
+                <span class="post-meta mr-2">
+                  <i class="iconfont icon-clock-fill"></i>
+
+
+
+                  7 分钟
+
+                </span>
+
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
       </div>
 
-      
     </div>
-  </div>
-</div>
-
-</div>
 
   </header>
 
   <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
 
 
 
-  </aside>
+    <div class="container-fluid nopadding-x">
+      <div class="row nomargin-x">
+        <div class="side-col d-none d-lg-block col-lg-2">
+
+          <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+            <div id="toc">
+              <p class="toc-header">
+                <i class="iconfont icon-list"></i>
+                <span>目录</span>
+              </p>
+              <div class="toc-body" id="toc-body"></div>
+            </div>
 
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">支持向量机</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="Linear-SVM-in-Linearly-Separable-Case"><a href="#Linear-SVM-in-Linearly-Separable-Case" class="headerlink" title="Linear SVM in Linearly Separable Case"></a>Linear SVM in Linearly Separable Case</h2><p><strong>Define Training Data</strong></p>
-<script type="math/tex; mode=display">
-T = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}</script><script type="math/tex; mode=display">x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N</script><p><strong>Define Separating Hyperplane</strong></p>
-<script type="math/tex; mode=display">
-w^* \cdot x + b^* = 0</script><p><strong>Define Classification Decision Function</strong></p>
-<script type="math/tex; mode=display">
-f(x) = \operatorname{sign}(w^* \cdot x + b^*)</script><p><strong>Define Functional Margin</strong></p>
-<script type="math/tex; mode=display">
-\hat{\gamma}_i = y_i (w \cdot x_i + b)</script><script type="math/tex; mode=display">
-\hat{\gamma} = \min_{i = 1, 2, \ldots, N} \hat{\gamma}_i</script><p><strong>Define Geometric Margin</strong></p>
-<script type="math/tex; mode=display">
-\gamma_i = y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)</script><p>$\lVert w \rVert$ is $L_2$ norm</p>
-<script type="math/tex; mode=display">
-\gamma = \min_{i=1, \ldots, N} \gamma_i</script><p><strong>What’s More</strong></p>
-<script type="math/tex; mode=display">
-\gamma_i = \frac{\hat{\gamma}_i}{\lVert w \rVert}</script><p><strong>Maximize Margin</strong><br>Originally, we solve the following question.</p>
-<script type="math/tex; mode=display">
-\max_{w, b} \quad \gamma</script><script type="math/tex; mode=display">
-s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i = 1, 2, \ldots ,N</script><p>We can transform this into a <strong><em>convex quadratic programming problem</em></strong>.</p>
-<script type="math/tex; mode=display">
-\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2</script><script type="math/tex; mode=display">
-s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i = 1, 2, \ldots, N</script><p><strong>Support Vector</strong></p>
-<script type="math/tex; mode=display">
-y_i(w \cdot x_i + b) - 1 = 0</script><p><strong>Margin</strong></p>
-<script type="math/tex; mode=display">
-d = \frac{2}{\lVert w \rVert}</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall y_j > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Linear-SVM"><a href="#Linear-SVM" class="headerlink" title="Linear SVM"></a>Linear SVM</h2><script type="math/tex; mode=display">
-y_i (w \cdot x_i + b) \geq 1 - \xi_i</script><script type="math/tex; mode=display">
-\min_{w, b, \xi} \quad \frac{1}{2} \lVert w \rVert^2 + C \sum_{i = 1}^{N} \xi_i</script><script type="math/tex; mode=display">
-s.t. \quad y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad i = 1, 2, \ldots, N, \quad \xi_i \geq 0</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script><h2 id="Hinge-Loss-Functional"><a href="#Hinge-Loss-Functional" class="headerlink" title="Hinge Loss Functional"></a>Hinge Loss Functional</h2><script type="math/tex; mode=display">
-\min_{w, b} \quad \sum_{i = 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2</script><h2 id="Non-linear-SVM"><a href="#Non-linear-SVM" class="headerlink" title="Non-linear SVM"></a>Non-linear SVM</h2><p><strong>Kernel Trick</strong></p>
-<img src="/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png" srcset="/img/loading.gif" lazyload class="" title="kernel-trick">
-<div align = "center"><em>Figure 1: Example for kernel trick</em></div>
+          </aside>
 
-<p><strong>Positive Definite Kernel Function</strong></p>
-<p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a symmetric function, $K(x, z)$ is positive definite kernel function $\Leftrightarrow$ $\forall x_i \in \mathcal{X}, \quad i = 1, 2, 3, \dots, m, \quad \text{the gram matrix corresponding ot } K(x, z) \text{is positive semi-definite.}$</p>
-<p><strong>Gram Matrix</strong></p>
-<script type="math/tex; mode=display">K = [K(x_i, x_j)]_{m \times m} \tag{1}</script><p><strong>Learning Algorithm</strong></p>
-<ul>
-<li>input: $T$</li>
-<li><p>output: Separating Hyperplane and $f(x)$</p>
-</li>
-<li><p>Solve and get the optimal solution $\alpha^*$.</p>
-<script type="math/tex; mode=display">
-\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script></li>
-</ul>
-<script type="math/tex; mode=display">
-s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script><script type="math/tex; mode=display">
-\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script><ul>
-<li>Calculate.</li>
-</ul>
-<script type="math/tex; mode=display">
-w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script><script type="math/tex; mode=display">
-\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N} \alpha_i^{\ast} y_i K(x_i \cdot x_j)</script><h2 id="SMO-Algorithm"><a href="#SMO-Algorithm" class="headerlink" title="SMO Algorithm"></a>SMO Algorithm</h2><p><strong><em>Algorithm concept</em></strong></p>
-<p>SMO algorithm is a kind of heuristic algorithm.</p>
-<p><strong><em>Solution methods for quadratic programming with two variables</em></strong></p>
-<script type="math/tex; mode=display">
+
+        </div>
+
+        <div class="col-lg-8 nopadding-x-md">
+          <div class="container nopadding-x-md" id="board-ctn">
+            <div id="board">
+              <article class="post-content mx-auto">
+                <h1 id="seo-header">支持向量机</h1>
+
+
+                <div class="markdown-body">
+
+                  <h2 id="Linear-SVM-in-Linearly-Separable-Case"><a href="#Linear-SVM-in-Linearly-Separable-Case"
+                      class="headerlink" title="Linear SVM in Linearly Separable Case"></a>Linear SVM in Linearly
+                    Separable Case</h2>
+                  <p><strong>Define Training Data</strong></p>
+                  <script type="math/tex; mode=display">
+T = \\{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\\}</script>
+                  <script
+                    type="math/tex; mode=display">x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N</script>
+                  <p><strong>Define Separating Hyperplane</strong></p>
+                  <script type="math/tex; mode=display">
+w^* \cdot x + b^* = 0</script>
+                  <p><strong>Define Classification Decision Function</strong></p>
+                  <script type="math/tex; mode=display">
+f(x) = \operatorname{sign}(w^* \cdot x + b^*)</script>
+                  <p><strong>Define Functional Margin</strong></p>
+                  <script type="math/tex; mode=display">
+\hat{\gamma}_i = y_i (w \cdot x_i + b)</script>
+                  <script type="math/tex; mode=display">
+\hat{\gamma} = \min_{i = 1, 2, \ldots, N} \hat{\gamma}_i</script>
+                  <p><strong>Define Geometric Margin</strong></p>
+                  <script type="math/tex; mode=display">
+\gamma_i = y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)</script>
+                  <p>$\lVert w \rVert$ is $L_2$ norm</p>
+                  <script type="math/tex; mode=display">
+\gamma = \min_{i=1, \ldots, N} \gamma_i</script>
+                  <p><strong>What’s More</strong></p>
+                  <script type="math/tex; mode=display">
+\gamma_i = \frac{\hat{\gamma}_i}{\lVert w \rVert}</script>
+                  <p><strong>Maximize Margin</strong><br>Originally, we solve the following question.</p>
+                  <script type="math/tex; mode=display">
+\max_{w, b} \quad \gamma</script>
+                  <script type="math/tex; mode=display">
+s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i = 1, 2, \ldots ,N</script>
+                  <p>We can transform this into a <strong><em>convex quadratic programming problem</em></strong>.</p>
+                  <script type="math/tex; mode=display">
+\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2</script>
+                  <script type="math/tex; mode=display">
+s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i = 1, 2, \ldots, N</script>
+                  <p><strong>Support Vector</strong></p>
+                  <script type="math/tex; mode=display">
+y_i(w \cdot x_i + b) - 1 = 0</script>
+                  <p><strong>Margin</strong></p>
+                  <script type="math/tex; mode=display">
+d = \frac{2}{\lVert w \rVert}</script>
+                  <p><strong>Learning Algorithm</strong></p>
+                  <ul>
+                    <li>input: $T$</li>
+                    <li>
+                      <p>output: Separating Hyperplane and $f(x)$</p>
+                    </li>
+                    <li>
+                      <p>Solve and get the optimal solution $\alpha^*$.</p>
+                      <script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script>
+                    </li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script>
+                  <script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script>
+                  <ul>
+                    <li>Calculate.</li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i</script>
+                  <script type="math/tex; mode=display">
+\forall y_j > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script>
+                  <h2 id="Linear-SVM"><a href="#Linear-SVM" class="headerlink" title="Linear SVM"></a>Linear SVM</h2>
+                  <script type="math/tex; mode=display">
+y_i (w \cdot x_i + b) \geq 1 - \xi_i</script>
+                  <script type="math/tex; mode=display">
+\min_{w, b, \xi} \quad \frac{1}{2} \lVert w \rVert^2 + C \sum_{i = 1}^{N} \xi_i</script>
+                  <script type="math/tex; mode=display">
+s.t. \quad y_i(w \cdot x_i + b) \geq 1 - \xi_i, \quad i = 1, 2, \ldots, N, \quad \xi_i \geq 0</script>
+                  <p><strong>Learning Algorithm</strong></p>
+                  <ul>
+                    <li>input: $T$</li>
+                    <li>
+                      <p>output: Separating Hyperplane and $f(x)$</p>
+                    </li>
+                    <li>
+                      <p>Solve and get the optimal solution $\alpha^*$.</p>
+                      <script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script>
+                    </li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script>
+                  <script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script>
+                  <ul>
+                    <li>Calculate.</li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script>
+                  <script type="math/tex; mode=display">
+\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)</script>
+                  <h2 id="Hinge-Loss-Functional"><a href="#Hinge-Loss-Functional" class="headerlink"
+                      title="Hinge Loss Functional"></a>Hinge Loss Functional</h2>
+                  <script type="math/tex; mode=display">
+\min_{w, b} \quad \sum_{i = 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2</script>
+                  <h2 id="Non-linear-SVM"><a href="#Non-linear-SVM" class="headerlink"
+                      title="Non-linear SVM"></a>Non-linear SVM</h2>
+                  <p><strong>Kernel Trick</strong></p>
+                  <img src="/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/kernel-trick.png"
+                    srcset="/img/loading.gif" lazyload class="" title="kernel-trick">
+                  <div align="center"><em>Figure 1: Example for kernel trick</em></div>
+
+                  <p><strong>Positive Definite Kernel Function</strong></p>
+                  <p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is a symmetric function, $K(x, z)$ is positive
+                    definite kernel function $\Leftrightarrow$ $\forall x_i \in \mathcal{X}, \quad i = 1, 2, 3, \dots,
+                    m, \quad \text{the gram matrix corresponding ot } K(x, z) \text{is positive semi-definite.}$</p>
+                  <p><strong>Gram Matrix</strong></p>
+                  <script type="math/tex; mode=display">K = [K(x_i, x_j)]_{m \times m} \tag{1}</script>
+                  <p><strong>Learning Algorithm</strong></p>
+                  <ul>
+                    <li>input: $T$</li>
+                    <li>
+                      <p>output: Separating Hyperplane and $f(x)$</p>
+                    </li>
+                    <li>
+                      <p>Solve and get the optimal solution $\alpha^*$.</p>
+                      <script type="math/tex; mode=display">
+\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i</script>
+                    </li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N</script>
+                  <script type="math/tex; mode=display">
+\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})</script>
+                  <ul>
+                    <li>Calculate.</li>
+                  </ul>
+                  <script type="math/tex; mode=display">
+w^{\ast} = \sum_{i=1}^{N} \alpha_j^{\ast} y_i x_i</script>
+                  <script type="math/tex; mode=display">
+\forall C > \alpha_j^{\ast} > 0, \quad b^\ast = y_j - \sum_{i=1}^{N} \alpha_i^{\ast} y_i K(x_i \cdot x_j)</script>
+                  <h2 id="SMO-Algorithm"><a href="#SMO-Algorithm" class="headerlink" title="SMO Algorithm"></a>SMO
+                    Algorithm</h2>
+                  <p><strong><em>Algorithm concept</em></strong></p>
+                  <p>SMO algorithm is a kind of heuristic algorithm.</p>
+                  <p><strong><em>Solution methods for quadratic programming with two variables</em></strong></p>
+                  <script type="math/tex; mode=display">
 \begin{align}
 &\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i \\\\
 &s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i \geq 0, \quad i = 1, 2, \ldots, N
-\end{align}</script><p>We choose $\alpha_1, \alpha_2$, fixing other variables $\alpha_i (i = 3, 4, \dots, N)$.<br>Now, we solve following question:</p>
-<script type="math/tex; mode=display">
+\end{align}</script>
+                  <p>We choose $\alpha_1, \alpha_2$, fixing other variables $\alpha_i (i = 3, 4, \dots, N)$.<br>Now, we
+                    solve following question:</p>
+                  <script type="math/tex; mode=display">
 \begin{align}
 &\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) = \frac{1}{2} K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2 +y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) + y_1\alpha_1\sum_{i=3}^{N}y_i\alpha_iK_{i1} + y_2\alpha_2\sum_{i=3}^{N}y_i\alpha_iK_{i2} \tag{2}
 \\\\
 &s.t. \quad \alpha_1y_1 + \alpha_2y_2 = \sum_{i=3}^{N}y_i\alpha_i = \zeta, \quad 0 \leq \alpha_i \leq C, \quad i = 1, 2 \tag{3}
-\end{align}</script><p>$K_{ij} = K(x_i, x_j),i,j = 1,2, \dots, N$, $\zeta$ is a constant, the constant term in $(2)$ is omitted.</p>
-<p>We consider best optimal question about $\alpha_2$.</p>
-<p>if $ y_1 \neq y_2 $.</p>
-<script type="math/tex; mode=display">
-L = max(0, \alpha_2^{old} - alpha_1^{old}), \quad H = min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{4}</script><p>else.</p>
-<script type="math/tex; mode=display">
-L = max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H = min(C, \alpha_2^{old} + alpha_1^{old}) \tag{5}</script><script type="math/tex; mode=display">
-g(x) = \sum_{i=1}^{N}\alpha_i y_i K(x_i, x) + b</script><script type="math/tex; mode=display">
-E_i = g(x_i) - y_i = \sum_{j=1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i = 1, 2</script><p>Now, we update $\alpha_2$.</p>
-<script type="math/tex; mode=display">
-\alpha_2^{new,unc} = \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta = K_{11} + K_{22} - 2K_{12}</script><script type="math/tex; mode=display">
+\end{align}</script>
+                  <p>$K_{ij} = K(x_i, x_j),i,j = 1,2, \dots, N$, $\zeta$ is a constant, the constant term in $(2)$ is
+                    omitted.</p>
+                  <p>We consider best optimal question about $\alpha_2$.</p>
+                  <p>if $ y_1 \neq y_2 $.</p>
+                  <script type="math/tex; mode=display">
+L = max(0, \alpha_2^{old} - alpha_1^{old}), \quad H = min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{4}</script>
+                  <p>else.</p>
+                  <script type="math/tex; mode=display">
+L = max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H = min(C, \alpha_2^{old} + alpha_1^{old}) \tag{5}</script>
+                  <script type="math/tex; mode=display">
+g(x) = \sum_{i=1}^{N}\alpha_i y_i K(x_i, x) + b</script>
+                  <script type="math/tex; mode=display">
+E_i = g(x_i) - y_i = \sum_{j=1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i = 1, 2</script>
+                  <p>Now, we update $\alpha_2$.</p>
+                  <script type="math/tex; mode=display">
+\alpha_2^{new,unc} = \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta = K_{11} + K_{22} - 2K_{12}</script>
+                  <script type="math/tex; mode=display">
 \alpha_2^{new} =
 \begin{cases}
 H, &\alpha_2^{new,unc} > H
@@ -455,344 +533,354 @@ H, &\alpha_2^{new,unc} > H
 \alpha_2^{new,unc}, &L \leq \alpha_2^{new,unc} \leq H
 \\
 L, &\alpha_2^{new,unc} < L
-\end{cases}</script><p>Next, update $\alpha_1$.</p>
-<script type="math/tex; mode=display">
-\alpha_1^{new} = \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})</script><p><strong><em>Solution methods for selecting variables</em></strong></p>
-<ol>
-<li>select the highest $E_i$ in all nodes as $\alpha_1$.</li>
-<li>select the highest $|E_1 - E_2|$as $\alpha_2$.</li>
-</ol>
-<p><strong><em>Solution methods for calculating threshold b and E</em></strong></p>
-<script type="math/tex; mode=display">
-b_1^{new} = -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
-b_2^{new} = -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script><script type="math/tex; mode=display">
-b^{new} = \frac{b_1^{new} + b_2^{new}}{2}</script><p><strong>What’s more</strong></p>
-<p>updating $E$.</p>
-<script type="math/tex; mode=display">
-E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script><p>$\mathcal{S}$ includes all SV $x_i$.</p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
-  
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="category-chain-item">统计学习方法</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
-      
-    </div>
-  
-</div>
+\end{cases}</script>
+                  <p>Next, update $\alpha_1$.</p>
+                  <script type="math/tex; mode=display">
+\alpha_1^{new} = \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})</script>
+                  <p><strong><em>Solution methods for selecting variables</em></strong></p>
+                  <ol>
+                    <li>select the highest $E_i$ in all nodes as $\alpha_1$.</li>
+                    <li>select the highest $|E_1 - E_2|$as $\alpha_2$.</li>
+                  </ol>
+                  <p><strong><em>Solution methods for calculating threshold b and E</em></strong></p>
+                  <script type="math/tex; mode=display">
+b_1^{new} = -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script>
+                  <script type="math/tex; mode=display">
+b_2^{new} = -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}</script>
+                  <script type="math/tex; mode=display">
+b^{new} = \frac{b_1^{new} + b_2^{new}}{2}</script>
+                  <p><strong>What’s more</strong></p>
+                  <p>updating $E$.</p>
+                  <script type="math/tex; mode=display">
+E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
+                  <p>$\mathcal{S}$ includes all SV $x_i$.</p>
 
 
-              
-  
+                </div>
 
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>支持向量机</div>
-      <div>http://example.com/2025/05/30/支持向量机/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ddccffq</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2025年5月30日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
+                <hr />
+                <div>
+                  <div class="post-metas my-3">
+
+                    <div class="post-meta mr-3 d-flex align-items-center">
+                      <i class="iconfont icon-category"></i>
+
+
+                      <span class="category-chains">
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
+                        <span class="category-chain">
+
+                          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"
+                            class="category-chain-item">机器学习</a>
+
+
+
+                        </span>
+
+
+
+                        <span class="category-chain">
+
+                          <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
+                            class="category-chain-item">统计学习方法</a>
+
+
+
+                        </span>
+
+
+                      </span>
+
+                    </div>
+
+
+                    <div class="post-meta">
+                      <i class="iconfont icon-tags"></i>
+
+                      <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+
+                    </div>
+
+                  </div>
+
+
+
+
+
+                  <div class="license-box my-3">
+                    <div class="license-title">
+                      <div>支持向量机</div>
+                      <div>http://example.com/2025/05/30/支持向量机/</div>
+                    </div>
+                    <div class="license-meta">
+
+                      <div class="license-meta-item">
+                        <div>作者</div>
+                        <div>ddccffq</div>
+                      </div>
+
+
+                      <div class="license-meta-item license-meta-date">
+                        <div>发布于</div>
+                        <div>2025年5月30日</div>
+                      </div>
+
+
+
+                      <div class="license-meta-item">
+                        <div>许可协议</div>
+                        <div>
+
+
+
+                          <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                            <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                              <i class="iconfont icon-cc-by"></i>
+                            </span>
+                          </a>
+
+
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="license-icon iconfont"></div>
+                  </div>
+
+
+
+
+                  <div class="post-prevnext my-3">
+                    <article class="post-prev col-6">
+
+
                       <a href="/2025/05/30/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/" title="提升方法">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">提升方法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
+
+                    </article>
+                    <article class="post-next col-6">
+
+
                       <a href="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="下推自动机">
                         <span class="hidden-mobile">下推自动机</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
-                    
-                  </article>
+
+                    </article>
+                  </div>
+
                 </div>
-              
+
+
+
+
+                <article id="comments" lazyload>
+
+
+                </article>
+
+
+
+              </article>
             </div>
+          </div>
+        </div>
 
-            
-  
-  
-    <article id="comments" lazyload>
-      
-
-    </article>
-  
+        <div class="side-col d-none d-lg-block col-lg-2">
 
 
-          </article>
         </div>
       </div>
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-  </div>
-</div>
 
 
 
 
 
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-  
-  
 
 
 
 
 
-  <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
-    mermaid.initialize({"theme":"default"});
 
-    Fluid.utils.listenDOMLoaded(function() {
-      Fluid.events.registerRefreshCallback(function() {
-        if ('mermaid' in window) {
-          mermaid.init();
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function () {
+        mermaid.initialize({ "theme": "default" });
+
+        Fluid.utils.listenDOMLoaded(function () {
+          Fluid.events.registerRefreshCallback(function () {
+            if ('mermaid' in window) {
+              mermaid.init();
+            }
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
 
 
 
 
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+
+    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+
+
+
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+            <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <input type="text" id="local-search-input" class="form-control validate">
+              <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+            </div>
+            <div class="list-group" id="local-search-result"></div>
+          </div>
         </div>
-        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
-  </div>
-</div>
 
-    
 
-    
+
+
   </main>
 
   <footer>
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+
+      <div class="footer-content">
+        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i
+          class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank"
+          rel="nofollow noopener"><span>Fluid</span></a>
+      </div>
+
+
+
     </div>
-  
-  
-  
-</div>
 
   </footer>
 
   <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <link rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.configure({ "showSpinner": false, "trickleSpeed": 100 })
     NProgress.start()
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       NProgress.done();
     })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+  <script src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
+  <script src="/js/events.js"></script>
+  <script src="/js/plugins.js"></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js"></script>
   <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
+      (function (window, document) {
+        var typing = Fluid.plugins.typing;
+        var subtitle = document.getElementById('subtitle');
+        if (!subtitle || !typing) {
+          return;
+        }
+        var text = subtitle.getAttribute('data-typed-text');
+
         typing(text);
-      
-    })(window, document);
+
+      })(window, document);
   </script>
 
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+
+  <script src="/js/img-lazyload.js"></script>
 
 
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function () {
+      var toc = jQuery('#toc');
+      if (toc.length === 0 || !window.tocbot) { return; }
+      var boardCtn = jQuery('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      window.tocbot.init(Object.assign({
+        tocSelector: '#toc-body',
+        contentSelector: '.markdown-body',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+        includeTitleTags: true,
+        headingsOffset: -boardTop,
+      }, CONFIG.toc));
+      if (toc.find('.toc-list-item').length > 0) {
+        toc.css('visibility', 'visible');
       }
+
+      Fluid.events.registerRefreshCallback(function () {
+        if ('tocbot' in window) {
+          tocbot.refresh();
+          var toc = jQuery('#toc');
+          if (toc.length === 0 || !tocbot) {
+            return;
+          }
+          if (toc.find('.toc-list-item').length > 0) {
+            toc.css('visibility', 'visible');
+          }
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
@@ -800,116 +888,116 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
   <script>Fluid.plugins.codeWidget();</script>
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function () {
+      window.anchors.options = {
+        placement: CONFIG.anchorjs.placement,
+        visible: CONFIG.anchorjs.visible
+      };
+      if (CONFIG.anchorjs.icon) {
+        window.anchors.options.icon = CONFIG.anchorjs.icon;
       }
+      var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+      var res = [];
+      for (var item of el) {
+        res.push('.markdown-body > ' + item.trim());
+      }
+      if (CONFIG.anchorjs.placement === 'left') {
+        window.anchors.options.class = 'anchorjs-link-left';
+      }
+      window.anchors.add(res.join(', '));
+
+      Fluid.events.registerRefreshCallback(function () {
+        if ('anchors' in window) {
+          anchors.removeAll();
+          var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+          var res = [];
+          for (var item of el) {
+            res.push('.markdown-body > ' + item.trim());
+          }
+          if (CONFIG.anchorjs.placement === 'left') {
+            anchors.options.class = 'anchorjs-link-left';
+          }
+          anchors.add(res.join(', '));
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
+
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function () {
+      Fluid.plugins.fancyBox();
+    });
+  </script>
 
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
 
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
+  <script>
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: { '[+]': [['$', '$']] }
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
           }
-        });
-      </script>
-    
+        }
+      };
+    } else {
+      MathJax.startup.document.state(0);
+      MathJax.texReset();
+      MathJax.typeset();
+      MathJax.typesetPromise();
+    }
 
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+    Fluid.events.registerRefreshCallback(function () {
+      if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+        MathJax.startup.document.state(0);
+        MathJax.texReset();
+        MathJax.typeset();
+        MathJax.typesetPromise();
+      }
+    });
+  </script>
 
 
-  
+  <script src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+
+  <script defer src="/js/leancloud.js"></script>
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+  <!-- 主题的启动项，将它保持在最底部 -->
+  <!-- the boot of the theme, keep it at the bottom -->
+  <script src="/js/boot.js"></script>
+
+
+
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
@@ -923,6 +1011,7 @@ E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i.</script>
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
+
 </html>

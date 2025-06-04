@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=auto>
 
@@ -10,61 +8,63 @@
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
   <link rel="icon" href="/img/fluid.png">
-  
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
+
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="">
-  
-    <meta name="description" content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="决策树">
-<meta property="og:url" content="http://example.com/2025/05/28/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
-<meta property="og:site_name" content="学习日志">
-<meta property="og:description" content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-28T02:12:59.000Z">
-<meta property="article:modified_time" content="2025-06-03T03:50:22.641Z">
-<meta property="article:author" content="ddccffq">
-<meta property="article:tag" content="算法">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
+
+  <meta name="description"
+    content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="决策树">
+  <meta property="og:url" content="http://example.com/2025/05/28/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
+  <meta property="og:site_name" content="学习日志">
+  <meta property="og:description"
+    content="Background Knowledgesample group $D$ attribute $a$ information entropy p_k &#x3D; \frac{\sum(sort &#x3D; k)}{|D|} \quad (k &#x3D; 1,2,\ldots,|\mathscr{Y}|) \text{Ent}(D) &#x3D; -\sum_{k&#x3D;1}^{|\mathscr{Y}|}p_k\log_2p_kinfo">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="article:published_time" content="2025-05-28T02:12:59.000Z">
+  <meta property="article:modified_time" content="2025-06-03T03:50:22.641Z">
+  <meta property="article:author" content="ddccffq">
+  <meta property="article:tag" content="算法">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+
   <title>决策树 - 学习日志</title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+  <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+  <!-- 主题依赖的图标库，不要自行修改 -->
+  <!-- Do not modify the link that theme dependent icons -->
+
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+  <link rel="stylesheet" href="/css/main.css" />
 
 
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+
+  <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+
 
 
 
@@ -72,829 +72,905 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI","app_key":"dsIWfeJAED3S1uRhbmsE3FJP","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = { "hostname": "example.com", "root": "/", "version": "1.9.8", "typing": { "enable": true, "typeSpeed": 70, "cursorChar": "_", "loop": false, "scope": [] }, "anchorjs": { "enable": true, "element": "h1,h2,h3,h4,h5,h6", "placement": "left", "visible": "hover", "icon": "" }, "progressbar": { "enable": true, "height_px": 3, "color": "#29d", "options": { "showSpinner": false, "trickleSpeed": 100 } }, "code_language": { "enable": true, "default": "TEXT" }, "copy_btn": true, "image_caption": { "enable": true }, "image_zoom": { "enable": true, "img_url_replace": ["", ""] }, "toc": { "enable": true, "placement": "left", "headingSelector": "h1,h2,h3,h4,h5,h6", "collapseDepth": 0 }, "lazyload": { "enable": true, "loading_img": "/img/loading.gif", "onlypost": false, "offset_factor": 2 }, "web_analytics": { "enable": true, "follow_dnt": true, "baidu": null, "google": { "measurement_id": null }, "tencent": { "sid": null, "cid": null }, "leancloud": { "app_id": "Flum2ukf9WEn1oPvO2enxMRj-MdYXbMMI", "app_key": "dsIWfeJAED3S1uRhbmsE3FJP", "server_url": null, "path": "window.location.pathname", "ignore_local": false }, "umami": { "src": null, "website_id": null, "domains": null, "start_time": "2024-01-01T00:00:00.000Z", "token": null, "api_server": null } }, "search_path": "/local-search.xml", "include_content_in_search": true };
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 
 
 
-  
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  svg: {
-    fontCache: 'global'
-  },
-  options: {
-    enableMenu: false
-  },
-  startup: {
-    ready: () => {
-      MathJax.startup.defaultReady();
-      // 兼容 <script type="math/tex"> 标签
-      document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-        const display = node.type.indexOf('mode=display') > -1;
-        const math = node.textContent;
-        // 直接创建 MathJax 支持的标签
-        const span = document.createElement('span');
-        span.className = 'mathjax-legacy';
-        span.setAttribute('data-tex', display ? 'display' : 'inline');
-        span.textContent = math;
-        node.parentNode.replaceChild(span, node);
-      });
-      // 重新渲染
-      MathJax.typesetPromise();
-    }
-  }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      options: {
+        enableMenu: false
+      },
+      startup: {
+        ready: () => {
+          MathJax.startup.defaultReady();
+          // 兼容 <script type="math/tex"> 标签
+          document.querySelectorAll('script[type^="math/tex"]').forEach(function (node) {
+            const display = node.type.indexOf('mode=display') > -1;
+            const math = node.textContent;
+            // 直接创建 MathJax 支持的标签
+            const span = document.createElement('span');
+            span.className = 'mathjax-legacy';
+            span.setAttribute('data-tex', display ? 'display' : 'inline');
+            span.textContent = math;
+            node.parentNode.replaceChild(span, node);
+          });
+          // 重新渲染
+          MathJax.typesetPromise();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- hexo injector head_end end -->
+  <meta name="generator" content="Hexo 7.3.0">
+</head>
 
 
 <body>
-  
+
 
   <header>
-    
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Hello!</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    <div class="header-inner" style="height: 70vh;">
+      <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <strong>Hello!</strong>
+          </a>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+          <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <div class="animated-icon"><span></span><span></span><span></span></div>
+          </button>
 
-  
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto text-center">
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="决策树"></span>
-          
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/" target="_self">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/archives/" target="_self">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/categories/" target="_self">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/tags/" target="_self">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </a>
+              </li>
+
+
+
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="/about/" target="_self">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </a>
+              </li>
+
+
+
+              <li class="nav-item" id="search-btn">
+                <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch"
+                  aria-label="Search">
+                  <i class="iconfont icon-search"></i>
+                </a>
+              </li>
+
+
+
+              <li class="nav-item" id="color-toggle-btn">
+                <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+                  <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+                </a>
+              </li>
+
+            </ul>
+          </div>
         </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-28 10:12" pubdate>
-          2025年5月28日 上午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          921 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          8 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
+      </nav>
 
 
-        
+
+      <div id="banner" class="banner" parallax=true
+        style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+        <div class="full-bg-img">
+          <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+            <div class="banner-text text-center fade-in-up">
+              <div class="h2">
+
+                <span id="subtitle" data-typed-text="决策树"></span>
+
+              </div>
+
+
+
+              <div class="mt-3">
+
+
+                <span class="post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2025-05-28 10:12" pubdate>
+                    2025年5月28日 上午
+                  </time>
+                </span>
+
+              </div>
+
+              <div class="mt-1">
+
+                <span class="post-meta mr-2">
+                  <i class="iconfont icon-chart"></i>
+
+                  921 字
+
+                </span>
+
+
+
+                <span class="post-meta mr-2">
+                  <i class="iconfont icon-clock-fill"></i>
+
+
+
+                  8 分钟
+
+                </span>
+
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
       </div>
 
-      
     </div>
-  </div>
-</div>
-
-</div>
 
   </header>
 
   <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
 
 
 
-  </aside>
+    <div class="container-fluid nopadding-x">
+      <div class="row nomargin-x">
+        <div class="side-col d-none d-lg-block col-lg-2">
+
+          <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+            <div id="toc">
+              <p class="toc-header">
+                <i class="iconfont icon-list"></i>
+                <span>目录</span>
+              </p>
+              <div class="toc-body" id="toc-body"></div>
+            </div>
 
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">决策树</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink" title="Background Knowledge"></a>Background Knowledge</h2><p>sample group $D$</p>
-<p>attribute $a$</p>
-<h3 id="information-entropy"><a href="#information-entropy" class="headerlink" title="information entropy"></a>information entropy</h3><script type="math/tex; mode=display">
-p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><script type="math/tex; mode=display">
-\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script><h3 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h3><p>$a = \\{a^1, a^2, \ldots, a^V \\}$</p>
-<p>$ D^v = \\{D(\text{attribute}(a) = a^v)\\}$</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, a) = Ent(D) - \sum_{v = 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)</script><h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3><script type="math/tex; mode=display">
-\text{Gain\_ratio}(D,a) = \frac{Gain(D,a)}{IV(a)}</script><script type="math/tex; mode=display">
-\text{IV}(a) = -\sum_{v = 1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><h3 id="Gini-index"><a href="#Gini-index" class="headerlink" title="Gini index"></a>Gini index</h3><script type="math/tex; mode=display">
-\text{Gini}(D^v) = \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k' \neq k}p_k p_{k'}</script><script type="math/tex; mode=display">
-\text{Gini}(D^v) = 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}</script><script type="math/tex; mode=display">
-\text{Gini\_index}(D,a) = \sum_{v = 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)</script><h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h3 id="test-1"><a href="#test-1" class="headerlink" title="test 1"></a>test 1</h3><blockquote>
-<p><strong>Table 1: Loan Application Sample Dataset</strong><br>This table presents the features of 15 applicants (Age, Employed, Owns House, Credit Status) and their loan application results (Class). This dataset is commonly used for training and analyzing decision tree algorithms.</p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Age</th>
-<th>Employed</th>
-<th>Owns House</th>
-<th>Credit Status</th>
-<th>Class</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Young</td>
-<td>No</td>
-<td>No</td>
-<td>Fair</td>
-<td>No</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Young</td>
-<td>No</td>
-<td>No</td>
-<td>Good</td>
-<td>No</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Young</td>
-<td>Yes</td>
-<td>No</td>
-<td>Good</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Young</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Fair</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Young</td>
-<td>No</td>
-<td>No</td>
-<td>Fair</td>
-<td>No</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Middle-aged</td>
-<td>No</td>
-<td>No</td>
-<td>Fair</td>
-<td>No</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Middle-aged</td>
-<td>No</td>
-<td>No</td>
-<td>Good</td>
-<td>No</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Middle-aged</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Good</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Middle-aged</td>
-<td>No</td>
-<td>Yes</td>
-<td>Excellent</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Middle-aged</td>
-<td>No</td>
-<td>Yes</td>
-<td>Excellent</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Senior</td>
-<td>No</td>
-<td>Yes</td>
-<td>Excellent</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Senior</td>
-<td>No</td>
-<td>Yes</td>
-<td>Good</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Senior</td>
-<td>Yes</td>
-<td>No</td>
-<td>Good</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Senior</td>
-<td>Yes</td>
-<td>No</td>
-<td>Excellent</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>15</td>
-<td>Senior</td>
-<td>No</td>
-<td>No</td>
-<td>Fair</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h4><p><strong>Firstly</strong></p>
-<script type="math/tex; mode=display">
-\text{Ent}(D) = -(\frac{9}{15}\log_2\frac{9}{15} + \frac{6}{15}\log_2\frac{6}{15}) = 0.971</script><p>Then</p>
-<p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Age'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Age'}) = 0.971 + \frac{1}{3} \times (\frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}) = 0.083</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Employed'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Employed'}) = 0.971 + \frac{10}{15} \times (\frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10}) + \frac{5}{10} \times (\frac{5}{5}\log_2\frac{5}{5}) = 0.324</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Owns House'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D,\text{'Owns House'}) = 0.971 + \frac{9}{15} \times (\frac{3}{9} \log_2 \frac{3}{9} + \frac{6}{9} \log_2 \frac{6}{9}) + \frac{6}{15} \times (\frac{6}{6} \log_2 \frac{6}{6}) = \mathbf{0.420}</script><p><span style = "color : gray"></p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Credit Status'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script><p>&lt;/span&gt;</p>
-<script type="math/tex; mode=display">
-\text{Gain}(D, \text{'Credit Status'}) = 0.971 + \frac{5}{15} \times (\frac{4}{5} \log_2 \frac{4}{5} + \frac{1}{5} \log_2 \frac{1}{5}) + \frac{6}{15} \times (\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}) + \frac{4}{15} \times (\frac{4}{4} \log_2 \frac{4}{4})</script><script type="math/tex; mode=display">
-= 0.363</script><p>Since attribute <strong>‘Owns House’</strong> has the highest information gain, it is selected as the optimal feature. Dividing D by attribute ‘Owns House’, we get two data sets($D_1$ and $D_2$). All labels in $D_1$ are ‘yes’, so we set $D_1$ as a leaf node with label ‘yes’. But for $D_2$, we need divide it.</p>
-<pre><code class=" mermaid">graph TD
+          </aside>
+
+
+        </div>
+
+        <div class="col-lg-8 nopadding-x-md">
+          <div class="container nopadding-x-md" id="board-ctn">
+            <div id="board">
+              <article class="post-content mx-auto">
+                <h1 id="seo-header">决策树</h1>
+
+
+                <div class="markdown-body">
+
+                  <h2 id="Background-Knowledge"><a href="#Background-Knowledge" class="headerlink"
+                      title="Background Knowledge"></a>Background Knowledge</h2>
+                  <p>sample group $D$</p>
+                  <p>attribute $a$</p>
+                  <h3 id="information-entropy"><a href="#information-entropy" class="headerlink"
+                      title="information entropy"></a>information entropy</h3>
+                  <script type="math/tex; mode=display">
+p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script>
+                  <script type="math/tex; mode=display">
+\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script>
+                  <h3 id="information-gain"><a href="#information-gain" class="headerlink"
+                      title="information gain"></a>information gain</h3>
+                  <p>$a = \\{a^1, a^2, \ldots, a^V \\}$</p>
+                  <p>$ D^v = \\{D(\text{attribute}(a) = a^v)\\}$</p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, a) = Ent(D) - \sum_{v = 1}^{V} \frac{|D^v|}{|D|}Ent(D^v)</script>
+                  <h3 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h3>
+                  <script type="math/tex; mode=display">
+\text{Gain\_ratio}(D,a) = \frac{Gain(D,a)}{IV(a)}</script>
+                  <script type="math/tex; mode=display">
+\text{IV}(a) = -\sum_{v = 1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script>
+                  <h3 id="Gini-index"><a href="#Gini-index" class="headerlink" title="Gini index"></a>Gini index</h3>
+                  <script type="math/tex; mode=display">
+\text{Gini}(D^v) = \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k' \neq k}p_k p_{k'}</script>
+                  <script type="math/tex; mode=display">
+\text{Gini}(D^v) = 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}</script>
+                  <script type="math/tex; mode=display">
+\text{Gini\_index}(D,a) = \sum_{v = 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)</script>
+                  <h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2>
+                  <h3 id="test-1"><a href="#test-1" class="headerlink" title="test 1"></a>test 1</h3>
+                  <blockquote>
+                    <p><strong>Table 1: Loan Application Sample Dataset</strong><br>This table presents the features of
+                      15 applicants (Age, Employed, Owns House, Credit Status) and their loan application results
+                      (Class). This dataset is commonly used for training and analyzing decision tree algorithms.</p>
+                  </blockquote>
+                  <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Age</th>
+                          <th>Employed</th>
+                          <th>Owns House</th>
+                          <th>Credit Status</th>
+                          <th>Class</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Young</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Fair</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Young</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Good</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Young</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Good</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Young</td>
+                          <td>Yes</td>
+                          <td>Yes</td>
+                          <td>Fair</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Young</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Fair</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Middle-aged</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Fair</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Middle-aged</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Good</td>
+                          <td>No</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Middle-aged</td>
+                          <td>Yes</td>
+                          <td>Yes</td>
+                          <td>Good</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Middle-aged</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Excellent</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>10</td>
+                          <td>Middle-aged</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Excellent</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>11</td>
+                          <td>Senior</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Excellent</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>12</td>
+                          <td>Senior</td>
+                          <td>No</td>
+                          <td>Yes</td>
+                          <td>Good</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>13</td>
+                          <td>Senior</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Good</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>14</td>
+                          <td>Senior</td>
+                          <td>Yes</td>
+                          <td>No</td>
+                          <td>Excellent</td>
+                          <td>Yes</td>
+                        </tr>
+                        <tr>
+                          <td>15</td>
+                          <td>Senior</td>
+                          <td>No</td>
+                          <td>No</td>
+                          <td>Fair</td>
+                          <td>No</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <h4 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h4>
+                  <p><strong>Firstly</strong></p>
+                  <script type="math/tex; mode=display">
+\text{Ent}(D) = -(\frac{9}{15}\log_2\frac{9}{15} + \frac{6}{15}\log_2\frac{6}{15}) = 0.971</script>
+                  <p>Then</p>
+                  <p><span style="color : gray"></p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, \text{'Age'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script>
+                  <p>&lt;/span&gt;</p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D,\text{'Age'}) = 0.971 + \frac{1}{3} \times (\frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{2}{5}\log_2\frac{2}{5} + \frac{3}{5}\log_2\frac{3}{5} + \frac{1}{5}\log_2\frac{1}{5} + \frac{4}{5}\log_2\frac{4}{5}) = 0.083</script>
+                  <p><span style="color : gray"></p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, \text{'Employed'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script>
+                  <p>&lt;/span&gt;</p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D,\text{'Employed'}) = 0.971 + \frac{10}{15} \times (\frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10}) + \frac{5}{10} \times (\frac{5}{5}\log_2\frac{5}{5}) = 0.324</script>
+                  <p><span style="color : gray"></p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, \text{'Owns House'}) = \text{Ent}(D) - \sum_{v=1}^{2}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script>
+                  <p>&lt;/span&gt;</p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D,\text{'Owns House'}) = 0.971 + \frac{9}{15} \times (\frac{3}{9} \log_2 \frac{3}{9} + \frac{6}{9} \log_2 \frac{6}{9}) + \frac{6}{15} \times (\frac{6}{6} \log_2 \frac{6}{6}) = \mathbf{0.420}</script>
+                  <p><span style="color : gray"></p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, \text{'Credit Status'}) = \text{Ent}(D) - \sum_{v=1}^{3}\frac{|D^v|}{|D|}\text{Ent}(D^v)</script>
+                  <p>&lt;/span&gt;</p>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D, \text{'Credit Status'}) = 0.971 + \frac{5}{15} \times (\frac{4}{5} \log_2 \frac{4}{5} + \frac{1}{5} \log_2 \frac{1}{5}) + \frac{6}{15} \times (\frac{4}{6} \log_2 \frac{4}{6} + \frac{2}{6} \log_2 \frac{2}{6}) + \frac{4}{15} \times (\frac{4}{4} \log_2 \frac{4}{4})</script>
+                  <script type="math/tex; mode=display">
+= 0.363</script>
+                  <p>Since attribute <strong>‘Owns House’</strong> has the highest information gain, it is selected as
+                    the optimal feature. Dividing D by attribute ‘Owns House’, we get two data sets($D_1$ and $D_2$).
+                    All labels in $D_1$ are ‘yes’, so we set $D_1$ as a leaf node with label ‘yes’. But for $D_2$, we
+                    need divide it.</p>
+                  <pre><code class=" mermaid">graph TD
     A[Owns House] -- yes --&gt; B[&quot;yes, D1&quot;]
     A[Owns House] -- no --&gt; C[&quot;D2&quot;]
 </code></pre>
-<div align = "center"><strong> Figure 1: first step </strong></div>
+                  <div align="center"><strong> Figure 1: first step </strong></div>
 
-<p>next</p>
-<script type="math/tex; mode=display">
-\text{Ent}(D_2) = -\frac{6}{9} \log_2 \frac{6}{9} -\frac{3}{9} \log_2 \frac{3}{9} = 0.918</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Age'}) = 0.918 + \frac{4}{9} \times (\frac{1}{4} \log_2 \frac{1}{4} + \frac{3}{4} \log_2 \frac{3}{4}) + \frac{2}{9} \times (\frac{2}{2} \ log_2 \frac{2}{2}) + \frac{3}{9} \times (\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}) = 0.251</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Employed'}) = 0.918 + \frac{6}{9} \times (\frac{6}{6} \log_2 \frac{6}{6}) + \frac{3}{9} \times (\frac{3}{3} \log_2 \frac{3}{3}) = 0.918</script><script type="math/tex; mode=display">
-\text{Gain}(D_2, \text{'Credit Status'}) = 0.918 + \frac{4}{9} \times (\frac{4}{4} \log_2 \frac{4}{4}) + \frac{4}{9} \times (2 \times \frac{2}{4} \log_2 \frac{2}{4}) + \frac{1}{9} \times \frac{1}{1} \log_2 \frac{1}{1} = 0.474</script><p>Since attribute <strong>‘Employed’</strong> has the highest information gain, it is selected as the optimal feature. Apparently, we get the final result.</p>
-<pre><code class=" mermaid">graph TD
+                  <p>next</p>
+                  <script type="math/tex; mode=display">
+\text{Ent}(D_2) = -\frac{6}{9} \log_2 \frac{6}{9} -\frac{3}{9} \log_2 \frac{3}{9} = 0.918</script>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D_2, \text{'Age'}) = 0.918 + \frac{4}{9} \times (\frac{1}{4} \log_2 \frac{1}{4} + \frac{3}{4} \log_2 \frac{3}{4}) + \frac{2}{9} \times (\frac{2}{2} \ log_2 \frac{2}{2}) + \frac{3}{9} \times (\frac{2}{3} \log_2 \frac{2}{3} + \frac{1}{3} \log_2 \frac{1}{3}) = 0.251</script>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D_2, \text{'Employed'}) = 0.918 + \frac{6}{9} \times (\frac{6}{6} \log_2 \frac{6}{6}) + \frac{3}{9} \times (\frac{3}{3} \log_2 \frac{3}{3}) = 0.918</script>
+                  <script type="math/tex; mode=display">
+\text{Gain}(D_2, \text{'Credit Status'}) = 0.918 + \frac{4}{9} \times (\frac{4}{4} \log_2 \frac{4}{4}) + \frac{4}{9} \times (2 \times \frac{2}{4} \log_2 \frac{2}{4}) + \frac{1}{9} \times \frac{1}{1} \log_2 \frac{1}{1} = 0.474</script>
+                  <p>Since attribute <strong>‘Employed’</strong> has the highest information gain, it is selected as the
+                    optimal feature. Apparently, we get the final result.</p>
+                  <pre><code class=" mermaid">graph TD
     A[Owns House] -- yes --&gt; B[&quot;yes&quot;]
     A[Owns House] -- no --&gt; C[&quot;Employed&quot;]
     C[&quot;Employed&quot;] -- yes --&gt; D[&quot;yes&quot;]
     C[&quot;Employed&quot;] -- no --&gt; E[&quot;no&quot;]
 </code></pre>
-<div align = "center"><strong> Figure 2: finial decision tree </strong></div>
+                  <div align="center"><strong> Figure 2: finial decision tree </strong></div>
 
-<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink" title="Definition: loss function"></a>Definition: loss function</h3><p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are $N_{tk}$ sort $k = 1, 2, \ldots, K$ samples.</p>
-<p><strong>loss function</strong></p>
-<script type="math/tex; mode=display">
-C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>empirical entropy</strong></p>
-<script type="math/tex; mode=display">
-H_t(T) = -\sum_{k}\frac{N_{tk}}{N_t} \log_2 \frac{N_{tk}}{N_t}</script><p><strong>combination</strong></p>
-<script type="math/tex; mode=display">
-C(T) = -\sum_{t=1}^{|T|}\sum_{k}^{K}N_{tk} \log_2 \frac{N_{tk}}{N_t}</script><script type="math/tex; mode=display">
-C_\alpha(T) = C(T) + \alpha |T|</script><p><strong>purpose</strong></p>
-<script type="math/tex; mode=display">
-\min_{T} C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script><p><strong>algorithm</strong></p>
-<p>We can define a DP[] and use the idea of dynamic programming to find the optimal pruning</p>
-<ul>
-<li>input data $X = \\{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \\}$</li>
-<li>output $Tree_\alpha$</li>
-</ul>
-<ol>
-<li>for t in T, Calculate $H_t(T)$</li>
-<li>Recursively backtrack from the leaf nodes of the tree upwards, compare $C_\alpha(T_A)$ and $C_\alpha(T_B)$</li>
-<li>return 2</li>
-</ol>
-<h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink" title="Regression Tree"></a>Regression Tree</h3><p>A regression tree corresponds to a partition of the input space and the output values within the partition units.</p>
-<p>input space $M = R_1, R_2, \ldots, R_M$, and each space $R_m$ has a output value $c_m$, we can define regression tree model as follow.</p>
-<p><strong>regression tree model</strong></p>
-<script type="math/tex; mode=display">
-f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</strong></p>
-<script type="math/tex; mode=display">
-\sum_{x_i \in R_m} (y_i - f(x_i))^2</script><script type="math/tex; mode=display">
-\hat{c}_m = ave(y_i \mid x_i \in R_m)</script><p><strong>dividing algorithm</strong></p>
-<ul>
-<li>input: training data $D$</li>
-<li>output: regression tree $f(x)$</li>
-</ul>
-<ol>
-<li>choose $x_j$, its output is $s$. Space $R_1(j, s) = \\{x \mid y_i \leq s\\}$,space $R_2(j, s) = \\{x \mid y_i &gt; s\\}$</li>
-<li><script type="math/tex; mode=display">\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script></li>
-<li><script type="math/tex; mode=display">\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m = 1, 2</script></li>
-<li>repeat 2 and 3</li>
-</ol>
-<h3 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink" title="Classification Tree"></a>Classification Tree</h3><p><strong>Gini index</strong></p>
-<script type="math/tex; mode=display">
-\text{Gini} (p) = \sum_{k = 1}^{K} p_k(1 - p_k) = 1 - \sum_{k = 1}^{K} p_k^2</script><script type="math/tex; mode=display">
+                  <h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2>
+                  <h3 id="Definition-loss-function"><a href="#Definition-loss-function" class="headerlink"
+                      title="Definition: loss function"></a>Definition: loss function</h3>
+                  <p>Suppose a decisionTree having $T$ leaf nodes, each leaf node $t$ having $N_t$ samples and there are
+                    $N_{tk}$ sort $k = 1, 2, \ldots, K$ samples.</p>
+                  <p><strong>loss function</strong></p>
+                  <script type="math/tex; mode=display">
+C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script>
+                  <p><strong>empirical entropy</strong></p>
+                  <script type="math/tex; mode=display">
+H_t(T) = -\sum_{k}\frac{N_{tk}}{N_t} \log_2 \frac{N_{tk}}{N_t}</script>
+                  <p><strong>combination</strong></p>
+                  <script type="math/tex; mode=display">
+C(T) = -\sum_{t=1}^{|T|}\sum_{k}^{K}N_{tk} \log_2 \frac{N_{tk}}{N_t}</script>
+                  <script type="math/tex; mode=display">
+C_\alpha(T) = C(T) + \alpha |T|</script>
+                  <p><strong>purpose</strong></p>
+                  <script type="math/tex; mode=display">
+\min_{T} C_\alpha(T) = \sum_{t=1}^{|T|}N_tH_t(T) + \alpha |T|</script>
+                  <p><strong>algorithm</strong></p>
+                  <p>We can define a DP[] and use the idea of dynamic programming to find the optimal pruning</p>
+                  <ul>
+                    <li>input data $X = \\{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \\}$</li>
+                    <li>output $Tree_\alpha$</li>
+                  </ul>
+                  <ol>
+                    <li>for t in T, Calculate $H_t(T)$</li>
+                    <li>Recursively backtrack from the leaf nodes of the tree upwards, compare $C_\alpha(T_A)$ and
+                      $C_\alpha(T_B)$</li>
+                    <li>return 2</li>
+                  </ol>
+                  <h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2>
+                  <h3 id="Regression-Tree"><a href="#Regression-Tree" class="headerlink"
+                      title="Regression Tree"></a>Regression Tree</h3>
+                  <p>A regression tree corresponds to a partition of the input space and the output values within the
+                    partition units.</p>
+                  <p>input space $M = R_1, R_2, \ldots, R_M$, and each space $R_m$ has a output value $c_m$, we can
+                    define regression tree model as follow.</p>
+                  <p><strong>regression tree model</strong></p>
+                  <script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script>
+                  <p><strong>Mean Squared Error</strong></p>
+                  <script type="math/tex; mode=display">
+\sum_{x_i \in R_m} (y_i - f(x_i))^2</script>
+                  <script type="math/tex; mode=display">
+\hat{c}_m = ave(y_i \mid x_i \in R_m)</script>
+                  <p><strong>dividing algorithm</strong></p>
+                  <ul>
+                    <li>input: training data $D$</li>
+                    <li>output: regression tree $f(x)$</li>
+                  </ul>
+                  <ol>
+                    <li>choose $x_j$, its output is $s$. Space $R_1(j, s) = \\{x \mid y_i \leq s\\}$,space $R_2(j, s) =
+                      \\{x \mid y_i &gt; s\\}$</li>
+                    <li>
+                      <script
+                        type="math/tex; mode=display">\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script>
+                    </li>
+                    <li>
+                      <script
+                        type="math/tex; mode=display">\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m = 1, 2</script>
+                    </li>
+                    <li>repeat 2 and 3</li>
+                  </ol>
+                  <h3 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink"
+                      title="Classification Tree"></a>Classification Tree</h3>
+                  <p><strong>Gini index</strong></p>
+                  <script type="math/tex; mode=display">
+\text{Gini} (p) = \sum_{k = 1}^{K} p_k(1 - p_k) = 1 - \sum_{k = 1}^{K} p_k^2</script>
+                  <script type="math/tex; mode=display">
 \text{Gini} (D, A) = \sum_{v = 1}^{\mathscr{Y}} \frac{|D^v|}{|D|} \text{Gini}(D^v)</script>
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
 
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
-  
-  
+                </div>
 
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="category-chain-item">统计学习方法</a>
-  
-  
+                <hr />
+                <div>
+                  <div class="post-metas my-3">
 
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
-      
-    </div>
-  
-</div>
+                    <div class="post-meta mr-3 d-flex align-items-center">
+                      <i class="iconfont icon-category"></i>
 
 
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>决策树</div>
-      <div>http://example.com/2025/05/28/决策树/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ddccffq</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2025年5月28日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
+                      <span class="category-chains">
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2025/05/28/hexo%E7%95%8C%E9%9D%A2%E5%92%8CGitHub%20page%E7%95%8C%E9%9D%A2%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/" title="hexo界面和GitHub page界面公式问题">
+                        <span class="category-chain">
+
+                          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"
+                            class="category-chain-item">机器学习</a>
+
+
+
+                        </span>
+
+
+
+                        <span class="category-chain">
+
+                          <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"
+                            class="category-chain-item">统计学习方法</a>
+
+
+
+                        </span>
+
+
+                      </span>
+
+                    </div>
+
+
+                    <div class="post-meta">
+                      <i class="iconfont icon-tags"></i>
+
+                      <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+
+                    </div>
+
+                  </div>
+
+
+
+
+
+                  <div class="license-box my-3">
+                    <div class="license-title">
+                      <div>决策树</div>
+                      <div>http://example.com/2025/05/28/决策树/</div>
+                    </div>
+                    <div class="license-meta">
+
+                      <div class="license-meta-item">
+                        <div>作者</div>
+                        <div>ddccffq</div>
+                      </div>
+
+
+                      <div class="license-meta-item license-meta-date">
+                        <div>发布于</div>
+                        <div>2025年5月28日</div>
+                      </div>
+
+
+
+                      <div class="license-meta-item">
+                        <div>许可协议</div>
+                        <div>
+
+
+
+                          <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                            <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                              <i class="iconfont icon-cc-by"></i>
+                            </span>
+                          </a>
+
+
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="license-icon iconfont"></div>
+                  </div>
+
+
+
+
+                  <div class="post-prevnext my-3">
+                    <article class="post-prev col-6">
+
+
+                      <a href="/2025/05/28/hexo%E7%95%8C%E9%9D%A2%E5%92%8CGitHub%20page%E7%95%8C%E9%9D%A2%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/"
+                        title="hexo界面和GitHub page界面公式问题">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">hexo界面和GitHub page界面公式问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2025/05/27/%E9%9A%90%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E6%A8%A1%E5%9E%8B/" title="隐马尔科夫模型">
+
+                    </article>
+                    <article class="post-next col-6">
+
+
+                      <a href="/2025/05/27/%E9%9A%90%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E6%A8%A1%E5%9E%8B/"
+                        title="隐马尔科夫模型">
                         <span class="hidden-mobile">隐马尔科夫模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
-                    
-                  </article>
+
+                    </article>
+                  </div>
+
                 </div>
-              
+
+
+
+
+                <article id="comments" lazyload>
+
+
+                </article>
+
+
+
+              </article>
             </div>
+          </div>
+        </div>
 
-            
-  
-  
-    <article id="comments" lazyload>
-      
-
-    </article>
-  
+        <div class="side-col d-none d-lg-block col-lg-2">
 
 
-          </article>
         </div>
       </div>
     </div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-  </div>
-</div>
 
 
 
 
 
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-  
-  
 
 
 
 
 
-  <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
-    mermaid.initialize({"theme":"default"});
 
-    Fluid.utils.listenDOMLoaded(function() {
-      Fluid.events.registerRefreshCallback(function() {
-        if ('mermaid' in window) {
-          mermaid.init();
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function () {
+        mermaid.initialize({ "theme": "default" });
+
+        Fluid.utils.listenDOMLoaded(function () {
+          Fluid.events.registerRefreshCallback(function () {
+            if ('mermaid' in window) {
+              mermaid.init();
+            }
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
 
 
 
 
 
 
-    
 
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
 
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+
+    <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+
+
+
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+            <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <input type="text" id="local-search-input" class="form-control validate">
+              <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+            </div>
+            <div class="list-group" id="local-search-result"></div>
+          </div>
         </div>
-        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
-  </div>
-</div>
 
-    
 
-    
+
+
   </main>
 
   <footer>
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+
+      <div class="footer-content">
+        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i
+          class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank"
+          rel="nofollow noopener"><span>Fluid</span></a>
+      </div>
+
+
+
     </div>
-  
-  
-  
-</div>
 
   </footer>
 
   <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <link rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.configure({ "showSpinner": false, "trickleSpeed": 100 })
     NProgress.start()
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       NProgress.done();
     })
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+  <script src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
+  <script src="/js/events.js"></script>
+  <script src="/js/plugins.js"></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js"></script>
   <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
+      (function (window, document) {
+        var typing = Fluid.plugins.typing;
+        var subtitle = document.getElementById('subtitle');
+        if (!subtitle || !typing) {
+          return;
+        }
+        var text = subtitle.getAttribute('data-typed-text');
+
         typing(text);
-      
-    })(window, document);
+
+      })(window, document);
   </script>
 
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+
+  <script src="/js/img-lazyload.js"></script>
 
 
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function () {
+      var toc = jQuery('#toc');
+      if (toc.length === 0 || !window.tocbot) { return; }
+      var boardCtn = jQuery('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      window.tocbot.init(Object.assign({
+        tocSelector: '#toc-body',
+        contentSelector: '.markdown-body',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+        includeTitleTags: true,
+        headingsOffset: -boardTop,
+      }, CONFIG.toc));
+      if (toc.find('.toc-list-item').length > 0) {
+        toc.css('visibility', 'visible');
       }
+
+      Fluid.events.registerRefreshCallback(function () {
+        if ('tocbot' in window) {
+          tocbot.refresh();
+          var toc = jQuery('#toc');
+          if (toc.length === 0 || !tocbot) {
+            return;
+          }
+          if (toc.find('.toc-list-item').length > 0) {
+            toc.css('visibility', 'visible');
+          }
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
@@ -902,116 +978,116 @@ f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</s
   <script>Fluid.plugins.codeWidget();</script>
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function () {
+      window.anchors.options = {
+        placement: CONFIG.anchorjs.placement,
+        visible: CONFIG.anchorjs.visible
+      };
+      if (CONFIG.anchorjs.icon) {
+        window.anchors.options.icon = CONFIG.anchorjs.icon;
       }
+      var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+      var res = [];
+      for (var item of el) {
+        res.push('.markdown-body > ' + item.trim());
+      }
+      if (CONFIG.anchorjs.placement === 'left') {
+        window.anchors.options.class = 'anchorjs-link-left';
+      }
+      window.anchors.add(res.join(', '));
+
+      Fluid.events.registerRefreshCallback(function () {
+        if ('anchors' in window) {
+          anchors.removeAll();
+          var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+          var res = [];
+          for (var item of el) {
+            res.push('.markdown-body > ' + item.trim());
+          }
+          if (CONFIG.anchorjs.placement === 'left') {
+            anchors.options.class = 'anchorjs-link-left';
+          }
+          anchors.add(res.join(', '));
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
+
+  <script>
+    Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function () {
+      Fluid.plugins.fancyBox();
+    });
+  </script>
 
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
 
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
+  <script>
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: { '[+]': [['$', '$']] }
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
           }
-        });
-      </script>
-    
+        }
+      };
+    } else {
+      MathJax.startup.document.state(0);
+      MathJax.texReset();
+      MathJax.typeset();
+      MathJax.typesetPromise();
+    }
 
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
-
-  <script defer src="/js/leancloud.js" ></script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+    Fluid.events.registerRefreshCallback(function () {
+      if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+        MathJax.startup.document.state(0);
+        MathJax.texReset();
+        MathJax.typeset();
+        MathJax.typesetPromise();
+      }
+    });
+  </script>
 
 
-  
+  <script src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+
+  <script defer src="/js/leancloud.js"></script>
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+  <!-- 主题的启动项，将它保持在最底部 -->
+  <!-- the boot of the theme, keep it at the bottom -->
+  <script src="/js/boot.js"></script>
+
+
+
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
@@ -1025,6 +1101,7 @@ f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>Mean Squared Error</s
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
+
 </html>
