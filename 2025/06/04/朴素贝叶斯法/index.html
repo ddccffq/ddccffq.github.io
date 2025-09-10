@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>朴素贝叶斯法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="$\text{Naive Bayes}$朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概">
+<meta property="og:type" content="article">
+<meta property="og:title" content="朴素贝叶斯法">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="$\text{Naive Bayes}$朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-04T01:59:52.000Z">
+<meta property="article:modified_time" content="2025-06-06T02:19:28.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ddccffq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-朴素贝叶斯法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2025-06-04T01:59:52.000Z" itemprop="datePublished">2025-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>►<a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      朴素贝叶斯法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="text-Naive-Bayes"><a href="#text-Naive-Bayes" class="headerlink" title="$\text{Naive Bayes}$"></a>$\text{Naive Bayes}$</h2><p><strong>朴素</strong>贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行<strong>分类</strong>，这其中的机理涉及到两个概念：<strong>先验概率</strong>和<strong>后验概率</strong>；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概率最大的分类情况作为输入的类标签。</p>
+<h2 id="朴素贝叶斯法的学习与分类"><a href="#朴素贝叶斯法的学习与分类" class="headerlink" title="朴素贝叶斯法的学习与分类"></a>朴素贝叶斯法的学习与分类</h2><h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><p>设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} &#x3D; {c_1, c_2, \cdots, c_K }$。训练数据集</p>
+<p>$$<br>T &#x3D; {(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)}<br>$$</p>
+<p>由 $P(X, Y)$ 独立同分布产生。</p>
+<p>朴素贝叶斯法通过训练数据集学习联合概率分布 $P(X, Y)$。具体地，学习以下先验概率分布及条件概率分布。先验概率分布</p>
+<p>$$<br>P(Y &#x3D; c_k), \quad k &#x3D; 1, 2, \cdots K \tag{1}<br>$$</p>
+<p>条件概率分布</p>
+<p>$$<br>P(X &#x3D; x |Y &#x3D; c_k) &#x3D; P(X^{(1)} &#x3D; x^{(1)}, \cdots, X^{(n)} &#x3D; x^{(n)} |Y &#x3D; c_k), \quad k &#x3D; 1, 2, \cdots, K \tag{2}<br>$$</p>
+<p>于是学习到联合概率分布 $P(X, Y)$。</p>
+<p>由条件独立性假设得</p>
+<p>$$<br>P(X &#x3D; x |Y &#x3D; c_k) &#x3D; \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k) \tag{3}<br>$$</p>
+<p>朴素贝叶斯法分类时，对给定的输入 $x$，通过学习到的模型计算后验概率分布 $P(Y &#x3D; c_k |X &#x3D; x)$，将后验概率最大的类作为 $x$ 的类输出。后验概率计算如下：</p>
+<p>$$<br>P(Y &#x3D; c_k |X &#x3D; x) &#x3D; \frac{P(X &#x3D; x |Y &#x3D; c_k) P(Y &#x3D; c_k)}{\sum_{k} P(X &#x3D; x |Y &#x3D; c_k) P(Y &#x3D; c_k)} \tag{4}<br>$$</p>
+<p>也就是：</p>
+<p>$$<br>P(Y &#x3D; c_k |X &#x3D; x) &#x3D; \frac{P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k)}{\sum_{k} P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k)} \tag{5}<br>$$</p>
+<p>这是朴素贝叶斯法分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
+<p>$$<br>y &#x3D; f(x) &#x3D; \operatorname{arg} \max_{c_k} \frac{P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k)}{\sum_{k} P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k)} \tag{6}<br>$$</p>
+<p>注意到分母对所有 $c_k$ 都是相同的，所以，</p>
+<p>$$<br>y &#x3D; f(x) &#x3D; \operatorname{arg} \max_{c_k} P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k) \tag{7}<br>$$</p>
+<h3 id="后验概率最大化的含义"><a href="#后验概率最大化的含义" class="headerlink" title="后验概率最大化的含义"></a>后验概率最大化的含义</h3><p>朴素贝叶斯法将实例分到后验概率最大的类中。这等价于期望风险最小化。假设选择 0-1 损失函数：</p>
+<p>$$<br>L(Y, f(X)) &#x3D;<br>\begin{cases}<br>1, &amp;Y \neq f(X)<br>\[10pt]<br>0, &amp;Y &#x3D; f(X)<br>\end{cases}<br>$$</p>
+<p>式中 $f(X)$ 是分类决策函数。这时，期望风险函数为</p>
+<p>$$<br>R_{\exp}(f) &#x3D; \mathbf{E}[L(Y, f(X))]<br>$$</p>
+<p>期望是对联合分布 $P(X, Y)$取的。由此取条件期望：</p>
+<p>$$<br>R_{\exp}(f) &#x3D; \mathbf{E_{X}} \sum_{k &#x3D; 1}^{K}[L(c_k, f(X))] P(c_k |X)<br>$$</p>
+<p>为了使期望风险最小化，只需对 $X &#x3D; x$ 逐个极小化，由此得到：</p>
+<p>$$<br>f(x) &#x3D; \operatorname{arg} \max_{y \in \mathcal{Y}} P(y &#x3D; c_k |X &#x3D; x)<br>$$</p>
+<h2 id="朴素贝叶斯法的参数估计"><a href="#朴素贝叶斯法的参数估计" class="headerlink" title="朴素贝叶斯法的参数估计"></a>朴素贝叶斯法的参数估计</h2><h3 id="学习与分类算法"><a href="#学习与分类算法" class="headerlink" title="学习与分类算法"></a>学习与分类算法</h3><p>输入：训练数据 $T &#x3D; {(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)}$，其中 $x_i &#x3D; (x_i^{(1)}, x_i^{(2)}, \dots, x_i^{(n)})$，$x_i^{(j)}$ 是第 $i$ 个样本的第 $j$ 个特征，$x_i^{(j)} \in {a_{j1}, a_{j2}, \cdots, a_{jS_j}}$ 是特征 $x_i^{(j)}$ 的可能取值，$y_i \in {c_1, c_2, \cdots, c_K}$。<br>输出：实例 $x$ 的分类。</p>
+<p><strong>（1）计算先验概率及条件概率</strong><br>$$<br>\begin{align*}<br>P(Y &#x3D; c_k) &amp;&#x3D; \frac{\sum_{i &#x3D; 1}^{N} I(y_i &#x3D; ck)}{N}, \quad k &#x3D; 1, 2, \cdots, K<br>\[10pt]<br>P(X^{(j)} &#x3D; a_{jl} |Y &#x3D; c_k) &amp;&#x3D; \frac{\sum_{i &#x3D; 1}^{N} I(x_i^{(j)} &#x3D; a_{jl}, y_i &#x3D; c_k)}{\sum_{i &#x3D; 1}^{N} I(y_i &#x3D; c_k)}<br>\[10pt]<br>j &#x3D; 1, 2, \cdots, n; \quad l &amp;&#x3D; 1, 2, \cdots, S_j; \quad k &#x3D; 1, 2, \cdots, K<br>\end{align*}<br>$$<br><strong>（2）对于给定实例 $x &#x3D; (x^{(1)}, x^{(2)}, \dots, x^{(n)})$，计算：</strong><br>$$<br>P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k), \quad k &#x3D; 1, 2, \cdots, K<br>$$<br><strong>（3）确定实例 $x$ 的类</strong><br>$$<br>y &#x3D; \operatorname{arg} \max_{c_k} P(Y &#x3D; c_k) \prod_{j &#x3D; 1}^{n} P(X^{(j)} &#x3D; x^{(j)} |Y &#x3D; c_k)<br>$$</p>
+<h3 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h3><p>用极大似然估计可能会出现所要估计的概率值为 $0$ 的情况。这是采用贝叶斯估计。</p>
+<p>$$<br>\begin{align*}<br>P_{\lambda}(X^{(j)} &#x3D; a_{jl} |Y &#x3D; c_k) &amp;&#x3D; \frac{\sum_{i &#x3D; 1}^{N} I(x_i^{(j)} &#x3D; a_{jl}, y_i &#x3D; c_k) + \lambda}{\sum_{i &#x3D; 1}^{N} I(y_i &#x3D; c_k) + S_j \lambda} \tag{8}<br>\[10pt]<br>P_{\lambda}(Y &#x3D; c_k) &amp;&#x3D; \frac{\sum_{i &#x3D; 1}^{N} I(y_i &#x3D; c_k) + \lambda}{N + K \lambda} \tag{9}<br>\end{align*}<br>$$</p>
+<p>常取 $\lambda &#x3D; 1$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ddccffq.github.io/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/" data-id="cmfdjh58y0024jgbi1nrqbt6g" data-title="朴素贝叶斯法" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/06/04/The-Data-Link-Layer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The Data Link Layer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/03/%E6%9C%9F%E6%9C%9B%E6%9E%81%E5%A4%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">期望极大</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Application-Layer/">Application Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Data-Link-Layer/">Data Link Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Introduction/">Introduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wireshark/">Wireshark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/17/Wireshark-Homework/">Wireshark Homework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/10/Introduction/">Introduction</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/09/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/The-Transport-Layer/">The Transport Layer</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/The-Application-Layer/">The Application Layer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

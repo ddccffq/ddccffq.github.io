@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Wireshark Homework | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="提取的请求信息       源和目标IP地址 源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号 源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）  Host字段 Host: www.msftconnecttest.com  User-Agent字段 User-Ag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wireshark Homework">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/17/Wireshark-Homework/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="提取的请求信息       源和目标IP地址 源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号 源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）  Host字段 Host: www.msftconnecttest.com  User-Agent字段 User-Ag">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/my%20ipconfig.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/a%20request%20and%20its%20response.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/get%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/request%20right.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/response.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/response%20more%20details.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/response%20right.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/%E5%9B%9B%E6%9D%A1%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/config.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/A%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/AAAA%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/A%20response.png">
+<meta property="og:image" content="https://ddccffq.github.io/Wireshark-Homework/AAAA%20response.png">
+<meta property="article:published_time" content="2025-06-17T05:21:04.000Z">
+<meta property="article:modified_time" content="2025-06-17T06:54:02.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ddccffq.github.io/Wireshark-Homework/my%20ipconfig.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ddccffq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Wireshark-Homework" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/17/Wireshark-Homework/" class="article-date">
+  <time class="dt-published" datetime="2025-06-17T05:21:04.000Z" itemprop="datePublished">2025-06-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Wireshark/">Wireshark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Wireshark Homework
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="提取的请求信息"><a href="#提取的请求信息" class="headerlink" title="提取的请求信息"></a>提取的请求信息</h2><p><img src="/Wireshark-Homework/my%20ipconfig.png" alt="my ipconfig"></p>
+<p><img src="/Wireshark-Homework/a%20request%20and%20its%20response.png" alt="a request and its response"></p>
+<p><img src="/Wireshark-Homework/get%20request.png" alt="get request"></p>
+<p><img src="/Wireshark-Homework/request%20right.png" alt="request right"></p>
+<p><img src="/Wireshark-Homework/response.png" alt="response"></p>
+<p><img src="/Wireshark-Homework/response%20more%20details.png" alt="response more details"></p>
+<p><img src="/Wireshark-Homework/response%20right.png" alt="response right"></p>
+<h3 id="源和目标IP地址"><a href="#源和目标IP地址" class="headerlink" title="源和目标IP地址"></a>源和目标IP地址</h3><ul>
+<li><strong>源IP地址</strong>: 10.21.205.40（本机IP，如ipconfig截图所示）</li>
+<li><strong>目标IP地址</strong>: 104.110.191.133（服务器IP）</li>
+</ul>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><ul>
+<li><strong>源端口</strong>: 54283（随机分配的客户端端口）</li>
+<li><strong>目标端口</strong>: 80（标准HTTP端口）</li>
+</ul>
+<h3 id="Host字段"><a href="#Host字段" class="headerlink" title="Host字段"></a>Host字段</h3><ul>
+<li><strong>Host</strong>: <code>www.msftconnecttest.com</code></li>
+</ul>
+<h3 id="User-Agent字段"><a href="#User-Agent字段" class="headerlink" title="User-Agent字段"></a>User-Agent字段</h3><ul>
+<li><strong>User-Agent</strong>: Microsoft NCSI</li>
+</ul>
+<h2 id="提取的响应信息"><a href="#提取的响应信息" class="headerlink" title="提取的响应信息"></a>提取的响应信息</h2><h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><ul>
+<li><strong>状态码</strong>: 200 OK</li>
+</ul>
+<h3 id="Content-Type字段"><a href="#Content-Type字段" class="headerlink" title="Content-Type字段"></a>Content-Type字段</h3><ul>
+<li><strong>Content-Type</strong>: text&#x2F;plain</li>
+</ul>
+<h3 id="Server字段"><a href="#Server字段" class="headerlink" title="Server字段"></a>Server字段</h3><ul>
+<li>在提供的截图中没有明确显示Server字段，该字段可能不存在于此HTTP响应中，或位于未捕获到的响应头部分</li>
+</ul>
+<h2 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h2><h3 id="HTTP请求的目标端口通常是多少？"><a href="#HTTP请求的目标端口通常是多少？" class="headerlink" title="HTTP请求的目标端口通常是多少？"></a>HTTP请求的目标端口通常是多少？</h3><p>HTTP请求的<strong>标准目标端口是80</strong>，如截图中所示。HTTPS则使用443端口。</p>
+<h3 id="报文中的字段形式是怎样的？"><a href="#报文中的字段形式是怎样的？" class="headerlink" title="报文中的字段形式是怎样的？"></a>报文中的字段形式是怎样的？</h3><p>HTTP报文使用<strong>纯文本格式</strong>，以”字段名: 字段值”的形式组织，每行一个字段，如截图中所示：</p>
+<ul>
+<li><code>Host: www.msftconnecttest.com</code></li>
+<li><code>User-Agent: Microsoft NCSI</code> </li>
+<li><code>Content-Type: text/plain</code></li>
+</ul>
+<p>Wireshark同时提供了三种查看方式：</p>
+<ol>
+<li><strong>解析后的纯文本视图</strong>（HTTP协议字段被解析为易读形式）</li>
+<li><strong>十六进制原始数据视图</strong>（数据包的二进制表现形式）</li>
+<li><strong>结构化协议树</strong>（按协议层级组织的视图）</li>
+</ol>
+<p>在Wireshark中可以看到，虽然在网络上传输时是二进制字节流，但HTTP协议本身是<strong>基于文本</strong>的协议。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><img src="/Wireshark-Homework/%E5%9B%9B%E6%9D%A1%E4%BF%A1%E6%81%AF.png" alt="四条信息"></p>
+<p><img src="/Wireshark-Homework/config.png" alt="config"></p>
+<p><img src="/Wireshark-Homework/A%20request.png" alt="A request"></p>
+<p><img src="/Wireshark-Homework/AAAA%20request.png" alt="AAAA request"></p>
+<p><img src="/Wireshark-Homework/A%20response.png" alt="A response"></p>
+<p><img src="/Wireshark-Homework/AAAA%20response.png" alt="AAAA response"></p>
+<h2 id="清除DNS缓存"><a href="#清除DNS缓存" class="headerlink" title="清除DNS缓存"></a>清除DNS缓存</h2><p>从终端截图可以看到，已使用命令<code>ipconfig /flushdns</code>成功清除了DNS缓存：</p>
+<ul>
+<li>终端显示：<strong>“已成功刷新 DNS 解析缓存”</strong></li>
+<li>使用<code>nslookup</code>确认DNS服务器为<strong>10.3.9.5</strong></li>
+</ul>
+<h2 id="DNS查询与响应报文分析"><a href="#DNS查询与响应报文分析" class="headerlink" title="DNS查询与响应报文分析"></a>DNS查询与响应报文分析</h2><h3 id="查询报文分析"><a href="#查询报文分析" class="headerlink" title="查询报文分析"></a>查询报文分析</h3><p>根据截图，可以看到多个DNS查询：</p>
+<ol>
+<li><strong>查询域名</strong>：<a target="_blank" rel="noopener" href="http://www.163.com/">www.163.com</a></li>
+<li><strong>查询类型</strong>：<ul>
+<li>A记录查询（IPv4地址）- Type: A (1)</li>
+<li>AAAA记录查询（IPv6地址）- Type: AAAA (28)</li>
+</ul>
+</li>
+<li><strong>查询特征</strong>：<ul>
+<li>Transaction ID: 0x8d99（A记录查询）和0xaa7c（AAAA记录查询）</li>
+<li>源端口：55570、59624（随机客户端端口）</li>
+<li>目标端口：<strong>53</strong>（标准DNS端口）</li>
+<li>使用<strong>UDP协议</strong>传输</li>
+</ul>
+</li>
+</ol>
+<h3 id="响应报文分析"><a href="#响应报文分析" class="headerlink" title="响应报文分析"></a>响应报文分析</h3><ol>
+<li><strong>查询域名</strong>：<code>www.163.com</code></li>
+<li><strong>响应IP地址</strong>：多个IP地址返回，包括：<ul>
+<li><strong>IPv4地址</strong>（A记录）：<ul>
+<li>220.181.171.126</li>
+<li>220.181.10.69</li>
+<li>220.181.10.67</li>
+<li>220.181.10.70</li>
+<li>220.181.10.66</li>
+<li>等多个IP地址</li>
+</ul>
+</li>
+<li><strong>CNAME记录</strong>：<ul>
+<li><code>www.163.com.163jiasu.com</code></li>
+<li><code>www.163.com.w.kunluncan.com</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="DNS协议特性分析"><a href="#DNS协议特性分析" class="headerlink" title="DNS协议特性分析"></a>DNS协议特性分析</h2><h3 id="DNS使用的端口号"><a href="#DNS使用的端口号" class="headerlink" title="DNS使用的端口号"></a>DNS使用的端口号</h3><p>从截图中可以明确看到：</p>
+<ul>
+<li><strong>服务器端口</strong>：53（固定标准端口）</li>
+<li><strong>客户端端口</strong>：随机高位端口（如55570、59624）</li>
+</ul>
+<h3 id="DNS使用的传输协议"><a href="#DNS使用的传输协议" class="headerlink" title="DNS使用的传输协议"></a>DNS使用的传输协议</h3><p>截图中可以看到：</p>
+<ul>
+<li><strong>主要使用UDP协议</strong>，因为：<ul>
+<li>数据包标识为”User Datagram Protocol”</li>
+<li>相比TCP更快速，适合简短的DNS查询</li>
+<li>标准DNS查询通常小于512字节，适合UDP传输</li>
+</ul>
+</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th>DNS特性</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询域名</td>
+<td><code>www.163.com</code></td>
+<td>中国网易公司网站</td>
+</tr>
+<tr>
+<td>查询类型</td>
+<td>A 和 AAAA</td>
+<td>分别查询IPv4和IPv6地址</td>
+</tr>
+<tr>
+<td>客户端端口</td>
+<td>55570、59624等</td>
+<td>随机高位端口</td>
+</tr>
+<tr>
+<td>服务器端口</td>
+<td>53</td>
+<td>DNS标准端口</td>
+</tr>
+<tr>
+<td>传输协议</td>
+<td>UDP</td>
+<td>无连接、快速、适合短查询</td>
+</tr>
+<tr>
+<td>查询事务ID</td>
+<td>0x8d99、0xaa7c</td>
+<td>确保请求和响应匹配的唯一标识符</td>
+</tr>
+</tbody></table>
+</div>
+
+<p><strong>补充说明</strong>：虽然本次抓包显示使用UDP，但DNS协议在某些情况下也会使用TCP：</p>
+<ul>
+<li>当响应大小超过512字节时</li>
+<li>进行区域传送(AXFR)等操作时</li>
+<li>需要可靠连接时</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ddccffq.github.io/2025/06/17/Wireshark-Homework/" data-id="cmfdjh58u000gjgbi4kt7870e" data-title="Wireshark Homework" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/06/10/Introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Introduction</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Application-Layer/">Application Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Data-Link-Layer/">Data Link Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Introduction/">Introduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wireshark/">Wireshark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/17/Wireshark-Homework/">Wireshark Homework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/10/Introduction/">Introduction</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/09/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/The-Transport-Layer/">The Transport Layer</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/The-Application-Layer/">The Application Layer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

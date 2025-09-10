@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>The Transport Layer | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Transport-Layer ServicesTransport protocols run in end systems:  Sending side: breaks app messages into segments, passes to  network layer. Receiving side: reassembles segments into messages, passes t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Transport Layer">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Transport-Layer ServicesTransport protocols run in end systems:  Sending side: breaks app messages into segments, passes to  network layer. Receiving side: reassembles segments into messages, passes t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/a-transport-layer-segment.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/UDP-segment-structure.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/Reliable-data-transfer.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt1.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt2.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt2-1-sender.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt2-1-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt2-2-sender.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt2-2-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rdt3-0-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/Sender">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/GBN-sender.png.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/GBN-receiver.png.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/RS-sender-receiver-view.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/TCP-segment-structure.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/rwnd-buffer.png">
+<meta property="og:image" content="https://ddccffq.github.io/The-Transport-Layer/TCP%20window%20size%20as%20a%20function%20of%20time.png">
+<meta property="article:published_time" content="2025-06-08T07:04:40.000Z">
+<meta property="article:modified_time" content="2025-06-17T02:58:02.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ddccffq.github.io/The-Transport-Layer/a-transport-layer-segment.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ddccffq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-The-Transport-Layer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/08/The-Transport-Layer/" class="article-date">
+  <time class="dt-published" datetime="2025-06-08T07:04:40.000Z" itemprop="datePublished">2025-06-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computer-Network/">Computer Network</a>►<a class="article-category-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      The Transport Layer
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Transport-Layer-Services"><a href="#Transport-Layer-Services" class="headerlink" title="Transport-Layer Services"></a>Transport-Layer Services</h1><p>Transport protocols run in <strong>end systems</strong>:</p>
+<ul>
+<li>Sending side: breaks app messages into <strong>segments</strong>, passes to  network layer.</li>
+<li>Receiving side: reassembles segments into <strong>messages</strong>, passes to app layer.</li>
+</ul>
+<h1 id="Multiplexing-and-Demultiplexing"><a href="#Multiplexing-and-Demultiplexing" class="headerlink" title="Multiplexing and Demultiplexing"></a>Multiplexing and Demultiplexing</h1><p><strong>Multiplexing at sending host:</strong> gather data from multiple sockets, enveloping data with <strong>header</strong>(later used for demultiplexing).<br><strong>demultiplexing at receiving host:</strong> deliver segments to correct socket.</p>
+<h2 id="Demultiplexing"><a href="#Demultiplexing" class="headerlink" title="Demultiplexing"></a>Demultiplexing</h2><p>Hosts receives <strong>IP datagrams</strong>. Each IP datagram has source IP address and destination IP address. Each IP datagram carries a transport-layer segment. Each segment has source port numbers and destination port numbers.</p>
+<p><img src="/The-Transport-Layer/a-transport-layer-segment.png" alt="A transport layer segment">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<blockquote>
+<p>将 segment 传到目标 host，host 再将 segment 通过 socket 传给对应的 application。</p>
+</blockquote>
+<h3 id="Connectionless-Demultiplexing"><a href="#Connectionless-Demultiplexing" class="headerlink" title="Connectionless Demultiplexing"></a>Connectionless Demultiplexing</h3><p>在 <strong>UDP</strong> 协议中使用。</p>
+<p>Creates socket with <strong>port numbers</strong>. Each UDP socket identified with <code>(dest IP address, dest port numbers)</code>.</p>
+<blockquote>
+<p>当终端收到 IP datagrams 中是 UDP segment 时。 The host will check destination port in the segment and then directs the segment to corresponding socket。发生在 transport layer。</p>
+</blockquote>
+<h3 id="Connection-oriented-Demultiplexing"><a href="#Connection-oriented-Demultiplexing" class="headerlink" title="Connection-oriented Demultiplexing"></a>Connection-oriented Demultiplexing</h3><p><strong>Used in TCP protocol</strong>.</p>
+<p>TCP socket identified by <strong>4</strong>-tuple: <code>(source IP address, source port numbers, dest IP address, dest port numbers)</code>.</p>
+<h1 id="Connectionless-Transport-UDP"><a href="#Connectionless-Transport-UDP" class="headerlink" title="Connectionless Transport: UDP"></a>Connectionless Transport: UDP</h1><h2 id="UDP-Segment-Structure"><a href="#UDP-Segment-Structure" class="headerlink" title="UDP Segment Structure"></a>UDP Segment Structure</h2><p><img src="/The-Transport-Layer/UDP-segment-structure.png" alt="UDP segment structure">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="UDP-Checksum"><a href="#UDP-Checksum" class="headerlink" title="UDP Checksum"></a>UDP Checksum</h2><p><strong>Goal</strong>: detect “errors” (e.g., flipped bits) in transmitted segment. 指的是位比特发生了 $01$ 翻转。</p>
+<p>“Calculation:”</p>
+<ol>
+<li><p><strong>Group Data</strong>:</p>
+<ul>
+<li>Divide all fields of the UDP segment (including header and data) into 16-bit blocks. If the data length is odd, pad with a zero byte. 这里要注意，不同的比特排序方式会影响到最终结果，数据通常以<strong>大端序</strong>（高位字节在前）表示。</li>
+</ul>
+</li>
+<li><p><strong>Compute Sum</strong>:</p>
+<ul>
+<li>Perform a 1’s complement sum of all 16-bit blocks。就是二进位加法。</li>
+<li>If overflow occurs (exceeds 16 bits), wrap the overflow back into the result.</li>
+</ul>
+</li>
+<li><p><strong>Take Complement</strong>:</p>
+<ul>
+<li>Take the 1’s complement of the computed sum to get the final checksum。这里可以看作进行了一次<strong>同位全 $1$</strong> 加法。</li>
+</ul>
+</li>
+<li><p><strong>Fill Checksum Field</strong>:</p>
+<ul>
+<li>Place the computed checksum into the checksum field of the UDP segment.</li>
+</ul>
+</li>
+</ol>
+<h1 id="Principles-of-Reliable-Data-Transfer"><a href="#Principles-of-Reliable-Data-Transfer" class="headerlink" title="Principles of Reliable Data Transfer"></a>Principles of Reliable Data Transfer</h1><p><strong>应用程序即使运行在 UDP 之上，也可以实现可靠数据传输</strong>。虽然 UDP 本身是无连接、无保证的协议，不提供诸如数据包重传、顺序保证、丢包检测等机制，但<strong>应用层可以自行实现这些功能</strong>，从而达到可靠传输的目的。</p>
+<p><img src="/The-Transport-Layer/Reliable-data-transfer.png" alt="Reliable data transfer: Service model and service implementation">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Reliable-Data-Transfer-over-a-Perfectly-Reliable-Channel-rdt-1-0"><a href="#Reliable-Data-Transfer-over-a-Perfectly-Reliable-Channel-rdt-1-0" class="headerlink" title="Reliable Data Transfer over a Perfectly Reliable Channel: rdt 1.0"></a>Reliable Data Transfer over a Perfectly Reliable Channel: rdt 1.0</h2><p><img src="/The-Transport-Layer/rdt1.png" alt="rdt1.0 - A protocol for a completely reliable channel">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><strong>Unrealistic:</strong> underlying channel perfectly reliable</p>
+<ul>
+<li>no bit errors</li>
+<li>no loss of packets</li>
+</ul>
+<h2 id="Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt-2-0"><a href="#Reliable-Data-Transfer-over-a-Channel-with-Bit-Errors-rdt-2-0" class="headerlink" title="Reliable Data Transfer over a Channel with Bit Errors: rdt 2.0"></a>Reliable Data Transfer over a Channel with Bit Errors: rdt 2.0</h2><p>增添检查错误机制：checksum 和 ACK。</p>
+<p><img src="/The-Transport-Layer/rdt2.png" alt="rdt 2.0 - A protocol for a channel with bit errors">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><strong>New mechanism in rdt 2.0 (beyond rdt 1.0)</strong></p>
+<ul>
+<li>Error detection;<ul>
+<li><strong>Checksum</strong>.</li>
+</ul>
+</li>
+<li>Receiver feedback.<ul>
+<li><strong>ACKs and NAKs</strong>.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>rdt 2.0 有一个致命问题：如果 ACK&#x2F;NAK 出错导致信息改变。</p>
+</blockquote>
+<h2 id="rdt-2-1"><a href="#rdt-2-1" class="headerlink" title="rdt 2.1"></a>rdt 2.1</h2><p><img src="/The-Transport-Layer/rdt2-1-sender.png" alt="rdt 2.1 sender">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="/The-Transport-Layer/rdt2-1-receiver.png" alt="rdt 2.1 receiver">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<blockquote>
+<p>可以看到 rdt 2.1 新增了一个 sequence number。在 rdt 2.0 中提到过其有着一个致命的问题，这个问题可能会导致两个问题：重传和丢失。从 Figure P.6 和 Figure P.7 可以看到 rdt 2.1 能解决重传的问题，但是不能解决丢失的问题。</p>
+</blockquote>
+<h2 id="rdt-2-2"><a href="#rdt-2-2" class="headerlink" title="rdt 2.2"></a>rdt 2.2</h2><p><img src="/The-Transport-Layer/rdt2-2-sender.png" alt="rdt2.2 sender">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="/The-Transport-Layer/rdt2-2-receiver.png" alt="rdt2.2 receiver">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<blockquote>
+<p>rdt 2.1 的机制是：如果是 NAK 或者 checksum 出错就重传。从 Figure P.8 和 Figure P.9 可以看出，receiver 收了什么序号的包就回什么序号，如果是自己要的包就 extract，然后 sender 发下个序号的包，如果重传导致 duplicate，那么只需要 delete 然后给 sender 发送 ACK。显然，receiver 回什么序号，sender 都会发下一个序号的包，也就是 rdt 2.2 没有使用 NAK 就解决了重传的问题。</p>
+</blockquote>
+<p>补充：</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th>变量&#x2F;语句</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>oncethru == 1</code></td>
+<td>是否第一次进入该状态</td>
+</tr>
+<tr>
+<td><code>udt_send(sndpkt)</code></td>
+<td>发送 ACK 包</td>
+</tr>
+<tr>
+<td>结合使用</td>
+<td>首次进入状态时主动重发 ACK，防止因 ACK 丢失而死锁</td>
+</tr>
+</tbody></table>
+</div>
+
+<h2 id="rdt-3-0"><a href="#rdt-3-0" class="headerlink" title="rdt 3.0"></a>rdt 3.0</h2><p><img src="/The-Transport-Layer/rdt3-0-receiver.png" alt="rdt3.0 sender">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<blockquote>
+<p>增加了一个计时器，可以解决包丢失的问题，如果超时就重传，</p>
+</blockquote>
+<h2 id="Pipelined-Reliable-Data-Transfer-Protocols"><a href="#Pipelined-Reliable-Data-Transfer-Protocols" class="headerlink" title="Pipelined Reliable Data Transfer Protocols"></a>Pipelined Reliable Data Transfer Protocols</h2><p><strong>rdt 3.0 stop-and-wait operation</strong>: rdt 3.0 can work, but its performance stinks.</p>
+<blockquote>
+<p>这里是说 rdt 3.0 的机制一轮就处理一个包而效率低下。</p>
+</blockquote>
+<p>For example, we suppose condition with 1 Gbps link, 15 ms propagation delay, 8000 bits packet.</p>
+<p>$$<br>\text{d}_{trans} &#x3D; \frac{L}{R} &#x3D; \frac{8000 \text{bits}}{10^9 \text{bps}} &#x3D; 8 \text{microseconds}<br>$$</p>
+<p>$$<br>\text{Utilization} &#x3D; \frac{\frac{L}{R}}{\text{RTT} + \frac{L}{R}} &#x3D; 0.00027<br>$$</p>
+<p>So, we use <strong>Pipelined Reliable Data Transfer Protocols</strong> to increase utilization!</p>
+<p><strong>Pipelining:</strong> sender allows multiple, “in-flight”,yet-to-be-acknowledged pkts.</p>
+<ul>
+<li>Range of sequence numbers must be <strong>increased</strong>.</li>
+<li><strong>Buffering</strong> at sender and&#x2F;or receiver.</li>
+</ul>
+<h3 id="Go-Back-N-GBN-Protocol"><a href="#Go-Back-N-GBN-Protocol" class="headerlink" title="Go-Back-N (GBN) Protocol"></a>Go-Back-N (GBN) Protocol</h3><p><img src="/The-Transport-Layer/Sender's-view-of-sequence-numbers-in-Go-Back-N.png" alt="Sender&#39;s view of sequence numbers in Go-Back-N">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><strong>Timeout(n):</strong> retransmit pkt <code>n</code> and all higher seq <code>#</code> pkts in window</p>
+<p><img src="/The-Transport-Layer/GBN-sender.png.png" alt="GBN sender">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="/The-Transport-Layer/GBN-receiver.png.png" alt="GBN receiver">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p>需要注意的是，上述图片中是<strong>覆盖确认</strong>：</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th>协议类型</th>
+<th>ACK 处理方式</th>
+<th>base 变化方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>累计确认（GBN）</td>
+<td>只确认按序最大已收到的包</td>
+<td>base 只前进不回退</td>
+</tr>
+<tr>
+<td>覆盖确认（图中）</td>
+<td>收到哪个 ACK 就直接覆盖 base</td>
+<td>base 可能跳跃前进</td>
+</tr>
+</tbody></table>
+</div>
+
+<h3 id="Selective-Repeat-SR"><a href="#Selective-Repeat-SR" class="headerlink" title="Selective Repeat (SR)"></a>Selective Repeat (SR)</h3><p>Sender only <strong>resends</strong> pkts for which ACK not received.</p>
+<p><img src="/The-Transport-Layer/RS-sender-receiver-view.png" alt="Selective-repeat (SR) sender and receiver views of sequence-number space">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p>$$<br>\text{window size} \leq \frac{1}{2} \text{seq}<br>$$</p>
+<h4 id="Sender"><a href="#Sender" class="headerlink" title="Sender"></a>Sender</h4><ul>
+<li><strong>Data from above</strong>:<ul>
+<li>If next available sequence number is within the window, send the packet.</li>
+</ul>
+</li>
+<li><strong>Timeout(n)</strong>:<ul>
+<li>Resend packet <code>n</code>, restart the timer.</li>
+</ul>
+</li>
+<li><strong>ACK(n) in [sendbase, sendbase $+$ $N$]</strong>:<ul>
+<li>Mark packet <code>n</code> as received.</li>
+<li>If <code>n</code> is the smallest unACKed packet, <strong>advance</strong> the window base to the next unACKed sequence number.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Receiver"><a href="#Receiver" class="headerlink" title="Receiver"></a>Receiver</h4><ul>
+<li><strong>Packet <code>n</code> in [rcvbase, rcvbase $+$ $N$ $-$ $1$]</strong>:<ul>
+<li>Send ACK(n).</li>
+<li><strong>Out-of-order</strong>: Buffer the packet.</li>
+<li><strong>In-order</strong>: Deliver the packet (also deliver buffered, in-order packets), advance the window to the next not-yet-received packet.</li>
+</ul>
+</li>
+<li><strong>Packet <code>n</code> in [rcvbase $-$ $N$, rcvbase $-$ $1$]</strong>:<ul>
+<li>Send ACK(n). 解决 duplicate。</li>
+</ul>
+</li>
+<li><strong>Otherwise</strong>:<ul>
+<li>Ignore the packet.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Connection-oriented-transport-TCP"><a href="#Connection-oriented-transport-TCP" class="headerlink" title="Connection-oriented transport: TCP"></a>Connection-oriented transport: TCP</h1><h2 id="TCP-Segment-Structure"><a href="#TCP-Segment-Structure" class="headerlink" title="TCP Segment Structure"></a>TCP Segment Structure</h2><p><img src="/The-Transport-Layer/TCP-segment-structure.png" alt="TCP segment structure">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><strong>How to set sequence number and acknowledgment number?</strong></p>
+<ul>
+<li><strong>sequence number</strong>: represents the byte stream number of the first byte in the segment’s data.</li>
+<li><strong>ACKs</strong>: indicates the sequence number of the next byte expected from the sender. Using cumulative acknowledgment.</li>
+</ul>
+<h2 id="TCP-Round-Trip-Time-and-Timeout"><a href="#TCP-Round-Trip-Time-and-Timeout" class="headerlink" title="TCP Round Trip Time and Timeout"></a>TCP Round Trip Time and Timeout</h2><p><strong>How to estimate $\mathbf{RTT}$?</strong></p>
+<p>$$<br>\text{EstimateRTT} &#x3D; (1 - \alpha) \cdot \text{EstimateRTT} + \alpha \cdot \text{SampleRTT}, \quad \text{Typically } \alpha &#x3D; 0.125<br>$$</p>
+<p><strong>How to set TCP timeout value?</strong></p>
+<p>Longer than $\text{RTT}$, but $\text{RTT}$ varies.<br>$$<br>\text{DevRTT} &#x3D; (1 - \beta) \cdot \text{DevRTT} + \beta \cdot |\text{SampleRTT} - \text{EstimateRTT}|, \quad \text{Typically } \beta &#x3D; 0.25<br>$$</p>
+<p>$$<br>\text{TimeOutInterval} &#x3D; \text{EstimateRTT} + 4 \cdot \text{DevRTT}<br>$$</p>
+<h2 id="TCP-Reliable-Data-Transfer"><a href="#TCP-Reliable-Data-Transfer" class="headerlink" title="TCP Reliable Data Transfer"></a>TCP Reliable Data Transfer</h2><h3 id="Fast-Retransmit"><a href="#Fast-Retransmit" class="headerlink" title="Fast  Retransmit"></a>Fast  Retransmit</h3><p>If sender receives $3$ ACKs for same data, it assumes that segment after ACKed data was lost.</p>
+<h2 id="Flow-control"><a href="#Flow-control" class="headerlink" title="Flow control"></a>Flow control</h2><p>Receiver side of TCP connection has a <strong>receive buffer</strong>.</p>
+<p><img src="/The-Transport-Layer/rwnd-buffer.png" alt="The receive window (rwnd) and the receive buffer (RcvBuffer)">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works?"></a>How it works?</h3><ul>
+<li><strong>Receiver:</strong> advertises unused buffer space by including $\text{rwnd}$ value in segment header.</li>
+<li><strong>Sender:</strong> limits unAcked bytes to $\text{rwnd}$.</li>
+</ul>
+<p>$$<br>\text{rwnd} &#x3D; \text{RcvBuffer} - \left[\text{LastByteRcvd} - \text{LastByteRead} \right]<br>$$</p>
+<p><strong>字节编号</strong>的问题。在TCP中：</p>
+<ul>
+<li>如果初始序列号为0，发送50字节后：<ul>
+<li>这些字节的序号为：0, 1, 2, …, 49</li>
+<li><strong>最后一个字节</strong>的序号为49，即 LastByteRcvd &#x3D; 49</li>
+<li>根据公式 $y &#x3D; \text{LastByteRcvd} + 1$，得到确认号 y &#x3D; 50</li>
+</ul>
+</li>
+</ul>
+<p>其中 y 是 ACK。</p>
+<h2 id="Connection-Management"><a href="#Connection-Management" class="headerlink" title="Connection Management"></a>Connection Management</h2><h3 id="Three-Way-Handshake"><a href="#Three-Way-Handshake" class="headerlink" title="Three Way Handshake"></a>Three Way Handshake</h3><p><strong>握手协议（Handshaking Protocol）</strong> 是指在两个通信实体（如客户端和服务器）之间建立通信连接之前，双方通过一系列消息的交换，协商通信参数、确认彼此身份、同步状态等，从而为后续的数据传输做好准备的过程。</p>
+<ol>
+<li><p><strong>Step 1</strong>:</p>
+<ul>
+<li>Client sends TCP <code>SYN</code> segment to server, specifying initial seq. No data.</li>
+</ul>
+</li>
+<li><p><strong>Step 2</strong>:</p>
+<ul>
+<li>Server host receives <code>SYN</code>, replies with <code>SYNACK</code> segment. Server allocates buffers and specifies server initial seq.</li>
+</ul>
+</li>
+<li><p><strong>Step 3</strong>:</p>
+<ul>
+<li>Client receives <code>SYNACK</code>, replies with ACK segment, which may contain data</li>
+</ul>
+</li>
+</ol>
+<h3 id="Closing-a-Connection"><a href="#Closing-a-Connection" class="headerlink" title="Closing a Connection"></a>Closing a Connection</h3><ol>
+<li><p><strong>Step 1</strong>:</p>
+<ul>
+<li>Client sends TCP <code>FIN</code> segment to server, specifying initial seq. No data.</li>
+</ul>
+</li>
+<li><p><strong>Step 2</strong>:</p>
+<ul>
+<li>Server receives <code>FIN</code>, replies with ACK. Closes connection, sends <code>FIN</code>.</li>
+</ul>
+</li>
+<li><p><strong>Step 3</strong>:</p>
+<ul>
+<li>Client receives <code>FIN</code>, replies with ACK.</li>
+</ul>
+</li>
+<li><p><strong>Step 4</strong>:</p>
+<ul>
+<li>Server, receives ACK.  Connection closed.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">客户端A                                      服务器B</span><br><span class="line">   | ----------- SYN, Seq=1000 ------------&gt; |</span><br><span class="line">   |                                         |</span><br><span class="line">   | &lt;------ SYN+ACK, Seq=2000, Ack=1001 --- |</span><br><span class="line">   |                                         |</span><br><span class="line">   | ----------- ACK, Seq=1001, Ack=2001 --&gt; |</span><br></pre></td></tr></table></figure>
+
+<p>上面所说的 <code>SYN</code> 和 <code>FIN</code> 都在 TCP segment 结构 header 中。</p>
+<h1 id="Principles-of-Congestion-control"><a href="#Principles-of-Congestion-control" class="headerlink" title="Principles of Congestion control"></a>Principles of Congestion control</h1><p>Too many sources sending too much data too fast for <strong>network (router)</strong> to handle.</p>
+<h2 id="Approaches-towards-Congestion-Control"><a href="#Approaches-towards-Congestion-Control" class="headerlink" title="Approaches towards Congestion Control"></a>Approaches towards Congestion Control</h2><ul>
+<li><strong>end-end congestion control</strong>: congestion inferred from end-system observed loss, delay.</li>
+<li><strong>network-assisted congestion control</strong>: routers provide feedback to end systems.</li>
+</ul>
+<h1 id="TCP-Congestion-Control"><a href="#TCP-Congestion-Control" class="headerlink" title="TCP Congestion Control"></a>TCP Congestion Control</h1><p><strong>Goal:</strong>  TCP sender should transmit as fast as possible, but without congesting network</p>
+<p><strong>probing for bandwidth:</strong> increase transmission rate on receipt of ACK, until eventually loss occurs, then decrease transmission rate. &#x2F;&#x2F;一种贪心策略</p>
+<p>Sender limits rate by limiting number of unACKed bytes “in pipeline”:<br>$$<br>\text{LastByteSent} - \text{LastByteAcked} \leq \min {\text{cwnd}, \text{rwnd} }<br>$$</p>
+<p>$$<br>\text{rate} \approx \frac{\text{cwnd}}{\text{RTT}}<br>$$</p>
+<h2 id="Slow-Start-Phase"><a href="#Slow-Start-Phase" class="headerlink" title="Slow Start Phase"></a>Slow Start Phase</h2><p>When connection begins, $\text{cwnd} &#x3D; 1 , \text{MSS}$.</p>
+<blockquote>
+<p>$$ \text{MSS} &#x3D; \text{MTU} - \text{IP头部大小} - \text{TCP头部大小} $$</p>
+</blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>MSS</th>
+<th>MTU</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>所属协议层</td>
+<td>传输层 (TCP)</td>
+<td>数据链路层</td>
+</tr>
+<tr>
+<td>计量对象</td>
+<td>TCP 数据部分</td>
+<td>整个数据包（包括所有头部）</td>
+</tr>
+<tr>
+<td>设置目的</td>
+<td>避免 IP 分片</td>
+<td>适应物理媒介的限制</td>
+</tr>
+<tr>
+<td>典型值</td>
+<td>1460 字节 (以太网)</td>
+<td>1500 字节 (以太网)</td>
+</tr>
+<tr>
+<td>协商方式</td>
+<td>TCP 三次握手时协商</td>
+<td>网络设备固定或自动发现</td>
+</tr>
+</tbody></table>
+</div>
+
+<p>Increase rate exponentially until first <strong>loss event</strong> or when <strong>threshold reached</strong>.</p>
+<ul>
+<li><strong>Double</strong> cwnd every RTT. 没有发生 loss 就以指数函数增长。</li>
+<li>Done by incrementing cwnd by $1$ for every ACK received. 超过 $\text{ssthresh}$ 后线性增长。</li>
+</ul>
+<h2 id="Congestion-Avoidance"><a href="#Congestion-Avoidance" class="headerlink" title="Congestion Avoidance"></a>Congestion Avoidance</h2><p>When $\text{cwnd} \geq \text{ssthresh}$, increase $\text{cwnd}$ by $1$ $\text{MSS}$ per $\text{RTT}$.</p>
+<h2 id="TCP-RENO"><a href="#TCP-RENO" class="headerlink" title="TCP RENO"></a>TCP RENO</h2><p><strong>Fast recovery</strong>: When triple duplicate ACKs occurs, $\text{ssthresh}$ sets to $\frac{\text{cwnd}}{2}$, $\text{cwnd}$ sets to $\text{ssthresh}$. 传快了，适当减小。</p>
+<p>But when <strong>timeout</strong> occurs, $\text{ssthresh}$ sets to $\frac{\text{cwnd}}{2}$, $\text{cwnd}$ sets to $1$ $\text{MSS}$. 丢包。</p>
+<h2 id="TCP-throughput"><a href="#TCP-throughput" class="headerlink" title="TCP throughput"></a>TCP throughput</h2><p><strong>Question:</strong> What’s the average throughput of TCP as a function of window size and RTT?</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>Ignoring slow start.</li>
+<li>Let <code>W</code> be the window size when loss occurs.</li>
+</ul>
+<p><strong>Throughput Analysis:</strong></p>
+<ol>
+<li><p><strong>When window size is <code>W</code></strong>:</p>
+<ul>
+<li>Throughput &#x3D; $\frac{W}{\text{RTT}}$.</li>
+</ul>
+</li>
+<li><p><strong>Just after loss</strong>:</p>
+<ul>
+<li>Window size drops to $\frac{W}{2}$.</li>
+<li>Throughput &#x3D; $\frac{W}{2 \cdot \text{RTT}}$.</li>
+</ul>
+</li>
+<li><p><strong>Average throughput</strong>:</p>
+<ul>
+<li>Average throughput &#x3D; $0.75 \cdot \frac{W}{\text{RTT}}$.</li>
+</ul>
+</li>
+</ol>
+<h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="R-4"><a href="#R-4" class="headerlink" title="R.4"></a>R.4</h2><p><strong>Question:</strong></p>
+<p>Describe why an application developer might choose to run an application over UDP rather than TCP.</p>
+<p><strong>Answer:</strong></p>
+<p>An application developer might choose to run an application over UDP rather than TCP for the following reasons:</p>
+<ol>
+<li><p><strong>Low Latency</strong>: UDP is a connectionless protocol, meaning it does not establish a connection before sending data. This reduces latency, making it suitable for real-time applications like video streaming, online gaming, and voice over IP (VoIP).</p>
+</li>
+<li><p><strong>No Overhead for Reliability</strong>: Unlike TCP, UDP does not provide reliability mechanisms such as retransmissions, acknowledgments, or congestion control. This reduces overhead and allows applications to handle reliability themselves if needed.</p>
+</li>
+<li><p><strong>Broadcast&#x2F;Multicast Support</strong>: UDP supports broadcasting and multicasting, which is useful for applications like live video streaming or network discovery.</p>
+</li>
+<li><p><strong>Simple Protocol</strong>: UDP is simpler and requires fewer resources, making it ideal for lightweight applications or systems with limited processing power.</p>
+</li>
+<li><p><strong>Custom Error Handling</strong>: Some applications prefer to implement their own error handling and flow control mechanisms tailored to their specific needs, which is easier with UDP.</p>
+</li>
+<li><p><strong>Unordered Data Delivery</strong>: For applications where the order of data packets is not critical (e.g., DNS queries), UDP is a better choice as it does not enforce packet ordering.</p>
+</li>
+</ol>
+<h2 id="P-4"><a href="#P-4" class="headerlink" title="P.4"></a>P.4</h2><p><strong>Question:</strong><br>a. Suppose you have the following $2$ bytes: $01011100$ and $01010110$. What is the $1$s complement of the sum of these $2$ bytes?<br>b. Suppose you have the following $2$ bytes: $11011010$ and $00110110$. What is the $1$s complement of the sum of these $2$ bytes?<br>c. For the bytes in part (a), give an example where one bit is flipped in each of the $2$ bytes and yet the $1$s complement doesn’t change.</p>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><strong>a.</strong> $10110010$.</li>
+<li><strong>b.</strong> $00010001$.</li>
+<li><strong>c.</strong> $01011110$ and $01010100$.</li>
+</ul>
+<h2 id="P-11"><a href="#P-11" class="headerlink" title="P.11"></a>P.11</h2><p><strong>Question:</strong></p>
+<p>The sender side of $\text{rdt}3.0$ simply ignores (that is, takes no action on) all received packets that are either in error or have the wrong value in the acknum field of an acknowledgment packet. Suppose that in such circumstances, $\text{rdt}3.0$ were simply to retransmit the current data packet. Would the protocol still work? (Hint: Consider what would happen if there were only bit errors; there are no packet losses but premature timeouts can occur. Consider how many times the $n^{th}$ packet is sent, in the limit as $n$ approaches infinity.)</p>
+<p><strong>Answer:</strong></p>
+<p>在这种情况下，rdt $3.0$ 仍然是有效的。首先，该协议接收方可以通过检查 <strong>sequence number</strong> 来判断当前的包是否重复，这个检查方式一直有效。原本的 $\text{rdt}3.0$ 协议在超时后会重传，但现在只要检查出 <strong>acknowledgment packet</strong> 中出错就重传，这显然会增加网络负载，比如：在极端情况下，发送方可能会多次重传一个包，若 ACK 错误率为 $p$，则每个数据包平均需要发送 $1&#x2F;(1-p)$ 次，直到接受到正确的 <strong>ACKs</strong>。总结：$\text{rdt}3.0$ 协议在这种情况下仍然是可靠的，但立即重传错误数据包会导致性能问题，因此这种修改并不是一个好的设计选择。</p>
+<h2 id="P-14"><a href="#P-14" class="headerlink" title="P.14"></a>P.14</h2><p><strong>Question:</strong></p>
+<p>Consider the cross-country example shown in Figure $3.17$. How big would the window size have to be for the channel utilization to be greater than $95$ percent? Suppose that the size of a packet is $1,500$ bytes, including both header fields and data.</p>
+<p><strong>Complement:</strong> $1$ Gbps link. RTT, is approximately $30$ milliseconds.</p>
+<p><strong>Answer:</strong></p>
+<p>$$<br>\text{d}_{trans} &#x3D; \frac{L}{R} &#x3D; \frac{1500 \times 8}{1 \times 10^9} &#x3D; 1.2 \times 10^{-5} , \text{s}<br>$$</p>
+<p>$$<br>\text{Utilization} &#x3D; \frac{\text{rwnd} \times \frac{L}{R}}{\text{RTT} + \text{rwnd} \times \frac{L}{R}} \geq 0.95<br>$$</p>
+<p>解得，$\text{rwnd} \geq 4750$。</p>
+<h2 id="P-22"><a href="#P-22" class="headerlink" title="P.22"></a>P.22</h2><p><strong>Questions and Answers:</strong></p>
+<p>Answer true or false to the following questions and briefly justify your answer:</p>
+<p><strong>a. With the SR protocol, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.</strong></p>
+<p><strong>True</strong>; 在 <strong>SR</strong> 协议中，由于网络延迟等原因，发送方可能收到对应于已经滑出当前窗口的数据包的 ACK。</p>
+<p><strong>b. With GBN, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.</strong></p>
+<p><strong>False</strong>; 在 <strong>GBN</strong> 协议中，<strong>ACK</strong> 是累积的，表示所有序列号小于等于 ACK 的包已经被正确接收。</p>
+<p><strong>c. The alternating-bit protocol is the same as the SR protocol with a sender and receiver window size of $1$.</strong></p>
+<p><strong>True</strong>; 交替位协议是 SR 协议的一个特例，其中发送方和接收方的窗口大小均为 $1$。它只允许发送一个未确认的包，并通过序列号（$0$ 或 $1$）来区分包。</p>
+<p><strong>d. The alternating-bit protocol is the same as the GBN protocol with a sender and receiver window size of $1$.</strong></p>
+<p><strong>True</strong>; 交替位协议也可以看作是 GBN 协议的一个特例，其中发送方和接收方的窗口大小均为 $1$。在这种情况下，GBN 的行为与交替位协议完全一致，因为它只允许发送一个未确认的包，并在超时或收到 NAK 时重传该包。</p>
+<h2 id="P-24"><a href="#P-24" class="headerlink" title="P.24"></a>P.24</h2><p><strong>Questions and Answers:</strong></p>
+<p>Consider transferring an enormous file of $L$ bytes from Host A to Host B. Assume an MSS of $536$ bytes.</p>
+<p><strong>a. What is the maximum value of $L$ such that TCP sequence numbers are not exhausted? Recall that the TCP sequence number field has $4$ bytes.</strong></p>
+<p>TCP segment structure 中 sequence number 有 $32$ bits，从 $0$ 开始。所以最大的 $L &#x3D; 2^{32} - 1$。</p>
+<p><strong>b. For the $L$ you obtain in (a), find how long it takes to transmit the file. Assume that a total of $66$ bytes of transport, network, and data-link header are added to each segment before the resulting packet is sent out over a $155$ Mbps link. Ignore flow control and congestion control so A can pump out the segments back to back and continuously.</strong></p>
+<ul>
+<li>MSS &#x3D; $536$ bytes  </li>
+<li>每报文附加头部 &#x3D; $66$ bytes  </li>
+<li>总报文尺寸 (536 + 66 &#x3D; 602) bytes  </li>
+<li>报文数量<br>$$<br>N &#x3D; \left\lceil \frac{L_{\max}}{\text{MSS}} \right\rceil<br>  &#x3D; \left\lceil \frac{2^{32}-1}{536} \right\rceil<br>  &#x3D; 8,012,999<br>$$</li>
+<li>总传输位数<br>$$<br>B &#x3D; N \times 602\ \text{bytes} \times 8\ \tfrac{\text{bits}}{\text{byte}}<br>  &#x3D; 8,012,999 \times 602 \times 8<br>  \approx 3.85906\times 10^{10}\ \text{bits}<br>$$</li>
+<li>链路速率 (R &#x3D; 155\ \text{Mbps})  </li>
+<li>传输时间<br>$$<br>T &#x3D; \frac{B}{R}<br>  &#x3D; \frac{3.85906\times 10^{10}}{155\times 10^6}<br>  \approx 249\ \text{秒}<br>  \approx 4.15\ \text{分钟}<br>$$</li>
+</ul>
+<h2 id="P-25"><a href="#P-25" class="headerlink" title="P.25"></a>P.25</h2><p>Host A and B are communicating over a TCP connection, and Host B has already received from A all bytes up through byte $126$. Suppose Host A then sends two segments to Host B back-to-back. The first and second segments contain $70$ and $50$ bytes of data, respectively. In the first segment, the sequence number is $127$, the source port number is $302$, and the destination port number is $80$. Host B sends an acknowledgement whenever it receives a segment from Host A.</p>
+<p><strong>Questions and Answers:</strong></p>
+<p><strong>a. In the second segment sent from Host A to B, what are the sequence number, source port number, and destination port number?</strong></p>
+<ul>
+<li>The sequence number is $197$, the source port number is $302$ and the dest port number is $80$.</li>
+</ul>
+<p><strong>b. If the first segment arrives before the second segment, in the acknowledgement of the first arriving segment, what is the acknowledgment number, the source port number, and the destination port number?</strong></p>
+<ul>
+<li>The acknowledgement number is $197$, the source port number is $80$ and the dest port number is $302$.</li>
+</ul>
+<p><strong>c. If the second segment arrives before the first segment, in the acknowledgement of the first arriving segment, what is the acknowledgment number?</strong></p>
+<ul>
+<li>The acknowledgement number is $127$.</li>
+</ul>
+<p><strong>d. Suppose the two segments sent by A arrive in order at B. The first acknowledgement is lost and the second acknowledgement arrives after the first timeout interval. Draw a timing diagram, showing these segments and all other segments and acknowledgements sent. (Assume there is no additional packet loss.) For each segment in your figure, provide the sequence number and the number of bytes of data; for each acknowledgement that you add, provide the acknowledgement number.</strong></p>
+<ul>
+<li>假设：  </li>
+<li>A→B 连续发送两段  </li>
+<li>B 收到每段即发 ACK  </li>
+<li>第一条 ACK(197) 丢失，第二条 ACK(247) 成功到达  </li>
+<li>超时重传未触发（因为第二条 ACK 收到后 A 已完成确认）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Time →</span><br><span class="line">Host A                          Host B</span><br><span class="line">  |                                |</span><br><span class="line">  |-- [Seq=127, Len=70] ----------&gt;|   接收 127-196，B 发送 ACK(197) → 丢失</span><br><span class="line">  |                                |</span><br><span class="line">  |-- [Seq=197, Len=50] ----------&gt;|   接收 197-246，B 发送 ACK(247)</span><br><span class="line">  |                                |</span><br><span class="line">  |      [超时等待 ACK(197)]       |</span><br><span class="line">  |                                |</span><br><span class="line">  |-- [Seq=127, Len=70] ----------&gt;|   重复包，B 再次发送 ACK(247)</span><br><span class="line">  |                                |</span><br><span class="line">  |&lt;----------- ACK(247) ----------|   A 收到确认，确认两段都已接收</span><br></pre></td></tr></table></figure>
+
+<h2 id="P-31"><a href="#P-31" class="headerlink" title="P.31"></a>P.31</h2><p><strong>Question and Answer:</strong></p>
+<p>What is the relationship between the variable SendBase in Section $3.5.4$ and the variable LastByteRcvd in Section $3.5.5$?</p>
+<p>在理想网络条件下（无丢包、延迟较小）：</p>
+<p>$$\text{SendBase} - 1 &#x3D; \text{LastByteRcvd}$$</p>
+<p>这是因为：</p>
+<ul>
+<li>接收方接收到字节序号为 n 的数据后，LastByteRcvd &#x3D; n</li>
+<li>接收方发送 ACK(n+1)</li>
+<li>发送方收到 ACK(n+1) 后，更新 SendBase &#x3D; n+1</li>
+</ul>
+<p>由于网络延迟、丢包等因素：</p>
+<ul>
+<li>LastByteRcvd 可能<strong>小于</strong> SendBase-1（发送方已收到更新的确认）</li>
+<li>LastByteRcvd 可能<strong>大于</strong> SendBase-1（某些已接收数据未被确认接收）</li>
+</ul>
+<h2 id="P-32"><a href="#P-32" class="headerlink" title="P.32"></a>P.32</h2><p><strong>Question and Answer:</strong></p>
+<p>What is the relationship between the variable $\text{LastByteRcvd}$ in Section $3.5.5$ and the variable $\text{y}$ in Section $3.5.4$?</p>
+<p>由上题所述：</p>
+<p>$$<br>\text{acknowledgement number} &#x3D; \text{LastByteRcvd} + 1<br>$$</p>
+<h2 id="P-34"><a href="#P-34" class="headerlink" title="P.34"></a>P.34</h2><p>Compare GBN, SR, and TCP (no delayed ACK). Assume that the timeout values for all three protocols are sufficiently long such that $5$ consecutive data segments and their corresponding ACKs can be received (if not lost in the channel) by the receiving host (Host B) and the sending host (Host A) respectively. Suppose Host A sends $5$ data segments to Host B, and the $2^{nd}$ segment (sent from A) is lost. In the end, all $5$ data segments have been correctly received by Host B.</p>
+<p><strong>Question and Answer:</strong></p>
+<p><strong>a. How many segments has Host A sent in total and how many ACKs has Host B sent in total? What are their sequence numbers? Answer this question for all three protocols.</strong></p>
+<p>题目没有指定 sequence number，这里默认从 $0$ 开始，所有 segment 大小为 $1$ byte。首先，receiver 收到多少个 segment 就会回多少个 ACK。</p>
+<p>首先明确各协议的ACK机制：</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th><strong>协议</strong></th>
+<th><strong>确认机制</strong></th>
+<th><strong>ACK含义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GBN</td>
+<td>累积确认</td>
+<td>ACK(n)表示期望收到序号n的段</td>
+</tr>
+<tr>
+<td>SR</td>
+<td>选择确认</td>
+<td>ACK(n)表示已收到序号n的段</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>累积确认+SACK</td>
+<td>ACK(n)表示期望收到序号n的段</td>
+</tr>
+</tbody></table>
+</div>
+
+<p>分析 GBN 协议，第一个 segment 的 sequence number 为 $0$，以此类推，接下来的 sequence number 分别为 $1$ $2$ $3$ $4$，相应的 ACK 为 $1$ $2$ $3$ $4$ $5$。但由于第二个包丢失，实际上的 ACK 为 $1$ 丢失 $1$ $1$ $1$， 再重发，$2$ $3$ $4$ $5$。再分析剩下两个协议，最终得到</p>
+<div style="display: block; margin: 0 auto; width: fit-content;">
+
+<table>
+<thead>
+<tr>
+<th><strong>Protocol</strong></th>
+<th><strong>Segments Sent</strong></th>
+<th><strong>ACKs Received</strong></th>
+<th><strong>Their Sequence</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GBN</td>
+<td>9</td>
+<td>8</td>
+<td>1 1 1 1 2 3 4 5</td>
+</tr>
+<tr>
+<td>SR</td>
+<td>6</td>
+<td>5</td>
+<td>0 2 3 4 1</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>6</td>
+<td>5</td>
+<td>1 1 1 1 5</td>
+</tr>
+</tbody></table>
+</div>
+
+<p><strong>b. If the timeout values for all three protocol are much longer than $5$ RTT, then which protocol successfully delivers all five data segments in shortest time interval?</strong></p>
+<p>SR 和 TCP，因为这两种协议都只发送了 $6$ 次包。</p>
+<h2 id="P-37"><a href="#P-37" class="headerlink" title="P.37"></a>P.37</h2><p><strong>Questions and Answers:</strong></p>
+<p><img src="/The-Transport-Layer/TCP%20window%20size%20as%20a%20function%20of%20time.png" alt="TCP window size as a function of time">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p>Assuming TCP <strong>Reno</strong> is the protocol experiencing the behavior shown above, answer the following questions. In all cases, you should provide a short discussion justifying your answer.</p>
+<p><strong>a. Identify the intervals of time when TCP slow start is operating.</strong></p>
+<p>根据 TCP congestion control 机制，slow start phase 期间 <strong>cwnd</strong> 是以指数函数增长，从图中可以得出大概是在 $\text{Transmission round} \in [1, 6] \cup [23, 26]$ 期间。</p>
+<p><strong>b. Identify the intervals of time when TCP congestion avoidance is operating</strong></p>
+<p>TCP congestion avoidance 期间的特点是 <strong>cwnd</strong> 以 $ k &#x3D; 1 $ MSS 的速率线性增长，从图中可以得出大概是在 $\text{Transmission round} \in [6, 16] \cup [17, 22]$ 期间。</p>
+<p><strong>c. After the 16th transmission round, is segment loss detected by a triple duplicate ACK or by a timeout?</strong></p>
+<p>从图中可以分析出，$\text{ssthresh} &#x3D; \frac{\text{cwnd}}{2}$，$\text{cwnd} &#x3D; \text{ssthresh}$，然后线性增长，所以 detected by a triple duplicate ACK。</p>
+<p><strong>d. After the 22nd transmission round, is segment loss detected by a triple duplicate ACK or by a timeout?</strong></p>
+<p><strong>cwnd</strong> 归一，进入 slow start phase，所以 detected by a timeout。</p>
+<p><strong>e. What is the initial value of $\text{ssthresh}$ at the first transmission round?</strong></p>
+<p>大概是 $32$ MSS，当 ${\text{cwnd} \geq \text{ssthresh}}$ 会进入 congestion avoidance phase，然后线性增长。</p>
+<p><strong>f. What is the value of ssthresh at the $18^{th}$ transmission round?</strong></p>
+<p>减半了，所以是，$\text{ssthresh} &#x3D; \frac{\text{cwnd}}{2} &#x3D; 21$ MSS</p>
+<p><strong>g. What is the value of ssthresh at the $24^{th}$ transmission round?</strong></p>
+<p>减半了，所以是，$\text{ssthresh} &#x3D; \frac{\text{cwnd}}{2} &#x3D; 13$ MSS</p>
+<p><strong>h. During what transmission round is the $70^{th}$ segment sent?</strong></p>
+<p>第一次 slow start phase 阶段后传了 63 个，所在第 $6$ 和 $7$ 轮之间。</p>
+<p><strong>i. Assuming a packet loss is detected after the $26^{th}$ round by the receipt of a triple duplicate ACK, what will be the values of the congestion window size and of ssthresh?</strong></p>
+<p>$\text{ssthresh} &#x3D; \frac{\text{cwnd}}{2}$，$\text{cwnd} &#x3D; \text{ssthresh}$，都是 $4$ segment.</p>
+<p><strong>j. Suppose TCP Tahoe is used (instead of TCP Reno), and assume that triple duplicate ACKs are received at the $16^{th}$ round. What are the ssthresh and the congestion window size at the $19^{th}$ round?</strong></p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TCP Tahoe</th>
+<th>TCP Reno</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>三次重复ACK时</strong></td>
+<td>cwnd&#x3D;1MSS, 进入慢启动</td>
+<td>cwnd&#x3D;ssthresh, 进入拥塞避免</td>
+</tr>
+<tr>
+<td><strong>超时事件时</strong></td>
+<td>cwnd&#x3D;1MSS, 进入慢启动</td>
+<td>cwnd&#x3D;1MSS, 进入慢启动</td>
+</tr>
+<tr>
+<td><strong>恢复速度</strong></td>
+<td>较慢(需要重新慢启动)</td>
+<td>较快(可能直接进入拥塞避免)</td>
+</tr>
+<tr>
+<td><strong>快速恢复机制</strong></td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody></table>
+</div>
+
+<p>第 $16^{th}$ 出现了 triple duplicate ACKs，所以，第 $17^{th}$ $\text{ssthresh} &#x3D; \frac{\text{cwnd}}{2} &#x3D; 21$，$\text{cwnd} &#x3D; 1$，然后进入 slow start 阶段，第 $19^{th}$ $\text{cwnd} &#x3D; 4$</p>
+<p><strong>k. Again suppose TCP Tahoe is used, and there is a timeout event at $22^{nd}$ round. How many packets have been sent out from $17^{th}$ round till $22^{nd}$ round, inclusive?</strong></p>
+<p>需要注意的是，在第 $16^{th}$ 收到了三个 ACKs，同时，在第 $22^{th}$ 到达 ssthresh 所以实际收到 $1 + 2 + 4 + 8 + 16 + 21 &#x3D; 52$ MSS。</p>
+<h2 id="P-43"><a href="#P-43" class="headerlink" title="P.43"></a>P.43</h2><p>Consider that only a single TCP (Reno) connection uses one $10$ Mbps link which does not buffer any data. Suppose that this link is the only congested link between the sending and receiving hosts. Assume that the TCP sender has a huge file to send to the receiver, and the receiver’s receive buffer is much larger than the congestion window. We also make the following assumptions: each TCP segment size is $1,500$ bytes; the two-way propagation delay of this connection is $100$ msec; and this TCP connection <strong>is always in congestion avoidance phase, that is, ignore slow start</strong>.</p>
+<p><strong>Questions and Answers:</strong></p>
+<p><strong>a. What is the maximum window size (in segments) that this TCP connection can achieve?</strong></p>
+<p>最大窗口大小由 <strong>带宽延迟积(BDP)</strong> 决定：</p>
+<p>首先计算 RTT：</p>
+<ul>
+<li>传播延迟 &#x3D; $100$ 毫秒</li>
+<li>传输延迟 &#x3D; 段大小&#x2F;带宽 &#x3D; ($1500 \times 8$) 比特&#x2F;($10 \times 10^6$) 比特&#x2F;秒 &#x3D; $1.2$ 毫秒</li>
+<li><strong>总RTT</strong> &#x3D; $101.2$ 毫秒</li>
+</ul>
+<p>带宽延迟积：<br>$$<br>\text{BDP} &#x3D; 10\text{ Mbps} \times 0.1012\text{ s} &#x3D; 1.012 \times 10^6 \text{ bits}<br>$$</p>
+<p>也就是 PPT 上的公式：<br>$$<br>\text{rate} \approx \frac{\text{cwnd}}{\text{RTT}}<br>$$</p>
+<p>最大窗口大小(段数)：<br>$$<br>\text{最大窗口} &#x3D; \frac{\text{BDP}}{\text{段大小}} &#x3D; \frac{1.012 \times 10^6}{1500 \times 8} \approx 84.33 &#x3D; \boxed{84\text{ 段}}<br>$$</p>
+<p><strong>b. What is the average window size (in segments) and average throughput (in bps) of this TCP connection?</strong></p>
+<p>根据TCP Reno特性，窗口大小在拥塞避免阶段会在 $\frac{W}{2}$ 和 $W$ 之间周期变化。</p>
+<p>平均窗口大小：<br>$$<br>\text{平均窗口} &#x3D; 0.75 \times W &#x3D; 0.75 \times 84 &#x3D; \boxed{63\text{ 段}}<br>$$</p>
+<p>平均吞吐量：<br>$$<br>\text{平均吞吐量} &#x3D; 0.75 \times \frac{W \times \text{段大小} \times 8}{\text{RTT}} &#x3D; 0.75 \times \frac{84 \times 1500 \times 8}{0.1012} \approx \boxed{7.5\text{ Mbps}}<br>$$</p>
+<p><strong>c. How long would it take for this TCP connection to reach its maximum window again after recovering from a packet loss?</strong></p>
+<p>在TCP Reno中，丢包后窗口大小减半，然后每个RTT增加 $1$ 个MSS：</p>
+<ul>
+<li>初始窗口（丢包后）&#x3D; $\frac{W}{2} &#x3D; 42$ 段</li>
+<li>每个RTT增加 $1$ 段</li>
+<li>需要增加的段数 &#x3D; $\frac{W}{2} &#x3D; 42$ 段</li>
+<li>所需RTT数 &#x3D; $42$</li>
+</ul>
+<p>$$<br>\text{恢复时间} &#x3D; 42 \times 0.1012 &#x3D; \boxed{4.25\text{ 秒}}<br>$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/" data-id="cmfdjh58s0004jgbian3f2l8z" data-title="The Transport Layer" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/06/09/Wireless-and-Mobile-Networks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Wireless and Mobile Networks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/07/The-Application-Layer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">The Application Layer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Application-Layer/">Application Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Data-Link-Layer/">Data Link Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Introduction/">Introduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wireshark/">Wireshark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/17/Wireshark-Homework/">Wireshark Homework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/10/Introduction/">Introduction</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/09/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/The-Transport-Layer/">The Transport Layer</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/The-Application-Layer/">The Application Layer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

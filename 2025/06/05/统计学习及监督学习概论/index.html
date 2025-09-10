@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>统计学习及监督学习概论 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作为《统计学习方法》一书的开篇内容，本文旨在系统梳理统计学习领域中的基本概念与常见问题，为后续章节的深入学习奠定理论基础。 模型评估与选择训练误差与测试误差一般而言，统计学习方法具体采用的损失函数未必是评估时使用的损失函数。 假设学习到的模型是 $Y &#x3D; \hat{f}(X)$，训练误差是模型 $Y &#x3D; \hat{f}(X)$ 关于训练数据集的平局损失： $$R_{\text{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习及监督学习概论">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/05/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作为《统计学习方法》一书的开篇内容，本文旨在系统梳理统计学习领域中的基本概念与常见问题，为后续章节的深入学习奠定理论基础。 模型评估与选择训练误差与测试误差一般而言，统计学习方法具体采用的损失函数未必是评估时使用的损失函数。 假设学习到的模型是 $Y &#x3D; \hat{f}(X)$，训练误差是模型 $Y &#x3D; \hat{f}(X)$ 关于训练数据集的平局损失： $$R_{\text{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-05T12:53:05.000Z">
+<meta property="article:modified_time" content="2025-06-05T13:16:10.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ddccffq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-统计学习及监督学习概论" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/05/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" class="article-date">
+  <time class="dt-published" datetime="2025-06-05T12:53:05.000Z" itemprop="datePublished">2025-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>►<a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      统计学习及监督学习概论
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>作为《统计学习方法》一书的开篇内容，本文旨在系统梳理统计学习领域中的基本概念与常见问题，为后续章节的深入学习奠定理论基础。</p>
+<h2 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h2><h3 id="训练误差与测试误差"><a href="#训练误差与测试误差" class="headerlink" title="训练误差与测试误差"></a>训练误差与测试误差</h3><p>一般而言，统计学习方法具体采用的损失函数未必是评估时使用的损失函数。</p>
+<p>假设学习到的模型是 $Y &#x3D; \hat{f}(X)$，<strong>训练误差</strong>是模型 $Y &#x3D; \hat{f}(X)$ 关于训练数据集的平局损失：</p>
+<p>$$<br>R_{\text{emp}} &#x3D; \frac{1}{N} \sum_{i &#x3D; 1}^{N} L(y_i, \hat{f}(x_i))<br>$$</p>
+<p>其中 $N$ 是训练样本容量。</p>
+<p><strong>测试误差</strong>是模型 $Y &#x3D; \hat{f}(X)$ 关于测试数据集的平均损失：</p>
+<p>$$<br>e_{\text{emp}} &#x3D; \frac{1}{N’} \sum_{i &#x3D; 1}^{N’} L(y_i, \hat{f}(x_i))<br>$$</p>
+<p>其中 $N’$ 是测试样本容量。</p>
+<p>上面所述中的函数 $L$ 是损失函数。</p>
+<p>常见的 $L$ 有指示函数 $I$，当满足函数内容是取 $1$。当损失函数是指示函数时，此时测试误差又叫做<strong>测试误差率</strong>：</p>
+<p>$$<br>e_{\text{test}} &#x3D; \frac{1}{N’} \sum_{i &#x3D; 1}^{N’} I(y_i \neq \hat{f}(x_i))<br>$$</p>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>过拟合是统计学习和机器学习领域中常见且重要的问题之一。它指的是模型在训练数据上表现良好，能够取得较低的训练误差，但在未见过的测试数据或新样本上表现较差，导致<strong>泛化能力下降</strong>的现象。过拟合通常发生在模型复杂度过高、参数数量远大于训练样本数量，或训练过程中对训练数据<strong>记忆</strong>过多而忽略了数据的内在规律时。</p>
+<p>造成过拟合的主要原因包括：模型容量过大、训练数据不足、特征冗余或噪声较多等。为缓解过拟合，常用的方法有：增加训练数据量、选择更简单的模型、采用正则化技术（如L1或L2正则化）、剪枝、交叉验证等。合理地控制模型复杂度和提升数据质量，是提升模型泛化能力、避免过拟合的关键。</p>
+<h3 id="正则化与交叉验证"><a href="#正则化与交叉验证" class="headerlink" title="正则化与交叉验证"></a>正则化与交叉验证</h3><h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><p>正则化是<strong>结构风险最小化策略</strong>的实现，是在<strong>经验风险</strong>上加一个正则化项，一般具有下述形式：</p>
+<p>$$<br>\min_{f \in \mathcal{F}} \quad \frac{1}{N} \sum_{i &#x3D; 1}^{N}L(y_i, \hat{f}(x_i)) + \lambda J(f)<br>$$</p>
+<h4 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h4><p>如果样本数据不足，此时可以应用交叉验证。</p>
+<h2 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ddccffq.github.io/2025/06/05/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" data-id="cmfdjh58y0028jgbi6rj6ey64" data-title="统计学习及监督学习概论" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/06/07/The-Application-Layer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The Application Layer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/04/The-Data-Link-Layer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">The Data Link Layer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Application-Layer/">Application Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Data-Link-Layer/">Data Link Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Introduction/">Introduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wireshark/">Wireshark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/17/Wireshark-Homework/">Wireshark Homework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/10/Introduction/">Introduction</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/09/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/The-Transport-Layer/">The Transport Layer</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/The-Application-Layer/">The Application Layer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

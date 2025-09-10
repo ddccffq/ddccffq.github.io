@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>上下文无关文法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点： $$\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上下文无关文法">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点： $$\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-03T02:25:03.000Z">
+<meta property="article:modified_time" content="2025-06-10T06:33:14.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ddccffq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-上下文无关文法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2025-06-03T02:25:03.000Z" itemprop="datePublished">2025-06-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      上下文无关文法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="上下文无关文法的定义"><a href="#上下文无关文法的定义" class="headerlink" title="上下文无关文法的定义"></a>上下文无关文法的定义</h1><p>定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：</p>
+<p>$$<br>\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V<br>$$</p>
+<h1 id="派生树"><a href="#派生树" class="headerlink" title="派生树"></a>派生树</h1><p>设有 CFG $ G &#x3D; (V, T, P, S)$，$G$ 的派生树是满足如<br>下条件的有序树。</p>
+<ol>
+<li>树的每个顶点有一个标记 $X$，且 $X \in V \cup T \cup {\epsilon}$；</li>
+<li>树根的标记为 $S$；</li>
+<li>如果非叶子顶点 $v$ 标记为 $A$，$v$ 的儿子从左到右依次为$v_1, v_2, \dots, v_n$，并且它们分别标记为$X_1, X_2, \dots, X_n$，则 $A \to X_1 X_2 \cdots X_n \in P$；</li>
+<li>如果 $X$ 是一个<strong>非叶子顶点</strong>的标记，则 $X \in V$；</li>
+<li>如果顶点 $v$ 标记为 $\epsilon$，则 $v$ 是该树的叶子，并且 $v$ 是其父顶点的<strong>惟一儿子</strong>。</li>
+</ol>
+<p>派生树都是 CFG 的派生树。</p>
+<h2 id="顶点的结果"><a href="#顶点的结果" class="headerlink" title="顶点的结果"></a>顶点的结果</h2><p>派生树 $T$ 的所有叶子结点从左到右的符号串为 $X_1 X_2 \cdots X_n$是 $T$ 的结果。</p>
+<h1 id="CFG-的化简"><a href="#CFG-的化简" class="headerlink" title="CFG 的化简"></a>CFG 的化简</h1><h2 id="删除无用符号"><a href="#删除无用符号" class="headerlink" title="删除无用符号"></a>删除无用符号</h2><p><strong>无用符号</strong></p>
+<h1 id="CNF：乔姆斯基范式文法"><a href="#CNF：乔姆斯基范式文法" class="headerlink" title="CNF：乔姆斯基范式文法"></a>CNF：乔姆斯基范式文法</h1><p>CFG $G &#x3D; (V, T, P, S)$ 中的产生式形式为：$A \to BC, , A\to a$，其中 $A,B,C \in V,, a \in T$，需要注意的是此 CFG 已完成化简。</p>
+<p>利用 CNF 范式派生长度为 $n$ 的串，刚好需要 $2n-1$ 步。</p>
+<h1 id="上下文无关文法的性质"><a href="#上下文无关文法的性质" class="headerlink" title="上下文无关文法的性质"></a>上下文无关文法的性质</h1><h2 id="CFL-的泵引理"><a href="#CFL-的泵引理" class="headerlink" title="CFL 的泵引理"></a>CFL 的泵引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $|z| \geq N$ 时，存在 $u, v, w, x, y$，使得 $z &#x3D; uvwxy$，同时满足：</p>
+<ol>
+<li>$|vwx| \leq N$；</li>
+<li>$|vx| \geq 1$；</li>
+<li>对于任意的非负整数 $i$，$u v^i w x^i y \in L$。</li>
+</ol>
+<h3 id="利用-CFL-泵引理证明一个语言不是-CFL"><a href="#利用-CFL-泵引理证明一个语言不是-CFL" class="headerlink" title="利用 CFL 泵引理证明一个语言不是 CFL"></a>利用 CFL 泵引理证明一个语言不是 CFL</h3><ol>
+<li>首先假设该语言是 CFL，则其满足泵引理，任选 $N$；</li>
+<li>找到语言中的句子 $z \in L$ 且 $|z| \geq N$；</li>
+<li>分析 $v$、$x$ 的各种取值，当满足 $z &#x3D; uvwxy$，且 $|vwx| \leq N$，$|vx| \geq 1$ 时，均能找到 $i \geq 0$，使得 $i$，$u v^i w x^i y \notin L$。</li>
+</ol>
+<h2 id="Ogden-引理"><a href="#Ogden-引理" class="headerlink" title="Ogden 引理"></a>Ogden 引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $z$ 中至少含有 $N$ 个特异点时，存在 $u, v, w, x, y$，使得 $z &#x3D; uvwxy$，同时满足：</p>
+<ol>
+<li>$|vwx|$ 中的特异点的数目 $\leq N$；</li>
+<li>$|vx|$ 中的特异点的数目 $\geq 1$；</li>
+<li>对于任意的非负整数 $i$，$u v^i w x^i y \in L$。</li>
+</ol>
+<h2 id="CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"><a href="#CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭" class="headerlink" title="CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"></a>CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭</h2><h1 id="CYK-Algorithm"><a href="#CYK-Algorithm" class="headerlink" title="CYK Algorithm"></a>CYK Algorithm</h1><p>输入：CNF $G &#x3D; (V, T, P, S)$，$x$；<br>输出：$x \in L$ 或者 $x \notin L$；</p>
+<p>$V_{i,k}$：可以派生出子串 $x_{i,k}$ 的变量集合，$x_{i,k}$ 表示从 $i$ 开始，长度为 $k$ 的子串。</p>
+<ol>
+<li><code>for i = 1 in |x|</code> $V_{i,1} &#x3D; {A \mid A \to x_{i,1} \in P}$</li>
+<li><code>for k = 2 in |x| &#123;for i = 1 to |x| - k + 1&#125;</code> $V_{i,k} &#x3D; \Phi $<ol>
+<li><code>for j = 1 to k - 1</code> $V_{i,k} &#x3D; V_{i,k} \cup {A \mid A \to BC \text{ and } B \in V_{i,j} \text{ and } C \in V_{i + j,k - j}}$</li>
+</ol>
+</li>
+</ol>
+<h1 id="hw13"><a href="#hw13" class="headerlink" title="hw13"></a>hw13</h1><p><strong>题目1：</strong> 使用CFL的泵引理证明 $L &#x3D; { ww \mid w \in {a, b}^{\ast} }$ 不是上下文无关语言.</p>
+<p><strong>解答1：</strong></p>
+<p>我们使用 CFL 的泵引理来证明 $L &#x3D; { ww \mid w \in {a, b}^\ast }$ 不是上下文无关语言。</p>
+<p>假设 $L$ 是一个上下文无关语言，则它满足 CFL 的泵引理。</p>
+<p>设 $N$ 为泵引理中的 $N$，取句子 $ z &#x3D; a^{N} b^{N} a^{N} b^{N} \in L $</p>
+<p>接下来分析 $vwx$ 的各种取值：</p>
+<ol>
+<li>因为 $|vwx| \leq N$，不妨先假设 $vwx \subseteq a^{N}$ 或者 $b^{N}$，显然对于 $\forall i &gt; 0$，都会破坏 $L$ 的结构，即要求 $ww \in L$。<br><br></li>
+<li>然后再分析 $vwx$ 跨越了 $a$ 部分或者 $b$ 部分，由于 $|vwx| \leq N$，可以证明 $vwx$ 最多横跨一个 $a$ 和一个 $b$，也即是类似 $a \cdots ab \cdots b$ 和 $b \cdots ba \cdots a$ 的结构；<br><br><ol>
+<li>假设 $vwx$ 横跨第一个 $a$ 和 $b$。设 $ v &#x3D; a^{m}, , x &#x3D; b^{n}$，则 $\forall i &gt; 0$，$u a^{im} w b^{in} y \notin L$，这很好证明：此时 $u a^{im} w b^{in} y$ 可以写成 $a^{N + im} b^{N + in} a^{N} b^{N}$ 的形式，为了保证 $ww$ 的结构，只能如此分割 $a^{N + im} b^{N + in}$ 和 $a^{N} b^{N}$，因为 $|vx| \geq 1$，所以不存在 $i$ 使得分割后得两个句子相等；<br><br></li>
+<li>同理可以证明 $vwx$ 横跨第二个 $a$ 和 $b$ 时同样不满足泵引理；<br><br></li>
+<li>对于 $vwx$ 横跨第一个 $b$ 和 第二个 $a$ 的情况，此时 $u a^{im} w b^{in} y$ 可以写成 $a^{N} b^{N + im} a^{N + in} b^{N}$ 的形式，同样为了保证 $ww$ 的结构，只能如此分割 $a^{N} b^{N + im}$ 和 $a^{N + in} b^{N}$，显然分割后的句子不相等，也就是不满足泵引理。<br><br></li>
+</ol>
+</li>
+</ol>
+<p>综上，$L$ 不是 CFL。</p>
+<p><strong>题目2：</strong><br>给定文法 $G$ 如下：</p>
+<p>[<br>\begin{align*}<br>&amp;S \to AB ,|, AA ,|, BC \<br>&amp;A \to CD ,|, a \<br>&amp;B \to BD ,|, SB ,|, b \<br>&amp;C \to c \<br>&amp;D \to DB ,|, b<br>\end{align*}<br>]</p>
+<p>根据算法 CYK 算法，请识别字符串”aabbc”是否属于 $L(G)$?</p>
+<p><strong>解答2：</strong><br>$x &#x3D; \text{“aabbc”}$，长度 $|x| &#x3D; 5$。</p>
+<p>构造一个二维表 $V_{i,k}$，其中 $V_{i,k}$ 表示从位置 $i$ 开始，长度为 $k$ 的子串可以由哪些非终结符生成。</p>
+<ol>
+<li><p><strong>第一步：处理长度为 1 的子串</strong><br>根据文法的终结符规则，填充 $V_{i,1}$：</p>
+<ul>
+<li>$x_1 &#x3D; a \implies V_{1,1} &#x3D; {A}$</li>
+<li>$x_2 &#x3D; a \implies V_{2,1} &#x3D; {A}$</li>
+<li>$x_3 &#x3D; b \implies V_{3,1} &#x3D; {B, D}$</li>
+<li>$x_4 &#x3D; b \implies V_{4,1} &#x3D; {B, D}$</li>
+<li>$x_5 &#x3D; c \implies V_{5,1} &#x3D; {C}$</li>
+</ul>
+</li>
+<li><p><strong>第二步：处理长度为 2 的子串</strong><br>根据文法的组合规则，填充 $V_{i,2}$：</p>
+<ul>
+<li>$x_{1,2} &#x3D; “aa” \implies V_{1,2} &#x3D; {S}$ （因为 $A \to AA$）</li>
+<li>$x_{2,2} &#x3D; “ab” \implies V_{2,2} &#x3D; {B}$ （因为 $S \to AB$）</li>
+<li>$x_{3,2} &#x3D; “bb” \implies V_{3,2} &#x3D; {B, D}$ （因为 $B \to BD$ 和 $D \to DB$）</li>
+<li>$x_{4,2} &#x3D; “bc” \implies V_{4,2} &#x3D; {S}$ （因为 $S \to BC$）</li>
+</ul>
+</li>
+<li><p><strong>第三步：处理长度为 3 的子串</strong><br>根据文法的组合规则，填充 $V_{i,3}$：</p>
+<ul>
+<li>$x_{1,3} &#x3D; “aab” \implies V_{1,3} &#x3D; {B}$ （因为 $S \to AB$）</li>
+<li>$x_{2,3} &#x3D; “abb” \implies V_{2,3} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+<li>$x_{3,3} &#x3D; “bbc” \implies V_{3,3} &#x3D; {S}$ （因为 $S \to BC$）</li>
+</ul>
+</li>
+<li><p><strong>第四步：处理长度为 4 的子串</strong><br>根据文法的组合规则，填充 $V_{i,4}$：</p>
+<ul>
+<li>$x_{1,4} &#x3D; “aabb” \implies V_{1,4} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+<li>$x_{2,4} &#x3D; “abbc” \implies V_{2,4} &#x3D; {S}$ （因为 $S \to BC$）</li>
+</ul>
+</li>
+<li><p><strong>第五步：处理长度为 5 的子串</strong><br>根据文法的组合规则，填充 $V_{1,5}$：</p>
+<ul>
+<li>$x_{1,5} &#x3D; “aabbc” \implies V_{1,5} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+</ul>
+</li>
+</ol>
+<p>最终，$V_{1,5}$ 包含 $S$，因此字符串 “aabbc” 属于文法 $G$ 的语言 $L(G)$。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ddccffq.github.io/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/" data-id="cmfdjh58t0007jgbi1r9kbjty" data-title="上下文无关文法" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/06/03/%E6%84%9F%E7%9F%A5%E6%9C%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          感知机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/02/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">最大熵模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Application-Layer/">Application Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Data-Link-Layer/">Data Link Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Introduction/">Introduction</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Network-Layer/">Network Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Transport-Layer/">Transport Layer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wireshark/">Wireshark</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">形式语言与自动机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/" rel="tag">GitHub Pages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MathJax/" rel="tag">MathJax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MathJax/" style="font-size: 10px;">MathJax</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/17/Wireshark-Homework/">Wireshark Homework</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/10/Introduction/">Introduction</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/09/Wireless-and-Mobile-Networks/">Wireless and Mobile Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/08/The-Transport-Layer/">The Transport Layer</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/07/The-Application-Layer/">The Application Layer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
