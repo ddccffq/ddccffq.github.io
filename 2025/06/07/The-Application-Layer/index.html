@@ -1,24 +1,24 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
 
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"ddccffq.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="Computer Network,Application Layer">
+  
     <meta name="description" content="Principles of network applicationsApplication architecturesThree Kinds:  Peer to Peer Client-Server hybrid of P2P and Client-Server  Client-ServerClient-Server architecture has following characteristi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Application Layer">
@@ -51,237 +51,258 @@
 <meta property="article:modified_time" content="2025-06-17T02:22:12.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="机器学习,计算机网络,算法,统计学习">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ddccffq.github.io/2025/06/07/The-Application-Layer/The-Application-Layer/Non-Persistent-HTTP.png">
+  
+  
+  
+  <title>The Application Layer - ddccffq的技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://ddccffq.github.io/2025/06/07/The-Application-Layer/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ddccffq.github.io/2025/06/07/The-Application-Layer/","path":"2025/06/07/The-Application-Layer/","title":"The Application Layer"}</script>
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>The Application Layer | ddccffq的技术博客</title>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
-
-  
-
-
-
-
-
-
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
-
-
   
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="/js/third-party/math/mathjax.js" defer></script>
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
 
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
+<body>
+  
 
-  <div class="site-meta">
+  <header>
+    
 
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">ddccffq的技术博客</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ddccffq的技术博客</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">机器学习与计算机网络</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-  </ul>
 </nav>
 
-
-
-
-</header>
-        
   
-  <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Principles-of-network-applications"><span class="nav-number">1.</span> <span class="nav-text">Principles of network applications</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-architectures"><span class="nav-number">1.1.</span> <span class="nav-text">Application architectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Client-Server"><span class="nav-number">1.1.1.</span> <span class="nav-text">Client-Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pure-P2P"><span class="nav-number">1.1.2.</span> <span class="nav-text">Pure P2P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hybrid-of-Client-Server-and-P2P"><span class="nav-number">1.1.3.</span> <span class="nav-text">Hybrid of Client-Server and P2P</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Client-Server-%E9%83%A8%E5%88%86"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Client-Server 部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2P-%E9%83%A8%E5%88%86"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">P2P 部分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Processes-Communicating"><span class="nav-number">1.2.</span> <span class="nav-text">Processes Communicating</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sockets"><span class="nav-number">1.3.</span> <span class="nav-text">Sockets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-Processes"><span class="nav-number">1.4.</span> <span class="nav-text">Addressing Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App-layer-Protocol-Defines"><span class="nav-number">1.5.</span> <span class="nav-text">App-layer Protocol Defines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-transport-service-dose-an-application-need"><span class="nav-number">1.6.</span> <span class="nav-text">What transport service dose an application need?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-and-HTTP"><span class="nav-number">2.</span> <span class="nav-text">Web and HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Hypertext-Transfer-Protocol"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP: Hypertext Transfer Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Persistent-HTTP"><span class="nav-number">2.1.1.</span> <span class="nav-text">Non-Persistent HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RTT-Round-Trip-Time"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">RTT: Round Trip Time</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Persistent-HTTP"><span class="nav-number">2.1.2.</span> <span class="nav-text">Persistent HTTP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Message"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP Message</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Request"><span class="nav-number">2.2.1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response"><span class="nav-number">2.2.2.</span> <span class="nav-text">Response</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Server-State-Cookies"><span class="nav-number">2.3.</span> <span class="nav-text">User-Server State: Cookies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Caches"><span class="nav-number">2.4.</span> <span class="nav-text">Web Caches</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional-GET"><span class="nav-number">2.4.1.</span> <span class="nav-text">Conditional GET</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FTP-the-File-Transfer-Protocol"><span class="nav-number">3.</span> <span class="nav-text">FTP: the File Transfer Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP-Commands-Responses"><span class="nav-number">3.1.</span> <span class="nav-text">FTP Commands, Responses</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Electronic-Mail"><span class="nav-number">4.</span> <span class="nav-text">Electronic Mail</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP-Simple-Mail-Transfer-Protocol"><span class="nav-number">4.1.</span> <span class="nav-text">SMTP: Simple Mail Transfer Protocol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mail-Message-Format"><span class="nav-number">4.2.</span> <span class="nav-text">Mail Message Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mail-Access-Protocols"><span class="nav-number">4.3.</span> <span class="nav-text">Mail Access Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POP3-Protocol"><span class="nav-number">4.3.1.</span> <span class="nav-text">POP3 Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IMAP"><span class="nav-number">4.3.2.</span> <span class="nav-text">IMAP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number">5.</span> <span class="nav-text">DNS: Domain Name System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Distributed-Hierarchical-Database"><span class="nav-number">5.1.</span> <span class="nav-text">Distributed, Hierarchical Database</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-Level-Domain-TLD-Servers"><span class="nav-number">5.1.1.</span> <span class="nav-text">Top-Level Domain (TLD) Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authoritative-DNS-Servers"><span class="nav-number">5.1.2.</span> <span class="nav-text">Authoritative DNS Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Name-Server"><span class="nav-number">5.1.3.</span> <span class="nav-text">Local Name Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Name-Resolution"><span class="nav-number">5.2.</span> <span class="nav-text">DNS Name Resolution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterated-Query"><span class="nav-number">5.2.1.</span> <span class="nav-text">Iterated Query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recursive-Query"><span class="nav-number">5.2.2.</span> <span class="nav-text">Recursive Query</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Caching-and-Updating-Records"><span class="nav-number">5.3.</span> <span class="nav-text">DNS: Caching and Updating Records</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-records"><span class="nav-number">5.3.1.</span> <span class="nav-text">DNS records</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Protocol-Messages"><span class="nav-number">5.4.</span> <span class="nav-text">DNS Protocol, Messages</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#P2P-applications"><span class="nav-number">6.</span> <span class="nav-text">P2P applications</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pure-P2P-Architecture"><span class="nav-number">6.1.</span> <span class="nav-text">Pure P2P Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Distribution-Server-Client-vs-P2P"><span class="nav-number">6.1.1.</span> <span class="nav-text">File Distribution: Server-Client vs P2P</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BitTorrent"><span class="nav-number">6.1.2.</span> <span class="nav-text">BitTorrent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Skype"><span class="nav-number">6.1.3.</span> <span class="nav-text">Skype</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Socket-programming"><span class="nav-number">7.</span> <span class="nav-text">Socket programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition-of-Socket"><span class="nav-number">7.1.</span> <span class="nav-text">Definition of Socket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket-Programming-with-UDP"><span class="nav-number">7.2.</span> <span class="nav-text">Socket Programming with UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDPClient-java"><span class="nav-number">7.2.1.</span> <span class="nav-text">UDPClient.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket-programming-with-TCP"><span class="nav-number">7.3.</span> <span class="nav-text">Socket programming with TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCPClient-java"><span class="nav-number">7.3.1.</span> <span class="nav-text">TCPClient.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-of-chapter-exercises"><span class="nav-number">8.</span> <span class="nav-text">End-of-chapter exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-1"><span class="nav-number">8.1.</span> <span class="nav-text">R.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-2"><span class="nav-number">8.2.</span> <span class="nav-text">R.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-6"><span class="nav-number">8.3.</span> <span class="nav-text">R.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-17"><span class="nav-number">8.4.</span> <span class="nav-text">R.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-22"><span class="nav-number">8.5.</span> <span class="nav-text">R.22</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-28"><span class="nav-number">8.6.</span> <span class="nav-text">R.28</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-4"><span class="nav-number">8.7.</span> <span class="nav-text">P.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-5"><span class="nav-number">8.8.</span> <span class="nav-text">P.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-9"><span class="nav-number">8.9.</span> <span class="nav-text">P.9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-15"><span class="nav-number">8.10.</span> <span class="nav-text">P.15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-18"><span class="nav-number">8.11.</span> <span class="nav-text">P.18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-20"><span class="nav-number">8.12.</span> <span class="nav-text">P.20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-22"><span class="nav-number">8.13.</span> <span class="nav-text">P.22</span></a></li></ol></li></ol></div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Computer Networking, A Top-Down Approach, 5th Edition"></span>
+          
         </div>
-        <!--/noindex-->
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ddccffq"
-      src="/images/avatar.gif">
-  <p class="site-author-name" itemprop="name">ddccffq</p>
-  <div class="site-description" itemprop="description">专注于机器学习、计算机网络、统计学习方法的技术分享</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">20</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/ddccffq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ddccffq" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-07 15:22" pubdate>
+          2025年6月7日 下午
+        </time>
       </span>
-      <span class="links-of-author-item">
-        <a href="mailto:1765752538@qq.com" title="E-Mail → mailto:1765752538@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
+    
   </div>
 
-        </div>
-      </div>
-    </div>
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k 字
+        
+      </span>
+    
 
     
-  </aside>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
 
 
+        
+      </div>
+
+      
     </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ddccffq.github.io/2025/06/07/The-Application-Layer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ddccffq">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ddccffq的技术博客">
-      <meta itemprop="description" content="专注于机器学习、计算机网络、统计学习方法的技术分享">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="The Application Layer | ddccffq的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          The Application Layer
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-06-07 15:22:34" itemprop="dateCreated datePublished" datetime="2025-06-07T15:22:34+08:00">2025-06-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-06-17 10:22:12" itemprop="dateModified" datetime="2025-06-17T10:22:12+08:00">2025-06-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Computer-Network/" itemprop="url" rel="index"><span itemprop="name">Computer Network</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Computer-Network/Application-Layer/" itemprop="url" rel="index"><span itemprop="name">Application Layer</span></a>
-        </span>
-    </span>
-
-  
+  </div>
 </div>
 
-        </div>
-      </header>
+</div>
 
+  </header>
+
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody"><h1 id="Principles-of-network-applications"><a href="#Principles-of-network-applications" class="headerlink" title="Principles of network applications"></a>Principles of network applications</h1><h2 id="Application-architectures"><a href="#Application-architectures" class="headerlink" title="Application architectures"></a>Application architectures</h2><p><strong>Three Kinds:</strong></p>
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Computer Networking, A Top-Down Approach, 5th Edition</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Principles-of-network-applications"><a href="#Principles-of-network-applications" class="headerlink" title="Principles of network applications"></a>Principles of network applications</h1><h2 id="Application-architectures"><a href="#Application-architectures" class="headerlink" title="Application architectures"></a>Application architectures</h2><p><strong>Three Kinds:</strong></p>
 <ul>
 <li>Peer to Peer</li>
 <li>Client-Server</li>
@@ -377,12 +398,12 @@
 <blockquote>
 <p>需要和后文的 cookie 区分开，cookie 并不和 stateless 的性质相违背，原因是：Cookie 只是让状态在客户端和服务器之间传递，而不是让服务器主动维护状态。</p>
 </blockquote>
-<h3 id="Non-Persistent-HTTP"><a href="#Non-Persistent-HTTP" class="headerlink" title="Non-Persistent HTTP"></a>Non-Persistent HTTP</h3><h4 id="RTT-Round-Trip-Time"><a href="#RTT-Round-Trip-Time" class="headerlink" title="RTT: Round Trip Time"></a>RTT: Round Trip Time</h4><p><img src="The-Application-Layer/Non-Persistent-HTTP.png" alt="Non Persistent HTTP">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="Non-Persistent-HTTP"><a href="#Non-Persistent-HTTP" class="headerlink" title="Non-Persistent HTTP"></a>Non-Persistent HTTP</h3><h4 id="RTT-Round-Trip-Time"><a href="#RTT-Round-Trip-Time" class="headerlink" title="RTT: Round Trip Time"></a>RTT: Round Trip Time</h4><p><img src="The-Application-Layer/Non-Persistent-HTTP.png" srcset="/img/loading.gif" lazyload alt="Non Persistent HTTP">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Definition of $\text{RTT}$:</strong> time for a small packet to travel from client to server and back.</p>
 <p>From the picture, we can calculate total time. $\text{total time} = 2 \times \text{RTT} + \text{transmit time}_1$</p>
 <h3 id="Persistent-HTTP"><a href="#Persistent-HTTP" class="headerlink" title="Persistent HTTP"></a>Persistent HTTP</h3><p>Persistent HTTP leaves <strong>TCP connection open</strong> after sending response. Client sends request as soon as it encounters a referenced object. As little as one RTT for all the referenced objects. $\text{total time} \approx 3 \times \text{RTT} + \text{transmit time}_1 + \text{transmit time}_2$</p>
 <h2 id="HTTP-Message"><a href="#HTTP-Message" class="headerlink" title="HTTP Message"></a>HTTP Message</h2><p>Two types of HTTP message: <strong>request</strong> and <strong>response</strong>. <strong>Sent as ASCII text</strong></p>
-<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p><img src="The-Application-Layer/Request-Format.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><p><img src="The-Application-Layer/Request-Format.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <ol>
 <li><strong>Request Line</strong><ul>
 <li><strong>Method:</strong> GET, POST, HEAD; PUT, DELETE;<ul>
@@ -406,7 +427,7 @@
 <blockquote>
 <p>如果是 keep-alive 则是 persistent connection；如果是 close 则是 non-persistent connection。</p>
 </blockquote>
-<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p><img src="The-Application-Layer/Response-Format.png" alt="Response Format">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><p><img src="The-Application-Layer/Response-Format.png" srcset="/img/loading.gif" lazyload alt="Response Format">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>A few sample codes</strong></p>
 <ul>
 <li><code>200: OK</code></li>
@@ -430,7 +451,7 @@
 <li>用户后续访问 → 服务器通过 Cookie 识别用户，展示其购买历史</li>
 </ol>
 <h2 id="Web-Caches"><a href="#Web-Caches" class="headerlink" title="Web Caches"></a>Web Caches</h2><p><strong>Goal</strong>: satisfy client request without involving origin server.</p>
-<p><img src="The-Application-Layer/Web-Caches.png" alt="Web Caches">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/Web-Caches.png" srcset="/img/loading.gif" lazyload alt="Web Caches">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <blockquote>
 <p>typically cache is installed by ISP.</p>
 </blockquote>
@@ -443,7 +464,7 @@
 <h3 id="Conditional-GET"><a href="#Conditional-GET" class="headerlink" title="Conditional GET"></a>Conditional GET</h3><p><strong>Goal:</strong> don’t send object if cache has <strong>up-to-date</strong> cached version</p>
 <p><strong>cache:</strong> specify date of cached copy in <strong>HTTP request</strong>: <code>If-modified-since: date</code><br><strong>server:</strong> <strong>response</strong> contains no object if cached copy <code>is up-to-date: HTTP/1.0 304 Not Modified</code></p>
 <h1 id="FTP-the-File-Transfer-Protocol"><a href="#FTP-the-File-Transfer-Protocol" class="headerlink" title="FTP: the File Transfer Protocol"></a>FTP: the File Transfer Protocol</h1><p><strong>Goal:</strong> File transfers from/to remote host.</p>
-<p><img src="The-Application-Layer/FTP.png" alt="FTP">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/FTP.png" srcset="/img/loading.gif" lazyload alt="FTP">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p>FTP client contacts FTP server at <strong>port 21</strong>, <strong>TCP</strong> is transport protocol. When server receives <strong>file transfer command</strong>, server opens $2^{nd}$ TCP connection for file to client. After transferring one file, server closes data connection. Server opens another TCP data connection to transfer another file.</p>
 <p>这是一种 <strong>out-of-band</strong> 的协议。</p>
 <ul>
@@ -465,7 +486,7 @@
 <li><code>425</code> Can’t open data connection;</li>
 <li><code>452</code> Error writing file.</li>
 </ul>
-<h1 id="Electronic-Mail"><a href="#Electronic-Mail" class="headerlink" title="Electronic Mail"></a>Electronic Mail</h1><p><img src="The-Application-Layer/e-mail-system.png" alt="e mail system">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h1 id="Electronic-Mail"><a href="#Electronic-Mail" class="headerlink" title="Electronic Mail"></a>Electronic Mail</h1><p><img src="The-Application-Layer/e-mail-system.png" srcset="/img/loading.gif" lazyload alt="e mail system">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Three Major Components:</strong></p>
 <ul>
 <li>user agents;</li>
@@ -478,7 +499,7 @@
 <li><strong>message queue</strong> of outgoing (to be sent) mail messages</li>
 <li>SMTP protocol <strong>between mail servers</strong> to send email messages</li>
 </ul>
-<h2 id="SMTP-Simple-Mail-Transfer-Protocol"><a href="#SMTP-Simple-Mail-Transfer-Protocol" class="headerlink" title="SMTP: Simple Mail Transfer Protocol"></a>SMTP: Simple Mail Transfer Protocol</h2><p><img src="The-Application-Layer/SMTP-example.png" alt="SMTP example">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="SMTP-Simple-Mail-Transfer-Protocol"><a href="#SMTP-Simple-Mail-Transfer-Protocol" class="headerlink" title="SMTP: Simple Mail Transfer Protocol"></a>SMTP: Simple Mail Transfer Protocol</h2><p><img src="The-Application-Layer/SMTP-example.png" srcset="/img/loading.gif" lazyload alt="SMTP example">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
 <li>Uses <strong>TCP</strong> to reliably transfer email message from client to server, <strong>port 25</strong>;</li>
@@ -505,13 +526,13 @@
 <li>HTTP: pull; SMTP: push</li>
 <li>HTTP: each object encapsulated in its own response msg; SMTP: <strong>multiple objects sent in multipart msg</strong>.</li>
 </ul>
-<h2 id="Mail-Message-Format"><a href="#Mail-Message-Format" class="headerlink" title="Mail Message Format"></a>Mail Message Format</h2><p><img src="The-Application-Layer/Message-Format.png" alt="Message Format">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<h2 id="Mail-Access-Protocols"><a href="#Mail-Access-Protocols" class="headerlink" title="Mail Access Protocols"></a>Mail Access Protocols</h2><p><img src="The-Application-Layer/Mail-Access-Protocol.png" alt="Mail Access Protocol">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Mail-Message-Format"><a href="#Mail-Message-Format" class="headerlink" title="Mail Message Format"></a>Mail Message Format</h2><p><img src="The-Application-Layer/Message-Format.png" srcset="/img/loading.gif" lazyload alt="Message Format">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Mail-Access-Protocols"><a href="#Mail-Access-Protocols" class="headerlink" title="Mail Access Protocols"></a>Mail Access Protocols</h2><p><img src="The-Application-Layer/Mail-Access-Protocol.png" srcset="/img/loading.gif" lazyload alt="Mail Access Protocol">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <ul>
 <li>SMTP: <strong>delivery/storage</strong> to receiver’s server;</li>
 <li>Mail Access Protocol: <strong>retrieval</strong> from server.</li>
 </ul>
-<h3 id="POP3-Protocol"><a href="#POP3-Protocol" class="headerlink" title="POP3 Protocol"></a>POP3 Protocol</h3><p><img src="The-Application-Layer/POP3.png" alt="POP3">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="POP3-Protocol"><a href="#POP3-Protocol" class="headerlink" title="POP3 Protocol"></a>POP3 Protocol</h3><p><img src="The-Application-Layer/POP3.png" srcset="/img/loading.gif" lazyload alt="POP3">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>More about POP3:</strong> Previous example uses “download and delete” mode. Bob cannot re-read e-mail if he changes client;<strong>“Download-and-keep”:</strong> copies of messages on different clients; POP3 is stateless across sessions.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
@@ -543,7 +564,7 @@
 </div>
 
 <p><strong>Hostname to IP address translation</strong></p>
-<h2 id="Distributed-Hierarchical-Database"><a href="#Distributed-Hierarchical-Database" class="headerlink" title="Distributed, Hierarchical Database"></a>Distributed, Hierarchical Database</h2><p><img src="The-Application-Layer/DNS-Server.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Distributed-Hierarchical-Database"><a href="#Distributed-Hierarchical-Database" class="headerlink" title="Distributed, Hierarchical Database"></a>Distributed, Hierarchical Database</h2><p><img src="The-Application-Layer/DNS-Server.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <h3 id="Top-Level-Domain-TLD-Servers"><a href="#Top-Level-Domain-TLD-Servers" class="headerlink" title="Top-Level Domain (TLD) Servers"></a>Top-Level Domain (TLD) Servers</h3><ul>
 <li>Responsible for com, org, net, edu, etc, and all top-level country domains uk, fr, ca, jp;</li>
 <li><strong>Network Solutions(a company)</strong> maintains servers for com TLD;</li>
@@ -555,8 +576,8 @@
 <li>Each <strong>ISP</strong> (residential ISP, company, university) has one;</li>
 <li>When host makes DNS query, query is sent to its local DNS server.</li>
 </ul>
-<h2 id="DNS-Name-Resolution"><a href="#DNS-Name-Resolution" class="headerlink" title="DNS Name Resolution"></a>DNS Name Resolution</h2><h3 id="Iterated-Query"><a href="#Iterated-Query" class="headerlink" title="Iterated Query"></a>Iterated Query</h3><p><img src="The-Application-Layer/Iterated-Query.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 70%”}</p>
-<h3 id="Recursive-Query"><a href="#Recursive-Query" class="headerlink" title="Recursive Query"></a>Recursive Query</h3><p><img src="The-Application-Layer/Recursive-Query.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 70%”}</p>
+<h2 id="DNS-Name-Resolution"><a href="#DNS-Name-Resolution" class="headerlink" title="DNS Name Resolution"></a>DNS Name Resolution</h2><h3 id="Iterated-Query"><a href="#Iterated-Query" class="headerlink" title="Iterated Query"></a>Iterated Query</h3><p><img src="The-Application-Layer/Iterated-Query.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 70%”}</p>
+<h3 id="Recursive-Query"><a href="#Recursive-Query" class="headerlink" title="Recursive Query"></a>Recursive Query</h3><p><img src="The-Application-Layer/Recursive-Query.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h2 id="DNS-Caching-and-Updating-Records"><a href="#DNS-Caching-and-Updating-Records" class="headerlink" title="DNS: Caching and Updating Records"></a>DNS: Caching and Updating Records</h2><ul>
 <li>Once (any) name server learns mapping, it caches mapping;</li>
 <li>Cache entries timeout (disappear) after some time;</li>
@@ -576,7 +597,7 @@
 </div>
 
 <h2 id="DNS-Protocol-Messages"><a href="#DNS-Protocol-Messages" class="headerlink" title="DNS Protocol, Messages"></a>DNS Protocol, Messages</h2><p>DNS protocol : <strong>query</strong> and <strong>reply</strong> messages, both with <strong>same message format</strong>.</p>
-<p><img src="The-Application-Layer/DNS-message-format.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/DNS-message-format.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Identification:</strong> 16 bit <code>#</code> for query, reply to query uses same <code>#</code>.</p>
 <p><strong>Flags:</strong></p>
 <ul>
@@ -616,12 +637,12 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 
 <h1 id="Socket-programming"><a href="#Socket-programming" class="headerlink" title="Socket programming"></a>Socket programming</h1><p><strong>Goal:</strong> learn how to <strong>build Client-Server application</strong> that communicate using sockets.</p>
 <h2 id="Definition-of-Socket"><a href="#Definition-of-Socket" class="headerlink" title="Definition of Socket"></a>Definition of Socket</h2><p><strong>An application-created, OS-controlled interface (a “door”) into which application process can both send and receive messages to/from another application process.</strong></p>
-<h2 id="Socket-Programming-with-UDP"><a href="#Socket-Programming-with-UDP" class="headerlink" title="Socket Programming with UDP"></a>Socket Programming with UDP</h2><p><img src="The-Application-Layer/Socket-Programming-with-UDP.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<h3 id="UDPClient-java"><a href="#UDPClient-java" class="headerlink" title="UDPClient.java"></a>UDPClient.java</h3><p><img src="The-Application-Layer/UDPClient-java.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<h2 id="Socket-programming-with-TCP"><a href="#Socket-programming-with-TCP" class="headerlink" title="Socket programming with TCP"></a>Socket programming with TCP</h2><p><img src="The-Application-Layer/Socket-Programming-with-TCP.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<p><img src="The-Application-Layer/Three-kinds-of-Socket.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<p><img src="The-Application-Layer/TCP-Socket.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
-<h3 id="TCPClient-java"><a href="#TCPClient-java" class="headerlink" title="TCPClient.java"></a>TCPClient.java</h3><p><img src="The-Application-Layer/TCPClient-java.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Socket-Programming-with-UDP"><a href="#Socket-Programming-with-UDP" class="headerlink" title="Socket Programming with UDP"></a>Socket Programming with UDP</h2><p><img src="The-Application-Layer/Socket-Programming-with-UDP.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="UDPClient-java"><a href="#UDPClient-java" class="headerlink" title="UDPClient.java"></a>UDPClient.java</h3><p><img src="The-Application-Layer/UDPClient-java.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h2 id="Socket-programming-with-TCP"><a href="#Socket-programming-with-TCP" class="headerlink" title="Socket programming with TCP"></a>Socket programming with TCP</h2><p><img src="The-Application-Layer/Socket-Programming-with-TCP.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/Three-kinds-of-Socket.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/TCP-Socket.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="TCPClient-java"><a href="#TCPClient-java" class="headerlink" title="TCPClient.java"></a>TCPClient.java</h3><p><img src="The-Application-Layer/TCPClient-java.png" srcset="/img/loading.gif" lazyload alt="alt text">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="R-1"><a href="#R-1" class="headerlink" title="R.1"></a>R.1</h2><p>List five nonproprietary Internet applications and the application-layer protocols that they use.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
@@ -660,10 +681,10 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 <li>但题目要求 <strong>as fast as possible</strong>，所以还是用 <strong>UDP</strong>。</li>
 </ul>
 <h2 id="R-17"><a href="#R-17" class="headerlink" title="R.17"></a>R.17</h2><p>Print out the header of an e-mail message you have recently received. How many <code>Received:</code> header lines are there? Analyze each of the header lines in the message.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Received: from codeforces.com (mx2.codeforces.com [77.234.215.195])</span><br><span class="line">        by newxmmxszgpub6-1.qq.com (NewMX) with SMTP id BF70781A</span><br><span class="line">        for &lt;1xx575xxxx@qq.com&gt;; Sat, 17 May 2025 00:47:55 +0800</span><br><span class="line">Received: from localhost (gauss.codeforces.com [192.168.10.103])</span><br><span class="line">        by codeforces.com (Postfix) with ESMTP id D7D9F322729C1</span><br><span class="line">        for &lt;1xx575xxxx@qq.com&gt;; Fri, 16 May 2025 18:48:56 +0300 (MSK)</span><br><span class="line">From: &quot;Codeforces@codeforces.com&quot; &lt;Codeforces@codeforces.com&gt;</span><br><span class="line">To: &quot;1xx575xxxx@qq.com&quot; &lt;1xx575xxxx@qq.com&gt;</span><br><span class="line">Subject: Codeforces Round 1025 (Div. 2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Received: from codeforces.com (mx2.codeforces.com [77.234.215.195])<br>        by newxmmxszgpub6-1.qq.com (NewMX) with SMTP id BF70781A<br>        for &lt;1xx575xxxx@qq.com&gt;; Sat, 17 May 2025 00:47:55 +0800<br>Received: from localhost (gauss.codeforces.com [192.168.10.103])<br>        by codeforces.com (Postfix) with ESMTP id D7D9F322729C1<br>        for &lt;1xx575xxxx@qq.com&gt;; Fri, 16 May 2025 18:48:56 +0300 (MSK)<br>From: &quot;Codeforces@codeforces.com&quot; &lt;Codeforces@codeforces.com&gt;<br>To: &quot;1xx575xxxx@qq.com&quot; &lt;1xx575xxxx@qq.com&gt;<br>Subject: Codeforces Round 1025 (Div. 2)<br></code></pre></td></tr></table></figure>
 <p>There are $2$ <code>Received:</code> header lines.</p>
 <p>The first part is:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Received: from codeforces.com (mx2.codeforces.com [77.234.215.195])</span><br><span class="line">        by newxmmxszgpub6-1.qq.com (NewMX) with SMTP id BF70781A</span><br><span class="line">        for &lt;1xx575xxxx@qq.com&gt;; Sat, 17 May 2025 00:47:55 +0800</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Received: from codeforces.com (mx2.codeforces.com [77.234.215.195])<br>        by newxmmxszgpub6-1.qq.com (NewMX) with SMTP id BF70781A<br>        for &lt;1xx575xxxx@qq.com&gt;; Sat, 17 May 2025 00:47:55 +0800<br></code></pre></td></tr></table></figure>
 <ul>
 <li><code>Received: from codeforces.com (mx2.codeforces.com [77.234.215.195])</code>: The email was sent from the Codeforces mail server with public IP.</li>
 <li><code>by newxmmxszgpub6-1.qq.com (NewMX)</code>: Received by QQ Mail’s mail server.</li>
@@ -671,7 +692,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 <li>其中的 <code>mx2</code> 指的是 <strong>Mail eXchanger 2</strong>，即 codeforces 的第二台邮件交换 server。</li>
 </ul>
 <p>The second part is:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Received: from localhost (gauss.codeforces.com [192.168.10.103])</span><br><span class="line">        by codeforces.com (Postfix) with ESMTP id D7D9F322729C1</span><br><span class="line">        for &lt;1xx575xxxx@qq.com&gt;; Fri, 16 May 2025 18:48:56 +0300 (MSK)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Received: from localhost (gauss.codeforces.com [192.168.10.103])<br>        by codeforces.com (Postfix) with ESMTP id D7D9F322729C1<br>        for &lt;1xx575xxxx@qq.com&gt;; Fri, 16 May 2025 18:48:56 +0300 (MSK)<br></code></pre></td></tr></table></figure>
 <ul>
 <li><code>Received: from localhost (gauss.codeforces.com [192.168.10.103])</code>: The email originated from the local server named <code>gauss.codeforces.com</code> (internal IP).</li>
 <li><code>by codeforces.com (Postfix)</code>: Received by the main Codeforces mail server using Postfix.</li>
@@ -710,7 +731,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 <li><strong>For the UDP client-server application (Section $2.8$):</strong><br>The client program may be executed before the server because UDP is connectionless. The client can send a datagram to the server’s address and port even if the server isn’t running yet; the datagram may be lost, but the client doesn’t need to establish a connection first. When the server starts, it can immediately receive any new datagrams sent to its port.</li>
 </ul>
 <h2 id="P-4"><a href="#P-4" class="headerlink" title="P.4"></a>P.4</h2><p>Consider the following string of ASCII characters that were captured by Wireshark when the browser sent an HTTP <code>GET</code> message (i.e., this is the actual content of an HTTP <code>GET</code> message). The characters <code>&lt;cr&gt;&lt;lf&gt;</code> are carriage return and line-feed characters (that is, the italized character string <code>&lt;cr&gt;</code> in the text below represents the single carriage-return character that was contained at that point in the HTTP header). Answer the following questions, indicating where in the HTTP GET message below you find the answer.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /cs453/index.html HTTP/1.1&lt;cr&gt;&lt;lf&gt;Host: gai</span><br><span class="line">a.cs.umass.edu&lt;cr&gt;&lt;lf&gt;User-Agent: Mozilla/5.0 (</span><br><span class="line">Windows;U; Windows NT 5.1; en-US; rv:1.7.2) Gec</span><br><span class="line">ko/20040804 Netscape/7.2 (ax) &lt;cr&gt;&lt;lf&gt;Accept:ex</span><br><span class="line">t/xml, application/xml, application/xhtml+xml, text</span><br><span class="line">/html;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5</span><br><span class="line">&lt;cr&gt;&lt;lf&gt;Accept-Language: en-us,en;q=0.5&lt;cr&gt;&lt;lf&gt;Accept-</span><br><span class="line">Encoding: zip,deflate&lt;cr&gt;&lt;lf&gt;Accept-Charset: ISO</span><br><span class="line">-8859-1,utf-8;q=0.7,*;q=0.7&lt;cr&gt;&lt;lf&gt;Keep-Alive: 300&lt;cr&gt;</span><br><span class="line">&lt;lf&gt;Connection:keep-alive&lt;cr&gt;&lt;lf&gt;&lt;cr&gt;&lt;lf&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">GET /cs453/index.html HTTP/1.1&lt;cr&gt;&lt;lf&gt;Host: gai<br>a.cs.umass.edu&lt;cr&gt;&lt;lf&gt;User-Agent: Mozilla/5.0 (<br>Windows;U; Windows NT 5.1; en-US; rv:1.7.2) Gec<br>ko/20040804 Netscape/7.2 (ax) &lt;cr&gt;&lt;lf&gt;Accept:ex<br>t/xml, application/xml, application/xhtml+xml, text<br>/html;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5<br>&lt;cr&gt;&lt;lf&gt;Accept-Language: en-us,en;q=0.5&lt;cr&gt;&lt;lf&gt;Accept-<br>Encoding: zip,deflate&lt;cr&gt;&lt;lf&gt;Accept-Charset: ISO<br>-8859-1,utf-8;q=0.7,*;q=0.7&lt;cr&gt;&lt;lf&gt;Keep-Alive: 300&lt;cr&gt;<br>&lt;lf&gt;Connection:keep-alive&lt;cr&gt;&lt;lf&gt;&lt;cr&gt;&lt;lf&gt;<br></code></pre></td></tr></table></figure>
 <p><strong>Questions:</strong></p>
 <p>a. What is the URL of the document requested by the browser?<br>b. What version of HTTP is the browser running?<br>c. Does the browser request a non-persistent or a persistent connection?<br>d. What is the IP address of the host on which the browser is running?<br>e. What type of browser initiates this message? Why is the browser type needed in an HTTP request message?</p>
 <p><strong>Answers:</strong></p>
@@ -736,7 +757,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 <li>The browser type is included in the <code>User-Agent</code> header. It is needed in an HTTP request message to allow the server to tailor its response based on the browser’s capabilities, such as supported features, rendering engine, or platform-specific optimizations.</li>
 </ul>
 <h2 id="P-5"><a href="#P-5" class="headerlink" title="P.5"></a>P.5</h2><p>The text below shows the reply sent from the server in response to the HTTP <code>GET</code> message in the question above. Answer the following questions, indicating where in the message below you find the answer.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK&lt;cr&gt;&lt;lf&gt;Date: Tue, 07 Mar 2008</span><br><span class="line">12:39:45GMT&lt;cr&gt;&lt;lf&gt;Server: Apache/2.0.52 (Fedora)</span><br><span class="line">&lt;cr&gt;&lt;lf&gt;Last-Modified: Sat, 10 Dec2005 18:27:46</span><br><span class="line">GMT&lt;cr&gt;&lt;lf&gt;ETag: &quot;526c3-f22-a88a4c80&quot;&lt;cr&gt;&lt;lf&gt;Accept-</span><br><span class="line">Ranges: bytes&lt;cr&gt;&lt;lf&gt;Content-Length: 3874&lt;cr&gt;&lt;lf&gt;</span><br><span class="line">Keep-Alive: timeout=max=100&lt;cr&gt;&lt;lf&gt;Connection:</span><br><span class="line">Keep-Alive&lt;cr&gt;&lt;lf&gt;Content-Type: text/html; charset=</span><br><span class="line">ISO-8859-1&lt;cr&gt;&lt;lf&gt;&lt;cr&gt;&lt;lf&gt;&lt;!doctype html public &quot;-</span><br><span class="line">//w3c//dtd html 4.0 transitional//en&quot;&gt;&lt;lf&gt;&lt;html&gt;&lt;lf&gt;</span><br><span class="line">&lt;head&gt;&lt;lf&gt; &lt;meta http-equiv=&quot;Content-Type&quot;</span><br><span class="line">content=&quot;text/html; charset=iso-8859-1&quot;&gt;&lt;lf&gt; &lt;meta</span><br><span class="line">name=&quot;GENERATOR&quot; content=&quot;Mozilla/4.79 [en] (Windows NT</span><br><span class="line">5.0; U) Netscape&quot;&gt;&lt;lf&gt; &lt;title&gt;CMPSCI 453 / 591 /</span><br><span class="line">NTU-ST550A Spring 2005 homepage&lt;/title&gt;&lt;lf&gt;&lt;/head&gt;&lt;lf&gt;</span><br><span class="line">&lt;much more document text following here (not shown)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">HTTP/1.1 200 OK&lt;cr&gt;&lt;lf&gt;Date: Tue, 07 Mar 2008<br>12:39:45GMT&lt;cr&gt;&lt;lf&gt;Server: Apache/2.0.52 (Fedora)<br>&lt;cr&gt;&lt;lf&gt;Last-Modified: Sat, 10 Dec2005 18:27:46<br>GMT&lt;cr&gt;&lt;lf&gt;ETag: &quot;526c3-f22-a88a4c80&quot;&lt;cr&gt;&lt;lf&gt;Accept-<br>Ranges: bytes&lt;cr&gt;&lt;lf&gt;Content-Length: 3874&lt;cr&gt;&lt;lf&gt;<br>Keep-Alive: timeout=max=100&lt;cr&gt;&lt;lf&gt;Connection:<br>Keep-Alive&lt;cr&gt;&lt;lf&gt;Content-Type: text/html; charset=<br>ISO-8859-1&lt;cr&gt;&lt;lf&gt;&lt;cr&gt;&lt;lf&gt;&lt;!doctype html public &quot;-<br>//w3c//dtd html 4.0 transitional//en&quot;&gt;&lt;lf&gt;&lt;html&gt;&lt;lf&gt;<br>&lt;head&gt;&lt;lf&gt; &lt;meta http-equiv=&quot;Content-Type&quot;<br>content=&quot;text/html; charset=iso-8859-1&quot;&gt;&lt;lf&gt; &lt;meta<br>name=&quot;GENERATOR&quot; content=&quot;Mozilla/4.79 [en] (Windows NT<br>5.0; U) Netscape&quot;&gt;&lt;lf&gt; &lt;title&gt;CMPSCI 453 / 591 /<br>NTU-ST550A Spring 2005 homepage&lt;/title&gt;&lt;lf&gt;&lt;/head&gt;&lt;lf&gt;<br>&lt;much more document text following here (not shown)&gt;<br></code></pre></td></tr></table></figure>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Was the server able to successfully find the document or not? What time was the document reply provided?</strong></p>
 <ul>
@@ -757,7 +778,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 </ul>
 <h2 id="P-9"><a href="#P-9" class="headerlink" title="P.9"></a>P.9</h2><p>Consider Figure $2.12$, for which there is an institutional network connected to the Internet. Suppose that the average object size is $850,000$ bits and that the average request rate from the institution’s browsers to the origin servers is $16$ requests per second. Also suppose that the amount of time it takes from when the router on the Internet side of the access link forwards an HTTP request until it receives the response is $3$ seconds on average (see $\text{Section}$ $2.2.5$). <strong>Model the total average response time as the sum of the average access delay (that is, the delay from Internet router to institution router) and the average Internet delay</strong>. For the average access delay, use $\Delta / (1 - \Delta \beta)$, where $\Delta$ is the average time required to send an object over the access link and $\beta$ is the arrival rate of objects to the access link.</p>
 <p><strong>Complement:</strong> $15$ Mbps access link and $100$ Mbps LAN.</p>
-<p><img src="The-Application-Layer/Bottleneck between an institutional network and the Internet.png" alt="Bottleneck between an institutional network and the Internet">{style=”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Application-Layer/Bottleneck between an institutional network and the Internet.png" srcset="/img/loading.gif" lazyload alt="Bottleneck between an institutional network and the Internet">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Find the total average response time.</strong></p>
 <p>The total average response time is the sum of the <strong>average access delay</strong> and the <strong>average Internet delay</strong>.</p>
@@ -799,7 +820,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 </ol>
 <h2 id="P-15"><a href="#P-15" class="headerlink" title="P.15"></a>P.15</h2><p><strong>Question:</strong></p>
 <p>Read RFC $5321$ for SMTP. What does MTA stand for? Consider the following received spam email (modified from a real spam email). Assuming only the originator of this spam email is malacious and all other hosts are honest, identify the malacious host that has generated this spam email.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">From - Fri Nov 07 13:41:30 2008</span><br><span class="line">Return-Path: &lt;tennis5@pp33head.com&gt;</span><br><span class="line">Received: from barmail.cs.umass.edu</span><br><span class="line">(barmail.cs.umass.edu [128.119.240.3]) by cs.umass.edu</span><br><span class="line">(8.13.1/8.12.6) for &lt;hg@cs.umass.edu&gt;; Fri, 7 Nov 2008</span><br><span class="line">13:27:10 -0500</span><br><span class="line">Received: from asusus-4b96 (localhost [127.0.0.1]) by</span><br><span class="line">barmail.cs.umass.edu (Spam Firewall) for</span><br><span class="line">&lt;hg@cs.umass.edu&gt;; Fri, 7 Nov 2008 13:27:07 -0500</span><br><span class="line">(EST)</span><br><span class="line">Received: from asusus-4b96 ([58.88.21.177]) by</span><br><span class="line">barmail.cs.umass.edu for &lt;hg@cs.umass.edu&gt;; Fri,</span><br><span class="line">07 Nov 2008 13:27:07 -0500 (EST)</span><br><span class="line">Received: from [58.88.21.177] by</span><br><span class="line">inbnd55.exchangeddd.com; Sat, 8 Nov 2008 01:27:07 +0700</span><br><span class="line">From: &quot;Jonny&quot; &lt;tennis5@pp33head.com&gt;</span><br><span class="line">To: &lt;hg@cs.umass.edu&gt;</span><br><span class="line">Subject: How to secure your savings</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">From - Fri Nov 07 13:41:30 2008<br>Return-Path: &lt;tennis5@pp33head.com&gt;<br>Received: from barmail.cs.umass.edu<br>(barmail.cs.umass.edu [128.119.240.3]) by cs.umass.edu<br>(8.13.1/8.12.6) for &lt;hg@cs.umass.edu&gt;; Fri, 7 Nov 2008<br>13:27:10 -0500<br>Received: from asusus-4b96 (localhost [127.0.0.1]) by<br>barmail.cs.umass.edu (Spam Firewall) for<br>&lt;hg@cs.umass.edu&gt;; Fri, 7 Nov 2008 13:27:07 -0500<br>(EST)<br>Received: from asusus-4b96 ([58.88.21.177]) by<br>barmail.cs.umass.edu for &lt;hg@cs.umass.edu&gt;; Fri,<br>07 Nov 2008 13:27:07 -0500 (EST)<br>Received: from [58.88.21.177] by<br>inbnd55.exchangeddd.com; Sat, 8 Nov 2008 01:27:07 +0700<br>From: &quot;Jonny&quot; &lt;tennis5@pp33head.com&gt;<br>To: &lt;hg@cs.umass.edu&gt;<br>Subject: How to secure your savings<br></code></pre></td></tr></table></figure>
 <p><strong>Answer:</strong></p>
 <p><strong>最底部的 <code>Received:</code> 记录代表邮件的最初来源</strong>，即发件人最初连接的主机。</p>
 <ul>
@@ -858,7 +879,7 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 </ul>
 <p><strong>c. Use nslookup on your local host to send DNS queries to three DNS servers: your local DNS server and the two DNS servers you found in part (b). Try querying for Type A, NS, and MX reports. Summarize your findings.</strong></p>
 <p>我在终端输入的语句及其显示结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\17657\Desktop\Github\HEXO&gt; nslookup</span><br><span class="line">默认服务器:  UnKnown</span><br><span class="line">Address:  10.3.9.5</span><br><span class="line"></span><br><span class="line">&gt; set type=A</span><br><span class="line">&gt; www.baidu.com</span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  10.3.9.5</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    www.a.shifen.com</span><br><span class="line">Addresses:  220.181.111.232</span><br><span class="line">          220.181.111.1</span><br><span class="line">Aliases:  www.baidu.com</span><br><span class="line"></span><br><span class="line">&gt; set type=NS</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  10.3.9.5</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       nameserver = ns2.baidu.com</span><br><span class="line">baidu.com       nameserver = ns7.baidu.com</span><br><span class="line">baidu.com       nameserver = ns3.baidu.com</span><br><span class="line">baidu.com       nameserver = dns.baidu.com</span><br><span class="line">baidu.com       nameserver = ns4.baidu.com</span><br><span class="line"></span><br><span class="line">ns2.baidu.com   internet address = 220.181.33.31</span><br><span class="line">ns7.baidu.com   internet address = 180.76.76.92</span><br><span class="line">dns.baidu.com   internet address = 110.242.68.134</span><br><span class="line">ns3.baidu.com   internet address = 36.155.132.78</span><br><span class="line">ns3.baidu.com   internet address = 153.3.238.93</span><br><span class="line">ns4.baidu.com   internet address = 14.215.178.80</span><br><span class="line">ns4.baidu.com   internet address = 111.45.3.226</span><br><span class="line">&gt; set type=MX</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  10.3.9.5</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       MX preference = 20, mail exchanger = mx.baidu.com</span><br><span class="line">baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com</span><br><span class="line">&gt; server ns1.baidu.com</span><br><span class="line">默认服务器:  ns1.baidu.com</span><br><span class="line">Address:  110.242.68.134</span><br><span class="line"></span><br><span class="line">&gt; set type=A</span><br><span class="line">&gt; www.baidu.com</span><br><span class="line">服务器:  ns1.baidu.com</span><br><span class="line">Address:  110.242.68.134</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    www.a.shifen.com</span><br><span class="line">Addresses:  220.181.111.1</span><br><span class="line">          220.181.111.232</span><br><span class="line">Aliases:  www.baidu.com</span><br><span class="line"></span><br><span class="line">&gt; set type=NS</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  ns1.baidu.com</span><br><span class="line">Address:  110.242.68.134</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       nameserver = dns.baidu.com</span><br><span class="line">baidu.com       nameserver = ns3.baidu.com</span><br><span class="line">baidu.com       nameserver = ns4.baidu.com</span><br><span class="line">baidu.com       nameserver = ns2.baidu.com</span><br><span class="line">baidu.com       nameserver = ns7.baidu.com</span><br><span class="line"></span><br><span class="line">ns7.baidu.com   internet address = 180.76.76.92</span><br><span class="line">ns4.baidu.com   internet address = 14.215.178.80</span><br><span class="line">ns4.baidu.com   internet address = 111.45.3.226</span><br><span class="line">ns2.baidu.com   internet address = 220.181.33.31</span><br><span class="line">ns3.baidu.com   internet address = 36.155.132.78</span><br><span class="line">ns3.baidu.com   internet address = 153.3.238.93</span><br><span class="line">dns.baidu.com   internet address = 110.242.68.134</span><br><span class="line">&gt; set type=MX</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  ns1.baidu.com</span><br><span class="line">Address:  110.242.68.134</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       MX preference = 20, mail exchanger = mx.baidu.com</span><br><span class="line">baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com</span><br><span class="line">&gt; server ns3.dnsv5.com</span><br><span class="line">默认服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">&gt; set type=A</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    baidu.com</span><br><span class="line">Addresses:  182.61.201.211</span><br><span class="line">          182.61.244.181</span><br><span class="line"></span><br><span class="line">&gt; set type=NS</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       nameserver = ns4.baidu.com</span><br><span class="line">baidu.com       nameserver = ns7.baidu.com</span><br><span class="line">baidu.com       nameserver = ns2.baidu.com</span><br><span class="line">baidu.com       nameserver = ns3.baidu.com</span><br><span class="line">baidu.com       nameserver = dns.baidu.com</span><br><span class="line"></span><br><span class="line">ns7.baidu.com   internet address = 180.76.76.92</span><br><span class="line">ns4.baidu.com   internet address = 14.215.178.80</span><br><span class="line">ns4.baidu.com   internet address = 111.45.3.226</span><br><span class="line">ns2.baidu.com   internet address = 220.181.33.31</span><br><span class="line">ns3.baidu.com   internet address = 36.155.132.78</span><br><span class="line">ns3.baidu.com   internet address = 153.3.238.93</span><br><span class="line">dns.baidu.com   internet address = 110.242.68.134</span><br><span class="line">&gt; set type=MX</span><br><span class="line">&gt; baidu.com</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com</span><br><span class="line">baidu.com       MX preference = 20, mail exchanger = mx.baidu.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">(base) PS C:\Users\17657\Desktop\Github\HEXO&gt; nslookup<br>默认服务器:  UnKnown<br>Address:  10.3.9.5<br><br>&gt; set type=A<br>&gt; www.baidu.com<br>服务器:  UnKnown<br>Address:  10.3.9.5<br><br>非权威应答:<br>名称:    www.a.shifen.com<br>Addresses:  220.181.111.232<br>          220.181.111.1<br>Aliases:  www.baidu.com<br><br>&gt; set type=NS<br>&gt; baidu.com<br>服务器:  UnKnown<br>Address:  10.3.9.5<br><br>非权威应答:<br>baidu.com       nameserver = ns2.baidu.com<br>baidu.com       nameserver = ns7.baidu.com<br>baidu.com       nameserver = ns3.baidu.com<br>baidu.com       nameserver = dns.baidu.com<br>baidu.com       nameserver = ns4.baidu.com<br><br>ns2.baidu.com   internet address = 220.181.33.31<br>ns7.baidu.com   internet address = 180.76.76.92<br>dns.baidu.com   internet address = 110.242.68.134<br>ns3.baidu.com   internet address = 36.155.132.78<br>ns3.baidu.com   internet address = 153.3.238.93<br>ns4.baidu.com   internet address = 14.215.178.80<br>ns4.baidu.com   internet address = 111.45.3.226<br>&gt; set type=MX<br>&gt; baidu.com<br>服务器:  UnKnown<br>Address:  10.3.9.5<br><br>非权威应答:<br>baidu.com       MX preference = 20, mail exchanger = mx.baidu.com<br>baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com<br>&gt; server ns1.baidu.com<br>默认服务器:  ns1.baidu.com<br>Address:  110.242.68.134<br><br>&gt; set type=A<br>&gt; www.baidu.com<br>服务器:  ns1.baidu.com<br>Address:  110.242.68.134<br><br>非权威应答:<br>名称:    www.a.shifen.com<br>Addresses:  220.181.111.1<br>          220.181.111.232<br>Aliases:  www.baidu.com<br><br>&gt; set type=NS<br>&gt; baidu.com<br>服务器:  ns1.baidu.com<br>Address:  110.242.68.134<br><br>非权威应答:<br>baidu.com       nameserver = dns.baidu.com<br>baidu.com       nameserver = ns3.baidu.com<br>baidu.com       nameserver = ns4.baidu.com<br>baidu.com       nameserver = ns2.baidu.com<br>baidu.com       nameserver = ns7.baidu.com<br><br>ns7.baidu.com   internet address = 180.76.76.92<br>ns4.baidu.com   internet address = 14.215.178.80<br>ns4.baidu.com   internet address = 111.45.3.226<br>ns2.baidu.com   internet address = 220.181.33.31<br>ns3.baidu.com   internet address = 36.155.132.78<br>ns3.baidu.com   internet address = 153.3.238.93<br>dns.baidu.com   internet address = 110.242.68.134<br>&gt; set type=MX<br>&gt; baidu.com<br>服务器:  ns1.baidu.com<br>Address:  110.242.68.134<br><br>非权威应答:<br>baidu.com       MX preference = 20, mail exchanger = mx.baidu.com<br>baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com<br>&gt; server ns3.dnsv5.com<br>默认服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>&gt; set type=A<br>&gt; baidu.com<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>名称:    baidu.com<br>Addresses:  182.61.201.211<br>          182.61.244.181<br><br>&gt; set type=NS<br>&gt; baidu.com<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>baidu.com       nameserver = ns4.baidu.com<br>baidu.com       nameserver = ns7.baidu.com<br>baidu.com       nameserver = ns2.baidu.com<br>baidu.com       nameserver = ns3.baidu.com<br>baidu.com       nameserver = dns.baidu.com<br><br>ns7.baidu.com   internet address = 180.76.76.92<br>ns4.baidu.com   internet address = 14.215.178.80<br>ns4.baidu.com   internet address = 111.45.3.226<br>ns2.baidu.com   internet address = 220.181.33.31<br>ns3.baidu.com   internet address = 36.155.132.78<br>ns3.baidu.com   internet address = 153.3.238.93<br>dns.baidu.com   internet address = 110.242.68.134<br>&gt; set type=MX<br>&gt; baidu.com<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>baidu.com       MX preference = 10, mail exchanger = mx.maillb.baidu.com<br>baidu.com       MX preference = 20, mail exchanger = mx.baidu.com<br></code></pre></td></tr></table></figure>
 <p>总结：</p>
 <ul>
 <li><code>www.baidu.com</code> 和 <code>baidu.com</code> 不是同一个东西。具体来说后者涵盖范围更广。</li>
@@ -869,12 +890,12 @@ t_{p2p} = \max \left \{\frac{F}{u_s}, \frac{F}{d_i}, \frac{NF}{u_s + \sum_{i} u_
 </ul>
 <p><strong>d. Use nslookup to find a Web server that has multiple IP addresses. Does the Web server of your institution (school or company) have multiple IP addresses?</strong></p>
 <p>查询 <code>www.bilibili.com</code> 得到结果如下，其有两个 IP address。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; set type=A </span><br><span class="line">&gt; www.bilibili.com</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    a.w.bilicdn1.com</span><br><span class="line">Addresses:  121.194.11.73</span><br><span class="line">          121.194.11.72</span><br><span class="line">Aliases:  www.bilibili.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>&gt; set type=A <br>&gt; www.bilibili.com<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>名称:    a.w.bilicdn1.com<br>Addresses:  121.194.11.73<br>          121.194.11.72<br>Aliases:  www.bilibili.com<br><br></code></pre></td></tr></table></figure>
 <p>貌似我们学校的 web server 只有一个 IP Address</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; ucloud.bupt.edu.cn</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    vn.bupt.edu.cn</span><br><span class="line">Address:  10.3.19.2</span><br><span class="line">Aliases:  ucloud.bupt.edu.cn</span><br><span class="line"></span><br><span class="line">&gt; auth.bupt.edu.cn</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    vn.bupt.edu.cn</span><br><span class="line">Address:  10.3.19.2</span><br><span class="line">Aliases:  auth.bupt.edu.cn</span><br><span class="line"></span><br><span class="line">&gt; www.bupt.edu.cn</span><br><span class="line">服务器:  ns3.dnsv5.com</span><br><span class="line">Addresses:  1.12.0.18</span><br><span class="line">          1.12.0.17</span><br><span class="line">          43.140.237.52</span><br><span class="line">          111.13.203.52</span><br><span class="line">          36.155.149.211</span><br><span class="line">          101.227.168.52</span><br><span class="line">          220.196.136.52</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    vn46.bupt.edu.cn</span><br><span class="line">Address:  10.3.19.2</span><br><span class="line">Aliases:  www.bupt.edu.cn</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>&gt; ucloud.bupt.edu.cn<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>名称:    vn.bupt.edu.cn<br>Address:  10.3.19.2<br>Aliases:  ucloud.bupt.edu.cn<br><br>&gt; auth.bupt.edu.cn<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>名称:    vn.bupt.edu.cn<br>Address:  10.3.19.2<br>Aliases:  auth.bupt.edu.cn<br><br>&gt; www.bupt.edu.cn<br>服务器:  ns3.dnsv5.com<br>Addresses:  1.12.0.18<br>          1.12.0.17<br>          43.140.237.52<br>          111.13.203.52<br>          36.155.149.211<br>          101.227.168.52<br>          220.196.136.52<br><br>非权威应答:<br>名称:    vn46.bupt.edu.cn<br>Address:  10.3.19.2<br>Aliases:  www.bupt.edu.cn<br></code></pre></td></tr></table></figure>
 <p><strong>e. Use the ARIN whois database to determine the IP address range used by your university.</strong></p>
 <p>操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">nslookup www.bupt.edu.cn</span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  10.3.9.5</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    vn46.bupt.edu.cn</span><br><span class="line">Addresses:  2001:da8:215:4038::161</span><br><span class="line">          10.3.19.2</span><br><span class="line">Aliases:  www.bupt.edu.cn</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>nslookup www.bupt.edu.cn<br>服务器:  UnKnown<br>Address:  10.3.9.5<br><br>非权威应答:<br>名称:    vn46.bupt.edu.cn<br>Addresses:  2001:da8:215:4038::161<br>          10.3.19.2<br>Aliases:  www.bupt.edu.cn<br><br></code></pre></td></tr></table></figure>
 <p>这里的 IPv4 地址是子网地址吧？我在 rain 上查询查到了一个美国机构，而且网页也提醒我了 <strong>These addresses are in use by many millions of independently operated networks, which might be as small as a single computer connected to a home gateway, and are automatically configured in hundreds of millions of devices.</strong> 所以我用的是 IPv6 的地址，这个地址能查到，显示：Net Range<br><code>2001:da8:: - 2001:da8:ffff:ffff:ffff:ffff:ffff:ffff</code>。</p>
 <p><strong>f. Describe how an attacker can use whois databases and the nslookup tool to perform reconnaissance on an institution before launching an attack.</strong></p>
 <p>An attacker 可以用 whois 和 nslookup 干如下的事情：</p>
@@ -1004,75 +1025,371 @@ t_{p2p} = \max \left\{ \frac{F}{u_s}, \frac{F}{d_i}, \frac{N \cdot F}{u_s + \sum
 </li>
 </ol>
 
-    </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
+<span class="category-chains">
+  
+  
     
-    
-    
-
-    <footer class="post-footer">
-
+      <span class="category-chain">
         
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2025/06/05/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" rel="prev" title="统计学习及监督学习概论">
-                  <i class="fa fa-angle-left"></i> 统计学习及监督学习概论
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2025/06/08/The-Transport-Layer/" rel="next" title="The Transport Layer">
-                  The Transport Layer <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2025</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">ddccffq</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
+  <a href="/categories/Computer-Network/" class="category-chain-item">Computer Network</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Computer-Network/Application-Layer/" class="category-chain-item">Application Layer</a>
+  
+  
 
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>The Application Layer</div>
+      <div>https://ddccffq.github.io/2025/06/07/The-Application-Layer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/08/The-Transport-Layer/" title="The Transport Layer">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">The Transport Layer</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/05/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" title="统计学习及监督学习概论">
+                        <span class="hidden-mobile">统计学习及监督学习概论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
+</div>
 
-  <a href="https://github.com/ddccffq" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
