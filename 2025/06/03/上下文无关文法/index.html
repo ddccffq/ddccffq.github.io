@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ddccffq.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点： $$\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V$">
+    <meta name="description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：  \forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V派生树设有 C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="上下文无关文法">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/03/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点： $$\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V$">
+<meta property="og:description" content="上下文无关文法的定义定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：  \forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V派生树设有 C">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-03T02:25:03.000Z">
 <meta property="article:modified_time" content="2025-06-10T06:33:14.000Z">
@@ -67,7 +67,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -75,7 +75,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -251,9 +255,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="上下文无关文法的定义"><a href="#上下文无关文法的定义" class="headerlink" title="上下文无关文法的定义"></a>上下文无关文法的定义</h1><p>定义文法 $G &#x3D; (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：</p>
-<p>$$<br>\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V<br>$$</p>
-<h1 id="派生树"><a href="#派生树" class="headerlink" title="派生树"></a>派生树</h1><p>设有 CFG $ G &#x3D; (V, T, P, S)$，$G$ 的派生树是满足如<br>下条件的有序树。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="上下文无关文法的定义"><a href="#上下文无关文法的定义" class="headerlink" title="上下文无关文法的定义"></a>上下文无关文法的定义</h1><p>定义文法 $G = (V, T, P, S)$，其中产生式，除了空产生式外，有如下特点：</p>
+<script type="math/tex; mode=display">
+\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V</script><h1 id="派生树"><a href="#派生树" class="headerlink" title="派生树"></a>派生树</h1><p>设有 CFG $ G = (V, T, P, S)$，$G$ 的派生树是满足如<br>下条件的有序树。</p>
 <ol>
 <li>树的每个顶点有一个标记 $X$，且 $X \in V \cup T \cup {\epsilon}$；</li>
 <li>树根的标记为 $S$；</li>
@@ -264,9 +268,9 @@
 <p>派生树都是 CFG 的派生树。</p>
 <h2 id="顶点的结果"><a href="#顶点的结果" class="headerlink" title="顶点的结果"></a>顶点的结果</h2><p>派生树 $T$ 的所有叶子结点从左到右的符号串为 $X_1 X_2 \cdots X_n$是 $T$ 的结果。</p>
 <h1 id="CFG-的化简"><a href="#CFG-的化简" class="headerlink" title="CFG 的化简"></a>CFG 的化简</h1><h2 id="删除无用符号"><a href="#删除无用符号" class="headerlink" title="删除无用符号"></a>删除无用符号</h2><p><strong>无用符号</strong></p>
-<h1 id="CNF：乔姆斯基范式文法"><a href="#CNF：乔姆斯基范式文法" class="headerlink" title="CNF：乔姆斯基范式文法"></a>CNF：乔姆斯基范式文法</h1><p>CFG $G &#x3D; (V, T, P, S)$ 中的产生式形式为：$A \to BC, , A\to a$，其中 $A,B,C \in V,, a \in T$，需要注意的是此 CFG 已完成化简。</p>
+<h1 id="CNF：乔姆斯基范式文法"><a href="#CNF：乔姆斯基范式文法" class="headerlink" title="CNF：乔姆斯基范式文法"></a>CNF：乔姆斯基范式文法</h1><p>CFG $G = (V, T, P, S)$ 中的产生式形式为：$A \to BC, \, A\to a$，其中 $A,B,C \in V,\, a \in T$，需要注意的是此 CFG 已完成化简。</p>
 <p>利用 CNF 范式派生长度为 $n$ 的串，刚好需要 $2n-1$ 步。</p>
-<h1 id="上下文无关文法的性质"><a href="#上下文无关文法的性质" class="headerlink" title="上下文无关文法的性质"></a>上下文无关文法的性质</h1><h2 id="CFL-的泵引理"><a href="#CFL-的泵引理" class="headerlink" title="CFL 的泵引理"></a>CFL 的泵引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $|z| \geq N$ 时，存在 $u, v, w, x, y$，使得 $z &#x3D; uvwxy$，同时满足：</p>
+<h1 id="上下文无关文法的性质"><a href="#上下文无关文法的性质" class="headerlink" title="上下文无关文法的性质"></a>上下文无关文法的性质</h1><h2 id="CFL-的泵引理"><a href="#CFL-的泵引理" class="headerlink" title="CFL 的泵引理"></a>CFL 的泵引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $|z| \geq N$ 时，存在 $u, v, w, x, y$，使得 $z = uvwxy$，同时满足：</p>
 <ol>
 <li>$|vwx| \leq N$；</li>
 <li>$|vx| \geq 1$；</li>
@@ -275,33 +279,33 @@
 <h3 id="利用-CFL-泵引理证明一个语言不是-CFL"><a href="#利用-CFL-泵引理证明一个语言不是-CFL" class="headerlink" title="利用 CFL 泵引理证明一个语言不是 CFL"></a>利用 CFL 泵引理证明一个语言不是 CFL</h3><ol>
 <li>首先假设该语言是 CFL，则其满足泵引理，任选 $N$；</li>
 <li>找到语言中的句子 $z \in L$ 且 $|z| \geq N$；</li>
-<li>分析 $v$、$x$ 的各种取值，当满足 $z &#x3D; uvwxy$，且 $|vwx| \leq N$，$|vx| \geq 1$ 时，均能找到 $i \geq 0$，使得 $i$，$u v^i w x^i y \notin L$。</li>
+<li>分析 $v$、$x$ 的各种取值，当满足 $z = uvwxy$，且 $|vwx| \leq N$，$|vx| \geq 1$ 时，均能找到 $i \geq 0$，使得 $i$，$u v^i w x^i y \notin L$。</li>
 </ol>
-<h2 id="Ogden-引理"><a href="#Ogden-引理" class="headerlink" title="Ogden 引理"></a>Ogden 引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $z$ 中至少含有 $N$ 个特异点时，存在 $u, v, w, x, y$，使得 $z &#x3D; uvwxy$，同时满足：</p>
+<h2 id="Ogden-引理"><a href="#Ogden-引理" class="headerlink" title="Ogden 引理"></a>Ogden 引理</h2><p>对于任意的 CFL $L$，存在仅仅依赖于 $L$ 的正整数 $N$，对于任意的 $z \in L$，当 $z$ 中至少含有 $N$ 个特异点时，存在 $u, v, w, x, y$，使得 $z = uvwxy$，同时满足：</p>
 <ol>
 <li>$|vwx|$ 中的特异点的数目 $\leq N$；</li>
 <li>$|vx|$ 中的特异点的数目 $\geq 1$；</li>
 <li>对于任意的非负整数 $i$，$u v^i w x^i y \in L$。</li>
 </ol>
-<h2 id="CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"><a href="#CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭" class="headerlink" title="CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"></a>CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭</h2><h1 id="CYK-Algorithm"><a href="#CYK-Algorithm" class="headerlink" title="CYK Algorithm"></a>CYK Algorithm</h1><p>输入：CNF $G &#x3D; (V, T, P, S)$，$x$；<br>输出：$x \in L$ 或者 $x \notin L$；</p>
-<p>$V_{i,k}$：可以派生出子串 $x_{i,k}$ 的变量集合，$x_{i,k}$ 表示从 $i$ 开始，长度为 $k$ 的子串。</p>
+<h2 id="CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"><a href="#CFL-在并、乘积、闭包运算下是封闭的，但在交运算下不封闭" class="headerlink" title="CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭"></a>CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭</h2><h1 id="CYK-Algorithm"><a href="#CYK-Algorithm" class="headerlink" title="CYK Algorithm"></a>CYK Algorithm</h1><p>输入：CNF $G = (V, T, P, S)$，$x$；<br>输出：$x \in L$ 或者 $x \notin L$；</p>
+<p>$V<em>{i,k}$：可以派生出子串 $x</em>{i,k}$ 的变量集合，$x_{i,k}$ 表示从 $i$ 开始，长度为 $k$ 的子串。</p>
 <ol>
-<li><code>for i = 1 in |x|</code> $V_{i,1} &#x3D; {A \mid A \to x_{i,1} \in P}$</li>
-<li><code>for k = 2 in |x| &#123;for i = 1 to |x| - k + 1&#125;</code> $V_{i,k} &#x3D; \Phi $<ol>
-<li><code>for j = 1 to k - 1</code> $V_{i,k} &#x3D; V_{i,k} \cup {A \mid A \to BC \text{ and } B \in V_{i,j} \text{ and } C \in V_{i + j,k - j}}$</li>
+<li><code>for i = 1 in |x|</code> $V<em>{i,1} = {A \mid A \to x</em>{i,1} \in P}$</li>
+<li><code>for k = 2 in |x| &#123;for i = 1 to |x| - k + 1&#125;</code> $V_{i,k} = \Phi $<ol>
+<li><code>for j = 1 to k - 1</code> $V<em>{i,k} = V</em>{i,k} \cup {A \mid A \to BC \text{ and } B \in V<em>{i,j} \text{ and } C \in V</em>{i + j,k - j}}$</li>
 </ol>
 </li>
 </ol>
-<h1 id="hw13"><a href="#hw13" class="headerlink" title="hw13"></a>hw13</h1><p><strong>题目1：</strong> 使用CFL的泵引理证明 $L &#x3D; { ww \mid w \in {a, b}^{\ast} }$ 不是上下文无关语言.</p>
+<h1 id="hw13"><a href="#hw13" class="headerlink" title="hw13"></a>hw13</h1><p><strong>题目1：</strong> 使用CFL的泵引理证明 $L = { ww \mid w \in {a, b}^{\ast} }$ 不是上下文无关语言.</p>
 <p><strong>解答1：</strong></p>
-<p>我们使用 CFL 的泵引理来证明 $L &#x3D; { ww \mid w \in {a, b}^\ast }$ 不是上下文无关语言。</p>
+<p>我们使用 CFL 的泵引理来证明 $L = { ww \mid w \in {a, b}^\ast }$ 不是上下文无关语言。</p>
 <p>假设 $L$ 是一个上下文无关语言，则它满足 CFL 的泵引理。</p>
-<p>设 $N$ 为泵引理中的 $N$，取句子 $ z &#x3D; a^{N} b^{N} a^{N} b^{N} \in L $</p>
+<p>设 $N$ 为泵引理中的 $N$，取句子 $ z = a^{N} b^{N} a^{N} b^{N} \in L $</p>
 <p>接下来分析 $vwx$ 的各种取值：</p>
 <ol>
 <li>因为 $|vwx| \leq N$，不妨先假设 $vwx \subseteq a^{N}$ 或者 $b^{N}$，显然对于 $\forall i &gt; 0$，都会破坏 $L$ 的结构，即要求 $ww \in L$。<br><br></li>
 <li>然后再分析 $vwx$ 跨越了 $a$ 部分或者 $b$ 部分，由于 $|vwx| \leq N$，可以证明 $vwx$ 最多横跨一个 $a$ 和一个 $b$，也即是类似 $a \cdots ab \cdots b$ 和 $b \cdots ba \cdots a$ 的结构；<br><br><ol>
-<li>假设 $vwx$ 横跨第一个 $a$ 和 $b$。设 $ v &#x3D; a^{m}, , x &#x3D; b^{n}$，则 $\forall i &gt; 0$，$u a^{im} w b^{in} y \notin L$，这很好证明：此时 $u a^{im} w b^{in} y$ 可以写成 $a^{N + im} b^{N + in} a^{N} b^{N}$ 的形式，为了保证 $ww$ 的结构，只能如此分割 $a^{N + im} b^{N + in}$ 和 $a^{N} b^{N}$，因为 $|vx| \geq 1$，所以不存在 $i$ 使得分割后得两个句子相等；<br><br></li>
+<li>假设 $vwx$ 横跨第一个 $a$ 和 $b$。设 $ v = a^{m}, \, x = b^{n}$，则 $\forall i &gt; 0$，$u a^{im} w b^{in} y \notin L$，这很好证明：此时 $u a^{im} w b^{in} y$ 可以写成 $a^{N + im} b^{N + in} a^{N} b^{N}$ 的形式，为了保证 $ww$ 的结构，只能如此分割 $a^{N + im} b^{N + in}$ 和 $a^{N} b^{N}$，因为 $|vx| \geq 1$，所以不存在 $i$ 使得分割后得两个句子相等；<br><br></li>
 <li>同理可以证明 $vwx$ 横跨第二个 $a$ 和 $b$ 时同样不满足泵引理；<br><br></li>
 <li>对于 $vwx$ 横跨第一个 $b$ 和 第二个 $a$ 的情况，此时 $u a^{im} w b^{in} y$ 可以写成 $a^{N} b^{N + im} a^{N + in} b^{N}$ 的形式，同样为了保证 $ww$ 的结构，只能如此分割 $a^{N} b^{N + im}$ 和 $a^{N + in} b^{N}$，显然分割后的句子不相等，也就是不满足泵引理。<br><br></li>
 </ol>
@@ -309,44 +313,44 @@
 </ol>
 <p>综上，$L$ 不是 CFL。</p>
 <p><strong>题目2：</strong><br>给定文法 $G$ 如下：</p>
-<p>[<br>\begin{align*}<br>&amp;S \to AB ,|, AA ,|, BC \<br>&amp;A \to CD ,|, a \<br>&amp;B \to BD ,|, SB ,|, b \<br>&amp;C \to c \<br>&amp;D \to DB ,|, b<br>\end{align*}<br>]</p>
+<p>[<br>\begin{align<em>}<br>&amp;S \to AB \,|\, AA \,|\, BC \<br>&amp;A \to CD \,|\, a \<br>&amp;B \to BD \,|\, SB \,|\, b \<br>&amp;C \to c \<br>&amp;D \to DB \,|\, b<br>\end{align</em>}<br>]</p>
 <p>根据算法 CYK 算法，请识别字符串”aabbc”是否属于 $L(G)$?</p>
-<p><strong>解答2：</strong><br>$x &#x3D; \text{“aabbc”}$，长度 $|x| &#x3D; 5$。</p>
-<p>构造一个二维表 $V_{i,k}$，其中 $V_{i,k}$ 表示从位置 $i$ 开始，长度为 $k$ 的子串可以由哪些非终结符生成。</p>
+<p><strong>解答2：</strong><br>$x = \text{“aabbc”}$，长度 $|x| = 5$。</p>
+<p>构造一个二维表 $V<em>{i,k}$，其中 $V</em>{i,k}$ 表示从位置 $i$ 开始，长度为 $k$ 的子串可以由哪些非终结符生成。</p>
 <ol>
 <li><p><strong>第一步：处理长度为 1 的子串</strong><br>根据文法的终结符规则，填充 $V_{i,1}$：</p>
 <ul>
-<li>$x_1 &#x3D; a \implies V_{1,1} &#x3D; {A}$</li>
-<li>$x_2 &#x3D; a \implies V_{2,1} &#x3D; {A}$</li>
-<li>$x_3 &#x3D; b \implies V_{3,1} &#x3D; {B, D}$</li>
-<li>$x_4 &#x3D; b \implies V_{4,1} &#x3D; {B, D}$</li>
-<li>$x_5 &#x3D; c \implies V_{5,1} &#x3D; {C}$</li>
+<li>$x<em>1 = a \implies V</em>{1,1} = {A}$</li>
+<li>$x<em>2 = a \implies V</em>{2,1} = {A}$</li>
+<li>$x<em>3 = b \implies V</em>{3,1} = {B, D}$</li>
+<li>$x<em>4 = b \implies V</em>{4,1} = {B, D}$</li>
+<li>$x<em>5 = c \implies V</em>{5,1} = {C}$</li>
 </ul>
 </li>
 <li><p><strong>第二步：处理长度为 2 的子串</strong><br>根据文法的组合规则，填充 $V_{i,2}$：</p>
 <ul>
-<li>$x_{1,2} &#x3D; “aa” \implies V_{1,2} &#x3D; {S}$ （因为 $A \to AA$）</li>
-<li>$x_{2,2} &#x3D; “ab” \implies V_{2,2} &#x3D; {B}$ （因为 $S \to AB$）</li>
-<li>$x_{3,2} &#x3D; “bb” \implies V_{3,2} &#x3D; {B, D}$ （因为 $B \to BD$ 和 $D \to DB$）</li>
-<li>$x_{4,2} &#x3D; “bc” \implies V_{4,2} &#x3D; {S}$ （因为 $S \to BC$）</li>
+<li>$x<em>{1,2} = “aa” \implies V</em>{1,2} = {S}$ （因为 $A \to AA$）</li>
+<li>$x<em>{2,2} = “ab” \implies V</em>{2,2} = {B}$ （因为 $S \to AB$）</li>
+<li>$x<em>{3,2} = “bb” \implies V</em>{3,2} = {B, D}$ （因为 $B \to BD$ 和 $D \to DB$）</li>
+<li>$x<em>{4,2} = “bc” \implies V</em>{4,2} = {S}$ （因为 $S \to BC$）</li>
 </ul>
 </li>
 <li><p><strong>第三步：处理长度为 3 的子串</strong><br>根据文法的组合规则，填充 $V_{i,3}$：</p>
 <ul>
-<li>$x_{1,3} &#x3D; “aab” \implies V_{1,3} &#x3D; {B}$ （因为 $S \to AB$）</li>
-<li>$x_{2,3} &#x3D; “abb” \implies V_{2,3} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
-<li>$x_{3,3} &#x3D; “bbc” \implies V_{3,3} &#x3D; {S}$ （因为 $S \to BC$）</li>
+<li>$x<em>{1,3} = “aab” \implies V</em>{1,3} = {B}$ （因为 $S \to AB$）</li>
+<li>$x<em>{2,3} = “abb” \implies V</em>{2,3} = {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+<li>$x<em>{3,3} = “bbc” \implies V</em>{3,3} = {S}$ （因为 $S \to BC$）</li>
 </ul>
 </li>
 <li><p><strong>第四步：处理长度为 4 的子串</strong><br>根据文法的组合规则，填充 $V_{i,4}$：</p>
 <ul>
-<li>$x_{1,4} &#x3D; “aabb” \implies V_{1,4} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
-<li>$x_{2,4} &#x3D; “abbc” \implies V_{2,4} &#x3D; {S}$ （因为 $S \to BC$）</li>
+<li>$x<em>{1,4} = “aabb” \implies V</em>{1,4} = {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+<li>$x<em>{2,4} = “abbc” \implies V</em>{2,4} = {S}$ （因为 $S \to BC$）</li>
 </ul>
 </li>
 <li><p><strong>第五步：处理长度为 5 的子串</strong><br>根据文法的组合规则，填充 $V_{1,5}$：</p>
 <ul>
-<li>$x_{1,5} &#x3D; “aabbc” \implies V_{1,5} &#x3D; {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
+<li>$x<em>{1,5} = “aabbc” \implies V</em>{1,5} = {S}$ （因为 $S \to AB$ 和 $B \to SB$）</li>
 </ul>
 </li>
 </ol>

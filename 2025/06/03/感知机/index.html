@@ -67,7 +67,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -75,7 +75,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -258,28 +262,40 @@
     <div class="post-body" itemprop="articleBody"><h2 id="text-Perceptron"><a href="#text-Perceptron" class="headerlink" title="$\text{Perceptron}$"></a>$\text{Perceptron}$</h2><p>感知机用于<strong>二分类线性问题</strong>，这说明感知机只能用于二分类问题，同时样本数据线性可分。</p>
 <p>接下来会介绍感知机的<strong>数学定义</strong>，也就是感知机的输入输出映射；然后介绍感知机的学习算法，学习什么？学习的是感知机数学定义中提及到的<strong>参数</strong>；如何学习？会介绍两种方法，第一种是基于原始<strong>损失函数</strong>的迭代算法，另一种是基于原始损失函数的<strong>对偶形式</strong>的迭代算法，这两种算法本质上等价。</p>
 <span id="more"></span>
-
-<h2 id="感知机的数学定义"><a href="#感知机的数学定义" class="headerlink" title="感知机的数学定义"></a>感知机的数学定义</h2><p>假设输入空间 $\mathcal{X} \subseteq \mathbb{R}^n$，输出空间是 $\mathcal{Y} &#x3D; {+1, -1}$。由输入空间到输出空间的如下函数：</p>
-<p>$$<br>f(x) &#x3D; \operatorname{sign} (\mathbf{w} \cdot \mathbf{x} + b) \tag{1}<br>$$</p>
-<p>称为感知机。其中，$w$ 和 $b$ 为感知机模型参数，前者叫权值 <strong>weight</strong>，后者叫偏置 <strong>bias</strong>，点乘运算为<strong>向量内积</strong>。$\operatorname{sign}$ 是符号函数，具体定义如下：</p>
-<p>$$<br>\operatorname{sign}(x) &#x3D;<br>\begin{cases}<br>+1,&amp; x \geq 0<br>\[10pt]<br>-1,&amp; x &lt; 0 \tag{2}<br>\end{cases}<br>$$</p>
-<h2 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h2><p>假设数据集<strong>线性可分</strong>，定义感知机学习的损失函数为：</p>
-<p>$$<br>L(\mathbf{w}, b) &#x3D; -\sum_{\mathbf{x}_i \in M} y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \tag{3}<br>$$</p>
-<p>其中，$M$ 是<strong>误分类点的集合</strong>，我们的目标是极小化 $L(\mathbf{w}, b)$。</p>
+<h2 id="感知机的数学定义"><a href="#感知机的数学定义" class="headerlink" title="感知机的数学定义"></a>感知机的数学定义</h2><p>假设输入空间 $\mathcal{X} \subseteq \mathbb{R}^n$，输出空间是 $\mathcal{Y} = {+1, -1}$。由输入空间到输出空间的如下函数：</p>
+<script type="math/tex; mode=display">
+f(x) = \operatorname{sign} (\mathbf{w} \cdot \mathbf{x} + b) \tag{1}</script><p>称为感知机。其中，$w$ 和 $b$ 为感知机模型参数，前者叫权值 <strong>weight</strong>，后者叫偏置 <strong>bias</strong>，点乘运算为<strong>向量内积</strong>。$\operatorname{sign}$ 是符号函数，具体定义如下：</p>
+<script type="math/tex; mode=display">
+\operatorname{sign}(x) =
+\begin{cases}
++1,& x \geq 0
+\\[10pt]
+-1,& x < 0 \tag{2}
+\end{cases}</script><h2 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h2><p>假设数据集<strong>线性可分</strong>，定义感知机学习的损失函数为：</p>
+<script type="math/tex; mode=display">
+L(\mathbf{w}, b) = -\sum_{\mathbf{x}_i \in M} y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \tag{3}</script><p>其中，$M$ 是<strong>误分类点的集合</strong>，我们的目标是极小化 $L(\mathbf{w}, b)$。</p>
 <h3 id="感知机学习算法的原始形式"><a href="#感知机学习算法的原始形式" class="headerlink" title="感知机学习算法的原始形式"></a>感知机学习算法的原始形式</h3><p>随机初始化 $\mathbf{w}$ 和 $b$，分别记为 $\mathbf{w}_0$ 和 $b_0$，然后在训练数据集中选取数据 $(\mathbf{x}_i, y_i)$；如果 $y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \leq 0$,</p>
-<p>$$<br>\begin{align*}<br>&amp;\mathbf{w} \leftarrow \mathbf{w} + \eta y_i \mathbf{x}_i<br>\[10pt]<br>&amp;b \leftarrow b + \eta y_i<br>\end{align*}<br>$$</p>
-<p>重复上述选择更新过程直至没有误分类点。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&\mathbf{w} \leftarrow \mathbf{w} + \eta y_i \mathbf{x}_i
+\\[10pt]
+&b \leftarrow b + \eta y_i
+\end{align*}</script><p>重复上述选择更新过程直至没有误分类点。</p>
 <blockquote>
 <blockquote>
 <p>这个更新过程，根据《统计学习方法》的例题，需要这样更新。假设我有一训练数据集 $x_1, x_2, \cdots, x_N$，我初始化完 $\mathbf{w}$ 和 $b$ 后，我从 $x_1$ 开始，每次更新后都要从 $1 \to N$ 的顺序进行验证。</p>
 </blockquote>
 </blockquote>
-<h3 id="感知机学习算法的对偶形式"><a href="#感知机学习算法的对偶形式" class="headerlink" title="感知机学习算法的对偶形式"></a>感知机学习算法的对偶形式</h3><p>与原始形式不同，对原始形式使用拉格朗日对偶化，得到相应的对偶形式。首先初始化系数和偏置 $\mathbf{\alpha} \leftarrow \mathbf{0}, b \leftarrow 0$。再在训练集中选取数据 $(\mathbf{x}<em>i, y_i)$；如果 $y_i \left(\sum</em>{j &#x3D; 1}^{N} \alpha_j y_j (\mathbf{x}_j \cdot \mathbf{x}_i) + b \right) \leq 0$，则更新</p>
-<p>$$<br>\begin{align*}<br>&amp;\alpha_i \leftarrow \alpha_i + \eta<br>\[10pt]<br>&amp;b \leftarrow b + \eta y_i<br>\end{align*}<br>$$</p>
-<p><strong>tips</strong></p>
+<h3 id="感知机学习算法的对偶形式"><a href="#感知机学习算法的对偶形式" class="headerlink" title="感知机学习算法的对偶形式"></a>感知机学习算法的对偶形式</h3><p>与原始形式不同，对原始形式使用拉格朗日对偶化，得到相应的对偶形式。首先初始化系数和偏置 $\mathbf{\alpha} \leftarrow \mathbf{0}, b \leftarrow 0$。再在训练集中选取数据 $(\mathbf{x}<em>i, y_i)$；如果 $y_i \left(\sum</em>{j = 1}^{N} \alpha_j y_j (\mathbf{x}_j \cdot \mathbf{x}_i) + b \right) \leq 0$，则更新</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&\alpha_i \leftarrow \alpha_i + \eta
+\\[10pt]
+&b \leftarrow b + \eta y_i
+\end{align*}</script><p><strong>tips</strong></p>
 <p>可以预处理出所有输入实例间的内积，并将其存为一个矩阵，这个矩阵叫做 Gram 矩阵，</p>
-<p>$$<br>\mathbf{G} &#x3D; [\mathbf{x}_i \cdot \mathbf{x}<em>j]</em>{N \times N}<br>$$</p>
-
+<script type="math/tex; mode=display">
+\mathbf{G} = [\mathbf{x}_i \cdot \mathbf{x}_j]_{N \times N}</script>
     </div>
 
     

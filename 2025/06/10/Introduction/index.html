@@ -19,20 +19,20 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ddccffq.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Network Edgeapplications and hosts Client Program and Server Program一般而言，客户端程序是 发送请求 的，而服务器端程序是 接受请求 的。 Access Technologies     接入技术 分类 简要说明    数字用户线（DSL） 居家接入 通过电话线为家庭用户提供宽带互联网接入   电缆调制解调器 居家接入 通过有线电">
+    <meta name="description" content="Network Edgeapplications and hosts Client Program and Server Program一般而言，客户端程序是 发送请求 的，而服务器端程序是 接受请求 的。 Access Technologies  | 接入技术         | 分类           | 简要说明                                   | |-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/10/Introduction/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="Network Edgeapplications and hosts Client Program and Server Program一般而言，客户端程序是 发送请求 的，而服务器端程序是 接受请求 的。 Access Technologies     接入技术 分类 简要说明    数字用户线（DSL） 居家接入 通过电话线为家庭用户提供宽带互联网接入   电缆调制解调器 居家接入 通过有线电">
+<meta property="og:description" content="Network Edgeapplications and hosts Client Program and Server Program一般而言，客户端程序是 发送请求 的，而服务器端程序是 接受请求 的。 Access Technologies  | 接入技术         | 分类           | 简要说明                                   | |-">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/10/Introduction/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
 <meta property="article:published_time" content="2025-06-10T00:43:49.000Z">
 <meta property="article:modified_time" content="2025-06-17T01:39:18.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="机器学习,计算机网络,算法,统计学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ddccffq.github.io/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/10/Introduction/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
 
 
 <link rel="canonical" href="https://ddccffq.github.io/2025/06/10/Introduction/">
@@ -69,7 +69,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -77,7 +77,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -261,252 +265,77 @@
 <h1 id="Client-Program-and-Server-Program"><a href="#Client-Program-and-Server-Program" class="headerlink" title="Client Program and Server Program"></a>Client Program and Server Program</h1><p>一般而言，客户端程序是 <strong>发送请求</strong> 的，而服务器端程序是 <strong>接受请求</strong> 的。</p>
 <h1 id="Access-Technologies"><a href="#Access-Technologies" class="headerlink" title="Access Technologies"></a>Access Technologies</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>接入技术</th>
-<th>分类</th>
-<th>简要说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数字用户线（DSL）</td>
-<td>居家接入</td>
-<td>通过电话线为家庭用户提供宽带互联网接入</td>
-</tr>
-<tr>
-<td>电缆调制解调器</td>
-<td>居家接入</td>
-<td>通过有线电视网络为家庭用户提供互联网接入</td>
-</tr>
-<tr>
-<td>光纤到户（FTTH）</td>
-<td>居家接入&#x2F;公司接入</td>
-<td>通过光纤直接连接家庭或公司，提供高速接入</td>
-</tr>
-<tr>
-<td>以太网</td>
-<td>公司接入</td>
-<td>企业内部常用的局域网接入方式</td>
-</tr>
-<tr>
-<td>Wi-Fi</td>
-<td>居家接入&#x2F;公司接入</td>
-<td>无线局域网，常用于家庭和公司内部无线接入</td>
-</tr>
-<tr>
-<td>蜂窝移动网络（3G&#x2F;4G&#x2F;5G）</td>
-<td>移动接入</td>
-<td>通过移动运营商网络为移动设备提供互联网接入</td>
-</tr>
-</tbody></table>
+| 接入技术         | 分类           | 简要说明                                   |
+|------------------|----------------|--------------------------------------------|
+| 数字用户线（DSL） | 居家接入       | 通过电话线为家庭用户提供宽带互联网接入      |
+| 电缆调制解调器    | 居家接入       | 通过有线电视网络为家庭用户提供互联网接入    |
+| 光纤到户（FTTH）  | 居家接入/公司接入 | 通过光纤直接连接家庭或公司，提供高速接入    |
+| 以太网            | 公司接入       | 企业内部常用的局域网接入方式                |
+| Wi-Fi             | 居家接入/公司接入 | 无线局域网，常用于家庭和公司内部无线接入    |
+| 蜂窝移动网络（3G/4G/5G） | 移动接入 | 通过移动运营商网络为移动设备提供互联网接入  |
+
 </div>
 
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>接入技术</th>
-<th>典型速率范围</th>
-<th>速率共享性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>拨号调制解调器</td>
-<td>最高 56 Kbps</td>
-<td>专用</td>
-<td>每户独占电话线</td>
-</tr>
-<tr>
-<td>HFC</td>
-<td>10 Mbps ~ 1 Gbps（下行）</td>
-<td>共享</td>
-<td>同轴电缆段内用户共享带宽</td>
-</tr>
-<tr>
-<td>DSL</td>
-<td>256 Kbps ~ 100 Mbps（下行）</td>
-<td>专用</td>
-<td>每户独占电话线，汇聚点可能有瓶颈</td>
-</tr>
-<tr>
-<td>FTTH</td>
-<td>100 Mbps ~ 10 Gbps</td>
-<td>通常专用</td>
-<td>部分PON架构下分光器后带宽被共享</td>
-</tr>
-</tbody></table>
+| 接入技术         | 典型速率范围                | 速率共享性   | 说明                                   |
+|------------------|----------------------------|--------------|----------------------------------------|
+| 拨号调制解调器   | 最高 56 Kbps                | 专用         | 每户独占电话线                         |
+| HFC              | 10 Mbps ~ 1 Gbps（下行）    | 共享         | 同轴电缆段内用户共享带宽               |
+| DSL              | 256 Kbps ~ 100 Mbps（下行） | 专用         | 每户独占电话线，汇聚点可能有瓶颈       |
+| FTTH             | 100 Mbps ~ 10 Gbps          | 通常专用     | 部分PON架构下分光器后带宽被共享        |
+
 </div>
 
 <h1 id="HFC-hybrid-fiber-coax"><a href="#HFC-hybrid-fiber-coax" class="headerlink" title="HFC: hybrid fiber coax"></a>HFC: hybrid fiber coax</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>答案</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>HFC 传输速率是专用还是共享？</td>
-<td>共享</td>
-</tr>
-<tr>
-<td>下行 HFC 信道是否可能发生冲突？</td>
-<td>不会</td>
-</tr>
-<tr>
-<td>原因</td>
-<td>只有头端设备发送，无多发冲突</td>
-</tr>
-</tbody></table>
+| 问题                                   | 答案                         |
+|----------------------------------------|------------------------------|
+| HFC 传输速率是专用还是共享？           | 共享                         |
+| 下行 HFC 信道是否可能发生冲突？         | 不会                         |
+| 原因                                   | 只有头端设备发送，无多发冲突 |
+
 </div>
 
 <h1 id="Ethernet-LANs"><a href="#Ethernet-LANs" class="headerlink" title="Ethernet LANs"></a>Ethernet LANs</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>以太网类型</th>
-<th>典型速率</th>
-<th>每用户能否持续满速发送？</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>10BASE-T</td>
-<td>10 Mbps</td>
-<td>否</td>
-</tr>
-<tr>
-<td>100BASE-TX</td>
-<td>100 Mbps</td>
-<td>否</td>
-</tr>
-<tr>
-<td>1000BASE-T</td>
-<td>1 Gbps</td>
-<td>否</td>
-</tr>
-<tr>
-<td>10GBASE-T</td>
-<td>10 Gbps</td>
-<td>否</td>
-</tr>
-</tbody></table>
+| 以太网类型         | 典型速率         | 每用户能否持续满速发送？ |
+|--------------------|------------------|-------------------------|
+| 10BASE-T           | 10 Mbps          | 否                      |
+| 100BASE-TX         | 100 Mbps         | 否                      |
+| 1000BASE-T         | 1 Gbps           | 否                      |
+| 10GBASE-T          | 10 Gbps          | 否                      |
+
 </div>
 
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>物理介质类型</th>
-<th>典型应用场景</th>
-<th>传输距离</th>
-<th>传输速率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>双绞线</td>
-<td>局域网、办公、家庭</td>
-<td>最远可达100米</td>
-<td>10 Mbps ~ 40 Gbps</td>
-</tr>
-<tr>
-<td>光纤</td>
-<td>数据中心、骨干网</td>
-<td>数百米至数十公里</td>
-<td>100 Mbps ~ 400 Gbps</td>
-</tr>
-<tr>
-<td>同轴电缆</td>
-<td>早期局域网</td>
-<td>数百米</td>
-<td>10 Mbps</td>
-</tr>
-</tbody></table>
+| 物理介质类型         | 典型应用场景           | 传输距离           | 传输速率           |
+|----------------------|------------------------|--------------------|--------------------|
+| 双绞线               | 局域网、办公、家庭     | 最远可达100米      | 10 Mbps ~ 40 Gbps  |
+| 光纤                 | 数据中心、骨干网       | 数百米至数十公里   | 100 Mbps ~ 400 Gbps|
+| 同轴电缆             | 早期局域网             | 数百米             | 10 Mbps            |
+
 </div>
 
 <h1 id="Wireless-Internet-Access-Technologies"><a href="#Wireless-Internet-Access-Technologies" class="headerlink" title="Wireless Internet Access Technologies"></a>Wireless Internet Access Technologies</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>技术类型</th>
-<th>典型速率范围</th>
-<th>覆盖范围</th>
-<th>主要应用场景</th>
-<th>延迟</th>
-<th>主要优缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Wi-Fi</td>
-<td>数十 Mbps ~ 数 Gbps</td>
-<td>局部（几十米）</td>
-<td>家庭、办公、热点</td>
-<td>低</td>
-<td>速率高、成本低、覆盖范围有限</td>
-</tr>
-<tr>
-<td>蜂窝网络（4G&#x2F;5G）</td>
-<td>数十 Mbps ~ 数 Gbps</td>
-<td>广域（城市&#x2F;乡村）</td>
-<td>移动设备、车载、物联网</td>
-<td>低（5G更优）</td>
-<td>覆盖广、速率高、需付流量费用</td>
-</tr>
-<tr>
-<td>卫星互联网</td>
-<td>数十 Mbps ~ 数百 Mbps</td>
-<td>全球（含偏远区）</td>
-<td>偏远地区、应急通信</td>
-<td>中~高</td>
-<td>覆盖广、不依赖地面设施、延迟较高</td>
-</tr>
-</tbody></table>
+| 技术类型         | 典型速率范围           | 覆盖范围         | 主要应用场景           | 延迟           | 主要优缺点                         |
+|------------------|-----------------------|------------------|------------------------|---------------|------------------------------------|
+| Wi-Fi            | 数十 Mbps ~ 数 Gbps   | 局部（几十米）   | 家庭、办公、热点       | 低            | 速率高、成本低、覆盖范围有限       |
+| 蜂窝网络（4G/5G）| 数十 Mbps ~ 数 Gbps   | 广域（城市/乡村）| 移动设备、车载、物联网 | 低（5G更优）  | 覆盖广、速率高、需付流量费用       |
+| 卫星互联网       | 数十 Mbps ~ 数百 Mbps | 全球（含偏远区） | 偏远地区、应急通信     | 中~高         | 覆盖广、不依赖地面设施、延迟较高   |
+
 </div>
 
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>设备类型</th>
-<th align="center">物理层</th>
-<th align="center">链路层</th>
-<th align="center">网络层</th>
-<th align="center">传输层</th>
-<th align="center">应用层</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>路由器</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\times$$</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>链路层交换机</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\times$$</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>主机</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-<td align="center">$$\surd$$</td>
-</tr>
-</tbody></table>
+| 设备类型         | 物理层 | 链路层 | 网络层 | 传输层 | 应用层 |
+|------------------|:------:|:------:|:------:|:------:|:------:|
+| 路由器           |   $$\surd$$    |   $$\surd$$    |   $$\surd$$    |    $$\times$$     |        |
+| 链路层交换机     |   $$\surd$$    |   $$\surd$$    |    $$\times$$    |        |        |
+| 主机             |   $$\surd$$    |   $$\surd$$    |   $$\surd$$    |   $$\surd$$    |   $$\surd$$    |
+
 </div>
 
 <h1 id="Packet-Switching-and-Circuit-Switching"><a href="#Packet-Switching-and-Circuit-Switching" class="headerlink" title="Packet Switching and Circuit Switching"></a>Packet Switching and Circuit Switching</h1><ul>
@@ -516,22 +345,11 @@
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>网络类型</th>
-<th>主要优势</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>电路交换网络</td>
-<td>带宽独占、延迟稳定、无拥塞丢包</td>
-</tr>
-<tr>
-<td>分组交换网络</td>
-<td>资源利用率高、灵活、适合突发性数据传输</td>
-</tr>
-</tbody></table>
+| 网络类型         | 主要优势                                   |
+|------------------|--------------------------------------------|
+| 电路交换网络     | 带宽独占、延迟稳定、无拥塞丢包             |
+| 分组交换网络     | 资源利用率高、灵活、适合突发性数据传输      |
+
 </div>
 
 <h2 id="Statistical-Multiplexing"><a href="#Statistical-Multiplexing" class="headerlink" title="Statistical Multiplexing"></a>Statistical Multiplexing</h2><p>分组交换（Packet Switching）中，网络资源（如链路带宽）是<strong>按需动态分配</strong>给各个数据流的。每个用户的数据被分成分组（包），这些分组在网络中独立传输，多个用户的分组在同一链路上<strong>交错传输</strong>。<br>由于不是每个用户都持续发送数据，链路带宽可以被“活跃”的用户动态共享，这种方式称为<strong>统计复用（Statistical Multiplexing）</strong>。</p>
@@ -541,206 +359,76 @@
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>复用方式</th>
-<th>资源分配方式</th>
-<th>利用率</th>
-<th>适用场景</th>
-<th>主要特点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>统计复用</td>
-<td>动态分配，按需使用</td>
-<td>高</td>
-<td>分组交换网络</td>
-<td>用户多时可能拥塞，利用率高</td>
-</tr>
-<tr>
-<td>TDM（时分复用）</td>
-<td>固定分配，每用户固定时隙</td>
-<td>低（有空闲浪费）</td>
-<td>电路交换网络</td>
-<td>时隙空闲时无法被他人利用</td>
-</tr>
-</tbody></table>
+| 复用方式         | 资源分配方式                   | 利用率           | 适用场景           | 主要特点                       |
+|------------------|-------------------------------|------------------|--------------------|-------------------------------|
+| 统计复用         | 动态分配，按需使用             | 高               | 分组交换网络       | 用户多时可能拥塞，利用率高     |
+| TDM（时分复用）  | 固定分配，每用户固定时隙       | 低（有空闲浪费） | 电路交换网络       | 时隙空闲时无法被他人利用       |
+
 </div>
 
 <h2 id="Store-and-Forward-Packet-Switching"><a href="#Store-and-Forward-Packet-Switching" class="headerlink" title="Store-and-Forward Packet Switching"></a>Store-and-Forward Packet Switching</h2><p><strong>存储转发</strong>：交换机必须在收到整个分组后，才能开始向下一个链路转发。</p>
 <h1 id="ISP"><a href="#ISP" class="headerlink" title="ISP"></a>ISP</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>ISP 类型</th>
-<th>互联方式</th>
-<th>是否需购买上网带宽</th>
-<th>网络覆盖范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Tier-1 ISP</td>
-<td>与其他 Tier-1 ISP 结算互免互联</td>
-<td>否</td>
-<td>全球骨干</td>
-</tr>
-<tr>
-<td>Tier-2 ISP</td>
-<td>部分互联+向上级 ISP 购买带宽</td>
-<td>是</td>
-<td>区域&#x2F;国家级</td>
-</tr>
-</tbody></table>
+| ISP 类型         | 互联方式                         | 是否需购买上网带宽 | 网络覆盖范围         |
+|------------------|----------------------------------|--------------------|----------------------|
+| Tier-1 ISP       | 与其他 Tier-1 ISP 结算互免互联   | 否                 | 全球骨干             |
+| Tier-2 ISP       | 部分互联+向上级 ISP 购买带宽      | 是                 | 区域/国家级          |
+
 </div>
 
 <h1 id="Delay"><a href="#Delay" class="headerlink" title="Delay"></a>Delay</h1><ul>
 <li>Processing Delay：每个路由器或主机在接收到分组时进行首部检查、差错检测等处理所需的时间。</li>
 <li>Queuing Delay：分组在路由器的输出队列中等待转发的时间，取决于当前队列的长度和网络拥塞状况。</li>
-<li>Transmission Delay： 分组所有比特从路由器或主机的输出端口“上线”所需的时间，计算公式为<br>$$<br>\text{传输时延} &#x3D; \frac{L}{R}<br>$$<br>其中，$L$ 为分组长度（比特），$R$ 为链路带宽（比特&#x2F;秒）。</li>
-<li>Propagation Delay：   分组在物理链路上传播所需的时间，计算公式为：<br>$$<br>\text{传播时延} &#x3D; \frac{d}{s}<br>$$<br>其中，$d$ 为链路长度，$s$ 为信号在介质中的传播速率。</li>
+<li>Transmission Delay： 分组所有比特从路由器或主机的输出端口“上线”所需的时间，计算公式为<script type="math/tex; mode=display">
+\text{传输时延} = \frac{L}{R}</script>其中，$L$ 为分组长度（比特），$R$ 为链路带宽（比特/秒）。</li>
+<li>Propagation Delay：   分组在物理链路上传播所需的时间，计算公式为：<script type="math/tex; mode=display">
+\text{传播时延} = \frac{d}{s}</script>其中，$d$ 为链路长度，$s$ 为信号在介质中的传播速率。</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>时延类型</th>
-<th>公式</th>
-<th>是否依赖分组长度 L</th>
-<th>是否依赖传输速率 R</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>传播时延</td>
-<td>$$\frac{d}{s}$$</td>
-<td>否</td>
-<td>否</td>
-</tr>
-<tr>
-<td>传输时延</td>
-<td>$$\frac{L}{R}$$</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>总时延</td>
-<td>$$\frac{L}{R} + \frac{d}{s}$$</td>
-<td>部分依赖</td>
-<td>部分依赖</td>
-</tr>
-</tbody></table>
+| 时延类型         | 公式                        | 是否依赖分组长度 L | 是否依赖传输速率 R |
+|------------------|-----------------------------|------------------|------------------|
+| 传播时延         | $$\frac{d}{s}$$             | 否               | 否               |
+| 传输时延         | $$\frac{L}{R}$$             | 是               | 是               |
+| 总时延           | $$\frac{L}{R} + \frac{d}{s}$$ | 部分依赖         | 部分依赖         |
+
 </div>
 
-<h1 id="Throughput"><a href="#Throughput" class="headerlink" title="Throughput"></a>Throughput</h1><p>吞吐量：传输速率，单位 $\text{bits} &#x2F; \text{time}$。</p>
-<p>每一个用于传输比特流的 <strong>pipe</strong> 的吞吐量可能不一致，这时如何计算端到端的吞吐量？<br>$$<br>\min , {R_C, R_S, \dots}<br>$$</p>
-<p>这种情况下，端到端的吞吐量取决于整个传输路径中最慢的通道</p>
+<h1 id="Throughput"><a href="#Throughput" class="headerlink" title="Throughput"></a>Throughput</h1><p>吞吐量：传输速率，单位 $\text{bits} / \text{time}$。</p>
+<p>每一个用于传输比特流的 <strong>pipe</strong> 的吞吐量可能不一致，这时如何计算端到端的吞吐量？</p>
+<script type="math/tex; mode=display">
+\min \, \{R_C, R_S, \dots\}</script><p>这种情况下，端到端的吞吐量取决于整个传输路径中最慢的通道</p>
 <h1 id="Layer-Structure"><a href="#Layer-Structure" class="headerlink" title="Layer Structure"></a>Layer Structure</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>任务名称</th>
-<th>可能涉及的层级</th>
-<th>是否可多层实现</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>分段与重组</td>
-<td>传输层、网络层</td>
-<td>是</td>
-</tr>
-<tr>
-<td>差错检测与纠正</td>
-<td>数据链路层、传输层</td>
-<td>是</td>
-</tr>
-<tr>
-<td>流量控制</td>
-<td>数据链路层、传输层</td>
-<td>是</td>
-</tr>
-<tr>
-<td>寻址与路由选择</td>
-<td>网络层</td>
-<td>否（主要网络层）</td>
-</tr>
-<tr>
-<td>封装与解封装</td>
-<td>各层均有</td>
-<td>是</td>
-</tr>
-</tbody></table>
+| 任务名称               | 可能涉及的层级                   | 是否可多层实现 |
+|------------------------|----------------------------------|---------------|
+| 分段与重组             | 传输层、网络层                   | 是            |
+| 差错检测与纠正         | 数据链路层、传输层               | 是            |
+| 流量控制               | 数据链路层、传输层               | 是            |
+| 寻址与路由选择         | 网络层                           | 否（主要网络层）|
+| 封装与解封装           | 各层均有                         | 是            |
+
 </div>
 
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>层级</th>
-<th>数据单元名称</th>
-<th>主要内容说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>应用层消息</td>
-<td>应用协议数据（如HTTP请求、邮件内容等）</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>报文段（Segment）</td>
-<td>传输层首部 + 应用层消息</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>数据报（Datagram）</td>
-<td>网络层首部 + 传输层报文段</td>
-</tr>
-<tr>
-<td>链路层</td>
-<td>帧（Frame）</td>
-<td>链路层首部 + 网络层数据报 + 链路层尾部</td>
-</tr>
-</tbody></table>
+| 层级           | 数据单元名称             | 主要内容说明                                   |
+|----------------|-------------------------|------------------------------------------------|
+| 应用层         | 应用层消息              | 应用协议数据（如HTTP请求、邮件内容等）          |
+| 传输层         | 报文段（Segment）       | 传输层首部 + 应用层消息                        |
+| 网络层         | 数据报（Datagram）      | 网络层首部 + 传输层报文段                      |
+| 链路层         | 帧（Frame）             | 链路层首部 + 网络层数据报 + 链路层尾部          |
+
 </div>
 
 <h1 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h1><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th align="center">是否自我复制</th>
-<th align="center">是否依附宿主</th>
-<th align="center">是否主动传播</th>
-<th>主要危害方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>病毒</td>
-<td align="center">是</td>
-<td align="center">是</td>
-<td align="center">否</td>
-<td>破坏文件、传播感染</td>
-</tr>
-<tr>
-<td>蠕虫</td>
-<td align="center">是</td>
-<td align="center">否</td>
-<td align="center">是</td>
-<td>网络传播、资源消耗</td>
-</tr>
-<tr>
-<td>特洛伊木马</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td>窃密、远控、伪装攻击</td>
-</tr>
-</tbody></table>
+| 类型         | 是否自我复制 | 是否依附宿主 | 是否主动传播 | 主要危害方式           |
+|--------------|:-----------:|:------------:|:------------:|------------------------|
+| 病毒         | 是          | 是           | 否           | 破坏文件、传播感染     |
+| 蠕虫         | 是          | 否           | 是           | 网络传播、资源消耗     |
+| 特洛伊木马   | 否          | 否           | 否           | 窃密、远控、伪装攻击   |
+
 </div>
 
 <ul>
@@ -749,55 +437,38 @@
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>恶意软件传播</td>
-<td>通过多种方式感染大量设备</td>
-</tr>
-<tr>
-<td>设备感染与控制</td>
-<td>感染设备与C&amp;C服务器建立联系，成为“僵尸”</td>
-</tr>
-<tr>
-<td>集中管理</td>
-<td>攻击者统一管理所有僵尸设备</td>
-</tr>
-<tr>
-<td>发起DDoS攻击</td>
-<td>僵尸设备同时向目标发起流量，导致目标服务瘫痪</td>
-</tr>
-</tbody></table>
+| 阶段           | 说明                                                         |
+|----------------|--------------------------------------------------------------|
+| 恶意软件传播   | 通过多种方式感染大量设备                                      |
+| 设备感染与控制 | 感染设备与C&C服务器建立联系，成为“僵尸”                       |
+| 集中管理       | 攻击者统一管理所有僵尸设备                                   |
+| 发起DDoS攻击   | 僵尸设备同时向目标发起流量，导致目标服务瘫痪                 |
+
 </div>
 
 <h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="R-15"><a href="#R-15" class="headerlink" title="R.15"></a>R.15</h2><p>Suppose users share a $2$ Mbps link. Also suppose each user transmits continuously at $1$ Mbps when transmitting, but each user transmits only $20$ percent of the time. (See the discussion of statistical multiplexing in Section $1.3$.)</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. When circuit switching is used, how many users can be supported?</strong></p>
 <p>在电路交换中，每个用户需要预留 $1$ Mbps 的带宽，而链路总带宽为 $2$ Mbps。因此，最多可以支持：</p>
-<p>$$<br>\text{用户数} &#x3D; \frac{\text{总带宽}}{\text{每用户带宽}} &#x3D; \frac{2 , \text{Mbps}}{1 , \text{Mbps}} &#x3D; 2 , \text{用户}<br>$$</p>
-<p><strong>b. For the remainder of this problem, suppose packet switching is used. Why will there be essentially no queuing delay before the link if two or fewer users transmit at the same time? Why will there be a queuing delay if three users transmit at the same time?</strong></p>
+<script type="math/tex; mode=display">
+\text{用户数} = \frac{\text{总带宽}}{\text{每用户带宽}} = \frac{2 \, \text{Mbps}}{1 \, \text{Mbps}} = 2 \, \text{用户}</script><p><strong>b. For the remainder of this problem, suppose packet switching is used. Why will there be essentially no queuing delay before the link if two or fewer users transmit at the same time? Why will there be a queuing delay if three users transmit at the same time?</strong></p>
 <ul>
 <li>如果两名或更少的用户同时传输，每个用户的传输速率为 $1$ Mbps，总传输速率为 $2$ Mbps 或更少，等于链路的总带宽。因此，数据可以立即通过链路传输，不会产生排队延迟。</li>
-<li>如果三名用户同时传输，总传输速率为 $3 , \text{Mbps}$，超过了链路的总带宽 $2 , \text{Mbps}$。此时，链路无法立即传输所有数据，导致数据在队列中等待，从而产生排队延迟。</li>
+<li>如果三名用户同时传输，总传输速率为 $3 \, \text{Mbps}$，超过了链路的总带宽 $2 \, \text{Mbps}$。此时，链路无法立即传输所有数据，导致数据在队列中等待，从而产生排队延迟。</li>
 </ul>
 <p><strong>c. Find the probability that a given user is transmitting.</strong></p>
-<p>每个用户有 $20%$ 的时间在传输数据，因此某个用户正在传输的概率为：</p>
-<p>$$<br>P(\text{用户传输}) &#x3D; 0.2<br>$$</p>
-<p><strong>d. Suppose now there are three users. Find the probability that at any given time, all three users are transmitting simultaneously. Find the fraction of time during which the queue grows.</strong></p>
+<p>每个用户有 $20\%$ 的时间在传输数据，因此某个用户正在传输的概率为：</p>
+<script type="math/tex; mode=display">
+P(\text{用户传输}) = 0.2</script><p><strong>d. Suppose now there are three users. Find the probability that at any given time, all three users are transmitting simultaneously. Find the fraction of time during which the queue grows.</strong></p>
 <ul>
 <li>每个用户独立传输的概率为 $0.2$，因此三名用户同时传输的概率为：</li>
 </ul>
-<p>$$<br>P(\text{三名用户同时传输}) &#x3D; P(\text{用户1传输}) \cdot P(\text{用户2传输}) \cdot P(\text{用户3传输}) &#x3D; 0.2 \cdot 0.2 \cdot 0.2 &#x3D; 0.008<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+P(\text{三名用户同时传输}) = P(\text{用户1传输}) \cdot P(\text{用户2传输}) \cdot P(\text{用户3传输}) = 0.2 \cdot 0.2 \cdot 0.2 = 0.008</script><ul>
 <li>队列增长的时间比例等于三名用户同时传输的概率，因为只有在这种情况下，传输速率超过链路带宽：</li>
 </ul>
-<p>$$<br>\text{队列增长的时间比例} &#x3D; 0.008<br>$$</p>
-<h2 id="R-19"><a href="#R-19" class="headerlink" title="R.19"></a>R.19</h2><p>Suppose Host A wants to send a large file to Host B. The path from Host A to Host B has three links, of rates $R_1$ &#x3D; $500$ Kbps, $R_2$ &#x3D; $2$ Mbps, and $R_3$ &#x3D; $1$ Mbps.</p>
+<script type="math/tex; mode=display">
+\text{队列增长的时间比例} = 0.008</script><h2 id="R-19"><a href="#R-19" class="headerlink" title="R.19"></a>R.19</h2><p>Suppose Host A wants to send a large file to Host B. The path from Host A to Host B has three links, of rates $R_1$ = $500$ Kbps, $R_2$ = $2$ Mbps, and $R_3$ = $1$ Mbps.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Assuming no other traffic in the network, what is the throughput for the file transfer.</strong></p>
 <ul>
@@ -805,83 +476,55 @@
 </ul>
 <p><strong>b. Suppose the file is 4 million bytes. Dividing the file size by the throughput, roughly how long will it take to transfer the file to Host B?</strong></p>
 <ul>
-<li>$$\text{传输时间} &#x3D; \frac{4 \times 10^{6} \times 8}{500 \times 1000} &#x3D; 64 , \text{s}$$</li>
+<li><script type="math/tex; mode=display">\text{传输时间} = \frac{4 \times 10^{6} \times 8}{500 \times 1000} = 64 \, \text{s}</script></li>
 </ul>
 <p><strong>c. Repeat (a) and (b), but now with R2 reduced to 100 Kbps.</strong></p>
 <ul>
 <li>用公式 $\min {R_i}$ 计算得到实际吞吐量是 $100$ Kbps。</li>
-<li>$$\text{传输时间} &#x3D; \frac{4 \times 10^{6} \times 8}{100 \times 1000} &#x3D; 320 , \text{s}$$</li>
+<li><script type="math/tex; mode=display">\text{传输时间} = \frac{4 \times 10^{6} \times 8}{100 \times 1000} = 320 \, \text{s}</script></li>
 </ul>
 <h2 id="R-23"><a href="#R-23" class="headerlink" title="R.23"></a>R.23</h2><p><strong>Questions and Answers:</strong></p>
 <p><strong>What are the five layers in the Internet protocol stack? What are the principal responsibilities of each of these layers?</strong></p>
 <p>There are application layer, transport layer, network layer, data link layer and physical layer. Their principal responsibilities are as follow:</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th><strong>层级</strong></th>
-<th><strong>名称</strong></th>
-<th><strong>主要职责</strong></th>
-<th><strong>典型协议举例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>第5层</strong></td>
-<td>应用层 (Application)</td>
-<td>提供<strong>网络服务的接口</strong>，支持应用程序间的通信</td>
-<td>HTTP, FTP, SMTP, DNS</td>
-</tr>
-<tr>
-<td><strong>第4层</strong></td>
-<td>传输层 (Transport)</td>
-<td>提供<strong>端到端的传输服务</strong>，负责分段、重组、流量控制和差错恢复</td>
-<td>TCP, UDP</td>
-</tr>
-<tr>
-<td><strong>第3层</strong></td>
-<td>网络层 (Network)</td>
-<td>负责<strong>数据包的路由和转发</strong>，实现<strong>端到端的寻址和路径选择</strong></td>
-<td>IP, ICMP, OSPF, BGP</td>
-</tr>
-<tr>
-<td><strong>第2层</strong></td>
-<td>数据链路层 (Data Link)</td>
-<td>提供<strong>相邻节点间可靠传输</strong>，处理帧的封装、寻址、差错检测和媒体访问控制</td>
-<td>Ethernet, PPP, HDLC, Wi-Fi</td>
-</tr>
-<tr>
-<td><strong>第1层</strong></td>
-<td>物理层 (Physical)</td>
-<td>负责<strong>比特流的传输</strong>，定义物理介质、信号编码和传输速率等物理特性</td>
-<td>RS-232, USB, SONET, 以太网物理标准</td>
-</tr>
-</tbody></table>
+| **层级**            | **名称**              | **主要职责**                                                            | **典型协议举例**            |
+|---------------------|-----------------------|------------------------------------------------------------------------|----------------------------|
+| **第5层**           | 应用层 (Application) | 提供**网络服务的接口**，支持应用程序间的通信                              | HTTP, FTP, SMTP, DNS       |
+| **第4层**           | 传输层 (Transport)   | 提供**端到端的传输服务**，负责分段、重组、流量控制和差错恢复               | TCP, UDP                   |
+| **第3层**           | 网络层 (Network)     | 负责**数据包的路由和转发**，实现**端到端的寻址和路径选择**                | IP, ICMP, OSPF, BGP        |
+| **第2层**           | 数据链路层 (Data Link)| 提供**相邻节点间可靠传输**，处理帧的封装、寻址、差错检测和媒体访问控制    | Ethernet, PPP, HDLC, Wi-Fi |
+| **第1层**           | 物理层 (Physical)    | 负责**比特流的传输**，定义物理介质、信号编码和传输速率等物理特性           | RS-232, USB, SONET, 以太网物理标准 |
+
 </div>
 
-<h2 id="P-8"><a href="#P-8" class="headerlink" title="P.8"></a>P.8</h2><p>Consider the discussion in Section $1.3$ of statistical multiplexing in which an example is provided with a $1$ Mbps link. Users are generating data at a rate of $100$ Kbps when busy, but are busy generating data only with probability $p &#x3D; 0.1$. Suppose that the $1$ Mbps link is replaced by a $1$ Gbps link.</p>
+<h2 id="P-8"><a href="#P-8" class="headerlink" title="P.8"></a>P.8</h2><p>Consider the discussion in Section $1.3$ of statistical multiplexing in which an example is provided with a $1$ Mbps link. Users are generating data at a rate of $100$ Kbps when busy, but are busy generating data only with probability $p = 0.1$. Suppose that the $1$ Mbps link is replaced by a $1$ Gbps link.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. What is $N$, the maximum number of users that can be supported simultaneously under circuit switching?</strong></p>
-<p>$$<br>N &#x3D; \frac{1 , \text{Gbps}}{100 , \text{Kbps}} &#x3D; 10000<br>$$</p>
-<p><strong>b. Now consider packet switching and a user population of $M$ users. Give a formula (in terms of $p$, $M$, $N$) for the probability that more than $N$ users are sending data.</strong></p>
-<p>假设用户的发送行为是独立的，则发送数据的用户数目服从二项分布，只考虑 $M \geq N$：<br>$$<br>P_{ &gt; N} &#x3D; 1 - \sum_{k &#x3D; 0}^{N} \binom{M}{k} p^k (1 - p)^{M - k}<br>$$</p>
-<h2 id="P-22"><a href="#P-22" class="headerlink" title="P.22"></a>P.22</h2><p>Consider Figure $1.19(a)$. Assume that we know the bottleneck link along the path from the server to the client is the first link with rate $R_s$ $\text{bits&#x2F;sec}$. Suppose we send a pair of packets back to back from the server to the client, and there is no other traffic on this path. Assume each packet of size $L$ $\text{bits}$, and both links have the same propagation delay $d_{prop}$.</p>
-<p><img src="/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png" alt="Figure $1.19(a)$">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<script type="math/tex; mode=display">
+N = \frac{1 \, \text{Gbps}}{100 \, \text{Kbps}} = 10000</script><p><strong>b. Now consider packet switching and a user population of $M$ users. Give a formula (in terms of $p$, $M$, $N$) for the probability that more than $N$ users are sending data.</strong></p>
+<p>假设用户的发送行为是独立的，则发送数据的用户数目服从二项分布，只考虑 $M \geq N$：</p>
+<script type="math/tex; mode=display">
+P_{ > N} = 1 - \sum_{k = 0}^{N} \binom{M}{k} p^k (1 - p)^{M - k}</script><h2 id="P-22"><a href="#P-22" class="headerlink" title="P.22"></a>P.22</h2><p>Consider Figure $1.19(a)$. Assume that we know the bottleneck link along the path from the server to the client is the first link with rate $R<em>s$ $\text{bits/sec}$. Suppose we send a pair of packets back to back from the server to the client, and there is no other traffic on this path. Assume each packet of size $L$ $\text{bits}$, and both links have the same propagation delay $d</em>{prop}$.</p>
+<p><img src="Introduction/Throughput for a file transfer from server to client.png" alt="Figure $1.19(a)$">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p>back-to-back 指的是一组数据包在没有间隔的情况下连续发送</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. What is the packet inter-arrival time at the destination? That is, how much time elapses from when the last bit of the first packet arrives until the last bit of the second packet arrives?</strong></p>
-<p>从图中我们可以看到有两条 <strong>link</strong>，速率分别是 $R_s$ 和 $R_c$，前者导致瓶颈，也就是 $R_c$ &gt; $R_s$。所以，<strong>inter-arrival time</strong>：<br>$$<br>t &#x3D; \frac{L}{R_s}<br>$$</p>
-<p><strong>b. Now assume that the second link is the bottleneck link (i.e., $R_c$ &lt; $R_s$). Is it possible that the second packet queues at the input queue of the second link? Explain. Now suppose that the server sends the second packet $T$ seconds after sending the first packet. How large must $T$ be to ensure no queuing before the second link? Explain.</strong></p>
-<p>有可能第二个包在第二条 link 输入处排队，因为 $R_c$ &lt; $R_s$ 导致，第一包仍在传输。只要保证当第二个包到达第二条 link 输入时，第一个包已经传完了，也就是：<br>$$<br>T &#x3D; \frac{L}{R_c}<br>$$</p>
-<h2 id="P-28"><a href="#P-28" class="headerlink" title="P.28"></a>P.28</h2><p>Suppose there is a $10$ $\text{Mbps}$ microwave link between a geostationary satellite and its base station on Earth. Every minute the satellite takes a digital photo and sends it to the base station. Assume a propagation speed of $2.4 \cdot 10^8$ $\text{meters&#x2F;sec}$.</p>
+<p>从图中我们可以看到有两条 <strong>link</strong>，速率分别是 $R_s$ 和 $R_c$，前者导致瓶颈，也就是 $R_c$ &gt; $R_s$。所以，<strong>inter-arrival time</strong>：</p>
+<script type="math/tex; mode=display">
+t = \frac{L}{R_s}</script><p><strong>b. Now assume that the second link is the bottleneck link (i.e., $R_c$ &lt; $R_s$). Is it possible that the second packet queues at the input queue of the second link? Explain. Now suppose that the server sends the second packet $T$ seconds after sending the first packet. How large must $T$ be to ensure no queuing before the second link? Explain.</strong></p>
+<p>有可能第二个包在第二条 link 输入处排队，因为 $R_c$ &lt; $R_s$ 导致，第一包仍在传输。只要保证当第二个包到达第二条 link 输入时，第一个包已经传完了，也就是：</p>
+<script type="math/tex; mode=display">
+T = \frac{L}{R_c}</script><h2 id="P-28"><a href="#P-28" class="headerlink" title="P.28"></a>P.28</h2><p>Suppose there is a $10$ $\text{Mbps}$ microwave link between a geostationary satellite and its base station on Earth. Every minute the satellite takes a digital photo and sends it to the base station. Assume a propagation speed of $2.4 \cdot 10^8$ $\text{meters/sec}$.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. What is the propagation delay of the link?</strong></p>
-<p>地球静止卫星轨道高度约为 $d \approx 3.5786 \times 10^7 , \text{m}$，再由公式 $d_{prop} &#x3D; \frac{d}{s}$ 得到 $d_{prop} \approx 150 , \text{ms}$</p>
+<p>地球静止卫星轨道高度约为 $d \approx 3.5786 \times 10^7 \, \text{m}$，再由公式 $d<em>{prop} = \frac{d}{s}$ 得到 $d</em>{prop} \approx 150 \, \text{ms}$</p>
 <p><strong>b. What is the bandwidth-delay product, $R \cdot d_{prop}$?</strong></p>
-<p>这个乘式中的 $R$ 是 link 的传输速率，表示的是因延迟而没有传输的数据大小。结果是 $10 \times 10^6 \times 0.15 &#x3D; 1.5 \times 10^6 , \text{bits}$。</p>
+<p>这个乘式中的 $R$ 是 link 的传输速率，表示的是因延迟而没有传输的数据大小。结果是 $10 \times 10^6 \times 0.15 = 1.5 \times 10^6 \, \text{bits}$。</p>
 <p><strong>c. Let $x$ denote the size of the photo. What is the minimum value of $x$ for the microwave link to be continuously transmitting?</strong></p>
-<p>设照片大小为 $x$（单位：$\text{bits}$），要使链路持续发送，需满足传输时间 $\frac{x}{R}$ 不小于拍照间隔 $60,\text{s}$，即<br>$$<br>\frac{x}{R} \geq 60 , \Longrightarrow ; x \geq R \times 60 &#x3D; 10\times10^6\ \text{bps} \times 60\ \text{s} &#x3D; 600\times10^6\ \text{bits} &#x3D; 75\ \text{MB}.<br>$$</p>
-
+<p>设照片大小为 $x$（单位：$\text{bits}$），要使链路持续发送，需满足传输时间 $\frac{x}{R}$ 不小于拍照间隔 $60\,\text{s}$，即  </p>
+<script type="math/tex; mode=display">
+\frac{x}{R} \geq 60 \, \Longrightarrow \; x \geq R \times 60 = 10\times10^6\ \text{bps} \times 60\ \text{s} = 600\times10^6\ \text{bits} = 75\ \text{MB}.</script>
     </div>
 
     

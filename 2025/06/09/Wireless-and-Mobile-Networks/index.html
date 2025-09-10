@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="ddccffq的技术博客">
 <meta property="og:description" content="IntroductionElements of a Wireless Networks Wireless Hosts: laptop, PDA, IP phone. Base Station: connected to a wired network. relays responsible for sending packets between wired network and wireless">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
-<meta property="og:image" content="https://ddccffq.github.io/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png">
 <meta property="article:published_time" content="2025-06-09T00:02:04.000Z">
 <meta property="article:modified_time" content="2025-06-17T05:18:59.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="机器学习,计算机网络,算法,统计学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ddccffq.github.io/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
 
 
 <link rel="canonical" href="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/">
@@ -70,7 +70,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -78,7 +78,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -138,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements-of-a-Wireless-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Elements of a Wireless Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wireless-Network-Taxonomy"><span class="nav-number">1.2.</span> <span class="nav-text">Wireless Network Taxonomy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Wireless-Link-Characteristics"><span class="nav-number">2.</span> <span class="nav-text">Wireless Link Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Division-Multiple-Access-CDMA"><span class="nav-number">2.1.</span> <span class="nav-text">Code Division Multiple Access (CDMA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDMA-Encode-Decode-Process"><span class="nav-number">2.1.1.</span> <span class="nav-text">CDMA Encode&#x2F;Decode Process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sender"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Sender:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Receiver"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Receiver:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WiFi-802-11-Wireless-LANs"><span class="nav-number">3.</span> <span class="nav-text">WiFi: 802.11 Wireless LANs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-802-11-LAN-Architecture"><span class="nav-number">3.1.</span> <span class="nav-text">The 802.11 LAN Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Channels-Association"><span class="nav-number">3.2.</span> <span class="nav-text">802.11: Channels, Association</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Passive-Active-Scanning"><span class="nav-number">3.3.</span> <span class="nav-text">802.11: Passive&#x2F;Active Scanning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IEEE-802-11-Multiple-Access"><span class="nav-number">3.4.</span> <span class="nav-text">IEEE 802.11: Multiple Access</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collision-Avoidance-in-802-11"><span class="nav-number">3.4.1.</span> <span class="nav-text">Collision Avoidance in 802.11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IEEE-802-11-MAC-Protocol-CSMA-CA"><span class="nav-number">3.5.</span> <span class="nav-text">IEEE 802.11 MAC Protocol: CSMA&#x2F;CA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#802-11-Sender"><span class="nav-number">3.5.1.</span> <span class="nav-text">802.11 Sender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#802-11-Receiver"><span class="nav-number">3.5.2.</span> <span class="nav-text">802.11 Receiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoiding-Collisions-RTS-CTS-Mechanism"><span class="nav-number">3.5.3.</span> <span class="nav-text">Avoiding Collisions: RTS&#x2F;CTS Mechanism</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Addressing"><span class="nav-number">3.6.</span> <span class="nav-text">802.11 Addressing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobility-within-Same-Subnet"><span class="nav-number">3.7.</span> <span class="nav-text">Mobility within Same Subnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Power-Management"><span class="nav-number">3.8.</span> <span class="nav-text">Power Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-15-Personal-Area-Network"><span class="nav-number">3.9.</span> <span class="nav-text">802.15: Personal Area Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-16-WiMAX"><span class="nav-number">3.10.</span> <span class="nav-text">802.16: WiMAX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cellular-Internet-Access"><span class="nav-number">4.</span> <span class="nav-text">Cellular Internet Access</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-First-Hop"><span class="nav-number">4.1.</span> <span class="nav-text">The First Hop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cellular-standards-brief-survey"><span class="nav-number">4.2.</span> <span class="nav-text">Cellular standards: brief survey</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2G-Systems"><span class="nav-number">4.2.1.</span> <span class="nav-text">2G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5G-Systems"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.5G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3G-Systems"><span class="nav-number">4.2.3.</span> <span class="nav-text">3G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4G-Systems"><span class="nav-number">4.2.4.</span> <span class="nav-text">4G Systems</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Principles-Addressing-and-Routing-to-Mobile-Users"><span class="nav-number">5.</span> <span class="nav-text">Principles: Addressing and Routing to Mobile Users</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobility-Vocabulary"><span class="nav-number">5.1.</span> <span class="nav-text">Mobility: Vocabulary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Home-Network"><span class="nav-number">5.1.1.</span> <span class="nav-text">Home Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visited-Network"><span class="nav-number">5.1.2.</span> <span class="nav-text">Visited Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correspondent"><span class="nav-number">5.1.3.</span> <span class="nav-text">Correspondent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consider-friend-frequently-changing-addresses-how-do-you-find-her"><span class="nav-number">5.1.4.</span> <span class="nav-text">Consider friend frequently changing addresses, how do you find her?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mobile-IP-agent-discovery"><span class="nav-number">6.</span> <span class="nav-text">Mobile IP: agent discovery</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-of-chapter-exercises"><span class="nav-number">7.</span> <span class="nav-text">End-of-chapter exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-1"><span class="nav-number">7.1.</span> <span class="nav-text">R.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-2"><span class="nav-number">7.2.</span> <span class="nav-text">R.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-3"><span class="nav-number">7.3.</span> <span class="nav-text">R.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-4"><span class="nav-number">7.4.</span> <span class="nav-text">R.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-10"><span class="nav-number">7.5.</span> <span class="nav-text">R.10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-16"><span class="nav-number">7.6.</span> <span class="nav-text">R.16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-17"><span class="nav-number">7.7.</span> <span class="nav-text">R.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-19"><span class="nav-number">7.8.</span> <span class="nav-text">R.19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-5"><span class="nav-number">7.9.</span> <span class="nav-text">P.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-13"><span class="nav-number">7.10.</span> <span class="nav-text">P.13</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements-of-a-Wireless-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Elements of a Wireless Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wireless-Network-Taxonomy"><span class="nav-number">1.2.</span> <span class="nav-text">Wireless Network Taxonomy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Wireless-Link-Characteristics"><span class="nav-number">2.</span> <span class="nav-text">Wireless Link Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Division-Multiple-Access-CDMA"><span class="nav-number">2.1.</span> <span class="nav-text">Code Division Multiple Access (CDMA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDMA-Encode-Decode-Process"><span class="nav-number">2.1.1.</span> <span class="nav-text">CDMA Encode&#x2F;Decode Process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sender"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Sender:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Receiver"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Receiver:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WiFi-802-11-Wireless-LANs"><span class="nav-number">3.</span> <span class="nav-text">WiFi: 802.11 Wireless LANs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-802-11-LAN-Architecture"><span class="nav-number">3.1.</span> <span class="nav-text">The 802.11 LAN Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Channels-Association"><span class="nav-number">3.2.</span> <span class="nav-text">802.11: Channels, Association</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Passive-Active-Scanning"><span class="nav-number">3.3.</span> <span class="nav-text">802.11: Passive&#x2F;Active Scanning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IEEE-802-11-Multiple-Access"><span class="nav-number">3.4.</span> <span class="nav-text">IEEE 802.11: Multiple Access</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collision-Avoidance-in-802-11"><span class="nav-number">3.4.1.</span> <span class="nav-text">Collision Avoidance in 802.11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IEEE-802-11-MAC-Protocol-CSMA-CA"><span class="nav-number">3.5.</span> <span class="nav-text">IEEE 802.11 MAC Protocol: CSMA&#x2F;CA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#802-11-Sender"><span class="nav-number">3.5.1.</span> <span class="nav-text">802.11 Sender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#802-11-Receiver"><span class="nav-number">3.5.2.</span> <span class="nav-text">802.11 Receiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoiding-Collisions-RTS-CTS-Mechanism"><span class="nav-number">3.5.3.</span> <span class="nav-text">Avoiding Collisions: RTS&#x2F;CTS Mechanism</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-Addressing"><span class="nav-number">3.6.</span> <span class="nav-text">802.11 Addressing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobility-within-Same-Subnet"><span class="nav-number">3.7.</span> <span class="nav-text">Mobility within Same Subnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Power-Management"><span class="nav-number">3.8.</span> <span class="nav-text">Power Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-15-Personal-Area-Network"><span class="nav-number">3.9.</span> <span class="nav-text">802.15: Personal Area Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-16-WiMAX"><span class="nav-number">3.10.</span> <span class="nav-text">802.16: WiMAX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cellular-Internet-Access"><span class="nav-number">4.</span> <span class="nav-text">Cellular Internet Access</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-First-Hop"><span class="nav-number">4.1.</span> <span class="nav-text">The First Hop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cellular-standards-brief-survey"><span class="nav-number">4.2.</span> <span class="nav-text">Cellular standards: brief survey</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2G-Systems"><span class="nav-number">4.2.1.</span> <span class="nav-text">2G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5G-Systems"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.5G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3G-Systems"><span class="nav-number">4.2.3.</span> <span class="nav-text">3G Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4G-Systems"><span class="nav-number">4.2.4.</span> <span class="nav-text">4G Systems</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Principles-Addressing-and-Routing-to-Mobile-Users"><span class="nav-number">5.</span> <span class="nav-text">Principles: Addressing and Routing to Mobile Users</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobility-Vocabulary"><span class="nav-number">5.1.</span> <span class="nav-text">Mobility: Vocabulary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Home-Network"><span class="nav-number">5.1.1.</span> <span class="nav-text">Home Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visited-Network"><span class="nav-number">5.1.2.</span> <span class="nav-text">Visited Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correspondent"><span class="nav-number">5.1.3.</span> <span class="nav-text">Correspondent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consider-friend-frequently-changing-addresses-how-do-you-find-her"><span class="nav-number">5.1.4.</span> <span class="nav-text">Consider friend frequently changing addresses, how do you find her?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mobile-IP-agent-discovery"><span class="nav-number">6.</span> <span class="nav-text">Mobile IP: agent discovery</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-of-chapter-exercises"><span class="nav-number">7.</span> <span class="nav-text">End-of-chapter exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-1"><span class="nav-number">7.1.</span> <span class="nav-text">R.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-2"><span class="nav-number">7.2.</span> <span class="nav-text">R.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-4"><span class="nav-number">7.3.</span> <span class="nav-text">R.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-10"><span class="nav-number">7.4.</span> <span class="nav-text">R.10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-16"><span class="nav-number">7.5.</span> <span class="nav-text">R.16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-17"><span class="nav-number">7.6.</span> <span class="nav-text">R.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-19"><span class="nav-number">7.7.</span> <span class="nav-text">R.19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-5"><span class="nav-number">7.8.</span> <span class="nav-text">P.5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-13"><span class="nav-number">7.9.</span> <span class="nav-text">P.13</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,25 +290,11 @@
 </ul>
 <h2 id="Wireless-Network-Taxonomy"><a href="#Wireless-Network-Taxonomy" class="headerlink" title="Wireless Network Taxonomy"></a>Wireless Network Taxonomy</h2><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th><strong>Infrastructure</strong></th>
-<th><strong>Single Hop</strong></th>
-<th><strong>Multiple Hops</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>With Infrastructure</strong></td>
-<td>Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.</td>
-<td>Host relays through several wireless nodes to connect to larger Internet (mesh net).</td>
-</tr>
-<tr>
-<td><strong>Without Infrastructure</strong></td>
-<td>No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).</td>
-<td>No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET).</td>
-</tr>
-</tbody></table>
+| **Infrastructure**        | **Single Hop**                                                                            | **Multiple Hops**                                                                                         |
+|---------------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| **With Infrastructure**   | Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.  | Host relays through several wireless nodes to connect to larger Internet (mesh net).                      |
+| **Without Infrastructure**| No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).         | No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET). |
+
 </div>
 
 <h1 id="Wireless-Link-Characteristics"><a href="#Wireless-Link-Characteristics" class="headerlink" title="Wireless Link Characteristics"></a>Wireless Link Characteristics</h1><blockquote>
@@ -331,7 +321,9 @@
 </li>
 </ul>
 <blockquote>
-<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为<br>$$<br>\mathrm{SNR} &#x3D; \frac{P_{\text{signal}}}{P_{\text{noise}}}<br>$$<br>实际中用单位 db 表示。SNR 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
+<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为</p>
+<script type="math/tex; mode=display">
+\mathrm{SNR} = \frac{P_{\text{signal}}}{P_{\text{noise}}}</script><p>实际中用单位 db 表示。SNR 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
 </blockquote>
 <h2 id="Code-Division-Multiple-Access-CDMA"><a href="#Code-Division-Multiple-Access-CDMA" class="headerlink" title="Code Division Multiple Access (CDMA)"></a>Code Division Multiple Access (CDMA)</h2><blockquote>
 <p>码分多址，这个我们在 data link layer 提到过，类似的有 TDMA 和 FDMA。需要注意的是 CDMA 是一个 physical layer protocol。所以下文用的是 channel 而不是 link。</p>
@@ -342,7 +334,7 @@
 <li><strong>Code Assignment</strong>: Each user is assigned a <strong>unique “code”</strong> (code set partitioning).</li>
 <li><strong>Frequency Sharing</strong>: All users share the same frequency but use distinct <strong>“chipping”</strong> sequences to encode data.</li>
 <li><strong>Signal Encoding</strong>:  <ul>
-<li>Encoded signal &#x3D; (original data)  (chipping sequence).</li>
+<li>Encoded signal = (original data)  (chipping sequence).</li>
 </ul>
 </li>
 <li><strong>Signal Decoding</strong>:  <ul>
@@ -354,11 +346,11 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="CDMA-Encode-Decode-Process"><a href="#CDMA-Encode-Decode-Process" class="headerlink" title="CDMA Encode&#x2F;Decode Process"></a>CDMA Encode&#x2F;Decode Process</h3><h4 id="Sender"><a href="#Sender" class="headerlink" title="Sender:"></a><strong>Sender:</strong></h4><ol>
+<h3 id="CDMA-Encode-Decode-Process"><a href="#CDMA-Encode-Decode-Process" class="headerlink" title="CDMA Encode/Decode Process"></a>CDMA Encode/Decode Process</h3><h4 id="Sender"><a href="#Sender" class="headerlink" title="Sender:"></a><strong>Sender:</strong></h4><ol>
 <li><p><strong>Data Encoding</strong>:</p>
 <ul>
 <li>Each sender has a unique code (chipping sequence) <code>c_m</code>.</li>
-<li>Encoded signal for each data bit:<br>$$ Z_{i,m} &#x3D; d_i \cdot c_m $$<ul>
+<li>Encoded signal for each data bit:  <script type="math/tex; mode=display">Z_{i,m} = d_i \cdot c_m</script><ul>
 <li><code>d_i</code>: Original data bit.</li>
 <li><code>c_m</code>: Chipping sequence.</li>
 </ul>
@@ -375,7 +367,7 @@
 <h4 id="Receiver"><a href="#Receiver" class="headerlink" title="Receiver:"></a><strong>Receiver:</strong></h4><ol>
 <li><p><strong>Signal Decoding</strong>:</p>
 <ul>
-<li>Receiver uses the inner product of the received signal and its own chipping sequence to decode data:<br>$$ D_i &#x3D; \frac{\sum_{m&#x3D;1}^{M} Z_{i,m} \cdot c_m}{M} $$<ul>
+<li>Receiver uses the inner product of the received signal and its own chipping sequence to decode data:<script type="math/tex; mode=display">D_i = \frac{\sum_{m=1}^{M} Z_{i,m} \cdot c_m}{M}</script><ul>
 <li><code>D_i</code>: Decoded data bit.</li>
 <li><code>Z_&#123;i,m&#125;</code>: Received signal.</li>
 <li><code>c_m</code>: Receiver’s chipping sequence.</li>
@@ -397,15 +389,14 @@
 <p>前部分介绍了 wireless link 及其用到的 CDMA protocol，</p>
 </blockquote>
 <ul>
-<li>all use <strong>CSMA&#x2F;CA</strong> for multiple access.<blockquote>
-<p>data link layer 部分我们讲过了 CSMA&#x2F;CD。</p>
+<li>all use <strong>CSMA/CA</strong> for multiple access.<blockquote>
+<p>data link layer 部分我们讲过了 CSMA/CD。</p>
 </blockquote>
 </li>
 <li>all have base-station and ad-hoc network versions.</li>
 </ul>
 <h2 id="The-802-11-LAN-Architecture"><a href="#The-802-11-LAN-Architecture" class="headerlink" title="The 802.11 LAN Architecture"></a>The 802.11 LAN Architecture</h2><ul>
-<li><p>wireless host communicates with base station (base station &#x3D; access point (AP))</p>
-</li>
+<li>wireless host communicates with base station (base station = access point (AP))</li>
 <li><p>Basic Service Set (BSS) (aka “cell”一片区域) in infrastructure mode contains:</p>
 <ul>
 <li>wireless hosts</li>
@@ -415,63 +406,26 @@
 </li>
 <li><p><strong>层次关系</strong>：一个 subnet 可以包含<strong>多个 BSS</strong>，多个无线主机通过不同接入点接入同一子网</p>
 </li>
-<li><p><strong>切换过程</strong>：</p>
-<ul>
+<li><strong>切换过程</strong>：<ul>
 <li>当移动设备在<strong>同一子网内</strong>的不同 BSS 之间移动时，只需改变 BSS 关联（链路层切换），IP 地址<strong>保持不变</strong></li>
 <li>当移动设备跨子网移动时，除了需要切换 BSS，还需要获取新子网的 IP 地址（通常通过 DHCP）</li>
 </ul>
 </li>
-<li><p><strong>地址分配</strong>：BSS 关注 MAC 地址，而 Subnet 关注 IP 地址</p>
-</li>
-<li><p><strong>管理机制</strong>：BSS 由 AP 管理，Subnet 由路由器管理</p>
-</li>
+<li><strong>地址分配</strong>：BSS 关注 MAC 地址，而 Subnet 关注 IP 地址</li>
+<li><strong>管理机制</strong>：BSS 由 AP 管理，Subnet 由路由器管理</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>BSS</strong></th>
-<th><strong>Subnet</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>所属网络层次</strong></td>
-<td>物理层和数据链路层 (OSI 第 1、2 层)</td>
-<td>网络层 (OSI 第 3 层)</td>
-</tr>
-<tr>
-<td><strong>定义标准</strong></td>
-<td>IEEE 802.11 标准</td>
-<td>IP 协议标准</td>
-</tr>
-<tr>
-<td><strong>标识符</strong></td>
-<td>BSSID (MAC 地址)</td>
-<td>IP 地址前缀和子网掩码</td>
-</tr>
-<tr>
-<td><strong>地址范围</strong></td>
-<td>单个无线接入点覆盖范围</td>
-<td>可跨多个接入点，由路由器定义</td>
-</tr>
-<tr>
-<td><strong>关注点</strong></td>
-<td>无线媒体访问和信号传输</td>
-<td>IP 数据包的寻址和路由</td>
-</tr>
-<tr>
-<td><strong>设备组织方式</strong></td>
-<td>围绕单个接入点的无线主机集合</td>
-<td>共享同一网络前缀的主机集合</td>
-</tr>
-<tr>
-<td><strong>移动特性</strong></td>
-<td>设备在 BSS 间移动需要进行<strong>切换 (handoff)</strong></td>
-<td>在同一子网内的移动不需要更改 IP 地址</td>
-</tr>
-</tbody></table>
+| **特性**           | **BSS**                                         | **Subnet**                                  |
+|--------------------|--------------------------------------------------|---------------------------------------------|
+| **所属网络层次**   | 物理层和数据链路层 (OSI 第 1、2 层)              | 网络层 (OSI 第 3 层)                        |
+| **定义标准**       | IEEE 802.11 标准                                  | IP 协议标准                                 |
+| **标识符**         | BSSID (MAC 地址)                                  | IP 地址前缀和子网掩码                       |
+| **地址范围**       | 单个无线接入点覆盖范围                            | 可跨多个接入点，由路由器定义                |
+| **关注点**         | 无线媒体访问和信号传输                            | IP 数据包的寻址和路由                       |
+| **设备组织方式**   | 围绕单个接入点的无线主机集合                      | 共享同一网络前缀的主机集合                  |
+| **移动特性**       | 设备在 BSS 间移动需要进行**切换 (handoff)**       | 在同一子网内的移动不需要更改 IP 地址        |
+
 </div>
 
 <h2 id="802-11-Channels-Association"><a href="#802-11-Channels-Association" class="headerlink" title="802.11: Channels, Association"></a>802.11: Channels, Association</h2><ul>
@@ -488,7 +442,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="802-11-Passive-Active-Scanning"><a href="#802-11-Passive-Active-Scanning" class="headerlink" title="802.11: Passive&#x2F;Active Scanning"></a>802.11: Passive&#x2F;Active Scanning</h2><blockquote>
+<h2 id="802-11-Passive-Active-Scanning"><a href="#802-11-Passive-Active-Scanning" class="headerlink" title="802.11: Passive/Active Scanning"></a>802.11: Passive/Active Scanning</h2><blockquote>
 <p>Beacon Frame（信标帧） 是 IEEE 802.11 无线局域网（WiFi）协议中由接入点（AP, Access Point）周期性广播的一种管理帧。</p>
 </blockquote>
 <ul>
@@ -523,11 +477,11 @@
 <li><strong>Hidden terminal</strong> and <strong>fading issues</strong> prevent sensing all collisions.</li>
 </ul>
 </li>
-<li><strong>Goal</strong>: Use <strong>CSMA&#x2F;CA (Collision Avoidance)</strong> to minimize collisions.</li>
+<li><strong>Goal</strong>: Use <strong>CSMA/CA (Collision Avoidance)</strong> to minimize collisions.</li>
 </ul>
 </li>
 </ul>
-<h2 id="IEEE-802-11-MAC-Protocol-CSMA-CA"><a href="#IEEE-802-11-MAC-Protocol-CSMA-CA" class="headerlink" title="IEEE 802.11 MAC Protocol: CSMA&#x2F;CA"></a>IEEE 802.11 MAC Protocol: CSMA&#x2F;CA</h2><blockquote>
+<h2 id="IEEE-802-11-MAC-Protocol-CSMA-CA"><a href="#IEEE-802-11-MAC-Protocol-CSMA-CA" class="headerlink" title="IEEE 802.11 MAC Protocol: CSMA/CA"></a>IEEE 802.11 MAC Protocol: CSMA/CA</h2><blockquote>
 <p>DIFS 是<strong>分布式帧间间隔</strong>（Distributed Inter-Frame Space）的缩写。SIFS 是<strong>短帧间间隔</strong>（Short Inter-Frame Space）的缩写。<strong>Link（链路）</strong>：在有线网络中，通常指两个节点之间的物理连接。<strong>Channel（信道）</strong>：在无线网络中，指的是一段特定频率范围内的无线传输资源，多个节点可以共享同一个信道。</p>
 </blockquote>
 <h3 id="802-11-Sender"><a href="#802-11-Sender" class="headerlink" title="802.11 Sender"></a><strong>802.11 Sender</strong></h3><ol>
@@ -549,7 +503,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="Avoiding-Collisions-RTS-CTS-Mechanism"><a href="#Avoiding-Collisions-RTS-CTS-Mechanism" class="headerlink" title="Avoiding Collisions: RTS&#x2F;CTS Mechanism"></a>Avoiding Collisions: RTS&#x2F;CTS Mechanism</h3><ul>
+<h3 id="Avoiding-Collisions-RTS-CTS-Mechanism"><a href="#Avoiding-Collisions-RTS-CTS-Mechanism" class="headerlink" title="Avoiding Collisions: RTS/CTS Mechanism"></a>Avoiding Collisions: RTS/CTS Mechanism</h3><ul>
 <li><strong>Idea</strong>: Allow sender to reserve the channel to avoid collisions of long data frames.</li>
 <li><strong>Process</strong>:<ol>
 <li>Sender transmits a small <strong>Request-to-Send (RTS)</strong> packet to the base station (BS) using CSMA.</li>
@@ -582,60 +536,18 @@
 <h2 id="802-11-Addressing"><a href="#802-11-Addressing" class="headerlink" title="802.11 Addressing"></a>802.11 Addressing</h2><p>下表总结了 802.11 帧的各字段及其作用：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>长度（字节）</th>
-<th>作用说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>frame control</td>
-<td>2</td>
-<td>帧控制字段，指示帧类型、控制信息等</td>
-</tr>
-<tr>
-<td>duration</td>
-<td>2</td>
-<td>持续时间字段，指示信道预留时间</td>
-</tr>
-<tr>
-<td>address 1</td>
-<td>6</td>
-<td>接收方 MAC 地址（无线主机或 AP）</td>
-</tr>
-<tr>
-<td>address 2</td>
-<td>6</td>
-<td>发送方 MAC 地址（无线主机或 AP）</td>
-</tr>
-<tr>
-<td>address 3</td>
-<td>6</td>
-<td>路由器接口的 MAC 地址（AP 所连接的路由器接口）</td>
-</tr>
-<tr>
-<td>seq control</td>
-<td>2</td>
-<td>序列控制字段，帧编号等</td>
-</tr>
-<tr>
-<td>address 4</td>
-<td>6</td>
-<td>仅在 ad hoc 模式下使用的地址</td>
-</tr>
-<tr>
-<td>payload</td>
-<td>0 - 2312</td>
-<td>数据负载部分</td>
-</tr>
-<tr>
-<td>CRC</td>
-<td>4</td>
-<td>循环冗余校验，用于差错检测</td>
-</tr>
-</tbody></table>
+| 字段名         | 长度（字节） | 作用说明                                                                 |
+|----------------|-------------|--------------------------------------------------------------------------|
+| frame control  | 2           | 帧控制字段，指示帧类型、控制信息等                                       |
+| duration       | 2           | 持续时间字段，指示信道预留时间                                           |
+| address 1      | 6           | 接收方 MAC 地址（无线主机或 AP）                                         |
+| address 2      | 6           | 发送方 MAC 地址（无线主机或 AP）                                         |
+| address 3      | 6           | 路由器接口的 MAC 地址（AP 所连接的路由器接口）                           |
+| seq control    | 2           | 序列控制字段，帧编号等                                                   |
+| address 4      | 6           | 仅在 ad hoc 模式下使用的地址                                             |
+| payload        | 0 - 2312    | 数据负载部分                                                             |
+| CRC            | 4           | 循环冗余校验，用于差错检测                                               |
+
 </div>
 
 <p><strong>说明：</strong></p>
@@ -663,8 +575,8 @@
 <h2 id="The-First-Hop"><a href="#The-First-Hop" class="headerlink" title="The First Hop"></a>The First Hop</h2><p>第一跳为 users 到 base station。显然是一个 multiple senders 的场景，可以用 FDMA、TDMA 和 CDMA 分离数据。</p>
 <h2 id="Cellular-standards-brief-survey"><a href="#Cellular-standards-brief-survey" class="headerlink" title="Cellular standards: brief survey"></a>Cellular standards: brief survey</h2><h3 id="2G-Systems"><a href="#2G-Systems" class="headerlink" title="2G Systems"></a><strong>2G Systems</strong></h3><ul>
 <li><strong>Voice Channels</strong>:<ul>
-<li><strong>IS-136 TDMA</strong>: Combined FDMA&#x2F;TDMA (North America).</li>
-<li><strong>GSM</strong>: Global System for Mobile Communications, combined FDMA&#x2F;TDMA (most widely deployed).</li>
+<li><strong>IS-136 TDMA</strong>: Combined FDMA/TDMA (North America).</li>
+<li><strong>GSM</strong>: Global System for Mobile Communications, combined FDMA/TDMA (most widely deployed).</li>
 <li><strong>IS-95 CDMA</strong>: Code Division Multiple Access.</li>
 </ul>
 </li>
@@ -678,26 +590,26 @@
 </li>
 </ul>
 <h3 id="3G-Systems"><a href="#3G-Systems" class="headerlink" title="3G Systems"></a><strong>3G Systems</strong></h3><ul>
-<li><strong>Voice&#x2F;Data</strong>:<ul>
-<li><strong>UMTS</strong>: High-Speed Uplink&#x2F;Downlink Packet Access (HSDPA&#x2F;HSUPA), 3 Mbps.</li>
+<li><strong>Voice/Data</strong>:<ul>
+<li><strong>UMTS</strong>: High-Speed Uplink/Downlink Packet Access (HSDPA/HSUPA), 3 Mbps.</li>
 <li><strong>CDMA-2000</strong>: Data service (1xEVDO), up to 14 Mbps.</li>
 </ul>
 </li>
 </ul>
 <h3 id="4G-Systems"><a href="#4G-Systems" class="headerlink" title="4G Systems"></a><strong>4G Systems</strong></h3><ul>
-<li><strong>Voice&#x2F;Data</strong>:<ul>
+<li><strong>Voice/Data</strong>:<ul>
 <li><strong>LTE</strong>: Employs OFDM and MIMO techniques, 100 Mbps for downlink, 50 Mbps for uplink.</li>
 </ul>
 </li>
 </ul>
 <h1 id="Principles-Addressing-and-Routing-to-Mobile-Users"><a href="#Principles-Addressing-and-Routing-to-Mobile-Users" class="headerlink" title="Principles: Addressing and Routing to Mobile Users"></a>Principles: Addressing and Routing to Mobile Users</h1><p><strong>mobile user, passing through multiple access point while maintaining ongoing connections (like cell phone)</strong></p>
 <h2 id="Mobility-Vocabulary"><a href="#Mobility-Vocabulary" class="headerlink" title="Mobility: Vocabulary"></a>Mobility: Vocabulary</h2><h3 id="Home-Network"><a href="#Home-Network" class="headerlink" title="Home Network"></a><strong>Home Network</strong></h3><ul>
-<li>Permanent “home” of the mobile device (e.g., 128.119.40&#x2F;24).</li>
+<li>Permanent “home” of the mobile device (e.g., 128.119.40/24).</li>
 <li><strong>Permanent Address</strong>: Address in the home network, always used to reach the mobile (e.g., 128.119.40.186).</li>
 <li><strong>Home Agent</strong>: Entity in the home network that performs mobility functions for the mobile when it is remote.</li>
 </ul>
 <h3 id="Visited-Network"><a href="#Visited-Network" class="headerlink" title="Visited Network"></a><strong>Visited Network</strong></h3><ul>
-<li>Network where the mobile device currently resides (e.g., 79.129.13&#x2F;24).</li>
+<li>Network where the mobile device currently resides (e.g., 79.129.13/24).</li>
 <li><strong>Care-of-Address</strong>: Temporary address assigned to the mobile in the visited network (e.g., 79.129.13.2).</li>
 <li><strong>Foreign Agent</strong>: Entity in the visited network that performs mobility functions on behalf of the mobile.</li>
 </ul>
@@ -709,9 +621,9 @@
 <li>indirect routing: communication from correspondent to mobile goes through home agent, then forwarded to remote</li>
 <li>direct routing: correspondent gets foreign address of mobile, sends directly to mobile</li>
 </ul>
-<p><img src="/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" alt="Indirect routing">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="Wireless-and-Mobile-Networks/Indirect routing to a mobile node.png" alt="Indirect routing">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p>第一种 indirect routing，见上图所示，当你的朋友移动到其它 <strong>foreign</strong> 网络，他会得到一个 <strong>Care-of-Address</strong>，这个地址是临时的，用于在当前所在子网下通信，但他有一个 <strong>Permanent Address</strong>，可以通过联系他的 <strong>Home agent</strong>，从而联系到他所在子网的 <strong>Foreign agent</strong>，从而联系到他。</p>
-<p><img src="/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" alt="Direct routing">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="Wireless-and-Mobile-Networks/Direct routing to a mobile user.png" alt="Direct routing">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p>第二种是 direct routing，这种是先通过联系他的 Home agent，得到他所在子网的 IP address，从联系到他。</p>
 <p>需要补充两点：</p>
 <ol>
@@ -722,7 +634,7 @@
 <li><strong>correspondent（通信对端）</strong> 想要联系 friend 时，通常会通过 DNS 查询等方式获得 friend 的 permanent address（即 home address）。</li>
 <li>这个 permanent address 是公开的、长期有效的，类似于家庭住址，所有通信发起者都可以通过标准方式获得。</li>
 </ul>
-<ol start="2">
+<ol>
 <li><strong>home agent 如何维护 friend 所在子网的 agent 和 IP address</strong>.</li>
 </ol>
 <ul>
@@ -731,7 +643,7 @@
 <li>home agent 会维护一个映射表，记录每个移动节点的 permanent address 与其当前的 care-of address（以及 foreign agent 的信息，如果有）。</li>
 <li>当有数据包发往 friend 的 permanent address 时，home agent 会将这些数据包<strong>隧道转发</strong>（tunnel）到 friend 当前的 care-of address（即 friend 所在子网的 foreign agent 或直接到 friend 本身）。</li>
 </ul>
-<h1 id="Mobile-IP-agent-discovery"><a href="#Mobile-IP-agent-discovery" class="headerlink" title="Mobile IP: agent discovery"></a>Mobile IP: agent discovery</h1><p>Agent advertisement: foreign&#x2F;home agents advertise service by broadcasting ICMP messages (<code>typefield = 9</code>)</p>
+<h1 id="Mobile-IP-agent-discovery"><a href="#Mobile-IP-agent-discovery" class="headerlink" title="Mobile IP: agent discovery"></a>Mobile IP: agent discovery</h1><p>Agent advertisement: foreign/home agents advertise service by broadcasting ICMP messages (<code>typefield = 9</code>)</p>
 <h1 id="End-of-chapter-exercises"><a href="#End-of-chapter-exercises" class="headerlink" title="End-of-chapter exercises"></a>End-of-chapter exercises</h1><h2 id="R-1"><a href="#R-1" class="headerlink" title="R.1"></a>R.1</h2><p><strong>Question and Answer:</strong></p>
 <p>What does it mean for a wireless network to be operating in “infrastructure mode”? If the network is not in infrastructure mode, what mode of operation is it in, and what is the different between that mode of operation and infrastructure mode?</p>
 <p>在无线网络中，”基础设施模式”（infrastructure mode）指的是网络中存在一个基站（如接入点，AP），无线主机通过基站连接到有线网络或更大的互联网。在这种模式下，基站负责在无线主机和有线网络之间中继数据。如果网络不处于基础设施模式，则它处于”自组织模式”（ad hoc mode）。在自组织模式中，没有基站，节点只能与其链路覆盖范围内的其他节点通信，节点之间通过自组织的方式形成网络并相互路由。两者的主要区别在于是否依赖基站：基础设施模式依赖基站，而自组织模式则完全由节点自主协作。</p>
@@ -740,53 +652,29 @@
 <p>Section $6.1$ 中提到的 $4$ 种无线网络结构如下：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th><strong>Infrastructure</strong></th>
-<th><strong>Single Hop</strong></th>
-<th><strong>Multiple Hops</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>With Infrastructure</strong></td>
-<td>Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.</td>
-<td>Host relays through several wireless nodes to connect to larger Internet (mesh net).</td>
-</tr>
-<tr>
-<td><strong>Without Infrastructure</strong></td>
-<td>No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).</td>
-<td>No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET).</td>
-</tr>
-</tbody></table>
+| **Infrastructure**        | **Single Hop**                                                                            | **Multiple Hops**                                                                                         |
+|---------------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| **With Infrastructure**   | Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.  | Host relays through several wireless nodes to connect to larger Internet (mesh net).                      |
+| **Without Infrastructure**| No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).         | No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET). |
+
 </div>
 其中像 WiFi 和 Bluetooth 经常使用。
 
-<h2 id="R-3"><a href="#R-3" class="headerlink" title="R.3"></a>R.3</h2><p><strong>Question and Answer:</strong></p>
-<p>What are the differences between the following types of wireless channel impairments: path loss, multipath propagation, interference from other sources?</p>
-<p>下面是对三种信道损伤的解释：</p>
+## R.3
+
+**Question and Answer:**
+
+What are the differences between the following types of wireless channel impairments: path loss, multipath propagation, interference from other sources?
+
+下面是对三种信道损伤的解释：
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th><strong>损伤类型</strong></th>
-<th><strong>详细解释</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>路径损耗 (path loss)</strong></td>
-<td>信号随<strong>传播距离增加</strong>而自然衰减的现象。遵循<strong>平方反比或更高次幂</strong>衰减规律，与距离和频率相关。主要包括<strong>自由空间损耗</strong>、<strong>大气吸收</strong>、<strong>障碍物衰减</strong>等，是无线通信中的<strong>基础衰减现象</strong>。</td>
-</tr>
-<tr>
-<td><strong>多径传播 (multipath propagation)</strong></td>
-<td>信号通过<strong>多个不同路径</strong>同时到达接收器的现象。由信号在建筑物、地面等物体表面的<strong>反射</strong>、<strong>散射</strong>、<strong>折射</strong>和<strong>绕射</strong>导致。产生<strong>相位差异</strong>使信号彼此<strong>增强或抵消</strong>，造成<strong>信号衰落</strong>、<strong>时延扩展</strong>和<strong>符号间干扰</strong>。</td>
-</tr>
-<tr>
-<td><strong>外部干扰 (interference from other sources)</strong></td>
-<td>来自<strong>其他发射源</strong>的电磁波对当前通信的干扰。包括<strong>同频干扰</strong>（相同频道上的其他发射器）、<strong>相邻频道干扰</strong>和<strong>电子设备噪声</strong>等。干扰与当前信号混合，<strong>降低信噪比</strong>和通信质量。</td>
-</tr>
-</tbody></table>
+| **损伤类型**            | **详细解释**                                                                            |
+|---------------------------|-------------------------------------------------------------------------------------------|
+| **路径损耗 (path loss)** | 信号随**传播距离增加**而自然衰减的现象。遵循**平方反比或更高次幂**衰减规律，与距离和频率相关。主要包括**自由空间损耗**、**大气吸收**、**障碍物衰减**等，是无线通信中的**基础衰减现象**。 |
+| **多径传播 (multipath propagation)** | 信号通过**多个不同路径**同时到达接收器的现象。由信号在建筑物、地面等物体表面的**反射**、**散射**、**折射**和**绕射**导致。产生**相位差异**使信号彼此**增强或抵消**，造成**信号衰落**、**时延扩展**和**符号间干扰**。 |
+| **外部干扰 (interference from other sources)** | 来自**其他发射源**的电磁波对当前通信的干扰。包括**同频干扰**（相同频道上的其他发射器）、**相邻频道干扰**和**电子设备噪声**等。干扰与当前信号混合，**降低信噪比**和通信质量。 |
+
 </div>
 
 <h2 id="R-4"><a href="#R-4" class="headerlink" title="R.4"></a>R.4</h2><p><strong>Question and Answer:</strong></p>
@@ -798,7 +686,7 @@
 <li><strong>decreased signal strength</strong>：信号强度的降低会影响通信质量。</li>
 </ul>
 </li>
-<li><p><strong>IEEE 802.11 MAC Protocol: CSMA&#x2F;CA</strong> 部分提到：</p>
+<li><p><strong>IEEE 802.11 MAC Protocol: CSMA/CA</strong> 部分提到：</p>
 <ul>
 <li><strong>Collision Avoidance</strong>：通过避免冲突来提高传输成功率。</li>
 </ul>
@@ -817,10 +705,10 @@
 <h2 id="R-10"><a href="#R-10" class="headerlink" title="R.10"></a>R.10</h2><p><strong>Question and Answer:</strong></p>
 <p>Suppose the IEEE $802.11$ RTS and CTS frames were as long as the standard DATA and ACK frames. Would there be any advantage to using the CTS and RTS frames? Why or why not?</p>
 <ul>
-<li><strong>Avoiding Collisions: RTS&#x2F;CTS Mechanism</strong> 部分提到：<ul>
+<li><strong>Avoiding Collisions: RTS/CTS Mechanism</strong> 部分提到：<ul>
 <li>RTS 和 CTS 的主要作用是 <strong>避免长数据帧的冲突</strong>。</li>
 <li>RTS 和 CTS 包较小，即使发生冲突，影响也较小。</li>
-<li>使用 RTS&#x2F;CTS 机制可以通过小型的预留包来减少长数据帧的冲突。</li>
+<li>使用 RTS/CTS 机制可以通过小型的预留包来减少长数据帧的冲突。</li>
 </ul>
 </li>
 <li>如果 RTS 和 CTS 包与标准的 DATA 和 ACK 包一样长，那么它们的优势将丧失，因为：<ol>
@@ -849,8 +737,7 @@
 <li>例如：移动节点在外地网络获得的 IP 地址 79.129.13.2。</li>
 </ul>
 </li>
-<li><p>care-of address 通常由<strong>访问网络 visited network</strong> 分配，具体来说：</p>
-<ul>
+<li>care-of address 通常由<strong>访问网络 visited network</strong> 分配，具体来说：<ul>
 <li>可以由访问网络中的<strong>外部代理 Foreign Agent</strong> 分配；</li>
 <li>也可以通过 DHCP 等自动分配协议由访问网络的路由器分配。</li>
 </ul>
@@ -860,30 +747,16 @@
 <p>What are the purposes of the HLR and VLR in GSM networks? What elements of mobile IP are similar to the HLR and VLR?</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>GSM 网络</th>
-<th>Mobile IP 协议</th>
-<th>主要作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>HLR</td>
-<td>Home Agent</td>
-<td>记录永久信息和当前位置</td>
-</tr>
-<tr>
-<td>VLR</td>
-<td>Foreign Agent</td>
-<td>临时管理当前区域内的用户&#x2F;节点信息</td>
-</tr>
-</tbody></table>
+| GSM 网络         | Mobile IP 协议         | 主要作用                           |
+|------------------|-----------------------|------------------------------------|
+| HLR              | Home Agent            | 记录永久信息和当前位置             |
+| VLR              | Foreign Agent         | 临时管理当前区域内的用户/节点信息  |
+
 </div>
 
 <h2 id="P-5"><a href="#P-5" class="headerlink" title="P.5"></a>P.5</h2><p><strong>Question and Answer:</strong></p>
 <p>Suppose there are two ISPs providing WiFi access in a particular café, with each ISP operating its own AP and having its own IP address block. a. Further suppose that by accident, each ISP has configured its AP to operate over channel 11. Will the 802.11 protocol completely break down in this situation? Discuss what happens when two stations, each associated with a different ISP, attempt to transmit at the same time. b. Now suppose that one AP operates over channel 1 and the other over channel 11. How do your answers change?</p>
-<p><strong>a.</strong>：802.11 协议不会完全失效，但两个 AP 及其关联的 hosts 会在 physical layer 竞争同一个信道的使用权。如果两个 hosts 同时发送数据，此时会产生 collision，尽管 CSMA&#x2F;CA 协议会尽可能避免冲突，但由于信号干扰，冲突仍会发生，导致通信变得不稳定。</p>
+<p><strong>a.</strong>：802.11 协议不会完全失效，但两个 AP 及其关联的 hosts 会在 physical layer 竞争同一个信道的使用权。如果两个 hosts 同时发送数据，此时会产生 collision，尽管 CSMA/CA 协议会尽可能避免冲突，但由于信号干扰，冲突仍会发生，导致通信变得不稳定。</p>
 <p><strong>b.</strong>：此时两个 AP 用不同的信道，互不干扰，通信正常。</p>
 <h2 id="P-13"><a href="#P-13" class="headerlink" title="P.13"></a>P.13</h2><p><strong>Question and Answer:</strong></p>
 <p>In mobile IP, what effect will mobility have on end-to-end delays of datagrams between the source and destination?</p>

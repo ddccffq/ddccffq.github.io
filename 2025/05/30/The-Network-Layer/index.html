@@ -26,22 +26,22 @@
 <meta property="og:site_name" content="ddccffq的技术博客">
 <meta property="og:description" content="Introduction网络层有如下功能：  将从 transport layer 传来的 segment 打包成 datagram，再将 datagram 中的 segment 分离开传给 transport layer。 网络层协议应用在 host 和 router 中。  Router 和 Switch 都属于 packet switch。 尽管路由器和链路层交换机都被称为packet sw">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/IPv4%20datagram%20format.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/DHCP%20client-server%20interaction.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/Network%20address%20translation.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/Tunneling.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/AS%20structure.jpg">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/Hierarchical%20OSPF.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/Network%20address%20translation.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/P24.jpg">
-<meta property="og:image" content="https://ddccffq.github.io/The-Network-Layer/P26.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/IPv4%20datagram%20format.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/DHCP%20client-server%20interaction.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Network%20address%20translation.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Tunneling.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/AS%20structure.jpg">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Hierarchical%20OSPF.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Network%20address%20translation.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/P24.jpg">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/P26.png">
 <meta property="article:published_time" content="2025-05-30T13:43:21.000Z">
 <meta property="article:modified_time" content="2025-06-17T04:48:23.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="机器学习,计算机网络,算法,统计学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ddccffq.github.io/The-Network-Layer/IPv4%20datagram%20format.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/IPv4%20datagram%20format.png">
 
 
 <link rel="canonical" href="https://ddccffq.github.io/2025/05/30/The-Network-Layer/">
@@ -78,7 +78,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -86,7 +86,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -316,51 +320,23 @@
 <p>具体形式如下表格所示，可以看到就是一个简单的地址到接口的映射</p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 
-<table>
-<thead>
-<tr>
-<th align="center"><strong>Destination Address Range</strong></th>
-<th align="center"><strong>Link Interface</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\sim$</td>
-<td align="center">$0$</td>
-</tr>
-<tr>
-<td align="center">$\sim$</td>
-<td align="center">$1$</td>
-</tr>
-<tr>
-<td align="center">otherwise</td>
-<td align="center">$2$</td>
-</tr>
-</tbody></table>
+| **Destination Address Range**        | **Link Interface**     |
+|:------------------------------------:|:----------------------:|
+| $\sim$                               | $0$                    |
+| $\sim$                               | $1$                    |
+| otherwise                            | $2$                    |
+
 </div>
 
 <p><strong>需要注意的是</strong>：表格中的 <strong>Destination Address Range</strong> 可以不是完整的 IP address，而是其的一个前缀；比如 <strong>00111000</strong>，对应的地址范围是 <strong>00111000 00000000 00000000 00000000</strong> 到 <strong>00111000 11111111 11111111 11111111 11111111</strong>。这时 forwarding table 变成：</p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 
-<table>
-<thead>
-<tr>
-<th align="center"><strong>Header</strong></th>
-<th align="center"><strong>Link Interface</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$\sim$</td>
-<td align="center">$0$</td>
-</tr>
-<tr>
-<td align="center">$\sim$</td>
-<td align="center">$1$</td>
-</tr>
-<tr>
-<td align="center">otherwise</td>
-<td align="center">$2$</td>
-</tr>
-</tbody></table>
+| **Header**        | **Link Interface**     |
+|:------------------------------------:|:----------------------:|
+| $\sim$                               | $0$                    |
+| $\sim$                               | $1$                    |
+| otherwise                            | $2$                    |
+
 </div>
 
 <h1 id="What’s-inside-a-Router"><a href="#What’s-inside-a-Router" class="headerlink" title="What’s inside a Router"></a>What’s inside a Router</h1><p>有两个重要的路由功能：</p>
@@ -388,92 +364,31 @@
 </div>
 
 <h3 id="Output-Port-Queueing"><a href="#Output-Port-Queueing" class="headerlink" title="Output Port Queueing"></a>Output Port Queueing</h3><p>Buffering when arrival rate via switch <strong>exceeds</strong> output line speed. Queueing (<strong>delay</strong>) and loss due to output port buffer overflows.</p>
-<p>所以，需要多大的 buffer？假设 <strong>typical $\text{RTT}$</strong>（一般是 $250$ ms），link capacity $C$，有 $N$ 个 datagram flow。则：<br>$$<br>\text{buffering} &#x3D; \frac{\text{RTT} \cdot C}{\sqrt{N}}<br>$$</p>
-<h3 id="Input-Port-Queueing"><a href="#Input-Port-Queueing" class="headerlink" title="Input Port Queueing"></a>Input Port Queueing</h3><p>同样，输入端也会堵塞。应用了名叫 <strong>Head-of-the-Line (HOL) blocking</strong> 的机制，这个机制很好理解：就是排在前面的 datagram 传输了，其后面的 datagram 才能传输。</p>
+<p>所以，需要多大的 buffer？假设 <strong>typical $\text{RTT}$</strong>（一般是 $250$ ms），link capacity $C$，有 $N$ 个 datagram flow。则：</p>
+<script type="math/tex; mode=display">
+\text{buffering} = \frac{\text{RTT} \cdot C}{\sqrt{N}}</script><h3 id="Input-Port-Queueing"><a href="#Input-Port-Queueing" class="headerlink" title="Input Port Queueing"></a>Input Port Queueing</h3><p>同样，输入端也会堵塞。应用了名叫 <strong>Head-of-the-Line (HOL) blocking</strong> 的机制，这个机制很好理解：就是排在前面的 datagram 传输了，其后面的 datagram 才能传输。</p>
 <h1 id="Internet-Protocol"><a href="#Internet-Protocol" class="headerlink" title="Internet Protocol"></a>Internet Protocol</h1><p>这个协议干了三件事：<strong>addressing conventions</strong>（地址约定），<strong>datagram format</strong>，<strong>packet handling conventions</strong>（分组处理约定）。</p>
-<h2 id="IP-Datagram-Format"><a href="#IP-Datagram-Format" class="headerlink" title="IP Datagram Format"></a>IP Datagram Format</h2><h3 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h3><p><img src="/The-Network-Layer/IPv4%20datagram%20format.png" alt="IPv4 datagram format">{style&#x3D;”display: block; margin: 0 auto; width: 60%”}</p>
+<h2 id="IP-Datagram-Format"><a href="#IP-Datagram-Format" class="headerlink" title="IP Datagram Format"></a>IP Datagram Format</h2><h3 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h3><p><img src="The-Network-Layer/IPv4 datagram format.png" alt="IPv4 datagram format">{style=”display: block; margin: 0 auto; width: 60%”}</p>
 <p><strong>总结表格：</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>长度</th>
-<th>作用&#x2F;说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Version</td>
-<td>4 位</td>
-<td>IP 协议版本号</td>
-</tr>
-<tr>
-<td>Header Length</td>
-<td>4 位</td>
-<td>首部长度（单位：$4$ 字节，最少 $5$ ）</td>
-</tr>
-<tr>
-<td>Type of Service</td>
-<td>8 位</td>
-<td>服务类型&#x2F;QoS</td>
-</tr>
-<tr>
-<td>Datagram Length</td>
-<td>16 位</td>
-<td>数据报总长度（单位：$1$ 字节）</td>
-</tr>
-<tr>
-<td>Identifier</td>
-<td>16 位</td>
-<td>分片标识符</td>
-</tr>
-<tr>
-<td><strong>Flags</strong></td>
-<td>3 位</td>
-<td>分片控制标志</td>
-</tr>
-<tr>
-<td><strong>Fragmentation Offset</strong></td>
-<td>13 位</td>
-<td>分片偏移量（单位：$8$ 字节）</td>
-</tr>
-<tr>
-<td>Time-to-Live (TTL)</td>
-<td>8 位</td>
-<td>生存时间&#x2F;最大跳数</td>
-</tr>
-<tr>
-<td>Upper-layer Protocol</td>
-<td>8 位</td>
-<td>上层协议类型</td>
-</tr>
-<tr>
-<td>Header Checksum</td>
-<td>16 位</td>
-<td>首部校验和</td>
-</tr>
-<tr>
-<td>Source IP Address</td>
-<td>32 位</td>
-<td>源 IP 地址</td>
-</tr>
-<tr>
-<td>Destination IP Address</td>
-<td>32 位</td>
-<td>目的 IP 地址</td>
-</tr>
-<tr>
-<td>Options</td>
-<td>可变</td>
-<td>可选字段</td>
-</tr>
-<tr>
-<td>Data</td>
-<td>可变</td>
-<td>负载数据</td>
-</tr>
-</tbody></table>
+| 字段名                    | 长度      | 作用/说明                         |
+|--------------------------|-----------|-----------------------------------|
+| Version                  | 4 位     | IP 协议版本号                     |
+| Header Length            | 4 位     | 首部长度（单位：$4$ 字节，最少 $5$ ）|
+| Type of Service          | 8 位     | 服务类型/QoS                      |
+| Datagram Length          | 16 位    | 数据报总长度（单位：$1$ 字节）      |
+| Identifier               | 16 位    | 分片标识符                        |
+| **Flags**                | 3 位     | 分片控制标志                      |
+| **Fragmentation Offset** | 13 位    | 分片偏移量（单位：$8$ 字节）       |
+| Time-to-Live (TTL)       | 8 位     | 生存时间/最大跳数                 |
+| Upper-layer Protocol     | 8 位     | 上层协议类型                      |
+| Header Checksum          | 16 位    | 首部校验和                        |
+| Source IP Address        | 32 位    | 源 IP 地址                        |
+| Destination IP Address   | 32 位    | 目的 IP 地址                      |
+| Options                  | 可变     | 可选字段                          |
+| Data                     | 可变     | 负载数据                          |
+
 </div>
 
 <p><strong>补充</strong>：</p>
@@ -486,8 +401,8 @@
 <p>假设原 IP datagram 总长度为 $L$，待转发链路的 MTU 为 $M$，若 $L &gt; M$ 且 DF 为 $0$，则需要分片。</p>
 <ul>
 <li>先复制 <strong>Identifier</strong>。</li>
-<li>一个切片可封装的数据为：$$d &#x3D; \left \lfloor \frac{M - 20}{8} \right \rfloor \times 8$$</li>
-<li>需要的总片数为：$$n &#x3D; \left \lceil \frac{L - 20}{d} \right \rceil$$</li>
+<li>一个切片可封装的数据为：<script type="math/tex">d = \left \lfloor \frac{M - 20}{8} \right \rfloor \times 8</script></li>
+<li>需要的总片数为：<script type="math/tex">n = \left \lceil \frac{L - 20}{d} \right \rceil</script></li>
 </ul>
 <h2 id="IPv4-Addressing"><a href="#IPv4-Addressing" class="headerlink" title="IPv4 Addressing"></a>IPv4 Addressing</h2><h3 id="Subnet"><a href="#Subnet" class="headerlink" title="Subnet"></a>Subnet</h3><p><strong>IP address</strong>: subnet part (high order bits) $+$ host part (low order bits).</p>
 <p>在一个 subnet 中的所有设备都可以直接<strong>物理意义上</strong>地连接。</p>
@@ -500,76 +415,30 @@
 <li>Support for mobile users who want to join network.</li>
 </ul>
 <p><strong>DHCP</strong>（Dynamic Host Configuration Protocol，动态主机配置协议）是一个<strong>网络管理协议</strong>，用于在IP网络中<strong>自动分配IP地址和其他网络配置参数</strong>给网络设备。DHCP运行在<strong>应用层</strong>，使用<strong>UDP协议</strong>，客户端使用<strong>端口68</strong>，服务器使用<strong>端口67</strong>。</p>
-<p><img src="/The-Network-Layer/DHCP%20client-server%20interaction.png" alt="DHCP client-server interaction">{style&#x3D;”display: block; margin: 0 auto; width: 50%”}</p>
+<p><img src="The-Network-Layer/DHCP client-server interaction.png" alt="DHCP client-server interaction">{style=”display: block; margin: 0 auto; width: 50%”}</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>消息类型</th>
-<th>发送者</th>
-<th>接收者</th>
-<th>主要内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>DISCOVER</td>
-<td>客户端</td>
-<td>广播</td>
-<td>“我需要一个IP地址”</td>
-</tr>
-<tr>
-<td>2</td>
-<td>OFFER</td>
-<td>服务器</td>
-<td>客户端</td>
-<td>“你可以使用这个IP”</td>
-</tr>
-<tr>
-<td>3</td>
-<td>REQUEST</td>
-<td>客户端</td>
-<td>广播</td>
-<td>“我想使用这个IP”</td>
-</tr>
-<tr>
-<td>4</td>
-<td>ACK</td>
-<td>服务器</td>
-<td>客户端</td>
-<td>“IP已分配，租期为X”</td>
-</tr>
-</tbody></table>
+| 步骤 | 消息类型 | 发送者 | 接收者 | 主要内容 |
+|------|----------|--------|--------|----------|
+| 1 | DISCOVER | 客户端 | 广播 | "我需要一个IP地址" |
+| 2 | OFFER | 服务器 | 客户端 | "你可以使用这个IP" |
+| 3 | REQUEST | 客户端 | 广播 | "我想使用这个IP" |
+| 4 | ACK | 服务器 | 客户端 | "IP已分配，租期为X" |
+
 </div>
 
 <p><strong>yiaddr</strong>（your IP address）是DHCP协议中表示<strong>服务器提供给客户端的IP地址</strong>的字段。</p>
 <p><strong>补充</strong>：DHCP 还可以 return <strong>address of first-hop router for client</strong>，<strong>name and IP address of DNS server</strong>，<strong>network mask</strong>。</p>
-<h3 id="Network-Address-Translation-NAT"><a href="#Network-Address-Translation-NAT" class="headerlink" title="Network Address Translation: NAT"></a>Network Address Translation: NAT</h3><p><img src="/The-Network-Layer/Network%20address%20translation.png" alt="Network address translation">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="Network-Address-Translation-NAT"><a href="#Network-Address-Translation-NAT" class="headerlink" title="Network Address Translation: NAT"></a>Network Address Translation: NAT</h3><p><img src="The-Network-Layer/Network address translation.png" alt="Network address translation">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p>右边：局域网内通信，使用内部地址：<code>10.0.0/24</code>；左边：局域网外通信，共用唯一地址。注意，没有共用同一个端口号，因为端口号是用来区分的。比如：</p>
   <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">WAN 侧 (对外显示)</th>
-<th align="center">LAN 侧 (实际主机)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">203.0.113.5:50001</td>
-<td align="center">192.168.1.10:3345</td>
-</tr>
-<tr>
-<td align="center">203.0.113.5:50002</td>
-<td align="center">192.168.1.10:3346</td>
-</tr>
-<tr>
-<td align="center">203.0.113.5:50003</td>
-<td align="center">192.168.1.11:3345</td>
-</tr>
-</tbody></table>
+  | WAN 侧 (对外显示) | LAN 侧 (实际主机) |
+  |:---------------:|:----------------:|
+  | 203.0.113.5:50001 | 192.168.1.10:3345 |
+  | 203.0.113.5:50002 | 192.168.1.10:3346 |
+  | 203.0.113.5:50003 | 192.168.1.11:3345 |
+
   </div>
 
 <p>这样布置有一个比较好的优势：可以更换 ISP 的同时不改变局域网内的地址。</p>
@@ -597,179 +466,57 @@
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>长度</th>
-<th>作用&#x2F;说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Type</strong></td>
-<td>8位</td>
-<td>消息类型（如0&#x3D;回显回复，3&#x3D;目的不可达，8&#x3D;回显请求）</td>
-</tr>
-<tr>
-<td><strong>Code</strong></td>
-<td>8位</td>
-<td>消息子类型（进一步说明类型）</td>
-</tr>
-<tr>
-<td><strong>Checksum</strong></td>
-<td>16位</td>
-<td>校验和（覆盖整个ICMP消息）</td>
-</tr>
-<tr>
-<td><strong>Rest of Header</strong></td>
-<td>32位</td>
-<td>取决于Type和Code的其他信息</td>
-</tr>
-<tr>
-<td><strong>Data</strong></td>
-<td>可变</td>
-<td>负载数据（例如原始数据包的片段）</td>
-</tr>
-</tbody></table>
+| 字段名 | 长度 | 作用/说明 |
+|-------|------|----------|
+| **Type** | 8位 | 消息类型（如0=回显回复，3=目的不可达，8=回显请求） |
+| **Code** | 8位 | 消息子类型（进一步说明类型） |
+| **Checksum** | 16位 | 校验和（覆盖整个ICMP消息） |
+| **Rest of Header** | 32位 | 取决于Type和Code的其他信息 |
+| **Data** | 可变 | 负载数据（例如原始数据包的片段） |
+
 </div>
 
 <h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><p>为了解决 IPv4 地址不足。具体 format 不讲，但要注意 header 大小为 $40$ bytes，只有 address 大小变为 $128$ bits。</p>
-<h3 id="Transition-from-IPv4-to-IPv6"><a href="#Transition-from-IPv4-to-IPv6" class="headerlink" title="Transition from IPv4 to IPv6"></a>Transition from IPv4 to IPv6</h3><p><img src="/The-Network-Layer/Tunneling.png" alt="Tunneling">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<h3 id="Transition-from-IPv4-to-IPv6"><a href="#Transition-from-IPv4-to-IPv6" class="headerlink" title="Transition from IPv4 to IPv6"></a>Transition from IPv4 to IPv6</h3><p><img src="The-Network-Layer/Tunneling.png" alt="Tunneling">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <p><strong>Tunneling</strong>: IPv6 carried as payload in IPv4 datagram among Ipv4 routers.</p>
 <h1 id="Routing-Algorithms"><a href="#Routing-Algorithms" class="headerlink" title="Routing Algorithms"></a>Routing Algorithms</h1><h2 id="Software-Defined-Networking-SDN"><a href="#Software-Defined-Networking-SDN" class="headerlink" title="Software-Defined Networking: SDN"></a>Software-Defined Networking: SDN</h2><p>实际上，network layer 可以分为 <strong>data plane</strong> 和 <strong>control plane</strong>，在 <strong>control plane</strong> 有一个 logically centralized routing controller，由它 compute paths。</p>
 <h2 id="Link-State-Algorithm"><a href="#Link-State-Algorithm" class="headerlink" title="Link State Algorithm"></a>Link State Algorithm</h2><h3 id="Dijkstra’s-Link-State-Algorithm"><a href="#Dijkstra’s-Link-State-Algorithm" class="headerlink" title="Dijkstra’s Link-State Algorithm"></a>Dijkstra’s Link-State Algorithm</h3><p>伪代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">N = &#123;u&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> a : nodes) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isAdjacent</span>(u, a)) &#123;</span><br><span class="line">      D[a] = <span class="built_in">Cost</span>(u, a);</span><br><span class="line">      P[a] = u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      D[a] = INF;</span><br><span class="line">      P[a] = a;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> (! all nodes in N) &#123;</span><br><span class="line">    D[a] = <span class="built_in">min</span>(D)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> b : nodes) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isAdjacent</span>(b ,a)) &#123;</span><br><span class="line">          D[b] = <span class="built_in">min</span>(D[b], <span class="built_in">Cost</span>(b, a) + D[a])</span><br><span class="line">          <span class="keyword">if</span> (D[b] == <span class="built_in">Cost</span>(b, a) + D[a]) P[b] = a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>实际做题的时候可以参考书上的风格：</p>
 <p>记 $N’$ 为<strong>已找到最短路径</strong>的点集合，函数 $D(x)$ 为到点 $x$ 的最短路径，函数 $P(x)$ 为点 $x$ 的父母结点。可以规范化求解过程如下，其中 $0$ 轮初始化。</p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 
-<table>
-<thead>
-<tr>
-<th align="center"><strong>Step</strong></th>
-<th align="center"><strong>$N’$</strong></th>
-<th align="center"><strong>$D(),P()$</strong></th>
-<th align="center"><strong>$D(),P()$</strong></th>
-<th align="center"><strong>$\cdots$</strong></th>
-<th align="center"><strong>$D(),P()$</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$0$</td>
-<td align="center">$u$</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-</tr>
-<tr>
-<td align="center">$1$</td>
-<td align="center">$uv$</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-</tr>
-<tr>
-<td align="center">$2$</td>
-<td align="center">$uvw$</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-</tr>
-<tr>
-<td align="center">$\cdots$</td>
-<td align="center">$\cdots$</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-</tr>
-<tr>
-<td align="center">$N$</td>
-<td align="center">$uvw \cdots l$</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-<td align="center">dis  node</td>
-</tr>
-</tbody></table>
+| **Step**        | **$N'$**     |**$D()\,P()$**|**$D()\,P()$**| **$\cdots$** |**$D()\,P()$**|
+|:---------------:|:------------:|:------------:|:------------:|:------------:|:------------:|
+| $0$             | $u$          |  dis  node   |  dis  node   |  dis  node   |  dis  node   |
+| $1$             | $uv$         |  dis  node   |  dis  node   |  dis  node   |  dis  node   |
+| $2$             | $uvw$        |  dis  node   |  dis  node   |  dis  node   |  dis  node   |
+| $\cdots$        | $\cdots$     |  dis  node   |  dis  node   |  dis  node   |  dis  node   |
+| $N$             |$uvw \cdots l$|  dis  node   |  dis  node   |  dis  node   |  dis  node   |
+
 </div>
 
 <p>这样可以求出从起点到图中其它点的所有最短路径。可以用来制作 forwarding table。</p>
 <p>可以用<strong>优先队列</strong>优化时间复杂度。</p>
 <p>这里需要提到一个概念 <strong>Oscillation possible</strong>，指的是网络路由状态可能出现反复波动、难以稳定的现象，是网络设计和协议实现中需要重点关注和避免的问题。这可能会导致在 Link State Algorithm 中计算到无穷的结果。</p>
-<h2 id="Distance-Vector-Algorithm"><a href="#Distance-Vector-Algorithm" class="headerlink" title="Distance Vector Algorithm"></a>Distance Vector Algorithm</h2><p><strong>Distributed Bellman-Ford equation</strong>: $$D(x \to y) &#x3D; \min_{v} {\text{Cost}_{x \to v} + D(v \to y), , D(x \to y)}$$</p>
+<h2 id="Distance-Vector-Algorithm"><a href="#Distance-Vector-Algorithm" class="headerlink" title="Distance Vector Algorithm"></a>Distance Vector Algorithm</h2><p><strong>Distributed Bellman-Ford equation</strong>: <script type="math/tex">D(x \to y) = \min_{v} \{\text{Cost}_{x \to v} + D(v \to y), \, D(x \to y)\}</script></p>
 <p>其中，$v$ 是 $x$ 的邻居。</p>
 <p>这是一个 <strong>iterative</strong> 算法，需要多次计算，直到收敛。计算过程可以参考课本，如下表所述，结点 $z$ 的 table。</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">$z$</th>
-<th align="center">cost to</th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center">$x$</td>
-<td align="center">$y$</td>
-<td align="center">$z$</td>
-<td align="center">$u$</td>
-<td align="center">$v$</td>
-</tr>
-<tr>
-<td align="center">from $x$</td>
-<td align="center">$2$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$3$</td>
-</tr>
-<tr>
-<td align="center">from $y$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-<td align="center">$\infty$</td>
-</tr>
-<tr>
-<td align="center">from $z$</td>
-<td align="center">$2$</td>
-<td align="center">$5$</td>
-<td align="center">$0$</td>
-<td align="center">$7$</td>
-<td align="center">$5$</td>
-</tr>
-<tr>
-<td align="center">from $u$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-</tr>
-<tr>
-<td align="center">from $v$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$6$</td>
-<td align="center">$1$</td>
-<td align="center">$\infty$</td>
-</tr>
-</tbody></table>
+|   $z$  | cost to|        |        |        |        |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+|        | $x$      | $y$      | $z$      | $u$      | $v$      |
+| from $x$ | $2$      | $3$      | $\infty$ | $\infty$ | $3$      |
+| from $y$ | $3$      | $\infty$ | $\infty$ | $2$      | $\infty$ |
+| from $z$ | $2$      | $5$      | $0$      | $7$      | $5$      |
+| from $u$ | $\infty$ | $2$      | $\infty$ | $\infty$ | $2$      |
+| from $v$ | $3$      | $\infty$ | $6$      | $1$      | $\infty$ |
+
 </div>
 
 <h1 id="Hierarchical-Routing"><a href="#Hierarchical-Routing" class="headerlink" title="Hierarchical Routing"></a>Hierarchical Routing</h1><p><strong>Internet approach to scalable routing</strong>: aggregate routers into regions known as <strong>autonomous system (AS)</strong></p>
-<p><img src="/The-Network-Layer/AS%20structure.jpg" alt="AS structure">{style&#x3D;”display: block; margin: 0 auto; width: 100%”}</p>
+<p><img src="The-Network-Layer/AS structure.jpg" alt="AS structure">{style=”display: block; margin: 0 auto; width: 100%”}</p>
 <h2 id="Intra-AS-Routing-Protocol"><a href="#Intra-AS-Routing-Protocol" class="headerlink" title="Intra-AS Routing Protocol"></a>Intra-AS Routing Protocol</h2><ol>
 <li>RIP: Routing Information Protocol (wasted).</li>
 <li>OSPF: Open Shortest Path First (Link-State).</li>
@@ -782,7 +529,7 @@
 <li>Each router has full topology, Dijkstra algorithm.</li>
 </ol>
 <p>Security: all OSPF messages authenticated</p>
-<p><img src="/The-Network-Layer/Hierarchical%20OSPF.png" alt="Hierarchical OSPF">{style&#x3D;”display: block; margin: 0 auto; width: 80%”}</p>
+<p><img src="The-Network-Layer/Hierarchical OSPF.png" alt="Hierarchical OSPF">{style=”display: block; margin: 0 auto; width: 80%”}</p>
 <h2 id="Inter-AS-Protocol"><a href="#Inter-AS-Protocol" class="headerlink" title="Inter-AS Protocol"></a>Inter-AS Protocol</h2><h3 id="BGP-Border-Gateway-Protocol"><a href="#BGP-Border-Gateway-Protocol" class="headerlink" title="BGP: Border Gateway Protocol"></a>BGP: Border Gateway Protocol</h3><p>BGP provides each AS a means to:</p>
 <ul>
 <li>obtain destination network reachability information form neighboring ASes eBGP.</li>
@@ -790,7 +537,7 @@
 <li>propagate reachability information to all AS-internal routers: iBGP.</li>
 <li>advertise (to neighboring networks) destination reachability information.</li>
 </ul>
-<p><img src="/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png" alt="eBGP and iBGP sessions">{style&#x3D;”display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="The-Network-Layer/eBGP and iBGP sessions.png" alt="eBGP and iBGP sessions">{style=”display: block; margin: 0 auto; width: 90%”}</p>
 <ul>
 <li>BGP对等体（BGP peers）通过<strong>半永久TCP连接</strong>（BGP会话）交换路由信息。</li>
 <li>BGP会话不一定对应物理链路。</li>
@@ -819,7 +566,7 @@
 </div>
 
 <p>AS-PATH传播过程</p>
-<p>假设AS99宣告前缀192.168.99.0&#x2F;24，我们跟踪这个前缀在网络中的传播：</p>
+<p>假设AS99宣告前缀192.168.99.0/24，我们跟踪这个前缀在网络中的传播：</p>
 <ol>
 <li><p><strong>AS99向AS78通告前缀</strong>：</p>
 <ul>
@@ -856,14 +603,14 @@
 <h1 id="Subnet、Prefix和BGP-Route的对比分析"><a href="#Subnet、Prefix和BGP-Route的对比分析" class="headerlink" title="Subnet、Prefix和BGP Route的对比分析"></a>Subnet、Prefix和BGP Route的对比分析</h1><h2 id="Subnet（子网）"><a href="#Subnet（子网）" class="headerlink" title="Subnet（子网）"></a>Subnet（子网）</h2><p><strong>子网</strong>是指<strong>物理网络的逻辑划分</strong>，具有以下特征：</p>
 <ul>
 <li>由<strong>共享相同网络前缀</strong>的IP地址集合组成</li>
-<li>通过<strong>网络地址</strong>和<strong>子网掩码</strong>定义（如192.168.1.0&#x2F;24）</li>
+<li>通过<strong>网络地址</strong>和<strong>子网掩码</strong>定义（如192.168.1.0/24）</li>
 <li>子网内设备可<strong>直接通信</strong>，无需路由器转发</li>
 <li>代表<strong>单一广播域</strong>内的网络段</li>
 <li>通常属于<strong>单一管理实体</strong></li>
 </ul>
 <h2 id="Prefix（前缀）"><a href="#Prefix（前缀）" class="headerlink" title="Prefix（前缀）"></a>Prefix（前缀）</h2><p><strong>前缀</strong>是<strong>IP地址空间中的地址块</strong>，具有以下特征：</p>
 <ul>
-<li>用<strong>CIDR表示法</strong>表示（如10.0.0.0&#x2F;8）</li>
+<li>用<strong>CIDR表示法</strong>表示（如10.0.0.0/8）</li>
 <li>表示IP地址中固定的<strong>网络部分位数</strong></li>
 <li>是<strong>路由表聚合</strong>的基础单位</li>
 <li>可以表示<strong>不同大小</strong>的地址块</li>
@@ -933,52 +680,15 @@
 </ol>
 <h2 id="三者关系对比"><a href="#三者关系对比" class="headerlink" title="三者关系对比"></a>三者关系对比</h2><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Subnet</th>
-<th>Prefix</th>
-<th>BGP Route</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>范围</strong></td>
-<td>局部网段</td>
-<td>地址块</td>
-<td>全球路由</td>
-</tr>
-<tr>
-<td><strong>用途</strong></td>
-<td>网络分段</td>
-<td>地址分配与聚合</td>
-<td>域间路由决策</td>
-</tr>
-<tr>
-<td><strong>包含信息</strong></td>
-<td>网络地址+掩码</td>
-<td>地址块+长度</td>
-<td>前缀+路径属性</td>
-</tr>
-<tr>
-<td><strong>管理层次</strong></td>
-<td>单一管理域内</td>
-<td>可跨域使用</td>
-<td>多AS协作</td>
-</tr>
-<tr>
-<td><strong>通告机制</strong></td>
-<td>不直接通告</td>
-<td>内部路由协议</td>
-<td>BGP协议</td>
-</tr>
-<tr>
-<td><strong>聚合能力</strong></td>
-<td>固定大小</td>
-<td>可变大小</td>
-<td>可聚合或特定</td>
-</tr>
-</tbody></table>
+| 特性 | Subnet | Prefix | BGP Route |
+|------|--------|--------|-----------|
+| **范围** | 局部网段 | 地址块 | 全球路由 |
+| **用途** | 网络分段 | 地址分配与聚合 | 域间路由决策 |
+| **包含信息** | 网络地址+掩码 | 地址块+长度 | 前缀+路径属性 |
+| **管理层次** | 单一管理域内 | 可跨域使用 | 多AS协作 |
+| **通告机制** | 不直接通告 | 内部路由协议 | BGP协议 |
+| **聚合能力** | 固定大小 | 可变大小 | 可聚合或特定 |
+
 </div>
 
 <h2 id="层次关系"><a href="#层次关系" class="headerlink" title="层次关系"></a>层次关系</h2><p>这三个概念形成了一个层次结构：</p>
@@ -1002,60 +712,26 @@
 <h2 id="P-9"><a href="#P-9" class="headerlink" title="P.9"></a>P.9</h2><p><strong>Consider a datagram network using 32-bit host addresses. Suppose a router has four links, numbered 0 through 3, and packets are to be forwarded to the link interfaces as follows:</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">Destination Address Range</th>
-<th align="center">Link Interface</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><div align = "center">11100000 00000000 00000000 00000000<br><strong>through</strong><br>11100000 00111111 11111111 11111111</div></td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center"><div align = "center">11100000 01000000 00000000 00000000<br><strong>through</strong><br>11100000 01000000 11111111 11111111</div></td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center"><div align = "center">11100000 01000001 00000000 00000000<br><strong>through</strong><br>11100001 01111111 11111111 11111111</div></td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td align="center"><div align = "center">otherwise</div></td>
-<td align="center">3</td>
-</tr>
-</tbody></table>
+| Destination Address Range                                                                                                                                      | Link Interface |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------:|
+| <div align = "center">11100000 00000000 00000000 00000000<br><strong>through</strong><br>11100000 00111111 11111111 11111111</div>                               |       0        |
+| <div align = "center">11100000 01000000 00000000 00000000<br><strong>through</strong><br>11100000 01000000 11111111 11111111</div>                               |       1        |
+| <div align = "center">11100000 01000001 00000000 00000000<br><strong>through</strong><br>11100001 01111111 11111111 11111111</div>                               |       2        |
+| <div align = "center">otherwise</div>                                                                                                                            |       3        |
+
 </div>
 
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Provide a forwarding table that has four entries, uses longest prefix matching, and forwards packets to the correct link interfaces.</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th align="center">Link Interface(output)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>11100000 00</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td>11100000 01000000</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td>1110000</td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td>otherwise</td>
-<td align="center">3</td>
-</tr>
-</tbody></table>
+| Header | Link Interface(output) |
+|------------------------------|:--------------:|
+| 11100000 00 | 0 |
+| 11100000 01000000 | 1 |
+| 1110000   | 2 |
+| otherwise | 3 |
+
 </div>
 
 <p><strong>Explanation:</strong>  </p>
@@ -1096,121 +772,52 @@
 <h2 id="P-10"><a href="#P-10" class="headerlink" title="P.10"></a>P.10</h2><p><strong>Consider a datagram network using 8-bit host addresses. Suppose a router uses longest-prefix matching and has the following forwarding table:</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">Prefix Match</th>
-<th align="center">Interface</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">00</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">010</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center">011</td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td align="center">10</td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td align="center">11</td>
-<td align="center">3</td>
-</tr>
-</tbody></table>
+| Prefix Match | Interface |
+|:------------:|:---------:|
+| 00           | 0         |
+| 010          | 1         |
+| 011          | 2         |
+| 10           | 2         |
+| 11           | 3         |
+
 </div>
 
 <p><strong>Question and Answer:</strong></p>
 <p>For each of the four interfaces, give the associated range of destination host addresses and the number of addresses in the range.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">Interface</th>
-<th align="center">Destination Address Range</th>
-<th align="right">Number of Addresses</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">00000000 - 00111111</td>
-<td align="right">64</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">01000000 - 01011111</td>
-<td align="right">32</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">01100000 - 01111111<br>10000000 - 10111111</td>
-<td align="right">96</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">11000000 - 11111111</td>
-<td align="right">64</td>
-</tr>
-</tbody></table>
+| Interface | Destination Address Range                            | Number of Addresses       |
+|:--------:|:--------------------------------------------:|--------------:|
+| 0        | 00000000 - 00111111                           | 64       |
+| 1        | 01000000 - 01011111                           | 32       |
+| 2        | 01100000 - 01111111<br>10000000 - 10111111       | 96  |
+| 3        | 11000000 - 11111111                           | 64       |
+
 </div>
 
 <h2 id="P-17"><a href="#P-17" class="headerlink" title="P.17"></a>P.17</h2><p><strong>Question and Answer:</strong></p>
 <p>Consider sending a 2400-byte datagram into a link that has an MTU of 700 bytes. Suppose the original datagram is stamped with the identification number 422. How many fragments are generated? What are the values in the various fields in the IP datagram(s) generated related to fragmentation?</p>
 <p>According to IPv4 datagram format, each fragment includes a 20-bytes header.</p>
-<p>先计算数据大小 $d &#x3D; \lfloor \frac{700 - 20}{8} \rfloor \times 8 &#x3D; 680$ bytes。</p>
-<p>所以需要分成 $n &#x3D; \lceil \frac{2400 - 20}{d} \rceil &#x3D; 4$</p>
+<p>先计算数据大小 $d = \lfloor \frac{700 - 20}{8} \rfloor \times 8 = 680$ bytes。</p>
+<p>所以需要分成 $n = \lceil \frac{2400 - 20}{d} \rceil = 4$</p>
 <p>主要变化在 <code>Offset</code> 和 <code>Flag</code>，所以：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">Fragment</th>
-<th align="center">Datagram length</th>
-<th align="center">Offset</th>
-<th align="center">Flag</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">700</td>
-<td align="center">0</td>
-<td align="center">001</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">700</td>
-<td align="center">85</td>
-<td align="center">001</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">700</td>
-<td align="center">170</td>
-<td align="center">001</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">360</td>
-<td align="center">255</td>
-<td align="center">000</td>
-</tr>
-</tbody></table>
+| Fragment | Datagram length | Offset | Flag |
+|:--------:|:---------------:|:------:|:----:|
+| 1        | 700             |    0   |   001  |
+| 2        | 700             |   85   |   001  |
+| 3        | 700             |   170  |   001  |
+| 4        | 360             |   255  |   000  |
+
 </div>
 
 <h2 id="P-18"><a href="#P-18" class="headerlink" title="P.18"></a>P.18</h2><p><strong>Question and Answer:</strong></p>
 <p>Suppose datagrams are limited to 1,500 bytes (including header) between source Host A and destination Host B. Assuming a 20-byte IP header, how many datagrams would be required to send an MP3 consisting of 5 million bytes? Explain how you computed your answer.</p>
-<p>MTU 为 $1500$ bytes，一个 datagram 的 data 大小为 $d &#x3D; \lfloor \frac{1500 -20}{8} \rfloor \times 8 &#x3D; 1480$ bytes。</p>
-<p>最终，datagram 的数目为 $n &#x3D; \lceil \frac{5 \times 10^6}{d} \rceil &#x3D; 3379$ 个。</p>
-<h2 id="P-19"><a href="#P-19" class="headerlink" title="P.19"></a>P.19</h2><p><strong>Consider the network setup in Figure 4.22. Suppose that the ISP instead assigns the router the address 24.34.112.235 and that the network address of the home network is 192.168.1&#x2F;24</strong>.</p>
-<p><img src="/The-Network-Layer/Network%20address%20translation.png" alt="Network address translation">{style&#x3D;”display: block; margin: 0 auto; width: 80%”}</p>
+<p>MTU 为 $1500$ bytes，一个 datagram 的 data 大小为 $d = \lfloor \frac{1500 -20}{8} \rfloor \times 8 = 1480$ bytes。</p>
+<p>最终，datagram 的数目为 $n = \lceil \frac{5 \times 10^6}{d} \rceil = 3379$ 个。</p>
+<h2 id="P-19"><a href="#P-19" class="headerlink" title="P.19"></a>P.19</h2><p><strong>Consider the network setup in Figure 4.22. Suppose that the ISP instead assigns the router the address 24.34.112.235 and that the network address of the home network is 192.168.1/24</strong>.</p>
+<p><img src="The-Network-Layer/Network address translation.png" alt="Network address translation">{style=”display: block; margin: 0 auto; width: 80%”}</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Assign addresses to all interfaces in the home network.</strong></p>
 <p>也即是说，中间的 router WAN 的 IP address 是 <code>24.34.112.235</code>，LAN 的是 <code>192.168.1/24</code>，不妨和原图一样，设为 <code>192.168.1.4</code>。则右边的三个 host 的 LAN IP address 分别为：</p>
@@ -1223,315 +830,198 @@
 <p>总共有 $6$ 个 TCP connection，随便分几个端口号：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center">WAN side</th>
-<th align="center">LAN side</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">24.34.112.235, 50001</td>
-<td align="center">192.168.1.1, 3345</td>
-</tr>
-<tr>
-<td align="center">24.34.112.235, 50002</td>
-<td align="center">192.168.1.1, 3346</td>
-</tr>
-<tr>
-<td align="center">24.34.112.235, 50003</td>
-<td align="center">192.168.1.2, 3345</td>
-</tr>
-<tr>
-<td align="center">24.34.112.235, 50004</td>
-<td align="center">192.168.1.2, 3346</td>
-</tr>
-<tr>
-<td align="center">24.34.112.235, 50005</td>
-<td align="center">192.168.1.3, 3345</td>
-</tr>
-<tr>
-<td align="center">24.34.112.235, 50006</td>
-<td align="center">192.168.1.3, 3346</td>
-</tr>
-</tbody></table>
+| WAN side | LAN side |
+|:--------:|:---------------:|
+| 24.34.112.235, 50001 | 192.168.1.1, 3345 |
+| 24.34.112.235, 50002 | 192.168.1.1, 3346 |
+| 24.34.112.235, 50003 | 192.168.1.2, 3345 |
+| 24.34.112.235, 50004 | 192.168.1.2, 3346 |
+| 24.34.112.235, 50005 | 192.168.1.3, 3345 |
+| 24.34.112.235, 50006 | 192.168.1.3, 3346 |
+
 </div>
 
-<h2 id="P-24"><a href="#P-24" class="headerlink" title="P.24"></a>P.24</h2><p><img src="/The-Network-Layer/P24.jpg" alt="Graph P.24">{style&#x3D;”display: block; margin: 0 auto; width: 80%”}</p>
+<h2 id="P-24"><a href="#P-24" class="headerlink" title="P.24"></a>P.24</h2><p><img src="The-Network-Layer/P24.jpg" alt="Graph P.24">{style=”display: block; margin: 0 auto; width: 80%”}</p>
 <p><strong>Question:</strong></p>
 <p>Consider the following network. With the indicated link costs, use Dijkstra’s shortest-path algorithm to compute the shortest path from x to all network nodes. Show how the algorithm works by computing a table similar to Table 4.3.</p>
 <p><strong>Answer:</strong></p>
-<p>$N’ &#x3D; {x}$</p>
+<p>$N’ = {x}$</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">step</th>
-<th align="center">$D(x)$ $P(x)$</th>
-<th align="center">$D(y)$ $P(y)$</th>
-<th align="center">$D(z)$ $P(z)$</th>
-<th align="center">$D(v)$ $P(v)$</th>
-<th align="center">$D(u)$ $P(u)$</th>
-<th align="center">$D(w)$ $P(w)$</th>
-<th align="center">$D(t)$ $P(t)$</th>
-<th align="center">$N’$</th>
+<th style="text-align:center">step</th>
+<th style="text-align:center">$D(x)$ $P(x)$</th>
+<th style="text-align:center">$D(y)$ $P(y)$</th>
+<th style="text-align:center">$D(z)$ $P(z)$</th>
+<th style="text-align:center">$D(v)$ $P(v)$</th>
+<th style="text-align:center">$D(u)$ $P(u)$</th>
+<th style="text-align:center">$D(w)$ $P(w)$</th>
+<th style="text-align:center">$D(t)$ $P(t)$</th>
+<th style="text-align:center">$N’$</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center"><strong>$3$</strong>  $x$</td>
-<td align="center">$\infty$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$\infty$</td>
-<td align="center">$x$</td>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center"><strong>$3$</strong>  $x$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$\infty$</td>
+<td style="text-align:center">$x$</td>
 </tr>
 <tr>
-<td align="center">1</td>
-<td align="center">$0$    $x$</td>
-<td align="center"><strong>$6$</strong> $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xv$</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center"><strong>$6$</strong> $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xv$</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center"><strong>$6$</strong> $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvy$</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center"><strong>$6$</strong> $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvy$</td>
 </tr>
 <tr>
-<td align="center">3</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center"><strong>$6$</strong>  $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyu$</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center"><strong>$6$</strong>  $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyu$</td>
 </tr>
 <tr>
-<td align="center">4</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center"><strong>$7$</strong>  $v$</td>
-<td align="center">$xvyuw$</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center"><strong>$7$</strong>  $v$</td>
+<td style="text-align:center">$xvyuw$</td>
 </tr>
 <tr>
-<td align="center">5</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center"><strong>$8$</strong> $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyuwt$</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center"><strong>$8$</strong> $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyuwt$</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">$0$    $x$</td>
-<td align="center">$6$     $x$</td>
-<td align="center">$8$     $x$</td>
-<td align="center">$3$      $x$</td>
-<td align="center">$6$     $v$</td>
-<td align="center">$6$      $x$</td>
-<td align="center">$7$     $v$</td>
-<td align="center">$xvyuwtz$</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">$0$    $x$</td>
+<td style="text-align:center">$6$     $x$</td>
+<td style="text-align:center">$8$     $x$</td>
+<td style="text-align:center">$3$      $x$</td>
+<td style="text-align:center">$6$     $v$</td>
+<td style="text-align:center">$6$      $x$</td>
+<td style="text-align:center">$7$     $v$</td>
+<td style="text-align:center">$xvyuwtz$</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>So the shortest path from $x$ to all nodes is follow.</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">Destination</th>
-<th align="center">Shortest Distance</th>
-<th align="center">Path</th>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Shortest Distance</th>
+<th style="text-align:center">Path</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$x$</td>
-<td align="center">$0$</td>
-<td align="center">$x$</td>
+<tbody>
+<tr>
+<td style="text-align:center">$x$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$x$</td>
 </tr>
 <tr>
-<td align="center">$v$</td>
-<td align="center">$3$</td>
-<td align="center">$x \to v$</td>
+<td style="text-align:center">$v$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$x \to v$</td>
 </tr>
 <tr>
-<td align="center">$y$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to y$</td>
+<td style="text-align:center">$y$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to y$</td>
 </tr>
 <tr>
-<td align="center">$w$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to w$</td>
+<td style="text-align:center">$w$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to w$</td>
 </tr>
 <tr>
-<td align="center">$u$</td>
-<td align="center">$6$</td>
-<td align="center">$x \to v \to u$</td>
+<td style="text-align:center">$u$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$x \to v \to u$</td>
 </tr>
 <tr>
-<td align="center">$t$</td>
-<td align="center">$7$</td>
-<td align="center">$x \to v \to t$</td>
+<td style="text-align:center">$t$</td>
+<td style="text-align:center">$7$</td>
+<td style="text-align:center">$x \to v \to t$</td>
 </tr>
 <tr>
-<td align="center">$z$</td>
-<td align="center">$8$</td>
-<td align="center">$x \to z$</td>
+<td style="text-align:center">$z$</td>
+<td style="text-align:center">$8$</td>
+<td style="text-align:center">$x \to z$</td>
 </tr>
-</tbody></table>
-<h2 id="P-26"><a href="#P-26" class="headerlink" title="P.26"></a>P.26</h2><p><img src="/The-Network-Layer/P26.png" alt="Graph P.26">{style&#x3D;”display: block; margin: 0 auto; width: 80%”}</p>
+</tbody>
+</table>
+</div>
+<h2 id="P-26"><a href="#P-26" class="headerlink" title="P.26"></a>P.26</h2><p><img src="The-Network-Layer/P26.png" alt="Graph P.26">{style=”display: block; margin: 0 auto; width: 80%”}</p>
 <p><strong>Question:</strong></p>
 <p>Consider the network shown below, and assume that each node initially knows the costs to each of its neighbors. Consider the distance-vector algorithm and show the distance table entries at node z.</p>
 <p><strong>Answer:</strong></p>
 <p><strong>Node z table:</strong></p>
-<p><em><strong>First round</strong></em></p>
+<p><strong><em>First round</em></strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">cost to</th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center">x</td>
-<td align="center">y</td>
-<td align="center">z</td>
-<td align="center">u</td>
-<td align="center">v</td>
-</tr>
-<tr>
-<td align="center">from x</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-</tr>
-<tr>
-<td align="center">from y</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-</tr>
-<tr>
-<td align="center">from z</td>
-<td align="center">2</td>
-<td align="center">$\infty$</td>
-<td align="center">0</td>
-<td align="center">$\infty$</td>
-<td align="center">6</td>
-</tr>
-<tr>
-<td align="center">from u</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-</tr>
-<tr>
-<td align="center">from v</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-</tr>
-</tbody></table>
+|        | cost to|       ||||
+|:------:|:------:|:------:|:------:|:------:|:------:|
+|        | x      | y      | z      | u      | v      |
+| from x | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ |
+| from y | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ |
+| from z | 2        | $\infty$   | 0      | $\infty$ | 6      |
+| from u | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ |
+| from v | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ |
+
 </div>
 
-<p><em><strong>Second round</strong></em></p>
+<p><strong><em>Second round</em></strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">cost to</th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center">$x$</td>
-<td align="center">$y$</td>
-<td align="center">$z$</td>
-<td align="center">$u$</td>
-<td align="center">$v$</td>
-</tr>
-<tr>
-<td align="center">from $x$</td>
-<td align="center">$2$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$3$</td>
-</tr>
-<tr>
-<td align="center">from $y$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-<td align="center">$\infty$</td>
-</tr>
-<tr>
-<td align="center">from $z$</td>
-<td align="center">$2$</td>
-<td align="center">$5$</td>
-<td align="center">$0$</td>
-<td align="center">$7$</td>
-<td align="center">$5$</td>
-</tr>
-<tr>
-<td align="center">from $u$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-<td align="center">$\infty$</td>
-<td align="center">$\infty$</td>
-<td align="center">$2$</td>
-</tr>
-<tr>
-<td align="center">from $v$</td>
-<td align="center">$3$</td>
-<td align="center">$\infty$</td>
-<td align="center">$6$</td>
-<td align="center">$1$</td>
-<td align="center">$\infty$</td>
-</tr>
-</tbody></table>
+|        | cost to|        |        |        |        |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+|        | $x$      | $y$      | $z$      | $u$      | $v$      |
+| from $x$ | $2$      | $3$      | $\infty$ | $\infty$ | $3$      |
+| from $y$ | $3$      | $\infty$ | $\infty$ | $2$      | $\infty$ |
+| from $z$ | $2$      | $5$      | $0$      | $7$      | $5$      |
+| from $u$ | $\infty$ | $2$      | $\infty$ | $\infty$ | $2$      |
+| from $v$ | $3$      | $\infty$ | $6$      | $1$      | $\infty$ |
+
 </div>
 
 <p>Because the question only asks to show the distance table entries at node z, we do not need to compute the full routing tables for all nodes. The Second round result about node z is also the finial result. 到这一步 from z to other 的 cost 表就收敛了，题目也只问了 node z。</p>

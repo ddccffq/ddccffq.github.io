@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ddccffq.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="背景知识PDA形式化描述$$\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}$$  $Q$：状态集合 $\Sigma$：字母表 $\Gamma$：栈符号表 $\delta$：状态转移函数 $q_0$：开始状态 $Z_0$：栈底符号 $F$：终态集合  其中状态转移函数为 $$\delta : Q \">
+    <meta name="description" content="背景知识PDA形式化描述 \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$：状态集合 $\Sigma$：字母表 $\Gamma$：栈符号表 $\delta$：状态转移函数 $q_0$：开始状态 $Z_0$：栈底符号 $F$：终态集合  其中状态转移函数为  \delta : Q \times (\Si">
 <meta property="og:type" content="article">
 <meta property="og:title" content="下推自动机">
 <meta property="og:url" content="https://ddccffq.github.io/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="背景知识PDA形式化描述$$\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}$$  $Q$：状态集合 $\Sigma$：字母表 $\Gamma$：栈符号表 $\delta$：状态转移函数 $q_0$：开始状态 $Z_0$：栈底符号 $F$：终态集合  其中状态转移函数为 $$\delta : Q \">
+<meta property="og:description" content="背景知识PDA形式化描述 \text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1} $Q$：状态集合 $\Sigma$：字母表 $\Gamma$：栈符号表 $\delta$：状态转移函数 $q_0$：开始状态 $Z_0$：栈底符号 $F$：终态集合  其中状态转移函数为  \delta : Q \times (\Si">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/8(2).png">
 <meta property="article:published_time" content="2025-05-28T14:06:00.000Z">
@@ -69,7 +69,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -77,7 +77,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -253,8 +257,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="PDA形式化描述"><a href="#PDA形式化描述" class="headerlink" title="PDA形式化描述"></a>PDA形式化描述</h2><p>$$<br>\text{PDA} \quad M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}<br>$$</p>
-<ul>
+    <div class="post-body" itemprop="articleBody"><h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="PDA形式化描述"><a href="#PDA形式化描述" class="headerlink" title="PDA形式化描述"></a>PDA形式化描述</h2><script type="math/tex; mode=display">
+\text{PDA} \quad M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F) \tag{1}</script><ul>
 <li>$Q$：状态集合</li>
 <li>$\Sigma$：字母表</li>
 <li>$\Gamma$：栈符号表</li>
@@ -264,59 +268,86 @@
 <li>$F$：终态集合</li>
 </ul>
 <p>其中状态转移函数为</p>
-<p>$$<br>\delta : Q \times (\Sigma \cup {\epsilon}) \times \Gamma \rightarrow 2^{Q \times \Gamma^*} \tag{2}<br>$$</p>
-<h2 id="即时描述"><a href="#即时描述" class="headerlink" title="即时描述"></a>即时描述</h2><p>$$<br>(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^* \tag{3}<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\delta : Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \rightarrow 2^{Q \times \Gamma^*} \tag{2}</script><h2 id="即时描述"><a href="#即时描述" class="headerlink" title="即时描述"></a>即时描述</h2><script type="math/tex; mode=display">
+(q, w, \gamma) \in Q \times \Sigma^* \times \Gamma^* \tag{3}</script><ul>
 <li>当前状态是 $q$</li>
 <li>未处理的输入字符串是 $w$</li>
 <li>栈中符号串是 $\gamma$</li>
 </ul>
 <h2 id="接受语言"><a href="#接受语言" class="headerlink" title="接受语言"></a>接受语言</h2><p>有两种方式描述：</p>
-<p>$$<br>L(M) &#x3D; {w \mid (q_0, w, Z_0)  \vdash ^* (p, \epsilon, \beta) \text{ and } p \in F } \tag{4}<br>$$</p>
-<p>$$<br>L(M) &#x3D; {w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) } \tag{5}<br>$$</p>
-<h1 id="构造PDA"><a href="#构造PDA" class="headerlink" title="构造PDA"></a>构造PDA</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">    A[&quot;Get Grammar&quot;] --&gt; B[&quot;CFG&quot;]</span><br><span class="line">    B[&quot;CFG&quot;] --&gt; C[&quot;GNF&quot;]</span><br><span class="line">    C[&quot;GNF&quot;] --&quot;finial states&quot;--&gt; D[&quot;PDA&quot;]</span><br><span class="line">    C[&quot;GNF&quot;] --&quot;empty stack&quot;--&gt; D[&quot;PDA&quot;]</span><br></pre></td></tr></table></figure>
-
-<h1 id="PDA转换"><a href="#PDA转换" class="headerlink" title="PDA转换"></a>PDA转换</h1><h2 id="终态换为空栈"><a href="#终态换为空栈" class="headerlink" title="终态换为空栈"></a>终态换为空栈</h2><p>已知终态接受的 PDA $M_1$，公式化构造空战接受的 PDA $M_2$，具体过程如下：<br>$$<br>\text{PDA } M_1 &#x3D; (Q, \Sigma, \Gamma, \delta_1, q_0, F) \tag{6}<br>$$</p>
-<p>$$<br>\text{PDA } M_2 &#x3D; (Q \cup {q_{02}, q_e }, \Sigma, \Gamma \cup {Z_{02} }, \delta_2, q_{02}, Z_{02}, F) \tag{7}<br>$$</p>
-<p>We construct PDA $M_2$ to simulates PDA $M_1’s$ function. And first step, we need to get in PDA $M_1$.</p>
-<p>$$<br>\delta_2(q_{02}, \epsilon, Z_{02}) &#x3D; {(q_{01}, Z_{01}Z_{02})} \tag{8}<br>$$</p>
-<p>PDA $M_2$ simulates each none $\epsilon$ step of PDA $M_1$.</p>
-<p>$$<br>\forall (q, a, Z) \in Q \times \Sigma \times \Gamma, \delta_2(q, a, Z) &#x3D; \delta_1(q, a, Z) \tag{9}<br>$$</p>
-<p>PDA $M_2$ completely simulates PDA $M_1$ transition function in none finial states.</p>
-<p>$$<br>\forall (q, Z) \in (Q - F) \times \Gamma, \delta_2(q, \epsilon, Z) &#x3D; \delta_1(q, \epsilon, Z) \tag{10}<br>$$</p>
-<p>In $M_1’s$ finial states, not only should $M_2$ simulates $M_1’s$ $\epsilon$ moves, but also simulates accepting moves.</p>
-<p>$$<br>\forall (q, Z) \in F \times \Gamma, \delta_2(q, \epsilon, Z) &#x3D; \delta_1(q, \epsilon, Z) \cup \{(q_e, \epsilon)\} \tag{11}<br>$$</p>
-<p>$M_1’s$ stacks having been empty and in finial states, $M_2$ begins to cleat stack.</p>
-<p>$$<br>\forall q \in F, \delta_2(q, \epsilon, Z_{02}) &#x3D; {(q_e, \epsilon) } \tag{12}<br>$$</p>
-<p>$$<br>\forall q \in \Gamma \cup {Z_{02} }, \delta_2(q_e, \epsilon, Z) &#x3D; {(q_e, \epsilon) }<br>$$</p>
-<h3 id="Empty-Stack-to-Finial-State"><a href="#Empty-Stack-to-Finial-State" class="headerlink" title="Empty Stack to Finial State"></a>Empty Stack to Finial State</h3><p>已知空栈接受的 PDA $M_1$，要构造一个与之等价终态接受的 PDA $M_2$，核心思路在于<strong>只要 $M_2$ 发现 $M_1$ 在运行过程中将栈弹空，就可以进入终止状态</strong>。</p>
+<script type="math/tex; mode=display">
+L(M) = \{w \mid (q_0, w, Z_0)  \vdash ^* (p, \epsilon, \beta) \text{ and } p \in F \} \tag{4}</script><script type="math/tex; mode=display">
+L(M) = \{w \mid (q_0, w, Z_0) \vdash ^* (p, \epsilon, \epsilon) \} \tag{5}</script><h1 id="构造PDA"><a href="#构造PDA" class="headerlink" title="构造PDA"></a>构造PDA</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">    A[&quot;Get Grammar&quot;] --&gt; B[&quot;CFG&quot;]</span><br><span class="line">    B[&quot;CFG&quot;] --&gt; C[&quot;GNF&quot;]</span><br><span class="line">    C[&quot;GNF&quot;] --&quot;finial states&quot;--&gt; D[&quot;PDA&quot;]</span><br><span class="line">    C[&quot;GNF&quot;] --&quot;empty stack&quot;--&gt; D[&quot;PDA&quot;]</span><br></pre></td></tr></table></figure>
+<h1 id="PDA转换"><a href="#PDA转换" class="headerlink" title="PDA转换"></a>PDA转换</h1><h2 id="终态换为空栈"><a href="#终态换为空栈" class="headerlink" title="终态换为空栈"></a>终态换为空栈</h2><p>已知终态接受的 PDA $M_1$，公式化构造空战接受的 PDA $M_2$，具体过程如下：</p>
+<script type="math/tex; mode=display">
+\text{PDA } M_1 = (Q, \Sigma, \Gamma, \delta_1, q_0, F) \tag{6}</script><script type="math/tex; mode=display">
+\text{PDA } M_2 = (Q \cup \{q_{02}, q_e \}, \Sigma, \Gamma \cup \{Z_{02} \}, \delta_2, q_{02}, Z_{02}, F) \tag{7}</script><p>We construct PDA $M_2$ to simulates PDA $M_1’s$ function. And first step, we need to get in PDA $M_1$.</p>
+<script type="math/tex; mode=display">
+\delta_2(q_{02}, \epsilon, Z_{02}) = \{(q_{01}, Z_{01}Z_{02})\} \tag{8}</script><p>PDA $M_2$ simulates each none $\epsilon$ step of PDA $M_1$.</p>
+<script type="math/tex; mode=display">
+\forall (q, a, Z) \in Q \times \Sigma \times \Gamma, \delta_2(q, a, Z) = \delta_1(q, a, Z) \tag{9}</script><p>PDA $M_2$ completely simulates PDA $M_1$ transition function in none finial states.</p>
+<script type="math/tex; mode=display">
+\forall (q, Z) \in (Q - F) \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \tag{10}</script><p>In $M_1’s$ finial states, not only should $M_2$ simulates $M_1’s$ $\epsilon$ moves, but also simulates accepting moves.</p>
+<script type="math/tex; mode=display">
+\forall (q, Z) \in F \times \Gamma, \delta_2(q, \epsilon, Z) = \delta_1(q, \epsilon, Z) \cup \\{(q_e, \epsilon)\\} \tag{11}</script><p>$M_1’s$ stacks having been empty and in finial states, $M_2$ begins to cleat stack.</p>
+<script type="math/tex; mode=display">
+\forall q \in F, \delta_2(q, \epsilon, Z_{02}) = \{(q_e, \epsilon) \} \tag{12}</script><script type="math/tex; mode=display">
+\forall q \in \Gamma \cup \{Z_{02} \}, \delta_2(q_e, \epsilon, Z) = \{(q_e, \epsilon) \}</script><h3 id="Empty-Stack-to-Finial-State"><a href="#Empty-Stack-to-Finial-State" class="headerlink" title="Empty Stack to Finial State"></a>Empty Stack to Finial State</h3><p>已知空栈接受的 PDA $M_1$，要构造一个与之等价终态接受的 PDA $M_2$，核心思路在于<strong>只要 $M_2$ 发现 $M_1$ 在运行过程中将栈弹空，就可以进入终止状态</strong>。</p>
 <p><strong>公式化构造</strong></p>
 <p>设 PDA $M_1$ 为</p>
-<p>$$<br>\text{PDA } M_1 &#x3D;\left(Q, \Sigma, \Gamma, \delta_1, q_{01}, Z_{01}, \Phi\right)<br>$$</p>
-<p>公式化构造 PDA $M_2$</p>
-<p>$$<br>\text{PDA } M_2 &#x3D; \left(Q \cup {q_0, q_f}, \Sigma, \Gamma \cup {Z_{02} }, \delta_2, q_{02}, Z_{02}, {q_f} \right)<br>$$</p>
-<p>其中状态转移函数 $\delta_2$ 为</p>
-<p>$$<br>\begin{align*}<br>&amp;\delta_2(q_{02}, \epsilon, Z_{02}) &#x3D; {(q_{01}, Z_{01} Z_{02})}<br>\<br>&amp;\forall(q, a, Z) \in Q \times (\Sigma \cup {\epsilon}) \times \Gamma, \quad \delta_2(q, a ,Z) &#x3D; \delta_1(q, a, Z)<br>\<br>&amp;\delta_2(q, \epsilon, Z_{02}) &#x3D; {(q_f, \epsilon)}<br>\end{align*}<br>$$</p>
-<h3 id="CFG-to-Empty-Stack"><a href="#CFG-to-Empty-Stack" class="headerlink" title="CFG to Empty Stack"></a>CFG to Empty Stack</h3><p>先考虑 $L$ 为不含 $\epsilon$ 的 CFL。$G$ 是该语言对应的 GNF 文法，考虑用 PDA 模拟 GNF 的最左派生。</p>
+<script type="math/tex; mode=display">
+\text{PDA } M_1 =\left(Q, \Sigma, \Gamma, \delta_1, q_{01}, Z_{01}, \Phi\right)</script><p>公式化构造 PDA $M_2$</p>
+<script type="math/tex; mode=display">
+\text{PDA } M_2 = \left(Q \cup \{q_0, q_f\}, \Sigma, \Gamma \cup \{Z_{02} \}, \delta_2, q_{02}, Z_{02}, \{q_f\} \right)</script><p>其中状态转移函数 $\delta_2$ 为</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&\delta_2(q_{02}, \epsilon, Z_{02}) = \{(q_{01}, Z_{01} Z_{02})\}
+\\
+&\forall(q, a, Z) \in Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma, \quad \delta_2(q, a ,Z) = \delta_1(q, a, Z)
+\\
+&\delta_2(q, \epsilon, Z_{02}) = \{(q_f, \epsilon)\}
+\end{align*}</script><h3 id="CFG-to-Empty-Stack"><a href="#CFG-to-Empty-Stack" class="headerlink" title="CFG to Empty Stack"></a>CFG to Empty Stack</h3><p>先考虑 $L$ 为不含 $\epsilon$ 的 CFL。$G$ 是该语言对应的 GNF 文法，考虑用 PDA 模拟 GNF 的最左派生。</p>
 <p><strong>公式化构造</strong></p>
-<p>设 GNF $G &#x3D; (V, T, P, S)$。</p>
-<p>取 PDA $M &#x3D; ({q}, T, V, \delta, q, S, \Phi)$</p>
-<p>$\forall A \in V, \quad a \in T, \quad \gamma \in V^{\ast}$ 我们有 $\delta(q, a, A) &#x3D; {(q, \gamma) \mid A \to a\gamma \in P}$</p>
+<p>设 GNF $G = (V, T, P, S)$。</p>
+<p>取 PDA $M = ({q}, T, V, \delta, q, S, \Phi)$</p>
+<p>$\forall A \in V, \quad a \in T, \quad \gamma \in V^{\ast}$ 我们有 $\delta(q, a, A) = {(q, \gamma) \mid A \to a\gamma \in P}$</p>
 <p><strong>补充 ${\epsilon}$</strong></p>
 <p>在 $M$ 的基础上，构造 $M_1$，具体是</p>
-<p>$$<br>M_1 &#x3D; ({q, q_0}, T, V \cup {Z}, \delta_1, q_0, Z, \Phi)<br>$$</p>
-<p>对于状态转移函数 $\delta_1$，定义如下：</p>
-<p>$$<br>\begin{align*}<br>\delta_1(q_0, \epsilon, Z) &amp;&#x3D; {(q_0, \epsilon), (q, S)}<br>\<br>\delta_1(q, a, A) &amp;&#x3D; \delta(q, a, A)<br>\end{align*}<br>$$</p>
-<h3 id="Empty-Stack-to-CFG"><a href="#Empty-Stack-to-CFG" class="headerlink" title="Empty Stack to CFG"></a>Empty Stack to CFG</h3><p><strong>公式化构造</strong></p>
-<p>设 PDA $M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, \Phi)$，取 CFG $G &#x3D; (V, \Sigma, P, S)$，其中：<br>$$<br>\begin{align*}<br>V &amp;&#x3D; {S} \cup Q \times \Gamma \times Q，\text{特别地我们用$[q_i, A, q_j]$来表示变量}<br>\<br>P &amp;&#x3D; {S \to [q_0, Z_0, q] \mid q \in Q}<br>\<br>&amp; \cup {[q, A, q_{n + 1}] \to a[q_1, A_1, q_2][q_2, A_2, q_3] \dots [q_n, A_n, q_{n + 1} \mid (q_1, A_1A_2 \dots A_n) \in \delta(q, a, A) \text{且} a \in \Sigma \cup {\epsilon}, n \geq 1}<br>\<br>&amp; \cup {[q, A, q_1] \to a \mid (q_1, \epsilon) \in \delta(q, a, A)}<br>\end{align*}<br>$$</p>
-<h2 id="课后习题解答"><a href="#课后习题解答" class="headerlink" title="课后习题解答"></a>课后习题解答</h2><h3 id="8-2-构造空栈接受的-PDA"><a href="#8-2-构造空栈接受的-PDA" class="headerlink" title="8.(2) 构造空栈接受的 PDA"></a>8.(2) 构造空栈接受的 PDA</h3><img src="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/8(2).png" class="" title="8(2)">
+<script type="math/tex; mode=display">
+M_1 = (\{q, q_0\}, T, V \cup \{Z\}, \delta_1, q_0, Z, \Phi)</script><p>对于状态转移函数 $\delta_1$，定义如下：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\delta_1(q_0, \epsilon, Z) &= \{(q_0, \epsilon), (q, S)\}
+\\
+\delta_1(q, a, A) &= \delta(q, a, A)
+\end{align*}</script><h3 id="Empty-Stack-to-CFG"><a href="#Empty-Stack-to-CFG" class="headerlink" title="Empty Stack to CFG"></a>Empty Stack to CFG</h3><p><strong>公式化构造</strong></p>
+<p>设 PDA $M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, \Phi)$，取 CFG $G = (V, \Sigma, P, S)$，其中：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+V &= \{S\} \cup Q \times \Gamma \times Q，\text{特别地我们用$[q_i, A, q_j]$来表示变量}
+\\
+P &= \{S \to [q_0, Z_0, q] \mid q \in Q\}
+\\
+& \cup \{[q, A, q_{n + 1}] \to a[q_1, A_1, q_2][q_2, A_2, q_3] \dots [q_n, A_n, q_{n + 1} \mid (q_1, A_1A_2 \dots A_n) \in \delta(q, a, A) \text{且} a \in \Sigma \cup \{\epsilon\}, n \geq 1\}
+\\
+& \cup \{[q, A, q_1] \to a \mid (q_1, \epsilon) \in \delta(q, a, A)\}
+\end{align*}</script><h2 id="课后习题解答"><a href="#课后习题解答" class="headerlink" title="课后习题解答"></a>课后习题解答</h2><h3 id="8-2-构造空栈接受的-PDA"><a href="#8-2-构造空栈接受的-PDA" class="headerlink" title="8.(2) 构造空栈接受的 PDA"></a>8.(2) 构造空栈接受的 PDA</h3><img src="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/8(2).png" class="" title="8(2)">
 <div align = "center">图8.(2)</div>
 
 <h3 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h3><p><strong>Question:</strong><br>PDA $\to$ CFG 绘制此PDA状态转移图，按照定理7-4所述的文法构造方法进行转换。并对所得到的文法进行化简。</p>
-<p>$$<br>\begin{align*}<br>\delta(q_0, a, Z) &amp;&#x3D; {(q_0, AZ)} \tag{1}<br>\<br>\delta(q_0, a, A) &amp;&#x3D; {(q_0, A)} \tag{2}<br>\<br>\delta(q_0, b, A) &amp;&#x3D; {(q_1, \epsilon)} \tag{3}<br>\<br>\delta(q_1, \epsilon, Z) &amp;&#x3D; {(q_2, \epsilon)} \tag{4}<br>\end{align*}<br>$$</p>
-<p><strong>Answer:</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\delta(q_0, a, Z) &= \{(q_0, AZ)\} \tag{1}
+\\
+\delta(q_0, a, A) &= \{(q_0, A)\} \tag{2}
+\\
+\delta(q_0, b, A) &= \{(q_1, \epsilon)\} \tag{3}
+\\
+\delta(q_1, \epsilon, Z) &= \{(q_2, \epsilon)\} \tag{4}
+\end{align*}</script><p><strong>Answer:</strong></p>
 <p>根据 $(4)$ 式，可以判断这是一个空栈接受的 PDA。</p>
-<p>设 PDA $M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z, \Phi)$</p>
+<p>设 PDA $M = (Q, \Sigma, \Gamma, \delta, q_0, Z, \Phi)$</p>
 <p>公式化构造 CFG。</p>
 <p><strong>首先</strong></p>
 

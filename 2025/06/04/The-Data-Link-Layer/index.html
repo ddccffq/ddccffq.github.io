@@ -19,34 +19,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ddccffq.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="交换机网络通信原理解析交换机接口MAC地址的实际用途交换机每个接口虽有MAC地址，但并非用于普通数据转发，而主要用于：  管理访问（Telnet&#x2F;SSH&#x2F;Web界面登录） 协议通信（STP生成树协议、LLDP等） 故障诊断和监控  数据帧如何通过交换机转发关键误解在于认为数据帧的目标MAC需要是交换机的MAC。实际上：  正常帧转发过程：  主机A发送数据到F时，帧中目标MAC">
+    <meta name="description" content="交换机网络通信原理解析交换机接口MAC地址的实际用途交换机每个接口虽有MAC地址，但并非用于普通数据转发，而主要用于：  管理访问（Telnet&#x2F;SSH&#x2F;Web界面登录） 协议通信（STP生成树协议、LLDP等） 故障诊断和监控  数据帧如何通过交换机转发关键误解在于认为数据帧的目标MAC需要是交换机的MAC。实际上：  正常帧转发过程：  主机A发送数据到F时，帧中目标MAC是路由器的MAC（不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Data Link Layer">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="交换机网络通信原理解析交换机接口MAC地址的实际用途交换机每个接口虽有MAC地址，但并非用于普通数据转发，而主要用于：  管理访问（Telnet&#x2F;SSH&#x2F;Web界面登录） 协议通信（STP生成树协议、LLDP等） 故障诊断和监控  数据帧如何通过交换机转发关键误解在于认为数据帧的目标MAC需要是交换机的MAC。实际上：  正常帧转发过程：  主机A发送数据到F时，帧中目标MAC">
+<meta property="og:description" content="交换机网络通信原理解析交换机接口MAC地址的实际用途交换机每个接口虽有MAC地址，但并非用于普通数据转发，而主要用于：  管理访问（Telnet&#x2F;SSH&#x2F;Web界面登录） 协议通信（STP生成树协议、LLDP等） 故障诊断和监控  数据帧如何通过交换机转发关键误解在于认为数据帧的目标MAC需要是交换机的MAC。实际上：  正常帧转发过程：  主机A发送数据到F时，帧中目标MAC是路由器的MAC（不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/Network%20adapter.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/AdaptorsCommunicating.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/Two-dimensional-even-parity.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/CRCSample.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/TDA-and-FDA-example.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/pure-ALOHA-sample.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/MACAddress.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/619.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/620.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/621.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/hub.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/624.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/Three%20subnets,%20interconnected%20by%20routers.png">
-<meta property="og:image" content="https://ddccffq.github.io/The-Data-Link-Layer/A%20link-layer%20switch%20inter-connecting%20six%20nodes.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/Network%20adapter.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/AdaptorsCommunicating.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/Two-dimensional-even-parity.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/CRCSample.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/TDA-and-FDA-example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/pure-ALOHA-sample.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/MACAddress.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/619.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/620.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/621.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/hub.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/624.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/Three%20subnets,%20interconnected%20by%20routers.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/A%20link-layer%20switch%20inter-connecting%20six%20nodes.png">
 <meta property="article:published_time" content="2025-06-04T07:53:36.000Z">
 <meta property="article:modified_time" content="2025-06-17T05:04:04.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="机器学习,计算机网络,算法,统计学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ddccffq.github.io/The-Data-Link-Layer/Network%20adapter.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/The-Data-Link-Layer/Network%20adapter.png">
 
 
 <link rel="canonical" href="https://ddccffq.github.io/2025/06/04/The-Data-Link-Layer/">
@@ -83,7 +83,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"cdn":"//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -91,7 +91,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -151,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">交换机网络通信原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E6%8E%A5%E5%8F%A3MAC%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AE%9E%E9%99%85%E7%94%A8%E9%80%94"><span class="nav-number">1.1.</span> <span class="nav-text">交换机接口MAC地址的实际用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%BD%AC%E5%8F%91"><span class="nav-number">1.2.</span> <span class="nav-text">数据帧如何通过交换机转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-and-Service"><span class="nav-number">2.</span> <span class="nav-text">Introduction and Service</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Some terminology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link-layer-context"><span class="nav-number">2.2.</span> <span class="nav-text">Link layer: context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link-Layer-Services"><span class="nav-number">2.3.</span> <span class="nav-text">Link Layer Services</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-is-the-link-layer-implemented"><span class="nav-number">2.4.</span> <span class="nav-text">Where is the link layer implemented?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptors-Communicating"><span class="nav-number">2.5.</span> <span class="nav-text">Adaptors Communicating</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sending-Side"><span class="nav-number">2.5.1.</span> <span class="nav-text">Sending Side</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Receiving-Side"><span class="nav-number">2.5.2.</span> <span class="nav-text">Receiving Side</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-Detection-and-Correction"><span class="nav-number">3.</span> <span class="nav-text">Error Detection and Correction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Parity-Checks"><span class="nav-number">3.1.</span> <span class="nav-text">Parity Checks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-dimensional-Parity"><span class="nav-number">3.1.1.</span> <span class="nav-text">Two-dimensional Parity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cyclic-Redundancy-Check-CRC"><span class="nav-number">3.2.</span> <span class="nav-text">Cyclic Redundancy Check (CRC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-the-Sender-Computes-R"><span class="nav-number">3.2.1.</span> <span class="nav-text">How the Sender Computes $R$?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multiple-Access-Links-and-Protocols"><span class="nav-number">4.</span> <span class="nav-text">Multiple Access Links and Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Types-of-Links"><span class="nav-number">4.1.</span> <span class="nav-text">Two Types of Links</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Point-to-Point-Links"><span class="nav-number">4.1.1.</span> <span class="nav-text">Point-to-Point Links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Broadcast-Links"><span class="nav-number">4.1.2.</span> <span class="nav-text">Broadcast Links</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Access-Protocol"><span class="nav-number">4.2.</span> <span class="nav-text">Multiple Access Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ideal-Multiple-Access-Protocol"><span class="nav-number">4.2.1.</span> <span class="nav-text">Ideal Multiple Access Protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC-Protocols-a-taxonomy"><span class="nav-number">4.3.</span> <span class="nav-text">MAC Protocols: a taxonomy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Broad-Classes-of-MAC-Protocols"><span class="nav-number">4.3.1.</span> <span class="nav-text">Three Broad Classes of MAC Protocols</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Channel-Partitioning-Protocols"><span class="nav-number">4.4.</span> <span class="nav-text">Channel Partitioning Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TDMA"><span class="nav-number">4.4.1.</span> <span class="nav-text">TDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FDMA"><span class="nav-number">4.4.2.</span> <span class="nav-text">FDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDMA"><span class="nav-number">4.4.3.</span> <span class="nav-text">CDMA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Access-Protocols"><span class="nav-number">4.5.</span> <span class="nav-text">Random Access Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Slotted-ALOHA"><span class="nav-number">4.5.1.</span> <span class="nav-text">Slotted ALOHA</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TDMA%E4%B8%8ESlotted-ALOHA%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">TDMA与Slotted ALOHA对比分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB"><span class="nav-number">5.1.</span> <span class="nav-text">关键区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E8%B4%A8%E5%8C%BA%E5%88%AB"><span class="nav-number">5.2.</span> <span class="nav-text">本质区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pure-unslotted-ALOHA"><span class="nav-number">5.2.1.</span> <span class="nav-text">Pure (unslotted) ALOHA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carrier-Sense-Multiple-Access-CSMA"><span class="nav-number">5.2.2.</span> <span class="nav-text">Carrier Sense Multiple Access (CSMA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSMA-with-collision-detection-CSMA-CD"><span class="nav-number">5.2.3.</span> <span class="nav-text">CSMA with collision detection (CSMA&#x2F;CD)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Taking-Turns-Protocols"><span class="nav-number">5.3.</span> <span class="nav-text">Taking-Turns Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Polling-Protocol"><span class="nav-number">5.3.1.</span> <span class="nav-text">Polling Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Token-Passing-Protocol"><span class="nav-number">5.3.2.</span> <span class="nav-text">Token-Passing Protocol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Link-Layer-Addressing-and-ARP"><span class="nav-number">6.</span> <span class="nav-text">Link-Layer Addressing and ARP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-in-Computer-Networks"><span class="nav-number">6.1.</span> <span class="nav-text">Addressing in Computer Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-Address-32-bit"><span class="nav-number">6.1.1.</span> <span class="nav-text">IP Address (32-bit)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-48-bit"><span class="nav-number">6.1.2.</span> <span class="nav-text">MAC Address (48-bit)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC-Addresses-and-ARP"><span class="nav-number">6.2.</span> <span class="nav-text">MAC Addresses and ARP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-Administration"><span class="nav-number">6.2.1.</span> <span class="nav-text">MAC Address Administration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conceptual-Comparison"><span class="nav-number">6.2.2.</span> <span class="nav-text">Conceptual Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Structure-Implications"><span class="nav-number">6.2.3.</span> <span class="nav-text">Address Structure Implications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Address-Resolution-Protocol-ARP"><span class="nav-number">6.3.</span> <span class="nav-text">Address Resolution Protocol (ARP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP-Protocol-Same-LAN-Network"><span class="nav-number">6.4.</span> <span class="nav-text">ARP Protocol: Same LAN (Network)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP-Request-Process"><span class="nav-number">6.4.1.</span> <span class="nav-text">ARP Request Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP-Response"><span class="nav-number">6.4.2.</span> <span class="nav-text">ARP Response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching-Mechanism"><span class="nav-number">6.4.3.</span> <span class="nav-text">Caching Mechanism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Characteristics"><span class="nav-number">6.4.4.</span> <span class="nav-text">Key Characteristics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-routing-to-another-LAN"><span class="nav-number">6.5.</span> <span class="nav-text">Addressing: routing to another LAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing-Between-Different-LANs-Link-Layer-Process"><span class="nav-number">6.6.</span> <span class="nav-text">Routing Between Different LANs: Link-Layer Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Initial-Transmission-Source-Network"><span class="nav-number">6.6.1.</span> <span class="nav-text">Initial Transmission (Source Network)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-Processing"><span class="nav-number">6.6.2.</span> <span class="nav-text">Router Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Final-Delivery-Destination-Network"><span class="nav-number">6.6.3.</span> <span class="nav-text">Final Delivery (Destination Network)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethernet"><span class="nav-number">7.</span> <span class="nav-text">Ethernet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Dominant-Wired-LAN-Technology"><span class="nav-number">7.1.</span> <span class="nav-text">The Dominant Wired LAN Technology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Physical-Topologies"><span class="nav-number">7.2.</span> <span class="nav-text">Ethernet Physical Topologies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Historical-Evolution"><span class="nav-number">7.2.1.</span> <span class="nav-text">Historical Evolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modern-Configuration"><span class="nav-number">7.2.2.</span> <span class="nav-text">Modern Configuration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-frame-structure"><span class="nav-number">7.3.</span> <span class="nav-text">Ethernet frame structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Key-Characteristics"><span class="nav-number">7.4.</span> <span class="nav-text">Ethernet: Key Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connectionless-Protocol"><span class="nav-number">7.4.1.</span> <span class="nav-text">Connectionless Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unreliable-Service"><span class="nav-number">7.4.2.</span> <span class="nav-text">Unreliable Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implications-for-Data-Delivery"><span class="nav-number">7.4.3.</span> <span class="nav-text">Implications for Data Delivery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Medium-Access-Control"><span class="nav-number">7.4.4.</span> <span class="nav-text">Medium Access Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSMA-CD-Algorithm-in-Ethernet"><span class="nav-number">7.5.</span> <span class="nav-text">CSMA&#x2F;CD Algorithm in Ethernet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-by-Step-Process"><span class="nav-number">7.5.1.</span> <span class="nav-text">Step-by-Step Process</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet%E2%80%99s-CSMA-CD-Technical-Details"><span class="nav-number">7.6.</span> <span class="nav-text">Ethernet’s CSMA&#x2F;CD: Technical Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collision-Handling-Components"><span class="nav-number">7.6.1.</span> <span class="nav-text">Collision Handling Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponential-Backoff-Algorithm"><span class="nav-number">7.6.2.</span> <span class="nav-text">Exponential Backoff Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSMA-CD-efficiency"><span class="nav-number">7.7.</span> <span class="nav-text">CSMA&#x2F;CD efficiency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Standards-Link-Physical-Layers"><span class="nav-number">7.8.</span> <span class="nav-text">Ethernet Standards: Link &amp; Physical Layers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Link-Layer-Switches"><span class="nav-number">8.</span> <span class="nav-text">Link-Layer Switches</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hubs"><span class="nav-number">8.1.</span> <span class="nav-text">Hubs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">8.2.</span> <span class="nav-text">Switch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-Advanced-Link-Layer-Functionality"><span class="nav-number">8.2.1.</span> <span class="nav-text">Switch: Advanced Link-Layer Functionality</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Table"><span class="nav-number">8.3.</span> <span class="nav-text">Switch Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Self-Learning"><span class="nav-number">8.4.</span> <span class="nav-text">Switch: Self-Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-Host-Locations"><span class="nav-number">8.4.1.</span> <span class="nav-text">Learning Host Locations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-Table-Management"><span class="nav-number">8.4.2.</span> <span class="nav-text">Switch Table Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-Unknown-Destinations"><span class="nav-number">8.4.3.</span> <span class="nav-text">Handling Unknown Destinations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Frame-Filtering-Forwarding"><span class="nav-number">8.5.</span> <span class="nav-text">Switch: Frame Filtering&#x2F;Forwarding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame-Processing-Algorithm"><span class="nav-number">8.5.1.</span> <span class="nav-text">Frame Processing Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switches-vs-Routers-Key-Differences"><span class="nav-number">8.6.</span> <span class="nav-text">Switches vs. Routers: Key Differences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Similarities"><span class="nav-number">8.6.1.</span> <span class="nav-text">Similarities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fundamental-Differences"><span class="nav-number">8.6.2.</span> <span class="nav-text">Fundamental Differences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Management"><span class="nav-number">8.6.3.</span> <span class="nav-text">Table Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operational-Scope"><span class="nav-number">8.6.4.</span> <span class="nav-text">Operational Scope</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-Local-Area-Networks-VLANs"><span class="nav-number">8.7.</span> <span class="nav-text">Virtual Local Area Networks (VLANs)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#802-1Q-VLAN-Frame-Format"><span class="nav-number">8.7.1.</span> <span class="nav-text">802.1Q VLAN Frame Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLANs-Spanning-Multiple-Switches"><span class="nav-number">8.7.2.</span> <span class="nav-text">VLANs Spanning Multiple Switches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Port-based-VLAN"><span class="nav-number">8.7.3.</span> <span class="nav-text">Port-based VLAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLAN-Concept-Overview"><span class="nav-number">8.7.4.</span> <span class="nav-text">VLAN Concept Overview</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-of-chapter-exercises"><span class="nav-number">9.</span> <span class="nav-text">End-of-chapter exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-8"><span class="nav-number">9.1.</span> <span class="nav-text">R.8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-Space"><span class="nav-number">9.1.1.</span> <span class="nav-text">MAC Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4-Address-Space"><span class="nav-number">9.1.2.</span> <span class="nav-text">IPv4 Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6-Address-Space"><span class="nav-number">9.1.3.</span> <span class="nav-text">IPv6 Address Space</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-4"><span class="nav-number">9.2.</span> <span class="nav-text">P.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-11"><span class="nav-number">9.3.</span> <span class="nav-text">P.11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-17"><span class="nav-number">9.4.</span> <span class="nav-text">P.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-18"><span class="nav-number">9.5.</span> <span class="nav-text">P.18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-27"><span class="nav-number">9.6.</span> <span class="nav-text">P.27</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-28"><span class="nav-number">9.7.</span> <span class="nav-text">P.28</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-32"><span class="nav-number">9.8.</span> <span class="nav-text">P.32</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">交换机网络通信原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E6%8E%A5%E5%8F%A3MAC%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AE%9E%E9%99%85%E7%94%A8%E9%80%94"><span class="nav-number">1.1.</span> <span class="nav-text">交换机接口MAC地址的实际用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%BD%AC%E5%8F%91"><span class="nav-number">1.2.</span> <span class="nav-text">数据帧如何通过交换机转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-and-Service"><span class="nav-number">2.</span> <span class="nav-text">Introduction and Service</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Some terminology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link-layer-context"><span class="nav-number">2.2.</span> <span class="nav-text">Link layer: context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link-Layer-Services"><span class="nav-number">2.3.</span> <span class="nav-text">Link Layer Services</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-is-the-link-layer-implemented"><span class="nav-number">2.4.</span> <span class="nav-text">Where is the link layer implemented?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptors-Communicating"><span class="nav-number">2.5.</span> <span class="nav-text">Adaptors Communicating</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sending-Side"><span class="nav-number">2.5.1.</span> <span class="nav-text">Sending Side</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Receiving-Side"><span class="nav-number">2.5.2.</span> <span class="nav-text">Receiving Side</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-Detection-and-Correction"><span class="nav-number">3.</span> <span class="nav-text">Error Detection and Correction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Parity-Checks"><span class="nav-number">3.1.</span> <span class="nav-text">Parity Checks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-dimensional-Parity"><span class="nav-number">3.1.1.</span> <span class="nav-text">Two-dimensional Parity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cyclic-Redundancy-Check-CRC"><span class="nav-number">3.2.</span> <span class="nav-text">Cyclic Redundancy Check (CRC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-the-Sender-Computes-R"><span class="nav-number">3.2.1.</span> <span class="nav-text">How the Sender Computes $R$?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multiple-Access-Links-and-Protocols"><span class="nav-number">4.</span> <span class="nav-text">Multiple Access Links and Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Types-of-Links"><span class="nav-number">4.1.</span> <span class="nav-text">Two Types of Links</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Point-to-Point-Links"><span class="nav-number">4.1.1.</span> <span class="nav-text">Point-to-Point Links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Broadcast-Links"><span class="nav-number">4.1.2.</span> <span class="nav-text">Broadcast Links</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Access-Protocol"><span class="nav-number">4.2.</span> <span class="nav-text">Multiple Access Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ideal-Multiple-Access-Protocol"><span class="nav-number">4.2.1.</span> <span class="nav-text">Ideal Multiple Access Protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC-Protocols-a-taxonomy"><span class="nav-number">4.3.</span> <span class="nav-text">MAC Protocols: a taxonomy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three-Broad-Classes-of-MAC-Protocols"><span class="nav-number">4.3.1.</span> <span class="nav-text">Three Broad Classes of MAC Protocols</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Channel-Partitioning-Protocols"><span class="nav-number">4.4.</span> <span class="nav-text">Channel Partitioning Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TDMA"><span class="nav-number">4.4.1.</span> <span class="nav-text">TDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FDMA"><span class="nav-number">4.4.2.</span> <span class="nav-text">FDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDMA"><span class="nav-number">4.4.3.</span> <span class="nav-text">CDMA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Access-Protocols"><span class="nav-number">4.5.</span> <span class="nav-text">Random Access Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Slotted-ALOHA"><span class="nav-number">4.5.1.</span> <span class="nav-text">Slotted ALOHA</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TDMA%E4%B8%8ESlotted-ALOHA%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">TDMA与Slotted ALOHA对比分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB"><span class="nav-number">5.1.</span> <span class="nav-text">关键区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E8%B4%A8%E5%8C%BA%E5%88%AB"><span class="nav-number">5.2.</span> <span class="nav-text">本质区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pure-unslotted-ALOHA"><span class="nav-number">5.2.1.</span> <span class="nav-text">Pure (unslotted) ALOHA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carrier-Sense-Multiple-Access-CSMA"><span class="nav-number">5.2.2.</span> <span class="nav-text">Carrier Sense Multiple Access (CSMA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSMA-with-collision-detection-CSMA-CD"><span class="nav-number">5.2.3.</span> <span class="nav-text">CSMA with collision detection (CSMA&#x2F;CD)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Taking-Turns-Protocols"><span class="nav-number">5.3.</span> <span class="nav-text">Taking-Turns Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Polling-Protocol"><span class="nav-number">5.3.1.</span> <span class="nav-text">Polling Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Token-Passing-Protocol"><span class="nav-number">5.3.2.</span> <span class="nav-text">Token-Passing Protocol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Link-Layer-Addressing-and-ARP"><span class="nav-number">6.</span> <span class="nav-text">Link-Layer Addressing and ARP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-in-Computer-Networks"><span class="nav-number">6.1.</span> <span class="nav-text">Addressing in Computer Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-Address-32-bit"><span class="nav-number">6.1.1.</span> <span class="nav-text">IP Address (32-bit)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-48-bit"><span class="nav-number">6.1.2.</span> <span class="nav-text">MAC Address (48-bit)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MAC-Addresses-and-ARP"><span class="nav-number">6.2.</span> <span class="nav-text">MAC Addresses and ARP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-Administration"><span class="nav-number">6.2.1.</span> <span class="nav-text">MAC Address Administration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conceptual-Comparison"><span class="nav-number">6.2.2.</span> <span class="nav-text">Conceptual Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Address-Structure-Implications"><span class="nav-number">6.2.3.</span> <span class="nav-text">Address Structure Implications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Address-Resolution-Protocol-ARP"><span class="nav-number">6.3.</span> <span class="nav-text">Address Resolution Protocol (ARP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP-Protocol-Same-LAN-Network"><span class="nav-number">6.4.</span> <span class="nav-text">ARP Protocol: Same LAN (Network)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP-Request-Process"><span class="nav-number">6.4.1.</span> <span class="nav-text">ARP Request Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP-Response"><span class="nav-number">6.4.2.</span> <span class="nav-text">ARP Response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caching-Mechanism"><span class="nav-number">6.4.3.</span> <span class="nav-text">Caching Mechanism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Characteristics"><span class="nav-number">6.4.4.</span> <span class="nav-text">Key Characteristics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Addressing-routing-to-another-LAN"><span class="nav-number">6.5.</span> <span class="nav-text">Addressing: routing to another LAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing-Between-Different-LANs-Link-Layer-Process"><span class="nav-number">6.6.</span> <span class="nav-text">Routing Between Different LANs: Link-Layer Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Initial-Transmission-Source-Network"><span class="nav-number">6.6.1.</span> <span class="nav-text">Initial Transmission (Source Network)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-Processing"><span class="nav-number">6.6.2.</span> <span class="nav-text">Router Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Final-Delivery-Destination-Network"><span class="nav-number">6.6.3.</span> <span class="nav-text">Final Delivery (Destination Network)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethernet"><span class="nav-number">7.</span> <span class="nav-text">Ethernet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Dominant-Wired-LAN-Technology"><span class="nav-number">7.1.</span> <span class="nav-text">The Dominant Wired LAN Technology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Physical-Topologies"><span class="nav-number">7.2.</span> <span class="nav-text">Ethernet Physical Topologies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Historical-Evolution"><span class="nav-number">7.2.1.</span> <span class="nav-text">Historical Evolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modern-Configuration"><span class="nav-number">7.2.2.</span> <span class="nav-text">Modern Configuration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-frame-structure"><span class="nav-number">7.3.</span> <span class="nav-text">Ethernet frame structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Key-Characteristics"><span class="nav-number">7.4.</span> <span class="nav-text">Ethernet: Key Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connectionless-Protocol"><span class="nav-number">7.4.1.</span> <span class="nav-text">Connectionless Protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unreliable-Service"><span class="nav-number">7.4.2.</span> <span class="nav-text">Unreliable Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implications-for-Data-Delivery"><span class="nav-number">7.4.3.</span> <span class="nav-text">Implications for Data Delivery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Medium-Access-Control"><span class="nav-number">7.4.4.</span> <span class="nav-text">Medium Access Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSMA-CD-Algorithm-in-Ethernet"><span class="nav-number">7.5.</span> <span class="nav-text">CSMA&#x2F;CD Algorithm in Ethernet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-by-Step-Process"><span class="nav-number">7.5.1.</span> <span class="nav-text">Step-by-Step Process</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet%E2%80%99s-CSMA-CD-Technical-Details"><span class="nav-number">7.6.</span> <span class="nav-text">Ethernet’s CSMA&#x2F;CD: Technical Details</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collision-Handling-Components"><span class="nav-number">7.6.1.</span> <span class="nav-text">Collision Handling Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponential-Backoff-Algorithm"><span class="nav-number">7.6.2.</span> <span class="nav-text">Exponential Backoff Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSMA-CD-efficiency"><span class="nav-number">7.7.</span> <span class="nav-text">CSMA&#x2F;CD efficiency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-Standards-Link-amp-Physical-Layers"><span class="nav-number">7.8.</span> <span class="nav-text">Ethernet Standards: Link &amp; Physical Layers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Link-Layer-Switches"><span class="nav-number">8.</span> <span class="nav-text">Link-Layer Switches</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hubs"><span class="nav-number">8.1.</span> <span class="nav-text">Hubs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">8.2.</span> <span class="nav-text">Switch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-Advanced-Link-Layer-Functionality"><span class="nav-number">8.2.1.</span> <span class="nav-text">Switch: Advanced Link-Layer Functionality</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Table"><span class="nav-number">8.3.</span> <span class="nav-text">Switch Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Self-Learning"><span class="nav-number">8.4.</span> <span class="nav-text">Switch: Self-Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-Host-Locations"><span class="nav-number">8.4.1.</span> <span class="nav-text">Learning Host Locations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-Table-Management"><span class="nav-number">8.4.2.</span> <span class="nav-text">Switch Table Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-Unknown-Destinations"><span class="nav-number">8.4.3.</span> <span class="nav-text">Handling Unknown Destinations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Frame-Filtering-Forwarding"><span class="nav-number">8.5.</span> <span class="nav-text">Switch: Frame Filtering&#x2F;Forwarding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Frame-Processing-Algorithm"><span class="nav-number">8.5.1.</span> <span class="nav-text">Frame Processing Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switches-vs-Routers-Key-Differences"><span class="nav-number">8.6.</span> <span class="nav-text">Switches vs. Routers: Key Differences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Similarities"><span class="nav-number">8.6.1.</span> <span class="nav-text">Similarities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fundamental-Differences"><span class="nav-number">8.6.2.</span> <span class="nav-text">Fundamental Differences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Management"><span class="nav-number">8.6.3.</span> <span class="nav-text">Table Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operational-Scope"><span class="nav-number">8.6.4.</span> <span class="nav-text">Operational Scope</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Virtual-Local-Area-Networks-VLANs"><span class="nav-number">8.7.</span> <span class="nav-text">Virtual Local Area Networks (VLANs)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#802-1Q-VLAN-Frame-Format"><span class="nav-number">8.7.1.</span> <span class="nav-text">802.1Q VLAN Frame Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLANs-Spanning-Multiple-Switches"><span class="nav-number">8.7.2.</span> <span class="nav-text">VLANs Spanning Multiple Switches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Port-based-VLAN"><span class="nav-number">8.7.3.</span> <span class="nav-text">Port-based VLAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLAN-Concept-Overview"><span class="nav-number">8.7.4.</span> <span class="nav-text">VLAN Concept Overview</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-of-chapter-exercises"><span class="nav-number">9.</span> <span class="nav-text">End-of-chapter exercises</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-8"><span class="nav-number">9.1.</span> <span class="nav-text">R.8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-Address-Space"><span class="nav-number">9.1.1.</span> <span class="nav-text">MAC Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4-Address-Space"><span class="nav-number">9.1.2.</span> <span class="nav-text">IPv4 Address Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6-Address-Space"><span class="nav-number">9.1.3.</span> <span class="nav-text">IPv6 Address Space</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-4"><span class="nav-number">9.2.</span> <span class="nav-text">P.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-11"><span class="nav-number">9.3.</span> <span class="nav-text">P.11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-17"><span class="nav-number">9.4.</span> <span class="nav-text">P.17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-18"><span class="nav-number">9.5.</span> <span class="nav-text">P.18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-27"><span class="nav-number">9.6.</span> <span class="nav-text">P.27</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-28"><span class="nav-number">9.7.</span> <span class="nav-text">P.28</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-32"><span class="nav-number">9.8.</span> <span class="nav-text">P.32</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -273,7 +277,7 @@
     
     <div class="post-body" itemprop="articleBody"><h1 id="交换机网络通信原理解析"><a href="#交换机网络通信原理解析" class="headerlink" title="交换机网络通信原理解析"></a>交换机网络通信原理解析</h1><h2 id="交换机接口MAC地址的实际用途"><a href="#交换机接口MAC地址的实际用途" class="headerlink" title="交换机接口MAC地址的实际用途"></a>交换机接口MAC地址的实际用途</h2><p>交换机每个接口虽有MAC地址，但<strong>并非用于普通数据转发</strong>，而主要用于：</p>
 <ul>
-<li><strong>管理访问</strong>（Telnet&#x2F;SSH&#x2F;Web界面登录）</li>
+<li><strong>管理访问</strong>（Telnet/SSH/Web界面登录）</li>
 <li><strong>协议通信</strong>（STP生成树协议、LLDP等）</li>
 <li><strong>故障诊断和监控</strong></li>
 </ul>
@@ -360,8 +364,8 @@
 <li>The adaptor is a <strong>combination of hardware, software, and firmware</strong>.</li>
 </ul>
 <p>In essence, the NIC handles the lower layers of network communication and serves as the interface between the host and the physical network.</p>
-<p><img src="/The-Data-Link-Layer/Network%20adapter.png" alt="Network adapter">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
-<h2 id="Adaptors-Communicating"><a href="#Adaptors-Communicating" class="headerlink" title="Adaptors Communicating"></a>Adaptors Communicating</h2><p><img src="/The-Data-Link-Layer/AdaptorsCommunicating.png" alt="Adaptors Communicating}">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<p><img src="The-Data-Link-Layer/Network adapter.png" alt="Network adapter">{style=”display: block; margin: 0 auto; width: 70%”}</p>
+<h2 id="Adaptors-Communicating"><a href="#Adaptors-Communicating" class="headerlink" title="Adaptors Communicating"></a>Adaptors Communicating</h2><p><img src="The-Data-Link-Layer/AdaptorsCommunicating.png" alt="Adaptors Communicating}">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h3 id="Sending-Side"><a href="#Sending-Side" class="headerlink" title="Sending Side"></a>Sending Side</h3><ul>
 <li><strong>Encapsulates the network-layer datagram into a link-layer frame</strong>.</li>
 <li><strong>Adds</strong>:<ul>
@@ -380,7 +384,7 @@
 </li>
 <li><strong>Extracts</strong> the datagram from the frame.</li>
 </ul>
-<h1 id="Error-Detection-and-Correction"><a href="#Error-Detection-and-Correction" class="headerlink" title="Error Detection and Correction"></a>Error Detection and Correction</h1><p><img src="/The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png" alt="Error detection And correction Scenario">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<h1 id="Error-Detection-and-Correction"><a href="#Error-Detection-and-Correction" class="headerlink" title="Error Detection and Correction"></a>Error Detection and Correction</h1><p><img src="The-Data-Link-Layer/Error-detectionAnd-correctionScenario.png" alt="Error detection And correction Scenario">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <ul>
 <li><p><strong>EDC (Error Detection and Correction bits)</strong>:</p>
 <ul>
@@ -419,7 +423,7 @@
 </blockquote>
 <p>If an odd number of $1$-valued bits are found with an even parity schemes, the receiver knows that at least one bit error has occurred.</p>
 <h3 id="Two-dimensional-Parity"><a href="#Two-dimensional-Parity" class="headerlink" title="Two-dimensional Parity"></a>Two-dimensional Parity</h3><p>The receiver can thus not only <strong>detect</strong> the fact that a single bit error has occurred, but can use the column and row indices of the column and row with parity errors to actually identify the bit that was corrupted<br>and <strong>correct</strong> that error!</p>
-<p><img src="/The-Data-Link-Layer/Two-dimensional-even-parity.png" alt="Two dimensional even parity">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<p><img src="The-Data-Link-Layer/Two-dimensional-even-parity.png" alt="Two dimensional even parity">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h2 id="Cyclic-Redundancy-Check-CRC"><a href="#Cyclic-Redundancy-Check-CRC" class="headerlink" title="Cyclic Redundancy Check (CRC)"></a>Cyclic Redundancy Check (CRC)</h2><p>An error-detection technique used widely in today’s computer networks is based on <strong>cyclic redundancy check (CRC) codes</strong>. CRC codes are also known as <strong>polynomial codes</strong>, since it is possible to view the bit string to be sent as a polynomial whose coefficients are the $0$ and $1$ values in the bit string, with operations on the bit string interpreted as polynomial arithmetic.</p>
 <ul>
 <li><strong>数据表示</strong>：将要发送的 $d$ 位数据 $D$ 看作一个二进制多项式。</li>
@@ -432,9 +436,10 @@
 <li>用 $D \cdot 2^r$ 除以 $G$，得到余数 $R$。</li>
 <li>将 $R$ 附加到 $D$ 后面，形成最终发送的数据。</li>
 </ul>
-<p><strong>公式表示：</strong><br>$$<br>R &#x3D; \operatorname{remainder} \frac{D \cdot 2^r}{G}<br>$$</p>
-<p><img src="/The-Data-Link-Layer/CRCSample.png" alt="CRC Sample">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
-<p>需要注意，$1 - 0 &#x3D; 1$，$0 - 1 &#x3D; 1$，$1 - 1 &#x3D;0$，$0 - 0 &#x3D; 0$，没有借位，最后的结果，比如：$11$，但是 $r &#x3D; 3$，则在左侧高位补充 $0$，也就是 $R &#x3D; 011$。</p>
+<p><strong>公式表示：</strong></p>
+<script type="math/tex; mode=display">
+R = \operatorname{remainder} \frac{D \cdot 2^r}{G}</script><p><img src="The-Data-Link-Layer/CRCSample.png" alt="CRC Sample">{style=”display: block; margin: 0 auto; width: 70%”}</p>
+<p>需要注意，$1 - 0 = 1$，$0 - 1 = 1$，$1 - 1 =0$，$0 - 0 = 0$，没有借位，最后的结果，比如：$11$，但是 $r = 3$，则在左侧高位补充 $0$，也就是 $R = 011$。</p>
 <h1 id="Multiple-Access-Links-and-Protocols"><a href="#Multiple-Access-Links-and-Protocols" class="headerlink" title="Multiple Access Links and Protocols"></a>Multiple Access Links and Protocols</h1><h2 id="Two-Types-of-Links"><a href="#Two-Types-of-Links" class="headerlink" title="Two Types of Links"></a>Two Types of Links</h2><h3 id="Point-to-Point-Links"><a href="#Point-to-Point-Links" class="headerlink" title="Point-to-Point Links"></a><strong>Point-to-Point Links</strong></h3><ul>
 <li><strong>定义</strong>：点对点链路是指仅有两个设备直接相连的通信链路。</li>
 <li><strong>典型例子</strong>：<ul>
@@ -459,7 +464,7 @@
 </li>
 <li><strong>特点</strong>：<ul>
 <li>多个节点共享信道，可能发生冲突。</li>
-<li>需要多路访问协议（如CSMA&#x2F;CD、ALOHA等）协调各节点的发送时机。</li>
+<li>需要多路访问协议（如CSMA/CD、ALOHA等）协调各节点的发送时机。</li>
 <li>支持广播和组播通信。</li>
 </ul>
 </li>
@@ -487,7 +492,7 @@
 <h3 id="Ideal-Multiple-Access-Protocol"><a href="#Ideal-Multiple-Access-Protocol" class="headerlink" title="Ideal Multiple Access Protocol"></a>Ideal Multiple Access Protocol</h3><ul>
 <li>The broadcast channel has a total rate of <strong>$R$ bps</strong>.</li>
 <li>If only one node transmits, it can use the full rate <strong>$R$</strong>.</li>
-<li>If <strong>$M$</strong> nodes transmit simultaneously, each gets an average rate of <strong>$R&#x2F;M$</strong>.</li>
+<li>If <strong>$M$</strong> nodes transmit simultaneously, each gets an average rate of <strong>$R/M$</strong>.</li>
 <li>The system is <strong>fully decentralized</strong>:<ul>
 <li>No central coordinator.</li>
 <li>No clock or slot synchronization required.</li>
@@ -528,11 +533,11 @@
 </ul>
 </li>
 <li><strong>Advantages:</strong>  <ul>
-<li>No collisions; perfectly fair (each node gets $R&#x2F;N$ bps).</li>
+<li>No collisions; perfectly fair (each node gets $R/N$ bps).</li>
 </ul>
 </li>
 <li><strong>Drawbacks:</strong>  <ul>
-<li>Each node is limited to $R&#x2F;N$ bps even if others are idle.</li>
+<li>Each node is limited to $R/N$ bps even if others are idle.</li>
 <li>Nodes must wait for their turn, even if they are the only one with data to send.</li>
 </ul>
 </li>
@@ -542,7 +547,7 @@
 </blockquote>
 <h3 id="FDMA"><a href="#FDMA" class="headerlink" title="FDMA"></a>FDMA</h3><ul>
 <li><strong>Mechanism:</strong>  <ul>
-<li>Divides the total channel bandwidth ($R$ bps) into $N$ frequency bands, each with bandwidth $R&#x2F;N$.</li>
+<li>Divides the total channel bandwidth ($R$ bps) into $N$ frequency bands, each with bandwidth $R/N$.</li>
 <li>Each node is assigned a <strong>unique frequency band</strong> for exclusive use.</li>
 </ul>
 </li>
@@ -555,11 +560,11 @@
 </ul>
 </li>
 <li><strong>Drawbacks:</strong>  <ul>
-<li>Each node is limited to R&#x2F;N bps, even if others are idle (same as TDMA).</li>
+<li>Each node is limited to R/N bps, even if others are idle (same as TDMA).</li>
 </ul>
 </li>
 </ul>
-<p><img src="/The-Data-Link-Layer/TDA-and-FDA-example.png" alt="TDA and FDA example">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<p><img src="The-Data-Link-Layer/TDA-and-FDA-example.png" alt="TDA and FDA example">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h3 id="CDMA"><a href="#CDMA" class="headerlink" title="CDMA"></a>CDMA</h3><ul>
 <li><strong>Mechanism:</strong>  <ul>
 <li>Each node is assigned a unique code.</li>
@@ -590,7 +595,7 @@
 <li><strong>Examples:</strong>  <ul>
 <li>Slotted ALOHA  </li>
 <li>ALOHA  </li>
-<li>CSMA, CSMA&#x2F;CD, CSMA&#x2F;CA</li>
+<li>CSMA, CSMA/CD, CSMA/CA</li>
 </ul>
 </li>
 </ul>
@@ -599,7 +604,7 @@
 <h3 id="Slotted-ALOHA"><a href="#Slotted-ALOHA" class="headerlink" title="Slotted ALOHA"></a>Slotted ALOHA</h3><p><strong>Assumptions:</strong></p>
 <ul>
 <li>All frames are the same size.</li>
-<li>Time is divided into equal-sized slots (each slot &#x3D; time to transmit one frame).</li>
+<li>Time is divided into equal-sized slots (each slot = time to transmit one frame).</li>
 <li>Nodes can only begin transmission at the start of a slot.</li>
 <li>All nodes are synchronized.</li>
 <li>If two or more nodes transmit in the same slot, a collision occurs and is detected by all.</li>
@@ -636,10 +641,10 @@
 <ul>
 <li><strong>Efficiency</strong> is defined as the long-run fraction of slots that contain a successful transmission (i.e., exactly one node transmits).</li>
 <li>Suppose there are $N$ nodes, each always has frames to send, and each transmits in a slot with probability $p$.</li>
-<li>The probability that a given node has a successful transmission in a slot:<br>$$p(1-p)^{N-1}$$</li>
-<li>The probability that any node has a successful transmission in a slot:<br>$$Np(1-p)^{N-1}$$</li>
+<li>The probability that a given node has a successful transmission in a slot:  <script type="math/tex; mode=display">p(1-p)^{N-1}</script></li>
+<li>The probability that any node has a successful transmission in a slot:  <script type="math/tex; mode=display">Np(1-p)^{N-1}</script></li>
 <li><strong>Maximum efficiency</strong> is achieved by choosing $p^*$ that maximizes $Np(1-p)^{N-1}$.</li>
-<li>As $N$ becomes very large, the maximum efficiency approaches:<br>$$\boxed{1&#x2F;e \approx 0.37}$$</li>
+<li>As $N$ becomes very large, the maximum efficiency approaches:  <script type="math/tex; mode=display">\boxed{1/e \approx 0.37}</script></li>
 <li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions only 37% of the time.</li>
 </ul>
 <blockquote>
@@ -648,45 +653,15 @@
 <h1 id="TDMA与Slotted-ALOHA对比分析"><a href="#TDMA与Slotted-ALOHA对比分析" class="headerlink" title="TDMA与Slotted ALOHA对比分析"></a>TDMA与Slotted ALOHA对比分析</h1><p><strong>TDMA和Slotted ALOHA并不矛盾，它们是两种不同设计理念的多址接入协议</strong>，尽管都使用了时间分片的概念。</p>
 <h2 id="关键区别"><a href="#关键区别" class="headerlink" title="关键区别"></a>关键区别</h2><div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>TDMA</th>
-<th>Slotted ALOHA</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>时隙分配</strong></td>
-<td><strong>预先固定分配</strong>给特定节点</td>
-<td><strong>动态竞争</strong>，任何节点可使用任何时隙</td>
-</tr>
-<tr>
-<td><strong>传输决策</strong></td>
-<td>只能在<strong>自己的专属时隙</strong>中传输</td>
-<td>可以在<strong>任何时隙</strong>开始传输</td>
-</tr>
-<tr>
-<td><strong>冲突可能性</strong></td>
-<td><strong>无冲突</strong>（每个时隙专属一个节点）</td>
-<td><strong>有冲突</strong>（多节点可能同时选择一个时隙）</td>
-</tr>
-<tr>
-<td><strong>资源使用</strong></td>
-<td>节点不传输时其时隙<strong>浪费</strong></td>
-<td>任何节点都可以利用空闲时隙</td>
-</tr>
-<tr>
-<td><strong>控制方式</strong></td>
-<td><strong>集中式</strong>或预先协调</td>
-<td><strong>分散式</strong>（各节点独立决策）</td>
-</tr>
-<tr>
-<td><strong>最大效率</strong></td>
-<td>理论上100%（无冲突）</td>
-<td>理论上约37%（1&#x2F;e）</td>
-</tr>
-</tbody></table>
+| 特性 | TDMA | Slotted ALOHA |
+|------|------|---------------|
+| **时隙分配** | **预先固定分配**给特定节点 | **动态竞争**，任何节点可使用任何时隙 |
+| **传输决策** | 只能在**自己的专属时隙**中传输 | 可以在**任何时隙**开始传输 |
+| **冲突可能性** | **无冲突**（每个时隙专属一个节点） | **有冲突**（多节点可能同时选择一个时隙） |
+| **资源使用** | 节点不传输时其时隙**浪费** | 任何节点都可以利用空闲时隙 |
+| **控制方式** | **集中式**或预先协调 | **分散式**（各节点独立决策） |
+| **最大效率** | 理论上100%（无冲突） | 理论上约37%（1/e） |
+
 </div>
 
 <h2 id="本质区别"><a href="#本质区别" class="headerlink" title="本质区别"></a>本质区别</h2><ul>
@@ -706,7 +681,7 @@
 </li>
 </ul>
 <p>这两种协议代表了多址接入的两种不同设计思路：<strong>静态分配</strong>与<strong>动态竞争</strong>，各有优缺点，适用于不同应用场景。</p>
-<h3 id="Pure-unslotted-ALOHA"><a href="#Pure-unslotted-ALOHA" class="headerlink" title="Pure (unslotted) ALOHA"></a>Pure (unslotted) ALOHA</h3><p><img src="/The-Data-Link-Layer/pure-ALOHA-sample.png" alt="pure ALOHA sample">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<h3 id="Pure-unslotted-ALOHA"><a href="#Pure-unslotted-ALOHA" class="headerlink" title="Pure (unslotted) ALOHA"></a>Pure (unslotted) ALOHA</h3><p><img src="The-Data-Link-Layer/pure-ALOHA-sample.png" alt="pure ALOHA sample">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <ul>
 <li>Simpler than slotted ALOHA; <strong>no synchronization</strong> required.</li>
 <li>When a frame arrives, the node <strong>transmits immediately</strong>.</li>
@@ -718,19 +693,19 @@
 <p><strong>Pure (Unslotted) ALOHA Efficiency:</strong></p>
 <ul>
 <li>Probability of success for a given node:<ul>
-<li>$P(\text{success}) &#x3D; P(\text{node transmits}) \times P(\text{no other node transmits in } [t_0-1, t_0]) \times P(\text{no other node transmits in } [t_0, t_0+1])$</li>
-<li>$&#x3D; p \cdot (1-p)^{N-1} \cdot (1-p)^{N-1}$</li>
-<li>$&#x3D; p \cdot (1-p)^{2(N-1)}$</li>
+<li>$P(\text{success}) = P(\text{node transmits}) \times P(\text{no other node transmits in } [t_0-1, t_0]) \times P(\text{no other node transmits in } [t_0, t_0+1])$</li>
+<li>$= p \cdot (1-p)^{N-1} \cdot (1-p)^{N-1}$</li>
+<li>$= p \cdot (1-p)^{2(N-1)}$</li>
 </ul>
 </li>
 <li><strong>Maximum efficiency</strong> (choosing optimal $p$ and letting $N \to \infty$):<ul>
-<li>$\boxed{1&#x2F;(2e) \approx 0.18}$</li>
+<li>$\boxed{1/(2e) \approx 0.18}$</li>
 </ul>
 </li>
 <li><strong>Interpretation:</strong><br>At best, the channel is used for successful transmissions only 18% of the time in pure ALOHA.</li>
 </ul>
 <blockquote>
-<p>$t_0, , t_0 - 1, , t_0 + 1$ 三个时隙。</p>
+<p>$t_0, \, t_0 - 1, \, t_0 + 1$ 三个时隙。</p>
 </blockquote>
 <h3 id="Carrier-Sense-Multiple-Access-CSMA"><a href="#Carrier-Sense-Multiple-Access-CSMA" class="headerlink" title="Carrier Sense Multiple Access (CSMA)"></a>Carrier Sense Multiple Access (CSMA)</h3><p>发送前先侦听，发送时检测碰撞，以太网核心技术</p>
 <p><strong>Carrier Sensing</strong>: a node listens to the channel before transmitting. <strong>If a frame from another node is currently being transmitted into the channel</strong>, a node then waits until it detects no transmissions for a short amount of time and then begins transmission.</p>
@@ -738,11 +713,11 @@
 <blockquote>
 <p>半双工机制。</p>
 </blockquote>
-<h3 id="CSMA-with-collision-detection-CSMA-CD"><a href="#CSMA-with-collision-detection-CSMA-CD" class="headerlink" title="CSMA with collision detection (CSMA&#x2F;CD)"></a>CSMA with collision detection (CSMA&#x2F;CD)</h3><p><strong>Collision Detection</strong>: a transmitting node listens to the channel while it is transmitting. If it detects that another node is transmitting an interfering frame, it stops transmitting and waits <strong>a random amount</strong> of time before repeating the sense-and-transmit-when-idle cycle.</p>
+<h3 id="CSMA-with-collision-detection-CSMA-CD"><a href="#CSMA-with-collision-detection-CSMA-CD" class="headerlink" title="CSMA with collision detection (CSMA/CD)"></a>CSMA with collision detection (CSMA/CD)</h3><p><strong>Collision Detection</strong>: a transmitting node listens to the channel while it is transmitting. If it detects that another node is transmitting an interfering frame, it stops transmitting and waits <strong>a random amount</strong> of time before repeating the sense-and-transmit-when-idle cycle.</p>
 <blockquote>
 <p>自己正在传的时候检测到有其他结点开始传了，停止自己的传输，随机等待一段时间后重试。</p>
 </blockquote>
-<h2 id="Taking-Turns-Protocols"><a href="#Taking-Turns-Protocols" class="headerlink" title="Taking-Turns Protocols"></a>Taking-Turns Protocols</h2><h3 id="Polling-Protocol"><a href="#Polling-Protocol" class="headerlink" title="Polling Protocol"></a>Polling Protocol</h3><p><strong>Polling Protocol（轮询协议）<strong>是一种</strong>轮流访问</strong>型的多路访问协议，常用于多个节点共享同一信道的场景。其核心思想是：  </p>
+<h2 id="Taking-Turns-Protocols"><a href="#Taking-Turns-Protocols" class="headerlink" title="Taking-Turns Protocols"></a>Taking-Turns Protocols</h2><h3 id="Polling-Protocol"><a href="#Polling-Protocol" class="headerlink" title="Polling Protocol"></a>Polling Protocol</h3><p><strong>Polling Protocol（轮询协议）</strong>是一种<strong>轮流访问</strong>型的多路访问协议，常用于多个节点共享同一信道的场景。其核心思想是：  </p>
 <ul>
 <li>网络中指定一个节点为<strong>主节点（master node）</strong>。</li>
 <li>主节点按照固定顺序依次<strong>轮询</strong>每个从节点，询问它们是否有数据要发送。</li>
@@ -753,14 +728,14 @@
 <li><strong>轮询延迟</strong>：每个节点都要等主节点轮询到自己才能发送数据，可能会有等待延迟，尤其是节点数量多时。</li>
 <li><strong>主节点单点故障</strong>：如果主节点出现故障，整个信道就无法正常工作，所有通信都会中断。</li>
 </ol>
-<p><em><strong>Bluetooth protocol</strong></em></p>
+<p><strong><em>Bluetooth protocol</em></strong></p>
 <h3 id="Token-Passing-Protocol"><a href="#Token-Passing-Protocol" class="headerlink" title="Token-Passing Protocol"></a>Token-Passing Protocol</h3><p>A small, special-purpose frame known as a <strong>token</strong> is exchanged among the nodes in some fixed order.</p>
 <blockquote>
 <p>When a node receives a token, it holds onto the token only if it has some frames to transmit; otherwise, it immediately forwards the token to the next node. If a node does have frames to transmit when it receives the token, it sends up to a maximum number of frames and then forwards the token to the next node.</p>
 </blockquote>
 <p>But it has its problems as well. For example, the failure of one node can crash the entire channel. Or if a node accidentally neglects to release the token, then some recovery procedure must be invoked to get the token back in circulation.</p>
 <p>将一个特制的 <strong>frame</strong> 视作一个 <strong>token</strong>，这个 token 会在结点中以一个固定的顺序传输，收到 token 的结点可以选择发送自己的 frames 或者立即传给下一个结点。缺陷：时延和崩坏。</p>
-<p><em><strong>fiber distributed data interface (FDDI) protocol</strong></em></p>
+<p><strong><em>fiber distributed data interface (FDDI) protocol</em></strong></p>
 <h1 id="Link-Layer-Addressing-and-ARP"><a href="#Link-Layer-Addressing-and-ARP" class="headerlink" title="Link-Layer Addressing and ARP"></a>Link-Layer Addressing and ARP</h1><h2 id="Addressing-in-Computer-Networks"><a href="#Addressing-in-Computer-Networks" class="headerlink" title="Addressing in Computer Networks"></a>Addressing in Computer Networks</h2><p>先回顾一下之前学过的 address。</p>
 <h3 id="IP-Address-32-bit"><a href="#IP-Address-32-bit" class="headerlink" title="IP Address (32-bit)"></a>IP Address (32-bit)</h3><ul>
 <li><strong>Layer</strong>: Network layer address</li>
@@ -787,8 +762,8 @@
 <li><strong>到达目标网络</strong>：最后一跳，数据包到达 B 所在的局域网。</li>
 <li><strong>本地交付</strong>：A 通过 ARP 协议获取 B 的 MAC 地址，将数据帧封装后，通过以太网物理传输到 B。</li>
 </ol>
-<h2 id="MAC-Addresses-and-ARP"><a href="#MAC-Addresses-and-ARP" class="headerlink" title="MAC Addresses and ARP"></a>MAC Addresses and ARP</h2><p><img src="/The-Data-Link-Layer/MACAddress.png" alt="MAC Address">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
-<p>Broadcast address &#x3D; <code>FF-FF-FF-FF-FF-FF</code></p>
+<h2 id="MAC-Addresses-and-ARP"><a href="#MAC-Addresses-and-ARP" class="headerlink" title="MAC Addresses and ARP"></a>MAC Addresses and ARP</h2><p><img src="The-Data-Link-Layer/MACAddress.png" alt="MAC Address">{style=”display: block; margin: 0 auto; width: 70%”}</p>
+<p>Broadcast address = <code>FF-FF-FF-FF-FF-FF</code></p>
 <h3 id="MAC-Address-Administration"><a href="#MAC-Address-Administration" class="headerlink" title="MAC Address Administration"></a>MAC Address Administration</h3><ul>
 <li><p><strong>分配权威（Allocation Authority）</strong><br>MAC 地址空间由 <strong>IEEE（电气和电子工程师协会）</strong> 统一管理和分配，确保全球唯一性。</p>
 </li>
@@ -865,7 +840,7 @@
 <h2 id="ARP-Protocol-Same-LAN-Network"><a href="#ARP-Protocol-Same-LAN-Network" class="headerlink" title="ARP Protocol: Same LAN (Network)"></a>ARP Protocol: Same LAN (Network)</h2><p>When host A wants to send a datagram to host B on the same local network but doesn’t have B’s MAC address:</p>
 <h3 id="ARP-Request-Process"><a href="#ARP-Request-Process" class="headerlink" title="ARP Request Process"></a>ARP Request Process</h3><ul>
 <li>Host A broadcasts an ARP query packet containing B’s IP address</li>
-<li>Destination MAC address &#x3D; <code>FF-FF-FF-FF-FF-FF</code> (broadcast address)</li>
+<li>Destination MAC address = <code>FF-FF-FF-FF-FF-FF</code> (broadcast address)</li>
 <li>All machines on the LAN receive the ARP query</li>
 <li>Only host B (with the matching IP address) processes and responds</li>
 </ul>
@@ -887,7 +862,7 @@
 <blockquote>
 <p>自己也会创建置换表</p>
 </blockquote>
-<h2 id="Addressing-routing-to-another-LAN"><a href="#Addressing-routing-to-another-LAN" class="headerlink" title="Addressing: routing to another LAN"></a>Addressing: routing to another LAN</h2><p><img src="/The-Data-Link-Layer/619.png" alt="routing to another LAN">{style&#x3D;”display: block; margin: 0 auto; width: 100%”}</p>
+<h2 id="Addressing-routing-to-another-LAN"><a href="#Addressing-routing-to-another-LAN" class="headerlink" title="Addressing: routing to another LAN"></a>Addressing: routing to another LAN</h2><p><img src="The-Data-Link-Layer/619.png" alt="routing to another LAN">{style=”display: block; margin: 0 auto; width: 100%”}</p>
 <h2 id="Routing-Between-Different-LANs-Link-Layer-Process"><a href="#Routing-Between-Different-LANs-Link-Layer-Process" class="headerlink" title="Routing Between Different LANs: Link-Layer Process"></a>Routing Between Different LANs: Link-Layer Process</h2><p>When data travels between hosts on different networks, the router plays a critical intermediary role:</p>
 <h3 id="Initial-Transmission-Source-Network"><a href="#Initial-Transmission-Source-Network" class="headerlink" title="Initial Transmission (Source Network)"></a>Initial Transmission (Source Network)</h3><ol>
 <li><p>Host A creates an IP datagram with:</p>
@@ -913,7 +888,7 @@
 <blockquote>
 <p>从此可以看出，LAN 内部是通过以太网传输数据的，用的是 MAC address。</p>
 </blockquote>
-<h3 id="Router-Processing"><a href="#Router-Processing" class="headerlink" title="Router Processing"></a>Router Processing</h3><ol start="4">
+<h3 id="Router-Processing"><a href="#Router-Processing" class="headerlink" title="Router Processing"></a>Router Processing</h3><ol>
 <li><p>Router R’s interface receives the frame (recognizes its MAC address)</p>
 </li>
 <li><p>R extracts the IP datagram from the frame, examines the IP header:</p>
@@ -937,7 +912,7 @@
 <blockquote>
 <p>R 在不同网络段代表不同的路由器接口。</p>
 </blockquote>
-<h3 id="Final-Delivery-Destination-Network"><a href="#Final-Delivery-Destination-Network" class="headerlink" title="Final Delivery (Destination Network)"></a>Final Delivery (Destination Network)</h3><ol start="7">
+<h3 id="Final-Delivery-Destination-Network"><a href="#Final-Delivery-Destination-Network" class="headerlink" title="Final Delivery (Destination Network)"></a>Final Delivery (Destination Network)</h3><ol>
 <li><p>Router’s interface on B’s network transmits the new frame</p>
 </li>
 <li><p>Host B receives the frame, extracts and processes the IP datagram</p>
@@ -979,7 +954,7 @@
 </li>
 </ul>
 <p>The shift from bus to star topology represents a fundamental advance in Ethernet technology, effectively eliminating the collision problems that limited earlier implementations.</p>
-<h2 id="Ethernet-frame-structure"><a href="#Ethernet-frame-structure" class="headerlink" title="Ethernet frame structure"></a>Ethernet frame structure</h2><p><img src="/The-Data-Link-Layer/620.png" alt="Ethernet frame structure">{style&#x3D;”display: block; margin: 0 auto; width: 100%”}</p>
+<h2 id="Ethernet-frame-structure"><a href="#Ethernet-frame-structure" class="headerlink" title="Ethernet frame structure"></a>Ethernet frame structure</h2><p><img src="The-Data-Link-Layer/620.png" alt="Ethernet frame structure">{style=”display: block; margin: 0 auto; width: 100%”}</p>
 <ul>
 <li><p><strong>Preamble</strong>:</p>
 <ul>
@@ -1020,14 +995,11 @@
 <li>No error correction or retransmission at Ethernet level</li>
 </ul>
 </li>
-<li><p>**Preamble（前导码）**是以太网帧结构中的一个字段。</p>
+<li><p><strong>Preamble（前导码）</strong>是以太网帧结构中的一个字段。</p>
 </li>
-<li><p>由<strong>7 个字节的 10101010 模式</strong>，后跟<strong>1 个字节的 10101011</strong> 组成。</p>
-</li>
-<li><p><strong>时钟同步</strong>：用于同步接收端和发送端的时钟速率。</p>
-</li>
-<li><p><strong>锁定信号</strong>：让接收方能够<strong>锁定</strong>到发送方的传输时序，确保后续数据能被准确采样和解析。</p>
-</li>
+<li>由<strong>7 个字节的 10101010 模式</strong>，后跟<strong>1 个字节的 10101011</strong> 组成。</li>
+<li><strong>时钟同步</strong>：用于同步接收端和发送端的时钟速率。</li>
+<li><strong>锁定信号</strong>：让接收方能够<strong>锁定</strong>到发送方的传输时序，确保后续数据能被准确采样和解析。</li>
 </ul>
 <h2 id="Ethernet-Key-Characteristics"><a href="#Ethernet-Key-Characteristics" class="headerlink" title="Ethernet: Key Characteristics"></a>Ethernet: Key Characteristics</h2><h3 id="Connectionless-Protocol"><a href="#Connectionless-Protocol" class="headerlink" title="Connectionless Protocol"></a>Connectionless Protocol</h3><ul>
 <li><strong>No handshaking</strong> between transmitting and receiving Network Interface Cards (NICs)</li>
@@ -1055,11 +1027,11 @@
 </li>
 </ul>
 <h3 id="Medium-Access-Control"><a href="#Medium-Access-Control" class="headerlink" title="Medium Access Control"></a>Medium Access Control</h3><ul>
-<li>Ethernet’s MAC protocol: <strong>unslotted CSMA&#x2F;CD</strong> (Carrier Sense Multiple Access with Collision Detection)</li>
+<li>Ethernet’s MAC protocol: <strong>unslotted CSMA/CD</strong> (Carrier Sense Multiple Access with Collision Detection)</li>
 <li>Provides a way to share the communication medium among multiple devices</li>
 <li>Modern switched Ethernet largely eliminates collisions, but the protocol foundation remains</li>
 </ul>
-<h2 id="CSMA-CD-Algorithm-in-Ethernet"><a href="#CSMA-CD-Algorithm-in-Ethernet" class="headerlink" title="CSMA&#x2F;CD Algorithm in Ethernet"></a>CSMA&#x2F;CD Algorithm in Ethernet</h2><p>Ethernet’s original medium access control protocol uses CSMA&#x2F;CD (Carrier Sense Multiple Access with Collision Detection) to handle shared medium access:</p>
+<h2 id="CSMA-CD-Algorithm-in-Ethernet"><a href="#CSMA-CD-Algorithm-in-Ethernet" class="headerlink" title="CSMA/CD Algorithm in Ethernet"></a>CSMA/CD Algorithm in Ethernet</h2><p>Ethernet’s original medium access control protocol uses CSMA/CD (Carrier Sense Multiple Access with Collision Detection) to handle shared medium access:</p>
 <h3 id="Step-by-Step-Process"><a href="#Step-by-Step-Process" class="headerlink" title="Step-by-Step Process"></a>Step-by-Step Process</h3><ol>
 <li><p><strong>Frame Creation</strong></p>
 <ul>
@@ -1096,7 +1068,7 @@
 </li>
 </ol>
 <p>The exponential backoff mechanism ensures that after repeated collisions, stations spread their retransmission attempts over increasingly longer intervals, reducing the probability of repeated collisions.</p>
-<h2 id="Ethernet’s-CSMA-CD-Technical-Details"><a href="#Ethernet’s-CSMA-CD-Technical-Details" class="headerlink" title="Ethernet’s CSMA&#x2F;CD: Technical Details"></a>Ethernet’s CSMA&#x2F;CD: Technical Details</h2><h3 id="Collision-Handling-Components"><a href="#Collision-Handling-Components" class="headerlink" title="Collision Handling Components"></a>Collision Handling Components</h3><ul>
+<h2 id="Ethernet’s-CSMA-CD-Technical-Details"><a href="#Ethernet’s-CSMA-CD-Technical-Details" class="headerlink" title="Ethernet’s CSMA/CD: Technical Details"></a>Ethernet’s CSMA/CD: Technical Details</h2><h3 id="Collision-Handling-Components"><a href="#Collision-Handling-Components" class="headerlink" title="Collision Handling Components"></a>Collision Handling Components</h3><ul>
 <li><p><strong>Jam Signal</strong>:</p>
 <ul>
 <li>48-bit signal transmitted after detecting a collision</li>
@@ -1110,7 +1082,7 @@
 <li>The time required to transmit one bit on the network</li>
 <li><strong>For $10$ Mbps Ethernet: $0.1$ microseconds per bit</strong></li>
 <li>Used as the basic time unit for backoff calculations</li>
-<li>For <strong>$K &#x3D; 1023$ (maximum backoff value)</strong>, wait time is approximately $50$ milliseconds</li>
+<li>For <strong>$K = 1023$ (maximum backoff value)</strong>, wait time is approximately $50$ milliseconds</li>
 </ul>
 </li>
 </ul>
@@ -1124,7 +1096,7 @@
 <li><p><strong>Progressive Backoff Process</strong>:</p>
 <ul>
 <li>After first collision: Choose K randomly from ${0,1}$<ul>
-<li>Wait time &#x3D; $K × 512$ bit transmission times</li>
+<li>Wait time = $K × 512$ bit transmission times</li>
 </ul>
 </li>
 <li>After second collision: Choose K randomly from ${0,1,2,3}$</li>
@@ -1136,12 +1108,12 @@
 </li>
 </ul>
 <p>This adaptive algorithm ensures efficient channel utilization by dynamically adjusting to network congestion levels, minimizing repeated collisions while maintaining reasonable access times.</p>
-<h2 id="CSMA-CD-efficiency"><a href="#CSMA-CD-efficiency" class="headerlink" title="CSMA&#x2F;CD efficiency"></a>CSMA&#x2F;CD efficiency</h2><ul>
+<h2 id="CSMA-CD-efficiency"><a href="#CSMA-CD-efficiency" class="headerlink" title="CSMA/CD efficiency"></a>CSMA/CD efficiency</h2><ul>
 <li>$t_{prop}$: max prop delay between $2$ nodes in LAN;</li>
 <li>$t_{trans}$: time to transmit max-size frame.</li>
 </ul>
-<p>$$<br>\text{efficiency} &#x3D; \frac{1}{1 + \frac{5 t_{prop}}{t_{trans}}}<br>$$</p>
-<h2 id="Ethernet-Standards-Link-Physical-Layers"><a href="#Ethernet-Standards-Link-Physical-Layers" class="headerlink" title="Ethernet Standards: Link &amp; Physical Layers"></a>Ethernet Standards: Link &amp; Physical Layers</h2><p><img src="/The-Data-Link-Layer/621.png" alt="alt text">{style&#x3D;”display: block; margin: 0 auto; width: 100%”}</p>
+<script type="math/tex; mode=display">
+\text{efficiency} = \frac{1}{1 + \frac{5 t_{prop}}{t_{trans}}}</script><h2 id="Ethernet-Standards-Link-amp-Physical-Layers"><a href="#Ethernet-Standards-Link-amp-Physical-Layers" class="headerlink" title="Ethernet Standards: Link &amp; Physical Layers"></a>Ethernet Standards: Link &amp; Physical Layers</h2><p><img src="The-Data-Link-Layer/621.png" alt="alt text">{style=”display: block; margin: 0 auto; width: 100%”}</p>
 <ul>
 <li><p><strong>Common Foundation</strong>:</p>
 <ul>
@@ -1155,8 +1127,8 @@
 <li><strong>2 Mbps</strong>: Early experimental implementations</li>
 <li><strong>10 Mbps</strong>: Original Ethernet standard (10BASE-T)</li>
 <li><strong>100 Mbps</strong>: Fast Ethernet (100BASE-TX, 100BASE-FX)</li>
-<li><strong>1 Gbps</strong>: Gigabit Ethernet (1000BASE-T, 1000BASE-SX&#x2F;LX)</li>
-<li><strong>10 Gbps</strong>: 10 Gigabit Ethernet (10GBASE-T, 10GBASE-SR&#x2F;LR)</li>
+<li><strong>1 Gbps</strong>: Gigabit Ethernet (1000BASE-T, 1000BASE-SX/LX)</li>
+<li><strong>10 Gbps</strong>: 10 Gigabit Ethernet (10GBASE-T, 10GBASE-SR/LR)</li>
 <li><strong>Higher speeds</strong>: 40 Gbps, 100 Gbps, 400 Gbps technologies now available</li>
 </ul>
 </li>
@@ -1182,9 +1154,9 @@
 <li>bits coming in one link go out all other links at same rate</li>
 <li>all nodes connected to hub can collide with one another</li>
 <li>no frame buffering</li>
-<li>no CSMA&#x2F;CD at hub: host NICs detect collisions</li>
+<li>no CSMA/CD at hub: host NICs detect collisions</li>
 </ul>
-<p><img src="/The-Data-Link-Layer/hub.png" alt="hub">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<p><img src="The-Data-Link-Layer/hub.png" alt="hub">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><ul>
 <li><p><strong>Link-layer intelligence</strong>:</p>
 <ul>
@@ -1205,7 +1177,7 @@
 <li>Examine incoming frame’s destination MAC address</li>
 <li>Forward frame only to the specific port where destination device is connected</li>
 <li>Send to multiple ports only when necessary (broadcasts, unknown destinations)</li>
-<li>When forwarding frames onto a segment, uses CSMA&#x2F;CD to access the medium</li>
+<li>When forwarding frames onto a segment, uses CSMA/CD to access the medium</li>
 </ul>
 </li>
 <li><p><strong>Transparent operation</strong>:</p>
@@ -1253,7 +1225,7 @@
 <li>Ethernet protocol used on each link but without collisions</li>
 <li>Full-duplex operation: simultaneous transmission and reception</li>
 <li>Each link is its own separate collision domain</li>
-<li>CSMA&#x2F;CD no longer needed on point-to-point links to switch</li>
+<li>CSMA/CD no longer needed on point-to-point links to switch</li>
 </ul>
 </li>
 <li><p><strong>Parallel communications</strong>:</p>
@@ -1346,11 +1318,11 @@
 <li><strong>Self-correcting</strong>: If an entry becomes outdated, flooding will occur until the host location is relearned</li>
 </ul>
 <p>This passive learning approach enables plug-and-play networking with minimal administrative overhead.</p>
-<h2 id="Switch-Frame-Filtering-Forwarding"><a href="#Switch-Frame-Filtering-Forwarding" class="headerlink" title="Switch: Frame Filtering&#x2F;Forwarding"></a>Switch: Frame Filtering&#x2F;Forwarding</h2><h3 id="Frame-Processing-Algorithm"><a href="#Frame-Processing-Algorithm" class="headerlink" title="Frame Processing Algorithm"></a>Frame Processing Algorithm</h3><p>When a frame is received by a switch, it follows this decision process:</p>
+<h2 id="Switch-Frame-Filtering-Forwarding"><a href="#Switch-Frame-Filtering-Forwarding" class="headerlink" title="Switch: Frame Filtering/Forwarding"></a>Switch: Frame Filtering/Forwarding</h2><h3 id="Frame-Processing-Algorithm"><a href="#Frame-Processing-Algorithm" class="headerlink" title="Frame Processing Algorithm"></a>Frame Processing Algorithm</h3><p>When a frame is received by a switch, it follows this decision process:</p>
 <ol>
 <li><p><strong>Record source information</strong>:</p>
 <ul>
-<li>Record the link&#x2F;interface associated with the sending host</li>
+<li>Record the link/interface associated with the sending host</li>
 <li>Update or create switch table entry for source MAC address</li>
 </ul>
 </li>
@@ -1390,12 +1362,13 @@
 <p>This algorithm combines the efficiency of direct forwarding with the reliability of flooding when necessary, while also preventing unnecessary network traffic through frame filtering.</p>
 <h2 id="Switches-vs-Routers-Key-Differences"><a href="#Switches-vs-Routers-Key-Differences" class="headerlink" title="Switches vs. Routers: Key Differences"></a>Switches vs. Routers: Key Differences</h2><h3 id="Similarities"><a href="#Similarities" class="headerlink" title="Similarities"></a>Similarities</h3><ul>
 <li>Both are <strong>store-and-forward devices</strong><ul>
-<li>Receive complete packets&#x2F;frames before processing and forwarding</li>
+<li>Receive complete packets/frames before processing and forwarding</li>
 <li>Buffer data during processing</li>
 </ul>
 </li>
 </ul>
-<h3 id="Fundamental-Differences"><a href="#Fundamental-Differences" class="headerlink" title="Fundamental Differences"></a>Fundamental Differences</h3><table>
+<h3 id="Fundamental-Differences"><a href="#Fundamental-Differences" class="headerlink" title="Fundamental Differences"></a>Fundamental Differences</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Characteristic</th>
@@ -1403,7 +1376,8 @@
 <th>Routers</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>OSI Layer</strong></td>
 <td>Link layer (Layer 2)</td>
 <td>Network layer (Layer 3)</td>
@@ -1423,7 +1397,9 @@
 <td>Simple forwarding based on MAC address</td>
 <td>Complex routing decisions based on network topology</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="Table-Management"><a href="#Table-Management" class="headerlink" title="Table Management"></a>Table Management</h3><ul>
 <li><p><strong>Switches</strong>:</p>
 <ul>
@@ -1447,7 +1423,7 @@
 <li><strong>Routers</strong>: Connect multiple networks and provide inter-network communication</li>
 </ul>
 <p>These fundamental differences reflect their different roles in network architecture: switches optimize local traffic flow within networks, while routers enable traffic to traverse between different networks.</p>
-<p><img src="/The-Data-Link-Layer/624.png" alt="Route">{style&#x3D;”display: block; margin: 0 auto; width: 70%”}</p>
+<p><img src="The-Data-Link-Layer/624.png" alt="Route">{style=”display: block; margin: 0 auto; width: 70%”}</p>
 <h2 id="Virtual-Local-Area-Networks-VLANs"><a href="#Virtual-Local-Area-Networks-VLANs" class="headerlink" title="Virtual Local Area Networks (VLANs)"></a>Virtual Local Area Networks (VLANs)</h2><h3 id="802-1Q-VLAN-Frame-Format"><a href="#802-1Q-VLAN-Frame-Format" class="headerlink" title="802.1Q VLAN Frame Format"></a>802.1Q VLAN Frame Format</h3><ul>
 <li>Compares standard 802.1 Ethernet frame with 802.1Q VLAN frame</li>
 <li>802.1Q frame adds a 2-byte Tag Protocol Identifier (value: 81-00)</li>
@@ -1468,7 +1444,7 @@
 <li>s can be reassigned to different VLANs</li>
 <li>Communication between VLANs requires routing, similar to separate physical networks</li>
 <li>VLANs can be defined by port numbers or by MAC addresses of endpoints</li>
-<li>Vendors typically offer combined switch&#x2F;router devices to facilitate inter-VLAN routing</li>
+<li>Vendors typically offer combined switch/router devices to facilitate inter-VLAN routing</li>
 </ul>
 <h3 id="VLAN-Concept-Overview"><a href="#VLAN-Concept-Overview" class="headerlink" title="VLAN Concept Overview"></a>VLAN Concept Overview</h3><ul>
 <li>Defines VLANs as virtual networks created on a single physical infrastructure</li>
@@ -1504,34 +1480,38 @@
 </ol>
 <p>a. 数值 1 ～ 10（二进制，字节值 0x01～0x0A）  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0x01 0x02 → 0x0102  </span><br><span class="line">0x03 0x04 → 0x0304  </span><br><span class="line">0x05 0x06 → 0x0506  </span><br><span class="line">0x07 0x08 → 0x0708  </span><br><span class="line">0x09 0x0A → 0x090A  </span><br><span class="line">Sum = 0x0102+0x0304+0x0506+0x0708+0x090A = 0x191E  </span><br><span class="line">Checksum = ~0x191E = 0xE6E1</span><br></pre></td></tr></table></figure>
-
 <p>b. 大写字母 A ～ J（ASCII 0x41～0x4A）  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0x41 0x42 → 0x4142  </span><br><span class="line">0x43 0x44 → 0x4344  </span><br><span class="line">0x45 0x46 → 0x4546  </span><br><span class="line">0x47 0x48 → 0x4748  </span><br><span class="line">0x49 0x4A → 0x494A  </span><br><span class="line">Sum = 0x4142+0x4344+0x4546+0x4748+0x494A = 0x5A5F  </span><br><span class="line">Checksum = ~0x5A5F = 0xA5A0</span><br></pre></td></tr></table></figure>
-
 <p>c. 小写字母 a ～ j（ASCII 0x61～0x6A）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0x61 0x62 → 0x6162  </span><br><span class="line">0x63 0x64 → 0x6364  </span><br><span class="line">0x65 0x66 → 0x6566  </span><br><span class="line">0x67 0x68 → 0x6768  </span><br><span class="line">0x69 0x6A → 0x696A  </span><br><span class="line">Sum = 0x6162+0x6364+0x6566+0x6768+0x696A = 0xFAFF  </span><br><span class="line">Checksum = ~0xFAFF = 0x0500</span><br></pre></td></tr></table></figure>
-
 <h2 id="P-11"><a href="#P-11" class="headerlink" title="P.11"></a>P.11</h2><p>Suppose four active nodes—nodes A, B, C and D—are competing for access to a channel using slotted ALOHA. Assume each node has an infinite number of packets to send. Each node attempts to transmit in each slot with probability p. The first slot is numbered slot 1, the second slot is numbered slot 2, and so on.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. What is the probability that node A succeeds for the first time in slot 5?</strong></p>
-<p>在单个 slot 中成功的概率：$$P_{\text{succ}} &#x3D; p (1 - p)^{3}$$</p>
-<p>在前 4 个 slot 中都未成功的概率：$$P_{\text{4s}} &#x3D; \left(1 - P_{\text{succ}}\right)^{4}$$</p>
-<p>也就是：$$P(\text{first success in slot 5}) &#x3D; \bigl[1 - p(1-p)^3\bigr]^4 \times p(1-p)^3.$$</p>
+<p>在单个 slot 中成功的概率：<script type="math/tex">P_{\text{succ}} = p (1 - p)^{3}</script></p>
+<p>在前 4 个 slot 中都未成功的概率：<script type="math/tex">P_{\text{4s}} = \left(1 - P_{\text{succ}}\right)^{4}</script></p>
+<p>也就是：<script type="math/tex">P(\text{first success in slot 5}) = \bigl[1 - p(1-p)^3\bigr]^4 \times p(1-p)^3.</script></p>
 <p><strong>b. What is the probability that some node (either A, B, C or D) succeeds in slot 4?</strong></p>
-<p>总共有 $N &#x3D; 4$ 个结点，某个结点在 slot4 成功的概率为：<br>$$<br>P_{\text{succ}} &#x3D; 4 \cdot p \cdot (1 - p)^{3}<br>$$</p>
-<p><strong>c. What is the probability that the first success occurs in slot 3?</strong></p>
-<p>第一次成功出现在 slot3 的概率<br>$$<br>P &#x3D; (1-4p(1-p)^3)^2 \cdot 4p(1-p)^3<br>$$</p>
-<p><strong>d. What is the efficiency of this four-node system?</strong></p>
-<p>我们需要计算出使得 $Np(1-p)^{N-1}$ 最大的 $p$，记原式子为 $L(p)$，最优解为 $p^{\ast}$。对 $p$ 求偏导：<br>$$<br>\frac{\partial L(p)}{\partial p} &#x3D; 4(1 - p)^{3} - 12p(1 - p)^{2}<br>$$</p>
-<p>得到<br>$$<br>p^{\ast} &#x3D; 0.25<br>$$</p>
-<p>所以，效率为：<br>$$<br>\text{efficiency} &#x3D; 4 \times 0.25 \times 0.75^3 &#x3D; \frac{27}{64}<br>$$</p>
-<h2 id="P-17"><a href="#P-17" class="headerlink" title="P.17"></a>P.17</h2><p><strong>Question and Answer:</strong></p>
-<p>Recall that with the CSMA&#x2F;CD protocol, the adapter waits $K \cdot 512$ bit times after a collision, where $K$ is drawn randomly. For $K &#x3D; 100$, how long does the adapter wait until returning to Step 2 for a $10$ Mbps Ethernet? For a $100$ Mbps Ethernet?</p>
-<p>等待时间的计算公式为：<br>$$<br>T &#x3D; K \cdot 512 \cdot t_{\text{bit}}<br>$$</p>
-<p>其中，$t_{\text{bit}}$ 是比特时间，其计算公式为：<br>$$<br>t_{\text{bit}} &#x3D; \frac{1}{\text{传输速率}}<br>$$</p>
-<p>分别带入 $10$ Mbps 和 $100$ Mbps，解得分别等待时间为 <strong>$5.12$ ms</strong> 和 <strong>$0.512$ ms</strong>。</p>
+<p>总共有 $N = 4$ 个结点，某个结点在 slot4 成功的概率为：</p>
+<script type="math/tex; mode=display">
+P_{\text{succ}} = 4 \cdot p \cdot (1 - p)^{3}</script><p><strong>c. What is the probability that the first success occurs in slot 3?</strong></p>
+<p>第一次成功出现在 slot3 的概率</p>
+<script type="math/tex; mode=display">
+P = (1-4p(1-p)^3)^2 \cdot 4p(1-p)^3</script><p><strong>d. What is the efficiency of this four-node system?</strong></p>
+<p>我们需要计算出使得 $Np(1-p)^{N-1}$ 最大的 $p$，记原式子为 $L(p)$，最优解为 $p^{\ast}$。对 $p$ 求偏导：</p>
+<script type="math/tex; mode=display">
+\frac{\partial L(p)}{\partial p} = 4(1 - p)^{3} - 12p(1 - p)^{2}</script><p>得到</p>
+<script type="math/tex; mode=display">
+p^{\ast} = 0.25</script><p>所以，效率为：</p>
+<script type="math/tex; mode=display">
+\text{efficiency} = 4 \times 0.25 \times 0.75^3 = \frac{27}{64}</script><h2 id="P-17"><a href="#P-17" class="headerlink" title="P.17"></a>P.17</h2><p><strong>Question and Answer:</strong></p>
+<p>Recall that with the CSMA/CD protocol, the adapter waits $K \cdot 512$ bit times after a collision, where $K$ is drawn randomly. For $K = 100$, how long does the adapter wait until returning to Step 2 for a $10$ Mbps Ethernet? For a $100$ Mbps Ethernet?</p>
+<p>等待时间的计算公式为：</p>
+<script type="math/tex; mode=display">
+T = K \cdot 512 \cdot t_{\text{bit}}</script><p>其中，$t_{\text{bit}}$ 是比特时间，其计算公式为：</p>
+<script type="math/tex; mode=display">
+t_{\text{bit}} = \frac{1}{\text{传输速率}}</script><p>分别带入 $10$ Mbps 和 $100$ Mbps，解得分别等待时间为 <strong>$5.12$ ms</strong> 和 <strong>$0.512$ ms</strong>。</p>
 <h2 id="P-18"><a href="#P-18" class="headerlink" title="P.18"></a>P.18</h2><p><strong>Question and Answer:</strong></p>
-<p>Suppose nodes A and B are on the same $10$ Mbps Ethernet bus, and the propagation delay between the two nodes is $325$ bit times. Suppose node A begins transmitting a frame and, before it finishes, node B begins transmitting a frame. Can A finish transmitting before it detects that B has transmitted? Why or why not? If the answer is yes, then A incorrectly believes that its frame was successfully transmitted without a collision. <em>Hint</em>: Suppose at time $t &#x3D; 0$ bit times, A begins transmitting a frame. In the worst case, A transmits a minimum-sized frame of $512 + 64$ bit times. So A would finish transmitting the frame at $t &#x3D; 512 + 64$ bit times. Thus, the answer is no, if B’s signal reaches A before bit time $t &#x3D; 512 + 64$ bits. In the worst case, when does B’s signal reach A?</p>
+<p>Suppose nodes A and B are on the same $10$ Mbps Ethernet bus, and the propagation delay between the two nodes is $325$ bit times. Suppose node A begins transmitting a frame and, before it finishes, node B begins transmitting a frame. Can A finish transmitting before it detects that B has transmitted? Why or why not? If the answer is yes, then A incorrectly believes that its frame was successfully transmitted without a collision. <em>Hint</em>: Suppose at time $t = 0$ bit times, A begins transmitting a frame. In the worst case, A transmits a minimum-sized frame of $512 + 64$ bit times. So A would finish transmitting the frame at $t = 512 + 64$ bit times. Thus, the answer is no, if B’s signal reaches A before bit time $t = 512 + 64$ bits. In the worst case, when does B’s signal reach A?</p>
 <ol>
 <li><p><strong>传播延迟计算</strong>  </p>
 <ul>
@@ -1541,100 +1521,44 @@
 </li>
 <li><p><strong>最小帧传输时间</strong>  </p>
 <ul>
-<li>A 传输一个最小帧所需的时间为 $512 + 64 &#x3D; 576$ 比特时间。</li>
+<li>A 传输一个最小帧所需的时间为 $512 + 64 = 576$ 比特时间。</li>
 </ul>
 </li>
 <li><p><strong>碰撞检测条件</strong>  </p>
 <ul>
 <li>如果 B 的信号在 A 完成帧传输之前到达 A，则 A 可以检测到碰撞。</li>
-<li>在最坏情况下，B 在传播延迟的最后一刻（即 $t &#x3D; 325$ 比特时间）开始传输。</li>
-<li>B 的信号需要 $325$ 比特时间到达 A，因此 B 的信号到达 A 的时间为：<br>$$<br>t_{\text{到达}} &#x3D; 325 + 325 &#x3D; 650 , \text{比特时间}<br>$$</li>
+<li>在最坏情况下，B 在传播延迟的最后一刻（即 $t = 325$ 比特时间）开始传输。</li>
+<li>B 的信号需要 $325$ 比特时间到达 A，因此 B 的信号到达 A 的时间为：<script type="math/tex; mode=display">
+t_{\text{到达}} = 325 + 325 = 650 \, \text{比特时间}</script></li>
 </ul>
 </li>
 <li><p><strong>结论</strong>  </p>
 <ul>
-<li>A 在 $t &#x3D; 576$ 比特时间完成帧传输，而 B 的信号在 $t &#x3D; 650$ 比特时间到达 A。</li>
+<li>A 在 $t = 576$ 比特时间完成帧传输，而 B 的信号在 $t = 650$ 比特时间到达 A。</li>
 <li>因此，A <strong>无法检测到碰撞</strong>，并会错误地认为其帧已成功传输。</li>
 </ul>
 </li>
 </ol>
 <h2 id="P-27"><a href="#P-27" class="headerlink" title="P.27"></a>P.27</h2><p><strong>Question and Answer:</strong></p>
 <p>Consider Figure $5.38$ in problem P$14$. Provide MAC addresses and IP addresses for the interfaces at Host A, both routers, and Host F. Suppose Host A sends a datagram to Host F. Give the source and destination MAC addresses in the frame encapsulating this IP datagram as the frame is transmitted <em>(i)</em> from A to the left router, <em>(ii)</em> from the left router to the right router, <em>(iii)</em> from the right router to F. Also give the source and destination IP addresses in the IP datagram encapsulated within the frame at each of these points in time.</p>
-<p><img src="/The-Data-Link-Layer/Three%20subnets,%20interconnected%20by%20routers.png" alt="Figure 5.38">{ style&#x3D;”display: block; margin: 0 auto; width: 50%” }</p>
+<p><img src="The-Data-Link-Layer/Three subnets, interconnected by routers.png" alt="Figure 5.38">{ style=”display: block; margin: 0 auto; width: 50%” }</p>
 <p>Assign IP addresses to all of the interfaces. For Subnet $1$ use addresses of the form <code>192.168.1.xxx</code>; for Subnet $2$ uses addresses of the form <code>192.168.2.xxx</code>; and for Subnet $3$ use addresses of the form <code>192.168.3.xxx</code>. Assign MAC addresses to all of the adapters.</p>
 <p>$14$ 和 $27$ 都没有明确说明 IP address 和 MAC address。先分配接口，如下表所示。</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>设备&#x2F;接口</th>
-<th>子网</th>
-<th>IP 地址</th>
-<th>MAC 地址</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Host A</td>
-<td>Subnet 1</td>
-<td>192.168.1.1</td>
-<td>AA-AA-AA-AA-AA-AA</td>
-</tr>
-<tr>
-<td>Host B</td>
-<td>Subnet 1</td>
-<td>192.168.1.2</td>
-<td>BB-BB-BB-BB-BB-BB</td>
-</tr>
-<tr>
-<td>Router1-接口1</td>
-<td>Subnet 1</td>
-<td>192.168.1.254</td>
-<td>A1-B1-C1-D1-E1-F1</td>
-</tr>
-<tr>
-<td>Router1-接口2</td>
-<td>Subnet 2</td>
-<td>192.168.2.1</td>
-<td>A1-B2-C2-D2-E2-F2</td>
-</tr>
-<tr>
-<td>Router2-接口1</td>
-<td>Subnet 2</td>
-<td>192.168.2.254</td>
-<td>A2-B1-C1-D1-E1-F1</td>
-</tr>
-<tr>
-<td>Router2-接口2</td>
-<td>Subnet 3</td>
-<td>192.168.3.1</td>
-<td>A2-B2-C2-D2-E2-F2</td>
-</tr>
-<tr>
-<td>Host C</td>
-<td>Subnet 2</td>
-<td>192.168.2.2</td>
-<td>CC-CC-CC-CC-CC-CC</td>
-</tr>
-<tr>
-<td>Host D</td>
-<td>Subnet 2</td>
-<td>192.168.2.3</td>
-<td>DD-DD-DD-DD-DD-DD</td>
-</tr>
-<tr>
-<td>Host E</td>
-<td>Subnet 3</td>
-<td>192.168.3.2</td>
-<td>EE-EE-EE-EE-EE-EE</td>
-</tr>
-<tr>
-<td>Host F</td>
-<td>Subnet 3</td>
-<td>192.168.3.3</td>
-<td>FF-FF-FF-FF-FF-FF</td>
-</tr>
-</tbody></table>
+| 设备/接口         | 子网         | IP 地址           | MAC 地址      |
+|------------------|--------------|-------------------|---------------|
+| Host A           | Subnet 1     | 192.168.1.1       | AA-AA-AA-AA-AA-AA |
+| Host B           | Subnet 1     | 192.168.1.2       | BB-BB-BB-BB-BB-BB |
+| Router1-接口1    | Subnet 1     | 192.168.1.254     | A1-B1-C1-D1-E1-F1  |
+| Router1-接口2    | Subnet 2     | 192.168.2.1       | A1-B2-C2-D2-E2-F2  |
+| Router2-接口1    | Subnet 2     | 192.168.2.254     | A2-B1-C1-D1-E1-F1  |
+| Router2-接口2    | Subnet 3     | 192.168.3.1       | A2-B2-C2-D2-E2-F2  |
+| Host C           | Subnet 2     | 192.168.2.2       | CC-CC-CC-CC-CC-CC |
+| Host D           | Subnet 2     | 192.168.2.3       | DD-DD-DD-DD-DD-DD |
+| Host E           | Subnet 3     | 192.168.3.2       | EE-EE-EE-EE-EE-EE |
+| Host F           | Subnet 3     | 192.168.3.3       | FF-FF-FF-FF-FF-FF |
+
 </div>
 
 <p><strong><em>(i)</em> from A to the left router</strong></p>
@@ -1657,70 +1581,18 @@
 <p>接上题的接口配置，做简单修改：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>设备&#x2F;接口</th>
-<th>子网</th>
-<th>IP 地址</th>
-<th>MAC 地址</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Host A</td>
-<td>Subnet 1</td>
-<td>192.168.1.1</td>
-<td>AA-AA-AA-AA-AA-AA</td>
-</tr>
-<tr>
-<td>Host B</td>
-<td>Subnet 1</td>
-<td>192.168.1.2</td>
-<td>BB-BB-BB-BB-BB-BB</td>
-</tr>
-<tr>
-<td>Switch</td>
-<td>Subnet 1 2</td>
-<td>192.168.1.254</td>
-<td>A1-B1-C1-D1-E1-F1</td>
-</tr>
-<tr>
-<td>Router2-接口1</td>
-<td>Subnet 2</td>
-<td>192.168.2.254</td>
-<td>A2-B1-C1-D1-E1-F1</td>
-</tr>
-<tr>
-<td>Router2-接口2</td>
-<td>Subnet 3</td>
-<td>192.168.3.1</td>
-<td>A2-B2-C2-D2-E2-F2</td>
-</tr>
-<tr>
-<td>Host C</td>
-<td>Subnet 2</td>
-<td>192.168.2.2</td>
-<td>CC-CC-CC-CC-CC-CC</td>
-</tr>
-<tr>
-<td>Host D</td>
-<td>Subnet 2</td>
-<td>192.168.2.3</td>
-<td>DD-DD-DD-DD-DD-DD</td>
-</tr>
-<tr>
-<td>Host E</td>
-<td>Subnet 3</td>
-<td>192.168.3.2</td>
-<td>EE-EE-EE-EE-EE-EE</td>
-</tr>
-<tr>
-<td>Host F</td>
-<td>Subnet 3</td>
-<td>192.168.3.3</td>
-<td>FF-FF-FF-FF-FF-FF</td>
-</tr>
-</tbody></table>
+| 设备/接口         | 子网         | IP 地址           | MAC 地址      |
+|------------------|--------------|-------------------|---------------|
+| Host A           | Subnet 1     | 192.168.1.1       | AA-AA-AA-AA-AA-AA |
+| Host B           | Subnet 1     | 192.168.1.2       | BB-BB-BB-BB-BB-BB |
+| Switch           | Subnet 1 2   | 192.168.1.254     | A1-B1-C1-D1-E1-F1  |
+| Router2-接口1     | Subnet 2     | 192.168.2.254     | A2-B1-C1-D1-E1-F1  |
+| Router2-接口2     | Subnet 3     | 192.168.3.1       | A2-B2-C2-D2-E2-F2  |
+| Host C           | Subnet 2     | 192.168.2.2       | CC-CC-CC-CC-CC-CC |
+| Host D           | Subnet 2     | 192.168.2.3       | DD-DD-DD-DD-DD-DD |
+| Host E           | Subnet 3     | 192.168.3.2       | EE-EE-EE-EE-EE-EE |
+| Host F           | Subnet 3     | 192.168.3.3       | FF-FF-FF-FF-FF-FF |
+
 </div>
 
 <p><strong><em>(i)</em> from A to the switch</strong></p>
@@ -1738,50 +1610,18 @@
 <li><strong>Source MAC address</strong>: <code>A2-B2-C2-D2-E2-F2</code>.</li>
 <li><strong>Destination MAC address</strong>: <code>FF-FF-FF-FF-FF-FF</code>.</li>
 </ul>
-<h2 id="P-32"><a href="#P-32" class="headerlink" title="P.32"></a>P.32</h2><p><img src="/The-Data-Link-Layer/A%20link-layer%20switch%20inter-connecting%20six%20nodes.png" alt="A link-layer switch inter-connecting six nodes">{ style&#x3D;”display: block; margin: 0 auto; width: 60%” }</p>
+<h2 id="P-32"><a href="#P-32" class="headerlink" title="P.32"></a>P.32</h2><p><img src="The-Data-Link-Layer/A link-layer switch inter-connecting six nodes.png" alt="A link-layer switch inter-connecting six nodes">{ style=”display: block; margin: 0 auto; width: 60%” }</p>
 <p>Let’s consider the operation of a learning switch in the context of Figure $5.24$. Suppose that <em>(i)</em> B sends a frame to E, <em>(ii)</em> E replies with a frame to B, <em>(iii)</em> A sends a frame to B, <em>(iv)</em> B replies with a frame to A. The switch table is initially empty. Show the state of the switch table before and after each of these events. For each of these events, identify the link(s) on which the transmitted frame will be forwarded, and briefly justify your answers.</p>
 <p>按字典序从小到大的顺序分配接口，用如下表格总结题目所述过程：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>事件</th>
-<th>表项变化</th>
-<th>转发链路</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>B→E</td>
-<td>+B@2</td>
-<td>1,3,4,5,6</td>
-<td>泛洪</td>
-</tr>
-<tr>
-<td>2</td>
-<td>E→B</td>
-<td>+E@5</td>
-<td>2</td>
-<td>定向转发</td>
-</tr>
-<tr>
-<td>3</td>
-<td>A→B</td>
-<td>+A@1</td>
-<td>2</td>
-<td>定向转发</td>
-</tr>
-<tr>
-<td>4</td>
-<td>B→A</td>
-<td>B@2 刷新</td>
-<td>1</td>
-<td>定向转发</td>
-</tr>
-</tbody></table>
+| 步骤 | 事件         | 表项变化               | 转发链路         | 说明           |
+|------|--------------|------------------------|------------------|----------------|
+| 1    | B→E          | +B@2                   | 1,3,4,5,6        | 泛洪           |
+| 2    | E→B          | +E@5                   | 2                | 定向转发       |
+| 3    | A→B          | +A@1                   | 2                | 定向转发       |
+| 4    | B→A          | B@2 刷新               | 1                | 定向转发       |
+
 </div>
 
     </div>
