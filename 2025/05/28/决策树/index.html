@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="机器学习,计算机网络,算法,统计学习">
   
-    <meta name="description" content="\(\text{Decision Tree}\) 本文章中，总数据集是 \(D\)，属性集是 \(a\)，其中 \(a &#x3D; \{a^1, a^2, \ldots, a^V \}\)，表示属性 \(a\) 有 \(V\) 种取值；\(D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}\) 则表示总数据集 \(D\) 中满足属性 \(a &#x3D; a^v\) 的数目。 决策树是一种">
+    <meta name="description" content="$\text{Decision Tree}$本文章中，总数据集是 $D$，属性集是 $a$，其中 $a &#x3D; \{a^1, a^2, \ldots, a^V \}$，表示属性 $a$ 有 $V$ 种取值；$D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}$ 则表示总数据集 $D$ 中满足属性 $a &#x3D; a^v$ 的数目。 决策树是一种分类算法，本文将介绍三种决策树算法，包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树">
 <meta property="og:url" content="https://ddccffq.github.io/2025/05/28/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="\(\text{Decision Tree}\) 本文章中，总数据集是 \(D\)，属性集是 \(a\)，其中 \(a &#x3D; \{a^1, a^2, \ldots, a^V \}\)，表示属性 \(a\) 有 \(V\) 种取值；\(D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}\) 则表示总数据集 \(D\) 中满足属性 \(a &#x3D; a^v\) 的数目。 决策树是一种">
+<meta property="og:description" content="$\text{Decision Tree}$本文章中，总数据集是 $D$，属性集是 $a$，其中 $a &#x3D; \{a^1, a^2, \ldots, a^V \}$，表示属性 $a$ 有 $V$ 种取值；$D^v &#x3D; \{D(\text{attribute}(a) &#x3D; a^v)\}$ 则表示总数据集 $D$ 中满足属性 $a &#x3D; a^v$ 的数目。 决策树是一种分类算法，本文将介绍三种决策树算法，包">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-28T02:12:59.000Z">
 <meta property="article:modified_time" content="2025-06-06T03:02:26.000Z">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          971 字
+          958 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -276,176 +276,76 @@
             
               <div class="markdown-body">
                 
-                <h2 id="textdecision-tree"><span class="math inline">\(\text{Decision
-Tree}\)</span></h2>
-<p>本文章中，总数据集是 <span class="math inline">\(D\)</span>，属性集是
-<span class="math inline">\(a\)</span>，其中 <span
-class="math inline">\(a = \{a^1, a^2, \ldots, a^V \}\)</span>，表示属性
-<span class="math inline">\(a\)</span> 有 <span
-class="math inline">\(V\)</span> 种取值；<span class="math inline">\(D^v
-= \{D(\text{attribute}(a) = a^v)\}\)</span> 则表示总数据集 <span
-class="math inline">\(D\)</span> 中满足属性 <span
-class="math inline">\(a = a^v\)</span> 的数目。</p>
+                <h2 id="text-Decision-Tree"><a href="#text-Decision-Tree" class="headerlink" title="$\text{Decision Tree}$"></a>$\text{Decision Tree}$</h2><p>本文章中，总数据集是 $D$，属性集是 $a$，其中 $a = \{a^1, a^2, \ldots, a^V \}$，表示属性 $a$ 有 $V$ 种取值；$D^v = \{D(\text{attribute}(a) = a^v)\}$ 则表示总数据集 $D$ 中满足属性 $a = a^v$ 的数目。</p>
 <p>决策树是一种分类算法，本文将介绍三种决策树算法，包括三种决策树算法涉及到的多个概念，比如信息熵、信息增益、信息增益比等等。</p>
-<h2 id="信息熵">信息熵</h2>
-<p><span class="math display">\[
-p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)
-\]</span></p>
-<p>用符号 <strong><span
-class="math inline">\(\operatorname{Ent}\)</span></strong>
-表示信息熵</p>
-<p><span class="math display">\[
-\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k
-\]</span></p>
-<h2 id="信息增益">信息增益</h2>
-<p>用符号 <strong><span
-class="math inline">\(\text{Gain}\)</span></strong> 表示信息增益</p>
-<p><span class="math display">\[
-\text{Gain}(D, a) = \text{Ent}(D) - \sum_{v = 1}^{V}
-\frac{|D^v|}{|D|}\text{Ent}(D^v)
-\]</span></p>
-<h2 id="信息增益比">信息增益比</h2>
-<p>用符号 <strong><span
-class="math inline">\(\text{Gain_ratio}\)</span></strong>
-表示信息增益比</p>
-<p><span class="math display">\[
-\text{Gain_ratio}(D,a) = \frac{\text{Gain}(D,a)}{\text{IV}(a)}
-\]</span></p>
-<p>其中，</p>
-<p><span class="math display">\[
-\text{IV}(a) = -\sum_{v = 1}^{V}\frac{|D^v|}{|D|} \log_2
-\frac{|D^v|}{|D|}
-\]</span></p>
-<h2 id="基尼指数">基尼指数</h2>
-<p>用符号 <strong><span
-class="math inline">\(\text{Gini_index}\)</span></strong>
-表示基尼指数</p>
-<p><span class="math display">\[
+<h2 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h2><script type="math/tex; mode=display">
+p_k = \frac{\sum(sort = k)}{|D|} \quad (k = 1,2,\ldots,|\mathscr{Y}|)</script><p>用符号 <strong>$\operatorname{Ent}$</strong> 表示信息熵</p>
+<script type="math/tex; mode=display">
+\text{Ent}(D) = -\sum_{k=1}^{|\mathscr{Y}|}p_k\log_2p_k</script><h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><p>用符号 <strong>$\text{Gain}$</strong> 表示信息增益</p>
+<script type="math/tex; mode=display">
+\text{Gain}(D, a) = \text{Ent}(D) - \sum_{v = 1}^{V} \frac{|D^v|}{|D|}\text{Ent}(D^v)</script><h2 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h2><p>用符号 <strong>$\text{Gain_ratio}$</strong> 表示信息增益比</p>
+<script type="math/tex; mode=display">
+\text{Gain_ratio}(D,a) = \frac{\text{Gain}(D,a)}{\text{IV}(a)}</script><p>其中，</p>
+<script type="math/tex; mode=display">
+\text{IV}(a) = -\sum_{v = 1}^{V}\frac{|D^v|}{|D|} \log_2 \frac{|D^v|}{|D|}</script><h2 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h2><p>用符号 <strong>$\text{Gini_index}$</strong> 表示基尼指数</p>
+<script type="math/tex; mode=display">
 \begin{align*}
-\text{Gini}(D^v) &amp;= \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k&#39; \neq
-k}p_k p_{k&#39;}
+\text{Gini}(D^v) &= \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k' \neq k}p_k p_{k'}
 \\\\
-\text{Gini}(D^v) &amp;= 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}
+\text{Gini}(D^v) &= 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}
 \\\\
-\text{Gini_index}(D,a) &amp;= \sum_{v = 1}^{V} \frac{|D^v|}{|D|}
-\text{Gini}(D^v)
-\end{align*}
-\]</span></p>
-<h2 id="剪枝">剪枝</h2>
-<h3 id="损失函数">损失函数</h3>
-<p>假设决策树 <span class="math inline">\(T\)</span> 有 <span
-class="math inline">\(|T|\)</span> 个叶节点，每个叶节点 <span
-class="math inline">\(t\)</span> 有 <span
-class="math inline">\(N_t\)</span> 个样本，其中类别 <span
-class="math inline">\(k = 1, 2, \ldots, K\)</span> 的样本数为 <span
-class="math inline">\(N_{tk}\)</span>。</p>
+\text{Gini_index}(D,a) &= \sum_{v = 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)
+\end{align*}</script><h2 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h2><h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>假设决策树 $T$ 有 $|T|$ 个叶节点，每个叶节点 $t$ 有 $N_t$ 个样本，其中类别 $k = 1, 2, \ldots, K$ 的样本数为 $N_{tk}$。</p>
 <p><strong>损失函数</strong></p>
-<p><span class="math display">\[
-C_\alpha(T) = \sum_{t=1}^{|T|}N_t \operatorname{Ent}(D_t) + \alpha |T|
-\]</span></p>
-<p>其中 <span class="math inline">\(\operatorname{Ent}(D_t)\)</span>
-是叶节点 <span class="math inline">\(t\)</span> 上样本集合 <span
-class="math inline">\(D_t\)</span> 的信息熵，</p>
-<p><span class="math display">\[
-\operatorname{Ent}(D_t) = -\sum_{k=1}^{|\mathscr{Y}|} p_{tk} \log_2
-p_{tk}
-\]</span></p>
-<p>其中 <span class="math inline">\(p_{tk} =
-\frac{N_{tk}}{N_t}\)</span>，<span class="math inline">\(N_{tk}\)</span>
-为叶节点 <span class="math inline">\(t\)</span> 上第 <span
-class="math inline">\(k\)</span> 类样本数，<span
-class="math inline">\(N_t\)</span> 为叶节点 <span
-class="math inline">\(t\)</span> 的样本总数。</p>
+<script type="math/tex; mode=display">
+C_\alpha(T) = \sum_{t=1}^{|T|}N_t \operatorname{Ent}(D_t) + \alpha |T|</script><p>其中 $\operatorname{Ent}(D_t)$ 是叶节点 $t$ 上样本集合 $D_t$ 的信息熵，</p>
+<script type="math/tex; mode=display">
+\operatorname{Ent}(D_t) = -\sum_{k=1}^{|\mathscr{Y}|} p_{tk} \log_2 p_{tk}</script><p>其中 $p_{tk} = \frac{N_{tk}}{N_t}$，$N_{tk}$ 为叶节点 $t$ 上第 $k$ 类样本数，$N_t$ 为叶节点 $t$ 的样本总数。</p>
 <p>所以可以将损失函数写成：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{align*}
-C(T) &amp;= -\sum_{t=1}^{|T|} N_t \sum_{k=1}^{|\mathscr{Y}|} p_{tk}
-\log_2 p_{tk}
+C(T) &= -\sum_{t=1}^{|T|} N_t \sum_{k=1}^{|\mathscr{Y}|} p_{tk} \log_2 p_{tk}
 \\\\
-C_\alpha(T) &amp;= C(T) + \alpha |T|
-\end{align*}
-\]</span></p>
-<p>我们的<strong>目的</strong>就是最小化损失函数</p>
-<p><span class="math display">\[
-\min_{T} \quad C_\alpha(T) = \sum_{t=1}^{|T|}N_t \operatorname{Ent}(D_t)
-+ \alpha |T|
-\]</span></p>
-<h4 id="算法步骤">算法步骤</h4>
-<p>我们可以定义一个DP[]数组，并使用动态规划的思想来找到最优剪枝</p>
+C_\alpha(T) &= C(T) + \alpha |T|
+\end{align*}</script><p>我们的<strong>目的</strong>就是最小化损失函数</p>
+<script type="math/tex; mode=display">
+\min_{T} \quad C_\alpha(T) = \sum_{t=1}^{|T|}N_t \operatorname{Ent}(D_t) + \alpha |T|</script><h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><p>我们可以定义一个DP[]数组，并使用动态规划的思想来找到最优剪枝</p>
 <ul>
-<li>输入数据 <span class="math inline">\(X = \{(\vec{x}_1, y_1),
-(\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \}\)</span></li>
-<li>输出 <span class="math inline">\(T_\alpha\)</span></li>
+<li>输入数据 $X = \{(\vec{x}_1, y_1), (\vec{x}_2, y_2), \ldots, (\vec{x}_N, y_N) \}$</li>
+<li>输出 $T_\alpha$</li>
 </ul>
-<ol type="1">
-<li>对于树T中的每个节点t，计算 <span
-class="math inline">\(H_t(T)\)</span></li>
-<li>从树的叶节点开始递归地向上回溯，比较 <span
-class="math inline">\(C_\alpha(T_A)\)</span> 和 <span
-class="math inline">\(C_\alpha(T_B)\)</span></li>
+<ol>
+<li>对于树T中的每个节点t，计算 $H_t(T)$</li>
+<li>从树的叶节点开始递归地向上回溯，比较 $C_\alpha(T_A)$ 和 $C_\alpha(T_B)$</li>
 <li>返回步骤2</li>
 </ol>
-<h2 id="cart">CART</h2>
-<h3 id="回归树">回归树</h3>
-<p>回归树对应于输入空间的分割和分割单元内的输出值。</p>
-<p>输入空间 <span class="math inline">\(M = R_1, R_2, \ldots,
-R_M\)</span>，每个空间 <span class="math inline">\(R_m\)</span>
-有一个输出值 <span
-class="math inline">\(c_m\)</span>，我们可以定义回归树模型如下：</p>
-<p><strong>回归树模型</strong> <span class="math display">\[
-f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)
-\]</span></p>
-<p><strong>均方误差</strong> <span class="math display">\[
-\sum_{x_i \in R_m} (y_i - f(x_i))^2
-\]</span></p>
-<p><span class="math display">\[
-\hat{c}_m = \text{ave}(y_i \mid x_i \in R_m)
-\]</span></p>
-<h4 id="分割算法">分割算法</h4>
-<ul>
-<li>输入：训练数据 <span class="math inline">\(D\)</span></li>
-<li>输出：回归树 <span class="math inline">\(f(x)\)</span></li>
+<h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h3><p>回归树对应于输入空间的分割和分割单元内的输出值。</p>
+<p>输入空间 $M = R_1, R_2, \ldots, R_M$，每个空间 $R_m$ 有一个输出值 $c_m$，我们可以定义回归树模型如下：</p>
+<p><strong>回归树模型</strong></p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^{M} c_m I (x \in R_m)</script><p><strong>均方误差</strong></p>
+<script type="math/tex; mode=display">
+\sum_{x_i \in R_m} (y_i - f(x_i))^2</script><script type="math/tex; mode=display">
+\hat{c}_m = \text{ave}(y_i \mid x_i \in R_m)</script><h4 id="分割算法"><a href="#分割算法" class="headerlink" title="分割算法"></a>分割算法</h4><ul>
+<li>输入：训练数据 $D$</li>
+<li>输出：回归树 $f(x)$</li>
 </ul>
-<ol type="1">
-<li>选择 <span class="math inline">\(x_j\)</span>，其输出为 <span
-class="math inline">\(s\)</span>。空间 <span
-class="math inline">\(R_1(j, s) = \{x \mid x^{(j)} \leq
-s\}\)</span>，空间 <span class="math inline">\(R_2(j, s) = \{x \mid
-x^{(j)} &gt; s\}\)</span></li>
-<li><span class="math display">\[\min_{j,s}\left[\min_{c_1} \sum_{x_i
-\in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i -
-c_2)^2 \right]\]</span></li>
-<li><span class="math display">\[\frac{1}{N_m} \sum_{x_i \in R_m(j,s)}
-y_i, \quad x_i \in R_m, \quad m = 1, 2\]</span></li>
+<ol>
+<li>选择 $x_j$，其输出为 $s$。空间 $R_1(j, s) = \{x \mid x^{(j)} \leq s\}$，空间 $R_2(j, s) = \{x \mid x^{(j)} &gt; s\}$</li>
+<li><script type="math/tex; mode=display">\min_{j,s}\left[\min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i - c_2)^2 \right]</script></li>
+<li><script type="math/tex; mode=display">\frac{1}{N_m} \sum_{x_i \in R_m(j,s)} y_i, \quad x_i \in R_m, \quad m = 1, 2</script></li>
 <li>重复步骤2和3，直至满足停止条件。</li>
 </ol>
-<h3 id="分类树">分类树</h3>
-<p>根据<strong>基尼指数</strong>进行分类即可</p>
-<p><span class="math display">\[
+<h3 id="分类树"><a href="#分类树" class="headerlink" title="分类树"></a>分类树</h3><p>根据<strong>基尼指数</strong>进行分类即可</p>
+<script type="math/tex; mode=display">
 \begin{align*}
-\text{Gini}(D^v) &amp;= \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k&#39; \neq
-k}p_k p_{k&#39;}
+\text{Gini}(D^v) &= \sum_{k = 1}^{|\mathscr{Y}|}\sum_{k' \neq k}p_k p_{k'}
 \\\\
-\text{Gini}(D^v) &amp;= 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}
+\text{Gini}(D^v) &= 1 - \sum_{k = 1}^{|\mathscr{Y}|}p_k^{2}
 \\\\
-\text{Gini_index}(D,a) &amp;= \sum_{v = 1}^{V} \frac{|D^v|}{|D|}
-\text{Gini}(D^v)
-\end{align*}
-\]</span></p>
-<h3 id="textcart-剪枝"><span class="math inline">\(\text{CART}\)</span>
-剪枝</h3>
-<p><span class="math inline">\(\text{CART}\)</span>
-剪枝算法由两步组成：手下从省城算法产生的决策树 <span
-class="math inline">\(T_0\)</span> 底端开始不断简直，直到 <span
-class="math inline">\(T_0\)</span> 的根节点，形成一个子树序列 <span
-class="math inline">\(\{T_0, T_1, \cdots
-T_n\}\)</span>；然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</p>
-<h4 id="textcart-剪枝算法"><span
-class="math inline">\(\text{CART}\)</span> 剪枝算法</h4>
-<p><strong>输入</strong>：<span
-class="math inline">\(\text{CART}\)</span> 算法生成的决策树 <span
-class="math inline">\(T_0\)</span>； <strong>输出</strong>：最优决策树
-<span class="math inline">\(T_{\alpha}\)</span>。</p>
+\text{Gini_index}(D,a) &= \sum_{v = 1}^{V} \frac{|D^v|}{|D|} \text{Gini}(D^v)
+\end{align*}</script><h3 id="text-CART-剪枝"><a href="#text-CART-剪枝" class="headerlink" title="$\text{CART}$ 剪枝"></a>$\text{CART}$ 剪枝</h3><p>$\text{CART}$ 剪枝算法由两步组成：手下从省城算法产生的决策树 $T_0$ 底端开始不断简直，直到 $T_0$ 的根节点，形成一个子树序列 $\{T_0, T_1, \cdots T_n\}$；然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</p>
+<h4 id="text-CART-剪枝算法"><a href="#text-CART-剪枝算法" class="headerlink" title="$\text{CART}$ 剪枝算法"></a>$\text{CART}$ 剪枝算法</h4><p><strong>输入</strong>：$\text{CART}$ 算法生成的决策树 $T_0$；<br><strong>输出</strong>：最优决策树 $T_{\alpha}$。</p>
 
                 
               </div>

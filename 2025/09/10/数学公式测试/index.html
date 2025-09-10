@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="机器学习,计算机网络,算法,统计学习">
   
-    <meta name="description" content="这是一个测试 Pandoc 数学公式渲染的文章。 问题公式测试 用户报告的问题公式：( ^n) 另一个测试：(() &#x3D; _{i&#x3D;1}^{n} p(x_i|)) 行内公式测试 这是一个行内公式：\(x &#x3D; \frac{-b \pm \sqrt{b^2-4ac}}{2a}\)，应该只显示一次。 另一个行内公式：\(E &#x3D; mc^2\)。 使用反斜杠括号：(y &#x3D; mx + b) 块级公式测试 这是一个">
+    <meta name="description" content="这是一个测试 Pandoc 数学公式渲染的文章。 问题公式测试用户报告的问题公式：(\mathcal{X} \in \mathbb{R}^n) 另一个测试：(\mathcal{L}(\theta) &#x3D; \sum_{i&#x3D;1}^{n} \log p(x_i|\theta)) 行内公式测试这是一个行内公式：$x &#x3D; \frac{-b \pm \sqrt{b^2-4ac}}{2a}$，应该只显示一次。 另">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandoc 数学公式测试">
 <meta property="og:url" content="https://ddccffq.github.io/2025/09/10/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="这是一个测试 Pandoc 数学公式渲染的文章。 问题公式测试 用户报告的问题公式：( ^n) 另一个测试：(() &#x3D; _{i&#x3D;1}^{n} p(x_i|)) 行内公式测试 这是一个行内公式：\(x &#x3D; \frac{-b \pm \sqrt{b^2-4ac}}{2a}\)，应该只显示一次。 另一个行内公式：\(E &#x3D; mc^2\)。 使用反斜杠括号：(y &#x3D; mx + b) 块级公式测试 这是一个">
+<meta property="og:description" content="这是一个测试 Pandoc 数学公式渲染的文章。 问题公式测试用户报告的问题公式：(\mathcal{X} \in \mathbb{R}^n) 另一个测试：(\mathcal{L}(\theta) &#x3D; \sum_{i&#x3D;1}^{n} \log p(x_i|\theta)) 行内公式测试这是一个行内公式：$x &#x3D; \frac{-b \pm \sqrt{b^2-4ac}}{2a}$，应该只显示一次。 另">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-10T11:10:00.000Z">
 <meta property="article:modified_time" content="2025-09-10T11:08:53.345Z">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          266 字
+          276 字
         
       </span>
     
@@ -278,43 +278,27 @@
               <div class="markdown-body">
                 
                 <p>这是一个测试 Pandoc 数学公式渲染的文章。</p>
-<h2 id="问题公式测试">问题公式测试</h2>
-<p>用户报告的问题公式：( ^n)</p>
-<p>另一个测试：(() = _{i=1}^{n} p(x_i|))</p>
-<h2 id="行内公式测试">行内公式测试</h2>
-<p>这是一个行内公式：<span class="math inline">\(x = \frac{-b \pm
-\sqrt{b^2-4ac}}{2a}\)</span>，应该只显示一次。</p>
-<p>另一个行内公式：<span class="math inline">\(E = mc^2\)</span>。</p>
+<h2 id="问题公式测试"><a href="#问题公式测试" class="headerlink" title="问题公式测试"></a>问题公式测试</h2><p>用户报告的问题公式：(\mathcal{X} \in \mathbb{R}^n)</p>
+<p>另一个测试：(\mathcal{L}(\theta) = \sum_{i=1}^{n} \log p(x_i|\theta))</p>
+<h2 id="行内公式测试"><a href="#行内公式测试" class="headerlink" title="行内公式测试"></a>行内公式测试</h2><p>这是一个行内公式：$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$，应该只显示一次。</p>
+<p>另一个行内公式：$E = mc^2$。</p>
 <p>使用反斜杠括号：(y = mx + b)</p>
-<h2 id="块级公式测试">块级公式测试</h2>
-<p>这是一个块级公式：</p>
-<p><span class="math display">\[
+<h2 id="块级公式测试"><a href="#块级公式测试" class="headerlink" title="块级公式测试"></a>块级公式测试</h2><p>这是一个块级公式：</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\,
-\frac{\partial\vec{\mathbf{E}}}{\partial t} &amp;=
-\frac{4\pi}{c}\vec{\mathbf{j}} \\
-\nabla \cdot \vec{\mathbf{E}} &amp;= 4 \pi \rho \\
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\,
-\frac{\partial\vec{\mathbf{B}}}{\partial t} &amp;= \vec{\mathbf{0}} \\
-\nabla \cdot \vec{\mathbf{B}} &amp;= 0
-\end{aligned}
-\]</span></p>
-<p>使用反斜杠方括号： [ _{-}^{} e<sup>{-x</sup>2} dx = ]</p>
-<h2 id="特殊字体测试">特殊字体测试</h2>
-<ul>
-<li>花体字母：<span class="math inline">\(\mathcal{A}, \mathcal{B},
-\mathcal{X}, \mathcal{L}\)</span></li>
-<li>黑板粗体：<span class="math inline">\(\mathbb{R}, \mathbb{N},
-\mathbb{Z}, \mathbb{Q}\)</span></li>
-<li>向量：<span class="math inline">\(\vec{x}, \mathbf{y},
-\boldsymbol{\theta}\)</span></li>
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &= \frac{4\pi}{c}\vec{\mathbf{j}} \\
+\nabla \cdot \vec{\mathbf{E}} &= 4 \pi \rho \\
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &= \vec{\mathbf{0}} \\
+\nabla \cdot \vec{\mathbf{B}} &= 0
+\end{aligned}</script><p>使用反斜杠方括号：<br>[<br>\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}<br>]</p>
+<h2 id="特殊字体测试"><a href="#特殊字体测试" class="headerlink" title="特殊字体测试"></a>特殊字体测试</h2><ul>
+<li>花体字母：$\mathcal{A}, \mathcal{B}, \mathcal{X}, \mathcal{L}$</li>
+<li>黑板粗体：$\mathbb{R}, \mathbb{N}, \mathbb{Z}, \mathbb{Q}$</li>
+<li>向量：$\vec{x}, \mathbf{y}, \boldsymbol{\theta}$</li>
 </ul>
-<h2 id="复杂公式测试">复杂公式测试</h2>
-<p>贝叶斯定理： <span class="math display">\[P(\theta|D) =
-\frac{P(D|\theta)P(\theta)}{P(D)}\]</span></p>
-<p>似然函数： <span class="math display">\[\mathcal{L}(\theta) =
-\prod_{i=1}^{n} p(x_i|\theta)\]</span></p>
-<p>如果这些公式正确渲染，说明 Pandoc 配置成功！</p>
+<h2 id="复杂公式测试"><a href="#复杂公式测试" class="headerlink" title="复杂公式测试"></a>复杂公式测试</h2><p>贝叶斯定理：</p>
+<script type="math/tex; mode=display">P(\theta|D) = \frac{P(D|\theta)P(\theta)}{P(D)}</script><p>似然函数：</p>
+<script type="math/tex; mode=display">\mathcal{L}(\theta) = \prod_{i=1}^{n} p(x_i|\theta)</script><p>如果这些公式正确渲染，说明 Pandoc 配置成功！</p>
 
                 
               </div>

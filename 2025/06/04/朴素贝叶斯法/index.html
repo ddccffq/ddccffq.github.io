@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="机器学习,计算机网络,算法,统计学习">
   
-    <meta name="description" content="\(\text{Naive Bayes}\) 朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 \((2)\) 化简为公式 \((3)\)。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 \(P(Y)\)，条件概率 \(P(X |Y)\) 是在类别条件下输入的分布，后验概率 \(P(Y |X)\) 是在输入条件下类">
+    <meta name="description" content="$\text{Naive Bayes}$朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概">
 <meta property="og:type" content="article">
 <meta property="og:title" content="朴素贝叶斯法">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/04/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B3%95/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="\(\text{Naive Bayes}\) 朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 \((2)\) 化简为公式 \((3)\)。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 \(P(Y)\)，条件概率 \(P(X |Y)\) 是在类别条件下输入的分布，后验概率 \(P(Y |X)\) 是在输入条件下类">
+<meta property="og:description" content="$\text{Naive Bayes}$朴素贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行分类，这其中的机理涉及到两个概念：先验概率和后验概率；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-04T01:59:52.000Z">
 <meta property="article:modified_time" content="2025-06-06T02:19:28.000Z">
@@ -276,145 +276,58 @@
             
               <div class="markdown-body">
                 
-                <h2 id="textnaive-bayes"><span class="math inline">\(\text{Naive
-Bayes}\)</span></h2>
-<p><strong>朴素</strong>贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式
-<span class="math inline">\((2)\)</span> 化简为公式 <span
-class="math inline">\((3)\)</span>。此外，朴素贝叶斯法是对输入进行<strong>分类</strong>，这其中的机理涉及到两个概念：<strong>先验概率</strong>和<strong>后验概率</strong>；先验概率是类别的先验分布
-<span class="math inline">\(P(Y)\)</span>，条件概率 <span
-class="math inline">\(P(X |Y)\)</span>
-是在类别条件下输入的分布，后验概率 <span class="math inline">\(P(Y
-|X)\)</span>
-是在输入条件下类的分布；最后我们选择后验概率最大的分类情况作为输入的类标签。</p>
-<h2 id="朴素贝叶斯法的学习与分类">朴素贝叶斯法的学习与分类</h2>
-<h3 id="基本方法">基本方法</h3>
-<p>设输入空间 <span class="math inline">\(\mathcal{X} \in
-\mathbb{R}^n\)</span> 为 <span class="math inline">\(n\)</span>
-维向量的集合，输出空间类标记集合 <span class="math inline">\(\mathcal{Y}
-= \{c_1, c_2, \cdots, c_K \}\)</span>。训练数据集</p>
-<p><span class="math display">\[
-T = \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}
-\]</span></p>
-<p>由 <span class="math inline">\(P(X, Y)\)</span> 独立同分布产生。</p>
-<p>朴素贝叶斯法通过训练数据集学习联合概率分布 <span
-class="math inline">\(P(X,
-Y)\)</span>。具体地，学习以下先验概率分布及条件概率分布。先验概率分布</p>
-<p><span class="math display">\[
-P(Y = c_k), \quad k = 1, 2, \cdots K \tag{1}
-\]</span></p>
-<p>条件概率分布</p>
-<p><span class="math display">\[
-P(X = x |Y = c_k) = P(X^{(1)} = x^{(1)}, \cdots, X^{(n)} = x^{(n)} |Y =
-c_k), \quad k = 1, 2, \cdots, K \tag{2}
-\]</span></p>
-<p>于是学习到联合概率分布 <span class="math inline">\(P(X,
-Y)\)</span>。</p>
+                <h2 id="text-Naive-Bayes"><a href="#text-Naive-Bayes" class="headerlink" title="$\text{Naive Bayes}$"></a>$\text{Naive Bayes}$</h2><p><strong>朴素</strong>贝叶斯法基于一个强假设，即特征条件独立性。由条件独立性假设可将公式 $(2)$ 化简为公式 $(3)$。此外，朴素贝叶斯法是对输入进行<strong>分类</strong>，这其中的机理涉及到两个概念：<strong>先验概率</strong>和<strong>后验概率</strong>；先验概率是类别的先验分布 $P(Y)$，条件概率 $P(X |Y)$ 是在类别条件下输入的分布，后验概率 $P(Y |X)$ 是在输入条件下类的分布；最后我们选择后验概率最大的分类情况作为输入的类标签。</p>
+<h2 id="朴素贝叶斯法的学习与分类"><a href="#朴素贝叶斯法的学习与分类" class="headerlink" title="朴素贝叶斯法的学习与分类"></a>朴素贝叶斯法的学习与分类</h2><h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><p>设输入空间 $\mathcal{X} \in \mathbb{R}^n$ 为 $n$ 维向量的集合，输出空间类标记集合 $\mathcal{Y} = \{c_1, c_2, \cdots, c_K \}$。训练数据集</p>
+<script type="math/tex; mode=display">
+T = \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}</script><p>由 $P(X, Y)$ 独立同分布产生。</p>
+<p>朴素贝叶斯法通过训练数据集学习联合概率分布 $P(X, Y)$。具体地，学习以下先验概率分布及条件概率分布。先验概率分布</p>
+<script type="math/tex; mode=display">
+P(Y = c_k), \quad k = 1, 2, \cdots K \tag{1}</script><p>条件概率分布</p>
+<script type="math/tex; mode=display">
+P(X = x |Y = c_k) = P(X^{(1)} = x^{(1)}, \cdots, X^{(n)} = x^{(n)} |Y = c_k), \quad k = 1, 2, \cdots, K \tag{2}</script><p>于是学习到联合概率分布 $P(X, Y)$。</p>
 <p>由条件独立性假设得</p>
-<p><span class="math display">\[
-P(X = x |Y = c_k) = \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)
-\tag{3}
-\]</span></p>
-<p>朴素贝叶斯法分类时，对给定的输入 <span
-class="math inline">\(x\)</span>，通过学习到的模型计算后验概率分布 <span
-class="math inline">\(P(Y = c_k |X = x)\)</span>，将后验概率最大的类作为
-<span class="math inline">\(x\)</span> 的类输出。后验概率计算如下：</p>
-<p><span class="math display">\[
-P(Y = c_k |X = x) = \frac{P(X = x |Y = c_k) P(Y = c_k)}{\sum_{k} P(X = x
-|Y = c_k) P(Y = c_k)} \tag{4}
-\]</span></p>
-<p>也就是：</p>
-<p><span class="math display">\[
-P(Y = c_k |X = x) = \frac{P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} =
-x^{(j)} |Y = c_k)}{\sum_{k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} =
-x^{(j)} |Y = c_k)} \tag{5}
-\]</span></p>
-<p>这是朴素贝叶斯法分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
-<p><span class="math display">\[
-y = f(x) = \operatorname{arg} \max_{c_k} \frac{P(Y = c_k) \prod_{j =
-1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)}{\sum_{k} P(Y = c_k) \prod_{j =
-1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)} \tag{6}
-\]</span></p>
-<p>注意到分母对所有 <span class="math inline">\(c_k\)</span>
-都是相同的，所以，</p>
-<p><span class="math display">\[
-y = f(x) = \operatorname{arg} \max_{c_k} P(Y = c_k) \prod_{j = 1}^{n}
-P(X^{(j)} = x^{(j)} |Y = c_k) \tag{7}
-\]</span></p>
-<h3 id="后验概率最大化的含义">后验概率最大化的含义</h3>
-<p>朴素贝叶斯法将实例分到后验概率最大的类中。这等价于期望风险最小化。假设选择
-0-1 损失函数：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+P(X = x |Y = c_k) = \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k) \tag{3}</script><p>朴素贝叶斯法分类时，对给定的输入 $x$，通过学习到的模型计算后验概率分布 $P(Y = c_k |X = x)$，将后验概率最大的类作为 $x$ 的类输出。后验概率计算如下：</p>
+<script type="math/tex; mode=display">
+P(Y = c_k |X = x) = \frac{P(X = x |Y = c_k) P(Y = c_k)}{\sum_{k} P(X = x |Y = c_k) P(Y = c_k)} \tag{4}</script><p>也就是：</p>
+<script type="math/tex; mode=display">
+P(Y = c_k |X = x) = \frac{P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)}{\sum_{k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)} \tag{5}</script><p>这是朴素贝叶斯法分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
+<script type="math/tex; mode=display">
+y = f(x) = \operatorname{arg} \max_{c_k} \frac{P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)}{\sum_{k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)} \tag{6}</script><p>注意到分母对所有 $c_k$ 都是相同的，所以，</p>
+<script type="math/tex; mode=display">
+y = f(x) = \operatorname{arg} \max_{c_k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k) \tag{7}</script><h3 id="后验概率最大化的含义"><a href="#后验概率最大化的含义" class="headerlink" title="后验概率最大化的含义"></a>后验概率最大化的含义</h3><p>朴素贝叶斯法将实例分到后验概率最大的类中。这等价于期望风险最小化。假设选择 0-1 损失函数：</p>
+<script type="math/tex; mode=display">
 L(Y, f(X)) =  
 \begin{cases}
-1, &amp;Y \neq f(X)
+1, &Y \neq f(X)
 \\[10pt]
-0, &amp;Y = f(X)
-\end{cases}
-\]</span></p>
-<p>式中 <span class="math inline">\(f(X)\)</span>
-是分类决策函数。这时，期望风险函数为</p>
-<p><span class="math display">\[
-R_{\exp}(f) = \mathbf{E}[L(Y, f(X))]
-\]</span></p>
-<p>期望是对联合分布 <span class="math inline">\(P(X,
-Y)\)</span>取的。由此取条件期望：</p>
-<p><span class="math display">\[
-R_{\exp}(f) = \mathbf{E_{X}} \sum_{k = 1}^{K}[L(c_k, f(X))] P(c_k |X)
-\]</span></p>
-<p>为了使期望风险最小化，只需对 <span class="math inline">\(X =
-x\)</span> 逐个极小化，由此得到：</p>
-<p><span class="math display">\[
-f(x) = \operatorname{arg} \max_{y \in \mathcal{Y}} P(y = c_k |X = x)
-\]</span></p>
-<h2 id="朴素贝叶斯法的参数估计">朴素贝叶斯法的参数估计</h2>
-<h3 id="学习与分类算法">学习与分类算法</h3>
-<p>输入：训练数据 <span class="math inline">\(T = \{(x_1, y_1), (x_2,
-y_2), \dots, (x_N, y_N)\}\)</span>，其中 <span class="math inline">\(x_i
-= (x_i^{(1)}, x_i^{(2)}, \dots, x_i^{(n)})\)</span>，<span
-class="math inline">\(x_i^{(j)}\)</span> 是第 <span
-class="math inline">\(i\)</span> 个样本的第 <span
-class="math inline">\(j\)</span> 个特征，<span
-class="math inline">\(x_i^{(j)} \in \{a_{j1}, a_{j2}, \cdots,
-a_{jS_j}\}\)</span> 是特征 <span
-class="math inline">\(x_i^{(j)}\)</span> 的可能取值，<span
-class="math inline">\(y_i \in \{c_1, c_2, \cdots, c_K\}\)</span>。
-输出：实例 <span class="math inline">\(x\)</span> 的分类。</p>
-<p><strong>（1）计算先验概率及条件概率</strong> <span
-class="math display">\[
+0, &Y = f(X)
+\end{cases}</script><p>式中 $f(X)$ 是分类决策函数。这时，期望风险函数为</p>
+<script type="math/tex; mode=display">
+R_{\exp}(f) = \mathbf{E}[L(Y, f(X))]</script><p>期望是对联合分布 $P(X, Y)$取的。由此取条件期望：</p>
+<script type="math/tex; mode=display">
+R_{\exp}(f) = \mathbf{E_{X}} \sum_{k = 1}^{K}[L(c_k, f(X))] P(c_k |X)</script><p>为了使期望风险最小化，只需对 $X = x$ 逐个极小化，由此得到：</p>
+<script type="math/tex; mode=display">
+f(x) = \operatorname{arg} \max_{y \in \mathcal{Y}} P(y = c_k |X = x)</script><h2 id="朴素贝叶斯法的参数估计"><a href="#朴素贝叶斯法的参数估计" class="headerlink" title="朴素贝叶斯法的参数估计"></a>朴素贝叶斯法的参数估计</h2><h3 id="学习与分类算法"><a href="#学习与分类算法" class="headerlink" title="学习与分类算法"></a>学习与分类算法</h3><p>输入：训练数据 $T = \{(x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)\}$，其中 $x_i = (x_i^{(1)}, x_i^{(2)}, \dots, x_i^{(n)})$，$x_i^{(j)}$ 是第 $i$ 个样本的第 $j$ 个特征，$x_i^{(j)} \in \{a_{j1}, a_{j2}, \cdots, a_{jS_j}\}$ 是特征 $x_i^{(j)}$ 的可能取值，$y_i \in \{c_1, c_2, \cdots, c_K\}$。<br>输出：实例 $x$ 的分类。</p>
+<p><strong>（1）计算先验概率及条件概率</strong></p>
+<script type="math/tex; mode=display">
 \begin{align*}
-P(Y = c_k) &amp;= \frac{\sum_{i = 1}^{N} I(y_i = ck)}{N}, \quad k = 1,
-2, \cdots, K
+P(Y = c_k) &= \frac{\sum_{i = 1}^{N} I(y_i = ck)}{N}, \quad k = 1, 2, \cdots, K
 \\[10pt]
-P(X^{(j)} = a_{jl} |Y = c_k) &amp;= \frac{\sum_{i = 1}^{N} I(x_i^{(j)} =
-a_{jl}, y_i = c_k)}{\sum_{i = 1}^{N} I(y_i = c_k)}
+P(X^{(j)} = a_{jl} |Y = c_k) &= \frac{\sum_{i = 1}^{N} I(x_i^{(j)} = a_{jl}, y_i = c_k)}{\sum_{i = 1}^{N} I(y_i = c_k)}
 \\[10pt]
-j = 1, 2, \cdots, n; \quad l &amp;= 1, 2, \cdots, S_j; \quad k = 1, 2,
-\cdots, K
-\end{align*}
-\]</span> <strong>（2）对于给定实例 <span class="math inline">\(x =
-(x^{(1)}, x^{(2)}, \dots, x^{(n)})\)</span>，计算：</strong> <span
-class="math display">\[
-P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k), \quad k = 1,
-2, \cdots, K
-\]</span> <strong>（3）确定实例 <span class="math inline">\(x\)</span>
-的类</strong> <span class="math display">\[
-y = \operatorname{arg} \max_{c_k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)}
-= x^{(j)} |Y = c_k)
-\]</span></p>
-<h3 id="贝叶斯估计">贝叶斯估计</h3>
-<p>用极大似然估计可能会出现所要估计的概率值为 <span
-class="math inline">\(0\)</span> 的情况。这是采用贝叶斯估计。</p>
-<p><span class="math display">\[
+j = 1, 2, \cdots, n; \quad l &= 1, 2, \cdots, S_j; \quad k = 1, 2, \cdots, K
+\end{align*}</script><p><strong>（2）对于给定实例 $x = (x^{(1)}, x^{(2)}, \dots, x^{(n)})$，计算：</strong></p>
+<script type="math/tex; mode=display">
+P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k), \quad k = 1, 2, \cdots, K</script><p><strong>（3）确定实例 $x$ 的类</strong></p>
+<script type="math/tex; mode=display">
+y = \operatorname{arg} \max_{c_k} P(Y = c_k) \prod_{j = 1}^{n} P(X^{(j)} = x^{(j)} |Y = c_k)</script><h3 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h3><p>用极大似然估计可能会出现所要估计的概率值为 $0$ 的情况。这是采用贝叶斯估计。</p>
+<script type="math/tex; mode=display">
 \begin{align*}
-P_{\lambda}(X^{(j)} = a_{jl} |Y = c_k) &amp;= \frac{\sum_{i = 1}^{N}
-I(x_i^{(j)} = a_{jl}, y_i = c_k) + \lambda}{\sum_{i = 1}^{N} I(y_i =
-c_k) + S_j \lambda} \tag{8}
+P_{\lambda}(X^{(j)} = a_{jl} |Y = c_k) &= \frac{\sum_{i = 1}^{N} I(x_i^{(j)} = a_{jl}, y_i = c_k) + \lambda}{\sum_{i = 1}^{N} I(y_i = c_k) + S_j \lambda} \tag{8}
 \\[10pt]
-P_{\lambda}(Y = c_k) &amp;= \frac{\sum_{i = 1}^{N} I(y_i = c_k) +
-\lambda}{N + K \lambda} \tag{9}
-\end{align*}
-\]</span></p>
-<p>常取 <span class="math inline">\(\lambda = 1\)</span></p>
+P_{\lambda}(Y = c_k) &= \frac{\sum_{i = 1}^{N} I(y_i = c_k) + \lambda}{N + K \lambda} \tag{9}
+\end{align*}</script><p>常取 $\lambda = 1$</p>
 
                 
               </div>

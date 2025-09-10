@@ -19,12 +19,12 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="机器学习,计算机网络,算法,统计学习">
   
-    <meta name="description" content="AdaBoost 算法 Data Information： 二分类训练数据集 \(T\) \[ \begin{align} T&amp; &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \\ x_i \in \mathcal{X}&amp; &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}">
+    <meta name="description" content="AdaBoost 算法Data Information： 二分类训练数据集 $T$  \begin{align} T&amp; &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \\ x_i \in \mathcal{X}&amp; &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提升方法">
 <meta property="og:url" content="https://ddccffq.github.io/2025/05/30/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="AdaBoost 算法 Data Information： 二分类训练数据集 \(T\) \[ \begin{align} T&amp; &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \\ x_i \in \mathcal{X}&amp; &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}">
+<meta property="og:description" content="AdaBoost 算法Data Information： 二分类训练数据集 $T$  \begin{align} T&amp; &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \\ x_i \in \mathcal{X}&amp; &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-30T08:19:35.000Z">
 <meta property="article:modified_time" content="2025-06-06T04:50:16.000Z">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          250 字
+          251 字
         
       </span>
     
@@ -276,56 +276,33 @@
             
               <div class="markdown-body">
                 
-                <h2 id="adaboost-算法">AdaBoost 算法</h2>
-<p><strong><em>Data Information</em></strong>：
-<strong>二分类</strong>训练数据集 <span class="math inline">\(T\)</span>
-<span class="math display">\[
+                <h2 id="AdaBoost-算法"><a href="#AdaBoost-算法" class="headerlink" title="AdaBoost 算法"></a>AdaBoost 算法</h2><p><strong><em>Data Information</em></strong>： <strong>二分类</strong>训练数据集 $T$</p>
+<script type="math/tex; mode=display">
 \begin{align}
-T&amp; = \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}
+T& = \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}
 \\
-x_i \in \mathcal{X}&amp; = \mathbb{R}^n, \quad y_i \in \mathcal{Y} =
-\{+1, -1\}, \quad i = 1, 2, \ldots, N
-\end{align}
-\]</span></p>
-<p><strong><em>Algorithm Process</em></strong> 1.
-初始化训练数据的权值分布： <span class="math display">\[
-   D_1 = (w_{11}, w_{12}, \dots, w_{1N}), \quad w_{1i} = \frac{1}{N},
-\quad i = 1, 2, \dots, N
-   \]</span></p>
-<ol start="2" type="1">
-<li>用权值分布 <span class="math inline">\(D_i\)</span>
-<ol type="a">
-<li><p>计算不正确率： <span class="math display">\[
-e_m = \sum_{i=1}^{N} P(G_m(x_i) \neq y_i) = \sum_{i=1}^{N} w_{mi}
-I(G_m(x_i) \neq y_i)
-\]</span></p></li>
-<li><p>计算 <span class="math inline">\(\alpha_m\)</span>: <span
-class="math display">\[
-\alpha_m = \frac{1}{2} \ln \frac{1 - e_m}{e_m}
-\]</span></p></li>
-<li><p>更新权值分布: <span class="math display">\[
-D_{m+1} = (w_{m+1,1}, \dots, w_{m+1, N})
-\]</span> <span class="math display">\[
-w_{m+1,i} = \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))
-\]</span> <span class="math inline">\(Z_m\)</span> 是归一化因子。 <span
-class="math display">\[
-Z_m = \sum_{i=1}^{N} w_{mi} \exp(-\alpha_m y_i G_m(x_i))
-\]</span></p></li>
-</ol></li>
-<li>构造基本分类器的线性组合 <span class="math display">\[
-f(x) = \sum_{m=1}^{M} \alpha_m G_m(x)
-\]</span></li>
-<li>得到最终分类器 <span class="math display">\[
-G(x) = \operatorname{sign}\left( \sum_{m=1}^{M} \alpha_m G_m(x) \right)
-\]</span></li>
+x_i \in \mathcal{X}& = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1, -1\}, \quad i = 1, 2, \ldots, N
+\end{align}</script><p><strong><em>Algorithm Process</em></strong></p>
+<ol>
+<li><p>初始化训练数据的权值分布：</p>
+<script type="math/tex; mode=display">
+D_1 = (w_{11}, w_{12}, \dots, w_{1N}), \quad w_{1i} = \frac{1}{N}, \quad i = 1, 2, \dots, N</script></li>
+<li><p>用权值分布 $D_i$<br> (a) 计算不正确率：</p>
+<script type="math/tex; mode=display">
+ e_m = \sum_{i=1}^{N} P(G_m(x_i) \neq y_i) = \sum_{i=1}^{N} w_{mi} I(G_m(x_i) \neq y_i)</script><p> (b) 计算 $\alpha_m$:</p>
+<script type="math/tex; mode=display">
+ \alpha_m = \frac{1}{2} \ln \frac{1 - e_m}{e_m}</script><p> (c) 更新权值分布:</p>
+<script type="math/tex; mode=display">
+ D_{m+1} = (w_{m+1,1}, \dots, w_{m+1, N})</script><script type="math/tex; mode=display">
+ w_{m+1,i} = \frac{w_{mi}}{Z_m} \exp(-\alpha_m y_i G_m(x_i))</script><p> $Z_m$ 是归一化因子。</p>
+<script type="math/tex; mode=display">
+ Z_m = \sum_{i=1}^{N} w_{mi} \exp(-\alpha_m y_i G_m(x_i))</script></li>
+<li>构造基本分类器的线性组合<script type="math/tex; mode=display">
+ f(x) = \sum_{m=1}^{M} \alpha_m G_m(x)</script></li>
+<li>得到最终分类器<script type="math/tex; mode=display">
+ G(x) = \operatorname{sign}\left( \sum_{m=1}^{M} \alpha_m G_m(x) \right)</script></li>
 </ol>
-<h2 id="回归问题的提升树算法">回归问题的提升树算法</h2>
-<p><strong><em>Algorithm Process</em></strong> 输入：训练数据集 <span
-class="math inline">\(T = \{(x_1, y_1),(x_2, y_2), \cdots, (x_N,
-y_N)\}\)</span>； 输出：提升树 <span
-class="math inline">\(f_M(x)\)</span>。 （1）初始化 <span
-class="math inline">\(f_0(x) = 0\)</span>。 （2）对 <span
-class="math inline">\(m = 1, 2, \cdots, M\)</span>。</p>
+<h2 id="回归问题的提升树算法"><a href="#回归问题的提升树算法" class="headerlink" title="回归问题的提升树算法"></a>回归问题的提升树算法</h2><p><strong><em>Algorithm Process</em></strong><br>输入：训练数据集 $T = \{(x_1, y_1),(x_2, y_2), \cdots, (x_N, y_N)\}$；<br>输出：提升树 $f_M(x)$。<br>（1）初始化 $f_0(x) = 0$。<br>（2）对 $m = 1, 2, \cdots, M$。</p>
 
                 
               </div>
