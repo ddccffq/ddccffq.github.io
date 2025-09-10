@@ -19,12 +19,12 @@
   <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="机器学习,计算机网络,算法,统计学习">
   
-    <meta name="description" content="提取的请求信息       源和目标IP地址 源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号 源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）  Host字段 Host: www.msftconnecttest.com  User-Agent字段 User-Ag">
+    <meta name="description" content="提取的请求信息         源和目标IP地址  源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）   端口号  源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）   Host字段  Host: www.msftconnecttest.com   User-Agent字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wireshark Homework">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/17/Wireshark-Homework/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="提取的请求信息       源和目标IP地址 源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号 源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）  Host字段 Host: www.msftconnecttest.com  User-Agent字段 User-Ag">
+<meta property="og:description" content="提取的请求信息         源和目标IP地址  源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）   端口号  源端口: 54283（随机分配的客户端端口） 目标端口: 80（标准HTTP端口）   Host字段  Host: www.msftconnecttest.com   User-Agent字">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/06/17/Wireshark-Homework/Wireshark-Homework/my%20ipconfig.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/06/17/Wireshark-Homework/Wireshark-Homework/a%20request%20and%20its%20response.png">
@@ -99,11 +99,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -241,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          837 字
+          832 字
         
       </span>
     
@@ -294,41 +290,53 @@
             
               <div class="markdown-body">
                 
-                <h2 id="提取的请求信息"><a href="#提取的请求信息" class="headerlink" title="提取的请求信息"></a>提取的请求信息</h2><p><img src="Wireshark-Homework/my ipconfig.png" srcset="/img/loading.gif" lazyload alt="my ipconfig"></p>
-<p><img src="Wireshark-Homework/a request and its response.png" srcset="/img/loading.gif" lazyload alt="a request and its response"></p>
-<p><img src="Wireshark-Homework/get request.png" srcset="/img/loading.gif" lazyload alt="get request"></p>
-<p><img src="Wireshark-Homework/request right.png" srcset="/img/loading.gif" lazyload alt="request right"></p>
-<p><img src="Wireshark-Homework/response.png" srcset="/img/loading.gif" lazyload alt="response"></p>
-<p><img src="Wireshark-Homework/response more details.png" srcset="/img/loading.gif" lazyload alt="response more details"></p>
-<p><img src="Wireshark-Homework/response right.png" srcset="/img/loading.gif" lazyload alt="response right"></p>
-<h3 id="源和目标IP地址"><a href="#源和目标IP地址" class="headerlink" title="源和目标IP地址"></a>源和目标IP地址</h3><ul>
+                <h2 id="提取的请求信息"><a class="markdownIt-Anchor" href="#提取的请求信息"></a> 提取的请求信息</h2>
+<p><img src="Wireshark-Homework/my%20ipconfig.png" srcset="/img/loading.gif" lazyload alt="my ipconfig" /></p>
+<p><img src="Wireshark-Homework/a%20request%20and%20its%20response.png" srcset="/img/loading.gif" lazyload alt="a request and its response" /></p>
+<p><img src="Wireshark-Homework/get%20request.png" srcset="/img/loading.gif" lazyload alt="get request" /></p>
+<p><img src="Wireshark-Homework/request%20right.png" srcset="/img/loading.gif" lazyload alt="request right" /></p>
+<p><img src="Wireshark-Homework/response.png" srcset="/img/loading.gif" lazyload alt="response" /></p>
+<p><img src="Wireshark-Homework/response%20more%20details.png" srcset="/img/loading.gif" lazyload alt="response more details" /></p>
+<p><img src="Wireshark-Homework/response%20right.png" srcset="/img/loading.gif" lazyload alt="response right" /></p>
+<h3 id="源和目标ip地址"><a class="markdownIt-Anchor" href="#源和目标ip地址"></a> 源和目标IP地址</h3>
+<ul>
 <li><strong>源IP地址</strong>: 10.21.205.40（本机IP，如ipconfig截图所示）</li>
 <li><strong>目标IP地址</strong>: 104.110.191.133（服务器IP）</li>
 </ul>
-<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><ul>
+<h3 id="端口号"><a class="markdownIt-Anchor" href="#端口号"></a> 端口号</h3>
+<ul>
 <li><strong>源端口</strong>: 54283（随机分配的客户端端口）</li>
 <li><strong>目标端口</strong>: 80（标准HTTP端口）</li>
 </ul>
-<h3 id="Host字段"><a href="#Host字段" class="headerlink" title="Host字段"></a>Host字段</h3><ul>
+<h3 id="host字段"><a class="markdownIt-Anchor" href="#host字段"></a> Host字段</h3>
+<ul>
 <li><strong>Host</strong>: <code>www.msftconnecttest.com</code></li>
 </ul>
-<h3 id="User-Agent字段"><a href="#User-Agent字段" class="headerlink" title="User-Agent字段"></a>User-Agent字段</h3><ul>
+<h3 id="user-agent字段"><a class="markdownIt-Anchor" href="#user-agent字段"></a> User-Agent字段</h3>
+<ul>
 <li><strong>User-Agent</strong>: Microsoft NCSI</li>
 </ul>
-<h2 id="提取的响应信息"><a href="#提取的响应信息" class="headerlink" title="提取的响应信息"></a>提取的响应信息</h2><h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><ul>
+<h2 id="提取的响应信息"><a class="markdownIt-Anchor" href="#提取的响应信息"></a> 提取的响应信息</h2>
+<h3 id="状态码"><a class="markdownIt-Anchor" href="#状态码"></a> 状态码</h3>
+<ul>
 <li><strong>状态码</strong>: 200 OK</li>
 </ul>
-<h3 id="Content-Type字段"><a href="#Content-Type字段" class="headerlink" title="Content-Type字段"></a>Content-Type字段</h3><ul>
+<h3 id="content-type字段"><a class="markdownIt-Anchor" href="#content-type字段"></a> Content-Type字段</h3>
+<ul>
 <li><strong>Content-Type</strong>: text/plain</li>
 </ul>
-<h3 id="Server字段"><a href="#Server字段" class="headerlink" title="Server字段"></a>Server字段</h3><ul>
+<h3 id="server字段"><a class="markdownIt-Anchor" href="#server字段"></a> Server字段</h3>
+<ul>
 <li>在提供的截图中没有明确显示Server字段，该字段可能不存在于此HTTP响应中，或位于未捕获到的响应头部分</li>
 </ul>
-<h2 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h2><h3 id="HTTP请求的目标端口通常是多少？"><a href="#HTTP请求的目标端口通常是多少？" class="headerlink" title="HTTP请求的目标端口通常是多少？"></a>HTTP请求的目标端口通常是多少？</h3><p>HTTP请求的<strong>标准目标端口是80</strong>，如截图中所示。HTTPS则使用443端口。</p>
-<h3 id="报文中的字段形式是怎样的？"><a href="#报文中的字段形式是怎样的？" class="headerlink" title="报文中的字段形式是怎样的？"></a>报文中的字段形式是怎样的？</h3><p>HTTP报文使用<strong>纯文本格式</strong>，以”字段名: 字段值”的形式组织，每行一个字段，如截图中所示：</p>
+<h2 id="问题思考"><a class="markdownIt-Anchor" href="#问题思考"></a> 问题思考</h2>
+<h3 id="http请求的目标端口通常是多少"><a class="markdownIt-Anchor" href="#http请求的目标端口通常是多少"></a> HTTP请求的目标端口通常是多少？</h3>
+<p>HTTP请求的<strong>标准目标端口是80</strong>，如截图中所示。HTTPS则使用443端口。</p>
+<h3 id="报文中的字段形式是怎样的"><a class="markdownIt-Anchor" href="#报文中的字段形式是怎样的"></a> 报文中的字段形式是怎样的？</h3>
+<p>HTTP报文使用<strong>纯文本格式</strong>，以&quot;字段名: 字段值&quot;的形式组织，每行一个字段，如截图中所示：</p>
 <ul>
 <li><code>Host: www.msftconnecttest.com</code></li>
-<li><code>User-Agent: Microsoft NCSI</code> </li>
+<li><code>User-Agent: Microsoft NCSI</code></li>
 <li><code>Content-Type: text/plain</code></li>
 </ul>
 <p>Wireshark同时提供了三种查看方式：</p>
@@ -338,26 +346,32 @@
 <li><strong>结构化协议树</strong>（按协议层级组织的视图）</li>
 </ol>
 <p>在Wireshark中可以看到，虽然在网络上传输时是二进制字节流，但HTTP协议本身是<strong>基于文本</strong>的协议。</p>
-<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p><img src="Wireshark-Homework/四条信息.png" srcset="/img/loading.gif" lazyload alt="四条信息"></p>
-<p><img src="Wireshark-Homework/config.png" srcset="/img/loading.gif" lazyload alt="config"></p>
-<p><img src="Wireshark-Homework/A request.png" srcset="/img/loading.gif" lazyload alt="A request"></p>
-<p><img src="Wireshark-Homework/AAAA request.png" srcset="/img/loading.gif" lazyload alt="AAAA request"></p>
-<p><img src="Wireshark-Homework/A response.png" srcset="/img/loading.gif" lazyload alt="A response"></p>
-<p><img src="Wireshark-Homework/AAAA response.png" srcset="/img/loading.gif" lazyload alt="AAAA response"></p>
-<h2 id="清除DNS缓存"><a href="#清除DNS缓存" class="headerlink" title="清除DNS缓存"></a>清除DNS缓存</h2><p>从终端截图可以看到，已使用命令<code>ipconfig /flushdns</code>成功清除了DNS缓存：</p>
+<h2 id="dns"><a class="markdownIt-Anchor" href="#dns"></a> DNS</h2>
+<p><img src="Wireshark-Homework/%E5%9B%9B%E6%9D%A1%E4%BF%A1%E6%81%AF.png" srcset="/img/loading.gif" lazyload alt="四条信息" /></p>
+<p><img src="Wireshark-Homework/config.png" srcset="/img/loading.gif" lazyload alt="config" /></p>
+<p><img src="Wireshark-Homework/A%20request.png" srcset="/img/loading.gif" lazyload alt="A request" /></p>
+<p><img src="Wireshark-Homework/AAAA%20request.png" srcset="/img/loading.gif" lazyload alt="AAAA request" /></p>
+<p><img src="Wireshark-Homework/A%20response.png" srcset="/img/loading.gif" lazyload alt="A response" /></p>
+<p><img src="Wireshark-Homework/AAAA%20response.png" srcset="/img/loading.gif" lazyload alt="AAAA response" /></p>
+<h2 id="清除dns缓存"><a class="markdownIt-Anchor" href="#清除dns缓存"></a> 清除DNS缓存</h2>
+<p>从终端截图可以看到，已使用命令<code>ipconfig /flushdns</code>成功清除了DNS缓存：</p>
 <ul>
 <li>终端显示：<strong>“已成功刷新 DNS 解析缓存”</strong></li>
 <li>使用<code>nslookup</code>确认DNS服务器为<strong>10.3.9.5</strong></li>
 </ul>
-<h2 id="DNS查询与响应报文分析"><a href="#DNS查询与响应报文分析" class="headerlink" title="DNS查询与响应报文分析"></a>DNS查询与响应报文分析</h2><h3 id="查询报文分析"><a href="#查询报文分析" class="headerlink" title="查询报文分析"></a>查询报文分析</h3><p>根据截图，可以看到多个DNS查询：</p>
+<h2 id="dns查询与响应报文分析"><a class="markdownIt-Anchor" href="#dns查询与响应报文分析"></a> DNS查询与响应报文分析</h2>
+<h3 id="查询报文分析"><a class="markdownIt-Anchor" href="#查询报文分析"></a> 查询报文分析</h3>
+<p>根据截图，可以看到多个DNS查询：</p>
 <ol>
-<li><strong>查询域名</strong>：www.163.com</li>
-<li><strong>查询类型</strong>：<ul>
+<li><strong>查询域名</strong>：<a target="_blank" rel="noopener" href="http://www.163.com">www.163.com</a></li>
+<li><strong>查询类型</strong>：
+<ul>
 <li>A记录查询（IPv4地址）- Type: A (1)</li>
 <li>AAAA记录查询（IPv6地址）- Type: AAAA (28)</li>
 </ul>
 </li>
-<li><strong>查询特征</strong>：<ul>
+<li><strong>查询特征</strong>：
+<ul>
 <li>Transaction ID: 0x8d99（A记录查询）和0xaa7c（AAAA记录查询）</li>
 <li>源端口：55570、59624（随机客户端端口）</li>
 <li>目标端口：<strong>53</strong>（标准DNS端口）</li>
@@ -365,10 +379,13 @@
 </ul>
 </li>
 </ol>
-<h3 id="响应报文分析"><a href="#响应报文分析" class="headerlink" title="响应报文分析"></a>响应报文分析</h3><ol>
+<h3 id="响应报文分析"><a class="markdownIt-Anchor" href="#响应报文分析"></a> 响应报文分析</h3>
+<ol>
 <li><strong>查询域名</strong>：<code>www.163.com</code></li>
-<li><strong>响应IP地址</strong>：多个IP地址返回，包括：<ul>
-<li><strong>IPv4地址</strong>（A记录）：<ul>
+<li><strong>响应IP地址</strong>：多个IP地址返回，包括：
+<ul>
+<li><strong>IPv4地址</strong>（A记录）：
+<ul>
 <li>220.181.171.126</li>
 <li>220.181.10.69</li>
 <li>220.181.10.67</li>
@@ -377,7 +394,8 @@
 <li>等多个IP地址</li>
 </ul>
 </li>
-<li><strong>CNAME记录</strong>：<ul>
+<li><strong>CNAME记录</strong>：
+<ul>
 <li><code>www.163.com.163jiasu.com</code></li>
 <li><code>www.163.com.w.kunluncan.com</code></li>
 </ul>
@@ -385,33 +403,67 @@
 </ul>
 </li>
 </ol>
-<h2 id="DNS协议特性分析"><a href="#DNS协议特性分析" class="headerlink" title="DNS协议特性分析"></a>DNS协议特性分析</h2><h3 id="DNS使用的端口号"><a href="#DNS使用的端口号" class="headerlink" title="DNS使用的端口号"></a>DNS使用的端口号</h3><p>从截图中可以明确看到：</p>
+<h2 id="dns协议特性分析"><a class="markdownIt-Anchor" href="#dns协议特性分析"></a> DNS协议特性分析</h2>
+<h3 id="dns使用的端口号"><a class="markdownIt-Anchor" href="#dns使用的端口号"></a> DNS使用的端口号</h3>
+<p>从截图中可以明确看到：</p>
 <ul>
 <li><strong>服务器端口</strong>：53（固定标准端口）</li>
 <li><strong>客户端端口</strong>：随机高位端口（如55570、59624）</li>
 </ul>
-<h3 id="DNS使用的传输协议"><a href="#DNS使用的传输协议" class="headerlink" title="DNS使用的传输协议"></a>DNS使用的传输协议</h3><p>截图中可以看到：</p>
+<h3 id="dns使用的传输协议"><a class="markdownIt-Anchor" href="#dns使用的传输协议"></a> DNS使用的传输协议</h3>
+<p>截图中可以看到：</p>
 <ul>
-<li><strong>主要使用UDP协议</strong>，因为：<ul>
-<li>数据包标识为”User Datagram Protocol”</li>
+<li><strong>主要使用UDP协议</strong>，因为：
+<ul>
+<li>数据包标识为&quot;User Datagram Protocol&quot;</li>
 <li>相比TCP更快速，适合简短的DNS查询</li>
 <li>标准DNS查询通常小于512字节，适合UDP传输</li>
 </ul>
 </li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
-
-| DNS特性 | 值 | 说明 |
-|---------|-----|------|
-| 查询域名 | `www.163.com` | 中国网易公司网站 |
-| 查询类型 | A 和 AAAA | 分别查询IPv4和IPv6地址 |
-| 客户端端口 | 55570、59624等 | 随机高位端口 |
-| 服务器端口 | 53 | DNS标准端口 |
-| 传输协议 | UDP | 无连接、快速、适合短查询 |
-| 查询事务ID | 0x8d99、0xaa7c | 确保请求和响应匹配的唯一标识符 |
-
+<table>
+<thead>
+<tr>
+<th>DNS特性</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询域名</td>
+<td><code>www.163.com</code></td>
+<td>中国网易公司网站</td>
+</tr>
+<tr>
+<td>查询类型</td>
+<td>A 和 AAAA</td>
+<td>分别查询IPv4和IPv6地址</td>
+</tr>
+<tr>
+<td>客户端端口</td>
+<td>55570、59624等</td>
+<td>随机高位端口</td>
+</tr>
+<tr>
+<td>服务器端口</td>
+<td>53</td>
+<td>DNS标准端口</td>
+</tr>
+<tr>
+<td>传输协议</td>
+<td>UDP</td>
+<td>无连接、快速、适合短查询</td>
+</tr>
+<tr>
+<td>查询事务ID</td>
+<td>0x8d99、0xaa7c</td>
+<td>确保请求和响应匹配的唯一标识符</td>
+</tr>
+</tbody>
+</table>
 </div>
-
 <p><strong>补充说明</strong>：虽然本次抓包显示使用UDP，但DNS协议在某些情况下也会使用TCP：</p>
 <ul>
 <li>当响应大小超过512字节时</li>
@@ -500,6 +552,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/09/10/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95/" title="��ѧ��ʽ����">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">��ѧ��ʽ����</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
