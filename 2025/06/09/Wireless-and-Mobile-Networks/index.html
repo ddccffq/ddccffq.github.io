@@ -19,12 +19,12 @@
   <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="Computer Network,Wireless and Mobile Networks">
   
-    <meta name="description" content="Introduction  Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wi">
+    <meta name="description" content="Introduction Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wire">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wireless and Mobile Networks">
 <meta property="og:url" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/index.html">
 <meta property="og:site_name" content="ddccffq的技术博客">
-<meta property="og:description" content="Introduction  Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wi">
+<meta property="og:description" content="Introduction Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wire">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png">
@@ -279,8 +279,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h1>
-<h2 id="elements-of-a-wireless-networks"><a class="markdownIt-Anchor" href="#elements-of-a-wireless-networks"></a> Elements of a Wireless Networks</h2>
+                <h1>Introduction</h1>
+<h2 id="Elements-of-a-Wireless-Networks">Elements of a Wireless Networks</h2>
 <ul>
 <li><strong>Wireless Hosts:</strong> laptop, PDA, IP phone.</li>
 <li><strong>Base Station:</strong>
@@ -312,7 +312,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="wireless-network-taxonomy"><a class="markdownIt-Anchor" href="#wireless-network-taxonomy"></a> Wireless Network Taxonomy</h2>
+<h2 id="Wireless-Network-Taxonomy">Wireless Network Taxonomy</h2>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
@@ -336,7 +336,7 @@
 </tbody>
 </table>
 </div>
-<h1 id="wireless-link-characteristics"><a class="markdownIt-Anchor" href="#wireless-link-characteristics"></a> Wireless Link Characteristics</h1>
+<h1>Wireless Link Characteristics</h1>
 <blockquote>
 <p>从下文可以分析出，这里的 link 不能翻译成<strong>链路</strong>而应该翻译成<strong>连接</strong>。</p>
 </blockquote>
@@ -356,26 +356,27 @@
 <li><strong>SNR (Signal-to-Noise Ratio):</strong>
 <ul>
 <li>larger SNR, easier to extract signal from noise.</li>
-<li>increases power <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> increases SNR <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> decreases <strong>BER (Bit Error Rate)</strong>.</li>
+<li>increases power $\to$ increases SNR $\to$ decreases <strong>BER (Bit Error Rate)</strong>.</li>
 <li>Given SNR, choose physical layer that meets BER requirement, giving highest throughput.</li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">R</mi></mrow><mo>=</mo><mfrac><msub><mi>P</mi><mtext>signal</mtext></msub><msub><mi>P</mi><mtext>noise</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">\mathrm{SNR} = \frac{P_{\text{signal}}}{P_{\text{noise}}}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">S</span><span class="mord mathrm">N</span><span class="mord mathrm">R</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.19633em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">noise</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">signal</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>实际中用单位 db 表示。SNR 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
+<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为<br>
+$$<br>
+\mathrm{SNR} = \frac{P_{\text{signal}}}{P_{\text{noise}}}<br>
+$$<br>
+实际中用单位 db 表示。SNR 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
 </blockquote>
-<h2 id="code-division-multiple-access-cdma"><a class="markdownIt-Anchor" href="#code-division-multiple-access-cdma"></a> Code Division Multiple Access (CDMA)</h2>
+<h2 id="Code-Division-Multiple-Access-CDMA">Code Division Multiple Access (CDMA)</h2>
 <blockquote>
 <p>码分多址，这个我们在 data link layer 提到过，类似的有 TDMA 和 FDMA。需要注意的是 CDMA 是一个 physical layer protocol。所以下文用的是 channel 而不是 link。</p>
 </blockquote>
 <p>A kind of <strong>channel partitioning protocol</strong>.</p>
 <ul>
 <li><strong>Usage</strong>: Used in <strong>wireless broadcast channels</strong> (e.g., cellular, satellite).</li>
-<li><strong>Code Assignment</strong>: Each user is assigned a <strong>unique “code”</strong> (code set partitioning).</li>
-<li><strong>Frequency Sharing</strong>: All users share the same frequency but use distinct <strong>“chipping”</strong> sequences to encode data.</li>
+<li><strong>Code Assignment</strong>: Each user is assigned a <strong>unique &quot;code&quot;</strong> (code set partitioning).</li>
+<li><strong>Frequency Sharing</strong>: All users share the same frequency but use distinct <strong>&quot;chipping&quot;</strong> sequences to encode data.</li>
 <li><strong>Signal Encoding</strong>:
 <ul>
 <li>Encoded signal = (original data)  (chipping sequence).</li>
@@ -391,15 +392,15 @@
 <blockquote>
 <p>这里提到的 unique code 和 chipping sequence 是同一个事物。</p>
 </blockquote>
-<h3 id="cdma-encodedecode-process"><a class="markdownIt-Anchor" href="#cdma-encodedecode-process"></a> CDMA Encode/Decode Process</h3>
-<h4 id="sender"><a class="markdownIt-Anchor" href="#sender"></a> <strong>Sender:</strong></h4>
+<h3 id="CDMA-Encode-Decode-Process">CDMA Encode/Decode Process</h3>
+<h4 id="Sender"><strong>Sender:</strong></h4>
 <ol>
 <li>
 <p><strong>Data Encoding</strong>:</p>
 <ul>
 <li>Each sender has a unique code (chipping sequence) <code>c_m</code>.</li>
-<li>Encoded signal for each data bit:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>Z</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>m</mi></mrow></msub><mo>=</mo><msub><mi>d</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>c</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">Z_{i,m} = d_i \cdot c_m 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<li>Encoded signal for each data bit:<br>
+$$ Z_{i,m} = d_i \cdot c_m $$
 <ul>
 <li><code>d_i</code>: Original data bit.</li>
 <li><code>c_m</code>: Chipping sequence.</li>
@@ -415,13 +416,13 @@
 </ul>
 </li>
 </ol>
-<h4 id="receiver"><a class="markdownIt-Anchor" href="#receiver"></a> <strong>Receiver:</strong></h4>
+<h4 id="Receiver"><strong>Receiver:</strong></h4>
 <ol>
 <li>
 <p><strong>Signal Decoding</strong>:</p>
 <ul>
-<li>Receiver uses the inner product of the received signal and its own chipping sequence to decode data:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow><mi>M</mi></munderover><msub><mi>Z</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>m</mi></mrow></msub><mo>⋅</mo><msub><mi>c</mi><mi>m</mi></msub></mrow><mi>M</mi></mfrac></mrow><annotation encoding="application/x-tex">D_i = \frac{\sum_{m=1}^{M} Z_{i,m} \cdot c_m}{M} 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.356941em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.670941em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<li>Receiver uses the inner product of the received signal and its own chipping sequence to decode data:<br>
+$$ D_i = \frac{\sum_{m=1}^{M} Z_{i,m} \cdot c_m}{M} $$
 <ul>
 <li><code>D_i</code>: Decoded data bit.</li>
 <li><code>Z_&#123;i,m&#125;</code>: Received signal.</li>
@@ -438,10 +439,10 @@
 </li>
 </ol>
 <blockquote>
-<p>每个发送端都被分配一个唯一的码字（chipping sequence），码字的长度应该足够长，按理来讲，如果有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 个用户，码字长度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>≥</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">M \geq N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>。码字具体为：用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 分别代表 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在 channel 中叠加。解码公式有一个前提：要求 user 使用的码字之间正交。除以 M 是为保证归一化。</p>
+<p>每个发送端都被分配一个唯一的码字（chipping sequence），码字的长度应该足够长，按理来讲，如果有 $N$ 个用户，码字长度 $M \geq N$。码字具体为：用 $+1$ 和 $-1$ 分别代表 $1$ 和 $0$。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在 channel 中叠加。解码公式有一个前提：要求 user 使用的码字之间正交。除以 M 是为保证归一化。</p>
 <p>还要补充的是，CDMA 的核心思想是：所有用户在 <strong>same frequency</strong> 和 <strong>same time</strong> 的情况下发送信息。此时应用 CDMA。如果 frequency 不一致，也不会发生信号叠加，此时应该用 FDMA。</p>
 </blockquote>
-<h1 id="wifi-80211-wireless-lans"><a class="markdownIt-Anchor" href="#wifi-80211-wireless-lans"></a> WiFi: 802.11 Wireless LANs</h1>
+<h1>WiFi: 802.11 Wireless LANs</h1>
 <blockquote>
 <p>前部分介绍了 wireless link 及其用到的 CDMA protocol，</p>
 </blockquote>
@@ -454,7 +455,7 @@
 <ul>
 <li>all have base-station and ad-hoc network versions.</li>
 </ul>
-<h2 id="the-80211-lan-architecture"><a class="markdownIt-Anchor" href="#the-80211-lan-architecture"></a> The 802.11 LAN Architecture</h2>
+<h2 id="The-802-11-LAN-Architecture">The 802.11 LAN Architecture</h2>
 <ul>
 <li>
 <p>wireless host communicates with base station (base station = access point (AP))</p>
@@ -532,7 +533,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="80211-channels-association"><a class="markdownIt-Anchor" href="#80211-channels-association"></a> 802.11: Channels, Association</h2>
+<h2 id="802-11-Channels-Association">802.11: Channels, Association</h2>
 <ul>
 <li><strong>Frequency Spectrum</strong>: 2.4GHz-2.485GHz (802.11b) divided into 11 channels.</li>
 <li><strong>AP Configuration</strong>: Admin selects frequency for AP; interference may occur if neighboring APs use the same channel.</li>
@@ -548,7 +549,7 @@
 <blockquote>
 <p>前文我们讲 CDMA 的时候提到了： CDMA 的所有用户使用相同的 frequency。通常情况下，一个 AP 在同一时刻只工作在一个信道（即一个频率范围），只能收发该信道上的无线信号。</p>
 </blockquote>
-<h2 id="80211-passiveactive-scanning"><a class="markdownIt-Anchor" href="#80211-passiveactive-scanning"></a> 802.11: Passive/Active Scanning</h2>
+<h2 id="802-11-Passive-Active-Scanning">802.11: Passive/Active Scanning</h2>
 <blockquote>
 <p>Beacon Frame（信标帧） 是 IEEE 802.11 无线局域网（WiFi）协议中由接入点（AP, Access Point）周期性广播的一种管理帧。</p>
 </blockquote>
@@ -574,13 +575,13 @@
 <blockquote>
 <p>这两种方式最后两步都是一样的。</p>
 </blockquote>
-<h2 id="ieee-80211-multiple-access"><a class="markdownIt-Anchor" href="#ieee-80211-multiple-access"></a> IEEE 802.11: Multiple Access</h2>
+<h2 id="IEEE-802-11-Multiple-Access">IEEE 802.11: Multiple Access</h2>
 <blockquote>
 <p>data link layer</p>
 </blockquote>
-<h3 id="collision-avoidance-in-80211"><a class="markdownIt-Anchor" href="#collision-avoidance-in-80211"></a> Collision Avoidance in 802.11</h3>
+<h3 id="Collision-Avoidance-in-802-11">Collision Avoidance in 802.11</h3>
 <ul>
-<li><strong>Problem</strong>: Collisions occur when <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> more nodes transmit simultaneously.</li>
+<li><strong>Problem</strong>: Collisions occur when $2$ more nodes transmit simultaneously.</li>
 <li><strong>Solution</strong>:
 <ul>
 <li><strong>CSMA</strong>: Sense the channel before transmitting to avoid collisions with ongoing transmissions.</li>
@@ -594,11 +595,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="ieee-80211-mac-protocol-csmaca"><a class="markdownIt-Anchor" href="#ieee-80211-mac-protocol-csmaca"></a> IEEE 802.11 MAC Protocol: CSMA/CA</h2>
+<h2 id="IEEE-802-11-MAC-Protocol-CSMA-CA">IEEE 802.11 MAC Protocol: CSMA/CA</h2>
 <blockquote>
 <p>DIFS 是<strong>分布式帧间间隔</strong>（Distributed Inter-Frame Space）的缩写。SIFS 是<strong>短帧间间隔</strong>（Short Inter-Frame Space）的缩写。<strong>Link（链路）</strong>：在有线网络中，通常指两个节点之间的物理连接。<strong>Channel（信道）</strong>：在无线网络中，指的是一段特定频率范围内的无线传输资源，多个节点可以共享同一个信道。</p>
 </blockquote>
-<h3 id="80211-sender"><a class="markdownIt-Anchor" href="#80211-sender"></a> <strong>802.11 Sender</strong></h3>
+<h3 id="802-11-Sender"><strong>802.11 Sender</strong></h3>
 <ol>
 <li><strong>Channel Idle</strong>:
 <ul>
@@ -610,11 +611,11 @@
 <li>Start a random backoff timer.</li>
 <li>Timer counts down while the channel is idle.</li>
 <li>Transmit when the timer expires.</li>
-<li>If no ACK is received, increase the random backoff interval and repeat step <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>.</li>
+<li>If no ACK is received, increase the random backoff interval and repeat step $2$.</li>
 </ul>
 </li>
 </ol>
-<h3 id="80211-receiver"><a class="markdownIt-Anchor" href="#80211-receiver"></a> <strong>802.11 Receiver</strong></h3>
+<h3 id="802-11-Receiver"><strong>802.11 Receiver</strong></h3>
 <ul>
 <li>If the frame is received correctly:
 <ul>
@@ -622,7 +623,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="avoiding-collisions-rtscts-mechanism"><a class="markdownIt-Anchor" href="#avoiding-collisions-rtscts-mechanism"></a> Avoiding Collisions: RTS/CTS Mechanism</h3>
+<h3 id="Avoiding-Collisions-RTS-CTS-Mechanism">Avoiding Collisions: RTS/CTS Mechanism</h3>
 <ul>
 <li><strong>Idea</strong>: Allow sender to reserve the channel to avoid collisions of long data frames.</li>
 <li><strong>Process</strong>:
@@ -658,7 +659,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="80211-addressing"><a class="markdownIt-Anchor" href="#80211-addressing"></a> 802.11 Addressing</h2>
+<h2 id="802-11-Addressing">802.11 Addressing</h2>
 <p>下表总结了 802.11 帧的各字段及其作用：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
@@ -725,36 +726,36 @@
 <li>address 3：AP 所连接的路由器接口的 MAC 地址</li>
 <li>address 4：仅 ad hoc 模式下使用</li>
 </ul>
-<h2 id="mobility-within-same-subnet"><a class="markdownIt-Anchor" href="#mobility-within-same-subnet"></a> Mobility within Same Subnet</h2>
+<h2 id="Mobility-within-Same-Subnet">Mobility within Same Subnet</h2>
 <p>Host 在统一子网下不同 BSS 移动，switch 如何得知 host 当前在哪个 BSS 内？实际上 switch 能通过 self-learning：switch will see frame from H1 and remember which switch port can be used to reach H1。</p>
-<h2 id="power-management"><a class="markdownIt-Anchor" href="#power-management"></a> Power Management</h2>
+<h2 id="Power-Management">Power Management</h2>
 <ul>
-<li><strong>定时唤醒机制</strong>：<br />
+<li><strong>定时唤醒机制</strong>：<br>
 休眠节点在进入省电模式（Power Save Mode）时，会本地保存下一个 beacon frame 的预计到达时间，并设置定时器（timer）。</li>
-<li><strong>硬件支持</strong>：<br />
+<li><strong>硬件支持</strong>：<br>
 无线网卡硬件通常具备低功耗计时功能，可以在主机休眠时保持计时，确保在 beacon frame 到来前自动唤醒。</li>
-<li><strong>唤醒流程</strong>：<br />
+<li><strong>唤醒流程</strong>：<br>
 节点休眠后，定时器到达设定时间，节点自动唤醒，监听并接收 AP 广播的 beacon frame，判断是否有待接收的数据。</li>
-<li><strong>节能的核心在于节点休眠</strong>：<br />
+<li><strong>节能的核心在于节点休眠</strong>：<br>
 节能的关键不是 AP 是否省电，而是<strong>无线终端（如手机、笔记本）可以长时间休眠，仅在 beacon frame 到来时短暂唤醒</strong>，大大减少无线网卡的活跃时间和能耗。</li>
-<li><strong>AP 通常为插电设备</strong>：<br />
+<li><strong>AP 通常为插电设备</strong>：<br>
 AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常是接入电源的设备，不依赖电池。</li>
-<li><strong>终端省电效果显著</strong>：<br />
+<li><strong>终端省电效果显著</strong>：<br>
 终端设备在无数据通信时可以关闭大部分无线模块，仅保留低功耗计时和唤醒功能，只有在需要接收数据或发送数据时才唤醒主模块，极大延长了电池续航。</li>
 </ul>
-<h2 id="80215-personal-area-network"><a class="markdownIt-Anchor" href="#80215-personal-area-network"></a> 802.15: Personal Area Network</h2>
+<h2 id="802-15-Personal-Area-Network">802.15: Personal Area Network</h2>
 <p>个人热点。使用 ad hoc mode，参考 bluetooth protocol。</p>
-<h2 id="80216-wimax"><a class="markdownIt-Anchor" href="#80216-wimax"></a> 802.16: WiMAX</h2>
-<h1 id="cellular-internet-access"><a class="markdownIt-Anchor" href="#cellular-internet-access"></a> Cellular Internet Access</h1>
+<h2 id="802-16-WiMAX">802.16: WiMAX</h2>
+<h1>Cellular Internet Access</h1>
 <p>介绍几个概念：</p>
 <ul>
 <li><strong>Cell</strong>：一个区域，里面有一个 base station，mobile users 通过这个基站连接到 network。</li>
 <li><strong>MCS</strong>：Mobile Switching Center。连接 base station 和 wired network。</li>
 </ul>
-<h2 id="the-first-hop"><a class="markdownIt-Anchor" href="#the-first-hop"></a> The First Hop</h2>
+<h2 id="The-First-Hop">The First Hop</h2>
 <p>第一跳为 users 到 base station。显然是一个 multiple senders 的场景，可以用 FDMA、TDMA 和 CDMA 分离数据。</p>
-<h2 id="cellular-standards-brief-survey"><a class="markdownIt-Anchor" href="#cellular-standards-brief-survey"></a> Cellular standards: brief survey</h2>
-<h3 id="2g-systems"><a class="markdownIt-Anchor" href="#2g-systems"></a> <strong>2G Systems</strong></h3>
+<h2 id="Cellular-standards-brief-survey">Cellular standards: brief survey</h2>
+<h3 id="2G-Systems"><strong>2G Systems</strong></h3>
 <ul>
 <li><strong>Voice Channels</strong>:
 <ul>
@@ -764,7 +765,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ul>
 </li>
 </ul>
-<h3 id="25g-systems"><a class="markdownIt-Anchor" href="#25g-systems"></a> <strong>2.5G Systems</strong></h3>
+<h3 id="2-5G-Systems"><strong>2.5G Systems</strong></h3>
 <ul>
 <li><strong>Voice and Data Channels</strong>:
 <ul>
@@ -774,7 +775,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ul>
 </li>
 </ul>
-<h3 id="3g-systems"><a class="markdownIt-Anchor" href="#3g-systems"></a> <strong>3G Systems</strong></h3>
+<h3 id="3G-Systems"><strong>3G Systems</strong></h3>
 <ul>
 <li><strong>Voice/Data</strong>:
 <ul>
@@ -783,7 +784,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ul>
 </li>
 </ul>
-<h3 id="4g-systems"><a class="markdownIt-Anchor" href="#4g-systems"></a> <strong>4G Systems</strong></h3>
+<h3 id="4G-Systems"><strong>4G Systems</strong></h3>
 <ul>
 <li><strong>Voice/Data</strong>:
 <ul>
@@ -791,34 +792,34 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ul>
 </li>
 </ul>
-<h1 id="principles-addressing-and-routing-to-mobile-users"><a class="markdownIt-Anchor" href="#principles-addressing-and-routing-to-mobile-users"></a> Principles: Addressing and Routing to Mobile Users</h1>
+<h1>Principles: Addressing and Routing to Mobile Users</h1>
 <p><strong>mobile user, passing through multiple access point while maintaining ongoing connections (like cell phone)</strong></p>
-<h2 id="mobility-vocabulary"><a class="markdownIt-Anchor" href="#mobility-vocabulary"></a> Mobility: Vocabulary</h2>
-<h3 id="home-network"><a class="markdownIt-Anchor" href="#home-network"></a> <strong>Home Network</strong></h3>
+<h2 id="Mobility-Vocabulary">Mobility: Vocabulary</h2>
+<h3 id="Home-Network"><strong>Home Network</strong></h3>
 <ul>
-<li>Permanent “home” of the mobile device (e.g., 128.119.40/24).</li>
+<li>Permanent &quot;home&quot; of the mobile device (e.g., 128.119.40/24).</li>
 <li><strong>Permanent Address</strong>: Address in the home network, always used to reach the mobile (e.g., 128.119.40.186).</li>
 <li><strong>Home Agent</strong>: Entity in the home network that performs mobility functions for the mobile when it is remote.</li>
 </ul>
-<h3 id="visited-network"><a class="markdownIt-Anchor" href="#visited-network"></a> <strong>Visited Network</strong></h3>
+<h3 id="Visited-Network"><strong>Visited Network</strong></h3>
 <ul>
 <li>Network where the mobile device currently resides (e.g., 79.129.13/24).</li>
 <li><strong>Care-of-Address</strong>: Temporary address assigned to the mobile in the visited network (e.g., 79.129.13.2).</li>
 <li><strong>Foreign Agent</strong>: Entity in the visited network that performs mobility functions on behalf of the mobile.</li>
 </ul>
-<h3 id="correspondent"><a class="markdownIt-Anchor" href="#correspondent"></a> <strong>Correspondent</strong></h3>
+<h3 id="Correspondent"><strong>Correspondent</strong></h3>
 <ul>
 <li>The entity that wants to communicate with the mobile device.</li>
 </ul>
-<h3 id="consider-friend-frequently-changing-addresses-how-do-you-find-her"><a class="markdownIt-Anchor" href="#consider-friend-frequently-changing-addresses-how-do-you-find-her"></a> Consider friend frequently changing addresses, how do you find her?</h3>
+<h3 id="Consider-friend-frequently-changing-addresses-how-do-you-find-her">Consider friend frequently changing addresses, how do you find her?</h3>
 <p><strong>let end-systems handle it:</strong></p>
 <ul>
 <li>indirect routing: communication from correspondent to mobile goes through home agent, then forwarded to remote</li>
 <li>direct routing: correspondent gets foreign address of mobile, sends directly to mobile</li>
 </ul>
-<p><img src="Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload alt="Indirect routing" />{style=“display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload alt="Indirect routing">{style=&quot;display: block; margin: 0 auto; width: 90%&quot;}</p>
 <p>第一种 indirect routing，见上图所示，当你的朋友移动到其它 <strong>foreign</strong> 网络，他会得到一个 <strong>Care-of-Address</strong>，这个地址是临时的，用于在当前所在子网下通信，但他有一个 <strong>Permanent Address</strong>，可以通过联系他的 <strong>Home agent</strong>，从而联系到他所在子网的 <strong>Foreign agent</strong>，从而联系到他。</p>
-<p><img src="Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload alt="Direct routing" />{style=“display: block; margin: 0 auto; width: 90%”}</p>
+<p><img src="Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload alt="Direct routing">{style=&quot;display: block; margin: 0 auto; width: 90%&quot;}</p>
 <p>第二种是 direct routing，这种是先通过联系他的 Home agent，得到他所在子网的 IP address，从联系到他。</p>
 <p>需要补充两点：</p>
 <ol>
@@ -838,17 +839,17 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 <li>home agent 会维护一个映射表，记录每个移动节点的 permanent address 与其当前的 care-of address（以及 foreign agent 的信息，如果有）。</li>
 <li>当有数据包发往 friend 的 permanent address 时，home agent 会将这些数据包<strong>隧道转发</strong>（tunnel）到 friend 当前的 care-of address（即 friend 所在子网的 foreign agent 或直接到 friend 本身）。</li>
 </ul>
-<h1 id="mobile-ip-agent-discovery"><a class="markdownIt-Anchor" href="#mobile-ip-agent-discovery"></a> Mobile IP: agent discovery</h1>
+<h1>Mobile IP: agent discovery</h1>
 <p>Agent advertisement: foreign/home agents advertise service by broadcasting ICMP messages (<code>typefield = 9</code>)</p>
-<h1 id="end-of-chapter-exercises"><a class="markdownIt-Anchor" href="#end-of-chapter-exercises"></a> End-of-chapter exercises</h1>
-<h2 id="r1"><a class="markdownIt-Anchor" href="#r1"></a> R.1</h2>
+<h1>End-of-chapter exercises</h1>
+<h2 id="R-1">R.1</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What does it mean for a wireless network to be operating in “infrastructure mode”? If the network is not in infrastructure mode, what mode of operation is it in, and what is the different between that mode of operation and infrastructure mode?</p>
-<p>在无线网络中，“基础设施模式”（infrastructure mode）指的是网络中存在一个基站（如接入点，AP），无线主机通过基站连接到有线网络或更大的互联网。在这种模式下，基站负责在无线主机和有线网络之间中继数据。如果网络不处于基础设施模式，则它处于&quot;自组织模式&quot;（ad hoc mode）。在自组织模式中，没有基站，节点只能与其链路覆盖范围内的其他节点通信，节点之间通过自组织的方式形成网络并相互路由。两者的主要区别在于是否依赖基站：基础设施模式依赖基站，而自组织模式则完全由节点自主协作。</p>
-<h2 id="r2"><a class="markdownIt-Anchor" href="#r2"></a> R.2</h2>
+<p>What does it mean for a wireless network to be operating in &quot;infrastructure mode&quot;? If the network is not in infrastructure mode, what mode of operation is it in, and what is the different between that mode of operation and infrastructure mode?</p>
+<p>在无线网络中，&quot;基础设施模式&quot;（infrastructure mode）指的是网络中存在一个基站（如接入点，AP），无线主机通过基站连接到有线网络或更大的互联网。在这种模式下，基站负责在无线主机和有线网络之间中继数据。如果网络不处于基础设施模式，则它处于&quot;自组织模式&quot;（ad hoc mode）。在自组织模式中，没有基站，节点只能与其链路覆盖范围内的其他节点通信，节点之间通过自组织的方式形成网络并相互路由。两者的主要区别在于是否依赖基站：基础设施模式依赖基站，而自组织模式则完全由节点自主协作。</p>
+<h2 id="R-2">R.2</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What are the four type of wireless networks identified in our taxonomy in Section <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6.1</mn></mrow><annotation encoding="application/x-tex">6.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">.</span><span class="mord">1</span></span></span></span>? Which of these types of wireless networks have you used?</p>
-<p>Section <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6.1</mn></mrow><annotation encoding="application/x-tex">6.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">.</span><span class="mord">1</span></span></span></span> 中提到的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 种无线网络结构如下：</p>
+<p>What are the four type of wireless networks identified in our taxonomy in Section $6.1$? Which of these types of wireless networks have you used?</p>
+<p>Section $6.1$ 中提到的 $4$ 种无线网络结构如下：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
@@ -873,7 +874,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </table>
 </div>
 其中像 WiFi 和 Bluetooth 经常使用。
-<h2 id="r3"><a class="markdownIt-Anchor" href="#r3"></a> R.3</h2>
+<h2 id="R-3">R.3</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>What are the differences between the following types of wireless channel impairments: path loss, multipath propagation, interference from other sources?</p>
 <p>下面是对三种信道损伤的解释：</p>
@@ -901,7 +902,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </tbody>
 </table>
 </div>
-<h2 id="r4"><a class="markdownIt-Anchor" href="#r4"></a> R.4</h2>
+<h2 id="R-4">R.4</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>As a mobile node gets farther and farther away from a base station, what are two actions that a base station could take to ensure that the loss probability of a transmitted frame does not increase?</p>
 <ol>
@@ -930,9 +931,9 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 <li><strong>增大发射功率</strong>：提高信号强度以补偿路径损耗。</li>
 <li><strong>使用多天线技术（如 MIMO）</strong>：通过空间分集技术提高信号质量和覆盖范围。</li>
 </ul>
-<h2 id="r10"><a class="markdownIt-Anchor" href="#r10"></a> R.10</h2>
+<h2 id="R-10">R.10</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>Suppose the IEEE <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>802.11</mn></mrow><annotation encoding="application/x-tex">802.11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">0</span><span class="mord">2</span><span class="mord">.</span><span class="mord">1</span><span class="mord">1</span></span></span></span> RTS and CTS frames were as long as the standard DATA and ACK frames. Would there be any advantage to using the CTS and RTS frames? Why or why not?</p>
+<p>Suppose the IEEE $802.11$ RTS and CTS frames were as long as the standard DATA and ACK frames. Would there be any advantage to using the CTS and RTS frames? Why or why not?</p>
 <ul>
 <li><strong>Avoiding Collisions: RTS/CTS Mechanism</strong> 部分提到：
 <ul>
@@ -948,11 +949,11 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ol>
 </li>
 </ul>
-<h2 id="r16"><a class="markdownIt-Anchor" href="#r16"></a> R.16</h2>
+<h2 id="R-16">R.16</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>If a node has a wireless connection to the Internet, does that node have to be mobile? Explain. Suppose that a user with a laptop walks around her house with her laptop, and always accesses the Internet through the same access point. Is this user mobile from a network standpoint? Explain.</p>
 <p>一个节点拥有无线连接，并不意味着它是<strong>移动的</strong>。无线连接只是物理层和链路层的接入方式，只要设备通过无线方式接入网络，无论它是否实际移动，都可以称为无线节点，但不一定是<strong>移动节点</strong>。用户在家中携带笔记本，始终通过同一个 AP 上网，这说明用户始终在同一个 subnet 和 BSS 内，所以不认为用户发生了网络层的移动。</p>
-<h2 id="r17"><a class="markdownIt-Anchor" href="#r17"></a> R.17</h2>
+<h2 id="R-17">R.17</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>What is the difference between a permanent address and a care-of address? Who assigns a care-of address?</p>
 <ul>
@@ -980,7 +981,7 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </ul>
 </li>
 </ul>
-<h2 id="r19"><a class="markdownIt-Anchor" href="#r19"></a> R.19</h2>
+<h2 id="R-19">R.19</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>What are the purposes of the HLR and VLR in GSM networks? What elements of mobile IP are similar to the HLR and VLR?</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -1006,12 +1007,12 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 </tbody>
 </table>
 </div>
-<h2 id="p5"><a class="markdownIt-Anchor" href="#p5"></a> P.5</h2>
+<h2 id="P-5">P.5</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>Suppose there are two ISPs providing WiFi access in a particular café, with each ISP operating its own AP and having its own IP address block. a. Further suppose that by accident, each ISP has configured its AP to operate over channel 11. Will the 802.11 protocol completely break down in this situation? Discuss what happens when two stations, each associated with a different ISP, attempt to transmit at the same time. b. Now suppose that one AP operates over channel 1 and the other over channel 11. How do your answers change?</p>
 <p><strong>a.</strong>：802.11 协议不会完全失效，但两个 AP 及其关联的 hosts 会在 physical layer 竞争同一个信道的使用权。如果两个 hosts 同时发送数据，此时会产生 collision，尽管 CSMA/CA 协议会尽可能避免冲突，但由于信号干扰，冲突仍会发生，导致通信变得不稳定。</p>
 <p><strong>b.</strong>：此时两个 AP 用不同的信道，互不干扰，通信正常。</p>
-<h2 id="p13"><a class="markdownIt-Anchor" href="#p13"></a> P.13</h2>
+<h2 id="P-13">P.13</h2>
 <p><strong>Question and Answer:</strong></p>
 <p>In mobile IP, what effect will mobility have on end-to-end delays of datagrams between the source and destination?</p>
 <ol>
