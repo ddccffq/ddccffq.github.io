@@ -643,7 +643,7 @@
 <blockquote>
 <p>通常情况下，我们认为 $X$ 与 $Y$ 具有相同的结构。</p>
 </blockquote>
-
+<img src="/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png" class="" title="具有相同结构的线性链">
 
 <div align = "center"><em>图1：线性链示例</em></div>
 
@@ -2525,7 +2525,7 @@
 <p>$$<br>\begin{align*}<br>\delta_1(q_0, \epsilon, Z) &amp;&#x3D; {(q_0, \epsilon), (q, S)}<br>\<br>\delta_1(q, a, A) &amp;&#x3D; \delta(q, a, A)<br>\end{align*}<br>$$</p>
 <h3 id="Empty-Stack-to-CFG"><a href="#Empty-Stack-to-CFG" class="headerlink" title="Empty Stack to CFG"></a>Empty Stack to CFG</h3><p><strong>公式化构造</strong></p>
 <p>设 PDA $M &#x3D; (Q, \Sigma, \Gamma, \delta, q_0, Z_0, \Phi)$，取 CFG $G &#x3D; (V, \Sigma, P, S)$，其中：<br>$$<br>\begin{align*}<br>V &amp;&#x3D; {S} \cup Q \times \Gamma \times Q，\text{特别地我们用$[q_i, A, q_j]$来表示变量}<br>\<br>P &amp;&#x3D; {S \to [q_0, Z_0, q] \mid q \in Q}<br>\<br>&amp; \cup {[q, A, q_{n + 1}] \to a[q_1, A_1, q_2][q_2, A_2, q_3] \dots [q_n, A_n, q_{n + 1} \mid (q_1, A_1A_2 \dots A_n) \in \delta(q, a, A) \text{且} a \in \Sigma \cup {\epsilon}, n \geq 1}<br>\<br>&amp; \cup {[q, A, q_1] \to a \mid (q_1, \epsilon) \in \delta(q, a, A)}<br>\end{align*}<br>$$</p>
-<h2 id="课后习题解答"><a href="#课后习题解答" class="headerlink" title="课后习题解答"></a>课后习题解答</h2><h3 id="8-2-构造空栈接受的-PDA"><a href="#8-2-构造空栈接受的-PDA" class="headerlink" title="8.(2) 构造空栈接受的 PDA"></a>8.(2) 构造空栈接受的 PDA</h3>
+<h2 id="课后习题解答"><a href="#课后习题解答" class="headerlink" title="课后习题解答"></a>课后习题解答</h2><h3 id="8-2-构造空栈接受的-PDA"><a href="#8-2-构造空栈接受的-PDA" class="headerlink" title="8.(2) 构造空栈接受的 PDA"></a>8.(2) 构造空栈接受的 PDA</h3><img src="/2025/05/28/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/8(2).png" class="" title="8(2)">
 <div align = "center">图8.(2)</div>
 
 <h3 id="补充题"><a href="#补充题" class="headerlink" title="补充题"></a>补充题</h3><p><strong>Question:</strong><br>PDA $\to$ CFG 绘制此PDA状态转移图，按照定理7-4所述的文法构造方法进行转换。并对所得到的文法进行化简。</p>
