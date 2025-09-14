@@ -277,37 +277,18 @@
               <div class="markdown-body">
                 
                 <h2 id="em-算法">EM 算法</h2>
-<p><span class="math inline">\(\operatorname{EM}\)</span> 算法通过迭代求
-<span class="math inline">\(L(\theta) = \log P(Y | \theta)\)</span>
-的极大似然估计。每次迭代包含两步：<span
-class="math inline">\(\operatorname{E}\)</span> 步，求期望；<span
-class="math inline">\(\operatorname{M}\)</span> 步，求极大化。</p>
+<p><span class="math inline">\(\operatorname{EM}\)</span> 算法通过迭代求 <span class="math inline">\(L(\theta) = \log P(Y | \theta)\)</span> 的极大似然估计。每次迭代包含两步：<span class="math inline">\(\operatorname{E}\)</span> 步，求期望；<span class="math inline">\(\operatorname{M}\)</span> 步，求极大化。</p>
 <h3 id="算法步骤">算法步骤</h3>
-<p>输入：观测变量数据 <span class="math inline">\(Y\)</span>，隐变量数据
-<span class="math inline">\(Z\)</span>，联合分布 <span
-class="math inline">\(P(Y, Z | \theta)\)</span>，条件分布 <span
-class="math inline">\(P(Z | Y, \theta)\)</span>； 输出：模型参数<span
-class="math inline">\(\theta\)</span>。</p>
-<p><strong>（1）选择参数初始值 <span
-class="math inline">\(\theta^{(0)}\)</span>，开始迭代；</strong></p>
-<p><strong>（2）<span class="math inline">\(\operatorname{E}\)</span>
-步：计算 Q 函数值</strong></p>
+<p>输入：观测变量数据 <span class="math inline">\(Y\)</span>，隐变量数据 <span class="math inline">\(Z\)</span>，联合分布 <span class="math inline">\(P(Y, Z | \theta)\)</span>，条件分布 <span class="math inline">\(P(Z | Y, \theta)\)</span>； 输出：模型参数<span class="math inline">\(\theta\)</span>。</p>
+<p><strong>（1）选择参数初始值 <span class="math inline">\(\theta^{(0)}\)</span>，开始迭代；</strong></p>
+<p><strong>（2）<span class="math inline">\(\operatorname{E}\)</span> 步：计算 Q 函数值</strong></p>
 <p><span class="math display">\[
-Q(\theta, \theta^{(i)}) = \sum_{Z} \log P(Y, Z | \theta) P(Z | Y,
-\theta^{(i)}) \tag{1}
+Q(\theta, \theta^{(i)}) = \sum_{Z} \log P(Y, Z | \theta) P(Z | Y, \theta^{(i)}) \tag{1}
 \]</span></p>
-<p>这里，<span class="math inline">\(P(Z | Y, \theta^{(i)})\)</span>
-是在给定观测数据 <span class="math inline">\(Y\)</span> 和当前的参数估计
-<span class="math inline">\(\theta^{(i)}\)</span> 下隐变量数据 <span
-class="math inline">\(Z\)</span> 条件概率分布；</p>
-<p><strong>（3）<span class="math inline">\(\operatorname{M}\)</span>
-步：求使 <span class="math inline">\(Q(\theta, \theta^{(i)})\)</span>
-极大化的 <span class="math inline">\(\theta\)</span>，确定第 <span
-class="math inline">\(i + 1\)</span> 次迭代的参数估计值 <span
-class="math inline">\(\theta^{(i + 1)}\)</span></strong></p>
+<p>这里，<span class="math inline">\(P(Z | Y, \theta^{(i)})\)</span> 是在给定观测数据 <span class="math inline">\(Y\)</span> 和当前的参数估计 <span class="math inline">\(\theta^{(i)}\)</span> 下隐变量数据 <span class="math inline">\(Z\)</span> 条件概率分布；</p>
+<p><strong>（3）<span class="math inline">\(\operatorname{M}\)</span> 步：求使 <span class="math inline">\(Q(\theta, \theta^{(i)})\)</span> 极大化的 <span class="math inline">\(\theta\)</span>，确定第 <span class="math inline">\(i + 1\)</span> 次迭代的参数估计值 <span class="math inline">\(\theta^{(i + 1)}\)</span></strong></p>
 <p><span class="math display">\[
-\theta^{(i + 1)} = \operatorname{arg} \max_{\theta} Q(\theta,
-\theta^{(i)}) \tag{2}
+\theta^{(i + 1)} = \operatorname{arg} \max_{\theta} Q(\theta, \theta^{(i)}) \tag{2}
 \]</span></p>
 <p><strong>（4）重复（2）（3）步直到收敛</strong></p>
 

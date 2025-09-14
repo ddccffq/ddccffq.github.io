@@ -281,19 +281,11 @@
 <p>接下来会介绍感知机的<strong>数学定义</strong>，也就是感知机的输入输出映射；然后介绍感知机的学习算法，学习什么？学习的是感知机数学定义中提及到的<strong>参数</strong>；如何学习？会介绍两种方法，第一种是基于原始<strong>损失函数</strong>的迭代算法，另一种是基于原始损失函数的<strong>对偶形式</strong>的迭代算法，这两种算法本质上等价。</p>
 <span id="more"></span>
 <h2 id="感知机的数学定义">感知机的数学定义</h2>
-<p>假设输入空间 <span class="math inline">\(\mathcal{X} \subseteq
-\mathbb{R}^n\)</span>，输出空间是 <span
-class="math inline">\(\mathcal{Y} = \{+1,
--1\}\)</span>。由输入空间到输出空间的如下函数：</p>
+<p>假设输入空间 <span class="math inline">\(\mathcal{X} \subseteq \mathbb{R}^n\)</span>，输出空间是 <span class="math inline">\(\mathcal{Y} = \{+1, -1\}\)</span>。由输入空间到输出空间的如下函数：</p>
 <p><span class="math display">\[
 f(x) = \operatorname{sign} (\mathbf{w} \cdot \mathbf{x} + b) \tag{1}
 \]</span></p>
-<p>称为感知机。其中，<span class="math inline">\(w\)</span> 和 <span
-class="math inline">\(b\)</span> 为感知机模型参数，前者叫权值
-<strong>weight</strong>，后者叫偏置
-<strong>bias</strong>，点乘运算为<strong>向量内积</strong>。<span
-class="math inline">\(\operatorname{sign}\)</span>
-是符号函数，具体定义如下：</p>
+<p>称为感知机。其中，<span class="math inline">\(w\)</span> 和 <span class="math inline">\(b\)</span> 为感知机模型参数，前者叫权值 <strong>weight</strong>，后者叫偏置 <strong>bias</strong>，点乘运算为<strong>向量内积</strong>。<span class="math inline">\(\operatorname{sign}\)</span> 是符号函数，具体定义如下：</p>
 <p><span class="math display">\[
 \operatorname{sign}(x) =
 \begin{cases}
@@ -305,20 +297,11 @@ class="math inline">\(\operatorname{sign}\)</span>
 <h2 id="感知机学习策略">感知机学习策略</h2>
 <p>假设数据集<strong>线性可分</strong>，定义感知机学习的损失函数为：</p>
 <p><span class="math display">\[
-L(\mathbf{w}, b) = -\sum_{\mathbf{x}_i \in M} y_i(\mathbf{w} \cdot
-\mathbf{x}_i + b) \tag{3}
+L(\mathbf{w}, b) = -\sum_{\mathbf{x}_i \in M} y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \tag{3}
 \]</span></p>
-<p>其中，<span class="math inline">\(M\)</span>
-是<strong>误分类点的集合</strong>，我们的目标是极小化 <span
-class="math inline">\(L(\mathbf{w}, b)\)</span>。</p>
+<p>其中，<span class="math inline">\(M\)</span> 是<strong>误分类点的集合</strong>，我们的目标是极小化 <span class="math inline">\(L(\mathbf{w}, b)\)</span>。</p>
 <h3 id="感知机学习算法的原始形式">感知机学习算法的原始形式</h3>
-<p>随机初始化 <span class="math inline">\(\mathbf{w}\)</span> 和 <span
-class="math inline">\(b\)</span>，分别记为 <span
-class="math inline">\(\mathbf{w}_0\)</span> 和 <span
-class="math inline">\(b_0\)</span>，然后在训练数据集中选取数据 <span
-class="math inline">\((\mathbf{x}_i, y_i)\)</span>；如果 <span
-class="math inline">\(y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \leq
-0\)</span>,</p>
+<p>随机初始化 <span class="math inline">\(\mathbf{w}\)</span> 和 <span class="math inline">\(b\)</span>，分别记为 <span class="math inline">\(\mathbf{w}_0\)</span> 和 <span class="math inline">\(b_0\)</span>，然后在训练数据集中选取数据 <span class="math inline">\((\mathbf{x}_i, y_i)\)</span>；如果 <span class="math inline">\(y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \leq 0\)</span>,</p>
 <p><span class="math display">\[
 \begin{align*}
 &amp;\mathbf{w} \leftarrow \mathbf{w} + \eta y_i \mathbf{x}_i
@@ -328,21 +311,10 @@ class="math inline">\(y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \leq
 \]</span></p>
 <p>重复上述选择更新过程直至没有误分类点。</p>
 <blockquote>
-<p>这个更新过程，根据《统计学习方法》的例题，需要这样更新。假设我有一训练数据集
-<span class="math inline">\(x_1, x_2, \cdots, x_N\)</span>，我初始化完
-<span class="math inline">\(\mathbf{w}\)</span> 和 <span
-class="math inline">\(b\)</span> 后，我从 <span
-class="math inline">\(x_1\)</span> 开始，每次更新后都要从 <span
-class="math inline">\(1 \to N\)</span> 的顺序进行验证。</p>
+<p>这个更新过程，根据《统计学习方法》的例题，需要这样更新。假设我有一训练数据集 <span class="math inline">\(x_1, x_2, \cdots, x_N\)</span>，我初始化完 <span class="math inline">\(\mathbf{w}\)</span> 和 <span class="math inline">\(b\)</span> 后，我从 <span class="math inline">\(x_1\)</span> 开始，每次更新后都要从 <span class="math inline">\(1 \to N\)</span> 的顺序进行验证。</p>
 </blockquote>
 <h3 id="感知机学习算法的对偶形式">感知机学习算法的对偶形式</h3>
-<p>与原始形式不同，对原始形式使用拉格朗日对偶化，得到相应的对偶形式。首先初始化系数和偏置
-<span class="math inline">\(\mathbf{\alpha} \leftarrow \mathbf{0}, b
-\leftarrow 0\)</span>。再在训练集中选取数据 <span
-class="math inline">\((\mathbf{x}_i, y_i)\)</span>；如果 <span
-class="math inline">\(y_i \left(\sum_{j = 1}^{N} \alpha_j y_j
-(\mathbf{x}_j \cdot \mathbf{x}_i) + b \right) \leq
-0\)</span>，则更新</p>
+<p>与原始形式不同，对原始形式使用拉格朗日对偶化，得到相应的对偶形式。首先初始化系数和偏置 <span class="math inline">\(\mathbf{\alpha} \leftarrow \mathbf{0}, b \leftarrow 0\)</span>。再在训练集中选取数据 <span class="math inline">\((\mathbf{x}_i, y_i)\)</span>；如果 <span class="math inline">\(y_i \left(\sum_{j = 1}^{N} \alpha_j y_j (\mathbf{x}_j \cdot \mathbf{x}_i) + b \right) \leq 0\)</span>，则更新</p>
 <p><span class="math display">\[
 \begin{align*}
 &amp;\alpha_i \leftarrow \alpha_i + \eta
@@ -351,8 +323,7 @@ class="math inline">\(y_i \left(\sum_{j = 1}^{N} \alpha_j y_j
 \end{align*}
 \]</span></p>
 <p><strong>tips</strong></p>
-<p>可以预处理出所有输入实例间的内积，并将其存为一个矩阵，这个矩阵叫做
-Gram 矩阵，</p>
+<p>可以预处理出所有输入实例间的内积，并将其存为一个矩阵，这个矩阵叫做 Gram 矩阵，</p>
 <p><span class="math display">\[
 \mathbf{G} = [\mathbf{x}_i \cdot \mathbf{x}_j]_{N \times N}
 \]</span></p>

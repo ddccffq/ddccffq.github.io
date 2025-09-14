@@ -26,27 +26,29 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Transport-Layer Services Transport protocols run in end systems: - Sending side: breaks app messages into segments, passes to network layer. - Receiving side: reassembles segments into messages, passe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/a-transport-layer-segment.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/UDP-segment-structure.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/Reliable-data-transfer.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt1.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt2.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt2-1-sender.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt2-1-receiver.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt2-2-sender.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt2-2-receiver.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rdt3-0-receiver.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/GBN-sender.png.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/GBN-receiver.png.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/RS-sender-receiver-view.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/TCP-segment-structure.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/rwnd-buffer.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//a-transport-layer-segment.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//UDP-segment-structure.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//Reliable-data-transfer.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt1.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt2.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt2-1-sender.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt2-1-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt2-2-sender.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt2-2-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rdt3-0-receiver.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//Sender&#39;s-view-of-sequence-numbers-in-Go-Back-N.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//GBN-sender.png.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//GBN-receiver.png.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//RS-sender-receiver-view.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//TCP-segment-structure.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//rwnd-buffer.png">
+<meta property="og:image" content="https://ddccffq.github.io/.io//TCP%20window%20size%20as%20a%20function%20of%20time.png">
 <meta property="article:published_time" content="2025-06-08T07:04:40.000Z">
 <meta property="article:modified_time" content="2025-06-17T02:58:02.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/08/The-Transport-Layer/The-Transport-Layer/a-transport-layer-segment.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/.io//a-transport-layer-segment.png">
   
   
   
@@ -293,183 +295,107 @@
               <div class="markdown-body">
                 
                 <h1 id="transport-layer-services">Transport-Layer Services</h1>
-<p>Transport protocols run in <strong>end systems</strong>: - Sending
-side: breaks app messages into <strong>segments</strong>, passes to
-network layer. - Receiving side: reassembles segments into
-<strong>messages</strong>, passes to app layer.</p>
-<h1 id="multiplexing-and-demultiplexing">Multiplexing and
-Demultiplexing</h1>
-<p><strong>Multiplexing at sending host:</strong> gather data from
-multiple sockets, enveloping data with <strong>header</strong>(later
-used for demultiplexing). <strong>demultiplexing at receiving
-host:</strong> deliver segments to correct socket.</p>
+<p>Transport protocols run in <strong>end systems</strong>: - Sending side: breaks app messages into <strong>segments</strong>, passes to network layer. - Receiving side: reassembles segments into <strong>messages</strong>, passes to app layer.</p>
+<h1 id="multiplexing-and-demultiplexing">Multiplexing and Demultiplexing</h1>
+<p><strong>Multiplexing at sending host:</strong> gather data from multiple sockets, enveloping data with <strong>header</strong>(later used for demultiplexing). <strong>demultiplexing at receiving host:</strong> deliver segments to correct socket.</p>
 <h2 id="demultiplexing">Demultiplexing</h2>
-<p>Hosts receives <strong>IP datagrams</strong>. Each IP datagram has
-source IP address and destination IP address. Each IP datagram carries a
-transport-layer segment. Each segment has source port numbers and
-destination port numbers.</p>
+<p>Hosts receives <strong>IP datagrams</strong>. Each IP datagram has source IP address and destination IP address. Each IP datagram carries a transport-layer segment. Each segment has source port numbers and destination port numbers.</p>
 <figure>
-<img src="The-Transport-Layer/a-transport-layer-segment.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="A transport layer segment" />
-<figcaption aria-hidden="true">A transport layer segment</figcaption>
+<img src="/.io//a-transport-layer-segment.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="A transport layer segment"><figcaption aria-hidden="true">A transport layer segment</figcaption>
 </figure>
 <blockquote>
-<p>将 segment 传到目标 host，host 再将 segment 通过 socket 传给对应的
-application。</p>
+<p>将 segment 传到目标 host，host 再将 segment 通过 socket 传给对应的 application。</p>
 </blockquote>
-<h3 id="connectionless-demultiplexing">Connectionless
-Demultiplexing</h3>
+<h3 id="connectionless-demultiplexing">Connectionless Demultiplexing</h3>
 <p>在 <strong>UDP</strong> 协议中使用。</p>
-<p>Creates socket with <strong>port numbers</strong>. Each UDP socket
-identified with <code>(dest IP address, dest port numbers)</code>.</p>
+<p>Creates socket with <strong>port numbers</strong>. Each UDP socket identified with <code>(dest IP address, dest port numbers)</code>.</p>
 <blockquote>
-<p>当终端收到 IP datagrams 中是 UDP segment 时。 The host will check
-destination port in the segment and then directs the segment to
-corresponding socket。发生在 transport layer。</p>
+<p>当终端收到 IP datagrams 中是 UDP segment 时。 The host will check destination port in the segment and then directs the segment to corresponding socket。发生在 transport layer。</p>
 </blockquote>
-<h3 id="connection-oriented-demultiplexing">Connection-oriented
-Demultiplexing</h3>
+<h3 id="connection-oriented-demultiplexing">Connection-oriented Demultiplexing</h3>
 <p><strong>Used in TCP protocol</strong>.</p>
-<p>TCP socket identified by <strong>4</strong>-tuple:
-<code>(source IP address, source port numbers, dest IP address, dest port numbers)</code>.</p>
+<p>TCP socket identified by <strong>4</strong>-tuple: <code>(source IP address, source port numbers, dest IP address, dest port numbers)</code>.</p>
 <h1 id="connectionless-transport-udp">Connectionless Transport: UDP</h1>
 <h2 id="udp-segment-structure">UDP Segment Structure</h2>
 <figure>
-<img src="The-Transport-Layer/UDP-segment-structure.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="UDP segment structure" />
-<figcaption aria-hidden="true">UDP segment structure</figcaption>
+<img src="/.io//UDP-segment-structure.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="UDP segment structure"><figcaption aria-hidden="true">UDP segment structure</figcaption>
 </figure>
 <h2 id="udp-checksum">UDP Checksum</h2>
-<p><strong>Goal</strong>: detect “errors” (e.g., flipped bits) in
-transmitted segment. 指的是位比特发生了 <span
-class="math inline">\(01\)</span> 翻转。</p>
-<p>“Calculation:” 1. <strong>Group Data</strong>: - Divide all fields of
-the UDP segment (including header and data) into 16-bit blocks. If the
-data length is odd, pad with a zero byte.
-这里要注意，不同的比特排序方式会影响到最终结果，数据通常以<strong>大端序</strong>（高位字节在前）表示。</p>
+<p><strong>Goal</strong>: detect “errors” (e.g., flipped bits) in transmitted segment. 指的是位比特发生了 <span class="math inline">\(01\)</span> 翻转。</p>
+<p>“Calculation:” 1. <strong>Group Data</strong>: - Divide all fields of the UDP segment (including header and data) into 16-bit blocks. If the data length is odd, pad with a zero byte. 这里要注意，不同的比特排序方式会影响到最终结果，数据通常以<strong>大端序</strong>（高位字节在前）表示。</p>
 <ol start="2" type="1">
 <li><strong>Compute Sum</strong>:
 <ul>
-<li>Perform a 1’s complement sum of all 16-bit
-blocks。就是二进位加法。</li>
-<li>If overflow occurs (exceeds 16 bits), wrap the overflow back into
-the result.</li>
+<li>Perform a 1’s complement sum of all 16-bit blocks。就是二进位加法。</li>
+<li>If overflow occurs (exceeds 16 bits), wrap the overflow back into the result.</li>
 </ul></li>
 <li><strong>Take Complement</strong>:
 <ul>
-<li>Take the 1’s complement of the computed sum to get the final
-checksum。这里可以看作进行了一次<strong>同位全 <span
-class="math inline">\(1\)</span></strong> 加法。</li>
+<li>Take the 1’s complement of the computed sum to get the final checksum。这里可以看作进行了一次<strong>同位全 <span class="math inline">\(1\)</span></strong> 加法。</li>
 </ul></li>
 <li><strong>Fill Checksum Field</strong>:
 <ul>
-<li>Place the computed checksum into the checksum field of the UDP
-segment.</li>
+<li>Place the computed checksum into the checksum field of the UDP segment.</li>
 </ul></li>
 </ol>
-<h1 id="principles-of-reliable-data-transfer">Principles of Reliable
-Data Transfer</h1>
-<p><strong>应用程序即使运行在 UDP
-之上，也可以实现可靠数据传输</strong>。虽然 UDP
-本身是无连接、无保证的协议，不提供诸如数据包重传、顺序保证、丢包检测等机制，但<strong>应用层可以自行实现这些功能</strong>，从而达到可靠传输的目的。</p>
+<h1 id="principles-of-reliable-data-transfer">Principles of Reliable Data Transfer</h1>
+<p><strong>应用程序即使运行在 UDP 之上，也可以实现可靠数据传输</strong>。虽然 UDP 本身是无连接、无保证的协议，不提供诸如数据包重传、顺序保证、丢包检测等机制，但<strong>应用层可以自行实现这些功能</strong>，从而达到可靠传输的目的。</p>
 <figure>
-<img src="The-Transport-Layer/Reliable-data-transfer.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Reliable data transfer: Service model and service implementation" />
-<figcaption aria-hidden="true">Reliable data transfer: Service model and
-service implementation</figcaption>
+<img src="/.io//Reliable-data-transfer.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Reliable data transfer: Service model and service implementation"><figcaption aria-hidden="true">Reliable data transfer: Service model and service implementation</figcaption>
 </figure>
-<h2
-id="reliable-data-transfer-over-a-perfectly-reliable-channel-rdt-1.0">Reliable
-Data Transfer over a Perfectly Reliable Channel: rdt 1.0</h2>
+<h2 id="reliable-data-transfer-over-a-perfectly-reliable-channel-rdt-1.0">Reliable Data Transfer over a Perfectly Reliable Channel: rdt 1.0</h2>
 <figure>
-<img src="The-Transport-Layer/rdt1.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt1.0 - A protocol for a completely reliable channel" />
-<figcaption aria-hidden="true">rdt1.0 - A protocol for a completely
-reliable channel</figcaption>
+<img src="/.io//rdt1.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt1.0 - A protocol for a completely reliable channel"><figcaption aria-hidden="true">rdt1.0 - A protocol for a completely reliable channel</figcaption>
 </figure>
-<p><strong>Unrealistic:</strong> underlying channel perfectly reliable -
-no bit errors - no loss of packets</p>
-<h2
-id="reliable-data-transfer-over-a-channel-with-bit-errors-rdt-2.0">Reliable
-Data Transfer over a Channel with Bit Errors: rdt 2.0</h2>
+<p><strong>Unrealistic:</strong> underlying channel perfectly reliable - no bit errors - no loss of packets</p>
+<h2 id="reliable-data-transfer-over-a-channel-with-bit-errors-rdt-2.0">Reliable Data Transfer over a Channel with Bit Errors: rdt 2.0</h2>
 <p>增添检查错误机制：checksum 和 ACK。</p>
 <figure>
-<img src="The-Transport-Layer/rdt2.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt 2.0 - A protocol for a channel with bit errors" />
-<figcaption aria-hidden="true">rdt 2.0 - A protocol for a channel with
-bit errors</figcaption>
+<img src="/.io//rdt2.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt 2.0 - A protocol for a channel with bit errors"><figcaption aria-hidden="true">rdt 2.0 - A protocol for a channel with bit errors</figcaption>
 </figure>
-<p><strong>New mechanism in rdt 2.0 (beyond rdt 1.0)</strong> - Error
-detection; - <strong>Checksum</strong>. - Receiver feedback. -
-<strong>ACKs and NAKs</strong>.</p>
+<p><strong>New mechanism in rdt 2.0 (beyond rdt 1.0)</strong> - Error detection; - <strong>Checksum</strong>. - Receiver feedback. - <strong>ACKs and NAKs</strong>.</p>
 <blockquote>
 <p>rdt 2.0 有一个致命问题：如果 ACK/NAK 出错导致信息改变。</p>
 </blockquote>
 <h2 id="rdt-2.1">rdt 2.1</h2>
 <figure>
-<img src="The-Transport-Layer/rdt2-1-sender.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt 2.1 sender" />
-<figcaption aria-hidden="true">rdt 2.1 sender</figcaption>
+<img src="/.io//rdt2-1-sender.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt 2.1 sender"><figcaption aria-hidden="true">rdt 2.1 sender</figcaption>
 </figure>
 <figure>
-<img src="The-Transport-Layer/rdt2-1-receiver.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt 2.1 receiver" />
-<figcaption aria-hidden="true">rdt 2.1 receiver</figcaption>
+<img src="/.io//rdt2-1-receiver.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt 2.1 receiver"><figcaption aria-hidden="true">rdt 2.1 receiver</figcaption>
 </figure>
 <blockquote>
-<p>可以看到 rdt 2.1 新增了一个 sequence number。在 rdt 2.0
-中提到过其有着一个致命的问题，这个问题可能会导致两个问题：重传和丢失。从
-Figure P.6 和 Figure P.7 可以看到 rdt 2.1
-能解决重传的问题，但是不能解决丢失的问题。</p>
+<p>可以看到 rdt 2.1 新增了一个 sequence number。在 rdt 2.0 中提到过其有着一个致命的问题，这个问题可能会导致两个问题：重传和丢失。从 Figure P.6 和 Figure P.7 可以看到 rdt 2.1 能解决重传的问题，但是不能解决丢失的问题。</p>
 </blockquote>
 <h2 id="rdt-2.2">rdt 2.2</h2>
 <figure>
-<img src="The-Transport-Layer/rdt2-2-sender.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt2.2 sender" />
-<figcaption aria-hidden="true">rdt2.2 sender</figcaption>
+<img src="/.io//rdt2-2-sender.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt2.2 sender"><figcaption aria-hidden="true">rdt2.2 sender</figcaption>
 </figure>
 <figure>
-<img src="The-Transport-Layer/rdt2-2-receiver.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt2.2 receiver" />
-<figcaption aria-hidden="true">rdt2.2 receiver</figcaption>
+<img src="/.io//rdt2-2-receiver.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt2.2 receiver"><figcaption aria-hidden="true">rdt2.2 receiver</figcaption>
 </figure>
 <blockquote>
-<p>rdt 2.1 的机制是：如果是 NAK 或者 checksum 出错就重传。从 Figure P.8
-和 Figure P.9 可以看出，receiver
-收了什么序号的包就回什么序号，如果是自己要的包就 extract，然后 sender
-发下个序号的包，如果重传导致 duplicate，那么只需要 delete 然后给 sender
-发送 ACK。显然，receiver 回什么序号，sender 都会发下一个序号的包，也就是
-rdt 2.2 没有使用 NAK 就解决了重传的问题。</p>
+<p>rdt 2.1 的机制是：如果是 NAK 或者 checksum 出错就重传。从 Figure P.8 和 Figure P.9 可以看出，receiver 收了什么序号的包就回什么序号，如果是自己要的包就 extract，然后 sender 发下个序号的包，如果重传导致 duplicate，那么只需要 delete 然后给 sender 发送 ACK。显然，receiver 回什么序号，sender 都会发下一个序号的包，也就是 rdt 2.2 没有使用 NAK 就解决了重传的问题。</p>
 </blockquote>
 <p>补充：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
-
 <thead>
-<tr>
+<tr class="header">
 <th>变量/语句</th>
 <th>作用说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>oncethru == 1</code></td>
 <td>是否第一次进入该状态</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>udt_send(sndpkt)</code></td>
 <td>发送 ACK 包</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>结合使用</td>
 <td>首次进入状态时主动重发 ACK，防止因 ACK 丢失而死锁</td>
 </tr>
@@ -478,76 +404,53 @@ rdt 2.2 没有使用 NAK 就解决了重传的问题。</p>
 </div>
 <h2 id="rdt-3.0">rdt 3.0</h2>
 <figure>
-<img src="The-Transport-Layer/rdt3-0-receiver.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="rdt3.0 sender" />
-<figcaption aria-hidden="true">rdt3.0 sender</figcaption>
+<img src="/.io//rdt3-0-receiver.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="rdt3.0 sender"><figcaption aria-hidden="true">rdt3.0 sender</figcaption>
 </figure>
 <blockquote>
 <p>增加了一个计时器，可以解决包丢失的问题，如果超时就重传，</p>
 </blockquote>
-<h2 id="pipelined-reliable-data-transfer-protocols">Pipelined Reliable
-Data Transfer Protocols</h2>
-<p><strong>rdt 3.0 stop-and-wait operation</strong>: rdt 3.0 can work,
-but its performance stinks.</p>
+<h2 id="pipelined-reliable-data-transfer-protocols">Pipelined Reliable Data Transfer Protocols</h2>
+<p><strong>rdt 3.0 stop-and-wait operation</strong>: rdt 3.0 can work, but its performance stinks.</p>
 <blockquote>
 <p>这里是说 rdt 3.0 的机制一轮就处理一个包而效率低下。</p>
 </blockquote>
-<p>For example, we suppose condition with 1 Gbps link, 15 ms propagation
-delay, 8000 bits packet.</p>
+<p>For example, we suppose condition with 1 Gbps link, 15 ms propagation delay, 8000 bits packet.</p>
 <p><span class="math display">\[
-\text{d}_{trans} = \frac{L}{R} = \frac{8000 \text{bits}}{10^9
-\text{bps}} = 8 \text{microseconds}
+\text{d}_{trans} = \frac{L}{R} = \frac{8000 \text{bits}}{10^9 \text{bps}} = 8 \text{microseconds}
 \]</span></p>
 <p><span class="math display">\[
-\text{Utilization} = \frac{\frac{L}{R}}{\text{RTT} + \frac{L}{R}} =
-0.00027
+\text{Utilization} = \frac{\frac{L}{R}}{\text{RTT} + \frac{L}{R}} = 0.00027
 \]</span></p>
-<p>So, we use <strong>Pipelined Reliable Data Transfer
-Protocols</strong> to increase utilization!</p>
-<p><strong>Pipelining:</strong> sender allows multiple,
-“in-flight”,yet-to-be-acknowledged pkts. - Range of sequence numbers
-must be <strong>increased</strong>. - <strong>Buffering</strong> at
-sender and/or receiver.</p>
+<p>So, we use <strong>Pipelined Reliable Data Transfer Protocols</strong> to increase utilization!</p>
+<p><strong>Pipelining:</strong> sender allows multiple, “in-flight”,yet-to-be-acknowledged pkts. - Range of sequence numbers must be <strong>increased</strong>. - <strong>Buffering</strong> at sender and/or receiver.</p>
 <h3 id="go-back-n-gbn-protocol">Go-Back-N (GBN) Protocol</h3>
 <figure>
-<img
-src="The-Transport-Layer/Sender&#39;s-view-of-sequence-numbers-in-Go-Back-N.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Sender’s view of sequence numbers in Go-Back-N" />
-<figcaption aria-hidden="true">Sender’s view of sequence numbers in
-Go-Back-N</figcaption>
+<img src="/.io//Sender&#39;s-view-of-sequence-numbers-in-Go-Back-N.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Sender’s view of sequence numbers in Go-Back-N"><figcaption aria-hidden="true">Sender’s view of sequence numbers in Go-Back-N</figcaption>
 </figure>
-<p><strong>Timeout(n):</strong> retransmit pkt <code>n</code> and all
-higher seq <code>#</code> pkts in window</p>
+<p><strong>Timeout(n):</strong> retransmit pkt <code>n</code> and all higher seq <code>#</code> pkts in window</p>
 <figure>
-<img src="The-Transport-Layer/GBN-sender.png.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%" alt="GBN sender" />
-<figcaption aria-hidden="true">GBN sender</figcaption>
+<img src="/.io//GBN-sender.png.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="GBN sender"><figcaption aria-hidden="true">GBN sender</figcaption>
 </figure>
 <figure>
-<img src="The-Transport-Layer/GBN-receiver.png.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%" alt="GBN receiver" />
-<figcaption aria-hidden="true">GBN receiver</figcaption>
+<img src="/.io//GBN-receiver.png.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="GBN receiver"><figcaption aria-hidden="true">GBN receiver</figcaption>
 </figure>
 <p>需要注意的是，上述图片中是<strong>覆盖确认</strong>：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
-
 <thead>
-<tr>
+<tr class="header">
 <th>协议类型</th>
 <th>ACK 处理方式</th>
 <th>base 变化方式</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>累计确认（GBN）</td>
 <td>只确认按序最大已收到的包</td>
 <td>base 只前进不回退</td>
 </tr>
-<tr>
+<tr class="even">
 <td>覆盖确认（图中）</td>
 <td>收到哪个 ACK 就直接覆盖 base</td>
 <td>base 可能跳跃前进</td>
@@ -556,14 +459,9 @@ style="display: block; margin: 0 auto; width: 90%" alt="GBN receiver" />
 </table>
 </div>
 <h3 id="selective-repeat-sr">Selective Repeat (SR)</h3>
-<p>Sender only <strong>resends</strong> pkts for which ACK not
-received.</p>
+<p>Sender only <strong>resends</strong> pkts for which ACK not received.</p>
 <figure>
-<img src="The-Transport-Layer/RS-sender-receiver-view.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Selective-repeat (SR) sender and receiver views of sequence-number space" />
-<figcaption aria-hidden="true">Selective-repeat (SR) sender and receiver
-views of sequence-number space</figcaption>
+<img src="/.io//RS-sender-receiver-view.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Selective-repeat (SR) sender and receiver views of sequence-number space"><figcaption aria-hidden="true">Selective-repeat (SR) sender and receiver views of sequence-number space</figcaption>
 </figure>
 <p><span class="math display">\[
 \text{window size} \leq \frac{1}{2} \text{seq}
@@ -572,40 +470,27 @@ views of sequence-number space</figcaption>
 <ul>
 <li><strong>Data from above</strong>:
 <ul>
-<li>If next available sequence number is within the window, send the
-packet.</li>
+<li>If next available sequence number is within the window, send the packet.</li>
 </ul></li>
 <li><strong>Timeout(n)</strong>:
 <ul>
 <li>Resend packet <code>n</code>, restart the timer.</li>
 </ul></li>
-<li><strong>ACK(n) in [sendbase, sendbase <span
-class="math inline">\(+\)</span> <span
-class="math inline">\(N\)</span>]</strong>:
+<li><strong>ACK(n) in [sendbase, sendbase <span class="math inline">\(+\)</span> <span class="math inline">\(N\)</span>]</strong>:
 <ul>
 <li>Mark packet <code>n</code> as received.</li>
-<li>If <code>n</code> is the smallest unACKed packet,
-<strong>advance</strong> the window base to the next unACKed sequence
-number.</li>
+<li>If <code>n</code> is the smallest unACKed packet, <strong>advance</strong> the window base to the next unACKed sequence number.</li>
 </ul></li>
 </ul>
 <h4 id="receiver">Receiver</h4>
 <ul>
-<li><strong>Packet <code>n</code> in [rcvbase, rcvbase <span
-class="math inline">\(+\)</span> <span class="math inline">\(N\)</span>
-<span class="math inline">\(-\)</span> <span
-class="math inline">\(1\)</span>]</strong>:
+<li><strong>Packet <code>n</code> in [rcvbase, rcvbase <span class="math inline">\(+\)</span> <span class="math inline">\(N\)</span> <span class="math inline">\(-\)</span> <span class="math inline">\(1\)</span>]</strong>:
 <ul>
 <li>Send ACK(n).</li>
 <li><strong>Out-of-order</strong>: Buffer the packet.</li>
-<li><strong>In-order</strong>: Deliver the packet (also deliver
-buffered, in-order packets), advance the window to the next
-not-yet-received packet.</li>
+<li><strong>In-order</strong>: Deliver the packet (also deliver buffered, in-order packets), advance the window to the next not-yet-received packet.</li>
 </ul></li>
-<li><strong>Packet <code>n</code> in [rcvbase <span
-class="math inline">\(-\)</span> <span class="math inline">\(N\)</span>,
-rcvbase <span class="math inline">\(-\)</span> <span
-class="math inline">\(1\)</span>]</strong>:
+<li><strong>Packet <code>n</code> in [rcvbase <span class="math inline">\(-\)</span> <span class="math inline">\(N\)</span>, rcvbase <span class="math inline">\(-\)</span> <span class="math inline">\(1\)</span>]</strong>:
 <ul>
 <li>Send ACK(n). 解决 duplicate。</li>
 </ul></li>
@@ -614,67 +499,43 @@ class="math inline">\(1\)</span>]</strong>:
 <li>Ignore the packet.</li>
 </ul></li>
 </ul>
-<h1 id="connection-oriented-transport-tcp">Connection-oriented
-transport: TCP</h1>
+<h1 id="connection-oriented-transport-tcp">Connection-oriented transport: TCP</h1>
 <h2 id="tcp-segment-structure">TCP Segment Structure</h2>
 <figure>
-<img src="The-Transport-Layer/TCP-segment-structure.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="TCP segment structure" />
-<figcaption aria-hidden="true">TCP segment structure</figcaption>
+<img src="/.io//TCP-segment-structure.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="TCP segment structure"><figcaption aria-hidden="true">TCP segment structure</figcaption>
 </figure>
-<p><strong>How to set sequence number and acknowledgment
-number?</strong></p>
+<p><strong>How to set sequence number and acknowledgment number?</strong></p>
 <ul>
-<li><strong>sequence number</strong>: represents the byte stream number
-of the first byte in the segment’s data.</li>
-<li><strong>ACKs</strong>: indicates the sequence number of the next
-byte expected from the sender. Using cumulative acknowledgment.</li>
+<li><strong>sequence number</strong>: represents the byte stream number of the first byte in the segment’s data.</li>
+<li><strong>ACKs</strong>: indicates the sequence number of the next byte expected from the sender. Using cumulative acknowledgment.</li>
 </ul>
-<h2 id="tcp-round-trip-time-and-timeout">TCP Round Trip Time and
-Timeout</h2>
-<p><strong>How to estimate <span
-class="math inline">\(\mathbf{RTT}\)</span>?</strong></p>
+<h2 id="tcp-round-trip-time-and-timeout">TCP Round Trip Time and Timeout</h2>
+<p><strong>How to estimate <span class="math inline">\(\mathbf{RTT}\)</span>?</strong></p>
 <p><span class="math display">\[
-\text{EstimateRTT} = (1 - \alpha) \cdot \text{EstimateRTT} + \alpha
-\cdot \text{SampleRTT}, \quad \text{Typically } \alpha = 0.125
+\text{EstimateRTT} = (1 - \alpha) \cdot \text{EstimateRTT} + \alpha \cdot \text{SampleRTT}, \quad \text{Typically } \alpha = 0.125
 \]</span></p>
 <p><strong>How to set TCP timeout value?</strong></p>
-<p>Longer than <span class="math inline">\(\text{RTT}\)</span>, but
-<span class="math inline">\(\text{RTT}\)</span> varies. <span
-class="math display">\[
-\text{DevRTT} = (1 - \beta) \cdot \text{DevRTT} + \beta \cdot
-|\text{SampleRTT} - \text{EstimateRTT}|, \quad \text{Typically } \beta =
-0.25
+<p>Longer than <span class="math inline">\(\text{RTT}\)</span>, but <span class="math inline">\(\text{RTT}\)</span> varies. <span class="math display">\[
+\text{DevRTT} = (1 - \beta) \cdot \text{DevRTT} + \beta \cdot |\text{SampleRTT} - \text{EstimateRTT}|, \quad \text{Typically } \beta = 0.25
 \]</span></p>
 <p><span class="math display">\[
 \text{TimeOutInterval} = \text{EstimateRTT} + 4 \cdot \text{DevRTT}
 \]</span></p>
 <h2 id="tcp-reliable-data-transfer">TCP Reliable Data Transfer</h2>
 <h3 id="fast-retransmit">Fast Retransmit</h3>
-<p>If sender receives <span class="math inline">\(3\)</span> ACKs for
-same data, it assumes that segment after ACKed data was lost.</p>
+<p>If sender receives <span class="math inline">\(3\)</span> ACKs for same data, it assumes that segment after ACKed data was lost.</p>
 <h2 id="flow-control">Flow control</h2>
-<p>Receiver side of TCP connection has a <strong>receive
-buffer</strong>.</p>
+<p>Receiver side of TCP connection has a <strong>receive buffer</strong>.</p>
 <figure>
-<img src="The-Transport-Layer/rwnd-buffer.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="The receive window (rwnd) and the receive buffer (RcvBuffer)" />
-<figcaption aria-hidden="true">The receive window (rwnd) and the receive
-buffer (RcvBuffer)</figcaption>
+<img src="/.io//rwnd-buffer.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="The receive window (rwnd) and the receive buffer (RcvBuffer)"><figcaption aria-hidden="true">The receive window (rwnd) and the receive buffer (RcvBuffer)</figcaption>
 </figure>
 <h3 id="how-it-works">How it works?</h3>
 <ul>
-<li><strong>Receiver:</strong> advertises unused buffer space by
-including <span class="math inline">\(\text{rwnd}\)</span> value in
-segment header.</li>
-<li><strong>Sender:</strong> limits unAcked bytes to <span
-class="math inline">\(\text{rwnd}\)</span>.</li>
+<li><strong>Receiver:</strong> advertises unused buffer space by including <span class="math inline">\(\text{rwnd}\)</span> value in segment header.</li>
+<li><strong>Sender:</strong> limits unAcked bytes to <span class="math inline">\(\text{rwnd}\)</span>.</li>
 </ul>
 <p><span class="math display">\[
-\text{rwnd} = \text{RcvBuffer} - \left[\text{LastByteRcvd} -
-\text{LastByteRead} \right]
+\text{rwnd} = \text{RcvBuffer} - \left[\text{LastByteRcvd} - \text{LastByteRead} \right]
 \]</span></p>
 <p><strong>字节编号</strong>的问题。在TCP中：</p>
 <ul>
@@ -682,44 +543,36 @@ class="math inline">\(\text{rwnd}\)</span>.</li>
 <ul>
 <li>这些字节的序号为：0, 1, 2, …, 49</li>
 <li><strong>最后一个字节</strong>的序号为49，即 LastByteRcvd = 49</li>
-<li>根据公式 <span class="math inline">\(y = \text{LastByteRcvd} +
-1\)</span>，得到确认号 y = 50</li>
+<li>根据公式 <span class="math inline">\(y = \text{LastByteRcvd} + 1\)</span>，得到确认号 y = 50</li>
 </ul></li>
 </ul>
 <p>其中 y 是 ACK。</p>
 <h2 id="connection-management">Connection Management</h2>
 <h3 id="three-way-handshake">Three Way Handshake</h3>
-<p><strong>握手协议（Handshaking Protocol）</strong>
-是指在两个通信实体（如客户端和服务器）之间建立通信连接之前，双方通过一系列消息的交换，协商通信参数、确认彼此身份、同步状态等，从而为后续的数据传输做好准备的过程。</p>
+<p><strong>握手协议（Handshaking Protocol）</strong> 是指在两个通信实体（如客户端和服务器）之间建立通信连接之前，双方通过一系列消息的交换，协商通信参数、确认彼此身份、同步状态等，从而为后续的数据传输做好准备的过程。</p>
 <ol type="1">
 <li><strong>Step 1</strong>:
 <ul>
-<li>Client sends TCP <code>SYN</code> segment to server, specifying
-initial seq. No data.</li>
+<li>Client sends TCP <code>SYN</code> segment to server, specifying initial seq. No data.</li>
 </ul></li>
 <li><strong>Step 2</strong>:
 <ul>
-<li>Server host receives <code>SYN</code>, replies with
-<code>SYNACK</code> segment. Server allocates buffers and specifies
-server initial seq.</li>
+<li>Server host receives <code>SYN</code>, replies with <code>SYNACK</code> segment. Server allocates buffers and specifies server initial seq.</li>
 </ul></li>
 <li><strong>Step 3</strong>:
 <ul>
-<li>Client receives <code>SYNACK</code>, replies with ACK segment, which
-may contain data</li>
+<li>Client receives <code>SYNACK</code>, replies with ACK segment, which may contain data</li>
 </ul></li>
 </ol>
 <h3 id="closing-a-connection">Closing a Connection</h3>
 <ol type="1">
 <li><strong>Step 1</strong>:
 <ul>
-<li>Client sends TCP <code>FIN</code> segment to server, specifying
-initial seq. No data.</li>
+<li>Client sends TCP <code>FIN</code> segment to server, specifying initial seq. No data.</li>
 </ul></li>
 <li><strong>Step 2</strong>:
 <ul>
-<li>Server receives <code>FIN</code>, replies with ACK. Closes
-connection, sends <code>FIN</code>.</li>
+<li>Server receives <code>FIN</code>, replies with ACK. Closes connection, sends <code>FIN</code>.</li>
 </ul></li>
 <li><strong>Step 3</strong>:
 <ul>
@@ -731,73 +584,59 @@ connection, sends <code>FIN</code>.</li>
 </ul></li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">客户端A                                      服务器B<br>   | ----------- SYN, Seq=1000 ------------&gt; |<br>   |                                         |<br>   | &lt;------ SYN+ACK, Seq=2000, Ack=1001 --- |<br>   |                                         |<br>   | ----------- ACK, Seq=1001, Ack=2001 --&gt; |<br></code></pre></td></tr></table></figure>
-<p>上面所说的 <code>SYN</code> 和 <code>FIN</code> 都在 TCP segment 结构
-header 中。</p>
-<h1 id="principles-of-congestion-control">Principles of Congestion
-control</h1>
-<p>Too many sources sending too much data too fast for <strong>network
-(router)</strong> to handle.</p>
-<h2 id="approaches-towards-congestion-control">Approaches towards
-Congestion Control</h2>
+<p>上面所说的 <code>SYN</code> 和 <code>FIN</code> 都在 TCP segment 结构 header 中。</p>
+<h1 id="principles-of-congestion-control">Principles of Congestion control</h1>
+<p>Too many sources sending too much data too fast for <strong>network (router)</strong> to handle.</p>
+<h2 id="approaches-towards-congestion-control">Approaches towards Congestion Control</h2>
 <ul>
-<li><strong>end-end congestion control</strong>: congestion inferred
-from end-system observed loss, delay.</li>
-<li><strong>network-assisted congestion control</strong>: routers
-provide feedback to end systems.</li>
+<li><strong>end-end congestion control</strong>: congestion inferred from end-system observed loss, delay.</li>
+<li><strong>network-assisted congestion control</strong>: routers provide feedback to end systems.</li>
 </ul>
 <h1 id="tcp-congestion-control">TCP Congestion Control</h1>
-<p><strong>Goal:</strong> TCP sender should transmit as fast as
-possible, but without congesting network</p>
-<p><strong>probing for bandwidth:</strong> increase transmission rate on
-receipt of ACK, until eventually loss occurs, then decrease transmission
-rate. //一种贪心策略</p>
-<p>Sender limits rate by limiting number of unACKed bytes “in pipeline”:
-<span class="math display">\[
-\text{LastByteSent} - \text{LastByteAcked} \leq \min \{\text{cwnd},
-\text{rwnd} \}
+<p><strong>Goal:</strong> TCP sender should transmit as fast as possible, but without congesting network</p>
+<p><strong>probing for bandwidth:</strong> increase transmission rate on receipt of ACK, until eventually loss occurs, then decrease transmission rate. //一种贪心策略</p>
+<p>Sender limits rate by limiting number of unACKed bytes “in pipeline”: <span class="math display">\[
+\text{LastByteSent} - \text{LastByteAcked} \leq \min \{\text{cwnd}, \text{rwnd} \}
 \]</span></p>
 <p><span class="math display">\[
 \text{rate} \approx \frac{\text{cwnd}}{\text{RTT}}
 \]</span></p>
 <h2 id="slow-start-phase">Slow Start Phase</h2>
-<p>When connection begins, <span class="math inline">\(\text{cwnd} = 1
-\, \text{MSS}\)</span>.</p>
+<p>When connection begins, <span class="math inline">\(\text{cwnd} = 1 \, \text{MSS}\)</span>.</p>
 <blockquote>
-<p><span class="math display">\[ \text{MSS} = \text{MTU} -
-\text{IP头部大小} - \text{TCP头部大小} \]</span></p>
+<p><span class="math display">\[ \text{MSS} = \text{MTU} - \text{IP头部大小} - \text{TCP头部大小} \]</span></p>
 </blockquote>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
-
 <thead>
-<tr>
+<tr class="header">
 <th>特性</th>
 <th>MSS</th>
 <th>MTU</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>所属协议层</td>
 <td>传输层 (TCP)</td>
 <td>数据链路层</td>
 </tr>
-<tr>
+<tr class="even">
 <td>计量对象</td>
 <td>TCP 数据部分</td>
 <td>整个数据包（包括所有头部）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>设置目的</td>
 <td>避免 IP 分片</td>
 <td>适应物理媒介的限制</td>
 </tr>
-<tr>
+<tr class="even">
 <td>典型值</td>
 <td>1460 字节 (以太网)</td>
 <td>1500 字节 (以太网)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>协商方式</td>
 <td>TCP 三次握手时协商</td>
 <td>网络设备固定或自动发现</td>
@@ -805,225 +644,100 @@ rate. //一种贪心策略</p>
 </tbody>
 </table>
 </div>
-<p>Increase rate exponentially until first <strong>loss event</strong>
-or when <strong>threshold reached</strong>. - <strong>Double</strong>
-cwnd every RTT. 没有发生 loss 就以指数函数增长。 - Done by incrementing
-cwnd by <span class="math inline">\(1\)</span> for every ACK received.
-超过 <span class="math inline">\(\text{ssthresh}\)</span>
-后线性增长。</p>
+<p>Increase rate exponentially until first <strong>loss event</strong> or when <strong>threshold reached</strong>. - <strong>Double</strong> cwnd every RTT. 没有发生 loss 就以指数函数增长。 - Done by incrementing cwnd by <span class="math inline">\(1\)</span> for every ACK received. 超过 <span class="math inline">\(\text{ssthresh}\)</span> 后线性增长。</p>
 <h2 id="congestion-avoidance">Congestion Avoidance</h2>
-<p>When <span class="math inline">\(\text{cwnd} \geq
-\text{ssthresh}\)</span>, increase <span
-class="math inline">\(\text{cwnd}\)</span> by <span
-class="math inline">\(1\)</span> <span
-class="math inline">\(\text{MSS}\)</span> per <span
-class="math inline">\(\text{RTT}\)</span>.</p>
+<p>When <span class="math inline">\(\text{cwnd} \geq \text{ssthresh}\)</span>, increase <span class="math inline">\(\text{cwnd}\)</span> by <span class="math inline">\(1\)</span> <span class="math inline">\(\text{MSS}\)</span> per <span class="math inline">\(\text{RTT}\)</span>.</p>
 <h2 id="tcp-reno">TCP RENO</h2>
-<p><strong>Fast recovery</strong>: When triple duplicate ACKs occurs,
-<span class="math inline">\(\text{ssthresh}\)</span> sets to <span
-class="math inline">\(\frac{\text{cwnd}}{2}\)</span>, <span
-class="math inline">\(\text{cwnd}\)</span> sets to <span
-class="math inline">\(\text{ssthresh}\)</span>. 传快了，适当减小。</p>
-<p>But when <strong>timeout</strong> occurs, <span
-class="math inline">\(\text{ssthresh}\)</span> sets to <span
-class="math inline">\(\frac{\text{cwnd}}{2}\)</span>, <span
-class="math inline">\(\text{cwnd}\)</span> sets to <span
-class="math inline">\(1\)</span> <span
-class="math inline">\(\text{MSS}\)</span>. 丢包。</p>
+<p><strong>Fast recovery</strong>: When triple duplicate ACKs occurs, <span class="math inline">\(\text{ssthresh}\)</span> sets to <span class="math inline">\(\frac{\text{cwnd}}{2}\)</span>, <span class="math inline">\(\text{cwnd}\)</span> sets to <span class="math inline">\(\text{ssthresh}\)</span>. 传快了，适当减小。</p>
+<p>But when <strong>timeout</strong> occurs, <span class="math inline">\(\text{ssthresh}\)</span> sets to <span class="math inline">\(\frac{\text{cwnd}}{2}\)</span>, <span class="math inline">\(\text{cwnd}\)</span> sets to <span class="math inline">\(1\)</span> <span class="math inline">\(\text{MSS}\)</span>. 丢包。</p>
 <h2 id="tcp-throughput">TCP throughput</h2>
-<p><strong>Question:</strong> What’s the average throughput of TCP as a
-function of window size and RTT?</p>
-<p><strong>Assumptions:</strong> - Ignoring slow start. - Let
-<code>W</code> be the window size when loss occurs.</p>
-<p><strong>Throughput Analysis:</strong> 1. <strong>When window size is
-<code>W</code></strong>: - Throughput = <span
-class="math inline">\(\frac{W}{\text{RTT}}\)</span>.</p>
+<p><strong>Question:</strong> What’s the average throughput of TCP as a function of window size and RTT?</p>
+<p><strong>Assumptions:</strong> - Ignoring slow start. - Let <code>W</code> be the window size when loss occurs.</p>
+<p><strong>Throughput Analysis:</strong> 1. <strong>When window size is <code>W</code></strong>: - Throughput = <span class="math inline">\(\frac{W}{\text{RTT}}\)</span>.</p>
 <ol start="2" type="1">
 <li><strong>Just after loss</strong>:
 <ul>
-<li>Window size drops to <span
-class="math inline">\(\frac{W}{2}\)</span>.</li>
-<li>Throughput = <span class="math inline">\(\frac{W}{2 \cdot
-\text{RTT}}\)</span>.</li>
+<li>Window size drops to <span class="math inline">\(\frac{W}{2}\)</span>.</li>
+<li>Throughput = <span class="math inline">\(\frac{W}{2 \cdot \text{RTT}}\)</span>.</li>
 </ul></li>
 <li><strong>Average throughput</strong>:
 <ul>
-<li>Average throughput = <span class="math inline">\(0.75 \cdot
-\frac{W}{\text{RTT}}\)</span>.</li>
+<li>Average throughput = <span class="math inline">\(0.75 \cdot \frac{W}{\text{RTT}}\)</span>.</li>
 </ul></li>
 </ol>
 <h1 id="end-of-chapter-exercises">End-of-chapter exercises</h1>
 <h2 id="r.4">R.4</h2>
 <p><strong>Question:</strong></p>
-<p>Describe why an application developer might choose to run an
-application over UDP rather than TCP.</p>
+<p>Describe why an application developer might choose to run an application over UDP rather than TCP.</p>
 <p><strong>Answer:</strong></p>
-<p>An application developer might choose to run an application over UDP
-rather than TCP for the following reasons:</p>
+<p>An application developer might choose to run an application over UDP rather than TCP for the following reasons:</p>
 <ol type="1">
-<li><p><strong>Low Latency</strong>: UDP is a connectionless protocol,
-meaning it does not establish a connection before sending data. This
-reduces latency, making it suitable for real-time applications like
-video streaming, online gaming, and voice over IP (VoIP).</p></li>
-<li><p><strong>No Overhead for Reliability</strong>: Unlike TCP, UDP
-does not provide reliability mechanisms such as retransmissions,
-acknowledgments, or congestion control. This reduces overhead and allows
-applications to handle reliability themselves if needed.</p></li>
-<li><p><strong>Broadcast/Multicast Support</strong>: UDP supports
-broadcasting and multicasting, which is useful for applications like
-live video streaming or network discovery.</p></li>
-<li><p><strong>Simple Protocol</strong>: UDP is simpler and requires
-fewer resources, making it ideal for lightweight applications or systems
-with limited processing power.</p></li>
-<li><p><strong>Custom Error Handling</strong>: Some applications prefer
-to implement their own error handling and flow control mechanisms
-tailored to their specific needs, which is easier with UDP.</p></li>
-<li><p><strong>Unordered Data Delivery</strong>: For applications where
-the order of data packets is not critical (e.g., DNS queries), UDP is a
-better choice as it does not enforce packet ordering.</p></li>
+<li><p><strong>Low Latency</strong>: UDP is a connectionless protocol, meaning it does not establish a connection before sending data. This reduces latency, making it suitable for real-time applications like video streaming, online gaming, and voice over IP (VoIP).</p></li>
+<li><p><strong>No Overhead for Reliability</strong>: Unlike TCP, UDP does not provide reliability mechanisms such as retransmissions, acknowledgments, or congestion control. This reduces overhead and allows applications to handle reliability themselves if needed.</p></li>
+<li><p><strong>Broadcast/Multicast Support</strong>: UDP supports broadcasting and multicasting, which is useful for applications like live video streaming or network discovery.</p></li>
+<li><p><strong>Simple Protocol</strong>: UDP is simpler and requires fewer resources, making it ideal for lightweight applications or systems with limited processing power.</p></li>
+<li><p><strong>Custom Error Handling</strong>: Some applications prefer to implement their own error handling and flow control mechanisms tailored to their specific needs, which is easier with UDP.</p></li>
+<li><p><strong>Unordered Data Delivery</strong>: For applications where the order of data packets is not critical (e.g., DNS queries), UDP is a better choice as it does not enforce packet ordering.</p></li>
 </ol>
 <h2 id="p.4">P.4</h2>
-<p><strong>Question:</strong> a. Suppose you have the following <span
-class="math inline">\(2\)</span> bytes: <span
-class="math inline">\(01011100\)</span> and <span
-class="math inline">\(01010110\)</span>. What is the <span
-class="math inline">\(1\)</span>s complement of the sum of these <span
-class="math inline">\(2\)</span> bytes? b. Suppose you have the
-following <span class="math inline">\(2\)</span> bytes: <span
-class="math inline">\(11011010\)</span> and <span
-class="math inline">\(00110110\)</span>. What is the <span
-class="math inline">\(1\)</span>s complement of the sum of these <span
-class="math inline">\(2\)</span> bytes? c. For the bytes in part (a),
-give an example where one bit is flipped in each of the <span
-class="math inline">\(2\)</span> bytes and yet the <span
-class="math inline">\(1\)</span>s complement doesn’t change.</p>
-<p><strong>Answer:</strong> - <strong>a.</strong> <span
-class="math inline">\(10110010\)</span>. - <strong>b.</strong> <span
-class="math inline">\(00010001\)</span>. - <strong>c.</strong> <span
-class="math inline">\(01011110\)</span> and <span
-class="math inline">\(01010100\)</span>.</p>
+<p><strong>Question:</strong> a. Suppose you have the following <span class="math inline">\(2\)</span> bytes: <span class="math inline">\(01011100\)</span> and <span class="math inline">\(01010110\)</span>. What is the <span class="math inline">\(1\)</span>s complement of the sum of these <span class="math inline">\(2\)</span> bytes? b. Suppose you have the following <span class="math inline">\(2\)</span> bytes: <span class="math inline">\(11011010\)</span> and <span class="math inline">\(00110110\)</span>. What is the <span class="math inline">\(1\)</span>s complement of the sum of these <span class="math inline">\(2\)</span> bytes? c. For the bytes in part (a), give an example where one bit is flipped in each of the <span class="math inline">\(2\)</span> bytes and yet the <span class="math inline">\(1\)</span>s complement doesn’t change.</p>
+<p><strong>Answer:</strong> - <strong>a.</strong> <span class="math inline">\(10110010\)</span>. - <strong>b.</strong> <span class="math inline">\(00010001\)</span>. - <strong>c.</strong> <span class="math inline">\(01011110\)</span> and <span class="math inline">\(01010100\)</span>.</p>
 <h2 id="p.11">P.11</h2>
 <p><strong>Question:</strong></p>
-<p>The sender side of <span class="math inline">\(\text{rdt}3.0\)</span>
-simply ignores (that is, takes no action on) all received packets that
-are either in error or have the wrong value in the acknum field of an
-acknowledgment packet. Suppose that in such circumstances, <span
-class="math inline">\(\text{rdt}3.0\)</span> were simply to retransmit
-the current data packet. Would the protocol still work? (Hint: Consider
-what would happen if there were only bit errors; there are no packet
-losses but premature timeouts can occur. Consider how many times the
-<span class="math inline">\(n^{th}\)</span> packet is sent, in the limit
-as <span class="math inline">\(n\)</span> approaches infinity.)</p>
+<p>The sender side of <span class="math inline">\(\text{rdt}3.0\)</span> simply ignores (that is, takes no action on) all received packets that are either in error or have the wrong value in the acknum field of an acknowledgment packet. Suppose that in such circumstances, <span class="math inline">\(\text{rdt}3.0\)</span> were simply to retransmit the current data packet. Would the protocol still work? (Hint: Consider what would happen if there were only bit errors; there are no packet losses but premature timeouts can occur. Consider how many times the <span class="math inline">\(n^{th}\)</span> packet is sent, in the limit as <span class="math inline">\(n\)</span> approaches infinity.)</p>
 <p><strong>Answer:</strong></p>
-<p>在这种情况下，rdt <span class="math inline">\(3.0\)</span>
-仍然是有效的。首先，该协议接收方可以通过检查 <strong>sequence
-number</strong> 来判断当前的包是否重复，这个检查方式一直有效。原本的
-<span class="math inline">\(\text{rdt}3.0\)</span>
-协议在超时后会重传，但现在只要检查出 <strong>acknowledgment
-packet</strong>
-中出错就重传，这显然会增加网络负载，比如：在极端情况下，发送方可能会多次重传一个包，若
-ACK 错误率为 <span
-class="math inline">\(p\)</span>，则每个数据包平均需要发送 <span
-class="math inline">\(1/(1-p)\)</span> 次，直到接受到正确的
-<strong>ACKs</strong>。总结：<span
-class="math inline">\(\text{rdt}3.0\)</span>
-协议在这种情况下仍然是可靠的，但立即重传错误数据包会导致性能问题，因此这种修改并不是一个好的设计选择。</p>
+<p>在这种情况下，rdt <span class="math inline">\(3.0\)</span> 仍然是有效的。首先，该协议接收方可以通过检查 <strong>sequence number</strong> 来判断当前的包是否重复，这个检查方式一直有效。原本的 <span class="math inline">\(\text{rdt}3.0\)</span> 协议在超时后会重传，但现在只要检查出 <strong>acknowledgment packet</strong> 中出错就重传，这显然会增加网络负载，比如：在极端情况下，发送方可能会多次重传一个包，若 ACK 错误率为 <span class="math inline">\(p\)</span>，则每个数据包平均需要发送 <span class="math inline">\(1/(1-p)\)</span> 次，直到接受到正确的 <strong>ACKs</strong>。总结：<span class="math inline">\(\text{rdt}3.0\)</span> 协议在这种情况下仍然是可靠的，但立即重传错误数据包会导致性能问题，因此这种修改并不是一个好的设计选择。</p>
 <h2 id="p.14">P.14</h2>
 <p><strong>Question:</strong></p>
-<p>Consider the cross-country example shown in Figure <span
-class="math inline">\(3.17\)</span>. How big would the window size have
-to be for the channel utilization to be greater than <span
-class="math inline">\(95\)</span> percent? Suppose that the size of a
-packet is <span class="math inline">\(1,500\)</span> bytes, including
-both header fields and data.</p>
-<p><strong>Complement:</strong> <span class="math inline">\(1\)</span>
-Gbps link. RTT, is approximately <span class="math inline">\(30\)</span>
-milliseconds.</p>
+<p>Consider the cross-country example shown in Figure <span class="math inline">\(3.17\)</span>. How big would the window size have to be for the channel utilization to be greater than <span class="math inline">\(95\)</span> percent? Suppose that the size of a packet is <span class="math inline">\(1,500\)</span> bytes, including both header fields and data.</p>
+<p><strong>Complement:</strong> <span class="math inline">\(1\)</span> Gbps link. RTT, is approximately <span class="math inline">\(30\)</span> milliseconds.</p>
 <p><strong>Answer:</strong></p>
 <p><span class="math display">\[
-\text{d}_{trans} = \frac{L}{R} = \frac{1500 \times 8}{1 \times 10^9} =
-1.2 \times 10^{-5} \, \text{s}
+\text{d}_{trans} = \frac{L}{R} = \frac{1500 \times 8}{1 \times 10^9} = 1.2 \times 10^{-5} \, \text{s}
 \]</span></p>
 <p><span class="math display">\[
-\text{Utilization} = \frac{\text{rwnd} \times \frac{L}{R}}{\text{RTT} +
-\text{rwnd} \times \frac{L}{R}} \geq 0.95
+\text{Utilization} = \frac{\text{rwnd} \times \frac{L}{R}}{\text{RTT} + \text{rwnd} \times \frac{L}{R}} \geq 0.95
 \]</span></p>
-<p>解得，<span class="math inline">\(\text{rwnd} \geq
-4750\)</span>。</p>
+<p>解得，<span class="math inline">\(\text{rwnd} \geq 4750\)</span>。</p>
 <h2 id="p.22">P.22</h2>
 <p><strong>Questions and Answers:</strong></p>
-<p>Answer true or false to the following questions and briefly justify
-your answer:</p>
-<p><strong>a. With the SR protocol, it is possible for the sender to
-receive an ACK for a packet that falls outside of its current
-window.</strong></p>
-<p><strong>True</strong>; 在 <strong>SR</strong>
-协议中，由于网络延迟等原因，发送方可能收到对应于已经滑出当前窗口的数据包的
-ACK。</p>
-<p><strong>b. With GBN, it is possible for the sender to receive an ACK
-for a packet that falls outside of its current window.</strong></p>
-<p><strong>False</strong>; 在 <strong>GBN</strong>
-协议中，<strong>ACK</strong> 是累积的，表示所有序列号小于等于 ACK
-的包已经被正确接收。</p>
-<p><strong>c. The alternating-bit protocol is the same as the SR
-protocol with a sender and receiver window size of <span
-class="math inline">\(1\)</span>.</strong></p>
-<p><strong>True</strong>; 交替位协议是 SR
-协议的一个特例，其中发送方和接收方的窗口大小均为 <span
-class="math inline">\(1\)</span>。它只允许发送一个未确认的包，并通过序列号（<span
-class="math inline">\(0\)</span> 或 <span
-class="math inline">\(1\)</span>）来区分包。</p>
-<p><strong>d. The alternating-bit protocol is the same as the GBN
-protocol with a sender and receiver window size of <span
-class="math inline">\(1\)</span>.</strong></p>
-<p><strong>True</strong>; 交替位协议也可以看作是 GBN
-协议的一个特例，其中发送方和接收方的窗口大小均为 <span
-class="math inline">\(1\)</span>。在这种情况下，GBN
-的行为与交替位协议完全一致，因为它只允许发送一个未确认的包，并在超时或收到
-NAK 时重传该包。</p>
+<p>Answer true or false to the following questions and briefly justify your answer:</p>
+<p><strong>a. With the SR protocol, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.</strong></p>
+<p><strong>True</strong>; 在 <strong>SR</strong> 协议中，由于网络延迟等原因，发送方可能收到对应于已经滑出当前窗口的数据包的 ACK。</p>
+<p><strong>b. With GBN, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.</strong></p>
+<p><strong>False</strong>; 在 <strong>GBN</strong> 协议中，<strong>ACK</strong> 是累积的，表示所有序列号小于等于 ACK 的包已经被正确接收。</p>
+<p><strong>c. The alternating-bit protocol is the same as the SR protocol with a sender and receiver window size of <span class="math inline">\(1\)</span>.</strong></p>
+<p><strong>True</strong>; 交替位协议是 SR 协议的一个特例，其中发送方和接收方的窗口大小均为 <span class="math inline">\(1\)</span>。它只允许发送一个未确认的包，并通过序列号（<span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span>）来区分包。</p>
+<p><strong>d. The alternating-bit protocol is the same as the GBN protocol with a sender and receiver window size of <span class="math inline">\(1\)</span>.</strong></p>
+<p><strong>True</strong>; 交替位协议也可以看作是 GBN 协议的一个特例，其中发送方和接收方的窗口大小均为 <span class="math inline">\(1\)</span>。在这种情况下，GBN 的行为与交替位协议完全一致，因为它只允许发送一个未确认的包，并在超时或收到 NAK 时重传该包。</p>
 <h2 id="p.24">P.24</h2>
 <p><strong>Questions and Answers:</strong></p>
-<p>Consider transferring an enormous file of <span
-class="math inline">\(L\)</span> bytes from Host A to Host B. Assume an
-MSS of <span class="math inline">\(536\)</span> bytes.</p>
-<p><strong>a. What is the maximum value of <span
-class="math inline">\(L\)</span> such that TCP sequence numbers are not
-exhausted? Recall that the TCP sequence number field has <span
-class="math inline">\(4\)</span> bytes.</strong></p>
-<p>TCP segment structure 中 sequence number 有 <span
-class="math inline">\(32\)</span> bits，从 <span
-class="math inline">\(0\)</span> 开始。所以最大的 <span
-class="math inline">\(L = 2^{32} - 1\)</span>。</p>
-<p><strong>b. For the <span class="math inline">\(L\)</span> you obtain
-in (a), find how long it takes to transmit the file. Assume that a total
-of <span class="math inline">\(66\)</span> bytes of transport, network,
-and data-link header are added to each segment before the resulting
-packet is sent out over a <span class="math inline">\(155\)</span> Mbps
-link. Ignore flow control and congestion control so A can pump out the
-segments back to back and continuously.</strong></p>
+<p>Consider transferring an enormous file of <span class="math inline">\(L\)</span> bytes from Host A to Host B. Assume an MSS of <span class="math inline">\(536\)</span> bytes.</p>
+<p><strong>a. What is the maximum value of <span class="math inline">\(L\)</span> such that TCP sequence numbers are not exhausted? Recall that the TCP sequence number field has <span class="math inline">\(4\)</span> bytes.</strong></p>
+<p>TCP segment structure 中 sequence number 有 <span class="math inline">\(32\)</span> bits，从 <span class="math inline">\(0\)</span> 开始。所以最大的 <span class="math inline">\(L = 2^{32} - 1\)</span>。</p>
+<p><strong>b. For the <span class="math inline">\(L\)</span> you obtain in (a), find how long it takes to transmit the file. Assume that a total of <span class="math inline">\(66\)</span> bytes of transport, network, and data-link header are added to each segment before the resulting packet is sent out over a <span class="math inline">\(155\)</span> Mbps link. Ignore flow control and congestion control so A can pump out the segments back to back and continuously.</strong></p>
 <ul>
-<li>MSS = <span class="math inline">\(536\)</span> bytes<br />
+<li>MSS = <span class="math inline">\(536\)</span> bytes<br>
 </li>
-<li>每报文附加头部 = <span class="math inline">\(66\)</span> bytes<br />
+<li>每报文附加头部 = <span class="math inline">\(66\)</span> bytes<br>
 </li>
-<li>总报文尺寸 (536 + 66 = 602) bytes<br />
+<li>总报文尺寸 (536 + 66 = 602) bytes<br>
 </li>
-<li>报文数量<br />
+<li>报文数量<br>
 <span class="math display">\[
 N = \left\lceil \frac{L_{\max}}{\text{MSS}} \right\rceil
   = \left\lceil \frac{2^{32}-1}{536} \right\rceil
   = 8\,012\,999
 \]</span></li>
-<li>总传输位数<br />
+<li>总传输位数<br>
 <span class="math display">\[
-B = N \times 602\ \text{bytes} \times 8\
-\tfrac{\text{bits}}{\text{byte}}
+B = N \times 602\ \text{bytes} \times 8\ \tfrac{\text{bits}}{\text{byte}}
   = 8\,012\,999 \times 602 \times 8
   \approx 3.85906\times 10^{10}\ \text{bits}
 \]</span></li>
-<li>链路速率 (R = 155 )<br />
+<li>链路速率 (R = 155 )<br>
 </li>
-<li>传输时间<br />
+<li>传输时间<br>
 <span class="math display">\[
 T = \frac{B}{R}
   = \frac{3.85906\times 10^{10}}{155\times 10^6}
@@ -1032,120 +746,65 @@ T = \frac{B}{R}
 \]</span></li>
 </ul>
 <h2 id="p.25">P.25</h2>
-<p>Host A and B are communicating over a TCP connection, and Host B has
-already received from A all bytes up through byte <span
-class="math inline">\(126\)</span>. Suppose Host A then sends two
-segments to Host B back-to-back. The first and second segments contain
-<span class="math inline">\(70\)</span> and <span
-class="math inline">\(50\)</span> bytes of data, respectively. In the
-first segment, the sequence number is <span
-class="math inline">\(127\)</span>, the source port number is <span
-class="math inline">\(302\)</span>, and the destination port number is
-<span class="math inline">\(80\)</span>. Host B sends an acknowledgement
-whenever it receives a segment from Host A.</p>
+<p>Host A and B are communicating over a TCP connection, and Host B has already received from A all bytes up through byte <span class="math inline">\(126\)</span>. Suppose Host A then sends two segments to Host B back-to-back. The first and second segments contain <span class="math inline">\(70\)</span> and <span class="math inline">\(50\)</span> bytes of data, respectively. In the first segment, the sequence number is <span class="math inline">\(127\)</span>, the source port number is <span class="math inline">\(302\)</span>, and the destination port number is <span class="math inline">\(80\)</span>. Host B sends an acknowledgement whenever it receives a segment from Host A.</p>
 <p><strong>Questions and Answers:</strong></p>
-<p><strong>a. In the second segment sent from Host A to B, what are the
-sequence number, source port number, and destination port
-number?</strong> - The sequence number is <span
-class="math inline">\(197\)</span>, the source port number is <span
-class="math inline">\(302\)</span> and the dest port number is <span
-class="math inline">\(80\)</span>.</p>
-<p><strong>b. If the first segment arrives before the second segment, in
-the acknowledgement of the first arriving segment, what is the
-acknowledgment number, the source port number, and the destination port
-number?</strong> - The acknowledgement number is <span
-class="math inline">\(197\)</span>, the source port number is <span
-class="math inline">\(80\)</span> and the dest port number is <span
-class="math inline">\(302\)</span>.</p>
-<p><strong>c. If the second segment arrives before the first segment, in
-the acknowledgement of the first arriving segment, what is the
-acknowledgment number?</strong> - The acknowledgement number is <span
-class="math inline">\(127\)</span>.</p>
-<p><strong>d. Suppose the two segments sent by A arrive in order at B.
-The first acknowledgement is lost and the second acknowledgement arrives
-after the first timeout interval. Draw a timing diagram, showing these
-segments and all other segments and acknowledgements sent. (Assume there
-is no additional packet loss.) For each segment in your figure, provide
-the sequence number and the number of bytes of data; for each
-acknowledgement that you add, provide the acknowledgement
-number.</strong></p>
+<p><strong>a. In the second segment sent from Host A to B, what are the sequence number, source port number, and destination port number?</strong> - The sequence number is <span class="math inline">\(197\)</span>, the source port number is <span class="math inline">\(302\)</span> and the dest port number is <span class="math inline">\(80\)</span>.</p>
+<p><strong>b. If the first segment arrives before the second segment, in the acknowledgement of the first arriving segment, what is the acknowledgment number, the source port number, and the destination port number?</strong> - The acknowledgement number is <span class="math inline">\(197\)</span>, the source port number is <span class="math inline">\(80\)</span> and the dest port number is <span class="math inline">\(302\)</span>.</p>
+<p><strong>c. If the second segment arrives before the first segment, in the acknowledgement of the first arriving segment, what is the acknowledgment number?</strong> - The acknowledgement number is <span class="math inline">\(127\)</span>.</p>
+<p><strong>d. Suppose the two segments sent by A arrive in order at B. The first acknowledgement is lost and the second acknowledgement arrives after the first timeout interval. Draw a timing diagram, showing these segments and all other segments and acknowledgements sent. (Assume there is no additional packet loss.) For each segment in your figure, provide the sequence number and the number of bytes of data; for each acknowledgement that you add, provide the acknowledgement number.</strong></p>
 <ul>
-<li>假设：<br />
+<li>假设：<br>
 </li>
-<li>A→B 连续发送两段<br />
+<li>A→B 连续发送两段<br>
 </li>
-<li>B 收到每段即发 ACK<br />
+<li>B 收到每段即发 ACK<br>
 </li>
-<li>第一条 ACK(197) 丢失，第二条 ACK(247) 成功到达<br />
+<li>第一条 ACK(197) 丢失，第二条 ACK(247) 成功到达<br>
 </li>
 <li>超时重传未触发（因为第二条 ACK 收到后 A 已完成确认）</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>Time →<br>Host A                          Host B<br>  |                                |<br>  |-- [Seq=127, Len=70] ----------&gt;|   接收 127-196，B 发送 ACK(197) → 丢失<br>  |                                |<br>  |-- [Seq=197, Len=50] ----------&gt;|   接收 197-246，B 发送 ACK(247)<br>  |                                |<br>  |      [超时等待 ACK(197)]       |<br>  |                                |<br>  |-- [Seq=127, Len=70] ----------&gt;|   重复包，B 再次发送 ACK(247)<br>  |                                |<br>  |&lt;----------- ACK(247) ----------|   A 收到确认，确认两段都已接收<br></code></pre></td></tr></table></figure>
 <h2 id="p.31">P.31</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What is the relationship between the variable SendBase in Section
-<span class="math inline">\(3.5.4\)</span> and the variable LastByteRcvd
-in Section <span class="math inline">\(3.5.5\)</span>?</p>
+<p>What is the relationship between the variable SendBase in Section <span class="math inline">\(3.5.4\)</span> and the variable LastByteRcvd in Section <span class="math inline">\(3.5.5\)</span>?</p>
 <p>在理想网络条件下（无丢包、延迟较小）：</p>
-<p><span class="math display">\[\text{SendBase} - 1 =
-\text{LastByteRcvd}\]</span></p>
-<p>这是因为： - 接收方接收到字节序号为 n 的数据后，LastByteRcvd = n -
-接收方发送 ACK(n+1) - 发送方收到 ACK(n+1) 后，更新 SendBase = n+1</p>
-<p>由于网络延迟、丢包等因素： - LastByteRcvd 可能<strong>小于</strong>
-SendBase-1（发送方已收到更新的确认） - LastByteRcvd
-可能<strong>大于</strong> SendBase-1（某些已接收数据未被确认接收）</p>
+<p><span class="math display">\[\text{SendBase} - 1 = \text{LastByteRcvd}\]</span></p>
+<p>这是因为： - 接收方接收到字节序号为 n 的数据后，LastByteRcvd = n - 接收方发送 ACK(n+1) - 发送方收到 ACK(n+1) 后，更新 SendBase = n+1</p>
+<p>由于网络延迟、丢包等因素： - LastByteRcvd 可能<strong>小于</strong> SendBase-1（发送方已收到更新的确认） - LastByteRcvd 可能<strong>大于</strong> SendBase-1（某些已接收数据未被确认接收）</p>
 <h2 id="p.32">P.32</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What is the relationship between the variable <span
-class="math inline">\(\text{LastByteRcvd}\)</span> in Section <span
-class="math inline">\(3.5.5\)</span> and the variable <span
-class="math inline">\(\text{y}\)</span> in Section <span
-class="math inline">\(3.5.4\)</span>?</p>
+<p>What is the relationship between the variable <span class="math inline">\(\text{LastByteRcvd}\)</span> in Section <span class="math inline">\(3.5.5\)</span> and the variable <span class="math inline">\(\text{y}\)</span> in Section <span class="math inline">\(3.5.4\)</span>?</p>
 <p>由上题所述：</p>
 <p><span class="math display">\[
 \text{acknowledgement number} = \text{LastByteRcvd} + 1
 \]</span></p>
 <h2 id="p.34">P.34</h2>
-<p>Compare GBN, SR, and TCP (no delayed ACK). Assume that the timeout
-values for all three protocols are sufficiently long such that <span
-class="math inline">\(5\)</span> consecutive data segments and their
-corresponding ACKs can be received (if not lost in the channel) by the
-receiving host (Host B) and the sending host (Host A) respectively.
-Suppose Host A sends <span class="math inline">\(5\)</span> data
-segments to Host B, and the <span class="math inline">\(2^{nd}\)</span>
-segment (sent from A) is lost. In the end, all <span
-class="math inline">\(5\)</span> data segments have been correctly
-received by Host B.</p>
+<p>Compare GBN, SR, and TCP (no delayed ACK). Assume that the timeout values for all three protocols are sufficiently long such that <span class="math inline">\(5\)</span> consecutive data segments and their corresponding ACKs can be received (if not lost in the channel) by the receiving host (Host B) and the sending host (Host A) respectively. Suppose Host A sends <span class="math inline">\(5\)</span> data segments to Host B, and the <span class="math inline">\(2^{nd}\)</span> segment (sent from A) is lost. In the end, all <span class="math inline">\(5\)</span> data segments have been correctly received by Host B.</p>
 <p><strong>Question and Answer:</strong></p>
-<p><strong>a. How many segments has Host A sent in total and how many
-ACKs has Host B sent in total? What are their sequence numbers? Answer
-this question for all three protocols.</strong></p>
-<p>题目没有指定 sequence number，这里默认从 <span
-class="math inline">\(0\)</span> 开始，所有 segment 大小为 <span
-class="math inline">\(1\)</span> byte。首先，receiver 收到多少个 segment
-就会回多少个 ACK。</p>
+<p><strong>a. How many segments has Host A sent in total and how many ACKs has Host B sent in total? What are their sequence numbers? Answer this question for all three protocols.</strong></p>
+<p>题目没有指定 sequence number，这里默认从 <span class="math inline">\(0\)</span> 开始，所有 segment 大小为 <span class="math inline">\(1\)</span> byte。首先，receiver 收到多少个 segment 就会回多少个 ACK。</p>
 <p>首先明确各协议的ACK机制：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th><strong>协议</strong></th>
 <th><strong>确认机制</strong></th>
 <th><strong>ACK含义</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>GBN</td>
 <td>累积确认</td>
 <td>ACK(n)表示期望收到序号n的段</td>
 </tr>
-<tr>
+<tr class="even">
 <td>SR</td>
 <td>选择确认</td>
 <td>ACK(n)表示已收到序号n的段</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TCP</td>
 <td>累积确认+SACK</td>
 <td>ACK(n)表示期望收到序号n的段</td>
@@ -1153,26 +812,11 @@ class="math inline">\(1\)</span> byte。首先，receiver 收到多少个 segmen
 </tbody>
 </table>
 </div>
-<p>分析 GBN 协议，第一个 segment 的 sequence number 为 <span
-class="math inline">\(0\)</span>，以此类推，接下来的 sequence number
-分别为 <span class="math inline">\(1\)</span> <span
-class="math inline">\(2\)</span> <span class="math inline">\(3\)</span>
-<span class="math inline">\(4\)</span>，相应的 ACK 为 <span
-class="math inline">\(1\)</span> <span class="math inline">\(2\)</span>
-<span class="math inline">\(3\)</span> <span
-class="math inline">\(4\)</span> <span
-class="math inline">\(5\)</span>。但由于第二个包丢失，实际上的 ACK 为
-<span class="math inline">\(1\)</span> 丢失 <span
-class="math inline">\(1\)</span> <span class="math inline">\(1\)</span>
-<span class="math inline">\(1\)</span>， 再重发，<span
-class="math inline">\(2\)</span> <span class="math inline">\(3\)</span>
-<span class="math inline">\(4\)</span> <span
-class="math inline">\(5\)</span>。再分析剩下两个协议，最终得到</p>
+<p>分析 GBN 协议，第一个 segment 的 sequence number 为 <span class="math inline">\(0\)</span>，以此类推，接下来的 sequence number 分别为 <span class="math inline">\(1\)</span> <span class="math inline">\(2\)</span> <span class="math inline">\(3\)</span> <span class="math inline">\(4\)</span>，相应的 ACK 为 <span class="math inline">\(1\)</span> <span class="math inline">\(2\)</span> <span class="math inline">\(3\)</span> <span class="math inline">\(4\)</span> <span class="math inline">\(5\)</span>。但由于第二个包丢失，实际上的 ACK 为 <span class="math inline">\(1\)</span> 丢失 <span class="math inline">\(1\)</span> <span class="math inline">\(1\)</span> <span class="math inline">\(1\)</span>， 再重发，<span class="math inline">\(2\)</span> <span class="math inline">\(3\)</span> <span class="math inline">\(4\)</span> <span class="math inline">\(5\)</span>。再分析剩下两个协议，最终得到</p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 <table>
-
 <thead>
-<tr>
+<tr class="header">
 <th><strong>Protocol</strong></th>
 <th><strong>Segments Sent</strong></th>
 <th><strong>ACKs Received</strong></th>
@@ -1180,19 +824,19 @@ class="math inline">\(5\)</span>。再分析剩下两个协议，最终得到</p
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>GBN</td>
 <td>9</td>
 <td>8</td>
 <td>1 1 1 1 2 3 4 5</td>
 </tr>
-<tr>
+<tr class="even">
 <td>SR</td>
 <td>6</td>
 <td>5</td>
 <td>0 2 3 4 1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TCP</td>
 <td>6</td>
 <td>5</td>
@@ -1201,106 +845,59 @@ class="math inline">\(5\)</span>。再分析剩下两个协议，最终得到</p
 </tbody>
 </table>
 </div>
-<p><strong>b. If the timeout values for all three protocol are much
-longer than <span class="math inline">\(5\)</span> RTT, then which
-protocol successfully delivers all five data segments in shortest time
-interval?</strong></p>
-<p>SR 和 TCP，因为这两种协议都只发送了 <span
-class="math inline">\(6\)</span> 次包。</p>
+<p><strong>b. If the timeout values for all three protocol are much longer than <span class="math inline">\(5\)</span> RTT, then which protocol successfully delivers all five data segments in shortest time interval?</strong></p>
+<p>SR 和 TCP，因为这两种协议都只发送了 <span class="math inline">\(6\)</span> 次包。</p>
 <h2 id="p.37">P.37</h2>
 <p><strong>Questions and Answers:</strong></p>
 <figure>
-<img
-src="The-Transport-Layer/TCP%20window%20size%20as%20a%20function%20of%20time.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="TCP window size as a function of time" />
-<figcaption aria-hidden="true">TCP window size as a function of
-time</figcaption>
+<img src="/.io//TCP%20window%20size%20as%20a%20function%20of%20time.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="TCP window size as a function of time"><figcaption aria-hidden="true">TCP window size as a function of time</figcaption>
 </figure>
-<p>Assuming TCP <strong>Reno</strong> is the protocol experiencing the
-behavior shown above, answer the following questions. In all cases, you
-should provide a short discussion justifying your answer.</p>
-<p><strong>a. Identify the intervals of time when TCP slow start is
-operating.</strong></p>
-<p>根据 TCP congestion control 机制，slow start phase 期间
-<strong>cwnd</strong> 是以指数函数增长，从图中可以得出大概是在 <span
-class="math inline">\(\text{Transmission round} \in [1, 6] \cup [23,
-26]\)</span> 期间。</p>
-<p><strong>b. Identify the intervals of time when TCP congestion
-avoidance is operating</strong></p>
-<p>TCP congestion avoidance 期间的特点是 <strong>cwnd</strong> 以 $ k =
-1 $ MSS 的速率线性增长，从图中可以得出大概是在 <span
-class="math inline">\(\text{Transmission round} \in [6, 16] \cup [17,
-22]\)</span> 期间。</p>
-<p><strong>c. After the 16th transmission round, is segment loss
-detected by a triple duplicate ACK or by a timeout?</strong></p>
-<p>从图中可以分析出，<span class="math inline">\(\text{ssthresh} =
-\frac{\text{cwnd}}{2}\)</span>，<span class="math inline">\(\text{cwnd}
-= \text{ssthresh}\)</span>，然后线性增长，所以 detected by a triple
-duplicate ACK。</p>
-<p><strong>d. After the 22nd transmission round, is segment loss
-detected by a triple duplicate ACK or by a timeout?</strong></p>
-<p><strong>cwnd</strong> 归一，进入 slow start phase，所以 detected by a
-timeout。</p>
-<p><strong>e. What is the initial value of <span
-class="math inline">\(\text{ssthresh}\)</span> at the first transmission
-round?</strong></p>
-<p>大概是 <span class="math inline">\(32\)</span> MSS，当 <span
-class="math inline">\({\text{cwnd} \geq \text{ssthresh}}\)</span> 会进入
-congestion avoidance phase，然后线性增长。</p>
-<p><strong>f. What is the value of ssthresh at the <span
-class="math inline">\(18^{th}\)</span> transmission round?</strong></p>
-<p>减半了，所以是，<span class="math inline">\(\text{ssthresh} =
-\frac{\text{cwnd}}{2} = 21\)</span> MSS</p>
-<p><strong>g. What is the value of ssthresh at the <span
-class="math inline">\(24^{th}\)</span> transmission round?</strong></p>
-<p>减半了，所以是，<span class="math inline">\(\text{ssthresh} =
-\frac{\text{cwnd}}{2} = 13\)</span> MSS</p>
-<p><strong>h. During what transmission round is the <span
-class="math inline">\(70^{th}\)</span> segment sent?</strong></p>
-<p>第一次 slow start phase 阶段后传了 63 个，所在第 <span
-class="math inline">\(6\)</span> 和 <span
-class="math inline">\(7\)</span> 轮之间。</p>
-<p><strong>i. Assuming a packet loss is detected after the <span
-class="math inline">\(26^{th}\)</span> round by the receipt of a triple
-duplicate ACK, what will be the values of the congestion window size and
-of ssthresh?</strong></p>
-<p><span class="math inline">\(\text{ssthresh} =
-\frac{\text{cwnd}}{2}\)</span>，<span class="math inline">\(\text{cwnd}
-= \text{ssthresh}\)</span>，都是 <span class="math inline">\(4\)</span>
-segment.</p>
-<p><strong>j. Suppose TCP Tahoe is used (instead of TCP Reno), and
-assume that triple duplicate ACKs are received at the <span
-class="math inline">\(16^{th}\)</span> round. What are the ssthresh and
-the congestion window size at the <span
-class="math inline">\(19^{th}\)</span> round?</strong></p>
+<p>Assuming TCP <strong>Reno</strong> is the protocol experiencing the behavior shown above, answer the following questions. In all cases, you should provide a short discussion justifying your answer.</p>
+<p><strong>a. Identify the intervals of time when TCP slow start is operating.</strong></p>
+<p>根据 TCP congestion control 机制，slow start phase 期间 <strong>cwnd</strong> 是以指数函数增长，从图中可以得出大概是在 <span class="math inline">\(\text{Transmission round} \in [1, 6] \cup [23, 26]\)</span> 期间。</p>
+<p><strong>b. Identify the intervals of time when TCP congestion avoidance is operating</strong></p>
+<p>TCP congestion avoidance 期间的特点是 <strong>cwnd</strong> 以 $ k = 1 $ MSS 的速率线性增长，从图中可以得出大概是在 <span class="math inline">\(\text{Transmission round} \in [6, 16] \cup [17, 22]\)</span> 期间。</p>
+<p><strong>c. After the 16th transmission round, is segment loss detected by a triple duplicate ACK or by a timeout?</strong></p>
+<p>从图中可以分析出，<span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2}\)</span>，<span class="math inline">\(\text{cwnd} = \text{ssthresh}\)</span>，然后线性增长，所以 detected by a triple duplicate ACK。</p>
+<p><strong>d. After the 22nd transmission round, is segment loss detected by a triple duplicate ACK or by a timeout?</strong></p>
+<p><strong>cwnd</strong> 归一，进入 slow start phase，所以 detected by a timeout。</p>
+<p><strong>e. What is the initial value of <span class="math inline">\(\text{ssthresh}\)</span> at the first transmission round?</strong></p>
+<p>大概是 <span class="math inline">\(32\)</span> MSS，当 <span class="math inline">\({\text{cwnd} \geq \text{ssthresh}}\)</span> 会进入 congestion avoidance phase，然后线性增长。</p>
+<p><strong>f. What is the value of ssthresh at the <span class="math inline">\(18^{th}\)</span> transmission round?</strong></p>
+<p>减半了，所以是，<span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2} = 21\)</span> MSS</p>
+<p><strong>g. What is the value of ssthresh at the <span class="math inline">\(24^{th}\)</span> transmission round?</strong></p>
+<p>减半了，所以是，<span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2} = 13\)</span> MSS</p>
+<p><strong>h. During what transmission round is the <span class="math inline">\(70^{th}\)</span> segment sent?</strong></p>
+<p>第一次 slow start phase 阶段后传了 63 个，所在第 <span class="math inline">\(6\)</span> 和 <span class="math inline">\(7\)</span> 轮之间。</p>
+<p><strong>i. Assuming a packet loss is detected after the <span class="math inline">\(26^{th}\)</span> round by the receipt of a triple duplicate ACK, what will be the values of the congestion window size and of ssthresh?</strong></p>
+<p><span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2}\)</span>，<span class="math inline">\(\text{cwnd} = \text{ssthresh}\)</span>，都是 <span class="math inline">\(4\)</span> segment.</p>
+<p><strong>j. Suppose TCP Tahoe is used (instead of TCP Reno), and assume that triple duplicate ACKs are received at the <span class="math inline">\(16^{th}\)</span> round. What are the ssthresh and the congestion window size at the <span class="math inline">\(19^{th}\)</span> round?</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
-<table style="width:100%;">
-
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>特性</th>
 <th>TCP Tahoe</th>
 <th>TCP Reno</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>三次重复ACK时</strong></td>
 <td>cwnd=1MSS, 进入慢启动</td>
 <td>cwnd=ssthresh, 进入拥塞避免</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>超时事件时</strong></td>
 <td>cwnd=1MSS, 进入慢启动</td>
 <td>cwnd=1MSS, 进入慢启动</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>恢复速度</strong></td>
 <td>较慢(需要重新慢启动)</td>
 <td>较快(可能直接进入拥塞避免)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>快速恢复机制</strong></td>
 <td>不支持</td>
 <td>支持</td>
@@ -1308,79 +905,38 @@ class="math inline">\(19^{th}\)</span> round?</strong></p>
 </tbody>
 </table>
 </div>
-<p>第 <span class="math inline">\(16^{th}\)</span> 出现了 triple
-duplicate ACKs，所以，第 <span class="math inline">\(17^{th}\)</span>
-<span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2} =
-21\)</span>，<span class="math inline">\(\text{cwnd} =
-1\)</span>，然后进入 slow start 阶段，第 <span
-class="math inline">\(19^{th}\)</span> <span
-class="math inline">\(\text{cwnd} = 4\)</span></p>
-<p><strong>k. Again suppose TCP Tahoe is used, and there is a timeout
-event at <span class="math inline">\(22^{nd}\)</span> round. How many
-packets have been sent out from <span
-class="math inline">\(17^{th}\)</span> round till <span
-class="math inline">\(22^{nd}\)</span> round, inclusive?</strong></p>
-<p>需要注意的是，在第 <span class="math inline">\(16^{th}\)</span>
-收到了三个 ACKs，同时，在第 <span class="math inline">\(22^{th}\)</span>
-到达 ssthresh 所以实际收到 <span class="math inline">\(1 + 2 + 4 + 8 +
-16 + 21 = 52\)</span> MSS。</p>
+<p>第 <span class="math inline">\(16^{th}\)</span> 出现了 triple duplicate ACKs，所以，第 <span class="math inline">\(17^{th}\)</span> <span class="math inline">\(\text{ssthresh} = \frac{\text{cwnd}}{2} = 21\)</span>，<span class="math inline">\(\text{cwnd} = 1\)</span>，然后进入 slow start 阶段，第 <span class="math inline">\(19^{th}\)</span> <span class="math inline">\(\text{cwnd} = 4\)</span></p>
+<p><strong>k. Again suppose TCP Tahoe is used, and there is a timeout event at <span class="math inline">\(22^{nd}\)</span> round. How many packets have been sent out from <span class="math inline">\(17^{th}\)</span> round till <span class="math inline">\(22^{nd}\)</span> round, inclusive?</strong></p>
+<p>需要注意的是，在第 <span class="math inline">\(16^{th}\)</span> 收到了三个 ACKs，同时，在第 <span class="math inline">\(22^{th}\)</span> 到达 ssthresh 所以实际收到 <span class="math inline">\(1 + 2 + 4 + 8 + 16 + 21 = 52\)</span> MSS。</p>
 <h2 id="p.43">P.43</h2>
-<p>Consider that only a single TCP (Reno) connection uses one <span
-class="math inline">\(10\)</span> Mbps link which does not buffer any
-data. Suppose that this link is the only congested link between the
-sending and receiving hosts. Assume that the TCP sender has a huge file
-to send to the receiver, and the receiver’s receive buffer is much
-larger than the congestion window. We also make the following
-assumptions: each TCP segment size is <span
-class="math inline">\(1\,500\)</span> bytes; the two-way propagation
-delay of this connection is <span class="math inline">\(100\)</span>
-msec; and this TCP connection <strong>is always in congestion avoidance
-phase, that is, ignore slow start</strong>.</p>
+<p>Consider that only a single TCP (Reno) connection uses one <span class="math inline">\(10\)</span> Mbps link which does not buffer any data. Suppose that this link is the only congested link between the sending and receiving hosts. Assume that the TCP sender has a huge file to send to the receiver, and the receiver’s receive buffer is much larger than the congestion window. We also make the following assumptions: each TCP segment size is <span class="math inline">\(1\,500\)</span> bytes; the two-way propagation delay of this connection is <span class="math inline">\(100\)</span> msec; and this TCP connection <strong>is always in congestion avoidance phase, that is, ignore slow start</strong>.</p>
 <p><strong>Questions and Answers:</strong></p>
-<p><strong>a. What is the maximum window size (in segments) that this
-TCP connection can achieve?</strong></p>
+<p><strong>a. What is the maximum window size (in segments) that this TCP connection can achieve?</strong></p>
 <p>最大窗口大小由 <strong>带宽延迟积(BDP)</strong> 决定：</p>
-<p>首先计算 RTT： - 传播延迟 = <span class="math inline">\(100\)</span>
-毫秒 - 传输延迟 = 段大小/带宽 = (<span class="math inline">\(1500 \times
-8\)</span>) 比特/(<span class="math inline">\(10 \times 10^6\)</span>)
-比特/秒 = <span class="math inline">\(1.2\)</span> 毫秒 -
-<strong>总RTT</strong> = <span class="math inline">\(101.2\)</span>
-毫秒</p>
+<p>首先计算 RTT： - 传播延迟 = <span class="math inline">\(100\)</span> 毫秒 - 传输延迟 = 段大小/带宽 = (<span class="math inline">\(1500 \times 8\)</span>) 比特/(<span class="math inline">\(10 \times 10^6\)</span>) 比特/秒 = <span class="math inline">\(1.2\)</span> 毫秒 - <strong>总RTT</strong> = <span class="math inline">\(101.2\)</span> 毫秒</p>
 <p>带宽延迟积： <span class="math display">\[
-\text{BDP} = 10\text{ Mbps} \times 0.1012\text{ s} = 1.012 \times 10^6
-\text{ bits}
+\text{BDP} = 10\text{ Mbps} \times 0.1012\text{ s} = 1.012 \times 10^6 \text{ bits}
 \]</span></p>
 <p>也就是 PPT 上的公式： <span class="math display">\[
 \text{rate} \approx \frac{\text{cwnd}}{\text{RTT}}
 \]</span></p>
 <p>最大窗口大小(段数)： <span class="math display">\[
-\text{最大窗口} = \frac{\text{BDP}}{\text{段大小}} = \frac{1.012 \times
-10^6}{1500 \times 8} \approx 84.33 = \boxed{84\text{ 段}}
+\text{最大窗口} = \frac{\text{BDP}}{\text{段大小}} = \frac{1.012 \times 10^6}{1500 \times 8} \approx 84.33 = \boxed{84\text{ 段}}
 \]</span></p>
-<p><strong>b. What is the average window size (in segments) and average
-throughput (in bps) of this TCP connection?</strong></p>
-<p>根据TCP Reno特性，窗口大小在拥塞避免阶段会在 <span
-class="math inline">\(\frac{W}{2}\)</span> 和 <span
-class="math inline">\(W\)</span> 之间周期变化。</p>
+<p><strong>b. What is the average window size (in segments) and average throughput (in bps) of this TCP connection?</strong></p>
+<p>根据TCP Reno特性，窗口大小在拥塞避免阶段会在 <span class="math inline">\(\frac{W}{2}\)</span> 和 <span class="math inline">\(W\)</span> 之间周期变化。</p>
 <p>平均窗口大小： <span class="math display">\[
 \text{平均窗口} = 0.75 \times W = 0.75 \times 84 = \boxed{63\text{ 段}}
 \]</span></p>
 <p>平均吞吐量： <span class="math display">\[
-\text{平均吞吐量} = 0.75 \times \frac{W \times \text{段大小} \times
-8}{\text{RTT}} = 0.75 \times \frac{84 \times 1500 \times 8}{0.1012}
-\approx \boxed{7.5\text{ Mbps}}
+\text{平均吞吐量} = 0.75 \times \frac{W \times \text{段大小} \times 8}{\text{RTT}} = 0.75 \times \frac{84 \times 1500 \times 8}{0.1012} \approx \boxed{7.5\text{ Mbps}}
 \]</span></p>
-<p><strong>c. How long would it take for this TCP connection to reach
-its maximum window again after recovering from a packet
-loss?</strong></p>
-<p>在TCP Reno中，丢包后窗口大小减半，然后每个RTT增加 <span
-class="math inline">\(1\)</span> 个MSS：</p>
+<p><strong>c. How long would it take for this TCP connection to reach its maximum window again after recovering from a packet loss?</strong></p>
+<p>在TCP Reno中，丢包后窗口大小减半，然后每个RTT增加 <span class="math inline">\(1\)</span> 个MSS：</p>
 <ul>
-<li>初始窗口（丢包后）= <span class="math inline">\(\frac{W}{2} =
-42\)</span> 段</li>
+<li>初始窗口（丢包后）= <span class="math inline">\(\frac{W}{2} = 42\)</span> 段</li>
 <li>每个RTT增加 <span class="math inline">\(1\)</span> 段</li>
-<li>需要增加的段数 = <span class="math inline">\(\frac{W}{2} =
-42\)</span> 段</li>
+<li>需要增加的段数 = <span class="math inline">\(\frac{W}{2} = 42\)</span> 段</li>
 <li>所需RTT数 = <span class="math inline">\(42\)</span></li>
 </ul>
 <p><span class="math display">\[
