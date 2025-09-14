@@ -280,20 +280,29 @@
 <h2 id="模型评估与选择">模型评估与选择</h2>
 <h3 id="训练误差与测试误差">训练误差与测试误差</h3>
 <p>一般而言，统计学习方法具体采用的损失函数未必是评估时使用的损失函数。</p>
-<p>假设学习到的模型是 <span class="math inline">\(Y = \hat{f}(X)\)</span>，<strong>训练误差</strong>是模型 <span class="math inline">\(Y = \hat{f}(X)\)</span> 关于训练数据集的平局损失：</p>
+<p>假设学习到的模型是 <span class="math inline">\(Y =
+\hat{f}(X)\)</span>，<strong>训练误差</strong>是模型 <span
+class="math inline">\(Y = \hat{f}(X)\)</span>
+关于训练数据集的平局损失：</p>
 <p><span class="math display">\[
 R_{\text{emp}} = \frac{1}{N} \sum_{i = 1}^{N} L(y_i, \hat{f}(x_i))
 \]</span></p>
 <p>其中 <span class="math inline">\(N\)</span> 是训练样本容量。</p>
-<p><strong>测试误差</strong>是模型 <span class="math inline">\(Y = \hat{f}(X)\)</span> 关于测试数据集的平均损失：</p>
+<p><strong>测试误差</strong>是模型 <span class="math inline">\(Y =
+\hat{f}(X)\)</span> 关于测试数据集的平均损失：</p>
 <p><span class="math display">\[
-e_{\text{emp}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} L(y_i, \hat{f}(x_i))
+e_{\text{emp}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} L(y_i,
+\hat{f}(x_i))
 \]</span></p>
 <p>其中 <span class="math inline">\(N&#39;\)</span> 是测试样本容量。</p>
-<p>上面所述中的函数 <span class="math inline">\(L\)</span> 是损失函数。</p>
-<p>常见的 <span class="math inline">\(L\)</span> 有指示函数 <span class="math inline">\(I\)</span>，当满足函数内容是取 <span class="math inline">\(1\)</span>。当损失函数是指示函数时，此时测试误差又叫做<strong>测试误差率</strong>：</p>
+<p>上面所述中的函数 <span class="math inline">\(L\)</span>
+是损失函数。</p>
+<p>常见的 <span class="math inline">\(L\)</span> 有指示函数 <span
+class="math inline">\(I\)</span>，当满足函数内容是取 <span
+class="math inline">\(1\)</span>。当损失函数是指示函数时，此时测试误差又叫做<strong>测试误差率</strong>：</p>
 <p><span class="math display">\[
-e_{\text{test}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} I(y_i \neq \hat{f}(x_i))
+e_{\text{test}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} I(y_i \neq
+\hat{f}(x_i))
 \]</span></p>
 <h3 id="过拟合">过拟合</h3>
 <p>过拟合是统计学习和机器学习领域中常见且重要的问题之一。它指的是模型在训练数据上表现良好，能够取得较低的训练误差，但在未见过的测试数据或新样本上表现较差，导致<strong>泛化能力下降</strong>的现象。过拟合通常发生在模型复杂度过高、参数数量远大于训练样本数量，或训练过程中对训练数据<strong>记忆</strong>过多而忽略了数据的内在规律时。</p>
@@ -302,7 +311,8 @@ e_{\text{test}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} I(y_i \neq \hat{f}(x_i)
 <h4 id="正则化">正则化</h4>
 <p>正则化是<strong>结构风险最小化策略</strong>的实现，是在<strong>经验风险</strong>上加一个正则化项，一般具有下述形式：</p>
 <p><span class="math display">\[
-\min_{f \in \mathcal{F}} \quad \frac{1}{N} \sum_{i = 1}^{N}L(y_i, \hat{f}(x_i)) + \lambda J(f)
+\min_{f \in \mathcal{F}} \quad \frac{1}{N} \sum_{i = 1}^{N}L(y_i,
+\hat{f}(x_i)) + \lambda J(f)
 \]</span></p>
 <h4 id="交叉验证">交叉验证</h4>
 <p>如果样本数据不足，此时可以应用交叉验证。</p>

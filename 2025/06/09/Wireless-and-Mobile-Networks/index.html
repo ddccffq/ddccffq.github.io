@@ -26,14 +26,11 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Introduction Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wire">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/.io//Indirect%20routing%20to%20a%20mobile%20node.png">
-<meta property="og:image" content="https://ddccffq.github.io/.io//Direct%20routing%20to%20a%20mobile%20user.png">
 <meta property="article:published_time" content="2025-06-09T00:02:04.000Z">
 <meta property="article:modified_time" content="2025-06-17T05:18:59.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/.io//Indirect%20routing%20to%20a%20mobile%20node.png">
   
   
   
@@ -280,7 +277,8 @@
               <div class="markdown-body">
                 
                 <h1 id="introduction">Introduction</h1>
-<h2 id="elements-of-a-wireless-networks">Elements of a Wireless Networks</h2>
+<h2 id="elements-of-a-wireless-networks">Elements of a Wireless
+Networks</h2>
 <ul>
 <li><strong>Wireless Hosts:</strong> laptop, PDA, IP phone.</li>
 <li><strong>Base Station:</strong>
@@ -288,23 +286,27 @@
 <li>connected to a <strong>wired network</strong>.</li>
 <li><strong>relays</strong>
 <ul>
-<li>responsible for sending packets between wired network and wireless hosts in its area.</li>
+<li>responsible for sending packets between wired network and wireless
+hosts in its area.</li>
 </ul></li>
 </ul></li>
 <li><strong>Wireless Link:</strong>
 <ul>
 <li>typically used to connect mobiles to bas stations.</li>
-<li><strong>multiple access protocol</strong> coordinates link access.</li>
+<li><strong>multiple access protocol</strong> coordinates link
+access.</li>
 </ul></li>
 <li><strong>Infrastructure Mode:</strong>
 <ul>
-<li><strong>handoff:</strong> mobile changes base station providing connection into wired network.</li>
+<li><strong>handoff:</strong> mobile changes base station providing
+connection into wired network.</li>
 </ul></li>
 <li><strong>Ad Hoc Mode:</strong>
 <ul>
 <li>no base stations.</li>
 <li>nodes can only transmit to other nodes within link coverage.</li>
-<li>nodes organize themselves into a network: route among themselves.</li>
+<li>nodes organize themselves into a network: route among
+themselves.</li>
 </ul></li>
 </ul>
 <h2 id="wireless-network-taxonomy">Wireless Network Taxonomy</h2>
@@ -312,78 +314,106 @@
 <table>
 
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Infrastructure</strong></th>
 <th><strong>Single Hop</strong></th>
 <th><strong>Multiple Hops</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>With Infrastructure</strong></td>
-<td>Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.</td>
-<td>Host relays through several wireless nodes to connect to larger Internet (mesh net).</td>
+<td>Host connects to base station (WiFi, WiMAX, cellular) which connects
+to larger Internet.</td>
+<td>Host relays through several wireless nodes to connect to larger
+Internet (mesh net).</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Without Infrastructure</strong></td>
-<td>No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).</td>
-<td>No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET).</td>
+<td>No base station, no connection to larger Internet (e.g., Bluetooth,
+ad hoc nets).</td>
+<td>No base station, no connection to larger Internet. Nodes relay to
+reach other nodes (e.g., MANET, VANET).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h1 id="wireless-link-characteristics">Wireless Link Characteristics</h1>
+<h1 id="wireless-link-characteristics">Wireless Link
+Characteristics</h1>
 <blockquote>
-<p>从下文可以分析出，这里的 link 不能翻译成<strong>链路</strong>而应该翻译成<strong>连接</strong>。</p>
+<p>从下文可以分析出，这里的 link
+不能翻译成<strong>链路</strong>而应该翻译成<strong>连接</strong>。</p>
 </blockquote>
 <ul>
 <li><strong>decreased signal strength</strong></li>
 <li><strong>interference from other sources</strong></li>
 <li><strong>multipath propagation</strong></li>
 </ul>
-<p>Multiple wireless senders and receivers create additional problems (beyond multiple access): - <strong>Hidden Terminal Problem:</strong> A and C can not hear each other means A and C are unaware of their interference B.</p>
+<p>Multiple wireless senders and receivers create additional problems
+(beyond multiple access): - <strong>Hidden Terminal Problem:</strong> A
+and C can not hear each other means A and C are unaware of their
+interference B.</p>
 <blockquote>
-<p>这里是在讲，A 和 C 因为障碍物的问题而无法直接通信从而无法协调，但他们都能和 B 进行通信，如果 A 和 C 同时向 B 通信会导致冲突。</p>
+<p>这里是在讲，A 和 C
+因为障碍物的问题而无法直接通信从而无法协调，但他们都能和 B
+进行通信，如果 A 和 C 同时向 B 通信会导致冲突。</p>
 </blockquote>
 <ul>
 <li><strong>SNR (Signal-to-Noise Ratio):</strong>
 <ul>
 <li>larger SNR, easier to extract signal from noise.</li>
-<li>increases power <span class="math inline">\(\to\)</span> increases SNR <span class="math inline">\(\to\)</span> decreases <strong>BER (Bit Error Rate)</strong>.</li>
-<li>Given SNR, choose physical layer that meets BER requirement, giving highest throughput.</li>
+<li>increases power <span class="math inline">\(\to\)</span> increases
+SNR <span class="math inline">\(\to\)</span> decreases <strong>BER (Bit
+Error Rate)</strong>.</li>
+<li>Given SNR, choose physical layer that meets BER requirement, giving
+highest throughput.</li>
 </ul></li>
 </ul>
 <blockquote>
-<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为 <span class="math display">\[
+<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为 <span
+class="math display">\[
 \mathrm{SNR} = \frac{P_{\text{signal}}}{P_{\text{noise}}}
-\]</span> 实际中用单位 db 表示。SNR 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
+\]</span> 实际中用单位 db 表示。SNR
+越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
 </blockquote>
-<h2 id="code-division-multiple-access-cdma">Code Division Multiple Access (CDMA)</h2>
+<h2 id="code-division-multiple-access-cdma">Code Division Multiple
+Access (CDMA)</h2>
 <blockquote>
-<p>码分多址，这个我们在 data link layer 提到过，类似的有 TDMA 和 FDMA。需要注意的是 CDMA 是一个 physical layer protocol。所以下文用的是 channel 而不是 link。</p>
+<p>码分多址，这个我们在 data link layer 提到过，类似的有 TDMA 和
+FDMA。需要注意的是 CDMA 是一个 physical layer protocol。所以下文用的是
+channel 而不是 link。</p>
 </blockquote>
 <p>A kind of <strong>channel partitioning protocol</strong>.</p>
 <ul>
-<li><strong>Usage</strong>: Used in <strong>wireless broadcast channels</strong> (e.g., cellular, satellite).</li>
-<li><strong>Code Assignment</strong>: Each user is assigned a <strong>unique “code”</strong> (code set partitioning).</li>
-<li><strong>Frequency Sharing</strong>: All users share the same frequency but use distinct <strong>“chipping”</strong> sequences to encode data.</li>
+<li><strong>Usage</strong>: Used in <strong>wireless broadcast
+channels</strong> (e.g., cellular, satellite).</li>
+<li><strong>Code Assignment</strong>: Each user is assigned a
+<strong>unique “code”</strong> (code set partitioning).</li>
+<li><strong>Frequency Sharing</strong>: All users share the same
+frequency but use distinct <strong>“chipping”</strong> sequences to
+encode data.</li>
 <li><strong>Signal Encoding</strong>:
 <ul>
 <li>Encoded signal = (original data) (chipping sequence).</li>
 </ul></li>
 <li><strong>Signal Decoding</strong>:
 <ul>
-<li>Decoding is done using the inner product of the encoded signal and the chipping sequence.</li>
+<li>Decoding is done using the inner product of the encoded signal and
+the chipping sequence.</li>
 </ul></li>
-<li><strong>Advantage</strong>: Allows multiple users to coexist and transmit simultaneously with minimal interference (if codes are orthogonal). &gt; 这里提到的 unique code 和 chipping sequence 是同一个事物。</li>
+<li><strong>Advantage</strong>: Allows multiple users to coexist and
+transmit simultaneously with minimal interference (if codes are
+orthogonal). &gt; 这里提到的 unique code 和 chipping sequence
+是同一个事物。</li>
 </ul>
 <h3 id="cdma-encodedecode-process">CDMA Encode/Decode Process</h3>
 <h4 id="sender"><strong>Sender:</strong></h4>
 <ol type="1">
 <li><strong>Data Encoding</strong>:
 <ul>
-<li>Each sender has a unique code (chipping sequence) <code>c_m</code>.</li>
-<li>Encoded signal for each data bit:<br>
+<li>Each sender has a unique code (chipping sequence)
+<code>c_m</code>.</li>
+<li>Encoded signal for each data bit:<br />
 <span class="math display">\[ Z_{i,m} = d_i \cdot c_m \]</span>
 <ul>
 <li><code>d_i</code>: Original data bit.</li>
@@ -400,7 +430,9 @@
 <ol type="1">
 <li><strong>Signal Decoding</strong>:
 <ul>
-<li>Receiver uses the inner product of the received signal and its own chipping sequence to decode data: <span class="math display">\[ D_i = \frac{\sum_{m=1}^{M} Z_{i,m} \cdot c_m}{M} \]</span>
+<li>Receiver uses the inner product of the received signal and its own
+chipping sequence to decode data: <span class="math display">\[ D_i =
+\frac{\sum_{m=1}^{M} Z_{i,m} \cdot c_m}{M} \]</span>
 <ul>
 <li><code>D_i</code>: Decoded data bit.</li>
 <li><code>Z_&#123;i,m&#125;</code>: Received signal.</li>
@@ -409,80 +441,102 @@
 </ul></li>
 <li><strong>Output</strong>:
 <ul>
-<li>Decoded data bits are extracted from the combined channel output.</li>
+<li>Decoded data bits are extracted from the combined channel
+output.</li>
 </ul></li>
 </ol>
 <blockquote>
-<p>每个发送端都被分配一个唯一的码字（chipping sequence），码字的长度应该足够长，按理来讲，如果有 <span class="math inline">\(N\)</span> 个用户，码字长度 <span class="math inline">\(M \geq N\)</span>。码字具体为：用 <span class="math inline">\(+1\)</span> 和 <span class="math inline">\(-1\)</span> 分别代表 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(0\)</span>。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在 channel 中叠加。解码公式有一个前提：要求 user 使用的码字之间正交。除以 M 是为保证归一化。</p>
-<p>还要补充的是，CDMA 的核心思想是：所有用户在 <strong>same frequency</strong> 和 <strong>same time</strong> 的情况下发送信息。此时应用 CDMA。如果 frequency 不一致，也不会发生信号叠加，此时应该用 FDMA。</p>
+<p>每个发送端都被分配一个唯一的码字（chipping
+sequence），码字的长度应该足够长，按理来讲，如果有 <span
+class="math inline">\(N\)</span> 个用户，码字长度 <span
+class="math inline">\(M \geq N\)</span>。码字具体为：用 <span
+class="math inline">\(+1\)</span> 和 <span
+class="math inline">\(-1\)</span> 分别代表 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(0\)</span>。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在
+channel 中叠加。解码公式有一个前提：要求 user 使用的码字之间正交。除以 M
+是为保证归一化。</p>
+<p>还要补充的是，CDMA 的核心思想是：所有用户在 <strong>same
+frequency</strong> 和 <strong>same time</strong>
+的情况下发送信息。此时应用 CDMA。如果 frequency
+不一致，也不会发生信号叠加，此时应该用 FDMA。</p>
 </blockquote>
 <h1 id="wifi-802.11-wireless-lans">WiFi: 802.11 Wireless LANs</h1>
 <blockquote>
 <p>前部分介绍了 wireless link 及其用到的 CDMA protocol，</p>
 </blockquote>
 <ul>
-<li>all use <strong>CSMA/CA</strong> for multiple access. &gt; data link layer 部分我们讲过了 CSMA/CD。</li>
+<li>all use <strong>CSMA/CA</strong> for multiple access. &gt; data link
+layer 部分我们讲过了 CSMA/CD。</li>
 <li>all have base-station and ad-hoc network versions.</li>
 </ul>
 <h2 id="the-802.11-lan-architecture">The 802.11 LAN Architecture</h2>
 <ul>
-<li>wireless host communicates with base station (base station = access point (AP))</li>
-<li>Basic Service Set (BSS) (aka “cell”一片区域) in infrastructure mode contains:
+<li>wireless host communicates with base station (base station = access
+point (AP))</li>
+<li>Basic Service Set (BSS) (aka “cell”一片区域) in infrastructure mode
+contains:
 <ul>
 <li>wireless hosts</li>
 <li>access point (AP): base station</li>
 <li>ad hoc mode: hosts only</li>
 </ul></li>
-<li><strong>层次关系</strong>：一个 subnet 可以包含<strong>多个 BSS</strong>，多个无线主机通过不同接入点接入同一子网</li>
+<li><strong>层次关系</strong>：一个 subnet 可以包含<strong>多个
+BSS</strong>，多个无线主机通过不同接入点接入同一子网</li>
 <li><strong>切换过程</strong>：
 <ul>
-<li>当移动设备在<strong>同一子网内</strong>的不同 BSS 之间移动时，只需改变 BSS 关联（链路层切换），IP 地址<strong>保持不变</strong></li>
-<li>当移动设备跨子网移动时，除了需要切换 BSS，还需要获取新子网的 IP 地址（通常通过 DHCP）</li>
+<li>当移动设备在<strong>同一子网内</strong>的不同 BSS
+之间移动时，只需改变 BSS 关联（链路层切换），IP
+地址<strong>保持不变</strong></li>
+<li>当移动设备跨子网移动时，除了需要切换 BSS，还需要获取新子网的 IP
+地址（通常通过 DHCP）</li>
 </ul></li>
-<li><strong>地址分配</strong>：BSS 关注 MAC 地址，而 Subnet 关注 IP 地址</li>
+<li><strong>地址分配</strong>：BSS 关注 MAC 地址，而 Subnet 关注 IP
+地址</li>
 <li><strong>管理机制</strong>：BSS 由 AP 管理，Subnet 由路由器管理</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
+
 <thead>
-<tr class="header">
+<tr>
 <th><strong>特性</strong></th>
 <th><strong>BSS</strong></th>
 <th><strong>Subnet</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>所属网络层次</strong></td>
 <td>物理层和数据链路层 (OSI 第 1、2 层)</td>
 <td>网络层 (OSI 第 3 层)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>定义标准</strong></td>
 <td>IEEE 802.11 标准</td>
 <td>IP 协议标准</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>标识符</strong></td>
 <td>BSSID (MAC 地址)</td>
 <td>IP 地址前缀和子网掩码</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>地址范围</strong></td>
 <td>单个无线接入点覆盖范围</td>
 <td>可跨多个接入点，由路由器定义</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>关注点</strong></td>
 <td>无线媒体访问和信号传输</td>
 <td>IP 数据包的寻址和路由</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>设备组织方式</strong></td>
 <td>围绕单个接入点的无线主机集合</td>
 <td>共享同一网络前缀的主机集合</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>移动特性</strong></td>
 <td>设备在 BSS 间移动需要进行<strong>切换 (handoff)</strong></td>
 <td>在同一子网内的移动不需要更改 IP 地址</td>
@@ -492,19 +546,27 @@
 </div>
 <h2 id="channels-association">802.11: Channels, Association</h2>
 <ul>
-<li><strong>Frequency Spectrum</strong>: 2.4GHz-2.485GHz (802.11b) divided into 11 channels.</li>
-<li><strong>AP Configuration</strong>: Admin selects frequency for AP; interference may occur if neighboring APs use the same channel.</li>
+<li><strong>Frequency Spectrum</strong>: 2.4GHz-2.485GHz (802.11b)
+divided into 11 channels.</li>
+<li><strong>AP Configuration</strong>: Admin selects frequency for AP;
+interference may occur if neighboring APs use the same channel.</li>
 <li><strong>Host Association</strong>:
 <ul>
-<li>Scans channels for beacon frames with AP’s SSID and MAC address.</li>
+<li>Scans channels for beacon frames with AP’s SSID and MAC
+address.</li>
 <li>Selects an AP to associate with.</li>
 <li>May perform authentication.</li>
-<li>Typically runs <strong>DHCP</strong> to obtain an IP address in the AP’s subnet. &gt; 前文我们讲 CDMA 的时候提到了： CDMA 的所有用户使用相同的 frequency。通常情况下，一个 AP 在同一时刻只工作在一个信道（即一个频率范围），只能收发该信道上的无线信号。</li>
+<li>Typically runs <strong>DHCP</strong> to obtain an IP address in the
+AP’s subnet. &gt; 前文我们讲 CDMA 的时候提到了： CDMA
+的所有用户使用相同的 frequency。通常情况下，一个 AP
+在同一时刻只工作在一个信道（即一个频率范围），只能收发该信道上的无线信号。</li>
 </ul></li>
 </ul>
 <h2 id="passiveactive-scanning">802.11: Passive/Active Scanning</h2>
 <blockquote>
-<p>Beacon Frame（信标帧） 是 IEEE 802.11 无线局域网（WiFi）协议中由接入点（AP, Access Point）周期性广播的一种管理帧。</p>
+<p>Beacon Frame（信标帧） 是 IEEE 802.11
+无线局域网（WiFi）协议中由接入点（AP, Access
+Point）周期性广播的一种管理帧。</p>
 </blockquote>
 <ul>
 <li><strong>Passive Scanning</strong>:
@@ -528,66 +590,86 @@
 <blockquote>
 <p>data link layer</p>
 </blockquote>
-<h3 id="collision-avoidance-in-802.11">Collision Avoidance in 802.11</h3>
+<h3 id="collision-avoidance-in-802.11">Collision Avoidance in
+802.11</h3>
 <ul>
-<li><strong>Problem</strong>: Collisions occur when <span class="math inline">\(2\)</span> more nodes transmit simultaneously.</li>
+<li><strong>Problem</strong>: Collisions occur when <span
+class="math inline">\(2\)</span> more nodes transmit
+simultaneously.</li>
 <li><strong>Solution</strong>:
 <ul>
-<li><strong>CSMA</strong>: Sense the channel before transmitting to avoid collisions with ongoing transmissions.</li>
+<li><strong>CSMA</strong>: Sense the channel before transmitting to
+avoid collisions with ongoing transmissions.</li>
 <li><strong>No Collision Detection</strong>:
 <ul>
-<li>Difficult to sense collisions while transmitting due to weak received signals (fading).</li>
-<li><strong>Hidden terminal</strong> and <strong>fading issues</strong> prevent sensing all collisions.</li>
+<li>Difficult to sense collisions while transmitting due to weak
+received signals (fading).</li>
+<li><strong>Hidden terminal</strong> and <strong>fading issues</strong>
+prevent sensing all collisions.</li>
 </ul></li>
-<li><strong>Goal</strong>: Use <strong>CSMA/CA (Collision Avoidance)</strong> to minimize collisions.</li>
+<li><strong>Goal</strong>: Use <strong>CSMA/CA (Collision
+Avoidance)</strong> to minimize collisions.</li>
 </ul></li>
 </ul>
-<h2 id="ieee-802.11-mac-protocol-csmaca">IEEE 802.11 MAC Protocol: CSMA/CA</h2>
+<h2 id="ieee-802.11-mac-protocol-csmaca">IEEE 802.11 MAC Protocol:
+CSMA/CA</h2>
 <blockquote>
-<p>DIFS 是<strong>分布式帧间间隔</strong>（Distributed Inter-Frame Space）的缩写。SIFS 是<strong>短帧间间隔</strong>（Short Inter-Frame Space）的缩写。<strong>Link（链路）</strong>：在有线网络中，通常指两个节点之间的物理连接。<strong>Channel（信道）</strong>：在无线网络中，指的是一段特定频率范围内的无线传输资源，多个节点可以共享同一个信道。</p>
+<p>DIFS 是<strong>分布式帧间间隔</strong>（Distributed Inter-Frame
+Space）的缩写。SIFS 是<strong>短帧间间隔</strong>（Short Inter-Frame
+Space）的缩写。<strong>Link（链路）</strong>：在有线网络中，通常指两个节点之间的物理连接。<strong>Channel（信道）</strong>：在无线网络中，指的是一段特定频率范围内的无线传输资源，多个节点可以共享同一个信道。</p>
 </blockquote>
 <h3 id="sender-1"><strong>802.11 Sender</strong></h3>
 <ol type="1">
 <li><strong>Channel Idle</strong>:
 <ul>
-<li>If the channel is idle for DIFS, transmit the entire frame (no collision detection).</li>
+<li>If the channel is idle for DIFS, transmit the entire frame (no
+collision detection).</li>
 </ul></li>
 <li><strong>Channel Busy</strong>:
 <ul>
 <li>Start a random backoff timer.</li>
 <li>Timer counts down while the channel is idle.</li>
 <li>Transmit when the timer expires.</li>
-<li>If no ACK is received, increase the random backoff interval and repeat step <span class="math inline">\(2\)</span>.</li>
+<li>If no ACK is received, increase the random backoff interval and
+repeat step <span class="math inline">\(2\)</span>.</li>
 </ul></li>
 </ol>
 <h3 id="receiver-1"><strong>802.11 Receiver</strong></h3>
 <ul>
 <li>If the frame is received correctly:
 <ul>
-<li>Return an ACK after SIFS (ACK is needed to address the hidden terminal problem).</li>
+<li>Return an ACK after SIFS (ACK is needed to address the hidden
+terminal problem).</li>
 </ul></li>
 </ul>
-<h3 id="avoiding-collisions-rtscts-mechanism">Avoiding Collisions: RTS/CTS Mechanism</h3>
+<h3 id="avoiding-collisions-rtscts-mechanism">Avoiding Collisions:
+RTS/CTS Mechanism</h3>
 <ul>
-<li><strong>Idea</strong>: Allow sender to reserve the channel to avoid collisions of long data frames.</li>
+<li><strong>Idea</strong>: Allow sender to reserve the channel to avoid
+collisions of long data frames.</li>
 <li><strong>Process</strong>:
 <ol type="1">
-<li>Sender transmits a small <strong>Request-to-Send (RTS)</strong> packet to the base station (BS) using CSMA.</li>
+<li>Sender transmits a small <strong>Request-to-Send (RTS)</strong>
+packet to the base station (BS) using CSMA.</li>
 <li>RTS packets may collide, but they are short.</li>
-<li>BS responds with a <strong>Clear-to-Send (CTS)</strong> packet, broadcast to all nodes.</li>
+<li>BS responds with a <strong>Clear-to-Send (CTS)</strong> packet,
+broadcast to all nodes.</li>
 <li>Sender transmits the data frame.</li>
 <li>Other stations defer their transmissions upon hearing the CTS.</li>
 </ol></li>
-<li><strong>Advantage</strong>: Completely avoids collisions of long data frames by using small reservation packets.</li>
+<li><strong>Advantage</strong>: Completely avoids collisions of long
+data frames by using small reservation packets.</li>
 </ul>
 <ol type="1">
 <li><strong>发送预约请求（RTS）</strong>
 <ul>
-<li>发送方先发送一个很短的 RTS（Request to Send）帧给基站（或接入点，AP），请求占用信道。</li>
+<li>发送方先发送一个很短的 RTS（Request to
+Send）帧给基站（或接入点，AP），请求占用信道。</li>
 </ul></li>
 <li><strong>接收预约确认（CTS）</strong>
 <ul>
-<li>基站收到 RTS 后，如果信道空闲，则广播一个 CTS（Clear to Send）帧，通知所有节点允许该发送方发送数据。</li>
+<li>基站收到 RTS 后，如果信道空闲，则广播一个 CTS（Clear to
+Send）帧，通知所有节点允许该发送方发送数据。</li>
 </ul></li>
 <li><strong>数据发送</strong>
 <ul>
@@ -595,62 +677,64 @@
 </ul></li>
 <li><strong>其他节点监听</strong>
 <ul>
-<li>网络中其他节点收到 CTS 后，会在指定时间内暂停发送，避免与当前数据帧发生冲突。</li>
+<li>网络中其他节点收到 CTS
+后，会在指定时间内暂停发送，避免与当前数据帧发生冲突。</li>
 </ul></li>
 </ol>
 <h2 id="addressing">802.11 Addressing</h2>
 <p>下表总结了 802.11 帧的各字段及其作用：</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
+
 <thead>
-<tr class="header">
+<tr>
 <th>字段名</th>
 <th>长度（字节）</th>
 <th>作用说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>frame control</td>
 <td>2</td>
 <td>帧控制字段，指示帧类型、控制信息等</td>
 </tr>
-<tr class="even">
+<tr>
 <td>duration</td>
 <td>2</td>
 <td>持续时间字段，指示信道预留时间</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>address 1</td>
 <td>6</td>
 <td>接收方 MAC 地址（无线主机或 AP）</td>
 </tr>
-<tr class="even">
+<tr>
 <td>address 2</td>
 <td>6</td>
 <td>发送方 MAC 地址（无线主机或 AP）</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>address 3</td>
 <td>6</td>
 <td>路由器接口的 MAC 地址（AP 所连接的路由器接口）</td>
 </tr>
-<tr class="even">
+<tr>
 <td>seq control</td>
 <td>2</td>
 <td>序列控制字段，帧编号等</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>address 4</td>
 <td>6</td>
 <td>仅在 ad hoc 模式下使用的地址</td>
 </tr>
-<tr class="even">
+<tr>
 <td>payload</td>
 <td>0 - 2312</td>
 <td>数据负载部分</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>CRC</td>
 <td>4</td>
 <td>循环冗余校验，用于差错检测</td>
@@ -658,38 +742,56 @@
 </tbody>
 </table>
 </div>
-<p><strong>说明：</strong> - address 1：接收方 MAC 地址 - address 2：发送方 MAC 地址 - address 3：AP 所连接的路由器接口的 MAC 地址 - address 4：仅 ad hoc 模式下使用</p>
+<p><strong>说明：</strong> - address 1：接收方 MAC 地址 - address
+2：发送方 MAC 地址 - address 3：AP 所连接的路由器接口的 MAC 地址 -
+address 4：仅 ad hoc 模式下使用</p>
 <h2 id="mobility-within-same-subnet">Mobility within Same Subnet</h2>
-<p>Host 在统一子网下不同 BSS 移动，switch 如何得知 host 当前在哪个 BSS 内？实际上 switch 能通过 self-learning：switch will see frame from H1 and remember which switch port can be used to reach H1。</p>
+<p>Host 在统一子网下不同 BSS 移动，switch 如何得知 host 当前在哪个 BSS
+内？实际上 switch 能通过 self-learning：switch will see frame from H1
+and remember which switch port can be used to reach H1。</p>
 <h2 id="power-management">Power Management</h2>
 <ul>
-<li><strong>定时唤醒机制</strong>：<br>
-休眠节点在进入省电模式（Power Save Mode）时，会本地保存下一个 beacon frame 的预计到达时间，并设置定时器（timer）。</li>
-<li><strong>硬件支持</strong>：<br>
-无线网卡硬件通常具备低功耗计时功能，可以在主机休眠时保持计时，确保在 beacon frame 到来前自动唤醒。</li>
-<li><strong>唤醒流程</strong>：<br>
-节点休眠后，定时器到达设定时间，节点自动唤醒，监听并接收 AP 广播的 beacon frame，判断是否有待接收的数据。</li>
-<li><strong>节能的核心在于节点休眠</strong>：<br>
-节能的关键不是 AP 是否省电，而是<strong>无线终端（如手机、笔记本）可以长时间休眠，仅在 beacon frame 到来时短暂唤醒</strong>，大大减少无线网卡的活跃时间和能耗。</li>
-<li><strong>AP 通常为插电设备</strong>：<br>
-AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常是接入电源的设备，不依赖电池。</li>
-<li><strong>终端省电效果显著</strong>：<br>
+<li><strong>定时唤醒机制</strong>：<br />
+休眠节点在进入省电模式（Power Save Mode）时，会本地保存下一个 beacon
+frame 的预计到达时间，并设置定时器（timer）。</li>
+<li><strong>硬件支持</strong>：<br />
+无线网卡硬件通常具备低功耗计时功能，可以在主机休眠时保持计时，确保在
+beacon frame 到来前自动唤醒。</li>
+<li><strong>唤醒流程</strong>：<br />
+节点休眠后，定时器到达设定时间，节点自动唤醒，监听并接收 AP 广播的
+beacon frame，判断是否有待接收的数据。</li>
+<li><strong>节能的核心在于节点休眠</strong>：<br />
+节能的关键不是 AP
+是否省电，而是<strong>无线终端（如手机、笔记本）可以长时间休眠，仅在
+beacon frame
+到来时短暂唤醒</strong>，大大减少无线网卡的活跃时间和能耗。</li>
+<li><strong>AP 通常为插电设备</strong>：<br />
+AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP
+通常是接入电源的设备，不依赖电池。</li>
+<li><strong>终端省电效果显著</strong>：<br />
 终端设备在无数据通信时可以关闭大部分无线模块，仅保留低功耗计时和唤醒功能，只有在需要接收数据或发送数据时才唤醒主模块，极大延长了电池续航。</li>
 </ul>
 <h2 id="personal-area-network">802.15: Personal Area Network</h2>
 <p>个人热点。使用 ad hoc mode，参考 bluetooth protocol。</p>
 <h2 id="wimax">802.16: WiMAX</h2>
 <h1 id="cellular-internet-access">Cellular Internet Access</h1>
-<p>介绍几个概念： - <strong>Cell</strong>：一个区域，里面有一个 base station，mobile users 通过这个基站连接到 network。 - <strong>MCS</strong>：Mobile Switching Center。连接 base station 和 wired network。</p>
+<p>介绍几个概念： - <strong>Cell</strong>：一个区域，里面有一个 base
+station，mobile users 通过这个基站连接到 network。 -
+<strong>MCS</strong>：Mobile Switching Center。连接 base station 和
+wired network。</p>
 <h2 id="the-first-hop">The First Hop</h2>
-<p>第一跳为 users 到 base station。显然是一个 multiple senders 的场景，可以用 FDMA、TDMA 和 CDMA 分离数据。</p>
-<h2 id="cellular-standards-brief-survey">Cellular standards: brief survey</h2>
+<p>第一跳为 users 到 base station。显然是一个 multiple senders
+的场景，可以用 FDMA、TDMA 和 CDMA 分离数据。</p>
+<h2 id="cellular-standards-brief-survey">Cellular standards: brief
+survey</h2>
 <h3 id="g-systems"><strong>2G Systems</strong></h3>
 <ul>
 <li><strong>Voice Channels</strong>:
 <ul>
-<li><strong>IS-136 TDMA</strong>: Combined FDMA/TDMA (North America).</li>
-<li><strong>GSM</strong>: Global System for Mobile Communications, combined FDMA/TDMA (most widely deployed).</li>
+<li><strong>IS-136 TDMA</strong>: Combined FDMA/TDMA (North
+America).</li>
+<li><strong>GSM</strong>: Global System for Mobile Communications,
+combined FDMA/TDMA (most widely deployed).</li>
 <li><strong>IS-95 CDMA</strong>: Code Division Multiple Access.</li>
 </ul></li>
 </ul>
@@ -697,87 +799,150 @@ AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP 通常�
 <ul>
 <li><strong>Voice and Data Channels</strong>:
 <ul>
-<li><strong>GPRS</strong>: Evolved from GSM, data sent on multiple channels.</li>
-<li><strong>EDGE</strong>: Enhanced modulation, data rates up to 384K.</li>
-<li><strong>CDMA-2000 (Phase 1)</strong>: Data rates up to 144K, evolved from IS-95.</li>
+<li><strong>GPRS</strong>: Evolved from GSM, data sent on multiple
+channels.</li>
+<li><strong>EDGE</strong>: Enhanced modulation, data rates up to
+384K.</li>
+<li><strong>CDMA-2000 (Phase 1)</strong>: Data rates up to 144K, evolved
+from IS-95.</li>
 </ul></li>
 </ul>
 <h3 id="g-systems-2"><strong>3G Systems</strong></h3>
 <ul>
 <li><strong>Voice/Data</strong>:
 <ul>
-<li><strong>UMTS</strong>: High-Speed Uplink/Downlink Packet Access (HSDPA/HSUPA), 3 Mbps.</li>
-<li><strong>CDMA-2000</strong>: Data service (1xEVDO), up to 14 Mbps.</li>
+<li><strong>UMTS</strong>: High-Speed Uplink/Downlink Packet Access
+(HSDPA/HSUPA), 3 Mbps.</li>
+<li><strong>CDMA-2000</strong>: Data service (1xEVDO), up to 14
+Mbps.</li>
 </ul></li>
 </ul>
 <h3 id="g-systems-3"><strong>4G Systems</strong></h3>
 <ul>
 <li><strong>Voice/Data</strong>:
 <ul>
-<li><strong>LTE</strong>: Employs OFDM and MIMO techniques, 100 Mbps for downlink, 50 Mbps for uplink.</li>
+<li><strong>LTE</strong>: Employs OFDM and MIMO techniques, 100 Mbps for
+downlink, 50 Mbps for uplink.</li>
 </ul></li>
 </ul>
-<h1 id="principles-addressing-and-routing-to-mobile-users">Principles: Addressing and Routing to Mobile Users</h1>
-<p><strong>mobile user, passing through multiple access point while maintaining ongoing connections (like cell phone)</strong></p>
+<h1 id="principles-addressing-and-routing-to-mobile-users">Principles:
+Addressing and Routing to Mobile Users</h1>
+<p><strong>mobile user, passing through multiple access point while
+maintaining ongoing connections (like cell phone)</strong></p>
 <h2 id="mobility-vocabulary">Mobility: Vocabulary</h2>
 <h3 id="home-network"><strong>Home Network</strong></h3>
 <ul>
 <li>Permanent “home” of the mobile device (e.g., 128.119.40/24).</li>
-<li><strong>Permanent Address</strong>: Address in the home network, always used to reach the mobile (e.g., 128.119.40.186).</li>
-<li><strong>Home Agent</strong>: Entity in the home network that performs mobility functions for the mobile when it is remote.</li>
+<li><strong>Permanent Address</strong>: Address in the home network,
+always used to reach the mobile (e.g., 128.119.40.186).</li>
+<li><strong>Home Agent</strong>: Entity in the home network that
+performs mobility functions for the mobile when it is remote.</li>
 </ul>
 <h3 id="visited-network"><strong>Visited Network</strong></h3>
 <ul>
-<li>Network where the mobile device currently resides (e.g., 79.129.13/24).</li>
-<li><strong>Care-of-Address</strong>: Temporary address assigned to the mobile in the visited network (e.g., 79.129.13.2).</li>
-<li><strong>Foreign Agent</strong>: Entity in the visited network that performs mobility functions on behalf of the mobile.</li>
+<li>Network where the mobile device currently resides (e.g.,
+79.129.13/24).</li>
+<li><strong>Care-of-Address</strong>: Temporary address assigned to the
+mobile in the visited network (e.g., 79.129.13.2).</li>
+<li><strong>Foreign Agent</strong>: Entity in the visited network that
+performs mobility functions on behalf of the mobile.</li>
 </ul>
 <h3 id="correspondent"><strong>Correspondent</strong></h3>
 <ul>
 <li>The entity that wants to communicate with the mobile device.</li>
 </ul>
-<h3 id="consider-friend-frequently-changing-addresses-how-do-you-find-her">Consider friend frequently changing addresses, how do you find her?</h3>
-<p><strong>let end-systems handle it:</strong> - indirect routing: communication from correspondent to mobile goes through home agent, then forwarded to remote - direct routing: correspondent gets foreign address of mobile, sends directly to mobile</p>
+<h3
+id="consider-friend-frequently-changing-addresses-how-do-you-find-her">Consider
+friend frequently changing addresses, how do you find her?</h3>
+<p><strong>let end-systems handle it:</strong> - indirect routing:
+communication from correspondent to mobile goes through home agent, then
+forwarded to remote - direct routing: correspondent gets foreign address
+of mobile, sends directly to mobile</p>
 <figure>
-<img src="/.io//Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Indirect routing"><figcaption aria-hidden="true">Indirect routing</figcaption>
+<img
+src="Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload
+style="display: block; margin: 0 auto; width: 90%"
+alt="Indirect routing" />
+<figcaption aria-hidden="true">Indirect routing</figcaption>
 </figure>
-<p>第一种 indirect routing，见上图所示，当你的朋友移动到其它 <strong>foreign</strong> 网络，他会得到一个 <strong>Care-of-Address</strong>，这个地址是临时的，用于在当前所在子网下通信，但他有一个 <strong>Permanent Address</strong>，可以通过联系他的 <strong>Home agent</strong>，从而联系到他所在子网的 <strong>Foreign agent</strong>，从而联系到他。</p>
+<p>第一种 indirect routing，见上图所示，当你的朋友移动到其它
+<strong>foreign</strong> 网络，他会得到一个
+<strong>Care-of-Address</strong>，这个地址是临时的，用于在当前所在子网下通信，但他有一个
+<strong>Permanent Address</strong>，可以通过联系他的 <strong>Home
+agent</strong>，从而联系到他所在子网的 <strong>Foreign
+agent</strong>，从而联系到他。</p>
 <figure>
-<img src="/.io//Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Direct routing"><figcaption aria-hidden="true">Direct routing</figcaption>
+<img
+src="Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload
+style="display: block; margin: 0 auto; width: 90%"
+alt="Direct routing" />
+<figcaption aria-hidden="true">Direct routing</figcaption>
 </figure>
-<p>第二种是 direct routing，这种是先通过联系他的 Home agent，得到他所在子网的 IP address，从联系到他。</p>
-<p>需要补充两点： 1. <strong>correspondent 如何得到 friend 的 permanent address</strong>. - <strong>permanent address（永久地址）</strong> 是 friend 在 home network 的固定 IP 地址，通常是 friend 在 home network 注册时分配的。 - <strong>correspondent（通信对端）</strong> 想要联系 friend 时，通常会通过 DNS 查询等方式获得 friend 的 permanent address（即 home address）。 - 这个 permanent address 是公开的、长期有效的，类似于家庭住址，所有通信发起者都可以通过标准方式获得。 2. <strong>home agent 如何维护 friend 所在子网的 agent 和 IP address</strong>. - <strong>home agent（归属代理）</strong> 是部署在 friend 的 home network 内的一个特殊节点，负责跟踪 friend 的当前位置。 - 当 friend 移动到新的 visited network 并获得新的 care-of address 时，会向 home agent 注册自己的新位置（即 care-of address 和 foreign agent 的信息）。 - home agent 会维护一个映射表，记录每个移动节点的 permanent address 与其当前的 care-of address（以及 foreign agent 的信息，如果有）。 - 当有数据包发往 friend 的 permanent address 时，home agent 会将这些数据包<strong>隧道转发</strong>（tunnel）到 friend 当前的 care-of address（即 friend 所在子网的 foreign agent 或直接到 friend 本身）。</p>
+<p>第二种是 direct routing，这种是先通过联系他的 Home
+agent，得到他所在子网的 IP address，从联系到他。</p>
+<p>需要补充两点： 1. <strong>correspondent 如何得到 friend 的 permanent
+address</strong>. - <strong>permanent address（永久地址）</strong> 是
+friend 在 home network 的固定 IP 地址，通常是 friend 在 home network
+注册时分配的。 - <strong>correspondent（通信对端）</strong> 想要联系
+friend 时，通常会通过 DNS 查询等方式获得 friend 的 permanent address（即
+home address）。 - 这个 permanent address
+是公开的、长期有效的，类似于家庭住址，所有通信发起者都可以通过标准方式获得。
+2. <strong>home agent 如何维护 friend 所在子网的 agent 和 IP
+address</strong>. - <strong>home agent（归属代理）</strong> 是部署在
+friend 的 home network 内的一个特殊节点，负责跟踪 friend 的当前位置。 -
+当 friend 移动到新的 visited network 并获得新的 care-of address 时，会向
+home agent 注册自己的新位置（即 care-of address 和 foreign agent
+的信息）。 - home agent 会维护一个映射表，记录每个移动节点的 permanent
+address 与其当前的 care-of address（以及 foreign agent
+的信息，如果有）。 - 当有数据包发往 friend 的 permanent address 时，home
+agent 会将这些数据包<strong>隧道转发</strong>（tunnel）到 friend 当前的
+care-of address（即 friend 所在子网的 foreign agent 或直接到 friend
+本身）。</p>
 <h1 id="mobile-ip-agent-discovery">Mobile IP: agent discovery</h1>
-<p>Agent advertisement: foreign/home agents advertise service by broadcasting ICMP messages (<code>typefield = 9</code>)</p>
+<p>Agent advertisement: foreign/home agents advertise service by
+broadcasting ICMP messages (<code>typefield = 9</code>)</p>
 <h1 id="end-of-chapter-exercises">End-of-chapter exercises</h1>
 <h2 id="r.1">R.1</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What does it mean for a wireless network to be operating in “infrastructure mode”? If the network is not in infrastructure mode, what mode of operation is it in, and what is the different between that mode of operation and infrastructure mode?</p>
-<p>在无线网络中，“基础设施模式”（infrastructure mode）指的是网络中存在一个基站（如接入点，AP），无线主机通过基站连接到有线网络或更大的互联网。在这种模式下，基站负责在无线主机和有线网络之间中继数据。如果网络不处于基础设施模式，则它处于“自组织模式”（ad hoc mode）。在自组织模式中，没有基站，节点只能与其链路覆盖范围内的其他节点通信，节点之间通过自组织的方式形成网络并相互路由。两者的主要区别在于是否依赖基站：基础设施模式依赖基站，而自组织模式则完全由节点自主协作。</p>
+<p>What does it mean for a wireless network to be operating in
+“infrastructure mode”? If the network is not in infrastructure mode,
+what mode of operation is it in, and what is the different between that
+mode of operation and infrastructure mode?</p>
+<p>在无线网络中，“基础设施模式”（infrastructure
+mode）指的是网络中存在一个基站（如接入点，AP），无线主机通过基站连接到有线网络或更大的互联网。在这种模式下，基站负责在无线主机和有线网络之间中继数据。如果网络不处于基础设施模式，则它处于”自组织模式”（ad
+hoc
+mode）。在自组织模式中，没有基站，节点只能与其链路覆盖范围内的其他节点通信，节点之间通过自组织的方式形成网络并相互路由。两者的主要区别在于是否依赖基站：基础设施模式依赖基站，而自组织模式则完全由节点自主协作。</p>
 <h2 id="r.2">R.2</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What are the four type of wireless networks identified in our taxonomy in Section <span class="math inline">\(6.1\)</span>? Which of these types of wireless networks have you used?</p>
-Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math inline">\(4\)</span> 种无线网络结构如下：
+<p>What are the four type of wireless networks identified in our
+taxonomy in Section <span class="math inline">\(6.1\)</span>? Which of
+these types of wireless networks have you used?</p>
+Section <span class="math inline">\(6.1\)</span> 中提到的 <span
+class="math inline">\(4\)</span> 种无线网络结构如下：
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Infrastructure</strong></th>
 <th><strong>Single Hop</strong></th>
 <th><strong>Multiple Hops</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>With Infrastructure</strong></td>
-<td>Host connects to base station (WiFi, WiMAX, cellular) which connects to larger Internet.</td>
-<td>Host relays through several wireless nodes to connect to larger Internet (mesh net).</td>
+<td>Host connects to base station (WiFi, WiMAX, cellular) which connects
+to larger Internet.</td>
+<td>Host relays through several wireless nodes to connect to larger
+Internet (mesh net).</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>Without Infrastructure</strong></td>
-<td>No base station, no connection to larger Internet (e.g., Bluetooth, ad hoc nets).</td>
-<td>No base station, no connection to larger Internet. Nodes relay to reach other nodes (e.g., MANET, VANET).</td>
+<td>No base station, no connection to larger Internet (e.g., Bluetooth,
+ad hoc nets).</td>
+<td>No base station, no connection to larger Internet. Nodes relay to
+reach other nodes (e.g., MANET, VANET).</td>
 </tr>
 </tbody>
 </table>
@@ -785,27 +950,29 @@ Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math 
 <p>其中像 WiFi 和 Bluetooth 经常使用。</p>
 <h2 id="r.3">R.3</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What are the differences between the following types of wireless channel impairments: path loss, multipath propagation, interference from other sources?</p>
+<p>What are the differences between the following types of wireless
+channel impairments: path loss, multipath propagation, interference from
+other sources?</p>
 下面是对三种信道损伤的解释：
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 
 <thead>
-<tr class="header">
+<tr>
 <th><strong>损伤类型</strong></th>
 <th><strong>详细解释</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>路径损耗 (path loss)</strong></td>
 <td>信号随<strong>传播距离增加</strong>而自然衰减的现象。遵循<strong>平方反比或更高次幂</strong>衰减规律，与距离和频率相关。主要包括<strong>自由空间损耗</strong>、<strong>大气吸收</strong>、<strong>障碍物衰减</strong>等，是无线通信中的<strong>基础衰减现象</strong>。</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>多径传播 (multipath propagation)</strong></td>
 <td>信号通过<strong>多个不同路径</strong>同时到达接收器的现象。由信号在建筑物、地面等物体表面的<strong>反射</strong>、<strong>散射</strong>、<strong>折射</strong>和<strong>绕射</strong>导致。产生<strong>相位差异</strong>使信号彼此<strong>增强或抵消</strong>，造成<strong>信号衰落</strong>、<strong>时延扩展</strong>和<strong>符号间干扰</strong>。</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>外部干扰 (interference from other sources)</strong></td>
 <td>来自<strong>其他发射源</strong>的电磁波对当前通信的干扰。包括<strong>同频干扰</strong>（相同频道上的其他发射器）、<strong>相邻频道干扰</strong>和<strong>电子设备噪声</strong>等。干扰与当前信号混合，<strong>降低信噪比</strong>和通信质量。</td>
 </tr>
@@ -814,26 +981,38 @@ Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math 
 </div>
 <h2 id="r.4">R.4</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>As a mobile node gets farther and farther away from a base station, what are two actions that a base station could take to ensure that the loss probability of a transmitted frame does not increase?</p>
+<p>As a mobile node gets farther and farther away from a base station,
+what are two actions that a base station could take to ensure that the
+loss probability of a transmitted frame does not increase?</p>
 <ol type="1">
 <li><strong>Wireless Link Characteristics</strong> 部分提到：
 <ul>
-<li><strong>SNR (Signal-to-Noise Ratio)</strong>：增大信号强度可以提高信噪比，从而降低误码率（BER）。</li>
-<li><strong>decreased signal strength</strong>：信号强度的降低会影响通信质量。</li>
+<li><strong>SNR (Signal-to-Noise
+Ratio)</strong>：增大信号强度可以提高信噪比，从而降低误码率（BER）。</li>
+<li><strong>decreased signal
+strength</strong>：信号强度的降低会影响通信质量。</li>
 </ul></li>
 <li><strong>IEEE 802.11 MAC Protocol: CSMA/CA</strong> 部分提到：
 <ul>
-<li><strong>Collision Avoidance</strong>：通过避免冲突来提高传输成功率。</li>
+<li><strong>Collision
+Avoidance</strong>：通过避免冲突来提高传输成功率。</li>
 </ul></li>
 <li><strong>Cellular Internet Access</strong> 部分提到：
 <ul>
-<li><strong>LTE</strong> 使用了 <strong>OFDM</strong> 和 <strong>MIMO</strong> 技术，这些技术可以提高信号覆盖范围和传输效率。</li>
+<li><strong>LTE</strong> 使用了 <strong>OFDM</strong> 和
+<strong>MIMO</strong>
+技术，这些技术可以提高信号覆盖范围和传输效率。</li>
 </ul></li>
 </ol>
-<p>结合这些内容，可以得出以下两种可能的措施： - <strong>增大发射功率</strong>：提高信号强度以补偿路径损耗。 - <strong>使用多天线技术（如 MIMO）</strong>：通过空间分集技术提高信号质量和覆盖范围。</p>
+<p>结合这些内容，可以得出以下两种可能的措施： -
+<strong>增大发射功率</strong>：提高信号强度以补偿路径损耗。 -
+<strong>使用多天线技术（如
+MIMO）</strong>：通过空间分集技术提高信号质量和覆盖范围。</p>
 <h2 id="r.10">R.10</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>Suppose the IEEE <span class="math inline">\(802.11\)</span> RTS and CTS frames were as long as the standard DATA and ACK frames. Would there be any advantage to using the CTS and RTS frames? Why or why not?</p>
+<p>Suppose the IEEE <span class="math inline">\(802.11\)</span> RTS and
+CTS frames were as long as the standard DATA and ACK frames. Would there
+be any advantage to using the CTS and RTS frames? Why or why not?</p>
 <ul>
 <li><strong>Avoiding Collisions: RTS/CTS Mechanism</strong> 部分提到：
 <ul>
@@ -841,57 +1020,75 @@ Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math 
 <li>RTS 和 CTS 包较小，即使发生冲突，影响也较小。</li>
 <li>使用 RTS/CTS 机制可以通过小型的预留包来减少长数据帧的冲突。</li>
 </ul></li>
-<li>如果 RTS 和 CTS 包与标准的 DATA 和 ACK 包一样长，那么它们的优势将丧失，因为：
+<li>如果 RTS 和 CTS 包与标准的 DATA 和 ACK
+包一样长，那么它们的优势将丧失，因为：
 <ol type="1">
-<li><strong>冲突成本增加</strong>：长 RTS 和 CTS 包的冲突会导致更大的资源浪费。</li>
-<li><strong>效率降低</strong>：长 RTS 和 CTS 包会增加额外的开销，降低整体网络效率。</li>
+<li><strong>冲突成本增加</strong>：长 RTS 和 CTS
+包的冲突会导致更大的资源浪费。</li>
+<li><strong>效率降低</strong>：长 RTS 和 CTS
+包会增加额外的开销，降低整体网络效率。</li>
 </ol></li>
 </ul>
 <h2 id="r.16">R.16</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>If a node has a wireless connection to the Internet, does that node have to be mobile? Explain. Suppose that a user with a laptop walks around her house with her laptop, and always accesses the Internet through the same access point. Is this user mobile from a network standpoint? Explain.</p>
-<p>一个节点拥有无线连接，并不意味着它是<strong>移动的</strong>。无线连接只是物理层和链路层的接入方式，只要设备通过无线方式接入网络，无论它是否实际移动，都可以称为无线节点，但不一定是<strong>移动节点</strong>。用户在家中携带笔记本，始终通过同一个 AP 上网，这说明用户始终在同一个 subnet 和 BSS 内，所以不认为用户发生了网络层的移动。</p>
+<p>If a node has a wireless connection to the Internet, does that node
+have to be mobile? Explain. Suppose that a user with a laptop walks
+around her house with her laptop, and always accesses the Internet
+through the same access point. Is this user mobile from a network
+standpoint? Explain.</p>
+<p>一个节点拥有无线连接，并不意味着它是<strong>移动的</strong>。无线连接只是物理层和链路层的接入方式，只要设备通过无线方式接入网络，无论它是否实际移动，都可以称为无线节点，但不一定是<strong>移动节点</strong>。用户在家中携带笔记本，始终通过同一个
+AP 上网，这说明用户始终在同一个 subnet 和 BSS
+内，所以不认为用户发生了网络层的移动。</p>
 <h2 id="r.17">R.17</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What is the difference between a permanent address and a care-of address? Who assigns a care-of address?</p>
+<p>What is the difference between a permanent address and a care-of
+address? Who assigns a care-of address?</p>
 <ul>
 <li><strong>permanent address（永久地址）</strong>
 <ul>
-<li>也称为 home address（归属地址），是移动节点在其<strong>归属网络</strong>（home network）中的固定 IP 地址。</li>
+<li>也称为 home
+address（归属地址），是移动节点在其<strong>归属网络</strong>（home
+network）中的固定 IP 地址。</li>
 <li>这个地址在移动节点无论身处何地都不会改变，始终用于标识该节点的身份。</li>
 <li>例如：移动节点在家乡网络的 IP 地址 128.119.40.186。</li>
 </ul></li>
 <li><strong>care-of address（临时地址）</strong>
 <ul>
-<li>是移动节点在<strong>访问网络</strong>（visited network）中临时获得的 IP 地址。</li>
-<li>当移动节点离开归属网络，进入其他网络时，会在该访问网络中分配一个新的 IP 地址，这个地址用于在当前网络中进行通信。</li>
+<li>是移动节点在<strong>访问网络</strong>（visited network）中临时获得的
+IP 地址。</li>
+<li>当移动节点离开归属网络，进入其他网络时，会在该访问网络中分配一个新的
+IP 地址，这个地址用于在当前网络中进行通信。</li>
 <li>例如：移动节点在外地网络获得的 IP 地址 79.129.13.2。</li>
 </ul></li>
-<li>care-of address 通常由<strong>访问网络 visited network</strong> 分配，具体来说：
+<li>care-of address 通常由<strong>访问网络 visited network</strong>
+分配，具体来说：
 <ul>
-<li>可以由访问网络中的<strong>外部代理 Foreign Agent</strong> 分配；</li>
+<li>可以由访问网络中的<strong>外部代理 Foreign Agent</strong>
+分配；</li>
 <li>也可以通过 DHCP 等自动分配协议由访问网络的路由器分配。</li>
 </ul></li>
 </ul>
 <h2 id="r.19">R.19</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>What are the purposes of the HLR and VLR in GSM networks? What elements of mobile IP are similar to the HLR and VLR?</p>
+<p>What are the purposes of the HLR and VLR in GSM networks? What
+elements of mobile IP are similar to the HLR and VLR?</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
+
 <thead>
-<tr class="header">
+<tr>
 <th>GSM 网络</th>
 <th>Mobile IP 协议</th>
 <th>主要作用</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HLR</td>
 <td>Home Agent</td>
 <td>记录永久信息和当前位置</td>
 </tr>
-<tr class="even">
+<tr>
 <td>VLR</td>
 <td>Foreign Agent</td>
 <td>临时管理当前区域内的用户/节点信息</td>
@@ -901,32 +1098,52 @@ Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math 
 </div>
 <h2 id="p.5">P.5</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>Suppose there are two ISPs providing WiFi access in a particular café, with each ISP operating its own AP and having its own IP address block. a. Further suppose that by accident, each ISP has configured its AP to operate over channel 11. Will the 802.11 protocol completely break down in this situation? Discuss what happens when two stations, each associated with a different ISP, attempt to transmit at the same time. b. Now suppose that one AP operates over channel 1 and the other over channel 11. How do your answers change?</p>
-<p><strong>a.</strong>：802.11 协议不会完全失效，但两个 AP 及其关联的 hosts 会在 physical layer 竞争同一个信道的使用权。如果两个 hosts 同时发送数据，此时会产生 collision，尽管 CSMA/CA 协议会尽可能避免冲突，但由于信号干扰，冲突仍会发生，导致通信变得不稳定。</p>
-<p><strong>b.</strong>：此时两个 AP 用不同的信道，互不干扰，通信正常。</p>
+<p>Suppose there are two ISPs providing WiFi access in a particular
+café, with each ISP operating its own AP and having its own IP address
+block. a. Further suppose that by accident, each ISP has configured its
+AP to operate over channel 11. Will the 802.11 protocol completely break
+down in this situation? Discuss what happens when two stations, each
+associated with a different ISP, attempt to transmit at the same time.
+b. Now suppose that one AP operates over channel 1 and the other over
+channel 11. How do your answers change?</p>
+<p><strong>a.</strong>：802.11 协议不会完全失效，但两个 AP 及其关联的
+hosts 会在 physical layer 竞争同一个信道的使用权。如果两个 hosts
+同时发送数据，此时会产生 collision，尽管 CSMA/CA
+协议会尽可能避免冲突，但由于信号干扰，冲突仍会发生，导致通信变得不稳定。</p>
+<p><strong>b.</strong>：此时两个 AP
+用不同的信道，互不干扰，通信正常。</p>
 <h2 id="p.13">P.13</h2>
 <p><strong>Question and Answer:</strong></p>
-<p>In mobile IP, what effect will mobility have on end-to-end delays of datagrams between the source and destination?</p>
+<p>In mobile IP, what effect will mobility have on end-to-end delays of
+datagrams between the source and destination?</p>
 <ol type="1">
 <li><strong>间接路由（Indirect Routing）增加路径长度</strong>
 <ul>
-<li>在移动 IP 的典型实现中，数据报首先被发送到移动节点的 home agent（归属代理），然后由 home agent 转发（隧道）到移动节点当前的 care-of address（临时地址）。</li>
+<li>在移动 IP 的典型实现中，数据报首先被发送到移动节点的 home
+agent（归属代理），然后由 home agent 转发（隧道）到移动节点当前的
+care-of address（临时地址）。</li>
 <li>这种绕路导致数据报的实际传输路径比直接路由更长，<strong>增加了端到端延迟</strong>。</li>
 <li>例如，源主机 → home agent → foreign agent → 移动节点。</li>
 </ul></li>
 <li><strong>切换期间的延迟抖动</strong>
 <ul>
-<li>当移动节点从一个网络切换到另一个网络时（如切换 AP 或基站），需要重新获取 care-of address 并向 home agent 注册新位置。</li>
+<li>当移动节点从一个网络切换到另一个网络时（如切换 AP
+或基站），需要重新获取 care-of address 并向 home agent 注册新位置。</li>
 <li>在切换和注册期间，可能会出现短暂的不可达或数据包丢失，<strong>导致延迟波动或瞬时增加</strong>。</li>
 </ul></li>
 <li><strong>三角路由问题</strong>
 <ul>
-<li>在 indirect routing 下，通信对端（correspondent）始终将数据包发往 permanent address，导致所有流量都要经过 home agent，形成所谓的三角路由。</li>
-<li>这进一步增加了端到端的传输时延，尤其当 home agent 距离通信双方较远时影响更明显。</li>
+<li>在 indirect routing 下，通信对端（correspondent）始终将数据包发往
+permanent address，导致所有流量都要经过 home
+agent，形成所谓的三角路由。</li>
+<li>这进一步增加了端到端的传输时延，尤其当 home agent
+距离通信双方较远时影响更明显。</li>
 </ul></li>
 <li><strong>优化路由（Direct Routing）可减少延迟</strong>
 <ul>
-<li>如果采用 direct routing（如移动节点的当前位置被通知给通信对端），数据报可以直接从源主机发往移动节点当前的 care-of address，<strong>端到端延迟会降低</strong>。</li>
+<li>如果采用 direct
+routing（如移动节点的当前位置被通知给通信对端），数据报可以直接从源主机发往移动节点当前的
+care-of address，<strong>端到端延迟会降低</strong>。</li>
 <li>但 direct routing 需要额外的机制来保证安全和地址同步。</li>
 </ul></li>
 </ol>

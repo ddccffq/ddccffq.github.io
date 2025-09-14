@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="本章仅讨论条件随机场在 标注问题（tagging problem） 的应用，因此主要讲述 线性链（linear chain） 条件随机场。 概率无向图模型 成对马尔可夫性 节点 \(u\)、\(v\) 和所有其他节点 \(O\)，对应的随机变量分别为 \(Y_u\)、\(Y_v\)、\(Y_O\)（\(Y\) 表示随机变量）。它们具有以下概率关系： \[ P(Y_u, Y_v | Y_O) &#x3D; P">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/.io//06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png">
 <meta property="article:published_time" content="2025-06-01T05:55:26.000Z">
 <meta property="article:modified_time" content="2025-09-10T05:27:30.762Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/.io//06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png">
   
   
   
@@ -278,79 +278,123 @@
             
               <div class="markdown-body">
                 
-                <p>本章仅讨论条件随机场在 <strong>标注问题（tagging problem）</strong> 的应用，因此主要讲述 <strong>线性链（linear chain）</strong> 条件随机场。</p>
+                <p>本章仅讨论条件随机场在 <strong>标注问题（tagging problem）</strong>
+的应用，因此主要讲述 <strong>线性链（linear chain）</strong>
+条件随机场。</p>
 <h2 id="概率无向图模型">概率无向图模型</h2>
 <h3 id="成对马尔可夫性">成对马尔可夫性</h3>
-<p>节点 <span class="math inline">\(u\)</span>、<span class="math inline">\(v\)</span> 和所有其他节点 <span class="math inline">\(O\)</span>，对应的随机变量分别为 <span class="math inline">\(Y_u\)</span>、<span class="math inline">\(Y_v\)</span>、<span class="math inline">\(Y_O\)</span>（<span class="math inline">\(Y\)</span> 表示随机变量）。它们具有以下概率关系： <span class="math display">\[
+<p>节点 <span class="math inline">\(u\)</span>、<span
+class="math inline">\(v\)</span> 和所有其他节点 <span
+class="math inline">\(O\)</span>，对应的随机变量分别为 <span
+class="math inline">\(Y_u\)</span>、<span
+class="math inline">\(Y_v\)</span>、<span
+class="math inline">\(Y_O\)</span>（<span
+class="math inline">\(Y\)</span> 表示随机变量）。它们具有以下概率关系：
+<span class="math display">\[
 P(Y_u, Y_v | Y_O) = P(Y_u | Y_O) P(Y_v | Y_O)
 \]</span></p>
 <h3 id="局部马尔可夫性">局部马尔可夫性</h3>
-<p>节点 <span class="math inline">\(v\)</span>，<span class="math inline">\(W\)</span> 是与 <span class="math inline">\(v\)</span> 相邻的所有节点，<span class="math inline">\(O\)</span> 是其余节点。它们具有以下概率关系： <span class="math display">\[
+<p>节点 <span class="math inline">\(v\)</span>，<span
+class="math inline">\(W\)</span> 是与 <span
+class="math inline">\(v\)</span> 相邻的所有节点，<span
+class="math inline">\(O\)</span> 是其余节点。它们具有以下概率关系：
+<span class="math display">\[
 P(Y_v, Y_O | Y_W) = P(Y_v | Y_W) P(Y_O | Y_W)
 \]</span></p>
 <h3 id="全局马尔可夫性">全局马尔可夫性</h3>
-<p>节点集合 <span class="math inline">\(A\)</span>、<span class="math inline">\(B\)</span>、<span class="math inline">\(C\)</span>，其中 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 被 <span class="math inline">\(C\)</span> 分离。它们具有以下概率关系： <span class="math display">\[
+<p>节点集合 <span class="math inline">\(A\)</span>、<span
+class="math inline">\(B\)</span>、<span
+class="math inline">\(C\)</span>，其中 <span
+class="math inline">\(A\)</span> 和 <span
+class="math inline">\(B\)</span> 被 <span
+class="math inline">\(C\)</span> 分离。它们具有以下概率关系： <span
+class="math display">\[
 P(Y_A, Y_B | Y_C) = P(Y_A | Y_C) P(Y_B | Y_C)
 \]</span></p>
 <h3 id="definition-概率无向图模型">Definition: 概率无向图模型</h3>
-<p>如果联合概率分布 <span class="math inline">\(P(Y)\)</span> 满足上述三个马尔可夫性质，就称此联合概率分布为概率无向图模型。</p>
+<p>如果联合概率分布 <span class="math inline">\(P(Y)\)</span>
+满足上述三个马尔可夫性质，就称此联合概率分布为概率无向图模型。</p>
 <h3 id="definition-团与最大团">Definition: 团与最大团</h3>
-<p><strong>团（Clique）：</strong> 图中的一个子集，其中任意两个节点都相邻连接。</p>
-<p><strong>最大团（Maximum Clique）：</strong> 不能再添加其他节点的团，即包含所有可能相邻节点的最大子集。</p>
+<p><strong>团（Clique）：</strong>
+图中的一个子集，其中任意两个节点都相邻连接。</p>
+<p><strong>最大团（Maximum Clique）：</strong>
+不能再添加其他节点的团，即包含所有可能相邻节点的最大子集。</p>
 <h3 id="概率无向图模型的因子分解">概率无向图模型的因子分解</h3>
 <p><span class="math display">\[
 \begin{align}
-P(Y) &amp;= \frac{1}{Z} \prod_{C} \psi_{C}(Y_C), \quad C \text{ is a maximum clique}
+P(Y) &amp;= \frac{1}{Z} \prod_{C} \psi_{C}(Y_C), \quad C \text{ is a
+maximum clique}
 \\
-Z &amp;= \sum_{Y} \prod_{C} \psi_{C}(Y_C), \quad Z \text{ is normalization factor}
+Z &amp;= \sum_{Y} \prod_{C} \psi_{C}(Y_C), \quad Z \text{ is
+normalization factor}
 \\
 \psi_{C}(Y_C) &amp;= \exp\{-E(Y_C) \}
 \end{align}
 \]</span></p>
-<p>其中，<span class="math inline">\(\psi\)</span> 函数称为<strong>势函数</strong>，常用<strong>指数函数</strong>定义势函数。</p>
+<p>其中，<span class="math inline">\(\psi\)</span>
+函数称为<strong>势函数</strong>，常用<strong>指数函数</strong>定义势函数。</p>
 <p><span class="math display">\[
 \psi_{C}(Y_{C}) = e ^{- H_{C}(Y_{C})}
 \]</span></p>
-<p><span class="math inline">\(H_{C}(Y_{C})\)</span> 是一个定义在变量 <span class="math inline">\(Y_{C}\)</span> 上的实值函数，常见形式为</p>
+<p><span class="math inline">\(H_{C}(Y_{C})\)</span> 是一个定义在变量
+<span class="math inline">\(Y_{C}\)</span> 上的实值函数，常见形式为</p>
 <p><span class="math display">\[
-H_{C}(Y_{C}) = \sum_{u,v \in C, u \neq v} \alpha_{uv} x_u x_v + \sum_{v \in C} \beta_v x_v
+H_{C}(Y_{C}) = \sum_{u,v \in C, u \neq v} \alpha_{uv} x_u x_v + \sum_{v
+\in C} \beta_v x_v
 \]</span></p>
-<p>其中，<span class="math inline">\(\alpha_{uv}\)</span> 和 <span class="math inline">\(\beta_{v}\)</span> 是参数。</p>
-<hr>
+<p>其中，<span class="math inline">\(\alpha_{uv}\)</span> 和 <span
+class="math inline">\(\beta_{v}\)</span> 是参数。</p>
+<hr />
 <h2 id="crf">CRF</h2>
 <h3 id="definition-线性链条件随机场">Definition: 线性链条件随机场</h3>
-<p>我们假设 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 是随机变量。如果随机变量 <span class="math inline">\(Y\)</span> 是一个马尔可夫随机场，即满足： <span class="math display">\[
+<p>我们假设 <span class="math inline">\(X\)</span> 和 <span
+class="math inline">\(Y\)</span> 是随机变量。如果随机变量 <span
+class="math inline">\(Y\)</span> 是一个马尔可夫随机场，即满足： <span
+class="math display">\[
 P(Y_v | X, Y_w, w \neq v) = P(Y_v | X, Y_w, w \sim v)
-\]</span> 其中 <span class="math inline">\(w \sim v\)</span> 表示节点 <span class="math inline">\(v\)</span> 与节点 <span class="math inline">\(w\)</span> 相邻。</p>
+\]</span> 其中 <span class="math inline">\(w \sim v\)</span> 表示节点
+<span class="math inline">\(v\)</span> 与节点 <span
+class="math inline">\(w\)</span> 相邻。</p>
 <blockquote>
-<p>通常情况下，我们认为 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> 具有相同的结构。</p>
+<p>通常情况下，我们认为 <span class="math inline">\(X\)</span> 与 <span
+class="math inline">\(Y\)</span> 具有相同的结构。</p>
 </blockquote>
-<img src="/.io//06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png" srcset="/img/loading.gif" lazyload class title="具有相同结构的线性链">
+<img src="/2025/06/01/%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA/Linear-Chain.png" srcset="/img/loading.gif" lazyload class="" title="具有相同结构的线性链">
 <div data-align="center">
 <em>图1：线性链示例</em>
 </div>
 <p>我们有如下概率关系。 <span class="math display">\[
-P(Y_i | X, Y_1, \dots, Y_{i-1}, Y_{i+1}, \dots, Y_n) = P(Y_i | X, Y_{i - 1}, Y_{i + 1})
+P(Y_i | X, Y_1, \dots, Y_{i-1}, Y_{i+1}, \dots, Y_n) = P(Y_i | X, Y_{i -
+1}, Y_{i + 1})
 \]</span></p>
 <h3 id="条件随机场的参数化形式">条件随机场的参数化形式</h3>
 <p><span class="math display">\[
-P(\mathbf{y} | \mathbf{x}) = \frac{1}{Z(\mathbf{x})} \exp \left(\sum_{i,k}\lambda_k t_k(y_{i -1}, y_i, \mathbf{x}, i) + \sum_{i,l}\mu_l s_l(y_i, \mathbf{x}, i))\right)
+P(\mathbf{y} | \mathbf{x}) = \frac{1}{Z(\mathbf{x})} \exp
+\left(\sum_{i,k}\lambda_k t_k(y_{i -1}, y_i, \mathbf{x}, i) +
+\sum_{i,l}\mu_l s_l(y_i, \mathbf{x}, i))\right)
 \]</span></p>
 <p>其中，</p>
 <p><span class="math display">\[
-Z(\mathbf{x}) = \sum_{\mathbf{y}} \exp \left(\sum_{i,k}\lambda_k t_k(y_{i -1}, y_i, \mathbf{x}, i) + \sum_{i,l}\mu_l s_l(y_i, \mathbf{x}, i)\right)
+Z(\mathbf{x}) = \sum_{\mathbf{y}} \exp \left(\sum_{i,k}\lambda_k
+t_k(y_{i -1}, y_i, \mathbf{x}, i) + \sum_{i,l}\mu_l s_l(y_i, \mathbf{x},
+i)\right)
 \]</span></p>
-<p>其中，<span class="math inline">\(t_k\)</span> 和 <span class="math inline">\(s_l\)</span> 是特征函数，<span class="math inline">\(\lambda_k\)</span> 和 <span class="math inline">\(\mu_l\)</span> 是对应的权重参数。</p>
+<p>其中，<span class="math inline">\(t_k\)</span> 和 <span
+class="math inline">\(s_l\)</span> 是特征函数，<span
+class="math inline">\(\lambda_k\)</span> 和 <span
+class="math inline">\(\mu_l\)</span> 是对应的权重参数。</p>
 <p><strong>Simplification</strong></p>
 <p><span class="math display">\[
 f_k(y_{i-1}, y_i, \mathbf{x}, i) =
 \begin{cases}
 t_k(y_{i-1}, y_i, \mathbf{x}, i), \quad &amp;k = 1,2, \dots,K_1 \\\\
-s_l(y_i, \mathbf{x}, i), \quad &amp;k = K_1 + l; \text{ } l = 1,2,\dots, K_2
+s_l(y_i, \mathbf{x}, i), \quad &amp;k = K_1 + l; \text{ } l = 1,2,\dots,
+K_2
 \end{cases}
 \]</span></p>
 <p><span class="math display">\[
-f_k(\mathbf{y}, \mathbf{x}) = \sum_{i=1}^{n} f_k(y_{i-1}, y_i, \mathbf{x}, i), \quad k = 1,2,\dots,K
+f_k(\mathbf{y}, \mathbf{x}) = \sum_{i=1}^{n} f_k(y_{i-1}, y_i,
+\mathbf{x}, i), \quad k = 1,2,\dots,K
 \]</span></p>
 <p><span class="math display">\[
 w_k =
@@ -361,38 +405,61 @@ w_k =
 \]</span> 即，</p>
 <p><span class="math display">\[
 \begin{align*}
-P(\mathbf{y} \mid \mathbf{x}) &amp;= \frac{1}{Z(\mathbf{x})} \exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right) \\\\
-Z(\mathbf{x}) &amp;= \sum_{\mathbf{y}} \exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right)
+P(\mathbf{y} \mid \mathbf{x}) &amp;= \frac{1}{Z(\mathbf{x})}
+\exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right) \\\\
+Z(\mathbf{x}) &amp;= \sum_{\mathbf{y}} \exp\left(\sum_{k=1}^{K} w_k
+f_k(\mathbf{y}, \mathbf{x})\right)
 \end{align*}
-\]</span> 注意，这里的 <span class="math inline">\(\sum_{\mathbf{y}}\)</span> 是在对所有可能的标签序列求和，而不仅仅是一个确定的标签序列。</p>
+\]</span> 注意，这里的 <span
+class="math inline">\(\sum_{\mathbf{y}}\)</span>
+是在对所有可能的标签序列求和，而不仅仅是一个确定的标签序列。</p>
 <p>最后，</p>
 <p><span class="math display">\[
 \begin{align}
-P_{\mathbf{w}}(\mathbf{y} \mid \mathbf{x}) = \frac{\exp(\vec{w} \cdot \vec{F}(\mathbf{y}, \mathbf{x}))}{Z_{\mathbf{w}}(\mathbf{x})}
+P_{\mathbf{w}}(\mathbf{y} \mid \mathbf{x}) = \frac{\exp(\vec{w} \cdot
+\vec{F}(\mathbf{y}, \mathbf{x}))}{Z_{\mathbf{w}}(\mathbf{x})}
 \end{align}
 \]</span></p>
 <p><span class="math display">\[
-Z_{\mathbf{w}}(\mathbf{x}) = \sum_{\mathbf{y}} \exp(\vec{w} \cdot \vec{F}(\mathbf{y}, \mathbf{x}))
+Z_{\mathbf{w}}(\mathbf{x}) = \sum_{\mathbf{y}} \exp(\vec{w} \cdot
+\vec{F}(\mathbf{y}, \mathbf{x}))
 \]</span></p>
 <h3 id="矩阵形式">矩阵形式</h3>
-<p>对于每个标签序列，我们引入特殊的起始点和结束点标签，<span class="math inline">\(y_0 = \text{start}\)</span> 和 <span class="math inline">\(y_{n+1} = \text{stop}\)</span>。对于观测序列 <span class="math inline">\(\mathbf{x}\)</span> 中的每个位置 <span class="math inline">\(i = 1,2,\dots,n+1\)</span>，我们可以定义一个矩阵 <span class="math inline">\(M_i \in \mathbb{R}^{m \times m}\)</span>：</p>
+<p>对于每个标签序列，我们引入特殊的起始点和结束点标签，<span
+class="math inline">\(y_0 = \text{start}\)</span> 和 <span
+class="math inline">\(y_{n+1} = \text{stop}\)</span>。对于观测序列 <span
+class="math inline">\(\mathbf{x}\)</span> 中的每个位置 <span
+class="math inline">\(i = 1,2,\dots,n+1\)</span>，我们可以定义一个矩阵
+<span class="math inline">\(M_i \in \mathbb{R}^{m \times
+m}\)</span>：</p>
 <p><span class="math display">\[
 \begin{align*}
 M_i(\mathbf{x}) &amp;= [M_i(y_{i-1}, y_i | \mathbf{x})]
 \\\\
-M_i(y_{i-1}, y_i |\mathbf{x}) &amp;= \exp \left(W_i(y_{i-1}, y_i | \mathbf{x})\right)
+M_i(y_{i-1}, y_i |\mathbf{x}) &amp;= \exp \left(W_i(y_{i-1}, y_i |
+\mathbf{x})\right)
 \\\\
-W_i(y_{i-1}, y_i |\mathbf{x}) &amp;= \sum_{k=1}^{K}w_kf_k(y_{i-1},y_i,\mathbf{x},i)
+W_i(y_{i-1}, y_i |\mathbf{x}) &amp;=
+\sum_{k=1}^{K}w_kf_k(y_{i-1},y_i,\mathbf{x},i)
 \end{align*}
 \]</span></p>
 <p>因此： <span class="math display">\[
-P_w(\mathbf{y} |\mathbf{x}) = \frac{1}{Z_w(\mathbf{x})} \prod_{i=1}^{n+1} M_i(y_{i-1}, y_i |\mathbf{x})
+P_w(\mathbf{y} |\mathbf{x}) = \frac{1}{Z_w(\mathbf{x})}
+\prod_{i=1}^{n+1} M_i(y_{i-1}, y_i |\mathbf{x})
 \]</span></p>
 <p>特别地： <span class="math display">\[
-Z_w(\mathbf{x}) = [M_1(\mathbf{x})M_2(\mathbf{x}) \cdots M_{n+1}(\mathbf{x})]_{\text{start},\text{stop}}
+Z_w(\mathbf{x}) = [M_1(\mathbf{x})M_2(\mathbf{x}) \cdots
+M_{n+1}(\mathbf{x})]_{\text{start},\text{stop}}
 \]</span></p>
-<p>也就是矩阵 <span class="math inline">\((\text{start}, \text{stop})\)</span> 位置上的元素。</p>
-<p>矩阵形式不难理解，CRF 中的 <span class="math inline">\(M_i(\mathbf{x})\)</span> 矩阵就是在每个位置 <span class="math inline">\(i\)</span> 上，枚举所有可能的标签对 <span class="math inline">\((y_{i-1}, y_i)\)</span>，并计算它们的转移得分。例如 <span class="math inline">\(m = 2\)</span>，<span class="math inline">\(Y = \{A, B\}\)</span>，则 <span class="math inline">\(M_1\)</span> 为：</p>
+<p>也就是矩阵 <span class="math inline">\((\text{start},
+\text{stop})\)</span> 位置上的元素。</p>
+<p>矩阵形式不难理解，CRF 中的 <span
+class="math inline">\(M_i(\mathbf{x})\)</span> 矩阵就是在每个位置 <span
+class="math inline">\(i\)</span> 上，枚举所有可能的标签对 <span
+class="math inline">\((y_{i-1},
+y_i)\)</span>，并计算它们的转移得分。例如 <span class="math inline">\(m
+= 2\)</span>，<span class="math inline">\(Y = \{A, B\}\)</span>，则
+<span class="math inline">\(M_1\)</span> 为：</p>
 <p><span class="math display">\[
 M_1(\mathbf{x}) =
 \begin{bmatrix}
@@ -400,11 +467,15 @@ M_1(A, A \mid \mathbf{x}) &amp; M_1(A, B \mid \mathbf{x}) \\\\
 M_1(B, A \mid \mathbf{x}) &amp; M_1(B, B \mid \mathbf{x})
 \end{bmatrix}
 \]</span></p>
-<hr>
+<hr />
 <h2 id="计算">计算</h2>
-<p>接下来给出计算 <span class="math inline">\(P(Y_i = y_i |\mathbf{x})\)</span>、<span class="math inline">\(P(Y_{i - 1} = y_{i - 1}, Y_i = y_i |\mathbf{x})\)</span> 以及相应数学期望的解决方法。</p>
+<p>接下来给出计算 <span class="math inline">\(P(Y_i = y_i
+|\mathbf{x})\)</span>、<span class="math inline">\(P(Y_{i - 1} = y_{i -
+1}, Y_i = y_i |\mathbf{x})\)</span> 以及相应数学期望的解决方法。</p>
 <h3 id="前向-后向算法">前向-后向算法</h3>
-<p>对于每个索引 <span class="math inline">\(i = 0, 1, \dots, n + 1\)</span>，我们定义前向列向量 <span class="math inline">\(\alpha_i(x)\)</span>：</p>
+<p>对于每个索引 <span class="math inline">\(i = 0, 1, \dots, n +
+1\)</span>，我们定义前向列向量 <span
+class="math inline">\(\alpha_i(x)\)</span>：</p>
 <p><span class="math display">\[
 \alpha_0(y|\mathbf{x}) =
 \begin{cases}
@@ -415,7 +486,8 @@ M_1(B, A \mid \mathbf{x}) &amp; M_1(B, B \mid \mathbf{x})
 \]</span></p>
 <p>递推公式为：</p>
 <p><span class="math display">\[
-\alpha_i^T(y_i|\mathbf{x}) = \alpha_{i-1}^T (y_{i-1}|\mathbf{x}) [M_i(y_{i-1},y_i|\mathbf{x})],\quad i = 1,2,\dots,n+1 \tag{forward}
+\alpha_i^T(y_i|\mathbf{x}) = \alpha_{i-1}^T (y_{i-1}|\mathbf{x})
+[M_i(y_{i-1},y_i|\mathbf{x})],\quad i = 1,2,\dots,n+1 \tag{forward}
 \]</span></p>
 <p>同样地，我们定义后向行向量：</p>
 <p><span class="math display">\[
@@ -427,22 +499,30 @@ M_1(B, A \mid \mathbf{x}) &amp; M_1(B, B \mid \mathbf{x})
 0, &amp;\text{其他情况}
 \end{cases}
 \\\\
-\beta_i(y_i|\mathbf{x})&amp; = [M_{i+1}(y_i,y_{i+1}|\mathbf{x})] \beta_{i+1}(y_{i+1}|\mathbf{x}) \tag{backward}
+\beta_i(y_i|\mathbf{x})&amp; = [M_{i+1}(y_i,y_{i+1}|\mathbf{x})]
+\beta_{i+1}(y_{i+1}|\mathbf{x}) \tag{backward}
 \end{align}
 \]</span></p>
 <h3 id="概率计算">概率计算</h3>
 <p><span class="math display">\[
-P(Y_i = y_i | \mathbf{x}) = \frac{\alpha_i^T(y_i | \mathbf{x}) \beta_i(y_i | \mathbf{x})}{Z(\mathbf{x})}
+P(Y_i = y_i | \mathbf{x}) = \frac{\alpha_i^T(y_i | \mathbf{x})
+\beta_i(y_i | \mathbf{x})}{Z(\mathbf{x})}
 \]</span></p>
 <p><span class="math display">\[
-P(Y_{i-1} = y_{i-1}, Y_i = y_i |\mathbf{x}) = \frac{\alpha_{i-1}^T(y_{i-1} |\mathbf{x}) M_i(y_{i-1},y_i |\mathbf{x}) \beta_i(y_i |\mathbf{x})}{Z(\mathbf{x})}
+P(Y_{i-1} = y_{i-1}, Y_i = y_i |\mathbf{x}) =
+\frac{\alpha_{i-1}^T(y_{i-1} |\mathbf{x}) M_i(y_{i-1},y_i |\mathbf{x})
+\beta_i(y_i |\mathbf{x})}{Z(\mathbf{x})}
 \]</span></p>
 <p>其中：</p>
 <p><span class="math display">\[
-Z(\mathbf{x}) = \alpha_n^T(\mathbf{x})\mathbf{1} = \mathbf{1}^T \beta_1(\mathbf{x})
+Z(\mathbf{x}) = \alpha_n^T(\mathbf{x})\mathbf{1} = \mathbf{1}^T
+\beta_1(\mathbf{x})
 \]</span></p>
-<p><strong>可以仿照隐马尔科夫模型计算相似问题时引入 <span class="math inline">\(\alpha\)</span> 和 <span class="math inline">\(\beta\)</span> 矩阵</strong>，</p>
-<h4 id="前向向量矩阵-alpha">前向向量矩阵 <span class="math inline">\(\alpha\)</span></h4>
+<p><strong>可以仿照隐马尔科夫模型计算相似问题时引入 <span
+class="math inline">\(\alpha\)</span> 和 <span
+class="math inline">\(\beta\)</span> 矩阵</strong>，</p>
+<h4 id="前向向量矩阵-alpha">前向向量矩阵 <span
+class="math inline">\(\alpha\)</span></h4>
 <p><span class="math display">\[
 \alpha = \begin{bmatrix}
 \alpha_0(A) &amp; \alpha_0(B) &amp; \cdots &amp; \alpha_0(N) \\\\[10pt]
@@ -451,8 +531,11 @@ Z(\mathbf{x}) = \alpha_n^T(\mathbf{x})\mathbf{1} = \mathbf{1}^T \beta_1(\mathbf{
 \alpha_{n+1}(A) &amp; \alpha_{n+1}(B) &amp; \cdots &amp; \alpha_{n+1}(N)
 \end{bmatrix}^{T} \tag{CRF-1}
 \]</span></p>
-<p>每一行表示在位置 <span class="math inline">\(i\)</span> 的前向向量 <span class="math inline">\(\alpha_i\)</span>，每一列对应一个标签 <span class="math inline">\(y_i \in \mathcal{Y}\)</span>。</p>
-<h4 id="后向向量矩阵-beta">后向向量矩阵 <span class="math inline">\(\beta\)</span></h4>
+<p>每一行表示在位置 <span class="math inline">\(i\)</span> 的前向向量
+<span class="math inline">\(\alpha_i\)</span>，每一列对应一个标签 <span
+class="math inline">\(y_i \in \mathcal{Y}\)</span>。</p>
+<h4 id="后向向量矩阵-beta">后向向量矩阵 <span
+class="math inline">\(\beta\)</span></h4>
 <p><span class="math display">\[
 \beta = \begin{bmatrix}
 \beta_0(A) &amp; \beta_0(B) &amp; \cdots &amp; \beta_0(N) \\\\[10pt]
@@ -461,45 +544,73 @@ Z(\mathbf{x}) = \alpha_n^T(\mathbf{x})\mathbf{1} = \mathbf{1}^T \beta_1(\mathbf{
 \beta_{n+1}(A) &amp; \beta_{n+1}(B) &amp; \cdots &amp; \beta_{n+1}(N)
 \end{bmatrix} \tag{CRF-2}
 \]</span></p>
-<p>每一行表示在位置 <span class="math inline">\(i\)</span> 的后向向量 <span class="math inline">\(\beta_i\)</span>，每一列对应一个标签 <span class="math inline">\(y_i \in \mathcal{Y}\)</span>。</p>
+<p>每一行表示在位置 <span class="math inline">\(i\)</span> 的后向向量
+<span class="math inline">\(\beta_i\)</span>，每一列对应一个标签 <span
+class="math inline">\(y_i \in \mathcal{Y}\)</span>。</p>
 <h3 id="期望值计算">期望值计算</h3>
 <p>比较复杂，详情参考《统计学习方法》</p>
-<hr>
+<hr />
 <h2 id="优化学习算法">优化学习算法</h2>
 <p>优化学习算法涉及改进迭代尺度法、梯度下降法以及拟牛顿法。这些方法曾在最大熵的学习算法中提及，可以比对学习。</p>
 <h3 id="改进的迭代尺度法">改进的迭代尺度法</h3>
-<p>已知训练数据集，由此可知经验概率分布 <span class="math inline">\(\tilde{P}(X, Y)\)</span>。可以通过极大化训练数据的对数似然函数来求模型参数。</p>
+<p>已知训练数据集，由此可知经验概率分布 <span
+class="math inline">\(\tilde{P}(X,
+Y)\)</span>。可以通过极大化训练数据的对数似然函数来求模型参数。</p>
 <p>训练数据的对数似然函数为：</p>
 <p><span class="math display">\[
-L(w) = L_{\tilde{P}}(P_{w}) = \sum_{\mathbf{x} ,\mathbf{y}} \tilde{P}(\mathbf{x} ,\mathbf{y}) \log P_{w}(\mathbf{y} |\mathbf{x})
+L(w) = L_{\tilde{P}}(P_{w}) = \sum_{\mathbf{x} ,\mathbf{y}}
+\tilde{P}(\mathbf{x} ,\mathbf{y}) \log P_{w}(\mathbf{y} |\mathbf{x})
 \]</span></p>
 <p>若</p>
 <p><span class="math display">\[
 \begin{align*}
-P(\mathbf{y} \mid \mathbf{x}) &amp;= \frac{1}{Z(\mathbf{x})} \exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right) \\\\
-Z(\mathbf{x}) &amp;= \sum_{\mathbf{y}} \exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right)
+P(\mathbf{y} \mid \mathbf{x}) &amp;= \frac{1}{Z(\mathbf{x})}
+\exp\left(\sum_{k=1}^{K} w_k f_k(\mathbf{y}, \mathbf{x})\right) \\\\
+Z(\mathbf{x}) &amp;= \sum_{\mathbf{y}} \exp\left(\sum_{k=1}^{K} w_k
+f_k(\mathbf{y}, \mathbf{x})\right)
 \end{align*}
 \]</span></p>
 <p>则</p>
 <p><span class="math display">\[
-L(w) = \sum_{j = 1}^{N} \sum_{k = 1}^{K} w_{k} f_{k}(y_j, x_j) - \sum_{j = 1}^{N} \log Z_w(x_j)
+L(w) = \sum_{j = 1}^{N} \sum_{k = 1}^{K} w_{k} f_{k}(y_j, x_j) - \sum_{j
+= 1}^{N} \log Z_w(x_j)
 \]</span></p>
 <h3 id="拟牛顿法">拟牛顿法</h3>
-<p>这里介绍的拟牛顿法是 <span class="math inline">\(\mathbf{BFGS}\)</span> 算法。</p>
-<p><strong>输入</strong>：特征函数 <span class="math inline">\(f_1, f_2, \cdots, f_n\)</span>；经验分布 <span class="math inline">\(\tilde{P}(X, Y)\)</span>；精度要求 <span class="math inline">\(\epsilon\)</span>； <strong>输出</strong>：最优参数值 <span class="math inline">\(\hat{w}\)</span>；最优模型 <span class="math inline">\(P_{\hat{w}}(\mathbf{y} |\mathbf{x})\)</span>。</p>
+<p>这里介绍的拟牛顿法是 <span
+class="math inline">\(\mathbf{BFGS}\)</span> 算法。</p>
+<p><strong>输入</strong>：特征函数 <span class="math inline">\(f_1, f_2,
+\cdots, f_n\)</span>；经验分布 <span class="math inline">\(\tilde{P}(X,
+Y)\)</span>；精度要求 <span class="math inline">\(\epsilon\)</span>；
+<strong>输出</strong>：最优参数值 <span
+class="math inline">\(\hat{w}\)</span>；最优模型 <span
+class="math inline">\(P_{\hat{w}}(\mathbf{y} |\mathbf{x})\)</span>。</p>
 <ol type="1">
-<li>选定初始点 <span class="math inline">\(w^{(0)}\)</span>，取 <span class="math inline">\(B_0\)</span> 为正定对称矩阵，置 <span class="math inline">\(k = 0\)</span>。</li>
-<li>计算 <span class="math inline">\(g_k = g(w^{(k)})\)</span>。 若 <span class="math inline">\(\lVert g_k \rVert &lt; \epsilon\)</span>，则停止计算，得 <span class="math inline">\(w^{*} = w^{(k)}\)</span>；否则转第 3 步。</li>
-<li>由 <span class="math inline">\(B_k p_k = -g_k\)</span> 求出 <span class="math inline">\(p_k\)</span>。</li>
-<li>一维搜索，求 <span class="math inline">\(\lambda_k\)</span> 使得 <span class="math display">\[
- f(w^{(k)} + \lambda_k p_k) = \min_{\lambda \geq 0} f(w^{(k)} + \lambda p_k)
- \]</span></li>
-<li>置 <span class="math inline">\(w^{(k + 1)} = w^{(k)} + \lambda_k p_k\)</span>。</li>
-<li>计算 <span class="math inline">\(g_{k + 1} = g(w^{(k + 1)})\)</span>。 若 <span class="math inline">\(\lVert g_{k + 1} \rVert &lt; \epsilon\)</span>，则停止计算，得 <span class="math inline">\(w^{*} = w^{(k + 1)}\)</span>；否则，按下式求出 <span class="math inline">\(B_{k + 1}\)</span>： <span class="math display">\[
- B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k \delta_k^T B_k}{\delta_k^T B_k \delta_k}
- \]</span> 其中， <span class="math display">\[
- y_k = g_{k + 1} - g_k, \quad \delta_k = w^{(k + 1)} - w^{(k)}
- \]</span></li>
+<li>选定初始点 <span class="math inline">\(w^{(0)}\)</span>，取 <span
+class="math inline">\(B_0\)</span> 为正定对称矩阵，置 <span
+class="math inline">\(k = 0\)</span>。</li>
+<li>计算 <span class="math inline">\(g_k = g(w^{(k)})\)</span>。 若
+<span class="math inline">\(\lVert g_k \rVert &lt;
+\epsilon\)</span>，则停止计算，得 <span class="math inline">\(w^{*} =
+w^{(k)}\)</span>；否则转第 3 步。</li>
+<li>由 <span class="math inline">\(B_k p_k = -g_k\)</span> 求出 <span
+class="math inline">\(p_k\)</span>。</li>
+<li>一维搜索，求 <span class="math inline">\(\lambda_k\)</span> 使得
+<span class="math display">\[
+f(w^{(k)} + \lambda_k p_k) = \min_{\lambda \geq 0} f(w^{(k)} + \lambda
+p_k)
+\]</span></li>
+<li>置 <span class="math inline">\(w^{(k + 1)} = w^{(k)} + \lambda_k
+p_k\)</span>。</li>
+<li>计算 <span class="math inline">\(g_{k + 1} = g(w^{(k +
+1)})\)</span>。 若 <span class="math inline">\(\lVert g_{k + 1} \rVert
+&lt; \epsilon\)</span>，则停止计算，得 <span class="math inline">\(w^{*}
+= w^{(k + 1)}\)</span>；否则，按下式求出 <span
+class="math inline">\(B_{k + 1}\)</span>： <span class="math display">\[
+B_{k + 1} = B_k + \frac{y_k y_k^T}{y_k^T \delta_k} - \frac{B_k \delta_k
+\delta_k^T B_k}{\delta_k^T B_k \delta_k}
+\]</span> 其中， <span class="math display">\[
+y_k = g_{k + 1} - g_k, \quad \delta_k = w^{(k + 1)} - w^{(k)}
+\]</span></li>
 <li>置 <span class="math inline">\(k = k + 1\)</span>，转第 3 步。</li>
 </ol>
 <h2 id="条件随机场的预测算法">条件随机场的预测算法</h2>
