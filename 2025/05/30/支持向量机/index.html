@@ -17,14 +17,14 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ddccffq">
-  <meta name="keywords" content="����,���,ѧϰ,����">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="线性可分支持向量机训练数据$$T &#x3D; {(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)}$$ $$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1}, \quad i &#x3D; 1, 2, \ldots, N$$ 分离超平面 $$w^">
+    <meta name="description" content="线性可分支持向量机 训练数据 \[ T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \] \[ x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1, 2, \ldots, N \] 分离超平面 \[ w^* \cdot x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机">
 <meta property="og:url" content="https://ddccffq.github.io/2025/05/30/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/index.html">
-<meta property="og:site_name" content="�ҵĲ���">
-<meta property="og:description" content="线性可分支持向量机训练数据$$T &#x3D; {(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)}$$ $$x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1}, \quad i &#x3D; 1, 2, \ldots, N$$ 分离超平面 $$w^">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="线性可分支持向量机 训练数据 \[ T &#x3D; \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\} \] \[ x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; \{+1, -1\}, \quad i &#x3D; 1, 2, \ldots, N \] 分离超平面 \[ w^* \cdot x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-30T02:12:59.000Z">
 <meta property="article:modified_time" content="2025-06-05T09:24:23.000Z">
@@ -34,7 +34,7 @@
   
   
   
-  <title>支持向量机 - �ҵĲ���</title>
+  <title>支持向量机 - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          1.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          17 分钟
+          16 分钟
         
       </span>
     
@@ -276,136 +276,389 @@
             
               <div class="markdown-body">
                 
-                <h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><p><strong>训练数据</strong><br>$$<br>T &#x3D; {(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)}<br>$$</p>
-<p>$$<br>x_i \in \mathcal{X} &#x3D; \mathbb{R}^n, \quad y_i \in \mathcal{Y} &#x3D; {+1, -1}, \quad i &#x3D; 1, 2, \ldots, N<br>$$</p>
+                <h2 id="线性可分支持向量机">线性可分支持向量机</h2>
+<p><strong>训练数据</strong> <span class="math display">\[
+T = \{(x_1, y_1), (x_2, y_2), \ldots, (x_N, y_N)\}
+\]</span></p>
+<p><span class="math display">\[
+x_i \in \mathcal{X} = \mathbb{R}^n, \quad y_i \in \mathcal{Y} = \{+1,
+-1\}, \quad i = 1, 2, \ldots, N
+\]</span></p>
 <p><strong>分离超平面</strong></p>
-<p>$$<br>w^* \cdot x + b^* &#x3D; 0<br>$$</p>
+<p><span class="math display">\[
+w^* \cdot x + b^* = 0
+\]</span></p>
 <p><strong>分类决策函数</strong></p>
-<p>$$<br>f(x) &#x3D; \operatorname{sign}(w^* \cdot x + b^*)<br>$$</p>
+<p><span class="math display">\[
+f(x) = \operatorname{sign}(w^* \cdot x + b^*)
+\]</span></p>
 <p><strong>函数间隔</strong></p>
-<p>$$<br>\begin{align*}<br>\hat{\gamma}<em>i &amp;&#x3D; y_i (w \cdot x_i + b)<br>\\<br>\hat{\gamma} &amp;&#x3D; \min</em>{i &#x3D; 1, 2, \ldots, N} \hat{\gamma}_i<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+\begin{align*}
+\hat{\gamma}_i &amp;= y_i (w \cdot x_i + b)
+\\\\
+\hat{\gamma} &amp;= \min_{i = 1, 2, \ldots, N} \hat{\gamma}_i
+\end{align*}
+\]</span></p>
 <p>规范化函数间隔得到<strong>几何间隔</strong></p>
-<p>$$<br>\begin{align*}<br>\gamma_i &amp;&#x3D; y_i \times \left(\frac{w \cdot x_i + b}{\lVert w \rVert}\right)<br>\\<br>\gamma &amp;&#x3D; \min_{i&#x3D;1, \ldots, N} \gamma_i<br>\end{align*}<br>$$</p>
-<p>$\lVert w \rVert$ is $L_2$ 范数，也就是：</p>
-<p>$$<br>\lVert w \rVert _{2} &#x3D; \sqrt{w_1^2 + w_2^2 + \cdots + w_n^2}<br>$$</p>
+<p><span class="math display">\[
+\begin{align*}
+\gamma_i &amp;= y_i \times \left(\frac{w \cdot x_i + b}{\lVert w
+\rVert}\right)
+\\\\
+\gamma &amp;= \min_{i=1, \ldots, N} \gamma_i
+\end{align*}
+\]</span></p>
+<p><span class="math inline">\(\lVert w \rVert\)</span> is <span
+class="math inline">\(L_2\)</span> 范数，也就是：</p>
+<p><span class="math display">\[
+\lVert w \rVert _{2} = \sqrt{w_1^2 + w_2^2 + \cdots + w_n^2}
+\]</span></p>
 <p>可以得到几何间隔和函数间隔之间的关系：</p>
-<p>$$<br>\gamma_i &#x3D; \frac{\hat{\gamma}_i}{\lVert w \rVert}<br>$$</p>
-<h3 id="间隔最大化"><a href="#间隔最大化" class="headerlink" title="间隔最大化"></a>间隔最大化</h3><p>原始问题如下：</p>
-<p>$$<br>\begin{align*}<br>&amp;\max_{w, b} \quad \gamma<br>\\<br>&amp;s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i + \frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i &#x3D; 1, 2, \ldots ,N<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+\gamma_i = \frac{\hat{\gamma}_i}{\lVert w \rVert}
+\]</span></p>
+<h3 id="间隔最大化">间隔最大化</h3>
+<p>原始问题如下：</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\max_{w, b} \quad \gamma
+\\\\
+&amp;s.t. \quad y_i\left(\frac{w}{\lVert w \rVert} \cdot x_i +
+\frac{b}{\lVert w \rVert}\right) \geq \gamma, \quad i = 1, 2, \ldots ,N
+\end{align*}
+\]</span></p>
 <p>我们可以将原始问题转换为一个<strong>凸二次规划问题</strong>。</p>
-<p>$$<br>\begin{align*}<br>&amp;\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2<br>\\<br>&amp;s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\min_{w, b} \quad \frac{1}{2} \lVert w \rVert ^2
+\\\\
+&amp;s.t. \quad y_i(w \cdot x_i + b) - 1 \geq 0, \quad i = 1, 2, \ldots,
+N
+\end{align*}
+\]</span></p>
 <p><strong>支持向量</strong>满足如下关系：</p>
-<p>$$<br>y_i(w \cdot x_i + b) - 1 &#x3D; 0<br>$$</p>
+<p><span class="math display">\[
+y_i(w \cdot x_i + b) - 1 = 0
+\]</span></p>
 <p><strong>间隔</strong>的定义如下：</p>
-<p>$$<br>d &#x3D; \frac{2}{\lVert w \rVert}<br>$$</p>
-<h4 id="学习的对偶算法"><a href="#学习的对偶算法" class="headerlink" title="学习的对偶算法"></a>学习的对偶算法</h4><p>如何解上述的<strong>凸二次规划</strong>问题？应用拉格朗日对偶性得到原始问题的对偶问题：</p>
-<p>$$<br>L(w, b, \alpha) &#x3D; \frac{1}{2} \lVert w \rVert ^2 - \sum_{i &#x3D; 1}^{N} \alpha_i y_i (w \cdot x_i + b) + \sum_{i &#x3D; 1}^{N} \alpha_i<br>$$</p>
-<p>在求极大极小问题，先求极小问题 $\min_{w, b} L(w, b, \alpha)$</p>
-<p>分别对 $w$，$b$ 求偏导，并令偏导为 $0$ 得：</p>
-<p>$$<br>\begin{align*}<br>\nabla_{w} L(w, b, \alpha) &amp;&#x3D; w - \sum_{i &#x3D; 1}^{N} \alpha_i y_i x_i &#x3D; 0<br>\\<br>\nabla_b L(w, b, \alpha) &amp;&#x3D; -\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+d = \frac{2}{\lVert w \rVert}
+\]</span></p>
+<h4 id="学习的对偶算法">学习的对偶算法</h4>
+<p>如何解上述的<strong>凸二次规划</strong>问题？应用拉格朗日对偶性得到原始问题的对偶问题：</p>
+<p><span class="math display">\[
+L(w, b, \alpha) = \frac{1}{2} \lVert w \rVert ^2 - \sum_{i = 1}^{N}
+\alpha_i y_i (w \cdot x_i + b) + \sum_{i = 1}^{N} \alpha_i
+\]</span></p>
+<p>在求极大极小问题，先求极小问题 <span class="math inline">\(\min_{w,
+b} L(w, b, \alpha)\)</span></p>
+<p>分别对 <span class="math inline">\(w\)</span>，<span
+class="math inline">\(b\)</span> 求偏导，并令偏导为 <span
+class="math inline">\(0\)</span> 得：</p>
+<p><span class="math display">\[
+\begin{align*}
+\nabla_{w} L(w, b, \alpha) &amp;= w - \sum_{i = 1}^{N} \alpha_i y_i x_i
+= 0
+\\\\
+\nabla_b L(w, b, \alpha) &amp;= -\sum_{i = 1}^{N} \alpha_i y_i = 0
+\end{align*}
+\]</span></p>
 <p>也就是</p>
-<p>$$<br>\begin{align*}<br>&amp;w &#x3D; \sum_{i &#x3D; 1}^{N} \alpha_i y_i x_i<br>\\<br>&amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp;w = \sum_{i = 1}^{N} \alpha_i y_i x_i
+\\\\
+&amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\end{align*}
+\]</span></p>
 <p>回代，得到</p>
-<p>$$<br>\min_{w, b} L(w, b, \alpha) &#x3D; -\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) + \sum_{i &#x3D; 1}^{N} \alpha_i<br>$$</p>
+<p><span class="math display">\[
+\min_{w, b} L(w, b, \alpha) = -\frac{1}{2} \sum_{i = 1}^{N} \sum_{j =
+1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) + \sum_{i =
+1}^{N} \alpha_i
+\]</span></p>
 <p>再求极大问题</p>
-<p>$$<br>\max_{\alpha} \quad -\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) + \sum_{i &#x3D; 1}^{N} \alpha_i<br>$$</p>
+<p><span class="math display">\[
+\max_{\alpha} \quad -\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) + \sum_{i = 1}^{N}
+\alpha_i
+\]</span></p>
 <p>去掉负号，也就是</p>
-<p>$$<br>\begin{align*}<br>\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i &#x3D; 1}^{N} \alpha_i<br>\\<br>\operatorname{s.t.} \quad &amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\<br>&amp;\alpha_i \geq 0, \quad i &#x3D; 1, 2, \cdots, N<br>\end{align*}<br>$$</p>
-<h3 id="学习算法"><a href="#学习算法" class="headerlink" title="学习算法"></a>学习算法</h3><ul>
-<li><p><strong>输入</strong>：$T$</p>
-</li>
+<p><span class="math display">\[
+\begin{align*}
+\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i = 1}^{N}
+\alpha_i
+\\\\
+\operatorname{s.t.} \quad &amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\\
+&amp;\alpha_i \geq 0, \quad i = 1, 2, \cdots, N
+\end{align*}
+\]</span></p>
+<h3 id="学习算法">学习算法</h3>
+<ul>
+<li><p><strong>输入</strong>：<span
+class="math inline">\(T\)</span></p></li>
 <li><p><strong>输出</strong>：分离超平面和分类决策函数</p>
 <ul>
 <li>构造并求解约束最优化问题。</li>
 </ul>
-<p>$$<br>\begin{align*}<br>\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i &#x3D; 1}^{N} \alpha_i<br>\\<br>\operatorname{s.t.} \quad &amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\<br>&amp;\alpha_i \geq 0, \quad i &#x3D; 1, 2, \cdots, N<br>\\<br>&amp;\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})<br>\end{align*}<br>$$</p>
+<p><span class="math display">\[
+\begin{align*}
+\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i = 1}^{N}
+\alpha_i
+\\\\
+\operatorname{s.t.} \quad &amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\\
+&amp;\alpha_i \geq 0, \quad i = 1, 2, \cdots, N
+\\\\
+&amp;\alpha^* = (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots,
+\alpha_N^{\ast})
+\end{align*}
+\]</span></p>
 <ul>
 <li>计算</li>
 </ul>
-<p>$$<br>\begin{align*}<br>w^{\ast} &amp;&#x3D; \sum_{i&#x3D;1}^{N} \alpha_i^{\ast} y_i x_i<br>\\<br>\forall y_j &gt; 0, \quad b^\ast &amp;&#x3D; y_j - \sum_{i&#x3D;1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)<br>\end{align*}<br>$$</p>
-</li>
+<p><span class="math display">\[
+\begin{align*}
+w^{\ast} &amp;= \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i
+\\\\
+\forall y_j &gt; 0, \quad b^\ast &amp;= y_j -
+\sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)
+\end{align*}
+\]</span></p></li>
 </ul>
-<hr>
-<h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><p>引进一个松弛变量 $\xi_i \geq 0$，</p>
-<p>$$<br>y_i (w \cdot x_i + b) \geq 1 - \xi_i<br>$$</p>
+<hr />
+<h2 id="线性支持向量机">线性支持向量机</h2>
+<p>引进一个松弛变量 <span class="math inline">\(\xi_i \geq
+0\)</span>，</p>
+<p><span class="math display">\[
+y_i (w \cdot x_i + b) \geq 1 - \xi_i
+\]</span></p>
 <p>相应的原始最优化问题变为：</p>
-<p>$$<br>\begin{align*}<br>\min_{w, b, \xi} \quad &amp;\frac{1}{2} \lVert w \rVert^2 + C \sum_{i &#x3D; 1}^{N} \xi_i<br>\\<br>s.t. \quad &amp;y_i(w \cdot x_i + b) \geq 1 - \xi_i<br>\\<br>&amp;i &#x3D; 1, 2, \ldots, N, \quad \xi_i \geq 0<br>\end{align*}<br>$$</p>
-<p>这里 $C \geq 0$ 称为惩罚变量，值越大，对误分类的惩罚越大。</p>
+<p><span class="math display">\[
+\begin{align*}
+\min_{w, b, \xi} \quad &amp;\frac{1}{2} \lVert w \rVert^2 + C \sum_{i =
+1}^{N} \xi_i
+\\\\
+s.t. \quad &amp;y_i(w \cdot x_i + b) \geq 1 - \xi_i
+\\\\
+&amp;i = 1, 2, \ldots, N, \quad \xi_i \geq 0
+\end{align*}
+\]</span></p>
+<p>这里 <span class="math inline">\(C \geq 0\)</span>
+称为惩罚变量，值越大，对误分类的惩罚越大。</p>
 <p>求解原始问题的拉格朗日对偶问题得到</p>
-<p>$$<br>\begin{align*}<br>\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i &#x3D; 1}^{N} \alpha_i<br>\\<br>\operatorname{s.t.} \quad &amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\<br>&amp;C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \cdots, N<br>\end{align*}<br>$$</p>
-<h3 id="学习算法-1"><a href="#学习算法-1" class="headerlink" title="学习算法"></a>学习算法</h3><ul>
-<li><p><strong>输入</strong>：$T$</p>
-</li>
+<p><span class="math display">\[
+\begin{align*}
+\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i = 1}^{N}
+\alpha_i
+\\\\
+\operatorname{s.t.} \quad &amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\\
+&amp;C \geq \alpha_i \geq 0, \quad i = 1, 2, \cdots, N
+\end{align*}
+\]</span></p>
+<h3 id="学习算法-1">学习算法</h3>
+<ul>
+<li><p><strong>输入</strong>：<span
+class="math inline">\(T\)</span></p></li>
 <li><p><strong>输出</strong>：分离超平面和分类决策函数</p>
 <ul>
-<li>选择惩罚参数，构造并求解：<br>$$<br>\begin{align*}<br>\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i &#x3D; 1}^{N} \alpha_i<br>\\<br>\operatorname{s.t.} \quad &amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\<br>&amp;C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \cdots, N<br>\end{align*}<br>$$</li>
+<li>选择惩罚参数，构造并求解： <span class="math display">\[
+\begin{align*}
+\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j \left(x_i \cdot x_j\right) - \sum_{i = 1}^{N}
+\alpha_i
+\\\\
+\operatorname{s.t.} \quad &amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\\
+&amp;C \geq \alpha_i \geq 0, \quad i = 1, 2, \cdots, N
+\end{align*}
+\]</span></li>
 </ul>
-<p>得到最优解 $\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})$。</p>
+<p>得到最优解 <span class="math inline">\(\alpha^* = (\alpha_1^{\ast},
+\alpha_2^{\ast}, \ldots, \alpha_N^{\ast})\)</span>。</p>
 <ul>
 <li>计算</li>
 </ul>
-<p>$$<br>\begin{align*}<br>w^{\ast} &amp;&#x3D; \sum_{i&#x3D;1}^{N} \alpha_i^{\ast} y_i x_i<br>\\<br>\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &amp;&#x3D; y_j - \sum_{i&#x3D;1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)<br>\end{align*}<br>$$</p>
-</li>
+<p><span class="math display">\[
+\begin{align*}
+w^{\ast} &amp;= \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i
+\\\\
+\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &amp;= y_j -
+\sum_{i=1}^{N}\alpha_i^\ast y_i(x_i \cdot x_j)
+\end{align*}
+\]</span></p></li>
 </ul>
-<hr>
-<h2 id="荷叶损失函数"><a href="#荷叶损失函数" class="headerlink" title="荷叶损失函数"></a>荷叶损失函数</h2><p>这是对线性支持向量机学习的一种解释，就是最小化以下目标函数：</p>
-<p>$$<br>\min_{w, b} \quad \sum_{i &#x3D; 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ + \lambda \lVert w \rVert^2<br>$$</p>
-<hr>
-<h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><p><strong>正定核函数</strong></p>
-<p>$K :\mathcal{X} \times \mathcal{X} \to \mathbb{R}$ 是对称函数，$K(x, z)$ 是正定核函数 $\Leftrightarrow$ 对于任意 $x_i \in \mathcal{X}, \quad i &#x3D; 1, 2, 3, \dots, m$，$K(x, z)$ 对应的格拉姆矩阵是半正定的。</p>
-<p><strong>$Gram$ 矩阵</strong></p>
-<p>$$<br>K &#x3D; [K(x_i, x_j)]_{m \times m}<br>$$</p>
-<p>如何判别这个矩阵是半正定的，可以采用<strong>特征值判别法</strong>，如果一个矩阵的所有特征值都 $\geq 0$，则这个矩阵是半正定的。</p>
-<h3 id="学习算法-2"><a href="#学习算法-2" class="headerlink" title="学习算法"></a>学习算法</h3><ul>
-<li><p><strong>输入</strong>：$T$</p>
-</li>
+<hr />
+<h2 id="荷叶损失函数">荷叶损失函数</h2>
+<p>这是对线性支持向量机学习的一种解释，就是最小化以下目标函数：</p>
+<p><span class="math display">\[
+\min_{w, b} \quad \sum_{i = 1}^{N} [1 - y_i(w \cdot x_i + b)]_+ +
+\lambda \lVert w \rVert^2
+\]</span></p>
+<hr />
+<h2 id="非线性支持向量机">非线性支持向量机</h2>
+<p><strong>正定核函数</strong></p>
+<p><span class="math inline">\(K :\mathcal{X} \times \mathcal{X} \to
+\mathbb{R}\)</span> 是对称函数，<span class="math inline">\(K(x,
+z)\)</span> 是正定核函数 <span
+class="math inline">\(\Leftrightarrow\)</span> 对于任意 <span
+class="math inline">\(x_i \in \mathcal{X}, \quad i = 1, 2, 3, \dots,
+m\)</span>，<span class="math inline">\(K(x, z)\)</span>
+对应的格拉姆矩阵是半正定的。</p>
+<p><strong><span class="math inline">\(Gram\)</span> 矩阵</strong></p>
+<p><span class="math display">\[
+K = [K(x_i, x_j)]_{m \times m}
+\]</span></p>
+<p>如何判别这个矩阵是半正定的，可以采用<strong>特征值判别法</strong>，如果一个矩阵的所有特征值都
+<span class="math inline">\(\geq 0\)</span>，则这个矩阵是半正定的。</p>
+<h3 id="学习算法-2">学习算法</h3>
+<ul>
+<li><p><strong>输入</strong>：<span
+class="math inline">\(T\)</span></p></li>
 <li><p><strong>输出</strong>：分离超平面和分类决策函数</p>
 <ul>
-<li>选择惩罚参数，构造并求解：<br>$$<br>\begin{align*}<br>\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i &#x3D; 1}^{N} \sum_{j &#x3D; 1}^{N} \alpha_i \alpha_j y_i y_j K\left(x_i \cdot x_j\right) - \sum_{i &#x3D; 1}^{N} \alpha_i<br>\\<br>\operatorname{s.t.} \quad &amp;\sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0<br>\<br>&amp;C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \cdots, N<br>\end{align*}<br>$$</li>
+<li>选择惩罚参数，构造并求解： <span class="math display">\[
+\begin{align*}
+\min_{\alpha} \quad &amp;\frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1}^{N}
+\alpha_i \alpha_j y_i y_j K\left(x_i \cdot x_j\right) - \sum_{i = 1}^{N}
+\alpha_i
+\\\\
+\operatorname{s.t.} \quad &amp;\sum_{i = 1}^{N} \alpha_i y_i = 0
+\\
+&amp;C \geq \alpha_i \geq 0, \quad i = 1, 2, \cdots, N
+\end{align*}
+\]</span></li>
 </ul>
-<p>得到最优解 $\alpha^* &#x3D; (\alpha_1^{\ast}, \alpha_2^{\ast}, \ldots, \alpha_N^{\ast})$。</p>
+<p>得到最优解 <span class="math inline">\(\alpha^* = (\alpha_1^{\ast},
+\alpha_2^{\ast}, \ldots, \alpha_N^{\ast})\)</span>。</p>
 <ul>
 <li>计算</li>
 </ul>
-<p>$$<br>\begin{align*}<br>w^{\ast} &amp;&#x3D; \sum_{i&#x3D;1}^{N} \alpha_i^{\ast} y_i x_i<br>\\<br>\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &amp;&#x3D; y_j - \sum_{i&#x3D;1}^{N}\alpha_i^\ast y_i K(x_i \cdot x_j)<br>\end{align*}<br>$$</p>
-</li>
+<p><span class="math display">\[
+\begin{align*}
+w^{\ast} &amp;= \sum_{i=1}^{N} \alpha_i^{\ast} y_i x_i
+\\\\
+\forall C &gt; \alpha_j^{\ast} &gt; 0, \quad b^\ast &amp;= y_j -
+\sum_{i=1}^{N}\alpha_i^\ast y_i K(x_i \cdot x_j)
+\end{align*}
+\]</span></p></li>
 </ul>
-<h2 id="序列最小最优化算法"><a href="#序列最小最优化算法" class="headerlink" title="序列最小最优化算法"></a>序列最小最优化算法</h2><p><strong>两个变量二次规划的求解方式</strong></p>
-<p>$$<br>\begin{align}<br>&amp;\min_{\alpha} \frac{1}{2} \sum_{i&#x3D;1}^{N} \sum_{j&#x3D;1}^{N}\alpha_i \alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i&#x3D;1}^{N} \alpha_i \\<br>&amp;s.t. \quad \sum_{i &#x3D; 1}^{N} \alpha_i y_i &#x3D; 0, \quad C \geq \alpha_i \geq 0, \quad i &#x3D; 1, 2, \ldots, N<br>\end{align}<br>$$</p>
-<p>我们选择 $\alpha_1，\alpha_2$，规定其他 $\alpha_i (i &#x3D; 3, 4, \dots, N)$。</p>
-<h3 id="学习算法-3"><a href="#学习算法-3" class="headerlink" title="学习算法"></a>学习算法</h3><p>下面只给出<strong>应试过程</strong></p>
+<h2 id="序列最小最优化算法">序列最小最优化算法</h2>
+<p><strong>两个变量二次规划的求解方式</strong></p>
+<p><span class="math display">\[
+\begin{align}
+&amp;\min_{\alpha} \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N}\alpha_i
+\alpha_j y_i y_j K(x_i \cdot x_j) - \sum_{i=1}^{N} \alpha_i \\\\
+&amp;s.t. \quad \sum_{i = 1}^{N} \alpha_i y_i = 0, \quad C \geq \alpha_i
+\geq 0, \quad i = 1, 2, \ldots, N
+\end{align}
+\]</span></p>
+<p>我们选择 <span
+class="math inline">\(\alpha_1，\alpha_2\)</span>，规定其他 <span
+class="math inline">\(\alpha_i (i = 3, 4, \dots, N)\)</span>。</p>
+<h3 id="学习算法-3">学习算法</h3>
+<p>下面只给出<strong>应试过程</strong></p>
 <p>我们的<strong>目标</strong>是，求解下述最小化问题：</p>
-<p>$$<br>\begin{align}<br>&amp;\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) &#x3D; \frac{1}{2} K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2 +y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) + y_1\alpha_1\sum_{i&#x3D;3}^{N}y_i\alpha_iK_{i1} + y_2\alpha_2\sum_{i&#x3D;3}^{N}y_i\alpha_iK_{i2} \tag{1}<br>\\<br>&amp;s.t. \quad \alpha_1y_1 + \alpha_2y_2 &#x3D; \sum_{i&#x3D;3}^{N}y_i\alpha_i &#x3D; \zeta, \quad 0 \leq \alpha_i \leq C, \quad i &#x3D; 1, 2 \tag{2}<br>\end{align}<br>$$</p>
-<p>$K_{ij} &#x3D; K(x_i, x_j),i,j &#x3D; 1,2, \dots, N$，$\zeta$ 是一个常数。同时需要注意的是，公式 $(1)$ 缺少了常数项</p>
-<p>$$<br>\text{const} &#x3D; \sum_{i&#x3D;3}^N \alpha_i - \frac{1}{2} \sum_{i&#x3D;3}^N \sum_{j&#x3D;3}^N \alpha_i \alpha_j y_i y_j K(x_i, x_j)<br>$$</p>
-<p>但这个常数项<strong>不会</strong>影响优化 $\alpha_1$ 和 $\alpha_2$ 的结果，故可以省略。</p>
-<p>我们考虑 $\alpha_2$ 的最优化问题。</p>
-<p>如果 $ y_1 \neq y_2 $</p>
-<p>$$<br>L &#x3D; \max(0, \alpha_2^{old} - alpha_1^{old}), \quad H &#x3D; \min(C, C + \alpha_2^{old} - alpha_1^{old}) \tag{3}<br>$$</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;\min_{\alpha_1, \alpha_2} W(\alpha_1, \alpha_2) = \frac{1}{2}
+K_{11}\alpha_1^2 +  \frac{1}{2} K_{22}\alpha_2^2
++y_1y_2K_{12}\alpha_1\alpha_2 - (\alpha_1 + \alpha_2) +
+y_1\alpha_1\sum_{i=3}^{N}y_i\alpha_iK_{i1} +
+y_2\alpha_2\sum_{i=3}^{N}y_i\alpha_iK_{i2} \tag{1}
+\\\\
+&amp;s.t. \quad \alpha_1y_1 + \alpha_2y_2 = \sum_{i=3}^{N}y_i\alpha_i =
+\zeta, \quad 0 \leq \alpha_i \leq C, \quad i = 1, 2 \tag{2}
+\end{align}
+\]</span></p>
+<p><span class="math inline">\(K_{ij} = K(x_i, x_j),i,j = 1,2, \dots,
+N\)</span>，<span class="math inline">\(\zeta\)</span>
+是一个常数。同时需要注意的是，公式 <span
+class="math inline">\((1)\)</span> 缺少了常数项</p>
+<p><span class="math display">\[
+\text{const} = \sum_{i=3}^N \alpha_i - \frac{1}{2} \sum_{i=3}^N
+\sum_{j=3}^N \alpha_i \alpha_j y_i y_j K(x_i, x_j)
+\]</span></p>
+<p>但这个常数项<strong>不会</strong>影响优化 <span
+class="math inline">\(\alpha_1\)</span> 和 <span
+class="math inline">\(\alpha_2\)</span> 的结果，故可以省略。</p>
+<p>我们考虑 <span class="math inline">\(\alpha_2\)</span>
+的最优化问题。</p>
+<p>如果 $ y_1 y_2 $</p>
+<p><span class="math display">\[
+L = \max(0, \alpha_2^{old} - alpha_1^{old}), \quad H = \min(C, C +
+\alpha_2^{old} - alpha_1^{old}) \tag{3}
+\]</span></p>
 <p>否则</p>
-<p>$$<br>L &#x3D; \max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H &#x3D; \min(C, \alpha_2^{old} + alpha_1^{old}) \tag{4}<br>$$</p>
+<p><span class="math display">\[
+L = \max(0, \alpha_2^{old} + alpha_1^{old} - C), \quad H = \min(C,
+\alpha_2^{old} + alpha_1^{old}) \tag{4}
+\]</span></p>
 <p>为了叙述简单，记</p>
-<p>$$<br>g(x) &#x3D; \sum_{i&#x3D;1}^{N}\alpha_i y_i K(x_i, x) + b<br>$$</p>
+<p><span class="math display">\[
+g(x) = \sum_{i=1}^{N}\alpha_i y_i K(x_i, x) + b
+\]</span></p>
 <p>令</p>
-<p>$$<br>E_i &#x3D; g(x_i) - y_i &#x3D; \sum_{j&#x3D;1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i, \quad i &#x3D; 1, 2<br>$$</p>
-<p>接下来我们更新 $\alpha_2$</p>
-<p>$$<br>\alpha_2^{new,unc} &#x3D; \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad \eta &#x3D; K_{11} + K_{22} - 2K_{12}<br>$$</p>
-<p>$$<br>\alpha_2^{new} &#x3D;<br>\begin{cases}<br>H, &amp;\alpha_2^{new,unc} &gt; H<br>\\<br>\alpha_2^{new,unc}, &amp;L \leq \alpha_2^{new,unc} \leq H<br>\\<br>L, &amp;\alpha_2^{new,unc} &lt; L<br>\end{cases}<br>$$</p>
-<p>N然后再更新 $\alpha_1$</p>
-<p>$$<br>\alpha_1^{new} &#x3D; \alpha_1^{old} + y_1 y_2(\alpha_2^{old} - \alpha_2^{new})<br>$$</p>
-<p><strong>如何选择 $\alpha_1$ 和 $\alpha_2$</strong></p>
-<ol>
-<li>在所有节点中选择具有最大 $E_i$ 值的节点作为 $\alpha_1$。</li>
-<li>选择使得 $|E_1 - E_2|$ 最大的节点作为 $\alpha_2$。</li>
+<p><span class="math display">\[
+E_i = g(x_i) - y_i = \sum_{j=1}^{N}\alpha_j y_j K(x_j, x_i) + b - y_i,
+\quad i = 1, 2
+\]</span></p>
+<p>接下来我们更新 <span class="math inline">\(\alpha_2\)</span></p>
+<p><span class="math display">\[
+\alpha_2^{new,unc} = \alpha_2^{old} + \frac{y_2(E_1 - E_2)}{\eta}, \quad
+\eta = K_{11} + K_{22} - 2K_{12}
+\]</span></p>
+<p><span class="math display">\[
+\alpha_2^{new} =
+\begin{cases}
+H, &amp;\alpha_2^{new,unc} &gt; H
+\\\\
+\alpha_2^{new,unc}, &amp;L \leq \alpha_2^{new,unc} \leq H
+\\\\
+L, &amp;\alpha_2^{new,unc} &lt; L
+\end{cases}
+\]</span></p>
+<p>N然后再更新 <span class="math inline">\(\alpha_1\)</span></p>
+<p><span class="math display">\[
+\alpha_1^{new} = \alpha_1^{old} + y_1 y_2(\alpha_2^{old} -
+\alpha_2^{new})
+\]</span></p>
+<p><strong>如何选择 <span class="math inline">\(\alpha_1\)</span> 和
+<span class="math inline">\(\alpha_2\)</span></strong></p>
+<ol type="1">
+<li>在所有节点中选择具有最大 <span class="math inline">\(E_i\)</span>
+值的节点作为 <span class="math inline">\(\alpha_1\)</span>。</li>
+<li>选择使得 <span class="math inline">\(|E_1 - E_2|\)</span>
+最大的节点作为 <span class="math inline">\(\alpha_2\)</span>。</li>
 </ol>
 <p><strong>求解阈值 b 和 E 的计算方法</strong></p>
-<p>$$<br>b_1^{new} &#x3D; -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}<br>$$</p>
-<p>$$<br>b_2^{new} &#x3D; -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2 K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}<br>$$</p>
-<p>$$<br>b^{new} &#x3D; \frac{b_1^{new} + b_2^{new}}{2}<br>$$</p>
+<p><span class="math display">\[
+b_1^{new} = -E_1 - y_1 K_{11} (\alpha_1^{new} - \alpha_1^{old}) - y_2
+K_{21} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}
+\]</span></p>
+<p><span class="math display">\[
+b_2^{new} = -E_2 - y_1 K_{12} (\alpha_1^{new} - \alpha_1^{old}) - y_2
+K_{22} (\alpha_2^{new} - \alpha_2^{old}) + b^{old}
+\]</span></p>
+<p><span class="math display">\[
+b^{new} = \frac{b_1^{new} + b_2^{new}}{2}
+\]</span></p>
 <p><strong>此外</strong></p>
-<p>更新 $E$：</p>
-<p>$$<br>E_i^{new} &#x3D; \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i<br>$$</p>
-<p>其中 $\mathcal{S}$ 包含所有支持向量 $x_i$。样本 $x_i$ 是支持向量 $\Leftrightarrow$ $0 &lt; \alpha_i^* &lt; C$。</p>
+<p>更新 <span class="math inline">\(E\)</span>：</p>
+<p><span class="math display">\[
+E_i^{new} = \sum_{\mathcal{S}}y_j \alpha_j K(x_i, x_j) + b^{new} - y_i
+\]</span></p>
+<p>其中 <span class="math inline">\(\mathcal{S}\)</span>
+包含所有支持向量 <span class="math inline">\(x_i\)</span>。样本 <span
+class="math inline">\(x_i\)</span> 是支持向量 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(0 &lt; \alpha_i^* &lt; C\)</span>。</p>
 
                 
               </div>
@@ -576,6 +829,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -620,7 +879,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 ddccffq. All Rights Reserved.</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
     </div>
   
   
@@ -766,6 +1025,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
