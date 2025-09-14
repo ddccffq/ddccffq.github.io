@@ -1,0 +1,1237 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="必备知识点  \[ \lim_{n \to \infty} \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} &#x3D; \max_{1 \leq i \leq m}\{a_i\} \] 这个公式用夹逼定理证明，证明如下：记 \(\max\limits_{1 \leq i \leq m} &#x3D; a\)，则 \[ a &#x3D; \sqrt[n]{a^n} \leq \sqrt[n]{a_1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数、极限、连续">
+<meta property="og:url" content="https://ddccffq.github.io/2025/07/12/%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="必备知识点  \[ \lim_{n \to \infty} \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} &#x3D; \max_{1 \leq i \leq m}\{a_i\} \] 这个公式用夹逼定理证明，证明如下：记 \(\max\limits_{1 \leq i \leq m} &#x3D; a\)，则 \[ a &#x3D; \sqrt[n]{a^n} \leq \sqrt[n]{a_1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-12T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-28T03:27:02.000Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>函数、极限、连续 - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="函数、极限、连续"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-12 15:00" pubdate>
+          2025年7月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">函数、极限、连续</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="必备知识点">必备知识点</h2>
+<ol type="1">
+<li><p><span class="math display">\[
+\lim_{n \to \infty} \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} = \max_{1 \leq
+i \leq m}\{a_i\}
+\]</span></p>
+<p>这个公式用<strong>夹逼定理</strong>证明，证明如下：记 <span
+class="math inline">\(\max\limits_{1 \leq i \leq m} = a\)</span>，则
+<span class="math display">\[
+a = \sqrt[n]{a^n} \leq \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} \leq
+\sqrt[n]{m \times a^n} = a \sqrt[n]{m}
+\]</span></p>
+<p>而<span class="math inline">\(\lim\limits_{n \to \infty} \sqrt[n]{m}
+= 1\)</span>，所有根号下变量要求 <span class="math inline">\(\geq
+0\)</span>。</p></li>
+<li><p>拉格朗日中值定理 如果函数 <span
+class="math inline">\(f(x)\)</span> 满足以下条件：</p>
+<ol type="1">
+<li>在闭区间 <span class="math inline">\([a, b]\)</span> 上连续</li>
+<li>在开区间 <span class="math inline">\((a, b)\)</span> 上可导</li>
+</ol>
+<p>那么，至少存在一点 <span class="math inline">\(\xi \in (a,
+b)\)</span>，使得： <span class="math display">\[
+f&#39;(\xi) = \frac{f(b) - f(a)}{b - a}
+\]</span></p></li>
+<li><p>立方和公式与立方差公式 [ <span
+class="math display">\[\begin{align*}
+a^3 + b^3 &amp;= (a + b)(a^2 - ab + b^2)
+\\
+a^3 - b^3 &amp;= (a - b)(a^2 + ab + b^2)
+\end{align*}\]</span> ]</p></li>
+<li><p>几个常用函数的麦克劳林公式 <span class="math inline">\((n = 0, 1,
+\cdots)\)</span> [ <span class="math display">\[\begin{align*}
+\text{e}^x &amp;= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots +
+\frac{x^n}{n!} + o(x^n)
+\\
+\sin x &amp;= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots + (-1)^{n }
+\frac{x^{2n + 1}}{(2n + 1)!} + o(x^{2n + 2})
+\\
+\cos x &amp;= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots + (-1)^n
+\frac{x^{2n}}{(2n)!} + o(x^{2n + 1})
+\\
+\ln (1 + x) &amp;= x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + (-1)^{n}
+\frac{x^{n + 1}}{n + 1} + o(x^{n + 1})
+\\
+(1 + x)^{\alpha} &amp;= 1 + \alpha x + \frac{\alpha(\alpha - 1)}{2!} x^2
++ \cdots + \frac{\alpha(\alpha - 1) \cdots (\alpha - n + 1)}{n!} x^n +
+o(x^n)
+\\
+\frac{1}{1- x} &amp;= 1 + x + x^2 + \cdots + x^n + o(x^n)
+\\
+\frac{1}{1 + x} &amp;= 1 - x + x^2 - \cdots + (-1)^{n} x^n + o(x^n)
+\\
+\arctan x &amp;= x - \frac{1}{3} x^3 + \frac{1}{5} x^5 - \cdots + (-1)^n
+\frac{1}{2n + 1} x^{2n + 1} + o(x^{2n + 1})
+\end{align*}\]</span> ]</p></li>
+<li><p>若函数 <span class="math inline">\(f(x)\)</span> 和 <span
+class="math inline">\(g(x)\)</span> 在区间 <span
+class="math inline">\(I\)</span>上连续，对于 <span
+class="math inline">\(x \in I\)</span>，构造函数 <span
+class="math inline">\(M(x) = \max\{f(x), g(x)\} = \frac{f(x) + g(x) +
+|f(x) - g(x)|}{2}\)</span>，<span class="math inline">\(m(x) =
+\min\{f(x), g(x)\} =\frac{f(x) + g(x) - |f(x) -
+g(x)|}{2}\)</span></p></li>
+</ol>
+<h2 id="例题讲解">例题讲解</h2>
+<ol type="1">
+<li><p>设<br />
+<span class="math display">\[
+x_n=\prod_{k = 1}^n\Bigl(1 + \frac1{2^{2^k}}\Bigr)
+=(1 + \frac12)(1 + \frac1{2^2})(1 + \frac1{2^4})\cdots(1 +
+\frac1{2^{2^n}})
+\]</span><br />
+求 <span class="math inline">\(\lim\limits_{n \to \infty}x_n\)</span>。
+&gt; 一般而言，这类题目都需要构造望远镜乘积的形式</p>
+<p>注意到 <span class="math display">\[
+\frac{1}{2^{2^n}} + 1 = \frac{\frac{1}{2^{2^{n + 1}}} -
+1}{\frac{1}{2^{2^n}} - 1}
+\]</span></p>
+<p>替换所有元素的形式，最终得到： <span class="math display">\[
+\lim_{n \to \infty}x_n = \lim_{n \to \infty} \frac{\frac{1}{2^{2^{n +
+1}}} - 1}{\frac{1}{2^{2^0}} - 1} = 2
+\]</span></p></li>
+<li><p>求 <span class="math display">\[
+\lim_{n \to \infty} \sin(\pi \sqrt{n^2 + 1})
+\]</span></p>
+<p>变形： <span class="math display">\[
+\lim_{n \to \infty} \sin(\pi \sqrt{n^2 + 1}) = (-1)^n\lim_{n \to \infty}
+\sin(\pi \sqrt{1 + n^2} -n\pi) = (-1)^n \lim_{n \to \infty}
+\sin(\frac{\pi}{\sqrt{1 + n^2} + n}) = 0
+\]</span></p></li>
+<li><p>求 <span class="math display">\[
+\lim_{n \to \infty} \frac{(1 + 1/n)^{n^{2}}}{\text{e}^n}
+\]</span></p>
+<p>变形： <span class="math display">\[
+\text{e}^{\ln \lim\limits_{n \to \infty} \frac{(1 +
+1/n)^{n^{2}}}{\text{e}^n}} = \text{e}^{\lim\limits_{n \to \infty} n^2
+\ln (1 + \frac{1}{n}) - n} = \text{e}^{\lim\limits_{n \to \infty} n^2
+(\frac{1}{n} - \frac{1}{2n^2} + o(\frac{1}{n^2})) - n} =
+\text{e}^{-\frac{1}{2}}
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(\alpha &gt; 0\)</span>，求 <span
+class="math display">\[
+\lim_{n \to \infty} \Bigl(\cos \frac{1}{n^\alpha}\Bigr)^n
+\]</span></p>
+<p>变形： <span class="math display">\[
+\text{e}^{\lim\limits_{n \to \infty} n \ln (1 - \frac{1}{2! \cdot
+n^{2\alpha}} + o(\frac{1}{n^{3 \alpha}}))} = \text{e}^{\lim\limits_{n
+\to \infty} n \cdot(- \frac{1}{2! \cdot n^{2\alpha}} + o(\frac{1}{n^{3
+\alpha}}) + o(- \frac{1}{2! \cdot n^{2\alpha}} + o(\frac{1}{n^{3
+\alpha}})))}
+\]</span></p>
+<p>可以分析： [ _{n } ()^n =</p>
+<span class="math display">\[\begin{cases}
+0, &amp;\alpha &lt; \frac{1}{2}
+\\
+\text{e}^{-\frac{1}{2}}, &amp;\alpha = \frac{1}{2}
+\\
+1, &amp;\alpha &gt; \frac{1}{2}
+\end{cases}\]</span>
+<p>]</p></li>
+<li><p>求极限 <span class="math display">\[
+\lim_{n \to \infty} \sqrt[n]{\ln n}
+\]</span></p>
+<p>对 <span class="math inline">\(\ln n\)</span> 放缩，<span
+class="math inline">\(1 - \frac{1}{n} &lt; \ln n &lt; n - 1\)</span>，而
+<span class="math inline">\(\lim\limits_{n \to \infty} \sqrt[n]{1 -
+\frac{1}{n}} = \lim\limits_{n \to \infty} \sqrt[n]{n - 1} =
+1\)</span>，再由夹逼定理，得到问题极限结果也为 1</p></li>
+<li><p>设 <span class="math display">\[
+x_n = \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n}
+\]</span></p>
+<p>求 <span class="math display">\[
+\lim_{n \to \infty} x_n
+\]</span></p>
+<p>注意到 <span class="math inline">\(0 &lt; x_n &lt; \frac{1}{\sqrt{2n
++ 1}}\)</span>，所以，该极限结果为 0</p></li>
+<li><p>设数列 <span class="math inline">\(\{a_n\}\)</span>
+有界，对于任何 <span class="math inline">\(n\)</span> 总有 <span
+class="math inline">\(a_n \leq a_{n + 2}\)</span>，<span
+class="math inline">\(a_n \leq a_{n + 3}\)</span> 成立，证明 <span
+class="math inline">\(\lim\limits_{n \to \infty} a_n\)</span> 存在。
+此时有，<span class="math inline">\(a_{2n} \leq a_{2n +
+2}\)</span>，<span class="math inline">\(a_{2n - 1} \leq a_{2n +
+1}\)</span>，<span class="math inline">\(a_{3n} \leq a_{3n +
+3}\)</span>，<span class="math inline">\((n = 1, 2,
+\cdots)\)</span>，这表明子数列 <span
+class="math inline">\(\{a_{2n}\}\)</span>，<span
+class="math inline">\(\{a_{2n - 1}\}\)</span> 和 <span
+class="math inline">\(\{a_{3n}\}\)</span>
+都是单调有界的，故都存在极限，分别设为 <span
+class="math inline">\(a\)</span>，<span
+class="math inline">\(b\)</span>，<span
+class="math inline">\(c\)</span>。由于数列 <span
+class="math inline">\(\{a_{2n}\}\)</span> 和 <span
+class="math inline">\(\{a_{3n}\}\)</span> 有公共数列 <span
+class="math inline">\(\{a_{6n}\}\)</span>，所以 <span
+class="math inline">\(a = c\)</span>；又由于数列 <span
+class="math inline">\(\{a_{2n - 1}\}\)</span> 和 <span
+class="math inline">\(\{a_{3n}\}\)</span> 有公共数列 <span
+class="math inline">\(\{a_{6n -3}\}\)</span>，所以 <span
+class="math inline">\(b = c\)</span>，从而 <span class="math inline">\(a
+= b\)</span>，所以 <span class="math inline">\(\lim\limits_{n \to
+\infty} a_n\)</span> 存在。</p></li>
+<li><p>如果存在正整数 <span class="math inline">\(p\)</span>，使得 <span
+class="math display">\[
+\lim_{n \to \infty} (a_{n + p} - a_n) = \lambda
+\]</span></p>
+<p>则， <span class="math display">\[
+\lim_{n \to \infty} \frac{a_n}{n} = \frac{\lambda}{p}
+\]</span></p>
+<p>将数列 <span
+class="math inline">\(\{\frac{a_n}{n}\}\)</span>，划分为如下互不相交的子数列，<span
+class="math inline">\(\{\frac{a_{1 + (n - 1)p}}{1 + (n -
+1)p}\}\)</span>，<span class="math inline">\(\{\frac{a_{2 + (n - 1)p}}{2
++ (n - 1)p}\}\)</span>，<span
+class="math inline">\(\cdots\)</span>，<span
+class="math inline">\(\{\frac{a_{p + (n - 1)p}}{p + (n -
+1)p}\}\)</span>，<span class="math inline">\(n \geq 1\)</span>，记为
+<span class="math inline">\(\{\frac{a_{i + (n - 1)p}}{i + (n -
+1)p}\}\)</span>，<span class="math inline">\(1 \leq i \leq
+p\)</span>，只需要证明对于所有的 <span
+class="math inline">\(i\)</span>，都有 <span class="math display">\[
+\lim_{n \to \infty} \frac{a_{i + (n - 1)p}}{i + (n - 1)p} =
+\frac{\lambda}{p}
+\]</span></p>
+<p>由 stolz 定理，得 <span class="math inline">\(\lim\limits_{n \to
+\infty} \frac{a_{i + (n - 1)p}}{i + (n - 1)p} = \frac{\lim\limits_{n \to
+\infty} a_{i + (n - 1)p} - a_{i + (n - 2)p}}{p} =
+\frac{\lambda}{p}\)</span>。综上，题目推论成立</p></li>
+<li><p>设 <span class="math inline">\(x_0 = a\)</span>，<span
+class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n
++ 1} = \frac{1}{2} (x_n + x_{n - 1})(n = 1, 2,
+\cdots)\)</span>。证明数列 <span class="math inline">\(\{x_n\}\)</span>
+有极限，并求 <span class="math inline">\(\lim\limits_{n \to \infty}
+x_n\)</span>。</p>
+<blockquote>
+<p>还没有证明极限存在</p>
+</blockquote>
+<p>由题目可得： [ <span class="math display">\[\begin{align*}
+x_{n + 1} &amp;= \frac{1}{2} (x_n + x_{n - 1})
+\\
+x_{n} &amp;= \frac{1}{2} (x_{n - 1} + x_{n - 2})
+\\
+&amp;\cdots
+\\
+x_{2} &amp;= \frac{1}{2} (x_{1} + x_{0})
+\end{align*}\]</span> ]</p>
+<p>左右两边分别相加，并消项，得到 <span class="math inline">\(x_{n + 1}
++ \frac{1}{2} x_n = x_1 + \frac{1}{2} x_0\)</span></p></li>
+<li><p>设数列：<span class="math inline">\(x_0 = a\)</span>，<span
+class="math inline">\(x_1 = 1 + b x_0\)</span>，<span
+class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_{n
++ 1} = 1 + b x_n\)</span>，<span
+class="math inline">\(\cdots\)</span>，求 <span
+class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span>
+使得该数列收敛。</p>
+<p>由题目可得： [ <span class="math display">\[\begin{align*}
+x_{n} &amp;= 1 + b x_{n - 1}
+\\
+x_{n - 1} &amp;= 1 + b x_{n - 2}
+\\
+&amp;\cdots
+\\
+x_1 &amp;= 1 + b x_0
+\end{align*}\]</span> ]</p>
+<p>从而推出 <span class="math inline">\(x_n = 1 + b + b^2 + \cdots +
+b^{n - 1} + b^n \cdot a = \frac{b^n - 1}{b - 1} + b^n \cdot a =
+\frac{-1}{b - 1} + b^n (\frac{1}{b - 1} + a)\)</span>，分析得：当 <span
+class="math inline">\(|b| &lt; 1\)</span> 时，收敛；当 <span
+class="math inline">\(b \leq -1\)</span> 和 <span
+class="math inline">\(b &gt; 1\)</span> 时，<span
+class="math inline">\(a = \frac{1}{1 - b}\)</span> 时，收敛。</p></li>
+<li><p>设 <span class="math inline">\(x_0 = a\)</span>，<span
+class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n
++ 1} = \frac{x_{n - 1} + (2n - 1) x_n}{2n}(n = 1, 2,
+\cdots)\)</span>，求 <span class="math inline">\(\lim\limits_{n \to
+\infty} x_n\)</span>。</p></li>
+<li><p>设数列由递推公式 <span class="math inline">\(u_1 =
+b\)</span>，<span class="math inline">\(u_{n + 1} = u_n^2 + (1 - 2a) u_n
++ a^2 (n = 1, 2, \cdots)\)</span> 所确定。当 <span
+class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 为何值时，数列 <span
+class="math inline">\(\{u_n\}\)</span> 收敛？它的极限等于什么？</p></li>
+<li><p>设数列 <span class="math inline">\(\{x_n\}\)</span>
+定义如下：<span class="math inline">\(x_1 = \sqrt{5}\)</span>，<span
+class="math inline">\(x_{n + 1} = x_n^2 - 2(n = 1, 2,
+\cdots)\)</span>。求极限 <span class="math inline">\(\lim\limits_{n \to
+\infty} \frac{x_1 x_2 \cdots x_n}{x_{n + 1}}\)</span>。</p></li>
+<li><p>设 <span class="math inline">\(x_1 \in (0, 1)\)</span>，<span
+class="math inline">\(x_{n + 1} = x_n (1 - x_n)\)</span>，证明 <span
+class="math inline">\(\lim\limits_{n \to \infty} n x_n =
+1\)</span>。</p>
+<p>易证 <span class="math inline">\(\lim\limits_{n \to \infty} x_n =
+0\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty}
+n x_n = 1\)</span> 等价于证明 <span class="math inline">\(\lim\limits_{n
+\to \infty} \frac{1}{n x_n} = 1\)</span>。由 stolz 定理得： <span
+class="math display">\[
+\lim_{n \to \infty} \frac{1}{n x_n} = \lim_{n \to \infty} \frac{1}{x_n}
+- \frac{1}{x_{n - 1}} = \lim_{n \to \infty} \frac{x_{n - 1} - x_n}{x_n
+x_{n - 1}} = \lim_{n \to \infty} \frac{x_{n - 1}^2}{x_{n - 1}^2 (1 -
+x_{n - 1})} = 1
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(x_1 = \sin x_0 &gt;
+0\)</span>，<span class="math inline">\(x_{n + 1} = \sin x_n(n = 1, 2,
+\cdots)\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to
+\infty} x_n \sqrt{\frac{n}{3}} = 1\)</span></p>
+<p>易证 <span class="math inline">\(\lim\limits_{n \to \infty} x_n =
+0\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty}
+x_n \sqrt{\frac{n}{3}} = 1\)</span> 等价于证明 <span
+class="math inline">\(\lim\limits_{n \to \infty} \frac{1}{n x_n^2} =
+\frac{1}{3}\)</span>，由 stolz 定理和洛必达法则得： <span
+class="math display">\[
+\lim_{n \to \infty} \frac{1}{n x_n^2} = \lim_{n \to \infty}
+\frac{1}{x_n^2} - \frac{1}{x_{n - 1}^2} = \lim_{n \to \infty} \frac{x_{n
+- 1}^2 - x_{n}^2}{x_n^2 x_{n - 1}^2} = \lim_{x \to 0^+} \frac{x^2 -
+\sin^2 x}{x^4} = \frac{1}{3}
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(x_n = (1 + \frac{1}{n + 1})^{n +
+1} -(1 + \frac{1}{n})^n (n = 1, 2, 3, \cdots)\)</span>。证明 <span
+class="math inline">\(\{x_n\}\)</span> 与 <span
+class="math inline">\(\{\frac{1}{n^2}\}\)</span> 是同阶无穷小。</p>
+<p>只需要证明 $<em>{n } = c = </em>{n } $</p></li>
+<li><p>求极限 <span class="math display">\[
+\lim_{n \to \infty} \frac{\sqrt[n]{n} - 1}{\frac{1}{n^{\alpha}}}(0 &lt;
+\alpha &lt; 1)
+\]</span></p>
+<p>由等价无穷小，原极限为： <span class="math display">\[
+\lim_{n \to \infty} \frac{\sqrt[n]{n} - 1}{\frac{1}{n^{\alpha}}} =
+\lim_{n \to \infty} \frac{\text{e}^{\frac{\ln n}{n}} -
+1}{\frac{1}{n^{\alpha}}} = \lim_{n \to \infty} \frac{\frac{\ln
+n}{n}}{\frac{1}{n^{\alpha}}} = \lim_{n \to \infty} \frac{\ln n}{ n^{1 -
+\alpha}} = 0
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(x_1 = \sqrt{2}\)</span>，<span
+class="math inline">\(x_{n + 1} = \sqrt{2 + x_n}(n = 1, 2,
+\cdots)\)</span>，证明 <span class="math inline">\(x_n - 2 =
+o(\frac{1}{3^n})(n \to \infty)\)</span></p></li>
+<li><p>设 <span class="math inline">\(f(x) = \frac{2 + x}{1 +
+x}\)</span>，<span class="math inline">\(x_0 = 1\)</span>，<span
+class="math inline">\(x_{n + 1} = f(x_n)(n = 0, 1, 2,
+\cdots)\)</span>，求 <span class="math inline">\(\lim\limits_{n \to
+\infty} x_n\)</span>，并尽可能估计数列趋于极限得速度。</p></li>
+<li><p>设 <span class="math inline">\(x_1\)</span>，<span
+class="math inline">\(x_2\)</span>，<span
+class="math inline">\(x_3\)</span>，<span
+class="math inline">\(\cdots\)</span>，<span
+class="math inline">\(x_n\)</span>，<span
+class="math inline">\(\cdots\)</span> 是将方程 <span
+class="math inline">\(\tan x = x\)</span>
+的全部正根按由小到大的次序编号而成的，求极限 <span
+class="math inline">\(\lim\limits_{n \to \infty} (x_{n} - x_{n -
+1})\)</span>。</p></li>
+<li><p>设 <span class="math inline">\(a &gt; 0\)</span>，<span
+class="math inline">\(f_n(x) = x^n + nx - a(n = 1, 2,
+\cdots)\)</span>，<span class="math inline">\(x_n\)</span> 是 <span
+class="math inline">\(f_n(x)\)</span> 在 <span class="math inline">\((0,
++\infty)\)</span> 上的唯一零点，求 <span
+class="math inline">\(\lim\limits_{n \to \infty} (1 +
+x_n)^n\)</span></p></li>
+<li><p>设 <span class="math inline">\(x_1 = a\)</span>，<span
+class="math inline">\(y_1 = b(0 &lt; a &lt; b)\)</span>；<span
+class="math inline">\(x_{n + 1} = \sqrt{x_n y_n}\)</span>，<span
+class="math inline">\(y_{n + 1} = \frac{x_n +
+y_n}{2}\)</span>。证明：数列 <span
+class="math inline">\(\{x_n\}\)</span>，<span
+class="math inline">\(\{y_n\}\)</span> 的极限都存在且相同。</p>
+<p>由均值不等式得到 <span class="math inline">\(y_{n + 1} = \frac{x_n +
+y_n}{2} \geq \sqrt{x_n y_n} = x_{n + 1}\)</span>，若存在等号成立的 <span
+class="math inline">\(x_n\)</span> 和 <span
+class="math inline">\(y_n\)</span>，记为 <span
+class="math inline">\(a\)</span>，则有 <span class="math inline">\(x_{n
++ 1} = x_n = y_{n + 1} = y_{n} =
+a\)</span>，此时显然存在极限且相同。若不存在等号成立的 <span
+class="math inline">\(x_n\)</span> 和 <span
+class="math inline">\(y_n\)</span>，此时严格有 <span
+class="math inline">\(y_{n} &gt; x_{n}\)</span>，从而可以推出，<span
+class="math inline">\(x_{n + 1} = \sqrt{x_n y_n} &gt; x_{n}\)</span> 和
+<span class="math inline">\(y_{n + 1} = \frac{x_n + y_n}{2} &lt;
+y_n\)</span>，且 <span class="math inline">\(x_n &lt; y_n &lt; y_1 =
+b\)</span> 和 <span class="math inline">\(y_n &gt; x_n &gt; x_1 =
+a\)</span>，所以数列 <span class="math inline">\(\{x_n\}\)</span>
+严格单调递增且有界，数列 <span class="math inline">\(\{y_n\}\)</span>
+严格单调递减且有界，故数列 <span
+class="math inline">\(\{x_n\}\)</span>，<span
+class="math inline">\(\{y_n\}\)</span> 的极限都存在，分别设极限为 <span
+class="math inline">\(x_0\)</span> 和 <span
+class="math inline">\(y_0\)</span>，由 <span
+class="math inline">\(\lim\limits_{n \to \infty} y_{n + 1} =
+\lim\limits_{n \to \infty} \frac{x_n + y_n}{2}\)</span> 得 <span
+class="math inline">\(x_0 = y_0\)</span>，所以极限相等。</p></li>
+<li><p>求极限 <span class="math display">\[
+\lim_{x \to 0^{+}} \frac{x^x - (\sin)^x}{x^3}
+\]</span></p>
+<p>原极限为： <span class="math display">\[
+\lim_{x \to 0^{+}} \frac{x^x - (\sin)^x}{x^3} = \lim_{x \to 0^{+}}
+\frac{\text{e}^{x \ln x} - \text{e}^{x \ln \sin x}}{x^3} = \lim_{x \to
+0^{+}} \frac{\text{e}^{\xi}(x \ln x - x \ln \sin x)}{x^3} = \frac{1}{6}
+\]</span></p></li>
+<li><p>求极限 <span class="math display">\[
+\lim_{x \to + \infty} (\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x)
+\]</span></p>
+<p>原极限为： <span class="math display">\[
+\lim_{x \to + \infty} (\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x)
+= \lim_{x \to + \infty} x \cdot (\frac{1}{(1 + \frac{1}{x})^x} -
+\frac{1}{\text{e}}) = \lim_{t \to 0^{+}} \frac{\text{e} - (1 +
+t)^{\frac{1}{t}}}{t(1 + t)^{\frac{1}{t}} \text{e}} = \frac{1}{\text{e}}
+\lim_{t \to 0^{+}} \frac{1 - \text{e}^{\frac{1}{t} \ln (1 + t) - 1}}{t}
+= \frac{1}{2\text{e}}
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span
+class="math inline">\([0, 1]\)</span> 上连续，<span
+class="math inline">\(f(0) = 0\)</span>，<span
+class="math inline">\(f(1) = 1\)</span>。证明：<span
+class="math inline">\(F(x) = f(x)(1 - f(x)) - x(1 - x)\)</span> 在 <span
+class="math inline">\([0, 1]\)</span> 上至少有 <span
+class="math inline">\(3\)</span> 个不同的零点。</p>
+<p><span class="math inline">\(x = 0\)</span> 和 <span
+class="math inline">\(x = 1\)</span> 是两个零点，故只需要证明在区间
+<span class="math inline">\((0, 1)\)</span> 上至少有一个零点。<span
+class="math inline">\(F(x) = f(x) - f^2(x) - x + x^2 = (f(x) - x) -(f(x)
+- x)(f(x) + x) = (f(x) - x)(1 - f(x) - x)\)</span>，令 <span
+class="math inline">\(g(x) = 1 - f(x) - x\)</span>，有 <span
+class="math inline">\(g(0) = 1\)</span>，<span
+class="math inline">\(g(1) = -1\)</span>，由零点定理得，至少存在一点
+<span class="math inline">\(c\)</span>，使得 <span
+class="math inline">\(g(c) = 0\)</span>，所以至少有 <span
+class="math inline">\(3\)</span> 个零点。</p></li>
+<li><p>设 <span class="math inline">\(f(x)\)</span> 在闭区间 <span
+class="math inline">\([0, 1]\)</span> 上连续，<span
+class="math inline">\(f(0) = f(1)\)</span>。证明：对于任何自然数 <span
+class="math inline">\(n\)</span>，总存在 <span
+class="math inline">\(\xi_n \in (0, 1)\)</span> 使得 <span
+class="math inline">\(f(\xi_n) = f(\frac{1}{n} + \xi_n)\)</span></p>
+<p>令 <span class="math inline">\(F(x) = f(x) - f(\frac{1}{n} +
+x)\)</span>，只需要证明 <span class="math inline">\(F(x)\)</span> 在区间
+<span class="math inline">\([0, 1 - \frac{1}{n}]\)</span>
+上有零点。假设不存在零点，此时不妨设恒有 <span
+class="math inline">\(F(x) &gt; 0\)</span>，因此有 $F(0) + F() + + F()
+&gt; 0 $，也就是 <span class="math inline">\(f(0) - f(\frac{1}{n}) +
+f(\frac{1}{n}) - f(\frac{2}{n}) - \cdots - f(1) = f(0) - f(1) &gt;
+0\)</span>，显然出现矛盾，因为 <span class="math inline">\(f(0) - f(1) =
+0\)</span>，因此必然有零点。</p></li>
+<li><p>设 <span class="math inline">\(f(x)\)</span>，<span
+class="math inline">\(g(x)\)</span> 在闭区间 <span
+class="math inline">\([a, b]\)</span> 上连续，并由数列 <span
+class="math inline">\(\{x_0\} \subset [a, b]\)</span>，使得 <span
+class="math inline">\(f(x_{n + 1}) = g(x_n) (n = 1, 2,
+\cdots)\)</span>。证明：存在一点 <span
+class="math inline">\(x_0\)</span>，使得 <span
+class="math inline">\(f(x_0) = g(x_0)\)</span>。</p>
+<p>设 <span class="math inline">\(F(x) = f(x) - g(x)\)</span>，假设
+<span class="math inline">\(F(x)\)</span> 在区间 <span
+class="math inline">\([a, b]\)</span> 不存在零点，其在区间内的最小值为
+<span class="math inline">\(m\)</span>，不妨设恒有 <span
+class="math inline">\(F(x) &gt; 0\)</span>，<span
+class="math inline">\(f(x_{n + 1}) = g(x_n) = g(x_n) - f(x_n) + g(x_{n -
+1}) = [g(x_n) - f(x_n)] + [g(x_{n - 1}) - f(x_{n - 1})] + \cdots +
+[g(x_2) - f(x_2)] + g(x_1) = -F(x_n) - F(x_{n - 1}) - \cdots - F(x_2) +
+g(x_1) \leq (1 - n)m + g(x_1)\)</span>，显然 <span
+class="math inline">\(\lim\limits_{n \to \infty} f(x_n) =
+-\infty\)</span> 和 <span class="math inline">\(f(x)\)</span>
+有界条件矛盾，所以必然存在一点 <span
+class="math inline">\(x_0\)</span>，使得 <span
+class="math inline">\(f(x_0) = g(x_0)\)</span>。</p></li>
+<li><p>设函数 <span class="math inline">\(f(x)\)</span> 在闭区间 <span
+class="math inline">\([a, b]\)</span> 上连续，其值域 <span
+class="math inline">\(f([a, b]) \subseteq [a,
+b]\)</span>。证明：该函数存在不动点，即存在 <span
+class="math inline">\(x_0 \in [a, b]\)</span> 使得 <span
+class="math inline">\(f(x_0) = x_0\)</span>。</p>
+<p>设函数 <span class="math inline">\(F(x) = f(x)-
+x\)</span>，由题知：<span class="math inline">\(a \leq f(x) \leq
+b\)</span>，所以有 <span class="math inline">\(F(a) = f(a) - a \geq
+0\)</span> 和 <span class="math inline">\(F(b) = f(b) - b \leq
+0\)</span>，有零点定理得：至少存在一点 <span
+class="math inline">\(x_0\)</span> 使得 <span
+class="math inline">\(f(x_0) = x_0\)</span>。</p></li>
+<li><p>设函数 <span class="math inline">\(f(x)\)</span> 在区间 <span
+class="math inline">\((0, 1)\)</span> 内有定义，且 <span
+class="math inline">\(\text{e}^{x} f(x)\)</span> 与 <span
+class="math inline">\(\text{e}^{-f(x)}\)</span> 在区间 <span
+class="math inline">\((0, 1)\)</span> 内都是单调递加的函数，证明：<span
+class="math inline">\(f(x)\)</span> 在 <span class="math inline">\((0,
+1)\)</span> 内连续。</p>
+<p>根据 <span class="math inline">\(\text{e}^{-f(x)}\)</span>
+的单调性，可知，函数 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\((0, 1)\)</span> 上单调递减。任取 <span
+class="math inline">\(x_0 \in (0, 1)\)</span>，当 <span
+class="math inline">\(x \in (x_0, 1)\)</span>，有 <span
+class="math inline">\(\text{e}^{x_0 - x} f(x_0) \leq f(x) &lt;
+f(x_0)\)</span>，由夹逼定理得到 <span
+class="math inline">\(\lim\limits_{x \to x_0^+} f(x) =
+f(x_0)\)</span>；当 <span class="math inline">\(x \in (0,
+x_0)\)</span>，同理可得 <span class="math inline">\(f(x_0) &lt; f(x)
+&lt; \text{e}^{x_0 - x} f(x)\)</span>，由夹逼定理得 <span
+class="math inline">\(\lim\limits_{x \to x_0^{-}} f(x) =
+f(x_0)\)</span>，综上，<span class="math inline">\(\lim\limits_{x \to
+x_0} f(x) =f(x_0)\)</span>，得连续性。</p></li>
+<li><p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span
+class="math inline">\((0, +\infty)\)</span> 上有定义，在 <span
+class="math inline">\(x = 1\)</span> 处连续且 <span
+class="math inline">\(f(1) = 3\)</span>。如果对任意正数 <span
+class="math inline">\(x\)</span> 都有 <span class="math inline">\(f(x^2)
+= f(x)\)</span> 成立，求 <span class="math inline">\(f(x)\)</span>
+的表达式。</p>
+<p><span class="math inline">\(f(x) = f(\sqrt{x}) = f(\sqrt[4]{x}) =
+\cdots = f(\sqrt[2^n]{x})\)</span>，<span
+class="math inline">\(\lim\limits_{n \to \infty} f(\sqrt[2^n]{x}) = f(1)
+= 3\)</span>，由于在 <span class="math inline">\(x = 1\)</span>
+处连续，所以有 <span class="math inline">\(f(x) \equiv
+3\)</span>。</p></li>
+<li><p>设函数 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\((-\infty, +\infty)\)</span> 上有定义，在 <span
+class="math inline">\(x = 0\)</span> 处连续且 <span
+class="math inline">\(f(0) = 2\)</span>。证明：恒等式 <span
+class="math inline">\(f(2x) = f(x) \text{e}^x\)</span> 成立的充要条件是
+<span class="math inline">\(f(x) = 2 \text{e}^{x}\)</span>。</p>
+<p>充分性显然，下面证明必要性。<span class="math inline">\(f(x) =
+f(\frac{x}{2}) \text{e}^{\frac{x}{2}} = f(\frac{x}{4})
+\text{e}^{\frac{x}{4}} \text{e}^{\frac{x}{2}} = \cdots =
+f(\frac{x}{2^n}) \text{e}^{x(\frac{\frac{1}{2} - \frac{1}{2^{n + 1}}}{1
+- \frac{1}{2}})}\)</span>，所以 <span
+class="math inline">\(\lim\limits_{n \to \infty} f(x) = f(0)
+\text{e}^{x} = 2 \text{e}^{x}\)</span>，由于 <span
+class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x =
+0\)</span> 处连续，所以 <span class="math inline">\(f(x) = 2
+\text{e}^{x}\)</span>。综上，得证充分必要性。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\((-\infty. +\infty)\)</span> 上有定义，在点 <span
+class="math inline">\(x = 0\)</span> 处连续且 <span
+class="math inline">\(f(1) = 2\)</span>。又对于任何 <span
+class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span>
+满足函数方程 <span class="math inline">\(f(x + y) = f(x) + f(y)\)</span>
+成立。求 <span class="math inline">\(f(x)\)</span> 的表达式。</p>
+</blockquote>
+<p>先证明，<span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\((-\infty. +\infty)\)</span> 上连续，<span
+class="math inline">\(f(0) = 0\)</span> 且在点 <span
+class="math inline">\(x = 0\)</span> 处连续，所以 <span
+class="math inline">\(\lim\limits_{x \to 0} f(x) = 0\)</span>，对任意
+<span class="math inline">\(x_0 \in (-\infty, +\infty)\)</span>，<span
+class="math inline">\(\lim\limits_{\Delta x \to 0} f(x + \Delta x) =
+f(x) + \lim\limits_{\Delta x \to 0} f(\Delta x) =
+f(x)\)</span>，故证明连续性。对于任意正整数 <span
+class="math inline">\(n\)</span>，有 <span class="math inline">\(f(1) =
+f(\frac{1}{n}) + f(\frac{1}{n}) + \cdots + f(\frac{1}{n}) = n
+f(\frac{1}{n})\)</span>，也就是 <span class="math inline">\(f(1)
+\frac{1}{n} = f(\frac{1}{n})\)</span>；同理，对于任意正有理数 <span
+class="math inline">\(\frac{m}{n}\)</span>，有 <span
+class="math inline">\(f(\frac{m}{n}) = m f(\frac{1}{n}) = 2
+\frac{m}{n}\)</span>，也就是 <span class="math inline">\(f(x) =
+2x\)</span>。对任意负有理数 <span
+class="math inline">\(x\)</span>，<span
+class="math inline">\(-x\)</span> 是正有理数，所以 <span
+class="math inline">\(f(0) = f(x) + f(-x)\)</span>，得到 <span
+class="math inline">\(f(-x) = 2 \cdot -x\)</span>，同样说明了 <span
+class="math inline">\(f(x) = 2x\)</span>。对于任何无理数 <span
+class="math inline">\(x\)</span>，存在有理数列 <span
+class="math inline">\(r_n\)</span>，<span
+class="math inline">\(\lim\limits_{n \to \infty} r_n =
+x\)</span>，由函数及其连续性知 <span class="math inline">\(f(x) =
+\lim\limits_{n \to \infty} f(r_n) = \lim\limits_{n \to \infty} 2r_n =
+2x\)</span>。综上，<span class="math inline">\(f(x) =
+2x\)</span>。</p></li>
+<li><blockquote>
+<p>设有一非负连续函数，对于所有的实数 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 满足函数方程 <span
+class="math inline">\(f(\sqrt{x^2 + y^2}) = f(x)f(y)\)</span> 及 <span
+class="math inline">\(f(1) = 2\)</span>，证明：<span
+class="math inline">\(f(x) = 2^{x^{2}}\)</span>。</p>
+</blockquote>
+<p><span class="math inline">\(f(1) = f(0)f(1)\)</span>，所以 <span
+class="math inline">\(f(0) = 1\)</span>。对任意正整数 <span
+class="math inline">\(n\)</span>，有 <span class="math inline">\(f(n) =
+f^{n}(\frac{n^{2^n}}{2^{2^n - 1}})\)</span></p></li>
+<li><blockquote>
+<p>求极限 <span class="math display">\[
+\lim_{x \to 0^-} -\frac{1}{x^2} \text{e}^{\frac{1}{x}}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\lim_{x \to 0^-} -\frac{1}{x^2} \text{e}^{\frac{1}{x}} = \lim_{t \to
++\infty} - \frac{t^2}{\text{e}^t} = 0
+\]</span></p></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E7%AB%9E/" class="category-chain-item">数竞</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>函数、极限、连续</div>
+      <div>https://ddccffq.github.io/2025/07/12/函数、极限、连续/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/26/%E4%B8%80%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" title="一元函数微分学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一元函数微分学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/17/Wireshark-Homework/" title="Wireshark Homework">
+                        <span class="hidden-mobile">Wireshark Homework</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
