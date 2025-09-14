@@ -26,11 +26,14 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Introduction Elements of a Wireless Networks  Wireless Hosts: laptop, PDA, IP phone. Base Station:  connected to a wired network. relays  responsible for sending packets between wired network and wire">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png">
 <meta property="article:published_time" content="2025-06-09T00:02:04.000Z">
 <meta property="article:modified_time" content="2025-06-17T05:18:59.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/09/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png">
   
   
   
@@ -370,8 +373,7 @@ highest throughput.</li>
 </ul></li>
 </ul>
 <blockquote>
-<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为 <span
-class="math display">\[
+<p>SNR 是信噪比，顾名思义是一个比值，具体计算公式为 <span class="math display">\[
 \mathrm{SNR} = \frac{P_{\text{signal}}}{P_{\text{noise}}}
 \]</span> 实际中用单位 db 表示。SNR
 越大，说明信号越容易从噪声中分辨出来，通信质量越好。</p>
@@ -413,7 +415,7 @@ orthogonal). &gt; 这里提到的 unique code 和 chipping sequence
 <ul>
 <li>Each sender has a unique code (chipping sequence)
 <code>c_m</code>.</li>
-<li>Encoded signal for each data bit:<br />
+<li>Encoded signal for each data bit:<br>
 <span class="math display">\[ Z_{i,m} = d_i \cdot c_m \]</span>
 <ul>
 <li><code>d_i</code>: Original data bit.</li>
@@ -447,13 +449,7 @@ output.</li>
 </ol>
 <blockquote>
 <p>每个发送端都被分配一个唯一的码字（chipping
-sequence），码字的长度应该足够长，按理来讲，如果有 <span
-class="math inline">\(N\)</span> 个用户，码字长度 <span
-class="math inline">\(M \geq N\)</span>。码字具体为：用 <span
-class="math inline">\(+1\)</span> 和 <span
-class="math inline">\(-1\)</span> 分别代表 <span
-class="math inline">\(1\)</span> 和 <span
-class="math inline">\(0\)</span>。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在
+sequence），码字的长度应该足够长，按理来讲，如果有 <span class="math inline">\(N\)</span> 个用户，码字长度 <span class="math inline">\(M \geq N\)</span>。码字具体为：用 <span class="math inline">\(+1\)</span> 和 <span class="math inline">\(-1\)</span> 分别代表 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(0\)</span>。发送者将发送数据与码字相乘，这里指的是位对码字相乘。发送后数据会和其他所有发送者的信息在
 channel 中叠加。解码公式有一个前提：要求 user 使用的码字之间正交。除以 M
 是为保证归一化。</p>
 <p>还要补充的是，CDMA 的核心思想是：所有用户在 <strong>same
@@ -593,8 +589,7 @@ Point）周期性广播的一种管理帧。</p>
 <h3 id="collision-avoidance-in-802.11">Collision Avoidance in
 802.11</h3>
 <ul>
-<li><strong>Problem</strong>: Collisions occur when <span
-class="math inline">\(2\)</span> more nodes transmit
+<li><strong>Problem</strong>: Collisions occur when <span class="math inline">\(2\)</span> more nodes transmit
 simultaneously.</li>
 <li><strong>Solution</strong>:
 <ul>
@@ -751,24 +746,24 @@ address 4：仅 ad hoc 模式下使用</p>
 and remember which switch port can be used to reach H1。</p>
 <h2 id="power-management">Power Management</h2>
 <ul>
-<li><strong>定时唤醒机制</strong>：<br />
+<li><strong>定时唤醒机制</strong>：<br>
 休眠节点在进入省电模式（Power Save Mode）时，会本地保存下一个 beacon
 frame 的预计到达时间，并设置定时器（timer）。</li>
-<li><strong>硬件支持</strong>：<br />
+<li><strong>硬件支持</strong>：<br>
 无线网卡硬件通常具备低功耗计时功能，可以在主机休眠时保持计时，确保在
 beacon frame 到来前自动唤醒。</li>
-<li><strong>唤醒流程</strong>：<br />
+<li><strong>唤醒流程</strong>：<br>
 节点休眠后，定时器到达设定时间，节点自动唤醒，监听并接收 AP 广播的
 beacon frame，判断是否有待接收的数据。</li>
-<li><strong>节能的核心在于节点休眠</strong>：<br />
+<li><strong>节能的核心在于节点休眠</strong>：<br>
 节能的关键不是 AP
 是否省电，而是<strong>无线终端（如手机、笔记本）可以长时间休眠，仅在
 beacon frame
 到来时短暂唤醒</strong>，大大减少无线网卡的活跃时间和能耗。</li>
-<li><strong>AP 通常为插电设备</strong>：<br />
+<li><strong>AP 通常为插电设备</strong>：<br>
 AP 持续广播 beacon frame 对其本身能耗影响不大，因为 AP
 通常是接入电源的设备，不依赖电池。</li>
-<li><strong>终端省电效果显著</strong>：<br />
+<li><strong>终端省电效果显著</strong>：<br>
 终端设备在无数据通信时可以关闭大部分无线模块，仅保留低功耗计时和唤醒功能，只有在需要接收数据或发送数据时才唤醒主模块，极大延长了电池续航。</li>
 </ul>
 <h2 id="personal-area-network">802.15: Personal Area Network</h2>
@@ -851,18 +846,14 @@ performs mobility functions on behalf of the mobile.</li>
 <ul>
 <li>The entity that wants to communicate with the mobile device.</li>
 </ul>
-<h3
-id="consider-friend-frequently-changing-addresses-how-do-you-find-her">Consider
+<h3 id="consider-friend-frequently-changing-addresses-how-do-you-find-her">Consider
 friend frequently changing addresses, how do you find her?</h3>
 <p><strong>let end-systems handle it:</strong> - indirect routing:
 communication from correspondent to mobile goes through home agent, then
 forwarded to remote - direct routing: correspondent gets foreign address
 of mobile, sends directly to mobile</p>
 <figure>
-<img
-src="Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Indirect routing" />
+<img src="/2025/06/09/Wireless-and-Mobile-Networks/Indirect%20routing%20to%20a%20mobile%20node.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Indirect routing">
 <figcaption aria-hidden="true">Indirect routing</figcaption>
 </figure>
 <p>第一种 indirect routing，见上图所示，当你的朋友移动到其它
@@ -872,10 +863,7 @@ alt="Indirect routing" />
 agent</strong>，从而联系到他所在子网的 <strong>Foreign
 agent</strong>，从而联系到他。</p>
 <figure>
-<img
-src="Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Direct routing" />
+<img src="/2025/06/09/Wireless-and-Mobile-Networks/Direct%20routing%20to%20a%20mobile%20user.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Direct routing">
 <figcaption aria-hidden="true">Direct routing</figcaption>
 </figure>
 <p>第二种是 direct routing，这种是先通过联系他的 Home
@@ -917,8 +905,7 @@ mode）。在自组织模式中，没有基站，节点只能与其链路覆盖�
 <p>What are the four type of wireless networks identified in our
 taxonomy in Section <span class="math inline">\(6.1\)</span>? Which of
 these types of wireless networks have you used?</p>
-Section <span class="math inline">\(6.1\)</span> 中提到的 <span
-class="math inline">\(4\)</span> 种无线网络结构如下：
+Section <span class="math inline">\(6.1\)</span> 中提到的 <span class="math inline">\(4\)</span> 种无线网络结构如下：
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 

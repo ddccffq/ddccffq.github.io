@@ -26,22 +26,22 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Introduction 网络层有如下功能： - 将从 transport layer 传来的 segment 打包成 datagram，再将 datagram 中的 segment 分离开传给 transport layer。 - 网络层协议应用在 host 和 router 中。 Router 和 Switch 都属于 packet switch。 尽管路由器和链路层交换机都被称为packet">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/IPv4%20datagram%20format.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/DHCP%20client-server%20interaction.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Network%20address%20translation.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Tunneling.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/AS%20structure.jpg">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Hierarchical%20OSPF.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/Network%20address%20translation.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/P24.jpg">
-<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/P26.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/IPv4%20datagram%20format.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/DHCP%20client-server%20interaction.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/Network%20address%20translation.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/Tunneling.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/AS%20structure.jpg">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/Hierarchical%20OSPF.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/Network%20address%20translation.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/P24.jpg">
+<meta property="og:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/P26.png">
 <meta property="article:published_time" content="2025-05-30T13:43:21.000Z">
 <meta property="article:modified_time" content="2025-06-17T04:48:23.000Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/The-Network-Layer/IPv4%20datagram%20format.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/05/30/The-Network-Layer/IPv4%20datagram%20format.png">
   
   
   
@@ -355,21 +355,16 @@ Range</strong></th>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(\sim\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sim\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(\sim\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sim\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">otherwise</td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -389,21 +384,16 @@ Range</strong> 可以不是完整的 IP address，而是其的一个前缀；比
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(\sim\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sim\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(\sim\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sim\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">otherwise</td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -451,12 +441,7 @@ cells，再 switch cells through the fabric。</p>
 <p>Buffering when arrival rate via switch <strong>exceeds</strong>
 output line speed. Queueing (<strong>delay</strong>) and loss due to
 output port buffer overflows.</p>
-<p>所以，需要多大的 buffer？假设 <strong>typical <span
-class="math inline">\(\text{RTT}\)</span></strong>（一般是 <span
-class="math inline">\(250\)</span> ms），link capacity <span
-class="math inline">\(C\)</span>，有 <span
-class="math inline">\(N\)</span> 个 datagram flow。则： <span
-class="math display">\[
+<p>所以，需要多大的 buffer？假设 <strong>typical <span class="math inline">\(\text{RTT}\)</span></strong>（一般是 <span class="math inline">\(250\)</span> ms），link capacity <span class="math inline">\(C\)</span>，有 <span class="math inline">\(N\)</span> 个 datagram flow。则： <span class="math display">\[
 \text{buffering} = \frac{\text{RTT} \cdot C}{\sqrt{N}}
 \]</span></p>
 <h3 id="input-port-queueing">Input Port Queueing</h3>
@@ -471,9 +456,7 @@ conventions</strong>（分组处理约定）。</p>
 <h2 id="ip-datagram-format">IP Datagram Format</h2>
 <h3 id="ipv4">IPv4</h3>
 <figure>
-<img src="The-Network-Layer/IPv4%20datagram%20format.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 60%"
-alt="IPv4 datagram format" />
+<img src="/2025/05/30/The-Network-Layer/IPv4%20datagram%20format.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 60%" alt="IPv4 datagram format">
 <figcaption aria-hidden="true">IPv4 datagram format</figcaption>
 </figure>
 <p><strong>总结表格：</strong></p>
@@ -563,12 +546,9 @@ alt="IPv4 datagram format" />
 </tbody>
 </table>
 </div>
-<p><strong>补充</strong>： - <strong>Flags</strong> 有 <span
-class="math inline">\(3\)</span> 位，第一位恒为 <span
-class="math inline">\(0\)</span>，第二位表示 <strong>Don’t
+<p><strong>补充</strong>： - <strong>Flags</strong> 有 <span class="math inline">\(3\)</span> 位，第一位恒为 <span class="math inline">\(0\)</span>，第二位表示 <strong>Don’t
 fragment</strong>（不可分片），第三位表示 <strong>More
-fragments</strong>（后续有分片）。为 <span
-class="math inline">\(1\)</span> 的时候相应功能开启。</p>
+fragments</strong>（后续有分片）。为 <span class="math inline">\(1\)</span> 的时候相应功能开启。</p>
 <h3 id="ip-fragmentation-and-reassembly">IP Fragmentation and
 Reassembly</h3>
 <p>从 IPv4 的 datagram format 中可以发现，必要时会对 datagram 切片。</p>
@@ -578,18 +558,14 @@ Reassembly</h3>
 <p><strong>Fragmentation and Reassembly</strong>
 的过程很简单，就是需要时切分
 datagram，最后在最终目的主机的网络层进行：只有当所有分片都到达后，网络层才会将完整的数据报交给上层（如传输层）。</p>
-<p>假设原 IP datagram 总长度为 <span
-class="math inline">\(L\)</span>，待转发链路的 MTU 为 <span
-class="math inline">\(M\)</span>，若 <span class="math inline">\(L &gt;
+<p>假设原 IP datagram 总长度为 <span class="math inline">\(L\)</span>，待转发链路的 MTU 为 <span class="math inline">\(M\)</span>，若 <span class="math inline">\(L &gt;
 M\)</span> 且 DF 为 <span class="math inline">\(0\)</span>，则需要分片。
-- 先复制 <strong>Identifier</strong>。 - 一个切片可封装的数据为：<span
-class="math display">\[d = \left \lfloor \frac{M - 20}{8} \right \rfloor
+- 先复制 <strong>Identifier</strong>。 - 一个切片可封装的数据为：<span class="math display">\[d = \left \lfloor \frac{M - 20}{8} \right \rfloor
 \times 8\]</span> - 需要的总片数为：<span class="math display">\[n =
 \left \lceil \frac{L - 20}{d} \right \rceil\]</span></p>
 <h2 id="ipv4-addressing">IPv4 Addressing</h2>
 <h3 id="subnet">Subnet</h3>
-<p><strong>IP address</strong>: subnet part (high order bits) <span
-class="math inline">\(+\)</span> host part (low order bits).</p>
+<p><strong>IP address</strong>: subnet part (high order bits) <span class="math inline">\(+\)</span> host part (low order bits).</p>
 <p>在一个 subnet
 中的所有设备都可以直接<strong>物理意义上</strong>地连接。</p>
 <p><strong>Subnet mask</strong>：用类似 <code>/24</code>
@@ -607,9 +583,7 @@ join network.</p>
 <p><strong>DHCP</strong>（Dynamic Host Configuration
 Protocol，动态主机配置协议）是一个<strong>网络管理协议</strong>，用于在IP网络中<strong>自动分配IP地址和其他网络配置参数</strong>给网络设备。DHCP运行在<strong>应用层</strong>，使用<strong>UDP协议</strong>，客户端使用<strong>端口68</strong>，服务器使用<strong>端口67</strong>。</p>
 <figure>
-<img src="The-Network-Layer/DHCP%20client-server%20interaction.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 50%"
-alt="DHCP client-server interaction" />
+<img src="/2025/05/30/The-Network-Layer/DHCP%20client-server%20interaction.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 50%" alt="DHCP client-server interaction">
 <figcaption aria-hidden="true">DHCP client-server
 interaction</figcaption>
 </figure>
@@ -664,9 +638,7 @@ server</strong>，<strong>network mask</strong>。</p>
 <h3 id="network-address-translation-nat">Network Address Translation:
 NAT</h3>
 <figure>
-<img src="The-Network-Layer/Network%20address%20translation.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Network address translation" />
+<img src="/2025/05/30/The-Network-Layer/Network%20address%20translation.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Network address translation">
 <figcaption aria-hidden="true">Network address translation</figcaption>
 </figure>
 <p>右边：局域网内通信，使用内部地址：<code>10.0.0/24</code>；左边：局域网外通信，共用唯一地址。注意，没有共用同一个端口号，因为端口号是用来区分的。比如：</p>
@@ -712,8 +684,7 @@ information。具体包括： - Error reporting. - Echo request and reply.</p>
 的结构包括：<strong>type</strong>、<strong>code</strong>、<strong>checksum</strong>
 以及数据部分。</p>
 <p>具体用来干什么？ - 通过发送 UDP segment，在 IP datagram header
-内设置适当的 TTL，来计算 <span
-class="math inline">\(\text{RTT}\)</span>。 - 还可以用来停止 source
+内设置适当的 TTL，来计算 <span class="math inline">\(\text{RTT}\)</span>。 - 还可以用来停止 source
 持续发送 UDP segment。</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
@@ -759,8 +730,7 @@ class="math inline">\(\text{RTT}\)</span>。 - 还可以用来停止 source
 <span class="math inline">\(128\)</span> bits。</p>
 <h3 id="transition-from-ipv4-to-ipv6">Transition from IPv4 to IPv6</h3>
 <figure>
-<img src="The-Network-Layer/Tunneling.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%" alt="Tunneling" />
+<img src="/2025/05/30/The-Network-Layer/Tunneling.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Tunneling">
 <figcaption aria-hidden="true">Tunneling</figcaption>
 </figure>
 <p><strong>Tunneling</strong>: IPv6 carried as payload in IPv4 datagram
@@ -778,75 +748,56 @@ Algorithm</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp">N = &#123;u&#125;;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> a : nodes) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(u, a)) &#123;<br>      D[a] = <span class="hljs-built_in">Cost</span>(u, a);<br>      P[a] = u;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>      D[a] = INF;<br>      P[a] = a;<br>      &#125;<br>&#125;<br><span class="hljs-keyword">while</span> (! all nodes in N) &#123;<br>    D[a] = <span class="hljs-built_in">min</span>(D)<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> b : nodes) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isAdjacent</span>(b ,a)) &#123;<br>          D[b] = <span class="hljs-built_in">min</span>(D[b], <span class="hljs-built_in">Cost</span>(b, a) + D[a])<br>          <span class="hljs-keyword">if</span> (D[b] == <span class="hljs-built_in">Cost</span>(b, a) + D[a]) P[b] = a;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>实际做题的时候可以参考书上的风格：</p>
 <p>记 <span class="math inline">\(N&#39;\)</span>
-为<strong>已找到最短路径</strong>的点集合，函数 <span
-class="math inline">\(D(x)\)</span> 为到点 <span
-class="math inline">\(x\)</span> 的最短路径，函数 <span
-class="math inline">\(P(x)\)</span> 为点 <span
-class="math inline">\(x\)</span>
-的父母结点。可以规范化求解过程如下，其中 <span
-class="math inline">\(0\)</span> 轮初始化。</p>
+为<strong>已找到最短路径</strong>的点集合，函数 <span class="math inline">\(D(x)\)</span> 为到点 <span class="math inline">\(x\)</span> 的最短路径，函数 <span class="math inline">\(P(x)\)</span> 为点 <span class="math inline">\(x\)</span>
+的父母结点。可以规范化求解过程如下，其中 <span class="math inline">\(0\)</span> 轮初始化。</p>
 <div style="display: block; margin: 0 auto; width: fit-content;">
 <table>
 
 <thead>
 <tr>
 <th style="text-align: center;"><strong>Step</strong></th>
-<th style="text-align: center;"><strong><span
-class="math inline">\(N&#39;\)</span></strong></th>
-<th style="text-align: center;"><strong><span
-class="math inline">\(D()\,P()\)</span></strong></th>
-<th style="text-align: center;"><strong><span
-class="math inline">\(D()\,P()\)</span></strong></th>
-<th style="text-align: center;"><strong><span
-class="math inline">\(\cdots\)</span></strong></th>
-<th style="text-align: center;"><strong><span
-class="math inline">\(D()\,P()\)</span></strong></th>
+<th style="text-align: center;"><strong><span class="math inline">\(N&#39;\)</span></strong></th>
+<th style="text-align: center;"><strong><span class="math inline">\(D()\,P()\)</span></strong></th>
+<th style="text-align: center;"><strong><span class="math inline">\(D()\,P()\)</span></strong></th>
+<th style="text-align: center;"><strong><span class="math inline">\(\cdots\)</span></strong></th>
+<th style="text-align: center;"><strong><span class="math inline">\(D()\,P()\)</span></strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(uv\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(uv\)</span></td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(uvw\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(uvw\)</span></td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(\cdots\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 <td style="text-align: center;">dis node</td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(N\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(uvw \cdots
 l\)</span></td>
 <td style="text-align: center;">dis node</td>
@@ -864,11 +815,9 @@ table。</p>
 possible</strong>，指的是网络路由状态可能出现反复波动、难以稳定的现象，是网络设计和协议实现中需要重点关注和避免的问题。这可能会导致在
 Link State Algorithm 中计算到无穷的结果。</p>
 <h2 id="distance-vector-algorithm">Distance Vector Algorithm</h2>
-<p><strong>Distributed Bellman-Ford equation</strong>: <span
-class="math display">\[D(x \to y) = \min_{v} \{\text{Cost}_{x \to v} +
+<p><strong>Distributed Bellman-Ford equation</strong>: <span class="math display">\[D(x \to y) = \min_{v} \{\text{Cost}_{x \to v} +
 D(v \to y), \, D(x \to y)\}\]</span></p>
-<p>其中，<span class="math inline">\(v\)</span> 是 <span
-class="math inline">\(x\)</span> 的邻居。</p>
+<p>其中，<span class="math inline">\(v\)</span> 是 <span class="math inline">\(x\)</span> 的邻居。</p>
 <p>这是一个 <strong>iterative</strong>
 算法，需要多次计算，直到收敛。计算过程可以参考课本，如下表所述，结点
 <span class="math inline">\(z\)</span> 的 table。</p>
@@ -876,8 +825,7 @@ class="math inline">\(x\)</span> 的邻居。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><span
-class="math inline">\(z\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
 <th style="text-align: center;">cost to</th>
 <th style="text-align: center;"></th>
 <th style="text-align: center;"></th>
@@ -888,86 +836,51 @@ class="math inline">\(z\)</span></th>
 <tbody>
 <tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(y\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(z\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(u\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(v\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(y\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(z\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(7\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(5\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(u\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -977,9 +890,7 @@ class="math inline">\(\infty\)</span></td>
 routers into regions known as <strong>autonomous system
 (AS)</strong></p>
 <figure>
-<img src="The-Network-Layer/AS%20structure.jpg" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 100%"
-alt="AS structure" />
+<img src="/2025/05/30/The-Network-Layer/AS%20structure.jpg" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 100%" alt="AS structure">
 <figcaption aria-hidden="true">AS structure</figcaption>
 </figure>
 <h2 id="intra-as-routing-protocol">Intra-AS Routing Protocol</h2>
@@ -996,9 +907,7 @@ costs metrics possible: bandwidth, delay. 3. Each router has full
 topology, Dijkstra algorithm.</p>
 <p>Security: all OSPF messages authenticated</p>
 <figure>
-<img src="The-Network-Layer/Hierarchical%20OSPF.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 80%"
-alt="Hierarchical OSPF" />
+<img src="/2025/05/30/The-Network-Layer/Hierarchical%20OSPF.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 80%" alt="Hierarchical OSPF">
 <figcaption aria-hidden="true">Hierarchical OSPF</figcaption>
 </figure>
 <h2 id="inter-as-protocol">Inter-AS Protocol</h2>
@@ -1010,9 +919,7 @@ propagate reachability information to all AS-internal routers: iBGP. -
 advertise (to neighboring networks) destination reachability
 information.</p>
 <figure>
-<img src="The-Network-Layer/eBGP%20and%20iBGP%20sessions.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="eBGP and iBGP sessions" />
+<img src="/2025/05/30/The-Network-Layer/eBGP%20and%20iBGP%20sessions.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="eBGP and iBGP sessions">
 <figcaption aria-hidden="true">eBGP and iBGP sessions</figcaption>
 </figure>
 <ul>
@@ -1212,14 +1119,14 @@ network-layer service. Why the subtle shades in terminology?</p>
 responsibilities of the transport and network layers:</p>
 <ul>
 <li><p><strong>Connection-oriented service (Transport
-Layer):</strong><br />
+Layer):</strong><br>
 At the transport layer, a connection-oriented service (such as TCP)
 establishes, maintains, and terminates a logical end-to-end connection.
 This connection is defined <strong>between two processes</strong> on the
 end hosts (e.g., two TCP sockets). This service ensures reliable,
 ordered, and error-checked delivery of data across the entire network
 path, directly between the communicating applications.</p></li>
-<li><p><strong>Connection service (Network Layer):</strong><br />
+<li><p><strong>Connection service (Network Layer):</strong><br>
 At the network layer, a connection service (such as a virtual circuit)
 refers to the establishment of a logical path through the network,
 typically between routers or switches. This connection is defined
@@ -1229,7 +1136,7 @@ source to destination but does not necessarily guarantee reliability or
 ordering. The focus here is on the route and forwarding of packets
 within the network infrastructure.</p></li>
 </ul>
-<p><strong>In summary:</strong><br />
+<p><strong>In summary:</strong><br>
 The term “connection-oriented service” at the transport layer emphasizes
 end-to-end reliability and communication, while “connection service” at
 the network layer highlights the setup of a path through the network,
@@ -1301,7 +1208,7 @@ interfaces.</strong></p>
 </tbody>
 </table>
 </div>
-<p><strong>Explanation:</strong><br />
+<p><strong>Explanation:</strong><br>
 - Each entry uses the longest prefix that matches the given address
 range. - The router checks the destination address against each prefix,
 starting from the longest, and forwards the packet to the corresponding
@@ -1484,9 +1391,7 @@ of 5 million bytes? Explain how you computed your answer.</p>
 ISP instead assigns the router the address 24.34.112.235 and that the
 network address of the home network is 192.168.1/24</strong>.</p>
 <figure>
-<img src="The-Network-Layer/Network%20address%20translation.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 80%"
-alt="Network address translation" />
+<img src="/2025/05/30/The-Network-Layer/Network%20address%20translation.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 80%" alt="Network address translation">
 <figcaption aria-hidden="true">Network address translation</figcaption>
 </figure>
 <p><strong>Questions and Answers:</strong></p>
@@ -1545,8 +1450,7 @@ connection，随便分几个端口号：</p>
 </div>
 <h2 id="p.24">P.24</h2>
 <figure>
-<img src="The-Network-Layer/P24.jpg" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 80%" alt="Graph P.24" />
+<img src="/2025/05/30/The-Network-Layer/P24.jpg" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 80%" alt="Graph P.24">
 <figcaption aria-hidden="true">Graph P.24</figcaption>
 </figure>
 <p><strong>Question:</strong></p>
@@ -1561,29 +1465,14 @@ similar to Table 4.3.</p>
 <thead>
 <tr>
 <th style="text-align: center;">step</th>
-<th style="text-align: center;"><span
-class="math inline">\(D(x)\)</span> <span
-class="math inline">\(P(x)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(y)\)</span> <span
-class="math inline">\(P(y)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(z)\)</span> <span
-class="math inline">\(P(z)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(v)\)</span> <span
-class="math inline">\(P(v)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(u)\)</span> <span
-class="math inline">\(P(u)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(w)\)</span> <span
-class="math inline">\(P(w)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(D(t)\)</span> <span
-class="math inline">\(P(t)\)</span></th>
-<th style="text-align: center;"><span
-class="math inline">\(N&#39;\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(x)\)</span> <span class="math inline">\(P(x)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(y)\)</span> <span class="math inline">\(P(y)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(z)\)</span> <span class="math inline">\(P(z)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(v)\)</span> <span class="math inline">\(P(v)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(u)\)</span> <span class="math inline">\(P(u)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(w)\)</span> <span class="math inline">\(P(w)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(D(t)\)</span> <span class="math inline">\(P(t)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N&#39;\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -1595,25 +1484,18 @@ class="math inline">\(N&#39;\)</span></th>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(8\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(3\)</span></strong> <span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(3\)</span></strong> <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(6\)</span></strong> <span
-class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(6\)</span></strong> <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(8\)</span>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(3\)</span>
@@ -1624,8 +1506,7 @@ class="math inline">\(x\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(7\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xv\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xv\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">2</td>
@@ -1637,15 +1518,12 @@ class="math inline">\(xv\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(3\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(6\)</span></strong> <span
-class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(6\)</span></strong> <span class="math inline">\(v\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(7\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xvy\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xvy\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">3</td>
@@ -1659,13 +1537,10 @@ class="math inline">\(xvy\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(6\)</span></strong> <span
-class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(6\)</span></strong> <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(7\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xvyu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xvyu\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">4</td>
@@ -1681,11 +1556,8 @@ class="math inline">\(xvyu\)</span></td>
 <span class="math inline">\(v\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(7\)</span></strong> <span
-class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xvyuw\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(7\)</span></strong> <span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xvyuw\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">5</td>
@@ -1693,9 +1565,7 @@ class="math inline">\(xvyuw\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
 <span class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><strong><span
-class="math inline">\(8\)</span></strong> <span
-class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><strong><span class="math inline">\(8\)</span></strong> <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(3\)</span>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(6\)</span>
@@ -1704,8 +1574,7 @@ class="math inline">\(x\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(7\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xvyuwt\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xvyuwt\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">6</td>
@@ -1723,8 +1592,7 @@ class="math inline">\(xvyuwt\)</span></td>
 <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(7\)</span>
 <span class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(xvyuwtz\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(xvyuwtz\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1740,58 +1608,43 @@ all nodes is follow.</p>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to
 v\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(y\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to
 y\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(w\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to
 w\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(u\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to v \to
 u\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(t\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(7\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(t\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to v \to
 t\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;"><span
-class="math inline">\(z\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(8\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(8\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \to
 z\)</span></td>
 </tr>
@@ -1799,8 +1652,7 @@ z\)</span></td>
 </table>
 <h2 id="p.26">P.26</h2>
 <figure>
-<img src="The-Network-Layer/P26.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 80%" alt="Graph P.26" />
+<img src="/2025/05/30/The-Network-Layer/P26.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 80%" alt="Graph P.26">
 <figcaption aria-hidden="true">Graph P.26</figcaption>
 </figure>
 <p><strong>Question:</strong></p>
@@ -1833,65 +1685,43 @@ algorithm and show the distance table entries at node z.</p>
 </tr>
 <tr>
 <td style="text-align: center;">from x</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">from y</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">from z</td>
 <td style="text-align: center;">2</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 <td style="text-align: center;">6</td>
 </tr>
 <tr>
 <td style="text-align: center;">from u</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 <tr>
 <td style="text-align: center;">from v</td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1912,86 +1742,51 @@ class="math inline">\(\infty\)</span></td>
 <tbody>
 <tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(y\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(z\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(u\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(v\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(x\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(y\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(z\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(7\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(5\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(u\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(2\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
 </tr>
 <tr>
-<td style="text-align: center;">from <span
-class="math inline">\(v\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;">from <span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
 </tr>
 </tbody>
 </table>

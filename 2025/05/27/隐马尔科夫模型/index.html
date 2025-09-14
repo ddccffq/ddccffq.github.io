@@ -278,16 +278,11 @@
                 
                 <h2 id="隐马尔科夫模型的定义">隐马尔科夫模型的定义</h2>
 <p>隐马尔科夫模型有如下两个假设：任意状态只依赖于前一时刻状态和任意时刻的观测只依赖于该时刻的马尔科夫链的状态。
-设 <span class="math inline">\(Q\)</span> 是所有可能的状态的集合，<span
-class="math inline">\(V\)</span>是所有可能的观测的集合：</p>
+设 <span class="math inline">\(Q\)</span> 是所有可能的状态的集合，<span class="math inline">\(V\)</span>是所有可能的观测的集合：</p>
 <p><span class="math display">\[
 Q =\{q_1, q_2, \dots, q_N\}, \quad V = \{v_1, v_2, \dots, v_M\}
 \]</span></p>
-<p>其中，<span class="math inline">\(N\)</span> 是可能的状态数，<span
-class="math inline">\(M\)</span> 是可能的观测数。 <span
-class="math inline">\(I\)</span> 是长度为 <span
-class="math inline">\(T\)</span> 的状态序列，<span
-class="math inline">\(O\)</span> 是对应的观测序列：</p>
+<p>其中，<span class="math inline">\(N\)</span> 是可能的状态数，<span class="math inline">\(M\)</span> 是可能的观测数。 <span class="math inline">\(I\)</span> 是长度为 <span class="math inline">\(T\)</span> 的状态序列，<span class="math inline">\(O\)</span> 是对应的观测序列：</p>
 <p><span class="math display">\[
 I = (i_1, i_2, \dots, i_T), \quad O =(o_1, o_2, \dots, o_T)
 \]</span></p>
@@ -326,13 +321,9 @@ b_j(k) = P(o_t = v_k | i_t = q_j), \quad k = 1, 2, \dots, M; \quad j =
 <p>给定模型 <span class="math inline">\(\lambda = (A, B, \pi)\)</span>
 和观测序列 <span class="math inline">\(O = (o_1, o_2, \dots,
 o_T)\)</span>，计算在模型 <span class="math inline">\(\lambda\)</span>
-下观测序列 <span class="math inline">\(O\)</span> 出现的概率 <span
-class="math inline">\(P(O | \lambda)\)</span>。</p>
+下观测序列 <span class="math inline">\(O\)</span> 出现的概率 <span class="math inline">\(P(O | \lambda)\)</span>。</p>
 <h4 id="前向算法">前向算法</h4>
-<p>输入：隐马尔科夫模型 <span
-class="math inline">\(\lambda\)</span>，观测序列 <span
-class="math inline">\(O\)</span>； 输出：观测序列概率 <span
-class="math inline">\(P(O | \lambda)\)</span>。</p>
+<p>输入：隐马尔科夫模型 <span class="math inline">\(\lambda\)</span>，观测序列 <span class="math inline">\(O\)</span>； 输出：观测序列概率 <span class="math inline">\(P(O | \lambda)\)</span>。</p>
 <p>（1）初值</p>
 <p><span class="math display">\[
 \alpha_1(i) = \pi_i b_i(o_1), \quad i = 1, 2, \dots, N \tag{8}
@@ -361,10 +352,7 @@ P(O | \lambda) = \sum_{i = 1}^{N} \alpha_T(i) \tag{10}
 \end{bmatrix} \tag{11}
 \]</span> 每次迭代就是在一次计算行内容。</p>
 <h4 id="后向算法">后向算法</h4>
-<p>输入：隐马尔科夫模型 <span
-class="math inline">\(\lambda\)</span>，观测序列 <span
-class="math inline">\(O\)</span>； 输出：观测序列概率 <span
-class="math inline">\(P(O | \lambda)\)</span>。</p>
+<p>输入：隐马尔科夫模型 <span class="math inline">\(\lambda\)</span>，观测序列 <span class="math inline">\(O\)</span>； 输出：观测序列概率 <span class="math inline">\(P(O | \lambda)\)</span>。</p>
 <p>（1） <span class="math display">\[
 \beta_T(i) = 1, \quad i = 1, 2, \dots, N \tag{12}
 \]</span></p>
@@ -391,10 +379,7 @@ P(O | \lambda) = \sum_{i = 1}^{N} \pi_i b_i(o_1) \beta_1(i) \tag{14}
 \]</span></p>
 <h3 id="一些概率与期望值的计算">一些概率与期望值的计算</h3>
 <h4 id="单个状态的计算公式">单个状态的计算公式</h4>
-<p>给定模型 <span class="math inline">\(\lambda\)</span> 和观测 <span
-class="math inline">\(O\)</span>，在时刻 <span
-class="math inline">\(t\)</span> 处于状态 <span
-class="math inline">\(q_i\)</span> 的概率。记</p>
+<p>给定模型 <span class="math inline">\(\lambda\)</span> 和观测 <span class="math inline">\(O\)</span>，在时刻 <span class="math inline">\(t\)</span> 处于状态 <span class="math inline">\(q_i\)</span> 的概率。记</p>
 <p><span class="math display">\[
 \gamma_t(i) = P(i_t = q_i |O, \lambda) \tag{16}
 \]</span></p>
@@ -405,10 +390,7 @@ class="math inline">\(q_i\)</span> 的概率。记</p>
 \tag{17}
 \]</span></p>
 <h4 id="两个状态的计算公式">两个状态的计算公式</h4>
-<p>给定模型 <span class="math inline">\(\lambda\)</span> 和观测 <span
-class="math inline">\(O\)</span>，在时刻 <span
-class="math inline">\(t\)</span> 处于状态 <span
-class="math inline">\(q_i\)</span>，在时刻 <span class="math inline">\(t
+<p>给定模型 <span class="math inline">\(\lambda\)</span> 和观测 <span class="math inline">\(O\)</span>，在时刻 <span class="math inline">\(t\)</span> 处于状态 <span class="math inline">\(q_i\)</span>，在时刻 <span class="math inline">\(t
 + 1\)</span> 处于 <span class="math inline">\(q_j\)</span>
 的概率。记</p>
 <p><span class="math display">\[
@@ -416,22 +398,15 @@ class="math inline">\(q_i\)</span>，在时刻 <span class="math inline">\(t
 1}(j)}{\sum_{i = 1}^{N} \sum_{j = 1}^{N} \alpha_t(i) a_{ij} b_j(o_{t +
 1}) \beta_{t + 1}(j)} \tag{18}
 \]</span></p>
-<h4 id="在观测-o-下状态-i-出现的期望值">在观测 <span
-class="math inline">\(O\)</span> 下状态 <span
-class="math inline">\(i\)</span> 出现的期望值</h4>
+<h4 id="在观测-o-下状态-i-出现的期望值">在观测 <span class="math inline">\(O\)</span> 下状态 <span class="math inline">\(i\)</span> 出现的期望值</h4>
 <p><span class="math display">\[
 \sum_{t = 1}^{T} \gamma_t(i) \tag{19}
 \]</span></p>
-<h4 id="在观测-o-下由状态-i-转移的期望值">在观测 <span
-class="math inline">\(O\)</span> 下由状态 <span
-class="math inline">\(i\)</span> 转移的期望值</h4>
+<h4 id="在观测-o-下由状态-i-转移的期望值">在观测 <span class="math inline">\(O\)</span> 下由状态 <span class="math inline">\(i\)</span> 转移的期望值</h4>
 <p><span class="math display">\[
 \sum_{t = 1}^{T - 1} \gamma_t(i) \tag{20}
 \]</span></p>
-<h4 id="在观测-o-下由状态-i-转移到状态-j-的期望值">在观测 <span
-class="math inline">\(O\)</span> 下由状态 <span
-class="math inline">\(i\)</span> 转移到状态 <span
-class="math inline">\(j\)</span> 的期望值</h4>
+<h4 id="在观测-o-下由状态-i-转移到状态-j-的期望值">在观测 <span class="math inline">\(O\)</span> 下由状态 <span class="math inline">\(i\)</span> 转移到状态 <span class="math inline">\(j\)</span> 的期望值</h4>
 <p><span class="math display">\[
 \sum_{t = 1}^{T - 1} \xi_t(i, j) \tag{21}
 \]</span></p>
@@ -455,21 +430,16 @@ class="math inline">\(j\)</span> 的期望值</h4>
 表示在训练数据中，从状态 <span class="math inline">\(q_i\)</span>
 转移到状态 <span class="math inline">\(q_j\)</span>
 的<strong>次数总和</strong>。<span class="math inline">\(B_{jk}\)</span>
-表示在状态 <span class="math inline">\(q_j\)</span> 下，观测到符号 <span
-class="math inline">\(v_k\)</span> 的<strong>次数总和</strong>。</p>
+表示在状态 <span class="math inline">\(q_j\)</span> 下，观测到符号 <span class="math inline">\(v_k\)</span> 的<strong>次数总和</strong>。</p>
 <h3 id="baum-welch-算法">Baum-Welch 算法</h3>
 <p>假定训练数据只包含 <span class="math inline">\(S\)</span> 个长度为
-<span class="math inline">\(T\)</span> 的观测序列 <span
-class="math inline">\(\{O_1, O_2, \dots,
-O_S\}\)</span>，我们将观测序列数据看作观测数据 <span
-class="math inline">\(O\)</span>，状态序列数据看做不可观测的隐数据 <span
-class="math inline">\(I\)</span>，那么存在如下概率模型</p>
+<span class="math inline">\(T\)</span> 的观测序列 <span class="math inline">\(\{O_1, O_2, \dots,
+O_S\}\)</span>，我们将观测序列数据看作观测数据 <span class="math inline">\(O\)</span>，状态序列数据看做不可观测的隐数据 <span class="math inline">\(I\)</span>，那么存在如下概率模型</p>
 <p><span class="math display">\[
 P(O | \lambda) = \sum_{I} P(O |I, \lambda) P(I |\lambda) \tag{25}
 \]</span></p>
 <p>实际上，这个模型的参数学习可由 EM 算法实现。</p>
-<p>（1）确定完全数据的对数似然函数。完全数据是<span
-class="math inline">\((O, I) = (o_1, o_2, \dots, o_T, i_1, i_2, \dots,
+<p>（1）确定完全数据的对数似然函数。完全数据是<span class="math inline">\((O, I) = (o_1, o_2, \dots, o_T, i_1, i_2, \dots,
 i_T)\)</span>。</p>
 <p><span class="math display">\[
 \log P(O, T |\lambda) \tag{26}
@@ -499,9 +469,7 @@ Q(\lambda, \bar{\lambda}) = &amp;\sum_{I} \log \pi_{i_1} P(O, I
 \]</span></p>
 <h4 id="算法步骤">算法步骤</h4>
 <p>（1）初始化。对 <span class="math inline">\(n =
-0\)</span>，随机初始化 <span
-class="math inline">\(\lambda^{(0)}\)</span>。 （2）递推。对 <span
-class="math inline">\(n = 1, 2, \dots\)</span>，</p>
+0\)</span>，随机初始化 <span class="math inline">\(\lambda^{(0)}\)</span>。 （2）递推。对 <span class="math inline">\(n = 1, 2, \dots\)</span>，</p>
 <p><span class="math display">\[
 \begin{align*}
 \alpha_{ij}^{(n + 1)} &amp;= \frac{\sum_{t = 1}^{T - 1} \xi_t(i,
@@ -519,8 +487,7 @@ b_{j}(k)^{(n + 1)} &amp;= \frac{\sum_{t = 1, o_t = v_k}^{T}
 \gamma_t(i) = \frac{\alpha_t(i) \beta_t(i)}{P(O |\lambda)} =
 \frac{\alpha_t(i) \beta_t(i)}{\sum_{j = 1}^{N} \alpha_t(j) \alpha_t(j)}
 \]</span> 知，在每一时刻 <span class="math inline">\(t\)</span>
-最有可能的状态 <span class="math inline">\(i_t^{\ast}\)</span> 是 <span
-class="math display">\[
+最有可能的状态 <span class="math inline">\(i_t^{\ast}\)</span> 是 <span class="math display">\[
 i_t^{\ast} = \operatorname{arg} \max_{1 \leq i \leq N} [\gamma_t(i)],
 \quad t = 1, 2, \dots, T \tag{29}
 \]</span></p>

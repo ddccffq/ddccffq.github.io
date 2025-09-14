@@ -281,8 +281,7 @@
 <h3 id="训练误差与测试误差">训练误差与测试误差</h3>
 <p>一般而言，统计学习方法具体采用的损失函数未必是评估时使用的损失函数。</p>
 <p>假设学习到的模型是 <span class="math inline">\(Y =
-\hat{f}(X)\)</span>，<strong>训练误差</strong>是模型 <span
-class="math inline">\(Y = \hat{f}(X)\)</span>
+\hat{f}(X)\)</span>，<strong>训练误差</strong>是模型 <span class="math inline">\(Y = \hat{f}(X)\)</span>
 关于训练数据集的平局损失：</p>
 <p><span class="math display">\[
 R_{\text{emp}} = \frac{1}{N} \sum_{i = 1}^{N} L(y_i, \hat{f}(x_i))
@@ -297,9 +296,7 @@ e_{\text{emp}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} L(y_i,
 <p>其中 <span class="math inline">\(N&#39;\)</span> 是测试样本容量。</p>
 <p>上面所述中的函数 <span class="math inline">\(L\)</span>
 是损失函数。</p>
-<p>常见的 <span class="math inline">\(L\)</span> 有指示函数 <span
-class="math inline">\(I\)</span>，当满足函数内容是取 <span
-class="math inline">\(1\)</span>。当损失函数是指示函数时，此时测试误差又叫做<strong>测试误差率</strong>：</p>
+<p>常见的 <span class="math inline">\(L\)</span> 有指示函数 <span class="math inline">\(I\)</span>，当满足函数内容是取 <span class="math inline">\(1\)</span>。当损失函数是指示函数时，此时测试误差又叫做<strong>测试误差率</strong>：</p>
 <p><span class="math display">\[
 e_{\text{test}} = \frac{1}{N&#39;} \sum_{i = 1}^{N&#39;} I(y_i \neq
 \hat{f}(x_i))

@@ -26,11 +26,13 @@
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Network Edge applications and hosts Client Program and Server Program 一般而言，客户端程序是 发送请求 的，而服务器端程序是 接受请求 的。 Access Technologies      接入技术 分类 简要说明     数字用户线（DSL） 居家接入 通过电话线为家庭用户提供宽带互联网接入   电缆调制解调器 居家接入 通">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/10/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
 <meta property="article:published_time" content="2025-06-10T00:43:49.000Z">
 <meta property="article:modified_time" content="2025-09-14T07:59:13.572Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/10/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png">
   
   
   
@@ -518,39 +520,27 @@ Technologies</h1>
 <tbody>
 <tr>
 <td>路由器</td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\times\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\times\]</span></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>链路层交换机</td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\times\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\times\]</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>主机</td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\surd\]</span></td>
 </tr>
 </tbody>
 </table>
@@ -584,7 +574,7 @@ Circuit Switching</h1>
 </div>
 <h2 id="statistical-multiplexing">Statistical Multiplexing</h2>
 <p>分组交换（Packet
-Switching）中，网络资源（如链路带宽）是<strong>按需动态分配</strong>给各个数据流的。每个用户的数据被分成分组（包），这些分组在网络中独立传输，多个用户的分组在同一链路上<strong>交错传输</strong>。<br />
+Switching）中，网络资源（如链路带宽）是<strong>按需动态分配</strong>给各个数据流的。每个用户的数据被分成分组（包），这些分组在网络中独立传输，多个用户的分组在同一链路上<strong>交错传输</strong>。<br>
 由于不是每个用户都持续发送数据，链路带宽可以被“活跃”的用户动态共享，这种方式称为<strong>统计复用（Statistical
 Multiplexing）</strong>。</p>
 <ul>
@@ -659,8 +649,7 @@ Delay：每个路由器或主机在接收到分组时进行首部检查、差错
 <li>Queuing
 Delay：分组在路由器的输出队列中等待转发的时间，取决于当前队列的长度和网络拥塞状况。</li>
 <li>Transmission Delay：
-分组所有比特从路由器或主机的输出端口“上线”所需的时间，计算公式为 <span
-class="math display">\[
+分组所有比特从路由器或主机的输出端口“上线”所需的时间，计算公式为 <span class="math display">\[
 \text{传输时延} = \frac{L}{R}
 \]</span> 其中，<span class="math inline">\(L\)</span>
 为分组长度（比特），<span class="math inline">\(R\)</span>
@@ -668,8 +657,7 @@ class="math display">\[
 <li>Propagation Delay： 分组在物理链路上传播所需的时间，计算公式为：
 <span class="math display">\[
 \text{传播时延} = \frac{d}{s}
-\]</span> 其中，<span class="math inline">\(d\)</span> 为链路长度，<span
-class="math inline">\(s\)</span> 为信号在介质中的传播速率。</li>
+\]</span> 其中，<span class="math inline">\(d\)</span> 为链路长度，<span class="math inline">\(s\)</span> 为信号在介质中的传播速率。</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
@@ -708,8 +696,7 @@ class="math inline">\(s\)</span> 为信号在介质中的传播速率。</li>
 <p>吞吐量：传输速率，单位 <span class="math inline">\(\text{bits} /
 \text{time}\)</span>。</p>
 <p>每一个用于传输比特流的 <strong>pipe</strong>
-的吞吐量可能不一致，这时如何计算端到端的吞吐量？ <span
-class="math display">\[
+的吞吐量可能不一致，这时如何计算端到端的吞吐量？ <span class="math display">\[
 \min \, \{R_C, R_S, \dots\}
 \]</span></p>
 <p>这种情况下，端到端的吞吐量取决于整个传输路径中最慢的通道</p>
@@ -861,11 +848,9 @@ class="math display">\[
 <h1 id="end-of-chapter-exercises">End-of-chapter exercises</h1>
 <h2 id="r.15">R.15</h2>
 <p>Suppose users share a <span class="math inline">\(2\)</span> Mbps
-link. Also suppose each user transmits continuously at <span
-class="math inline">\(1\)</span> Mbps when transmitting, but each user
+link. Also suppose each user transmits continuously at <span class="math inline">\(1\)</span> Mbps when transmitting, but each user
 transmits only <span class="math inline">\(20\)</span> percent of the
-time. (See the discussion of statistical multiplexing in Section <span
-class="math inline">\(1.3\)</span>.)</p>
+time. (See the discussion of statistical multiplexing in Section <span class="math inline">\(1.3\)</span>.)</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. When circuit switching is used, how many users can be
 supported?</strong></p>
@@ -882,9 +867,7 @@ the link if two or fewer users transmit at the same time? Why will there
 be a queuing delay if three users transmit at the same
 time?</strong></p>
 <ul>
-<li>如果两名或更少的用户同时传输，每个用户的传输速率为 <span
-class="math inline">\(1\)</span> Mbps，总传输速率为 <span
-class="math inline">\(2\)</span> Mbps
+<li>如果两名或更少的用户同时传输，每个用户的传输速率为 <span class="math inline">\(1\)</span> Mbps，总传输速率为 <span class="math inline">\(2\)</span> Mbps
 或更少，等于链路的总带宽。因此，数据可以立即通过链路传输，不会产生排队延迟。</li>
 <li>如果三名用户同时传输，总传输速率为 <span class="math inline">\(3 \,
 \text{Mbps}\)</span>，超过了链路的总带宽 <span class="math inline">\(2
@@ -902,8 +885,7 @@ P(\text{用户传输}) = 0.2
 that at any given time, all three users are transmitting simultaneously.
 Find the fraction of time during which the queue grows.</strong></p>
 <ul>
-<li>每个用户独立传输的概率为 <span
-class="math inline">\(0.2\)</span>，因此三名用户同时传输的概率为：</li>
+<li>每个用户独立传输的概率为 <span class="math inline">\(0.2\)</span>，因此三名用户同时传输的概率为：</li>
 </ul>
 <p><span class="math display">\[
 P(\text{三名用户同时传输}) = P(\text{用户1传输}) \cdot
@@ -918,13 +900,7 @@ P(\text{用户2传输}) \cdot P(\text{用户3传输}) = 0.2 \cdot 0.2 \cdot 0.2
 \]</span></p>
 <h2 id="r.19">R.19</h2>
 <p>Suppose Host A wants to send a large file to Host B. The path from
-Host A to Host B has three links, of rates <span
-class="math inline">\(R_1\)</span> = <span
-class="math inline">\(500\)</span> Kbps, <span
-class="math inline">\(R_2\)</span> = <span
-class="math inline">\(2\)</span> Mbps, and <span
-class="math inline">\(R_3\)</span> = <span
-class="math inline">\(1\)</span> Mbps.</p>
+Host A to Host B has three links, of rates <span class="math inline">\(R_1\)</span> = <span class="math inline">\(500\)</span> Kbps, <span class="math inline">\(R_2\)</span> = <span class="math inline">\(2\)</span> Mbps, and <span class="math inline">\(R_3\)</span> = <span class="math inline">\(1\)</span> Mbps.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. Assuming no other traffic in the network, what is the
 throughput for the file transfer.</strong></p>
@@ -1002,11 +978,9 @@ follow:</p>
 </table>
 </div>
 <h2 id="p.8">P.8</h2>
-<p>Consider the discussion in Section <span
-class="math inline">\(1.3\)</span> of statistical multiplexing in which
+<p>Consider the discussion in Section <span class="math inline">\(1.3\)</span> of statistical multiplexing in which
 an example is provided with a <span class="math inline">\(1\)</span>
-Mbps link. Users are generating data at a rate of <span
-class="math inline">\(100\)</span> Kbps when busy, but are busy
+Mbps link. Users are generating data at a rate of <span class="math inline">\(100\)</span> Kbps when busy, but are busy
 generating data only with probability <span class="math inline">\(p =
 0.1\)</span>. Suppose that the <span class="math inline">\(1\)</span>
 Mbps link is replaced by a <span class="math inline">\(1\)</span> Gbps
@@ -1020,32 +994,22 @@ N = \frac{1 \, \text{Gbps}}{100 \, \text{Kbps}} = 10000
 \]</span></p>
 <p><strong>b. Now consider packet switching and a user population of
 <span class="math inline">\(M\)</span> users. Give a formula (in terms
-of <span class="math inline">\(p\)</span>, <span
-class="math inline">\(M\)</span>, <span
-class="math inline">\(N\)</span>) for the probability that more than
+of <span class="math inline">\(p\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(N\)</span>) for the probability that more than
 <span class="math inline">\(N\)</span> users are sending
 data.</strong></p>
 <p>假设用户的发送行为是独立的，则发送数据的用户数目服从二项分布，只考虑
-<span class="math inline">\(M \geq N\)</span>： <span
-class="math display">\[
+<span class="math inline">\(M \geq N\)</span>： <span class="math display">\[
 P_{ &gt; N} = 1 - \sum_{k = 0}^{N} \binom{M}{k} p^k (1 - p)^{M - k}
 \]</span></p>
 <h2 id="p.22">P.22</h2>
 <p>Consider Figure <span class="math inline">\(1.19(a)\)</span>. Assume
 that we know the bottleneck link along the path from the server to the
-client is the first link with rate <span
-class="math inline">\(R_s\)</span> <span
-class="math inline">\(\text{bits/sec}\)</span>. Suppose we send a pair
+client is the first link with rate <span class="math inline">\(R_s\)</span> <span class="math inline">\(\text{bits/sec}\)</span>. Suppose we send a pair
 of packets back to back from the server to the client, and there is no
-other traffic on this path. Assume each packet of size <span
-class="math inline">\(L\)</span> <span
-class="math inline">\(\text{bits}\)</span>, and both links have the same
+other traffic on this path. Assume each packet of size <span class="math inline">\(L\)</span> <span class="math inline">\(\text{bits}\)</span>, and both links have the same
 propagation delay <span class="math inline">\(d_{prop}\)</span>.</p>
 <figure>
-<img
-src="Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png" srcset="/img/loading.gif" lazyload
-style="display: block; margin: 0 auto; width: 90%"
-alt="Figure 1.19(a)" />
+<img src="/2025/06/10/Introduction/Throughput%20for%20a%20file%20transfer%20from%20server%20to%20client.png" srcset="/img/loading.gif" lazyload style="display: block; margin: 0 auto; width: 90%" alt="Figure 1.19(a)">
 <figcaption aria-hidden="true">Figure 1.19(a)</figcaption>
 </figure>
 <p>back-to-back 指的是一组数据包在没有间隔的情况下连续发送</p>
@@ -1054,57 +1018,40 @@ alt="Figure 1.19(a)" />
 That is, how much time elapses from when the last bit of the first
 packet arrives until the last bit of the second packet
 arrives?</strong></p>
-<p>从图中我们可以看到有两条 <strong>link</strong>，速率分别是 <span
-class="math inline">\(R_s\)</span> 和 <span
-class="math inline">\(R_c\)</span>，前者导致瓶颈，也就是 <span
-class="math inline">\(R_c\)</span> &gt; <span
-class="math inline">\(R_s\)</span>。所以，<strong>inter-arrival
+<p>从图中我们可以看到有两条 <strong>link</strong>，速率分别是 <span class="math inline">\(R_s\)</span> 和 <span class="math inline">\(R_c\)</span>，前者导致瓶颈，也就是 <span class="math inline">\(R_c\)</span> &gt; <span class="math inline">\(R_s\)</span>。所以，<strong>inter-arrival
 time</strong>： <span class="math display">\[
 t = \frac{L}{R_s}
 \]</span></p>
 <p><strong>b. Now assume that the second link is the bottleneck link
-(i.e., <span class="math inline">\(R_c\)</span> &lt; <span
-class="math inline">\(R_s\)</span>). Is it possible that the second
+(i.e., <span class="math inline">\(R_c\)</span> &lt; <span class="math inline">\(R_s\)</span>). Is it possible that the second
 packet queues at the input queue of the second link? Explain. Now
-suppose that the server sends the second packet <span
-class="math inline">\(T\)</span> seconds after sending the first packet.
+suppose that the server sends the second packet <span class="math inline">\(T\)</span> seconds after sending the first packet.
 How large must <span class="math inline">\(T\)</span> be to ensure no
 queuing before the second link? Explain.</strong></p>
-<p>有可能第二个包在第二条 link 输入处排队，因为 <span
-class="math inline">\(R_c\)</span> &lt; <span
-class="math inline">\(R_s\)</span>
+<p>有可能第二个包在第二条 link 输入处排队，因为 <span class="math inline">\(R_c\)</span> &lt; <span class="math inline">\(R_s\)</span>
 导致，第一包仍在传输。只要保证当第二个包到达第二条 link
 输入时，第一个包已经传完了，也就是： <span class="math display">\[
 T = \frac{L}{R_c}
 \]</span></p>
 <h2 id="p.28">P.28</h2>
-<p>Suppose there is a <span class="math inline">\(10\)</span> <span
-class="math inline">\(\text{Mbps}\)</span> microwave link between a
+<p>Suppose there is a <span class="math inline">\(10\)</span> <span class="math inline">\(\text{Mbps}\)</span> microwave link between a
 geostationary satellite and its base station on Earth. Every minute the
 satellite takes a digital photo and sends it to the base station. Assume
 a propagation speed of <span class="math inline">\(2.4 \cdot
-10^8\)</span> <span
-class="math inline">\(\text{meters/sec}\)</span>.</p>
+10^8\)</span> <span class="math inline">\(\text{meters/sec}\)</span>.</p>
 <p><strong>Questions and Answers:</strong></p>
 <p><strong>a. What is the propagation delay of the link?</strong></p>
 <p>地球静止卫星轨道高度约为 <span class="math inline">\(d \approx 3.5786
-\times 10^7 \, \text{m}\)</span>，再由公式 <span
-class="math inline">\(d_{prop} = \frac{d}{s}\)</span> 得到 <span
-class="math inline">\(d_{prop} \approx 150 \, \text{ms}\)</span></p>
-<p><strong>b. What is the bandwidth-delay product, <span
-class="math inline">\(R \cdot d_{prop}\)</span>?</strong></p>
+\times 10^7 \, \text{m}\)</span>，再由公式 <span class="math inline">\(d_{prop} = \frac{d}{s}\)</span> 得到 <span class="math inline">\(d_{prop} \approx 150 \, \text{ms}\)</span></p>
+<p><strong>b. What is the bandwidth-delay product, <span class="math inline">\(R \cdot d_{prop}\)</span>?</strong></p>
 <p>这个乘式中的 <span class="math inline">\(R\)</span> 是 link
-的传输速率，表示的是因延迟而没有传输的数据大小。结果是 <span
-class="math inline">\(10 \times 10^6 \times 0.15 = 1.5 \times 10^6 \,
+的传输速率，表示的是因延迟而没有传输的数据大小。结果是 <span class="math inline">\(10 \times 10^6 \times 0.15 = 1.5 \times 10^6 \,
 \text{bits}\)</span>。</p>
 <p><strong>c. Let <span class="math inline">\(x\)</span> denote the size
-of the photo. What is the minimum value of <span
-class="math inline">\(x\)</span> for the microwave link to be
+of the photo. What is the minimum value of <span class="math inline">\(x\)</span> for the microwave link to be
 continuously transmitting?</strong></p>
-<p>设照片大小为 <span class="math inline">\(x\)</span>（单位：<span
-class="math inline">\(\text{bits}\)</span>），要使链路持续发送，需满足传输时间
-<span class="math inline">\(\frac{x}{R}\)</span> 不小于拍照间隔 <span
-class="math inline">\(60\,\text{s}\)</span>，即<br />
+<p>设照片大小为 <span class="math inline">\(x\)</span>（单位：<span class="math inline">\(\text{bits}\)</span>），要使链路持续发送，需满足传输时间
+<span class="math inline">\(\frac{x}{R}\)</span> 不小于拍照间隔 <span class="math inline">\(60\,\text{s}\)</span>，即<br>
 <span class="math display">\[
 \frac{x}{R} \geq 60 \, \Longrightarrow \; x \geq R \times 60 =
 10\times10^6\ \text{bps} \times 60\ \text{s} = 600\times10^6\
