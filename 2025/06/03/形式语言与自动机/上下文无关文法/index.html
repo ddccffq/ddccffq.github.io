@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="上下文无关文法的定义 定义文法 \(G &#x3D; (V, T, P, S)\)，其中产生式，除了空产生式外，有如下特点： \[ \forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上下文无关文法">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/03/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="上下文无关文法的定义 定义文法 \(G &#x3D; (V, T, P, S)\)，其中产生式，除了空产生式外，有如下特点： \[ \forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V \">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-03T02:25:03.000Z">
+<meta property="article:modified_time" content="2025-06-10T06:33:14.000Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>上下文无关文法 - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="上下文无关文法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-03 10:25" pubdate>
+          2025年6月3日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">上下文无关文法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="上下文无关文法的定义">上下文无关文法的定义</h1>
+<p>定义文法 <span class="math inline">\(G = (V, T, P, S)\)</span>，其中产生式，除了空产生式外，有如下特点：</p>
+<p><span class="math display">\[
+\forall \alpha \to \beta \in P, \quad \beta \in (V \cup T)^{\ast}, \quad \text{All have } |\beta| \geq |\alpha|, \text{and } \alpha \in V
+\]</span></p>
+<h1 id="派生树">派生树</h1>
+<p>设有 CFG $ G = (V, T, P, S)<span class="math inline">\(，\)</span>G$ 的派生树是满足如 下条件的有序树。 1. 树的每个顶点有一个标记 <span class="math inline">\(X\)</span>，且 <span class="math inline">\(X \in V \cup T \cup \{\epsilon\}\)</span>； 2. 树根的标记为 <span class="math inline">\(S\)</span>； 3. 如果非叶子顶点 <span class="math inline">\(v\)</span> 标记为 <span class="math inline">\(A\)</span>，<span class="math inline">\(v\)</span> 的儿子从左到右依次为<span class="math inline">\(v_1, v_2, \dots, v_n\)</span>，并且它们分别标记为<span class="math inline">\(X_1, X_2, \dots, X_n\)</span>，则 <span class="math inline">\(A \to X_1 X_2 \cdots X_n \in P\)</span>； 4. 如果 <span class="math inline">\(X\)</span> 是一个<strong>非叶子顶点</strong>的标记，则 <span class="math inline">\(X \in V\)</span>； 5. 如果顶点 <span class="math inline">\(v\)</span> 标记为 <span class="math inline">\(\epsilon\)</span>，则 <span class="math inline">\(v\)</span> 是该树的叶子，并且 <span class="math inline">\(v\)</span> 是其父顶点的<strong>惟一儿子</strong>。</p>
+<p>派生树都是 CFG 的派生树。</p>
+<h2 id="顶点的结果">顶点的结果</h2>
+<p>派生树 <span class="math inline">\(T\)</span> 的所有叶子结点从左到右的符号串为 <span class="math inline">\(X_1 X_2 \cdots X_n\)</span>是 <span class="math inline">\(T\)</span> 的结果。</p>
+<h1 id="cfg-的化简">CFG 的化简</h1>
+<h2 id="删除无用符号">删除无用符号</h2>
+<p><strong>无用符号</strong></p>
+<h1 id="cnf乔姆斯基范式文法">CNF：乔姆斯基范式文法</h1>
+<p>CFG <span class="math inline">\(G = (V, T, P, S)\)</span> 中的产生式形式为：<span class="math inline">\(A \to BC, \, A\to a\)</span>，其中 <span class="math inline">\(A,B,C \in V,\, a \in T\)</span>，需要注意的是此 CFG 已完成化简。</p>
+<p>利用 CNF 范式派生长度为 <span class="math inline">\(n\)</span> 的串，刚好需要 <span class="math inline">\(2n-1\)</span> 步。</p>
+<h1 id="上下文无关文法的性质">上下文无关文法的性质</h1>
+<h2 id="cfl-的泵引理">CFL 的泵引理</h2>
+<p>对于任意的 CFL <span class="math inline">\(L\)</span>，存在仅仅依赖于 <span class="math inline">\(L\)</span> 的正整数 <span class="math inline">\(N\)</span>，对于任意的 <span class="math inline">\(z \in L\)</span>，当 <span class="math inline">\(|z| \geq N\)</span> 时，存在 <span class="math inline">\(u, v, w, x, y\)</span>，使得 <span class="math inline">\(z = uvwxy\)</span>，同时满足：</p>
+<ol type="1">
+<li><span class="math inline">\(|vwx| \leq N\)</span>；</li>
+<li><span class="math inline">\(|vx| \geq 1\)</span>；</li>
+<li>对于任意的非负整数 <span class="math inline">\(i\)</span>，<span class="math inline">\(u v^i w x^i y \in L\)</span>。</li>
+</ol>
+<h3 id="利用-cfl-泵引理证明一个语言不是-cfl">利用 CFL 泵引理证明一个语言不是 CFL</h3>
+<ol type="1">
+<li>首先假设该语言是 CFL，则其满足泵引理，任选 <span class="math inline">\(N\)</span>；</li>
+<li>找到语言中的句子 <span class="math inline">\(z \in L\)</span> 且 <span class="math inline">\(|z| \geq N\)</span>；</li>
+<li>分析 <span class="math inline">\(v\)</span>、<span class="math inline">\(x\)</span> 的各种取值，当满足 <span class="math inline">\(z = uvwxy\)</span>，且 <span class="math inline">\(|vwx| \leq N\)</span>，<span class="math inline">\(|vx| \geq 1\)</span> 时，均能找到 <span class="math inline">\(i \geq 0\)</span>，使得 <span class="math inline">\(i\)</span>，<span class="math inline">\(u v^i w x^i y \notin L\)</span>。</li>
+</ol>
+<h2 id="ogden-引理">Ogden 引理</h2>
+<p>对于任意的 CFL <span class="math inline">\(L\)</span>，存在仅仅依赖于 <span class="math inline">\(L\)</span> 的正整数 <span class="math inline">\(N\)</span>，对于任意的 <span class="math inline">\(z \in L\)</span>，当 <span class="math inline">\(z\)</span> 中至少含有 <span class="math inline">\(N\)</span> 个特异点时，存在 <span class="math inline">\(u, v, w, x, y\)</span>，使得 <span class="math inline">\(z = uvwxy\)</span>，同时满足：</p>
+<ol type="1">
+<li><span class="math inline">\(|vwx|\)</span> 中的特异点的数目 <span class="math inline">\(\leq N\)</span>；</li>
+<li><span class="math inline">\(|vx|\)</span> 中的特异点的数目 <span class="math inline">\(\geq 1\)</span>；</li>
+<li>对于任意的非负整数 <span class="math inline">\(i\)</span>，<span class="math inline">\(u v^i w x^i y \in L\)</span>。</li>
+</ol>
+<h2 id="cfl-在并乘积闭包运算下是封闭的但在交运算下不封闭">CFL 在并、乘积、闭包运算下是封闭的，但在交运算下不封闭</h2>
+<h1 id="cyk-algorithm">CYK Algorithm</h1>
+<p>输入：CNF <span class="math inline">\(G = (V, T, P, S)\)</span>，<span class="math inline">\(x\)</span>； 输出：<span class="math inline">\(x \in L\)</span> 或者 <span class="math inline">\(x \notin L\)</span>；</p>
+<p><span class="math inline">\(V_{i,k}\)</span>：可以派生出子串 <span class="math inline">\(x_{i,k}\)</span> 的变量集合，<span class="math inline">\(x_{i,k}\)</span> 表示从 <span class="math inline">\(i\)</span> 开始，长度为 <span class="math inline">\(k\)</span> 的子串。</p>
+<ol type="1">
+<li><code>for i = 1 in |x|</code> <span class="math inline">\(V_{i,1} = \{A \mid A \to x_{i,1} \in P\}\)</span></li>
+<li><code>for k = 2 in |x| &#123;for i = 1 to |x| - k + 1&#125;</code> $V_{i,k} = $
+<ol type="1">
+<li><code>for j = 1 to k - 1</code> <span class="math inline">\(V_{i,k} = V_{i,k} \cup \{A \mid A \to BC \text{ and } B \in V_{i,j} \text{ and } C \in V_{i + j,k - j}\}\)</span></li>
+</ol></li>
+</ol>
+<h1 id="hw13">hw13</h1>
+<p><strong>题目1：</strong> 使用CFL的泵引理证明 <span class="math inline">\(L = \{ ww \mid w \in \{a, b\}^{\ast} \}\)</span> 不是上下文无关语言.</p>
+<p><strong>解答1：</strong></p>
+<p>我们使用 CFL 的泵引理来证明 <span class="math inline">\(L = \{ ww \mid w \in \{a, b\}^\ast \}\)</span> 不是上下文无关语言。</p>
+<p>假设 <span class="math inline">\(L\)</span> 是一个上下文无关语言，则它满足 CFL 的泵引理。</p>
+<p>设 <span class="math inline">\(N\)</span> 为泵引理中的 <span class="math inline">\(N\)</span>，取句子 $ z = a^{N} b^{N} a^{N} b^{N} L $</p>
+<p>接下来分析 <span class="math inline">\(vwx\)</span> 的各种取值： 1. 因为 <span class="math inline">\(|vwx| \leq N\)</span>，不妨先假设 <span class="math inline">\(vwx \subseteq a^{N}\)</span> 或者 <span class="math inline">\(b^{N}\)</span>，显然对于 <span class="math inline">\(\forall i &gt; 0\)</span>，都会破坏 <span class="math inline">\(L\)</span> 的结构，即要求 <span class="math inline">\(ww \in L\)</span>。<br><br> 2. 然后再分析 <span class="math inline">\(vwx\)</span> 跨越了 <span class="math inline">\(a\)</span> 部分或者 <span class="math inline">\(b\)</span> 部分，由于 <span class="math inline">\(|vwx| \leq N\)</span>，可以证明 <span class="math inline">\(vwx\)</span> 最多横跨一个 <span class="math inline">\(a\)</span> 和一个 <span class="math inline">\(b\)</span>，也即是类似 <span class="math inline">\(a \cdots ab \cdots b\)</span> 和 <span class="math inline">\(b \cdots ba \cdots a\)</span> 的结构；<br><br> 1. 假设 <span class="math inline">\(vwx\)</span> 横跨第一个 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span>。设 $ v = a^{m}, , x = b^{n}$，则 <span class="math inline">\(\forall i &gt; 0\)</span>，<span class="math inline">\(u a^{im} w b^{in} y \notin L\)</span>，这很好证明：此时 <span class="math inline">\(u a^{im} w b^{in} y\)</span> 可以写成 <span class="math inline">\(a^{N + im} b^{N + in} a^{N} b^{N}\)</span> 的形式，为了保证 <span class="math inline">\(ww\)</span> 的结构，只能如此分割 <span class="math inline">\(a^{N + im} b^{N + in}\)</span> 和 <span class="math inline">\(a^{N} b^{N}\)</span>，因为 <span class="math inline">\(|vx| \geq 1\)</span>，所以不存在 <span class="math inline">\(i\)</span> 使得分割后得两个句子相等；<br><br> 2. 同理可以证明 <span class="math inline">\(vwx\)</span> 横跨第二个 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 时同样不满足泵引理；<br><br> 3. 对于 <span class="math inline">\(vwx\)</span> 横跨第一个 <span class="math inline">\(b\)</span> 和 第二个 <span class="math inline">\(a\)</span> 的情况，此时 <span class="math inline">\(u a^{im} w b^{in} y\)</span> 可以写成 <span class="math inline">\(a^{N} b^{N + im} a^{N + in} b^{N}\)</span> 的形式，同样为了保证 <span class="math inline">\(ww\)</span> 的结构，只能如此分割 <span class="math inline">\(a^{N} b^{N + im}\)</span> 和 <span class="math inline">\(a^{N + in} b^{N}\)</span>，显然分割后的句子不相等，也就是不满足泵引理。<br><br></p>
+<p>综上，<span class="math inline">\(L\)</span> 不是 CFL。</p>
+<p><strong>题目2：</strong> 给定文法 <span class="math inline">\(G\)</span> 如下：</p>
+<p>[ <span class="math display">\[\begin{align*}
+&amp;S \to AB \,|\, AA \,|\, BC \\
+&amp;A \to CD \,|\, a \\
+&amp;B \to BD \,|\, SB \,|\, b \\
+&amp;C \to c \\
+&amp;D \to DB \,|\, b
+\end{align*}\]</span> ]</p>
+<p>根据算法 CYK 算法，请识别字符串“aabbc”是否属于 <span class="math inline">\(L(G)\)</span>?</p>
+<p><strong>解答2：</strong> <span class="math inline">\(x = \text{&quot;aabbc&quot;}\)</span>，长度 <span class="math inline">\(|x| = 5\)</span>。</p>
+<p>构造一个二维表 <span class="math inline">\(V_{i,k}\)</span>，其中 <span class="math inline">\(V_{i,k}\)</span> 表示从位置 <span class="math inline">\(i\)</span> 开始，长度为 <span class="math inline">\(k\)</span> 的子串可以由哪些非终结符生成。</p>
+<ol type="1">
+<li><strong>第一步：处理长度为 1 的子串</strong><br>
+根据文法的终结符规则，填充 <span class="math inline">\(V_{i,1}\)</span>：
+<ul>
+<li><span class="math inline">\(x_1 = a \implies V_{1,1} = \{A\}\)</span></li>
+<li><span class="math inline">\(x_2 = a \implies V_{2,1} = \{A\}\)</span></li>
+<li><span class="math inline">\(x_3 = b \implies V_{3,1} = \{B, D\}\)</span></li>
+<li><span class="math inline">\(x_4 = b \implies V_{4,1} = \{B, D\}\)</span></li>
+<li><span class="math inline">\(x_5 = c \implies V_{5,1} = \{C\}\)</span></li>
+</ul></li>
+<li><strong>第二步：处理长度为 2 的子串</strong><br>
+根据文法的组合规则，填充 <span class="math inline">\(V_{i,2}\)</span>：
+<ul>
+<li><span class="math inline">\(x_{1,2} = &quot;aa&quot; \implies V_{1,2} = \{S\}\)</span> （因为 <span class="math inline">\(A \to AA\)</span>）</li>
+<li><span class="math inline">\(x_{2,2} = &quot;ab&quot; \implies V_{2,2} = \{B\}\)</span> （因为 <span class="math inline">\(S \to AB\)</span>）</li>
+<li><span class="math inline">\(x_{3,2} = &quot;bb&quot; \implies V_{3,2} = \{B, D\}\)</span> （因为 <span class="math inline">\(B \to BD\)</span> 和 <span class="math inline">\(D \to DB\)</span>）</li>
+<li><span class="math inline">\(x_{4,2} = &quot;bc&quot; \implies V_{4,2} = \{S\}\)</span> （因为 <span class="math inline">\(S \to BC\)</span>）</li>
+</ul></li>
+<li><strong>第三步：处理长度为 3 的子串</strong><br>
+根据文法的组合规则，填充 <span class="math inline">\(V_{i,3}\)</span>：
+<ul>
+<li><span class="math inline">\(x_{1,3} = &quot;aab&quot; \implies V_{1,3} = \{B\}\)</span> （因为 <span class="math inline">\(S \to AB\)</span>）</li>
+<li><span class="math inline">\(x_{2,3} = &quot;abb&quot; \implies V_{2,3} = \{S\}\)</span> （因为 <span class="math inline">\(S \to AB\)</span> 和 <span class="math inline">\(B \to SB\)</span>）</li>
+<li><span class="math inline">\(x_{3,3} = &quot;bbc&quot; \implies V_{3,3} = \{S\}\)</span> （因为 <span class="math inline">\(S \to BC\)</span>）</li>
+</ul></li>
+<li><strong>第四步：处理长度为 4 的子串</strong><br>
+根据文法的组合规则，填充 <span class="math inline">\(V_{i,4}\)</span>：
+<ul>
+<li><span class="math inline">\(x_{1,4} = &quot;aabb&quot; \implies V_{1,4} = \{S\}\)</span> （因为 <span class="math inline">\(S \to AB\)</span> 和 <span class="math inline">\(B \to SB\)</span>）</li>
+<li><span class="math inline">\(x_{2,4} = &quot;abbc&quot; \implies V_{2,4} = \{S\}\)</span> （因为 <span class="math inline">\(S \to BC\)</span>）</li>
+</ul></li>
+<li><strong>第五步：处理长度为 5 的子串</strong><br>
+根据文法的组合规则，填充 <span class="math inline">\(V_{1,5}\)</span>：
+<ul>
+<li><span class="math inline">\(x_{1,5} = &quot;aabbc&quot; \implies V_{1,5} = \{S\}\)</span> （因为 <span class="math inline">\(S \to AB\)</span> 和 <span class="math inline">\(B \to SB\)</span>）</li>
+</ul></li>
+</ol>
+<p>最终，<span class="math inline">\(V_{1,5}\)</span> 包含 <span class="math inline">\(S\)</span>，因此字符串 “aabbc” 属于文法 <span class="math inline">\(G\)</span> 的语言 <span class="math inline">\(L(G)\)</span>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="category-chain-item">形式语言与自动机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>上下文无关文法</div>
+      <div>https://ddccffq.github.io/2025/06/03/形式语言与自动机/上下文无关文法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="感知机">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">感知机</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" title="最大熵模型">
+                        <span class="hidden-mobile">最大熵模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -285,8 +285,7 @@
 \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
 \]</span></p>
 <p>存在，则称函数 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 处可导，并称此极限值为函数 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 处的导数，记作： <span class="math display">\[
-f&#39;(x) = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) -
-f(x_0)}{\Delta x}
+f&#39;(x) = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
 \]</span></p></li>
 <li><blockquote>
 <p>微分的定义</p>
@@ -307,69 +306,43 @@ dy = f&#39;(x_0) \cdot dx
 </blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 是在区间 <span class="math inline">\(I\)</span> 上的连续函数</p>
 <ol type="1">
-<li><span class="math inline">\(f(q_1 x_1 + q_2 x_2) \leq q_1 f(x_1) +
-q_2 f(x_2)\)</span></li>
-<li><span class="math inline">\(f(\frac{x_1 + x_2}{2}) \leq \frac{1}{2}
-f(x_1) + \frac{1}{2} f(x_2)\)</span></li>
-<li><span class="math inline">\(f(q_1 x_1 + q_2 x_2 + \cdots + q_n x_n)
-\leq q_1 f(x_1) + q_2 f(x_2) + \cdots + q_n f(x_n)\)</span></li>
+<li><span class="math inline">\(f(q_1 x_1 + q_2 x_2) \leq q_1 f(x_1) + q_2 f(x_2)\)</span></li>
+<li><span class="math inline">\(f(\frac{x_1 + x_2}{2}) \leq \frac{1}{2} f(x_1) + \frac{1}{2} f(x_2)\)</span></li>
+<li><span class="math inline">\(f(q_1 x_1 + q_2 x_2 + \cdots + q_n x_n) \leq q_1 f(x_1) + q_2 f(x_2) + \cdots + q_n f(x_n)\)</span></li>
 <li>若可导，<span class="math inline">\(f&#39;(x)\)</span> 在 <span class="math inline">\(I\)</span> 上单调递增</li>
-<li>若二阶可导，<span class="math inline">\(f&#39;&#39;(x) \geq
-0\)</span></li>
+<li>若二阶可导，<span class="math inline">\(f&#39;&#39;(x) \geq 0\)</span></li>
 </ol></li>
 <li><blockquote>
 <p>常用的高阶导数公式</p>
 </blockquote>
 <ol type="1">
-<li><span class="math inline">\((a^x)^{(n)} = a^x \ln^n
-a\)</span>，<span class="math inline">\(a &gt; 0\)</span></li>
-<li><span class="math inline">\((\log_a x)^{(n)} = (-1)^{n - 1} \frac{(n
-- 1)!}{x^n \ln a}\)</span>，<span class="math inline">\(a &gt;
-0\)</span>，<span class="math inline">\(a \neq 1\)</span></li>
-<li><span class="math inline">\((\cos x)^{(n)} = \cos(x + n \cdot
-\frac{\pi}{2})\)</span></li>
-<li><span class="math inline">\((\sin x)^{(n)} = \sin(x + n \cdot
-\frac{\pi}{2})\)</span></li>
-<li><span class="math inline">\((\frac{1}{x + a})^{(n)} = (-1)^n
-\frac{n!}{(x + a)^{n + 1}}\)</span></li>
-<li><span class="math inline">\((\frac{1}{a - x})^{(n)} = \frac{n!}{(a -
-x)^{n + 1}}\)</span></li>
+<li><span class="math inline">\((a^x)^{(n)} = a^x \ln^n a\)</span>，<span class="math inline">\(a &gt; 0\)</span></li>
+<li><span class="math inline">\((\log_a x)^{(n)} = (-1)^{n - 1} \frac{(n - 1)!}{x^n \ln a}\)</span>，<span class="math inline">\(a &gt; 0\)</span>，<span class="math inline">\(a \neq 1\)</span></li>
+<li><span class="math inline">\((\cos x)^{(n)} = \cos(x + n \cdot \frac{\pi}{2})\)</span></li>
+<li><span class="math inline">\((\sin x)^{(n)} = \sin(x + n \cdot \frac{\pi}{2})\)</span></li>
+<li><span class="math inline">\((\frac{1}{x + a})^{(n)} = (-1)^n \frac{n!}{(x + a)^{n + 1}}\)</span></li>
+<li><span class="math inline">\((\frac{1}{a - x})^{(n)} = \frac{n!}{(a - x)^{n + 1}}\)</span></li>
 </ol></li>
 </ol>
 <h2 id="例题讲解">例题讲解</h2>
 <h3 id="导数微分中值定理">导数、微分中值定理</h3>
 <ol type="1">
 <li><blockquote>
-<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处连续，并有 <span class="math inline">\(\lim\limits_{x \to a} \frac{f(x)}{x - a} =
-k\)</span>。证明：<span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处可导，且 <span class="math inline">\(f&#39;(a) = k\)</span>。</p>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处连续，并有 <span class="math inline">\(\lim\limits_{x \to a} \frac{f(x)}{x - a} = k\)</span>。证明：<span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处可导，且 <span class="math inline">\(f&#39;(a) = k\)</span>。</p>
 </blockquote>
-<p>首先由连续性得到 <span class="math inline">\(\lim\limits_{x \to a}
-f(x) = f(a)\)</span>，由极限与无穷小的关系得到：存在 <span class="math inline">\(a(x)\)</span>，其中 <span class="math inline">\(\lim\limits_{x \to a} a(x) = 0\)</span>，使得
-<span class="math inline">\(\frac{f(x)}{x - a} = k + a(x) \Rightarrow
-f(x) = (x - a)(k + a(x)) \Rightarrow \lim\limits_{x \to a} f(x) = f(a) =
-\lim\limits_{x \to a} (x - a)(k + a(x)) = 0\)</span>。所以存在 <span class="math inline">\(\lim\limits_{x \to a} \frac{f(x) - f(a)}{x - a} =
-k\)</span>，由导数定义知，题目结论成立。</p></li>
+<p>首先由连续性得到 <span class="math inline">\(\lim\limits_{x \to a} f(x) = f(a)\)</span>，由极限与无穷小的关系得到：存在 <span class="math inline">\(a(x)\)</span>，其中 <span class="math inline">\(\lim\limits_{x \to a} a(x) = 0\)</span>，使得 <span class="math inline">\(\frac{f(x)}{x - a} = k + a(x) \Rightarrow f(x) = (x - a)(k + a(x)) \Rightarrow \lim\limits_{x \to a} f(x) = f(a) = \lim\limits_{x \to a} (x - a)(k + a(x)) = 0\)</span>。所以存在 <span class="math inline">\(\lim\limits_{x \to a} \frac{f(x) - f(a)}{x - a} = k\)</span>，由导数定义知，题目结论成立。</p></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 可导，<span class="math inline">\(a_n
-&lt; x_0 &lt; b_n\)</span> 且 <span class="math inline">\(\lim\limits_{n
-\to \infty} a_n = \lim\limits_{n \to \infty} b_n = x_0\)</span>。证明：
-<span class="math display">\[
+<p>设 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 可导，<span class="math inline">\(a_n &lt; x_0 &lt; b_n\)</span> 且 <span class="math inline">\(\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n = x_0\)</span>。证明： <span class="math display">\[
 \lim_{n \to \infty} \frac{f(b_n) - f(a_n)}{b_n - a_n} = f&#39;(x_0)
 \]</span></p>
 </blockquote></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 有二阶导数，证明： <span class="math display">\[
-\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} =
-f&#39;&#39;(x_0)
+\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = f&#39;&#39;(x_0)
 \]</span></p>
 </blockquote>
-<p>此时存在 <span class="math inline">\(x_0\)</span> 的领域 <span class="math inline">\((x_0 - \delta, x_0 + \delta)\)</span>，在此领域上
-<span class="math inline">\(f&#39;(x)\)</span>
-存在。有洛必达法则及二阶导数的定义得到： <span class="math display">\[
-\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = \lim_{h
-\to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0 - h)}{2h} = \frac{1}{2}
-\lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0) + f&#39;(x_0) -
-f&#39;(x_0 - h)}{h} = f&#39;&#39;(x_0)
+<p>此时存在 <span class="math inline">\(x_0\)</span> 的领域 <span class="math inline">\((x_0 - \delta, x_0 + \delta)\)</span>，在此领域上 <span class="math inline">\(f&#39;(x)\)</span> 存在。有洛必达法则及二阶导数的定义得到： <span class="math display">\[
+\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0 - h)}{2h} = \frac{1}{2} \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0) + f&#39;(x_0) - f&#39;(x_0 - h)}{h} = f&#39;&#39;(x_0)
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 1\)</span> 点附近有定义，且在 <span class="math inline">\(x = 1\)</span> 点可导，<span class="math inline">\(f(1) = 0\)</span>，<span class="math inline">\(f&#39;(1) = 2\)</span>。求 <span class="math display">\[
@@ -377,37 +350,21 @@ f&#39;(x_0 - h)}{h} = f&#39;&#39;(x_0)
 \]</span></p>
 </blockquote>
 <p>由一阶导数定义得到： <span class="math display">\[
-\lim_{x \to 0} \frac{f(\sin^2 x + \cos x)}{x^2 + x \tan x} = \lim_{x \to
-0} \frac{f(\sin^2 x + \cos x) - f(1)}{\sin^2 x + \cos x - 1} \cdot
-\frac{\sin^2 x + \cos x - 1}{x^2 + x \tan x} = \frac{1}{2}
+\lim_{x \to 0} \frac{f(\sin^2 x + \cos x)}{x^2 + x \tan x} = \lim_{x \to 0} \frac{f(\sin^2 x + \cos x) - f(1)}{\sin^2 x + \cos x - 1} \cdot \frac{\sin^2 x + \cos x - 1}{x^2 + x \tan x} = \frac{1}{2}
 \]</span></p></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(a &gt; 0\)</span>，<span class="math inline">\(f(x)\)</span> 在闭区间 <span class="math inline">\([a, b]\)</span> 上连续，在 <span class="math inline">\((a, b)\)</span> 内可导，<span class="math inline">\(f(a) = 0\)</span>。证明：存在 <span class="math inline">\(\xi \in (a, b)\)</span> 使得 <span class="math inline">\(f(\xi) = \frac{b - \xi}{a}
-f&#39;(\xi)\)</span>。</p>
+<p>设 <span class="math inline">\(a &gt; 0\)</span>，<span class="math inline">\(f(x)\)</span> 在闭区间 <span class="math inline">\([a, b]\)</span> 上连续，在 <span class="math inline">\((a, b)\)</span> 内可导，<span class="math inline">\(f(a) = 0\)</span>。证明：存在 <span class="math inline">\(\xi \in (a, b)\)</span> 使得 <span class="math inline">\(f(\xi) = \frac{b - \xi}{a} f&#39;(\xi)\)</span>。</p>
 </blockquote>
-<p>与欲证等式相对应的微分方程为 <span class="math inline">\(y = \frac{b
-- x}{a} y&#39;\)</span>，解得 <span class="math inline">\((b - x)^a y =
-C\)</span>，做辅助函数 <span class="math inline">\(F(x) = (b - x)^a
-f(x)\)</span>，有 <span class="math inline">\(F(a) = F(b) =
-0\)</span>，由罗尔定理得到，存在 <span class="math inline">\(\xi \in (a,
-b)\)</span>，使得 <span class="math inline">\(F&#39;(\xi) = -a(b -
-\xi)^{a - 1} f(\xi) + (b - \xi)^{a} f&#39;(\xi) =
-0\)</span>，从而得证。</p></li>
+<p>与欲证等式相对应的微分方程为 <span class="math inline">\(y = \frac{b - x}{a} y&#39;\)</span>，解得 <span class="math inline">\((b - x)^a y = C\)</span>，做辅助函数 <span class="math inline">\(F(x) = (b - x)^a f(x)\)</span>，有 <span class="math inline">\(F(a) = F(b) = 0\)</span>，由罗尔定理得到，存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(F&#39;(\xi) = -a(b - \xi)^{a - 1} f(\xi) + (b - \xi)^{a} f&#39;(\xi) = 0\)</span>，从而得证。</p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在闭区间 <span class="math inline">\([a, b]\)</span> 上连续，在 <span class="math inline">\((0, 1)\)</span> 内可导，试证：存在 <span class="math inline">\(\xi \in (0, 1)\)</span> 使得 <span class="math display">\[
-\frac{\pi}{4} (1 + \xi^2) f(1) = f(\xi) + (1 + \xi^2) \arctan \xi \cdot
-f&#39;(\xi)
+\frac{\pi}{4} (1 + \xi^2) f(1) = f(\xi) + (1 + \xi^2) \arctan \xi \cdot f&#39;(\xi)
 \]</span></p>
 </blockquote></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 上有 <span class="math inline">\(n
-+ 1\)</span> 阶导数，且 <span class="math inline">\(f^{(k)}(a)
-=  f^{(k)}(b) = 0(k = 0, 1, 2, \cdots, n)\)</span>。证明：存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(f^{(n + 1)} (\xi) = f(\xi)\)</span>。</p>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 上有 <span class="math inline">\(n + 1\)</span> 阶导数，且 <span class="math inline">\(f^{(k)}(a) = f^{(k)}(b) = 0(k = 0, 1, 2, \cdots, n)\)</span>。证明：存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(f^{(n + 1)} (\xi) = f(\xi)\)</span>。</p>
 </blockquote>
-<p>构造函数 <span class="math inline">\(F(x) = (f(x) + f^{(1)}(x) +
-f^{(2)}(x) + \cdots + f^{(n)}(x)) \text{e}^{-x}\)</span>，<span class="math inline">\(F(a) = F(b) = 0\)</span>，所以存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(F&#39;(\xi) = (f^{(n + 1)}(x) - f(x))
-\text{e}^{-x} = 0\)</span>，即 <span class="math inline">\(f^{(n + 1)}
-(\xi) = f(\xi)\)</span>。</p></li>
+<p>构造函数 <span class="math inline">\(F(x) = (f(x) + f^{(1)}(x) + f^{(2)}(x) + \cdots + f^{(n)}(x)) \text{e}^{-x}\)</span>，<span class="math inline">\(F(a) = F(b) = 0\)</span>，所以存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(F&#39;(\xi) = (f^{(n + 1)}(x) - f(x)) \text{e}^{-x} = 0\)</span>，即 <span class="math inline">\(f^{(n + 1)} (\xi) = f(\xi)\)</span>。</p></li>
 </ol>
 
                 
@@ -514,6 +471,50 @@ f^{(2)}(x) + \cdots + f^{(n)}(x)) \text{e}^{-x}\)</span>，<span class="math inl
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>

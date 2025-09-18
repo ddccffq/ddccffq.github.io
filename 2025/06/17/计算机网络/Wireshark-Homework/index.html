@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="提取的请求信息  get request   request right   response   response more details   response right  源和目标IP地址  源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号  源端口: 54283（随机分配的客户端端口）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wireshark Homework">
+<meta property="og:url" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="提取的请求信息  get request   request right   response   response more details   response right  源和目标IP地址  源IP地址: 10.21.205.40（本机IP，如ipconfig截图所示） 目标IP地址: 104.110.191.133（服务器IP）  端口号  源端口: 54283（随机分配的客户端端口）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/get%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/request%20right.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response%20more%20details.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response%20right.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/%E5%9B%9B%E6%9D%A1%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/config.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/A%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/AAAA%20request.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/A%20response.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/AAAA%20response.png">
+<meta property="article:published_time" content="2025-06-17T05:21:04.000Z">
+<meta property="article:modified_time" content="2025-09-14T08:13:59.968Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/get%20request.png">
+  
+  
+  
+  <title>Wireshark Homework - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Wireshark Homework"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-17 13:21" pubdate>
+          2025年6月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          838 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Wireshark Homework</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="提取的请求信息">提取的请求信息</h2>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/get%20request.png" srcset="/img/loading.gif" lazyload alt="get request"><figcaption aria-hidden="true">get request</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/request%20right.png" srcset="/img/loading.gif" lazyload alt="request right"><figcaption aria-hidden="true">request right</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response.png" srcset="/img/loading.gif" lazyload alt="response"><figcaption aria-hidden="true">response</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response%20more%20details.png" srcset="/img/loading.gif" lazyload alt="response more details"><figcaption aria-hidden="true">response more details</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/response%20right.png" srcset="/img/loading.gif" lazyload alt="response right"><figcaption aria-hidden="true">response right</figcaption>
+</figure>
+<h3 id="源和目标ip地址">源和目标IP地址</h3>
+<ul>
+<li><strong>源IP地址</strong>: 10.21.205.40（本机IP，如ipconfig截图所示）</li>
+<li><strong>目标IP地址</strong>: 104.110.191.133（服务器IP）</li>
+</ul>
+<h3 id="端口号">端口号</h3>
+<ul>
+<li><strong>源端口</strong>: 54283（随机分配的客户端端口）</li>
+<li><strong>目标端口</strong>: 80（标准HTTP端口）</li>
+</ul>
+<h3 id="host字段">Host字段</h3>
+<ul>
+<li><strong>Host</strong>: <code>www.msftconnecttest.com</code></li>
+</ul>
+<h3 id="user-agent字段">User-Agent字段</h3>
+<ul>
+<li><strong>User-Agent</strong>: Microsoft NCSI</li>
+</ul>
+<h2 id="提取的响应信息">提取的响应信息</h2>
+<h3 id="状态码">状态码</h3>
+<ul>
+<li><strong>状态码</strong>: 200 OK</li>
+</ul>
+<h3 id="content-type字段">Content-Type字段</h3>
+<ul>
+<li><strong>Content-Type</strong>: text/plain</li>
+</ul>
+<h3 id="server字段">Server字段</h3>
+<ul>
+<li>在提供的截图中没有明确显示Server字段，该字段可能不存在于此HTTP响应中，或位于未捕获到的响应头部分</li>
+</ul>
+<h2 id="问题思考">问题思考</h2>
+<h3 id="http请求的目标端口通常是多少">HTTP请求的目标端口通常是多少？</h3>
+<p>HTTP请求的<strong>标准目标端口是80</strong>，如截图中所示。HTTPS则使用443端口。</p>
+<h3 id="报文中的字段形式是怎样的">报文中的字段形式是怎样的？</h3>
+<p>HTTP报文使用<strong>纯文本格式</strong>，以“字段名: 字段值”的形式组织，每行一个字段，如截图中所示： - <code>Host: www.msftconnecttest.com</code> - <code>User-Agent: Microsoft NCSI</code> - <code>Content-Type: text/plain</code></p>
+<p>Wireshark同时提供了三种查看方式： 1. <strong>解析后的纯文本视图</strong>（HTTP协议字段被解析为易读形式） 2. <strong>十六进制原始数据视图</strong>（数据包的二进制表现形式） 3. <strong>结构化协议树</strong>（按协议层级组织的视图）</p>
+<p>在Wireshark中可以看到，虽然在网络上传输时是二进制字节流，但HTTP协议本身是<strong>基于文本</strong>的协议。</p>
+<h2 id="dns">DNS</h2>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/四条信息.png" srcset="/img/loading.gif" lazyload alt="四条信息"><figcaption aria-hidden="true">四条信息</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/config.png" srcset="/img/loading.gif" lazyload alt="config"><figcaption aria-hidden="true">config</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/A%20request.png" srcset="/img/loading.gif" lazyload alt="A request"><figcaption aria-hidden="true">A request</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/AAAA%20request.png" srcset="/img/loading.gif" lazyload alt="AAAA request"><figcaption aria-hidden="true">AAAA request</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/A%20response.png" srcset="/img/loading.gif" lazyload alt="A response"><figcaption aria-hidden="true">A response</figcaption>
+</figure>
+<figure>
+<img src="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/AAAA%20response.png" srcset="/img/loading.gif" lazyload alt="AAAA response"><figcaption aria-hidden="true">AAAA response</figcaption>
+</figure>
+<h2 id="清除dns缓存">清除DNS缓存</h2>
+<p>从终端截图可以看到，已使用命令<code>ipconfig /flushdns</code>成功清除了DNS缓存： - 终端显示：<strong>“已成功刷新 DNS 解析缓存”</strong> - 使用<code>nslookup</code>确认DNS服务器为<strong>10.3.9.5</strong></p>
+<h2 id="dns查询与响应报文分析">DNS查询与响应报文分析</h2>
+<h3 id="查询报文分析">查询报文分析</h3>
+<p>根据截图，可以看到多个DNS查询：</p>
+<ol type="1">
+<li><strong>查询域名</strong>：www.163.com</li>
+<li><strong>查询类型</strong>：
+<ul>
+<li>A记录查询（IPv4地址）- Type: A (1)</li>
+<li>AAAA记录查询（IPv6地址）- Type: AAAA (28)</li>
+</ul></li>
+<li><strong>查询特征</strong>：
+<ul>
+<li>Transaction ID: 0x8d99（A记录查询）和0xaa7c（AAAA记录查询）</li>
+<li>源端口：55570、59624（随机客户端端口）</li>
+<li>目标端口：<strong>53</strong>（标准DNS端口）</li>
+<li>使用<strong>UDP协议</strong>传输</li>
+</ul></li>
+</ol>
+<h3 id="响应报文分析">响应报文分析</h3>
+<ol type="1">
+<li><strong>查询域名</strong>：<code>www.163.com</code></li>
+<li><strong>响应IP地址</strong>：多个IP地址返回，包括：
+<ul>
+<li><strong>IPv4地址</strong>（A记录）：
+<ul>
+<li>220.181.171.126</li>
+<li>220.181.10.69</li>
+<li>220.181.10.67</li>
+<li>220.181.10.70</li>
+<li>220.181.10.66</li>
+<li>等多个IP地址</li>
+</ul></li>
+<li><strong>CNAME记录</strong>：
+<ul>
+<li><code>www.163.com.163jiasu.com</code></li>
+<li><code>www.163.com.w.kunluncan.com</code></li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="dns协议特性分析">DNS协议特性分析</h2>
+<h3 id="dns使用的端口号">DNS使用的端口号</h3>
+<p>从截图中可以明确看到： - <strong>服务器端口</strong>：53（固定标准端口） - <strong>客户端端口</strong>：随机高位端口（如55570、59624）</p>
+<h3 id="dns使用的传输协议">DNS使用的传输协议</h3>
+<p>截图中可以看到： - <strong>主要使用UDP协议</strong>，因为： - 数据包标识为“User Datagram Protocol” - 相比TCP更快速，适合简短的DNS查询 - 标准DNS查询通常小于512字节，适合UDP传输</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th>DNS特性</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>查询域名</td>
+<td><code>www.163.com</code></td>
+<td>中国网易公司网站</td>
+</tr>
+<tr class="even">
+<td>查询类型</td>
+<td>A 和 AAAA</td>
+<td>分别查询IPv4和IPv6地址</td>
+</tr>
+<tr class="odd">
+<td>客户端端口</td>
+<td>55570、59624等</td>
+<td>随机高位端口</td>
+</tr>
+<tr class="even">
+<td>服务器端口</td>
+<td>53</td>
+<td>DNS标准端口</td>
+</tr>
+<tr class="odd">
+<td>传输协议</td>
+<td>UDP</td>
+<td>无连接、快速、适合短查询</td>
+</tr>
+<tr class="even">
+<td>查询事务ID</td>
+<td>0x8d99、0xaa7c</td>
+<td>确保请求和响应匹配的唯一标识符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>补充说明</strong>：虽然本次抓包显示使用UDP，但DNS协议在某些情况下也会使用TCP： - 当响应大小超过512字节时 - 进行区域传送(AXFR)等操作时 - 需要可靠连接时</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Wireshark/" class="category-chain-item">Wireshark</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Wireshark Homework</div>
+      <div>https://ddccffq.github.io/2025/06/17/计算机网络/Wireshark-Homework/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/12/%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/" title="函数、极限、连续">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">函数、极限、连续</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/" title="Introduction">
+                        <span class="hidden-mobile">Introduction</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
