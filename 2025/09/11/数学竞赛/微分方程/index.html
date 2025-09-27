@@ -278,71 +278,44 @@
                 
                 <h2 id="常见的一阶微分方程的解法">常见的一阶微分方程的解法</h2>
 <ol type="1">
-<li><p>最简单的一阶微分方程形式为 <span class="math inline">\(f(x)
-\text{d}x = g(y) \text{d}y\)</span>，此时等式两端积分即可。</p></li>
-<li><p>齐次方程标准形式如下：<span class="math inline">\(y&#39; =
-f(\frac{y}{x})\)</span>，其中 <span class="math inline">\(f\)</span>
-有连续的导数，此时只需要令 <span class="math inline">\(u =
-\frac{y}{x}\)</span>。</p></li>
-<li><p>伯努利方程的标准形式为 <span class="math inline">\(\frac{\text{d}y}{\text{d}x} + P(x)y = Q(x)
-y^\alpha\)</span>，其中 <span class="math inline">\(P(x)\)</span> 和
-<span class="math inline">\(Q(x)\)</span> 均为连续函数，且 <span class="math inline">\(\alpha \neq 0, 1\)</span>，两端同时除以 <span class="math inline">\(y^\alpha\)</span>，再令 <span class="math inline">\(z = y^{1 - \alpha}\)</span></p></li>
-<li><p>一阶线性方程的标准形式为 <span class="math inline">\(\frac{\text{d}y}{\text{d}x} + P(x)y =
-Q(x)\)</span>，其中 <span class="math inline">\(P(x)\)</span> 和 <span class="math inline">\(Q(x)\)</span> 均为连续函数，该方程的通解为 <span class="math inline">\(y = \text{e}^{-\int P(x) \text{d}x} \bigl(\int
-Q(x) \text{e}^{\int P(x) \text{d}x}\text{d}x + C\bigr)\)</span></p></li>
+<li><p>最简单的一阶微分方程形式为 <span class="math inline">\(f(x) \text{d}x = g(y) \text{d}y\)</span>，此时等式两端积分即可。</p></li>
+<li><p>齐次方程标准形式如下：<span class="math inline">\(y&#39; = f(\frac{y}{x})\)</span>，其中 <span class="math inline">\(f\)</span> 有连续的导数，此时只需要令 <span class="math inline">\(u = \frac{y}{x}\)</span>。</p></li>
+<li><p>伯努利方程的标准形式为 <span class="math inline">\(\frac{\text{d}y}{\text{d}x} + P(x)y = Q(x) y^\alpha\)</span>，其中 <span class="math inline">\(P(x)\)</span> 和 <span class="math inline">\(Q(x)\)</span> 均为连续函数，且 <span class="math inline">\(\alpha \neq 0, 1\)</span>，两端同时除以 <span class="math inline">\(y^\alpha\)</span>，再令 <span class="math inline">\(z = y^{1 - \alpha}\)</span></p></li>
+<li><p>一阶线性方程的标准形式为 <span class="math inline">\(\frac{\text{d}y}{\text{d}x} + P(x)y = Q(x)\)</span>，其中 <span class="math inline">\(P(x)\)</span> 和 <span class="math inline">\(Q(x)\)</span> 均为连续函数，该方程的通解为 <span class="math inline">\(y = \text{e}^{-\int P(x) \text{d}x} \bigl(\int Q(x) \text{e}^{\int P(x) \text{d}x}\text{d}x + C\bigr)\)</span></p></li>
 <li><p>凑全微分需要技巧</p></li>
 </ol>
 <h2 id="高阶微分方程">高阶微分方程</h2>
 <ol type="1">
-<li>有些高阶微分方程可以降阶，比如 <span class="math inline">\(F(x,
-y&#39;, y&#39;&#39;)\)</span> 和 <span class="math inline">\(F(y
-,y&#39;, y&#39;&#39;)\)</span></li>
+<li>有些高阶微分方程可以降阶，比如 <span class="math inline">\(F(x, y&#39;, y&#39;&#39;)\)</span> 和 <span class="math inline">\(F(y ,y&#39;, y&#39;&#39;)\)</span></li>
 </ol>
 <h2 id="常系数高阶线性微分方程">常系数高阶线性微分方程</h2>
 <h3 id="齐次线性微分方程">齐次线性微分方程</h3>
-<p>标准形式：<span class="math inline">\(y^{(n)} + a_1 y^{(n-1)} +
-\cdots + a_{n-1} y&#39; + a_n y = 0\)</span></p>
+<p>标准形式：<span class="math inline">\(y^{(n)} + a_1 y^{(n-1)} + \cdots + a_{n-1} y&#39; + a_n y = 0\)</span></p>
 <ol type="1">
-<li><p><strong>特征方程法</strong>：令 <span class="math inline">\(I(\lambda) = \lambda^n + a_1 \lambda^{n - 1} +
-\cdots + a_{n - 1} \lambda + a_n = 0\)</span>，解出所有特征根</p></li>
+<li><p><strong>特征方程法</strong>：令 <span class="math inline">\(I(\lambda) = \lambda^n + a_1 \lambda^{n - 1} + \cdots + a_{n - 1} \lambda + a_n = 0\)</span>，解出所有特征根</p></li>
 <li><p><strong>根据特征根类型构造通解</strong>：</p>
 <ul>
 <li><p><strong>单实根</strong> <span class="math inline">\(\lambda\)</span>：对应解为 <span class="math inline">\(C e^{\lambda x}\)</span></p></li>
-<li><p><strong><span class="math inline">\(k\)</span> 重实根</strong>
-<span class="math inline">\(\lambda\)</span>：对应解为 <span class="math inline">\((C_1 + C_2 x + \cdots + C_k x^{k-1}) e^{\lambda
-x}\)</span></p></li>
-<li><p><strong>单复根</strong> <span class="math inline">\(\alpha \pm
-\beta i\)</span>：对应解为 <span class="math inline">\(e^{\alpha x}(C_1
-\cos \beta x + C_2 \sin \beta x)\)</span></p></li>
-<li><p><strong><span class="math inline">\(k\)</span> 重复根</strong>
-<span class="math inline">\(\alpha \pm \beta i\)</span>：对应解为 <span class="math inline">\(e^{\alpha x}[(C_1 + C_2 x + \cdots + C_k x^{k-1})
-\cos \beta x + (D_1 + D_2 x + \cdots + D_k x^{k-1}) \sin \beta
-x]\)</span></p></li>
+<li><p><strong><span class="math inline">\(k\)</span> 重实根</strong> <span class="math inline">\(\lambda\)</span>：对应解为 <span class="math inline">\((C_1 + C_2 x + \cdots + C_k x^{k-1}) e^{\lambda x}\)</span></p></li>
+<li><p><strong>单复根</strong> <span class="math inline">\(\alpha \pm \beta i\)</span>：对应解为 <span class="math inline">\(e^{\alpha x}(C_1 \cos \beta x + C_2 \sin \beta x)\)</span></p></li>
+<li><p><strong><span class="math inline">\(k\)</span> 重复根</strong> <span class="math inline">\(\alpha \pm \beta i\)</span>：对应解为 <span class="math inline">\(e^{\alpha x}[(C_1 + C_2 x + \cdots + C_k x^{k-1}) \cos \beta x + (D_1 + D_2 x + \cdots + D_k x^{k-1}) \sin \beta x]\)</span></p></li>
 </ul></li>
 </ol>
 <h3 id="非齐次线性微分方程">非齐次线性微分方程</h3>
-<p>标准形式：<span class="math inline">\(y^{(n)} + a_1 y^{(n-1)} +
-\cdots + a_{n-1} y&#39; + a_n y = f(x)\)</span></p>
-<p><strong>通解</strong> = <strong>齐次方程通解</strong> +
-<strong>非齐次方程特解</strong></p>
+<p>标准形式：<span class="math inline">\(y^{(n)} + a_1 y^{(n-1)} + \cdots + a_{n-1} y&#39; + a_n y = f(x)\)</span></p>
+<p><strong>通解</strong> = <strong>齐次方程通解</strong> + <strong>非齐次方程特解</strong></p>
 <ol type="1">
 <li><p><strong>特解的求法</strong>（待定系数法）：</p>
 <ul>
-<li><strong><span class="math inline">\(f(x) = P_m(x) e^{\alpha
-x}\)</span></strong> 型：
+<li><strong><span class="math inline">\(f(x) = P_m(x) e^{\alpha x}\)</span></strong> 型：
 <ul>
-<li>若 <span class="math inline">\(\alpha\)</span> 不是特征根，设特解
-<span class="math inline">\(y^* = Q_m(x) e^{\alpha x}\)</span></li>
+<li>若 <span class="math inline">\(\alpha\)</span> 不是特征根，设特解 <span class="math inline">\(y^* = Q_m(x) e^{\alpha x}\)</span></li>
 <li>若 <span class="math inline">\(\alpha\)</span> 是 <span class="math inline">\(k\)</span> 重特征根，设特解 <span class="math inline">\(y^* = x^k Q_m(x) e^{\alpha x}\)</span></li>
 </ul></li>
-<li><strong><span class="math inline">\(f(x) = e^{\alpha x}[P_l(x) \cos
-\beta x + P_m(x) \sin \beta x]\)</span></strong> 型：
+<li><strong><span class="math inline">\(f(x) = e^{\alpha x}[P_l(x) \cos \beta x + P_m(x) \sin \beta x]\)</span></strong> 型：
 <ul>
-<li>若 <span class="math inline">\(\alpha \pm \beta i\)</span>
-不是特征根，设特解 <span class="math inline">\(y^* = e^{\alpha x}[Q_n(x)
-\cos \beta x + R_n(x) \sin \beta x]\)</span></li>
-<li>若 <span class="math inline">\(\alpha \pm \beta i\)</span> 是 <span class="math inline">\(k\)</span> 重特征根，设特解 <span class="math inline">\(y^* = x^k e^{\alpha x}[Q_n(x) \cos \beta x +
-R_n(x) \sin \beta x]\)</span></li>
+<li>若 <span class="math inline">\(\alpha \pm \beta i\)</span> 不是特征根，设特解 <span class="math inline">\(y^* = e^{\alpha x}[Q_n(x) \cos \beta x + R_n(x) \sin \beta x]\)</span></li>
+<li>若 <span class="math inline">\(\alpha \pm \beta i\)</span> 是 <span class="math inline">\(k\)</span> 重特征根，设特解 <span class="math inline">\(y^* = x^k e^{\alpha x}[Q_n(x) \cos \beta x + R_n(x) \sin \beta x]\)</span></li>
 </ul>
 其中 <span class="math inline">\(n = \max\{l, m\}\)</span>，<span class="math inline">\(Q_n(x)\)</span>，<span class="math inline">\(R_n(x)\)</span> 是 <span class="math inline">\(n\)</span> 次多项式</li>
 </ul></li>
@@ -350,8 +323,7 @@ R_n(x) \sin \beta x]\)</span></li>
 <ol type="1">
 <li>写出特征方程并求解特征根</li>
 <li>根据特征根写出齐次方程的通解</li>
-<li>根据 <span class="math inline">\(f(x)\)</span>
-的形式设特解并求出</li>
+<li>根据 <span class="math inline">\(f(x)\)</span> 的形式设特解并求出</li>
 <li>写出非齐次方程的通解</li>
 </ol></li>
 </ol>

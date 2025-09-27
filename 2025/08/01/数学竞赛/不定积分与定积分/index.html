@@ -27,7 +27,7 @@
 <meta property="og:description" content="基本积分公式  \[ \int \frac{1}{x^2 + a^2} \text{d} x &#x3D; \frac{1}{a} \arctan \frac{x}{a} + C \] \[ \int \frac{1}{x^2 - a^2} \text{d} x &#x3D; \frac{1}{2a} \ln \biggl | \frac{x - a}{x + a} \biggr | + C \] \[ \int \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-01T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-14T09:08:47.006Z">
+<meta property="article:modified_time" content="2025-09-26T03:05:11.848Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          3.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          12 分钟
+          28 分钟
         
       </span>
     
@@ -279,27 +279,22 @@
                 <h2 id="基本积分公式">基本积分公式</h2>
 <ol type="1">
 <li><p><span class="math display">\[
-\int \frac{1}{x^2 + a^2} \text{d} x = \frac{1}{a} \arctan \frac{x}{a} +
-C
+\int \frac{1}{x^2 + a^2} \text{d} x = \frac{1}{a} \arctan \frac{x}{a} + C
 \]</span></p></li>
 <li><p><span class="math display">\[
-\int \frac{1}{x^2 - a^2} \text{d} x = \frac{1}{2a} \ln \biggl | \frac{x
-- a}{x + a} \biggr | + C
+\int \frac{1}{x^2 - a^2} \text{d} x = \frac{1}{2a} \ln \biggl | \frac{x - a}{x + a} \biggr | + C
 \]</span></p></li>
 <li><p><span class="math display">\[
 \int \frac{1}{\sqrt{a^2 - x^2}} \text{d} x = \arcsin \frac{x}{a} + C
 \]</span></p></li>
 <li><p><span class="math display">\[
-\int \frac{1}{\sqrt{x^2 \pm a^2}} \text{d} x = \ln \bigl | x + \sqrt{x^2
-\pm a^2} \bigr | + C
+\int \frac{1}{\sqrt{x^2 \pm a^2}} \text{d} x = \ln \bigl | x + \sqrt{x^2 \pm a^2} \bigr | + C
 \]</span></p></li>
 <li><p><span class="math display">\[
-\int \sqrt{a^2 - x^2} \text{d} x = \frac{1}{2} \bigl (x\sqrt{a^2 - x^2}
-+ a^2 \arcsin \frac{x}{a} \bigr) + C
+\int \sqrt{a^2 - x^2} \text{d} x = \frac{1}{2} \bigl (x\sqrt{a^2 - x^2} + a^2 \arcsin \frac{x}{a} \bigr) + C
 \]</span></p></li>
 <li><p><span class="math display">\[
-\int \sqrt{x^2 \pm a^2} \text{d} x = \frac{1}{2} \bigl ( x\sqrt{x^2 \pm
-a^2} \pm a^2 \ln \bigl| x + x \sqrt{x^2 \pm a^2} \bigr| \bigr) + C
+\int \sqrt{x^2 \pm a^2} \text{d} x = \frac{1}{2} \bigl ( x\sqrt{x^2 \pm a^2} \pm a^2 \ln \bigl| x + x \sqrt{x^2 \pm a^2} \bigr| \bigr) + C
 \]</span></p></li>
 <li><p><span class="math display">\[
 \int \sec x \text{d} x = \ln |\sec x + \tan x| + C
@@ -342,59 +337,39 @@ a^2} \pm a^2 \ln \bigl| x + x \sqrt{x^2 \pm a^2} \bigr| \bigr) + C
 <ol type="1">
 <li><p>两种最简分式形式</p>
 <ol type="1">
-<li><span class="math display">\[ \int \frac{1}{(x - a)^k} \text{d} x
-\]</span></li>
-<li><span class="math display">\[ \int \frac{Ax + B}{(x^2 + px + q)^k}
-\text{d} x \ (p^2 - 4q &lt; 0)\]</span></li>
+<li><span class="math display">\[ \int \frac{1}{(x - a)^k} \text{d} x \]</span></li>
+<li><span class="math display">\[ \int \frac{Ax + B}{(x^2 + px + q)^k} \text{d} x \ (p^2 - 4q &lt; 0)\]</span></li>
 </ol></li>
 <li><p>对于积分 <span class="math display">\[
 \int \frac{\text{d} x}{(x^2 + r^2)^k} = I_k
 \]</span></p>
 <p>有递推公式： <span class="math display">\[
-I_k = \frac{1}{2(k - 1)r^2}(\frac{t}{(t^2 + r^2)^{k - 1}} + (2k - 3)I_{k
-- 1})
+I_k = \frac{1}{2(k - 1)r^2}(\frac{t}{(t^2 + r^2)^{k - 1}} + (2k - 3)I_{k - 1})
 \]</span></p></li>
 <li><p>特例 <span class="math display">\[
-\int \frac{1}{(x^2 + a^2)^2} \text{d} x = \frac{1}{2a^3} \biggl( \arctan
-\frac{x}{a}  + \frac{ax}{x^2 + a^2}\biggr) + C
+\int \frac{1}{(x^2 + a^2)^2} \text{d} x = \frac{1}{2a^3} \biggl( \arctan \frac{x}{a}  + \frac{ax}{x^2 + a^2}\biggr) + C
 \]</span></p></li>
 </ol>
 <h2 id="三角函数有理式积分">三角函数有理式积分</h2>
 <ol type="1">
-<li><p>通解：<span class="math inline">\(t = \tan
-\frac{x}{2}\)</span></p></li>
-<li><p>若 <span class="math inline">\(R(\sin x, -\cos x) = -R(\sin x,
-\cos x)\)</span>，令 <span class="math inline">\(t = \sin
-x\)</span>。</p></li>
-<li><p>若 <span class="math inline">\(R(-\sin x, \cos x) = -R(\sin x,
-\cos x)\)</span>，令 <span class="math inline">\(t = \cos
-x\)</span>。</p></li>
-<li><p>若 <span class="math inline">\(R(-\sin x, -\cos x) = R(\sin x,
-\cos x)\)</span>，令 <span class="math inline">\(t = \tan
-x\)</span>。</p></li>
-<li><p><span class="math inline">\(I_n = \int \tan^n x \text{d} x =
-\frac{\tan^{n - 1} x}{n - 1} - I_{n - 2}\)</span></p></li>
-<li><p><span class="math inline">\(I_n = \int \sin^n x \text{d} x =
--\frac{\sin^{n - 1} \cos x}{n} + \frac{n - 1}{n} I_{n -
-2}\)</span></p></li>
+<li><p>通解：<span class="math inline">\(t = \tan \frac{x}{2}\)</span></p></li>
+<li><p>若 <span class="math inline">\(R(\sin x, -\cos x) = -R(\sin x, \cos x)\)</span>，令 <span class="math inline">\(t = \sin x\)</span>。</p></li>
+<li><p>若 <span class="math inline">\(R(-\sin x, \cos x) = -R(\sin x, \cos x)\)</span>，令 <span class="math inline">\(t = \cos x\)</span>。</p></li>
+<li><p>若 <span class="math inline">\(R(-\sin x, -\cos x) = R(\sin x, \cos x)\)</span>，令 <span class="math inline">\(t = \tan x\)</span>。</p></li>
+<li><p><span class="math inline">\(I_n = \int \tan^n x \text{d} x = \frac{\tan^{n - 1} x}{n - 1} - I_{n - 2}\)</span></p></li>
+<li><p><span class="math inline">\(I_n = \int \sin^n x \text{d} x = -\frac{\sin^{n - 1} \cos x}{n} + \frac{n - 1}{n} I_{n - 2}\)</span></p></li>
 </ol>
 <h2 id="三角函数代换法">三角函数代换法</h2>
 <ol type="1">
-<li><p>若积分形式为$ R(x, ) x$，则令 <span class="math inline">\(x =
-a\sin t\)</span></p></li>
-<li><p>若积分形式为$ R(x, ) x$，则令 <span class="math inline">\(x =
-a\tan t\)</span></p></li>
-<li><p>若积分形式为$ R(x, ) x$，则令 <span class="math inline">\(x =
-a\sec t\)</span></p></li>
+<li><p>若积分形式为$ R(x, )  x$，则令 <span class="math inline">\(x = a\sin t\)</span></p></li>
+<li><p>若积分形式为$ R(x, )  x$，则令 <span class="math inline">\(x = a\tan t\)</span></p></li>
+<li><p>若积分形式为$ R(x, )  x$，则令 <span class="math inline">\(x = a\sec t\)</span></p></li>
 </ol>
 <h2 id="某些根式的换元法">某些根式的换元法</h2>
 <ol type="1">
-<li><p>若积分形式为$ R(x, ) x$，则令 <span class="math inline">\(u =
-\sqrt[n]{ax + b}\)</span></p></li>
-<li><p>若积分形式为$ R(x, ) x$，则令 <span class="math inline">\(u =
-\sqrt[n]{\frac{ax + b}{cx + d}}\)</span></p></li>
-<li><p>若积分形式为$ R(, ) x$，则令 <span class="math inline">\(x =
-u^{n}\)</span></p></li>
+<li><p>若积分形式为$ R(x, )  x$，则令 <span class="math inline">\(u = \sqrt[n]{ax + b}\)</span></p></li>
+<li><p>若积分形式为$ R(x, )  x$，则令 <span class="math inline">\(u = \sqrt[n]{\frac{ax + b}{cx + d}}\)</span></p></li>
+<li><p>若积分形式为$ R(, )  x$，则令 <span class="math inline">\(x = u^{n}\)</span></p></li>
 </ol>
 <h2 id="可积性">可积性</h2>
 <ol type="1">
@@ -404,19 +379,13 @@ u^{n}\)</span></p></li>
 </ol>
 <h2 id="定积分的性质">定积分的性质</h2>
 <ol type="1">
-<li><p>积分恒等性：设函数 <span class="math inline">\(f(x)\)</span>，<span class="math inline">\(g(x)\)</span> 在区间 <span class="math inline">\([a, b]\)</span> 上连续，且恒有 <span class="math inline">\(f(x) \leq g(x)\)</span>。若 <span class="math inline">\(\int_{a}^{b} f(x) \text{d} x = \int_{a}^{b} g(x)
-\text{d} x\)</span>，则在 <span class="math inline">\([a, b]\)</span> 上
-<span class="math inline">\(f(x) \equiv g(x)\)</span></p></li>
-<li><p>积分中值定理：设函数 <span class="math inline">\(f(x)\)</span>
-在区间 <span class="math inline">\([a, b]\)</span> 上连续，<span class="math inline">\(g(x)\)</span> 在 <span class="math inline">\([a,
-b]\)</span> 上可积且不变号，则至少存在一点 <span class="math inline">\(\xi \in [a, b]\)</span>，使得 <span class="math inline">\(\int_{a}^{b} f(x) g(x) \text{d} x = f(\xi)
-\int_{a}^{b} g(x) \text{d} x\)</span></p></li>
+<li><p>积分恒等性：设函数 <span class="math inline">\(f(x)\)</span>，<span class="math inline">\(g(x)\)</span> 在区间 <span class="math inline">\([a, b]\)</span> 上连续，且恒有 <span class="math inline">\(f(x) \leq g(x)\)</span>。若 <span class="math inline">\(\int_{a}^{b} f(x) \text{d} x = \int_{a}^{b} g(x) \text{d} x\)</span>，则在 <span class="math inline">\([a, b]\)</span> 上 <span class="math inline">\(f(x) \equiv g(x)\)</span></p></li>
+<li><p>积分中值定理：设函数 <span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\([a, b]\)</span> 上连续，<span class="math inline">\(g(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 上可积且不变号，则至少存在一点 <span class="math inline">\(\xi \in [a, b]\)</span>，使得 <span class="math inline">\(\int_{a}^{b} f(x) g(x) \text{d} x = f(\xi) \int_{a}^{b} g(x) \text{d} x\)</span></p></li>
 </ol>
 <h2 id="定积分简化运算">定积分简化运算</h2>
 <ol type="1">
 <li><p>设 <span class="math inline">\(n\)</span> 为自然数，则有 <span class="math display">\[
-I_n = \int_{0}^{\frac{\pi}{2}} \sin^n x \text{d} x =
-\int_{0}^{\frac{\pi}{2}} \cos^n x \text{d} x
+I_n = \int_{0}^{\frac{\pi}{2}} \sin^n x \text{d} x = \int_{0}^{\frac{\pi}{2}} \cos^n x \text{d} x
 \]</span></p>
 <p>并有递推公式 <span class="math display">\[
 I_n = \frac{n - 1}{n} I_{n - 2}
@@ -427,71 +396,51 @@ I_n = \frac{n - 1}{n} I_{n - 2}
 <p>和 <span class="math display">\[
 \int_{\frac{\pi}{2} k_1}^{\frac{\pi}{2} k_2} \cos^2 nx \text{d} x
 \]</span></p></li>
-<li><p>正交性 以三角函数为例子，函数的集合 <span class="math inline">\(F
-= \{1, \cos x, \sin x, \cos 2x, \sin 2x, \cdots
-\}\)</span>，任取其中的两个函数相乘，乘积在区间 <span class="math inline">\([0, 2\pi]\)</span> 上的积分为零。</p></li>
+<li><p>正交性 以三角函数为例子，函数的集合 <span class="math inline">\(F = \{1, \cos x, \sin x, \cos 2x, \sin 2x, \cdots \}\)</span>，任取其中的两个函数相乘，乘积在区间 <span class="math inline">\([0, 2\pi]\)</span> 上的积分为零。</p></li>
 </ol>
 <h2 id="广义积分">广义积分</h2>
 <h3 id="重要的判定方法">重要的判定方法</h3>
 <h4 id="比较判定法">1. 比较判定法</h4>
-<p>设 <span class="math inline">\(0 \leq f(x) \leq g(x)\)</span> 在
-<span class="math inline">\([a, +\infty)\)</span> 上成立：</p>
+<p>设 <span class="math inline">\(0 \leq f(x) \leq g(x)\)</span> 在 <span class="math inline">\([a, +\infty)\)</span> 上成立：</p>
 <ul>
-<li>若 <span class="math inline">\(\int_a^{+\infty} g(x)
-\text{d}x\)</span> 收敛，则 <span class="math inline">\(\int_a^{+\infty}
-f(x) \text{d}x\)</span> 收敛</li>
-<li>若 <span class="math inline">\(\int_a^{+\infty} f(x)
-\text{d}x\)</span> 发散，则 <span class="math inline">\(\int_a^{+\infty}
-g(x) \text{d}x\)</span> 发散</li>
+<li>若 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 收敛，则 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 收敛</li>
+<li>若 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 发散，则 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 发散</li>
 </ul>
 <h4 id="极限判定法">2. 极限判定法</h4>
-<p>设 <span class="math inline">\(f(x) \geq 0\)</span>，<span class="math inline">\(g(x) &gt; 0\)</span>，且 <span class="math inline">\(\lim_{x \to +\infty} \frac{f(x)}{g(x)} =
-l\)</span>：</p>
+<p>设 <span class="math inline">\(f(x) \geq 0\)</span>，<span class="math inline">\(g(x) &gt; 0\)</span>，且 <span class="math inline">\(\lim_{x \to +\infty} \frac{f(x)}{g(x)} = l\)</span>：</p>
 <ul>
-<li>若 <span class="math inline">\(0 &lt; l &lt; +\infty\)</span>，则
-<span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 与
-<span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span>
-同敛散</li>
-<li>若 <span class="math inline">\(l = 0\)</span> 且 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 收敛，则
-<span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span>
-收敛</li>
-<li>若 <span class="math inline">\(l = +\infty\)</span> 且 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 发散，则
-<span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span>
-发散</li>
+<li>若 <span class="math inline">\(0 &lt; l &lt; +\infty\)</span>，则 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 与 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 同敛散</li>
+<li>若 <span class="math inline">\(l = 0\)</span> 且 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 收敛，则 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 收敛</li>
+<li>若 <span class="math inline">\(l = +\infty\)</span> 且 <span class="math inline">\(\int_a^{+\infty} g(x) \text{d}x\)</span> 发散，则 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 发散</li>
 </ul>
 <h3 id="常用的标准广义积分">常用的标准广义积分</h3>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
-
 <thead>
-<tr>
+<tr class="header">
 <th>积分</th>
 <th>收敛条件</th>
 <th>结果</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><span class="math inline">\(\int_1^{+\infty} \frac{1}{x^p}
-\text{d}x\)</span></td>
+<tr class="odd">
+<td><span class="math inline">\(\int_1^{+\infty} \frac{1}{x^p} \text{d}x\)</span></td>
 <td><span class="math inline">\(p &gt; 1\)</span></td>
 <td><span class="math inline">\(\frac{1}{p-1}\)</span></td>
 </tr>
-<tr>
-<td><span class="math inline">\(\int_0^1 \frac{1}{x^p}
-\text{d}x\)</span></td>
+<tr class="even">
+<td><span class="math inline">\(\int_0^1 \frac{1}{x^p} \text{d}x\)</span></td>
 <td><span class="math inline">\(p &lt; 1\)</span></td>
 <td><span class="math inline">\(\frac{1}{1-p}\)</span></td>
 </tr>
-<tr>
-<td><span class="math inline">\(\int_0^{+\infty} e^{-ax}
-\text{d}x\)</span></td>
+<tr class="odd">
+<td><span class="math inline">\(\int_0^{+\infty} e^{-ax} \text{d}x\)</span></td>
 <td><span class="math inline">\(a &gt; 0\)</span></td>
 <td><span class="math inline">\(\frac{1}{a}\)</span></td>
 </tr>
-<tr>
-<td><span class="math inline">\(\int_{-\infty}^{+\infty} e^{-x^2}
-\text{d}x\)</span></td>
+<tr class="even">
+<td><span class="math inline">\(\int_{-\infty}^{+\infty} e^{-x^2} \text{d}x\)</span></td>
 <td>总是收敛</td>
 <td><span class="math inline">\(\sqrt{\pi}\)</span></td>
 </tr>
@@ -500,19 +449,12 @@ l\)</span>：</p>
 </div>
 <h3 id="特殊的广义积分">特殊的广义积分</h3>
 <ol type="1">
-<li>伽马函数 <span class="math inline">\(\Gamma(s) = \int_{0}^{+\infty}
-x^{s - 1} \text{e}^{-x} \text{d} x(s &gt; 0)\)</span>，递推公式 <span class="math inline">\(\Gamma(s + 1) =
-s\Gamma(s)\)</span>，对于任意正整数 <span class="math inline">\(n\)</span> 有 <span class="math inline">\(\Gamma(n
-+ 1) = n!\)</span></li>
+<li>伽马函数 <span class="math inline">\(\Gamma(s) = \int_{0}^{+\infty} x^{s - 1} \text{e}^{-x} \text{d} x(s &gt; 0)\)</span>，递推公式 <span class="math inline">\(\Gamma(s + 1) = s\Gamma(s)\)</span>，对于任意正整数 <span class="math inline">\(n\)</span> 有 <span class="math inline">\(\Gamma(n + 1) = n!\)</span></li>
 </ol>
 <h3 id="绝对收敛与条件收敛">绝对收敛与条件收敛</h3>
 <ul>
-<li><strong>绝对收敛</strong>：如果 <span class="math inline">\(\int_a^{+\infty} |f(x)| \text{d}x\)</span>
-收敛，则称 <span class="math inline">\(\int_a^{+\infty} f(x)
-\text{d}x\)</span> <strong>绝对收敛</strong></li>
-<li><strong>条件收敛</strong>：如果 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 收敛但
-<span class="math inline">\(\int_a^{+\infty} |f(x)| \text{d}x\)</span>
-发散，则称原积分<strong>条件收敛</strong></li>
+<li><strong>绝对收敛</strong>：如果 <span class="math inline">\(\int_a^{+\infty} |f(x)| \text{d}x\)</span> 收敛，则称 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> <strong>绝对收敛</strong></li>
+<li><strong>条件收敛</strong>：如果 <span class="math inline">\(\int_a^{+\infty} f(x) \text{d}x\)</span> 收敛但 <span class="math inline">\(\int_a^{+\infty} |f(x)| \text{d}x\)</span> 发散，则称原积分<strong>条件收敛</strong></li>
 </ul>
 <h2 id="重要公式">重要公式</h2>
 <ol type="1">
@@ -520,8 +462,7 @@ s\Gamma(s)\)</span>，对于任意正整数 <span class="math inline">\(n\)</spa
 \arctan \text{e}^x + \arctan \text{e}^{-x} \equiv \frac{\pi}{2}
 \]</span></p></li>
 <li><p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\([0, 1]\)</span> 上连续，有如下公式： <span class="math display">\[
-\int_{0}^{\pi} x f(\sin x) \text{d} x = \frac{\pi}{2} \int_{0}^{\pi}
-f(\sin x) \text{d} x
+\int_{0}^{\pi} x f(\sin x) \text{d} x = \frac{\pi}{2} \int_{0}^{\pi} f(\sin x) \text{d} x
 \]</span></p>
 <blockquote>
 <p>证明过程只需要令 <span class="math inline">\(x = \pi - u\)</span></p>
@@ -536,16 +477,292 @@ f(\sin x) \text{d} x
 \]</span></p>
 </blockquote>
 <p><span class="math display">\[
-\int \frac{\text{d} x}{x^4 + 1} = \frac{1}{2} \int \frac{1 +
-\frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \text{d}x - \frac{1}{2} \int \frac{1
-- \frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \text{d} x = \frac{1}{2} \int
-\frac{\text{d}(x - \frac{1}{x})}{(x - \frac{1}{x})^2 + 2} -\frac{1}{2}
-\int \frac{\text{d} (x + \frac{1}{x})}{(x + \frac{1}{x})^2 - 2}
+\int \frac{\text{d} x}{x^4 + 1} = \frac{1}{2} \int \frac{1 + \frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \text{d}x - \frac{1}{2} \int \frac{1 - \frac{1}{x^2}}{x^2 + \frac{1}{x^2}} \text{d} x = \frac{1}{2} \int \frac{\text{d}(x - \frac{1}{x})}{(x - \frac{1}{x})^2 + 2} -\frac{1}{2} \int \frac{\text{d} (x + \frac{1}{x})}{(x + \frac{1}{x})^2 - 2}
 \]</span></p>
 <p>最终结果为： <span class="math display">\[
-\frac{1}{2 \sqrt{2}} \arctan \frac{x^2 - 1}{\sqrt{2} x} - \frac{1}{4
-\sqrt{2}} \ln \biggl | \frac{x^2 - \sqrt{2} x + 1}{x^2 + \sqrt{2} x + 1}
-\biggr | + C
+\frac{1}{2 \sqrt{2}} \arctan \frac{x^2 - 1}{\sqrt{2} x} - \frac{1}{4 \sqrt{2}} \ln \biggl | \frac{x^2 - \sqrt{2} x + 1}{x^2 + \sqrt{2} x + 1} \biggr | + C
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(y = f(x)\)</span> 是由方程 <span class="math inline">\(y^2(x - y) = x^2\)</span> 所确定的隐函数，求 <span class="math inline">\(\int \frac{1}{y^2} \text{d}x\)</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(y = ux\)</span>，得</p>
+<p><span class="math display">\[
+\begin{align*}
+u^2x^2(x - ux) &amp;= x^2
+\\
+u^2(x - ux) &amp;= 1
+\\
+x &amp;= \frac{1}{u^2(1 - u)}
+\end{align*}
+\]</span></p>
+<p>原式：</p>
+<p><span class="math display">\[
+\begin{align*}
+\int \frac{1}{u^2x^2} \text{d}x = \int u^2(1 - u)^2 \frac{3u^2 - 2u}{u^4(1 - u)^2} \text{d}u = \int (3 - \frac{2}{u}) \text{d} u = \frac{3y}{x} - 2 \ln {\frac{y}{x}} + C
+\end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p>反函数的不定积分 设 <span class="math inline">\(f(x)\)</span> 可导且单调，<span class="math inline">\(f^{-1}(x)\)</span> 是 <span class="math inline">\(f(x)\)</span> 的反函数。已知</p>
+<p><span class="math display">\[
+\int f(x) \text{d}x = F(x) + C
+\]</span></p>
+<p>求 <span class="math inline">\(\int f^{-1}(x) \text{d}x\)</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(y = f(x)\)</span>，则 <span class="math inline">\(x = f^{-1}(y)\)</span>，带入原式得到：</p>
+<p><span class="math display">\[
+\begin{align*}
+\int y \text{d} f^{-1}(y) &amp;= F(f^{-1}(y)) + C
+\\
+yf^{-1}(y) - \int f^{-1}(y) \text{d}y &amp;= F(f^{-1}(y)) + C
+\end{align*}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+\int f^{-1}(x) \text{d}x = xf^{-1}(x) - F(f^{-1}(x)) + C
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x) = \begin{cases}1, &amp;x &lt; 0 \\ x + 1, &amp;0 \leq x \leq 1 \\ 2x, &amp;x &gt; 1 \end{cases}\)</span>，<span class="math inline">\(F(x)\)</span> 是 <span class="math inline">\(f(x)\)</span> 的一个原函数，满足 <span class="math inline">\(F(0) = 0\)</span>，求 <span class="math inline">\(F(x)\)</span> 的表达式。</p>
+</blockquote>
+<p><span class="math display">\[
+F(x) =
+\begin{cases}
+x, &amp;x &lt; 0
+\\
+\frac{1}{2}x^2 + x, &amp;0 \leq x \leq 1
+\\
+x^2 + \frac{1}{2}, &amp;x &gt; 1
+\end{cases}
+\]</span></p></li>
+<li><blockquote>
+<p>设正整数 <span class="math inline">\(n \geq 2\)</span>，求下列积分的递推公式</p>
+<p>(1). <span class="math display">\[
+\int \tan^n \text{d}x
+\]</span></p>
+<p>(2). <span class="math display">\[
+\int \sin^n \text{d}x
+\]</span></p>
+</blockquote>
+<p>(1). <span class="math display">\[
+\int \tan^n \text{d}x = \int \frac{1 - \cos^2 x}{\cos^2 x} \tan^{n - 2} \text{d}x = \frac{\tan^{n - 1}}{n - 1} - \int \tan^{n - 2} x \text{d}x
+\]</span></p>
+<p>(2). <span class="math display">\[
+\int \sin^n x \text{d}x = \int - \sin^{n - 1} \text{d} \cos x = \frac{- \sin^{n - 1} \cos x}{n} + \frac{n - 1}{n} \int \sin^{n - 2} x \text{d} x
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int \sin^{2} x \cos^{4} x \text{d} x
+\]</span> 对于形如 <span class="math inline">\(\int \cos^{m} x \sin^{n} x \text{d} x\)</span> 的积分通常不用万能代换公式化为有理函数积分。积分会退化为对高次有理函数的极其繁琐的部分分式运算。</p>
+</blockquote>
+<p>令 <span class="math inline">\(t = \tan x\)</span>，原式：</p>
+<p><span class="math display">\[
+\begin{align*}
+\int \sin^2 x \cos^4 x \text{d}x &amp;= \int \frac{1}{8} \sin^2 2x (\cos 2x + 1) \text{d}x = \frac{1}{16} \int \sin^2 2x \text{d} \sin 2x + \frac{1}{8} \int \sin^2 2x \text{d}x
+\\
+&amp;= \frac{1}{48} \sin^3 2x + \frac{1}{16} x - \frac{1}{64} \sin 4x + C
+\end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p>求不定积分</p>
+<p><span class="math display">\[
+\int \frac{1}{\sin^3 x + \cos^3 x} \text{d}x
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align*}
+\int \frac{1}{\sin^3 x + \cos^3 x} \text{d}x &amp;= \int \frac{1}{(\sin x+ \cos x)(\sin^2 x - \sin x \cos x + \cos^2 x)} \text{d}x
+\\
+&amp;= \int \frac{1}{\sqrt{2}\sin (x + \frac{\pi}{4}) [(\sqrt{2} \cos (x + \frac{\pi}{4}))^2 + \sin x \cos x]} \text{d}x
+\\
+&amp;= \int \frac{1}{\sqrt{2}\sin (x + \frac{\pi}{4}) \bigl[ (\sqrt{2} \cos (x + \frac{\pi}{4}))^2 + \frac{1}{2}[\sin (x + \frac{\pi}{4}) - \cos (x + \frac{\pi}{4})][\sin (x + \frac{\pi}{4}) + \cos (x + \frac{\pi}{4})] \bigr]} \text{d}x
+\\
+&amp;= \int \frac{1}{\sqrt{2}\sin (x + \frac{\pi}{4}) (\sqrt{2} \cos (x + \frac{\pi}{4}))^2 + \frac{1}{2} \bigl[\sin^2 (x + \frac{\pi}{4}) - \cos^2 (x + \frac{\pi}{4}) \bigr]} \text{d}x
+\\
+&amp;= \int \frac{-1}{\sqrt{2}\bigl(1 - \cos^2 (x + \frac{\pi}{4})\bigr) \bigl(\frac{1}{2} +  \cos^2 (x + \frac{\pi}{4})\bigr)} \text{d} \cos (x + \frac{\pi}{4})
+\end{align*}
+\]</span></p>
+<p>令 <span class="math inline">\(t = \cos (x + \frac{\pi}{4})\)</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\int &amp;= \frac{-1}{\sqrt{2}} \int \frac{1}{1 - t^2}\frac{1}{\frac{1}{2} + t^2} \text{d} t
+\\
+&amp;= \frac{-2}{3\sqrt{2}} \int \frac{1}{1 - t^2} + \frac{1}{\frac{1}{2} + t^2} \text{d} t
+\\
+&amp;= \frac{1}{3\sqrt{2}} \ln \biggl|\frac{t - 1}{t + 1}\biggr| - \frac{2}{3} \arctan(\sqrt{2} t) + C
+\end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p>求不定积分</p>
+<p><span class="math display">\[
+\int \frac{\text{d} x}{(x + 1)^3 \sqrt{x^2 + 2x}}
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(x + 1 = \frac{1}{t}\)</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\int \frac{\text{d} x}{(x + 1)^3 \sqrt{x^2 + 2x}} &amp;= \int \frac{\frac{-1}{t^2}}{(\frac{1}{t^3} \sqrt{(\frac{1}{t^2}) - 1})} \text{d} t
+\\
+&amp;=  \int \frac{1 - t^2}{\sqrt{1 - t^2}} \text{d} t - \int \frac{1}{\sqrt{1 - t^2}} \text{d} t
+\\
+&amp;= \int \sqrt{1 - t^2} \text{d} t - \arcsin t + C
+\\
+&amp;= \frac{1}{2} t \sqrt{1 - t^2} - \frac{1}{2} \arcsin t + C
+\\
+&amp;= \frac{\sqrt{x^2 + 2x}}{2(x + 1)^2} - \frac{1}{2} \arcsin \frac{1}{x + 1} + C
+\end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p>求不定积分</p>
+<p><span class="math display">\[
+\int (1 - \sqrt{x})^{100} \text{d} x
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(u = 1 - \sqrt{x}\)</span>，原式：</p>
+<p><span class="math display">\[
+\int 2u^{100}(u - 1) \text{d} u = 2\int u^{101} - u^{100} \text{d} u = \frac{1}{51} (1 - \sqrt{x})^{102} - \frac{2}{101} (1 - \sqrt{x})^{101} + C
+\]</span></p></li>
+<li><blockquote>
+<p>求不定积分</p>
+<p><span class="math display">\[
+\int \frac{\text{d} x}{\sqrt[3]{(x + 1)^2 (x - 1)^4}}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int = \int \frac{1}{(x^2 - 1)} \sqrt[3]{\frac{x + 1}{x - 1}}\text{d} x
+\]</span></p>
+<p>令 <span class="math inline">\(t = \sqrt[3]{\frac{x + 1}{x - 1}}\)</span>，得 <span class="math inline">\(x = \frac{2}{t^3 - 1} + 1\)</span>：</p>
+<p><span class="math display">\[
+\int = \int \frac{-3}{2} \text{d} t = \frac{-3}{2} \sqrt[3]{\frac{x + 1}{x - 1}} + C
+\]</span></p></li>
+<li><blockquote>
+<p>求不定积分</p>
+<p><span class="math display">\[
+\int \frac{\text{d} x}{(1 + x^4) \sqrt[4]{(1 + x^4)}}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int \frac{\text{d} x}{(1 + x^4) \sqrt[4]{(1 + x^4)}} = \frac{-1}{4} \int \frac{1}{(1 + \frac{1}{x^4})^{\frac{5}{4}}} \text{d} (1 + \frac{1}{x^4}) = \frac{|x|}{\sqrt[4]{1 + x^4}} + C
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int \frac{\text{d} x}{\sqrt[4]{1 + x^4}}
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(x = \frac{1}{t}\)</span>，原式为：</p>
+<p><span class="math display">\[
+-\frac{1}{4} \int \frac{1}{t^4 \sqrt[4]{t^4 + 1}} \text{d} t^4
+\]</span></p>
+<p>令 <span class="math inline">\(u = t^4\)</span>，原式为：</p>
+<p><span class="math display">\[
+-\frac{1}{4} \int \frac{1}{u \sqrt[4]{u + 1}} \text{d} u
+\]</span></p>
+<p>令 <span class="math inline">\(v = \sqrt[4]{u + 1}\)</span>，原式为：</p>
+<p><span class="math display">\[
+\begin{align*}
+-\int \frac{v^2}{(v^2 - 1)(v^2 + 1)} \text{d} v &amp;= -\frac{1}{2} \int \biggl[\frac{1}{v^2 - 1} + \frac{1}{v^2 + 1}\biggr] \text{d} v
+\\
+&amp;= -\frac{1}{4} \int \biggl[\frac{1}{v - 1} - \frac{1}{v + 1} \biggr] \text{d} v - \frac{1}{2} \arctan v + C
+\\
+&amp;= -\frac{1}{4} \ln \biggl|\frac{v - 1}{v + 1} \biggr| - \frac{1}{2} \arctan v + C
+\end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int \frac{1 - \ln x}{(x - \ln x)^2} \text{d} x
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int \frac{x}{x - \ln x} \text{d} x
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int \frac{x + 1}{x(1 + x \text{e}^x)} \text{d} x
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int \ln \biggl|\frac{x \text{e}^x}{1 + x \text{e}^x} \biggr| \text{d} x
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int_0^1 x (1 - x)^{100} \text{d} x
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int_0^1 x (1 - x)^{100} \text{d} x = -\int_0^1 (1 - x)^{101} \text{d} x + \int_0^1 (1 - x)^{100} \text{d} x = \frac{1}{101} - \frac{1}{102}
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\int_{-1}^1 \frac{2x^2 + x\cos x}{1 + \sqrt{1 - x^2}} \text{d}x
+\]</span></p>
+</blockquote>
+<p>由奇函数性质，原式：</p>
+<p><span class="math display">\[
+\int_{-1}^1 \frac{(2x^2 )(1 - \sqrt{1 - x^2})}{x^2} \text{d} x = 4 \int_0^1(1 - \sqrt{1 - x^2}) \text{d} x = 4 - 4 \int_0^1 \sqrt{1 - x^2} \text{d} x = 4 - \pi
+\]</span></p></li>
+<li><blockquote>
+<p>计算 <span class="math display">\[
+I = \int_0^1 \text{d} x \int_{x - x^3}^{1} (3x^2 - 1) \text{e}^{y^2} \text{d} y
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int_0^1 (3x^2 - 1) \text{d} x \int_{x - x^3}^{1} \text{e}^{y^2} \text{d} y
+\]</span></p>
+<p>令 <span class="math inline">\(F(x) = \int_{x - x^3}^{1} \text{e}^{y^2} \text{d} y\)</span></p>
+<p><span class="math display">\[
+\int_0^1 (3x^2 - 1) F(x) \text{d} x = \int_0^1 F(x) \text{d} (x^3 - x) = \frac{1}{2}\int_0^1 \text{e}^{(x - x^3)^2}\text{d} (x^3 - x)^2 = 0
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 连续，对任何 <span class="math inline">\(r &gt; 0\)</span> 积分 <span class="math inline">\(\int_r^{+\infty} \frac{f(x)}{x} \text{d} x\)</span> 都收敛，<span class="math inline">\(f(0) = L\)</span>。证明： <span class="math display">\[
+\int_0^{+\infty} \frac{f(\alpha x) - f(\beta x)}{x} \text{d} x = L \ln \frac{\beta}{\alpha}
+\]</span></p>
+<p>其中，<span class="math inline">\(\alpha\)</span>，<span class="math inline">\(\beta &gt; 0\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\int_r^{+\infty} \frac{f(\alpha x) - f(\beta x)}{x} \text{d} x = \int_{\alpha r}^{\beta r} \frac{f(u)}{u} \text{d} u = f(\xi) \int_{\alpha r}^{\beta r} \frac{1}{u} \text{d} u = f(\xi) \ln \frac{\beta}{\alpha}
+\]</span></p>
+<p>其中，<span class="math inline">\(\alpha r &lt; \xi &lt; \beta r\)</span>，当 <span class="math inline">\(r \to 0\)</span> 时，得到 <span class="math inline">\(L \ln \frac{\beta}{\alpha}\)</span>。</p></li>
+<li><blockquote>
+<p>设函数</p>
+<p><span class="math display">\[
+f(x) =
+\begin{cases}
+x^2 \sin \frac{1}{x^2}, &amp;x \neq 0
+\\
+0, &amp;x = 0
+\end{cases}
+\]</span></p>
+<p>证明 <span class="math inline">\(f(x)\)</span> 在闭区间 <span class="math inline">\([-1, 1]\)</span> 上可导，<span class="math inline">\(f&#39;(x)\)</span> 在区间上不可积。</p>
+</blockquote>
+<p><span class="math display">\[
+f&#39;(x) = 2x \sin \frac{1}{x^2} - 2 \frac{1}{x} \cos \frac{1}{x^2}, x \neq 0
+\]</span></p>
+<p><span class="math inline">\(x = 0\)</span> 时，有导数定义得</p>
+<p><span class="math display">\[
+\lim_{x \to 0} \frac{f(x)}{x} = 0
+\]</span></p>
+<p>故函数 <span class="math inline">\(f&#39;(x)\)</span> 在区间上存在。</p>
+<p>考虑 <span class="math inline">\(f&#39;(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 处的连续性。</p>
+<p><span class="math display">\[
+\lim_{x \to 0^+} 2x \sin \frac{1}{x^2} - 2 \frac{1}{x} \cos \frac{1}{x^2}
+\]</span></p>
+<p>显然极限不存在，所以 <span class="math inline">\(f&#39;(x)\)</span> 在点 <span class="math inline">\(x = 0\)</span> 处不连续，故在区间 <span class="math inline">\([-1, 1]\)</span> 上不可积分。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(s &gt; 0\)</span>，求</p>
+<p><span class="math display">\[
+I_n = \int_0^{+\infty} \text{e}^{-sx} x^n \text{d} x(n = 1, 2, 3, \cdots)
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+I_n = \frac{1}{s^{n + 1}}\int_0^{+\infty} \text{e}^{-sx} (sx)^n \text{d} (sx) = \frac{1}{s^{n + 1}} \cdot n!
+\]</span></p></li>
+<li><blockquote>
+<p><span class="math display">\[
+\lim_{n \to \infty} \sum_{k = 1}^{n - 1} \biggl(1 + \frac{k}{n} \biggr) \sin \frac{k\pi}{n^2}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align*}
+\lim_{n \to \infty} \sum_{k = 1}^{n - 1} \biggl(1 + \frac{k}{n} \biggr) \sin \frac{k\pi}{n^2} = \lim_{n \to \infty} \sum_{k = 1}^{n - 1} \biggl(1 + \frac{k}{n} \biggr) \biggl(\frac{k\pi}{n^2} - \frac{\sin \xi}{2} \biggl(\frac{k\pi}{n^2} \biggr)^2 \biggr) = \frac{5\pi}{6}
+\end{align*}
 \]</span></p></li>
 </ol>
 
