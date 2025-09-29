@@ -27,7 +27,7 @@
 <meta property="og:description" content="基本积分公式  \[ \int \frac{1}{x^2 + a^2} \text{d} x &#x3D; \frac{1}{a} \arctan \frac{x}{a} + C \] \[ \int \frac{1}{x^2 - a^2} \text{d} x &#x3D; \frac{1}{2a} \ln \biggl | \frac{x - a}{x + a} \biggr | + C \] \[ \int \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-01T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-26T03:05:11.848Z">
+<meta property="article:modified_time" content="2025-09-29T12:53:36.834Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.6k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          28 分钟
+          30 分钟
         
       </span>
     
@@ -763,6 +763,50 @@ I_n = \frac{1}{s^{n + 1}}\int_0^{+\infty} \text{e}^{-sx} (sx)^n \text{d} (sx) = 
 \begin{align*}
 \lim_{n \to \infty} \sum_{k = 1}^{n - 1} \biggl(1 + \frac{k}{n} \biggr) \sin \frac{k\pi}{n^2} = \lim_{n \to \infty} \sum_{k = 1}^{n - 1} \biggl(1 + \frac{k}{n} \biggr) \biggl(\frac{k\pi}{n^2} - \frac{\sin \xi}{2} \biggl(\frac{k\pi}{n^2} \biggr)^2 \biggr) = \frac{5\pi}{6}
 \end{align*}
+\]</span></p></li>
+<li><blockquote>
+<p>求</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \sum_{j = 1}^{n^2} \frac{n}{n^2 + j^2}
+\]</span></p>
+</blockquote>
+<p>设</p>
+<p><span class="math display">\[
+S_n = \sum_{j = 1}^{n^2} \frac{n}{n^2 + j^2} = \sum_{j = 1}^{n^2} \frac{1}{1 + (\frac{j}{n})^2} \frac{1}{n}
+\]</span></p>
+<p>显然有</p>
+<p><span class="math display">\[
+\int_{\frac{j}{n}}^{\frac{j + 1}{n}} \frac{\text{d} x}{1 + x^2} &lt; \frac{1}{1 + (\frac{j}{n})^2} \frac{1}{n} &lt; \int_{\frac{j - 1}{n}}^{\frac{j}{n}} \frac{\text{d} x}{1 + x^2}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} S_n = \frac{\pi}{2}
+\]</span></p></li>
+<li><blockquote>
+<p>设</p>
+<p><span class="math display">\[
+A_n = \sum_{j = 1}^{n} \frac{n}{n^2 + j^2}
+\]</span></p>
+<p>求</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} n\biggl(\frac{\pi}{4} - A_n \biggr)
+\]</span></p>
+</blockquote>
+<p>设 <span class="math inline">\(f(x) = \frac{1}{1 + x^2}\)</span>，<span class="math inline">\(J_n = n \bigl(\frac{\pi}{4} - A_n \bigr)\)</span>，<span class="math inline">\(x_i = \frac{i}{n}\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\pi}{4} &amp;= \sum_{j = 1}^{n} \int_{x_{i - 1}}^{x_i} f(x) \text{d}x
+\\
+A_n &amp;= \sum_{j = 1}^{n} \int_{x_{i - 1}}^{x_i} f(x_i) \text{d}x
+\\
+\lim_{n \to \infty} &amp;n \sum_{j = 1}^{n} \int_{x_{i - 1}}^{x_i} \bigl(f(x) - f(x_i)\bigr) \text{d} x
+\\
+\lim_{n \to \infty} &amp;n \sum_{j = 1}^{n} \int_{x_{i - 1}}^{x_i} f&#39;[\xi_i(x)] (x - x_i) \text{d} x, \quad \xi_i(x) \in (x_i, x)
+\\
+\lim_{n \to \infty} &amp;n \sum_{j = 1}^{n} f&#39;(\eta_i) \int_{x_{i - 1}}^{x_i} (x - x_i) \text{d} x = \frac{-f&#39;(\eta_i)}{2} \cdot \frac{1}{n^2}
+\\
+\lim_{n \to \infty} &amp; \frac{-1}{2} \sum_{j = 1}^{n} f&#39;(\eta_i) \frac{1}{n} = \frac{-1}{2} \cdot \int_0^1 f&#39;(x) \text{d} x = \frac{1}{4}
+\end{aligned}
 \]</span></p></li>
 </ol>
 
