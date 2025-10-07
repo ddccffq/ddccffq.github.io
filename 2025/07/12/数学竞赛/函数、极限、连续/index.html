@@ -27,7 +27,7 @@
 <meta property="og:description" content="必备知识点  \[ \lim_{n \to \infty} \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} &#x3D; \max_{1 \leq i \leq m}\{a_i\} \] 这个公式用夹逼定理证明，证明如下：记 \(\max\limits_{1 \leq i \leq m} &#x3D; a\)，则 \[ a &#x3D; \sqrt[n]{a^n} \leq \sqrt[n]{a_1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-12T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-20T02:37:04.016Z">
+<meta property="article:modified_time" content="2025-10-06T06:28:54.736Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.3k 字
+          5.2k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          37 分钟
+          44 分钟
         
       </span>
     
@@ -440,10 +440,7 @@ x_n = \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n}
 \]</span></p>
 <p>由 stolz 定理，得 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{a_{i + (n - 1)p}}{i + (n - 1)p} = \frac{\lim\limits_{n \to \infty} a_{i + (n - 1)p} - a_{i + (n - 2)p}}{p} = \frac{\lambda}{p}\)</span>。综上，题目推论成立</p></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n + 1} = \frac{1}{2} (x_n + x_{n - 1})(n = 1, 2, \cdots)\)</span>。证明数列 <span class="math inline">\(\{x_n\}\)</span> 有极限，并求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。</p>
-</blockquote>
-<blockquote>
-<p>还没有证明极限存在</p>
+<p>设 <span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n + 1} = \frac{1}{2} (x_n + x_{n - 1})(n = 1, 2, \cdots)\)</span>。证明数列 <span class="math inline">\(\{x_n\}\)</span> 有极限，并求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。 还没有证明极限存在</p>
 </blockquote>
 <p>由题目可得： <span class="math display">\[
 \begin{align*}
@@ -585,6 +582,109 @@ x_1 &amp;= 1 + b x_0
 <p>给定三个实数 <span class="math inline">\(a_1\)</span>，<span class="math inline">\(b_1\)</span>，<span class="math inline">\(c_1\)</span>。将每个数换为另外两个数的算术平均值，即 <span class="math inline">\(a_2 = \frac{b_1 + c_1}{2}\)</span>，<span class="math inline">\(b_2 = \frac{a_1 + c_1}{2}\)</span>，<span class="math inline">\(c_2 = \frac{a_1 + b_1}{2}\)</span>，如此下去构造的三个数列 <span class="math inline">\(\{a_n\}\)</span>，<span class="math inline">\(\{b_n\}\)</span>，<span class="math inline">\(\{c_n\}\)</span>。证明三个数列的极限都为 <span class="math inline">\(\frac{S}{3}\)</span>，其中 <span class="math inline">\(S = a_1 + b_1 + c_1\)</span>。</p>
 </blockquote>
 <p><span class="math inline">\(a_n = \frac{b_{n - 1} + c_{n - 1}}{2}\)</span>，<span class="math inline">\(b_n = \frac{a_{n - 1} + c_{n - 1}}{2}\)</span>，所以 <span class="math inline">\(a_n - b_n = \frac{b_{n - 1} - a_{n - 1}}{2} = \frac{a_{n - 2} - b_{n - 2}}{2^2} = \cdots = (-1)^{n - 1} \frac{b_1 - a_1}{2^{n - 1}}\)</span>，即 <span class="math inline">\(\lim\limits_{n \to \infty} a_n - b_n = 0\)</span>，同理可得 <span class="math inline">\(a_n = b_n = c_n\)</span>，同时 <span class="math inline">\(a_n + b_n + c_n = a_{n - 1} + b_{n - 1} + c_{n - 1} = \cdots = a_1 + b_1 + c_1 = S\)</span>。综上，三个数列的极限结果都是 <span class="math inline">\(\frac{S}{3}\)</span>。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\lim\limits_{n \to \infty} x_n = a\)</span>，<span class="math inline">\(\lim\limits_{n \to \infty} y_n = b\)</span>，证明：数列</p>
+<p><span class="math display">\[
+z_n = \frac{x_1 y_n + x_2 y_{n - 1} + \cdots + x_n y_1}{n}
+\]</span></p>
+<p>收敛于 <span class="math inline">\(ab\)</span></p>
+</blockquote>
+<p>设 <span class="math inline">\(x_n = a + \alpha_n\)</span>，<span class="math inline">\(y_n = b + \beta_n\)</span>，其中 <span class="math inline">\(\alpha_n\)</span>，<span class="math inline">\(\beta_n \to 0\)</span>，<span class="math inline">\(n \to \infty\)</span>，于是</p>
+<p><span class="math display">\[
+\begin{aligned}
+z_n &amp;= \frac{1}{n} \sum_{k = 1}^{n} (a + \alpha_n)(b + \beta_n)
+\\
+&amp;= \frac{1}{n} \biggl(\sum_{k = 1}^{n} ab + \sum_{k = 1}^{n} a\beta_k + \sum_{k = 1}^{n} \alpha_kb + \sum_{k = 1}^{n} \alpha_k \beta_{n - k}\biggr)
+\\
+&amp;= ab
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a &gt; 0\)</span>，参数方程：<span class="math inline">\(x = \frac{3at}{1 + t^3}\)</span>，<span class="math inline">\(y = \frac{3at^2}{1 + t^3}\)</span> 表示的曲线称为笛卡儿叶形线。</p>
+<p>(1). 求出该曲线在直角坐标系下的方程；</p>
+<p>(2). 仅就直角坐标系下的方程求出该曲线的渐近线；</p>
+<p>(3). 仅就参数方程求出该曲线的渐近线。</p>
+</blockquote>
+<p>(1). 直角坐标系下的方程为</p>
+<p><span class="math display">\[
+x^3 + y^3 = 3axy
+\]</span></p>
+<p>(2). 对曲线的直角坐标系下的方程变形得到：</p>
+<p><span class="math display">\[
+\frac{x^3}{y} + y^2 = 3ax
+\]</span></p>
+<p>如果存在垂直渐近线，也就是存在 <span class="math inline">\(c \in R\)</span>，<span class="math inline">\(\lim\limits_{x \to c} y = \pm \infty\)</span>，则会推出变形后的方程左端的值为 <span class="math inline">\(\infty\)</span>，右端为 <span class="math inline">\(3ac\)</span>，产生矛盾，故不存在垂直渐近线。同理不存在水平渐近线。</p>
+<p>设曲线有斜渐近线 <span class="math inline">\(y = kx + b\)</span>，则 <span class="math inline">\(\lim\limits_{x \to \pm \infty}\frac{y}{x} = k\)</span>，<span class="math inline">\(\lim\limits_{x \to \pm \infty} (y - kx) = b\)</span>，再次变形原直角坐标系方程</p>
+<p><span class="math display">\[
+\biggl(\frac{y}{x}\biggr)^2 + \frac{x}{y} = \frac{3a}{x}
+\]</span></p>
+<p>解得 <span class="math inline">\(k = -1\)</span>，从而</p>
+<p><span class="math display">\[
+b = \lim_{x \to \pm \infty} (y + x) = \lim_{x \to \pm \infty} \frac{x^3 + y^3}{x^2 - xy + y^2} = \lim_{x \to \pm \infty} \frac{3axy}{x^2 - xy + y^2} = -a
+\]</span></p>
+<p>所以，渐近线方程为 <span class="math inline">\(x + y + a = 0\)</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+\lim_{x \to \infty} \frac{y}{x} = \lim_{t \to -1} \frac{\frac{3at^2}{1 + t^3}}{\frac{3at}{1 + t^3}} = -1
+\]</span></p>
+<p><span class="math display">\[
+\lim_{x \to \infty} (y + x) = \lim_{t \to -1}\biggl(\frac{3at^2}{1 + t^3} + \frac{3at}{1 + t^3} \biggr) = -a
+\]</span></p></li>
+<li><blockquote>
+<p>求极坐标方程的曲线 <span class="math inline">\(\Gamma: \rho = \frac{1}{3\theta - \pi}\)</span> 在直角坐标系下的渐近线方程。</p>
+</blockquote>
+<p>直角坐标系下，该曲线的参数方程为</p>
+<p><span class="math display">\[
+\begin{cases}
+x &amp;= \rho \cos \theta
+\\
+y &amp;= \rho \sin \theta
+\end{cases}
+\]</span></p>
+<p>由于 <span class="math inline">\(\cos x\)</span> 和 <span class="math inline">\(\sin x\)</span> 都是有界函数，易见不存在垂直渐近线和水平渐近线，下面求其斜渐近线。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x \to \pm \infty} \frac{y}{x} &amp;= \lim_{\theta \to \frac{\pi}{3}} \tan \theta = \sqrt{3}
+\\
+\lim_{x \to \pm \infty} (y - kx) &amp;= \lim_{\theta \to \frac{\pi}{3}} \rho(\sin \theta - \sqrt{3} \cos \theta) = \frac{2}{3}
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(F(x) = \bigl(\frac{a_1^x + a_2^x + \cdots + a_n^x}{n}\bigr)^{\frac{1}{x}}\)</span>，<span class="math inline">\(a_i^x\)</span> 都是正数，，求下列极限；</p>
+<p>(1). <span class="math inline">\(\lim\limits_{x \to +\infty} F(x)\)</span>；</p>
+<p>(2). <span class="math inline">\(\lim\limits_{x \to -\infty} F(x)\)</span>；</p>
+<p>(3). <span class="math inline">\(\lim\limits_{x \to 0} F(x)\)</span></p>
+</blockquote>
+<p>记 <span class="math inline">\(\max \{a_1, a_2, \cdots, a_n\} = a_x\)</span>，<span class="math inline">\(\min \{a_1, a_2, \cdots, a_n\} = a_y\)</span></p>
+<p>(1).</p>
+<p><span class="math display">\[
+\frac{a_x}{n^{\frac{1}{x}}} \leq F(x) \leq a_x
+\]</span></p>
+<p>故 <span class="math inline">\(\lim\limits_{x \to +\infty} F(x) = a_x\)</span></p>
+<p>(2). 因为 <span class="math inline">\(x &lt; 0\)</span>，所以有</p>
+<p><span class="math display">\[
+\frac{a_y}{n^{\frac{1}{x}}} \leq F(x) \leq a_y
+\]</span></p>
+<p>故 <span class="math inline">\(\lim\limits_{x \to -\infty} F(x) = a_y\)</span></p>
+<p>(3). 由洛必达法则得到</p>
+<p><span class="math display">\[
+F(x) = \text{e}^{\frac{1}{x} [\ln (a_1^x + a_2^x + \cdots + a_n^x) - \ln n]} = \sqrt[n]{a_1 a_2 \cdots a_n}
+\]</span></p></li>
+<li><blockquote>
+<p>已知</p>
+<p><span class="math display">\[
+\lim_{x \to 0} \frac{\ln (1 + \frac{f(x)}{\sin 2x})}{3^x - 1} = 5
+\]</span></p>
+<p>求 <span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x^2}\)</span>。</p>
+</blockquote>
+<p>利用等价无穷小可得：</p>
+<p><span class="math display">\[
+\lim_{x \to 0} \frac{\ln (1 + \frac{f(x)}{\sin 2x})}{3^x - 1} = \lim_{x \to 0} \frac{f(x)}{2x \cdot \ln 3 x} = 5
+\]</span></p>
+<p>所以，<span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x^2} = 10 \ln 3\)</span></p></li>
+<li><blockquote>
+<p>设在 <span class="math inline">\((-\infty, +\infty)\)</span> 上，<span class="math inline">\(f(x) \geq 0\)</span>，且对于任何 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span> 总有 <span class="math inline">\(\frac{1}{2} f(x_1) + \frac{1}{2} f(x_2) \leq f(\frac{x_1 + x_2}{2})\)</span> 成立。证明：<span class="math inline">\(f(x)\)</span> 恒为常数。</p>
+</blockquote></li>
 </ol>
 
                 
@@ -686,8 +786,8 @@ x_1 &amp;= 1 + b x_0
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Wireshark-Homework/" title="Wireshark Homework">
-                        <span class="hidden-mobile">Wireshark Homework</span>
+                      <a href="/2025/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/" title="Introduction">
+                        <span class="hidden-mobile">Introduction</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

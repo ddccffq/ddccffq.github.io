@@ -19,22 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="邻域、内点、外点、边界、开区域、闭区域以及多元函数的概念与性质 邻域 定义：设 \(P_0(x_0, y_0)\) 是平面上一点，\(\delta &gt; 0\)，称集合 \[U(P_0, \delta) &#x3D; \{P(x, y) | |P - P_0| &lt; \delta\} &#x3D; \{(x, y) | \sqrt{(x - x_0)^2 + (y - y_0)^2} &lt; \delta\">
+    <meta name="description" content="难度：提高+&#x2F;省选-。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多元函数微分学">
-<meta property="og:url" content="https://ddccffq.github.io/2025/08/20/%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/index.html">
+<meta property="og:title" content="P4092 [HEOI2016&#x2F;TJOI2016] 树">
+<meta property="og:url" content="https://ddccffq.github.io/2025/09/30/%E6%B4%9B%E8%B0%B7/%E5%B9%B6%E6%9F%A5%E9%9B%86/TJOI2016]%20%E6%A0%91/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="邻域、内点、外点、边界、开区域、闭区域以及多元函数的概念与性质 邻域 定义：设 \(P_0(x_0, y_0)\) 是平面上一点，\(\delta &gt; 0\)，称集合 \[U(P_0, \delta) &#x3D; \{P(x, y) | |P - P_0| &lt; \delta\} &#x3D; \{(x, y) | \sqrt{(x - x_0)^2 + (y - y_0)^2} &lt; \delta\">
+<meta property="og:description" content="难度：提高+&#x2F;省选-。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-08-20T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-05T07:47:07.774Z">
+<meta property="article:published_time" content="2025-09-30T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-03T07:23:21.021Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>多元函数微分学 - ddccffq&#39;s Blog</title>
+  <title>P4092 [HEOI2016/TJOI2016] 树 - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多元函数微分学"></span>
+            <span id="subtitle" data-typed-text="P4092 [HEOI2016/TJOI2016] 树"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-20 15:00" pubdate>
-          2025年8月20日 下午
+        <time datetime="2025-09-30 15:00" pubdate>
+          2025年9月30日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          663 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          19 分钟
+          6 分钟
         
       </span>
     
@@ -271,251 +271,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多元函数微分学</h1>
+            <h1 id="seo-header">P4092 [HEOI2016/TJOI2016] 树</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="邻域内点外点边界开区域闭区域以及多元函数的概念与性质">邻域、内点、外点、边界、开区域、闭区域以及多元函数的概念与性质</h2>
-<h3 id="邻域">邻域</h3>
-<p><strong>定义</strong>：设 <span class="math inline">\(P_0(x_0, y_0)\)</span> 是平面上一点，<span class="math inline">\(\delta &gt; 0\)</span>，称集合 <span class="math display">\[U(P_0, \delta) = \{P(x, y) | |P - P_0| &lt; \delta\} = \{(x, y) | \sqrt{(x - x_0)^2 + (y - y_0)^2} &lt; \delta\}\]</span> 为点 <span class="math inline">\(P_0\)</span> 的 <strong><span class="math inline">\(\delta\)</span> 邻域</strong>，也记作 <span class="math inline">\(U(P_0)\)</span>。</p>
-<p><strong>去心邻域</strong>：<span class="math inline">\(\stackrel{\circ}{U}(P_0, \delta) = \{P | 0 &lt; |P - P_0| &lt; \delta\}\)</span></p>
-<h3 id="内点外点边界点">内点、外点、边界点</h3>
-<p>设 <span class="math inline">\(E\)</span> 是平面上的一个点集，<span class="math inline">\(P_0\)</span> 是平面上的一点：</p>
-<p><strong>内点</strong>：如果存在 <span class="math inline">\(P_0\)</span> 的某个邻域 <span class="math inline">\(U(P_0)\)</span> 使得 <span class="math inline">\(U(P_0) \subset E\)</span>，则称 <span class="math inline">\(P_0\)</span> 为 <span class="math inline">\(E\)</span> 的<strong>内点</strong>。</p>
-<p><strong>外点</strong>：如果存在 <span class="math inline">\(P_0\)</span> 的某个邻域 <span class="math inline">\(U(P_0)\)</span> 使得 <span class="math inline">\(U(P_0) \cap E = \emptyset\)</span>，则称 <span class="math inline">\(P_0\)</span> 为 <span class="math inline">\(E\)</span> 的<strong>外点</strong>。</p>
-<p><strong>边界点</strong>：如果 <span class="math inline">\(P_0\)</span> 的任意邻域内既有属于 <span class="math inline">\(E\)</span> 的点，又有不属于 <span class="math inline">\(E\)</span> 的点，则称 <span class="math inline">\(P_0\)</span> 为 <span class="math inline">\(E\)</span> 的<strong>边界点</strong>。</p>
-<p><strong>聚点</strong>（极限点）：如果 <span class="math inline">\(P_0\)</span> 的任意去心邻域内都有 <span class="math inline">\(E\)</span> 中的点，则称 <span class="math inline">\(P_0\)</span> 为 <span class="math inline">\(E\)</span> 的<strong>聚点</strong>。</p>
-<p><strong>孤立点</strong>：如果 <span class="math inline">\(P_0 \in E\)</span> 但 <span class="math inline">\(P_0\)</span> 不是 <span class="math inline">\(E\)</span> 的聚点，则称 <span class="math inline">\(P_0\)</span> 为 <span class="math inline">\(E\)</span> 的<strong>孤立点</strong>。</p>
-<h3 id="开区域与闭区域">开区域与闭区域</h3>
-<p><strong>开集</strong>：如果集合 <span class="math inline">\(E\)</span> 的每一点都是 <span class="math inline">\(E\)</span> 的内点，则称 <span class="math inline">\(E\)</span> 为<strong>开集</strong>。</p>
-<p><strong>闭集</strong>：如果集合 <span class="math inline">\(E\)</span> 的所有聚点都属于 <span class="math inline">\(E\)</span>，则称 <span class="math inline">\(E\)</span> 为<strong>闭集</strong>。</p>
-<p><strong>区域</strong>（开区域）：连通的开集称为<strong>区域</strong>或<strong>开区域</strong>。</p>
-<p><strong>闭区域</strong>：开区域连同它的边界一起称为<strong>闭区域</strong>。</p>
-<p><strong>有界集</strong>：如果存在正数 <span class="math inline">\(M\)</span>，使得集合 <span class="math inline">\(E\)</span> 中的所有点到原点的距离都不超过 <span class="math inline">\(M\)</span>，则称 <span class="math inline">\(E\)</span> 为<strong>有界集</strong>。</p>
-<p><strong>无界集</strong>：不是有界集的集合称为<strong>无界集</strong>。</p>
-<h2 id="方程">方程</h2>
-<h3 id="曲面方程">曲面方程</h3>
-<ol type="1">
-<li><p>有解三元方程 <span class="math inline">\(\Sigma : F(x, y, z) = 0\)</span> &gt;  也有可能是点或直线</p></li>
-<li><p>参数方程 <span class="math inline">\(\Sigma&#39; : x = x(u, v)\)</span>，<span class="math inline">\(y = y(u, v)\)</span>，<span class="math inline">\(z = z(u, v)\)</span></p></li>
-<li><p><span class="math inline">\(\Sigma&#39;\)</span> 是 <span class="math inline">\(\Sigma\)</span> 的一部分的充要条件为：<span class="math inline">\(F(x(u, v), y(u, v), z(u, v)) \equiv 0\)</span></p></li>
-</ol>
-<h3 id="空间曲线方程">空间曲线方程</h3>
-<ol type="1">
-<li><p>有解方程组 [ l :</p>
-<span class="math display">\[\begin{cases}
-F(x, y, z) = 0
-\\
-G(x, y, z) = 0
-\end{cases}\]</span>
-<p>]</p>
-<p>称为一般式</p></li>
-<li><p>参数方程：<span class="math inline">\(l&#39; : x = x(t)\)</span>，<span class="math inline">\(y = y(t)\)</span>，<span class="math inline">\(z = z(t)\)</span></p></li>
-<li><p><span class="math inline">\(l&#39;\)</span> 是 <span class="math inline">\(l\)</span> 的一部分的充要条件为：<span class="math inline">\(F[x(t), y(t), z(t)] \equiv 0\)</span> 且 <span class="math inline">\(G[x(t), y(t), z(t)] \equiv 0\)</span></p></li>
-<li><p>以弧长为参数的曲线方程：<span class="math inline">\(\bar{l} : \bar{x}(s)\)</span>，<span class="math inline">\(\bar{y}(s)\)</span>，<span class="math inline">\(\bar{z}(s)\)</span>，恒有 <span class="math inline">\([\bar{x}&#39;(s)]^2 + [\bar{y}&#39;(s)]^2 + [\bar{z}&#39;(s)]^2 \equiv 1\)</span></p></li>
-<li><p>对一般式同解变形可以分别得到在各坐标面上的投影方程</p></li>
-</ol>
-<h3 id="平面方程">平面方程</h3>
-<ol type="1">
-<li><p>点法式</p></li>
-<li><p>一般式</p></li>
-<li><p>截距式</p></li>
-<li><p>点到平面距离公式</p></li>
-</ol>
-<h3 id="直线方程">直线方程</h3>
-<ol type="1">
-<li><p>一般式</p></li>
-<li><p>对称式</p></li>
-<li><p>参数式</p></li>
-<li><p>向量式</p></li>
-</ol>
-<h2 id="偏导数">偏导数</h2>
-<ol type="1">
-<li><p>可偏导未必连续</p></li>
-<li><p>二阶混合偏导数在某点连续则在该点它们相等</p></li>
-</ol>
-<h2 id="全微分">全微分</h2>
-<ol type="1">
-<li><p>如果全增量 <span class="math inline">\(\Delta z = f(x + \Delta x, y + \Delta y) - f(x, y)\)</span> 可以表示为 <span class="math inline">\(\Delta z = A \Delta x + B \Delta y + o(\rho)(\rho \rightarrow 0)\)</span>，其中 <span class="math inline">\(\rho = \sqrt{\Delta^2 x + \Delta^2 y}\)</span>，则说可微分。</p></li>
-<li><p>如果可微，则 <span class="math inline">\(\text{d} z = \frac{\partial z}{\partial x} \text{d} x + \frac{\partial z}{\partial y} \text{d} y\)</span>。</p></li>
-<li><p>如果函数的偏导数在某点连续，则在某点可微分。</p></li>
-</ol>
-<h2 id="曲线切线">曲线切线</h2>
-<p>已知空间曲线的参数方程，如果导数连续且不同时为零，则可以用如下公式</p>
-<p>切线方程的对称式： <span class="math display">\[
-\frac{x - x_0}{x&#39;(t_0)} = \frac{y - y_0}{y&#39;(t_0)} = \frac{z - z_0}{z&#39;(t_0)}
-\]</span></p>
-<p>切向量： <span class="math display">\[
-\mathbf{T} = \pm (x&#39;(t_0), y&#39;(t_0), z&#39;(t_0))
-\]</span></p>
-<p>法平面方程： <span class="math display">\[
-x&#39;(t_0)(x - x_0) + y&#39;(t_0)(y - y_0) + z&#39;(t_0)(z - z_0) = 0
-\]</span></p>
-<h2 id="曲面的切平面">曲面的切平面</h2>
-<p>已知空间曲面的方程，若各偏导数连续且不同时为零，则可以用如下公式：</p>
-<p>切平面方程为： <span class="math display">\[
-F_x(x_0, y_0, z_0)(x - x_0) + F_y(x_0, y_0, z_0)(y - y_0) + F_z(x_0, y_0, z_0)(z - z_0) = 0
-\]</span></p>
-<p>法线方程： <span class="math display">\[
-\frac{x - x_0}{F_x(x_0, y_0, z_0)} = \frac{y - y_0}{F_y(x_0, y_0, z_0)} = \frac{z - z_0}{F_z(x_0, y_0, z_0)}
-\]</span></p>
-<h2 id="多元函数无条件极值">多元函数无条件极值</h2>
-<ol type="1">
-<li><p>必要条件：在点有<strong>偏导数</strong>，且满足所有偏导数<strong>同时</strong>为零，得到<strong>驻点</strong></p></li>
-<li><p>充分条件：在驻点某领域内如果有<strong>二阶</strong>偏导数，设 <span class="math inline">\(f_{xx}(x_0, y_0) = A\)</span>，<span class="math inline">\(f_{xy}(x_0, y_0) = B\)</span>，<span class="math inline">\(f_{yy}(x_0, y_0) = C\)</span>，<span class="math inline">\(\Delta = AC - B^2\)</span>，则：</p>
-<ol type="1">
-<li><span class="math inline">\(\Delta &gt; 0\)</span> 时是极值，且 <span class="math inline">\(A &lt; 0\)</span> 是极大值。</li>
-<li><span class="math inline">\(\Delta &lt; 0\)</span> 时不是极值。</li>
-</ol></li>
-</ol>
-<h2 id="多元函数条件极值">多元函数条件极值</h2>
-<p>拉格朗日乘数法</p>
-<h2 id="习题汇编">习题汇编</h2>
-<ol type="1">
-<li><blockquote>
-<p>设 <span class="math inline">\(z = 2x^2 + y^2\)</span> 截出平面 <span class="math inline">\(4x + 2y + z = 1\)</span> 的一个椭圆，求这个椭圆的面积 <span class="math inline">\(A\)</span>。</p>
-</blockquote>
-<p>先求出截面面积与其在 <span class="math inline">\(xOy\)</span> 平面的投影的比例系数 <span class="math display">\[
-\cos \alpha = \frac{1}{\sqrt{4^2 + 2^2 + 1^2}} = \sqrt{\frac{1}{21}}
-\]</span></p>
-<p>交线方程为： <span class="math display">\[
-\begin{cases}
-z = 2x^2 + y^2
-\\
-4x + 2y + z = 1
-\end{cases}
-\]</span></p>
-<p>消去变量 <span class="math inline">\(z\)</span> 得到交线在 <span class="math inline">\(xOy\)</span> 平面的投影 <span class="math display">\[
-\frac{(x + 1)^2}{2} + \frac{(y + 1)^2}{4} = 1
-\]</span></p>
-<p>面积为 <span class="math inline">\(2\sqrt{2} \pi\)</span>，从而截面面积为 <span class="math inline">\(2\sqrt{2} \pi \times \sqrt{21} = 2\pi \sqrt{42}\)</span></p></li>
-<li><blockquote>
-<p>设 <span class="math inline">\(a &gt; 0\)</span>，<span class="math inline">\(b &gt; 0\)</span>，<span class="math inline">\(c &gt; 0\)</span>，证明：单叶双曲面 <span class="math inline">\(\Sigma : \frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1\)</span> 上任意一点都有经过该点并且完全位于 <span class="math inline">\(\Sigma\)</span> 上的直线通过。</p>
-</blockquote></li>
-<li><blockquote>
-<p>求空间曲线 <span class="math inline">\(L: x(t) = t(\text{e}^t - 1)\)</span>，<span class="math inline">\(y(t) = t \sin t\)</span>，<span class="math inline">\(z(t) = t^3 + t^2 + 1\)</span>，在点 <span class="math inline">\(P_0(0, 0, 1)\)</span> 的切线。</p>
-</blockquote>
-<p>参数 <span class="math inline">\(t_0 = 0\)</span>，解得参数方程一阶导数同时为 0，此时只需要计算二阶导数，得到切线方向为 <span class="math inline">\((1, 1, 1)\)</span>，方程为 <span class="math inline">\(x = y = z - 1\)</span>。</p></li>
-<li><blockquote>
-<p>求过直线 <span class="math display">\[
-L:
-\begin{cases}
-3x - 2y - z = 5
-\\
-x + y + z = 0
-\end{cases}
-\]</span> 与曲面 <span class="math display">\[
-2x^2 - 2y^2 +2z = \frac{5}{8}
-\]</span> 相切的切平面方程</p>
-</blockquote>
-<p>曲面上的点 <span class="math inline">\((x_0, y_0, z_0)\)</span> 的切平面法向量为 <span class="math inline">\((4x_0, -4y_0, 2)\)</span>，过直线 <span class="math inline">\(L\)</span> 的平面簇方程为 <span class="math inline">\(3x - 2y - z - 5 + \lambda(x + y + z) = 0 = (3 + \lambda)x + (\lambda - 2)y + (\lambda - 1)z - 5\)</span>。得到该平面的法向量为 <span class="math inline">\((3 + \lambda, \lambda - 2, \lambda - 1)\)</span>。整理得： <span class="math display">\[
-\begin{cases}
-\frac{3 + \lambda}{4x_0} = \frac{\lambda - 2}{-4y_0} = \frac{\lambda - 1}{2}
-\\
-2x_0^2 - 2y_0^2 + 2z_0 = \frac{5}{8}
-\\
-(3 + \lambda)x_0 + (\lambda - 2)y_0 + (\lambda - 1)z_0 - 5 = 0
-\end{cases}
-\]</span></p>
-<p>解得 $= $</p></li>
-<li><blockquote>
-<p>长度为 <span class="math inline">\(a\)</span> 的线段两端分别在 <span class="math inline">\(x\)</span> 轴和 <span class="math inline">\(y\)</span> 轴上滑动，求这样的线段簇的包络线</p>
-</blockquote>
-<p>设在 <span class="math inline">\(x\)</span> 轴上的位置为 <span class="math inline">\(c\)</span>，则该线段所在直线的方程为 <span class="math display">\[
-\frac{x}{c} + \frac{y}{\sqrt{a^2 - c^2}} = 1
-\]</span></p>
-<p>设 <span class="math inline">\(\sin \theta = \frac{c}{a}\)</span>，则直线方程为 <span class="math display">\[
-F(x, y, \theta) = \frac{x}{\sin \theta} + \frac{y}{\cos \theta} -\frac{1}{a} = 0
-\]</span></p>
-<p>则包络线方程为： <span class="math display">\[
-\begin{cases}
-F(x, y, \theta) = \frac{x}{\sin \theta} + \frac{y}{\cos \theta} -\frac{1}{a} = 0
-\\
-F_\theta(x, y, \theta) = \frac{-x \cos \theta}{\sin^2 \theta} + \frac{y \sin \theta}{\cos^2 \theta} = 0
-\end{cases}
-\]</span></p>
-<p>从而，<span class="math inline">\(x = a \sin^3 \theta\)</span>，<span class="math inline">\(y = a \cos^3 \theta\)</span>。</p></li>
-<li><blockquote>
-<p>求通过直线</p>
-<p><span class="math display">\[
-L:
-\begin{cases}
-2x + y - 3z + 2 = 0
-\\
-5x + 5y - 4z + 3 = 0
-\end{cases}
-\]</span></p>
-<p>的两个相互垂直的平面 <span class="math inline">\(\pi_1\)</span> 和 <span class="math inline">\(\pi_2\)</span>，使得其中一个平面过点 <span class="math inline">\((4, -3, 1)\)</span>。</p>
-</blockquote>
-<p>过直线 <span class="math inline">\(L\)</span> 的曲面系为 <span class="math inline">\(\Sigma: (2x + y - 3z + 2) + \lambda(5x + 5y - 4z + 3) = 0\)</span>，要求过点 <span class="math inline">\((4, -3, 1)\)</span> 解得 <span class="math inline">\(\lambda = -1\)</span>，故 <span class="math inline">\(\Sigma: 3x + 4y - z + 1 = 0\)</span>，记为 <span class="math inline">\(\pi_1\)</span>，则 <span class="math inline">\(\pi_2: x - 2y - 5z + 3 = 0\)</span></p></li>
-<li><blockquote>
-<p>设二元函数 <span class="math inline">\(f(x, y) = |x - y| \varphi(x, y)\)</span>，其中 <span class="math inline">\(\varphi(x, y)\)</span> 在点 <span class="math inline">\((0, 0)\)</span> 处连续。证明 <span class="math inline">\(f(x, y)\)</span> 在点 <span class="math inline">\((0, 0)\)</span> 处可微的充分必要条件是 <span class="math inline">\(\varphi(0, 0) = 0\)</span>。</p>
-</blockquote>
-<p>必要性。若 <span class="math inline">\(f(x, y)\)</span> 在 <span class="math inline">\((0, 0)\)</span> 处可微，且 <span class="math inline">\(f_x(0, 0)\)</span> 存在</p>
-<p><span class="math display">\[
-\begin{aligned}
-\lim_{x \to 0^+} \frac{f(x, 0) - f(0, 0)}{x} &amp;= \varphi(0, 0)
-\\
-\lim_{x \to 0^-} \frac{f(x, 0) - f(0, 0)}{x} &amp;= -\varphi(0, 0)
-\end{aligned}
-\]</span></p>
-<p>故，<span class="math inline">\(\varphi(0, 0) = 0\)</span>。</p>
-<p>充分性性。若 <span class="math inline">\(\varphi(0, 0) = 0\)</span>，则</p>
-<p><span class="math display">\[
-\begin{aligned}
-f_x(0, 0) &amp;= \lim_{x \to 0} \frac{f(x, 0) - f(0, 0)}{x} = 0
-\\
-f_y(0, 0) &amp;= \lim_{y \to 0} \frac{f(0, y) - f(0, 0)}{y} = 0
-\\
-o(\rho) &amp;= f(\Delta x, \Delta y) - f(0, 0) - f_x(0, 0) \Delta x - f_y(0, 0) \Delta y
-\end{aligned}
-\]</span></p>
-<p>解得</p>
-<p><span class="math display">\[
-\lim_{(\Delta x, \Delta y) \to (0, 0)} \frac{f(\Delta x, \Delta y) - f(0, 0) - f_x(0, 0) \Delta x - f_y(0, 0) \Delta y}{\sqrt{\Delta^2 x + \Delta^2 y}}
-\\
-= \lim_{(\Delta x, \Delta y) \to (0, 0)} \frac{|\Delta x - \Delta y| \varphi(\Delta x, \Delta y)}{\sqrt{\Delta^2 x + \Delta^2 y}} = 0
-\]</span></p>
-<p>所以，</p>
-<p><span class="math display">\[
-\Delta f = f(\Delta x, \Delta y) - f(0, 0) = f_x(0, 0) \Delta x + f_y(0, 0) \Delta y + |\Delta x - \Delta y| \varphi(\Delta x, \Delta y)
-\\
-= f_x(0, 0) \Delta x + f_y(0, 0) \Delta y + o(\rho)
-\]</span></p>
-<p>故，<span class="math inline">\(f(x, y)\)</span> 在 <span class="math inline">\((0, 0)\)</span> 可微。</p></li>
-<li><blockquote>
-<p>求原函数</p>
-<p><span class="math display">\[
-\text{d} u = \frac{x \text{d} y - y \text{d} x}{x^2 + y^2}
-\]</span></p>
-</blockquote>
-<p><span class="math display">\[
-u = \arctan \frac{y}{x} + C
-\]</span></p></li>
-<li><blockquote>
-<p>设椭圆簇为 <span class="math inline">\(\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\)</span>，其中每个椭圆的面积都为常数 <span class="math inline">\(S\)</span>。求该椭圆簇的包络线。</p>
-</blockquote>
-<p>由面积恒为定值得到 <span class="math inline">\(ab\pi = S\)</span>，则椭圆簇可以表示为</p>
-<p><span class="math display">\[
- F(x, y, a) = \frac{x^2}{a^2} + \frac{a^2\pi^2y^2}{S^2} = 1
- \]</span></p>
-<p>包络线方程为</p>
-<p><span class="math display">\[
- \begin{cases}
- F(x, y ,a) &amp;= \frac{x^2}{a^2} + \frac{a^2\pi^2y^2}{S^2} - 1 = 0
- \\
- F_a(x, y, a) &amp;= \frac{-2x^2}{a^3} + \frac{2a\pi^2y^2}{S^2} = 0
- \end{cases}
- \]</span></p>
-<p>则包络线的方程</p>
-<p><span class="math display">\[
- C: x^2 y^2 = \frac{S^2}{4\pi^2}
- \]</span></p></li>
-<li><blockquote>
-<p>求直线 <span class="math inline">\(\frac{x - 1}{0} = \frac{y - 1}{1} = \frac{z - 1}{1}\)</span> 绕 <span class="math inline">\(z\)</span> 轴的旋转面方程。</p>
-</blockquote></li>
-</ol>
+                <p>难度：<strong>提高+/省选-</strong>。</p>
+<span id="more"></span>
+<h2 id="简单的回顾">简单的回顾</h2>
+<p>显然，可以用<strong>并查集</strong>数据结构来解决这道题目，所以我的第一版代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">int</span> N, Q;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> parent[MAXN];<br><span class="hljs-type">bool</span> marked[MAXN];<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAXN; i++) &#123;<br>        parent[i] = <span class="hljs-number">0</span>;<br>        marked[i] = <span class="hljs-literal">false</span>;<br>    &#125;<br>    parent[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    marked[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (!marked[x]) &#123;<br>        x = parent[x];<br>    &#125;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-built_in">init</span>();<br>    cin &gt;&gt; N &gt;&gt; Q;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-type">int</span> p, c;<br>        cin &gt;&gt; p &gt;&gt; c;<br>        parent[c] = p;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; Q; j++) &#123;<br>        <span class="hljs-type">char</span> oper;<br>        <span class="hljs-type">int</span> t;<br>        cin &gt;&gt; oper;<br>        cin &gt;&gt; t;<br>        <span class="hljs-keyword">if</span> (oper == <span class="hljs-string">&#x27;C&#x27;</span>) &#123;<br>            <span class="hljs-keyword">if</span> (!marked[t]) marked[t] = <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oper == <span class="hljs-string">&#x27;Q&#x27;</span>) &#123;<br>            cout &lt;&lt; <span class="hljs-built_in">find</span>(t) &lt;&lt; endl;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结果就是，这份代码没有通过 <strong>#11</strong>，返回 <strong>timeout</strong>。问题很明显，时间复杂度有点高了。</p>
+<h2 id="基于并查集结构尝试降低时间复杂度">基于并查集结构尝试降低时间复杂度</h2>
+<p>对于本题根据并查集构建的树，重要的节点是什么？很显然就是那些被标记过的节点；那重要的区域是什么？显然是两个被标记过节点之间的部分。如果查询到重要区域中的节点，返回的结果就是上端点（被标记节点，区域上闭下开）。</p>
+<p>但重要的节点和重要的区域是在变化的，从而导致维护它们的数据结构值也是在变化的。也就是说，如果按实际顺序标记，代码需要从上到下依次更新</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-type">int</span> N, Q;<br><span class="hljs-type">int</span> parentArr[MAXN]; \\ record actual parent <span class="hljs-keyword">and</span> child<br><span class="hljs-type">int</span> fa[MAXN]; \\ record DSU parent <span class="hljs-keyword">and</span> child<br><span class="hljs-type">int</span> cntC[MAXN]; \\ counts<br><span class="hljs-type">bool</span> willMarked[MAXN]; \\ <span class="hljs-function">marked</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> fa[x] == x ? x : fa[x] = <span class="hljs-built_in">Find</span>(fa[x]);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">Union</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    x = <span class="hljs-built_in">Find</span>(x); y = <span class="hljs-built_in">Find</span>(y);<br>    <span class="hljs-keyword">if</span> (x != y) fa[x] = y;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Op</span> &#123; <span class="hljs-type">char</span> type; <span class="hljs-type">int</span> v; &#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br><br>    <span class="hljs-keyword">if</span> (!(cin &gt;&gt; N &gt;&gt; Q)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) parentArr[i] = <span class="hljs-number">0</span>;<br>    parentArr[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N - <span class="hljs-number">1</span>; ++i) &#123;<br>        <span class="hljs-type">int</span> u, v; cin &gt;&gt; u &gt;&gt; v;<br>        parentArr[v] = u;<br>    &#125;<br><br>    <span class="hljs-function">vector&lt;Op&gt; <span class="hljs-title">ops</span><span class="hljs-params">(Q)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) cntC[i] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; Q; ++i) &#123;<br>        <span class="hljs-type">char</span> c; <span class="hljs-type">int</span> t; cin &gt;&gt; c &gt;&gt; t;<br>        ops[i] = &#123;c, t&#125;;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;C&#x27;</span>) cntC[t]++;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) willMarked[i] = (cntC[i] &gt; <span class="hljs-number">0</span>);<br>    willMarked[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) fa[i] = i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> v = <span class="hljs-number">1</span>; v &lt;= N; ++v) &#123;<br>        <span class="hljs-keyword">if</span> (!willMarked[v]) &#123;<br>            <span class="hljs-built_in">Union</span>(v, parentArr[v]);<br>        &#125;<br>    &#125;<br><br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    ans.<span class="hljs-built_in">reserve</span>(Q);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = Q - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        <span class="hljs-type">char</span> c = ops[i].type; <span class="hljs-type">int</span> t = ops[i].v;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;Q&#x27;</span>) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">Find</span>(t));<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            cntC[t]--;<br>            <span class="hljs-keyword">if</span> (t != <span class="hljs-number">1</span> &amp;&amp; cntC[t] == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">Union</span>(t, parentArr[t]);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = (<span class="hljs-type">int</span>)ans.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -534,7 +304,7 @@ u = \arctan \frac{y}{x} + C
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E7%AB%9E/" class="category-chain-item">数竞</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" class="category-chain-item">算法竞赛</a>
   
   
 
@@ -554,8 +324,8 @@ u = \arctan \frac{y}{x} + C
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多元函数微分学</div>
-      <div>https://ddccffq.github.io/2025/08/20/数学竞赛/多元函数微分学/</div>
+      <div>P4092 [HEOI2016/TJOI2016] 树</div>
+      <div>https://ddccffq.github.io/2025/09/30/洛谷/并查集/TJOI2016] 树/</div>
     </div>
     <div class="license-meta">
       
@@ -567,7 +337,7 @@ u = \arctan \frac{y}{x} + C
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月20日</div>
+          <div>2025年9月30日</div>
         </div>
       
       
@@ -599,9 +369,9 @@ u = \arctan \frac{y}{x} + C
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/22/%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86%E5%AD%A6/" title="多元函数积分学">
+                      <a href="/2025/10/01/%E6%B4%9B%E8%B0%B7/%E5%B9%B6%E6%9F%A5%E9%9B%86/P3101%20%5BUSACO14JAN%5D%20Ski%20Course%20Rating%20G/" title="P3101 [USACO14JAN] Ski Course Rating G">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多元函数积分学</span>
+                        <span class="hidden-mobile">P3101 [USACO14JAN] Ski Course Rating G</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -609,8 +379,8 @@ u = \arctan \frac{y}{x} + C
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/01/%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86/" title="不定积分与定积分">
-                        <span class="hidden-mobile">不定积分与定积分</span>
+                      <a href="/2025/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/The_Kernel_Abstraction/" title="The Kernel Abstraction">
+                        <span class="hidden-mobile">The Kernel Abstraction</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

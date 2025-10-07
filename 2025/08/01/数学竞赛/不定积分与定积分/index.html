@@ -27,7 +27,7 @@
 <meta property="og:description" content="基本积分公式  \[ \int \frac{1}{x^2 + a^2} \text{d} x &#x3D; \frac{1}{a} \arctan \frac{x}{a} + C \] \[ \int \frac{1}{x^2 - a^2} \text{d} x &#x3D; \frac{1}{2a} \ln \biggl | \frac{x - a}{x + a} \biggr | + C \] \[ \int \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-01T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-29T12:53:36.834Z">
+<meta property="article:modified_time" content="2025-10-05T07:40:58.132Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          5.4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          30 分钟
+          45 分钟
         
       </span>
     
@@ -808,6 +808,240 @@ A_n &amp;= \sum_{j = 1}^{n} \int_{x_{i - 1}}^{x_i} f(x_i) \text{d}x
 \lim_{n \to \infty} &amp; \frac{-1}{2} \sum_{j = 1}^{n} f&#39;(\eta_i) \frac{1}{n} = \frac{-1}{2} \cdot \int_0^1 f&#39;(x) \text{d} x = \frac{1}{4}
 \end{aligned}
 \]</span></p></li>
+<li><blockquote>
+<p>证明</p>
+<p><span class="math display">\[
+\int_0^{\frac{\pi}{2}} \sqrt{a^2 \sin^2 \theta + b^2 \cos^2 \theta} \text{d} \theta = a^2 b^2 \int_0^{\frac{\pi}{2}} \frac{1}{(\sqrt{a^2 \sin^2 \theta + b^2 \cos^2 \theta})^3} \text{d} \theta
+\]</span></p>
+<p><span class="math inline">\(a\)</span>，<span class="math inline">\(b &gt; 0\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^{\frac{\pi}{2}} \sqrt{a^2 \sin^2 \theta + b^2 \cos^2 \theta} \text{d} \theta &amp;= \int_0^{\frac{\pi}{2}} \sin \theta \sqrt{a^2 + b^2 \cot^2 \theta} \text{d} \theta
+\\
+&amp;= -\int_0^{\frac{\pi}{2}} \frac{\sqrt{a^2 + b^2 \cot^2 \theta}}{(\frac{\sin^2 \theta + \cos^2 \theta}{\sin^2 \theta})^{\frac{3}{2}}} \text{d} \cot \theta
+\\
+&amp;= \int_0^{+\infty} \frac{\sqrt{a^2 + b^2 u^2}}{(1 + u^2)^{\frac{3}{2}}} \text{d} u
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+a^2 b^2 \int_0^{\frac{\pi}{2}} \frac{1}{(\sqrt{a^2 \sin^2 \theta + b^2 \cos^2 \theta})^3} \text{d} \theta &amp;= a^2 b^2 \int_0^{\frac{\pi}{2}} \biggl(\sqrt{\frac{\sin^2 \theta + \cos^2 \theta}{a^2 \sin^2 \theta + b^2 \cos^2 \theta}}\biggr)^3 \text{d} \theta
+\\
+&amp;=  a^2 b^2 \int_0^{\frac{\pi}{2}} \frac{\bigl(\sqrt{\tan^2 \theta + 1}\bigr)^3}{\bigl(\sqrt{a^2 \tan^2 \theta + b^2}\bigr)^3} \text{d} \theta
+\\
+&amp;= a^2 b^2 \int_0^{\frac{\pi}{2}} \frac{\sqrt{\tan^2 \theta + 1}}{\bigl(\sqrt{a^2 \tan^2 \theta + b^2}\bigr)^3} \text{d} \tan \theta
+\\
+&amp;= \int_0^{+\infty} \frac{\sqrt{a^2 + b^2 u^2}}{(1 + u^2)^{\frac{3}{2}}} \text{d} u
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>证明</p>
+<p><span class="math display">\[
+\int_0^{2\pi} f(a \cos x + b \sin x) \text{d} x = 2 \int_0^{\pi} f(\sqrt{a^2 + b^2} \cos x) \text{d} x
+\]</span></p>
+<p>其中 <span class="math inline">\(f(x)\)</span> 连续，<span class="math inline">\(a^2 + b^2 \neq 0\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^{2\pi} f(a \cos x + b \sin x) \text{d} x &amp;= \int_0^{2\pi} f(\sqrt{a^2 + b^2} \cos (x - \theta)) \text{d} x
+\\
+&amp;= \int_{-\pi}^{\pi} f(\sqrt{a^2 + b^2} \cos x) \text{d} x
+\\
+&amp;= 2 \int_0^{\pi} f(\sqrt{a^2 + b^2} \cos x) \text{d} x
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>已知 <span class="math inline">\(f(x)\)</span> 连续且 <span class="math inline">\(f(x) = \sin x - \int_0^{x} (x - t) f(t) \text{d} t\)</span>，求 <span class="math inline">\(f(x)\)</span> 的表达式。</p>
+</blockquote>
+<p>等式两端对 <span class="math inline">\(x\)</span> 求导：</p>
+<p><span class="math display">\[
+\begin{aligned}
+f&#39;(x) &amp;= \cos x - x f(x) - \int_0^{x} f(t) \text{d} t + x f(x)
+\\
+f&#39;&#39;(x) &amp;= -\sin x - f(x)
+\end{aligned}
+\]</span></p>
+<p>上述微分方程的通解是：</p>
+<p><span class="math display">\[
+f(x) = C_1 \cos x + C_2 \sin x + \frac{x \cos x}{2}
+\]</span></p>
+<p>带入 <span class="math inline">\(f(0) = 0\)</span>，<span class="math inline">\(f&#39;(0) = 1\)</span>，得</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{2} \sin x + \frac{x \cos x}{2}
+\]</span></p></li>
+<li><blockquote>
+<p>设可微函数 <span class="math inline">\(y = f(x)\)</span> 满足方程</p>
+<p><span class="math display">\[
+\int_0^{x} f(t) \text{d} t = x + \int_0^{x} t f(x - t) \text{d} t
+\]</span></p>
+<p>求 <span class="math inline">\(f(x)\)</span>。</p>
+</blockquote>
+<p><span class="math inline">\(u = x - t\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^{x} f(t) \text{d} t &amp;= x + \int_0^{x} (x - u) f(u) \text{d} u
+\\
+f(x) &amp;= 1 + \int_0^{x} f(u) \text{d}u + x f(x) - x f(x)
+\\
+f&#39;(x) &amp;= f(x)
+\end{aligned}
+\]</span></p>
+<p>所以 <span class="math inline">\(f(x) = \text{e}^x\)</span>。</p></li>
+<li><blockquote>
+<p>设函数 <span class="math inline">\(y = y(x)\)</span> 由方程</p>
+<p><span class="math display">\[
+x = \int_1^{y - x} \sin^2 \biggl(\frac{\pi t}{4}\biggr) \text{d} t
+\]</span></p>
+<p>所确定，求 <span class="math inline">\(y&#39;(0)\)</span>。</p>
+</blockquote>
+<p>令 <span class="math inline">\(x = 0\)</span></p>
+<p><span class="math display">\[
+0 = \int_1^{y(0)} \sin^2 \biggl(\frac{\pi t}{4}\biggr) \text{d} t
+\]</span></p>
+<p>所以，<span class="math inline">\(y(0) = 1\)</span></p>
+<p><span class="math display">\[
+1 = (y&#39;(0) - 1) \sin^2 \biggl(\frac{\pi y(0)}{4}\biggr)
+\]</span></p>
+<p>所以，<span class="math inline">\(y&#39;(0) = 3\)</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 是非负的连续函数，且</p>
+<p><span class="math display">\[
+f(x) \int_0^x f(x - t) \text{d} t = \sin^4 x
+\]</span></p>
+<p>求 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([0, \pi]\)</span> 上的均值。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = x - t\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) \int_0^x f(u) \text{d} u &amp;= \sin^4 x
+\\
+\int_0^{\pi} f(x) \int_0^x f(u) \text{d} u  \text{d} x &amp;= \int_0^{\pi} \sin^4 x \text{d} x = \frac{3}{8} \pi
+\\
+\int_0^{\pi} f(x) F(x) \text{d} x &amp;= \frac{3}{8} \pi
+\\
+\int_0^{\pi} F(x) \text{d} F(x) &amp;= \frac{3}{8} \pi
+\\
+F^2(\pi) - \int_0^{\pi} F(x) \text{d} F(x) &amp;= \frac{3}{8} \pi
+\\
+F^2(\pi) &amp;= \frac{3}{4} \pi
+\\
+F(\pi) &amp;= \frac{\sqrt{3 \pi}}{2}
+\end{aligned}
+\]</span></p>
+<p>所以均值 <span class="math inline">\(A = \frac{\sqrt{3 \pi}}{2 \pi}\)</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 可积，对于任意的 <span class="math inline">\(x\)</span> 及 <span class="math inline">\(a\)</span> 满足</p>
+<p><span class="math display">\[
+\frac{1}{2a} \int_{x - a}^{x + a} f(t) \text{d} t = f(x)(a \neq 0)
+\]</span></p>
+<p>证明 <span class="math inline">\(f(x)\)</span> 是线性函数。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{x - a}^{x + a} f(t) \text{d} t &amp;= 2a f(x)
+\\
+f(x + a) + f(x - a) &amp;= 2f(x)
+\\
+f&#39;(x + a) - f&#39;(x - a) &amp;= 0
+\\
+f&#39;(2x) &amp;= f&#39;(0)
+\end{aligned}
+\]</span></p>
+<p>所以，<span class="math inline">\(f&#39;(x) \equiv C\)</span>，其中 <span class="math inline">\(C\)</span> 是常数。又题目知，<span class="math inline">\(f(x)\)</span> 连续，再由题设等式知，<span class="math inline">\(f(x)\)</span> 可导，故 <span class="math inline">\(f(x)\)</span> 是线性函数。</p></li>
+<li><blockquote>
+<p> 设函数 <span class="math inline">\(\varphi(x)\)</span> 在 <span class="math inline">\([0, 1]\)</span> 上连续，在 <span class="math inline">\((0, 1]\)</span> 内可导，并有 <span class="math inline">\(\int_0^1 \varphi(tx) \text{d} t = a \varphi(x)\)</span>，其中 <span class="math inline">\(a\)</span> 为常数。试求 <span class="math inline">\(\varphi(x)\)</span>。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = tx\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^x \varphi(u) \text{d} \frac{u}{x} &amp;= a \varphi(x)
+\\
+\varphi(x) &amp;= a \varphi(x) + a x \varphi&#39;(x)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\varphi(x) =
+\begin{cases}
+0, &amp;a = 0
+\\
+Cx^{\frac{1 - a}{a}}, &amp;a \neq 0, C \in R
+\end{cases}
+\]</span></p></li>
+<li><blockquote>
+<p>设函数 <span class="math inline">\(f(x)\)</span> 连续，<span class="math inline">\(g(x) = \int_0^1 f(xt) \text{d} t\)</span>，且 <span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x} = A\)</span>，<span class="math inline">\(A\)</span> 是常数，求 <span class="math inline">\(g&#39;(x)\)</span> 并讨论 <span class="math inline">\(g&#39;(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 处的连续性。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = xt\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+g(x) &amp;= \frac{1}{x} \int_0^x f(u) \text{d} u
+\\
+g&#39;(x) &amp;= \frac{f(x) x - \int_0^x f(u) \text{d} u}{x^2}, x \neq 0
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x \to 0} g&#39;(x) &amp;= \lim_{x \to 0} \biggl(\frac{f(x) x - \int_0^x f(u) \text{d} u}{x^2} \biggr)
+\\
+&amp;= A - \lim_{x \to 0} \biggl(\frac{\int_0^x f(u) \text{d} u}{x^2}\biggr)
+\\
+&amp;= \frac{A}{2}
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\([a, b]\)</span> 上连续，证明下列结论：</p>
+<p>(1). <span class="math inline">\(f(x)\)</span> 为常数的充要条件为对任何 <span class="math inline">\(x \in (a, b)\)</span> 恒有 <span class="math inline">\(\frac{1}{x - a} \int_a^x f(t) \text{d} t = \frac{1}{b - a} \int_a^b f(x) \text{d} x\)</span>；</p>
+<p>(2). <span class="math inline">\(f(x)\)</span> 为常数的充要条件为对任何 <span class="math inline">\(x \in (a, b)\)</span> 恒有 <span class="math inline">\(\frac{1}{x - a} \int_a^x f(t) \text{d} t = \frac{1}{b - x} \int_x^b f(t) \text{d} t\)</span>。</p>
+</blockquote>
+<p>可以尝试用从面积来解释</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(x = \int_0^y \frac{\text{d} t}{\sqrt{1 + 4t^2}}\)</span>，证明：<span class="math inline">\(\frac{\text{d}^3 y}{\text{d} x^3} - 4 \frac{\text{d} y}{\text{d} x} = 0\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\text{d} x &amp;= \frac{\text{d} y}{\sqrt{1 + 4y^2}}
+\\
+\frac{\text{d} y}{\text{d} x} &amp;= \sqrt{1 + 4y^2}
+\\
+\frac{\text{d}^2 y}{\text{d} x^2} &amp;= \frac{4yy&#39;}{\sqrt{1 + 4y^2}} = 4y
+\\
+\frac{\text{d}^3 y}{\text{d} x^3} &amp;= 4 y&#39;
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>求摆线 <span class="math inline">\(L: x = a(t - \sin t), y = a(1 - \cos t)(0 \leq t \leq 2 \pi)\)</span> 与 <span class="math inline">\(x\)</span> 轴围成的图形绕 <span class="math inline">\(y\)</span> 轴旋转所形成的旋转体体积 <span class="math inline">\(V_y\)</span>。</p>
+</blockquote>
+<p>由柱壳法，设 <span class="math inline">\(y = f(x)(0 \leq x \leq 2\pi a)\)</span>，体积微元 <span class="math inline">\(\text{d} V_y = 2\pi xy \text{d} x\)</span>，则体积可表示为：</p>
+<p><span class="math display">\[
+V_y = 2\pi \int_0^{2\pi a} xy \text{d} x = 2\pi a^3 \int_0^{2\pi} (t - \sin t)(1 - \cos t)^2 \text{d} t = 6\pi^3 a^3
+\]</span></p></li>
+<li><blockquote>
+<p>设直线 <span class="math inline">\(l: x + y = 1\)</span>，曲线 <span class="math inline">\(S: \sqrt{x} + \sqrt{y} = 1\)</span>，求由 <span class="math inline">\(l\)</span> 与 <span class="math inline">\(S\)</span> 所围成的平面图形绕 <span class="math inline">\(l\)</span> 旋转所形成的旋转体体积 <span class="math inline">\(V\)</span>。</p>
+</blockquote>
+<p>在曲线上取一点 <span class="math inline">\(P(x, y)\)</span>，该点到直线的距离是 <span class="math inline">\(\rho = \frac{|x + y - 1|}{\sqrt{2}}\)</span>，以 <span class="math inline">\(\rho\)</span> 为长度，旋转轴上 <span class="math inline">\(\text{d} l\)</span> 为宽度作矩形，取体积微元 <span class="math inline">\(\text{d} V = \pi \rho^2 \text{d} l\)</span>，其中 <span class="math inline">\(\text{d} l = \sqrt{2} \text{d} x\)</span>，所以，体积为：</p>
+<p><span class="math display">\[
+V = \sqrt{2} \int_0^1 \pi \frac{[x + (1 - \sqrt{x})^2 - 1]^2}{2} \text{d} x = \frac{\sqrt{2}}{15} \pi
+\]</span></p></li>
+<li><blockquote>
+<p>已知空间中的点 <span class="math inline">\(A(1, 0, 0)\)</span>，<span class="math inline">\(B(0, 1, 1)\)</span>，直线 <span class="math inline">\(AB\)</span> 绕 <span class="math inline">\(z\)</span> 轴的旋转面为 <span class="math inline">\(S\)</span>，求 <span class="math inline">\(S\)</span> 与两平面 <span class="math inline">\(z = 0\)</span>，<span class="math inline">\(z = 1\)</span> 所围成的立体的体积 <span class="math inline">\(V\)</span>。</p>
+</blockquote>
+<p>在直线上取一点 <span class="math inline">\(P(x, y, z)\)</span>，该点到 <span class="math inline">\(z\)</span> 轴的距离是 <span class="math inline">\(\rho = \sqrt{x^2 + y^2}\)</span>，以 <span class="math inline">\(\rho\)</span> 为长度，旋转轴上 <span class="math inline">\(\text{d} z\)</span> 为宽度作矩形，取体积微元 <span class="math inline">\(\text{d} V = \pi \rho^2 \text{d} z\)</span>，直线 <span class="math inline">\(AB\)</span> 的方程为：</p>
+<p><span class="math display">\[
+\begin{cases}
+y = z
+\\
+x = 1 - z
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+V = \int_0^1 \pi (1 - 2z + 2z^2) \text{d} z = \frac{2\pi}{3}
+\]</span></p></li>
+<li><blockquote>
+<p>求曲线 <span class="math inline">\(y = x(x - 1)(x - 2)\)</span> 与 <span class="math inline">\(x\)</span> 轴所围平面区域绕 <span class="math inline">\(y\)</span> 轴旋转所成的旋转体体积 <span class="math inline">\(V_y\)</span>。</p>
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 上有连续的导数，<span class="math inline">\(M\)</span> 与 <span class="math inline">\(m\)</span> 分别是 <span class="math inline">\(f(x)\)</span> 的最大值与最小值。证明：<span class="math inline">\(\int_a^b |f&#39;(x)| \text{d} x \geq M - m\)</span>；等号成立当且仅当 <span class="math inline">\(f(x)\)</span> 是 <span class="math inline">\([a ,b]\)</span> 上的单调函数。</p>
+</blockquote></li>
 </ol>
 
                 

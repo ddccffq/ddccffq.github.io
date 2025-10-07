@@ -27,7 +27,7 @@
 <meta property="og:description" content="包括重积分、曲线积分与曲面积分和多元函数积分学的应用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-22T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-18T07:29:25.175Z">
+<meta property="article:modified_time" content="2025-10-03T11:50:24.584Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="重积分">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.7k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          55 分钟
+          56 分钟
         
       </span>
     
@@ -760,6 +760,29 @@ V = \int_{0}^{h} \text{d}z \pi(R^2 - (R - h + z)^2) = \pi \int_{0}^{h} (-h^2 - z
 \iint\limits_{\Sigma&#39;} = -\frac{6}{\sqrt{3}} \iint\limits_{\Sigma&#39;} \text{d}S = -18\sqrt{3} \pi
 \]</span></p>
 <p>所以，<span class="math inline">\(I = 33\sqrt{3}\pi\)</span></p></li>
+<li><blockquote>
+<p>计算</p>
+<p><span class="math display">\[
+I = \iint\limits_{D} \frac{\text{d} x \text{d} y}{\sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}}}, D: \frac{x^2}{a^2} + \frac{y^2}{b^2} \leq 1
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(u = \frac{x}{a}\)</span>，<span class="math inline">\(v = \frac{y}{b}\)</span>，则 <span class="math inline">\(u^2 + v^2 \leq 1\)</span>，原积分变为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+I &amp;= \iint\limits_{u^2 + v^2 \leq 1} \frac{\text{d}u \text{d}v}{\sqrt{1 - u^2 - v^2}} J(u, v)
+\\
+&amp;= ab \int_0^{2\pi} \text{d} \theta \int_0^1 \frac{r}{\sqrt{1 - r^2}} \text{d} r
+\\
+&amp;= 2\pi ab
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>求由抛物线 <span class="math inline">\(y^2 = x\)</span>，<span class="math inline">\(y^2 = 2x\)</span> 及双曲线 <span class="math inline">\(xy = 1\)</span>，<span class="math inline">\(xy = 4\)</span> 所围成的区域 <span class="math inline">\(D\)</span> 的面积 <span class="math inline">\(|D|\)</span>。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = \frac{y^2}{x}\)</span>，<span class="math inline">\(v = xy\)</span>，则 <span class="math inline">\(y^2 = x \to u = 1\)</span>，<span class="math inline">\(y^2 = 2x \to u = 2\)</span>，<span class="math inline">\(xy = 1 \to v = 1\)</span>，<span class="math inline">\(xy = 4 \to v = 4\)</span>，<span class="math inline">\(J(u, v) = -\frac{1}{u}\)</span>，则面积为：</p>
+<p><span class="math display">\[
+|D| = \iint\limits_{D} \text{d} x \text{d} y = \iint\limits_{D&#39;} \frac{1}{u} \text{d} u \text{d} v = \ln 2
+\]</span></p></li>
 </ol>
 
                 
