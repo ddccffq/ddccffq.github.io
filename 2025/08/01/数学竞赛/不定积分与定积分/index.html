@@ -27,7 +27,7 @@
 <meta property="og:description" content="基本积分公式  \[ \int \frac{1}{x^2 + a^2} \text{d} x &#x3D; \frac{1}{a} \arctan \frac{x}{a} + C \] \[ \int \frac{1}{x^2 - a^2} \text{d} x &#x3D; \frac{1}{2a} \ln \biggl | \frac{x - a}{x + a} \biggr | + C \] \[ \int \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-01T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-05T07:40:58.132Z">
+<meta property="article:modified_time" content="2025-10-09T08:59:40.147Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          6.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          45 分钟
+          57 分钟
         
       </span>
     
@@ -1038,10 +1038,148 @@ V = \int_0^1 \pi (1 - 2z + 2z^2) \text{d} z = \frac{2\pi}{3}
 \]</span></p></li>
 <li><blockquote>
 <p>求曲线 <span class="math inline">\(y = x(x - 1)(x - 2)\)</span> 与 <span class="math inline">\(x\)</span> 轴所围平面区域绕 <span class="math inline">\(y\)</span> 轴旋转所成的旋转体体积 <span class="math inline">\(V_y\)</span>。</p>
-</blockquote></li>
+</blockquote>
+<p>用柱壳法</p>
+<p><span class="math display">\[
+\begin{aligned}
+2\pi \int_0^2 x |y| \text{d} x &amp;= 2pi \int_0^1 x^2(x - 1)(x - 2) \text{d} x - 2\pi \int_1^2 x^2(x - 1)(x - 2) \text{d} x
+\\
+&amp;= \pi
+\end{aligned}
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 上有连续的导数，<span class="math inline">\(M\)</span> 与 <span class="math inline">\(m\)</span> 分别是 <span class="math inline">\(f(x)\)</span> 的最大值与最小值。证明：<span class="math inline">\(\int_a^b |f&#39;(x)| \text{d} x \geq M - m\)</span>；等号成立当且仅当 <span class="math inline">\(f(x)\)</span> 是 <span class="math inline">\([a ,b]\)</span> 上的单调函数。</p>
 </blockquote></li>
+<li><blockquote>
+<p>试确定抛物线 <span class="math inline">\(4ay = x^2(a &gt; 0)\)</span> 的一条法线弦（法线穿过抛物线构成的弦）的位置，使得这条弦截该抛物线所成的弓形有最小面积。</p>
+</blockquote>
+<p>该抛物线的参数方程为 <span class="math inline">\(x = 2at\)</span>，<span class="math inline">\(y = at^2(-\infty &lt; t &lt; +\infty)\)</span>，设法线弦交抛物线的交点分别为 <span class="math inline">\(Q(2av, av^2)\)</span>，<span class="math inline">\(P(2au, au^2)\)</span>。 则法线弦的直线方程为：<span class="math inline">\(y = \frac{1}{2}(u + v)x - auv\)</span>。则弓形面积</p>
+<p><span class="math display">\[
+\begin{aligned}
+S &amp;= \int_{2av}^{2au} \frac{1}{2}(u + v)x - auv - \frac{1}{4a} x^2 \text{d} x
+\\
+&amp;= \frac{1}{4}(u + v)(4a^2u^2 - 4a^2v^2) - auv(2au - 2av) - \frac{1}{4a}(4a^2u^2 - 4a^2v^2)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>半径为 <span class="math inline">\(r\)</span> 的初始圆与 <span class="math inline">\(x\)</span> 轴相切于原点，它在 <span class="math inline">\(x\)</span> 轴上向右滚动一周。初始圆上的切点在滚动过程中1的轨迹称为旋轮线。它的参数方程为 <span class="math inline">\(L: x = r(\theta - \sin \theta)\)</span>，<span class="math inline">\(y = r(1 - \cos \theta)\)</span>，<span class="math inline">\(0 \leq \theta \leq 2\pi\)</span>，其中 <span class="math inline">\(\theta\)</span> 是滚动圆的旋转角。求旋轮线一拱的弧长 <span class="math inline">\(l\)</span> 以及它与 <span class="math inline">\(x\)</span> 轴所围图形的面积 <span class="math inline">\(A\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+l &amp;= \int_0^{2\pi} \sqrt{\biggl(\frac{\text{d} x}{\text{d} \theta}\biggr)^2 + \biggl(\frac{\text{d} y}{\text{d} \theta}\biggr)^2} \text{d} \theta
+\\
+&amp;= \int_0^{2\pi} 2r \sqrt{1 - \cos \theta} \text{d} \theta
+\\
+&amp;= 8r
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+A &amp;= \int_0^{2\pi r} y(x) \text{d} x
+\\
+&amp;= \int_0^{2\pi} r(1 - \cos \theta) \text{d} r(\theta - \sin \theta)
+\\
+&amp;= \int_0^{2\pi} r^2 (1 - \cos \theta)^2 \text{d} \theta
+\\
+&amp;= 3\pi r^2
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\Gamma\)</span> 是单位圆周在第一象限的一段圆弧，<span class="math inline">\(A\)</span> 是位于 <span class="math inline">\(\Gamma\)</span> 下方和 <span class="math inline">\(x\)</span> 轴上方区域的面积，<span class="math inline">\(B\)</span> 是位于 <span class="math inline">\(y\)</span> 轴右侧和 <span class="math inline">\(\Gamma\)</span> 左侧之间区域的面积。证明：<span class="math inline">\(A + B\)</span> 只与弧长 <span class="math inline">\(|\Gamma|\)</span> 有关，与 <span class="math inline">\(\Gamma\)</span> 在圆周上的位置无关。</p>
+</blockquote>
+<p>设 <span class="math inline">\(\frac{\pi}{2} &gt; \beta &gt; \alpha &gt; 0\)</span> 所代表的的圆弧是 <span class="math inline">\(\Gamma\)</span>，单位圆的参数方程是 <span class="math inline">\(x = \cos \theta\)</span>，<span class="math inline">\(y = \sin \theta\)</span>，设 <span class="math inline">\(\Gamma\)</span> 的上下端点的坐标分别为 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span>，坐标分别为 <span class="math inline">\((\cos \beta, \sin \beta)\)</span>，<span class="math inline">\((\cos \alpha, \sin \alpha)\)</span></p>
+<p>先求出 <span class="math inline">\(|\Gamma|\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+|\Gamma| &amp;= \int_{\alpha}^{\beta} \sqrt{\biggl(\frac{\text{d} x}{\text{d} \theta}\biggr)^2 + \biggl(\frac{\text{d} y}{\text{d} \theta}\biggr)^2} \text{d} \theta
+\\
+&amp;= \beta - \alpha
+\end{aligned}
+\]</span></p>
+<p>再讨论 <span class="math inline">\(A + B\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+A &amp;= \int_{\cos \beta}^{\cos \alpha} y(x) \text{d} x
+\\
+B &amp;=  \int_{\sin \alpha}^{\sin \beta} x(y) \text{d} y
+\\
+A + B &amp;= \int_{\alpha}^{\beta} \sqrt{1 - \cos^2 \theta} \sin \theta \text{d} \theta + \int_{\alpha}^{\beta} \sqrt{1 - \sin^2 \theta} \cos \theta \text{d} \theta
+\\
+&amp;= \beta - \alpha
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(C\)</span> 是椭圆，周长为 <span class="math inline">\(l\)</span>。自 <span class="math inline">\(C\)</span> 上一点 <span class="math inline">\(O\)</span> 向外地做它的法线，并沿法线截取线段 <span class="math inline">\(OO&#39; = h\)</span>。当点 <span class="math inline">\(O\)</span> 沿 <span class="math inline">\(C\)</span> 绕行一周后，点 <span class="math inline">\(O&#39;\)</span> 的轨迹构成曲线 <span class="math inline">\(C&#39;\)</span>，证明：</p>
+<p>(1). 曲线 <span class="math inline">\(C&#39;\)</span> 的长度为 <span class="math inline">\(l&#39; = l + 2\pi h\)</span>。</p>
+<p>(2). <span class="math inline">\(C\)</span> 与 <span class="math inline">\(C&#39;\)</span> 所围成的面积是 <span class="math inline">\(lh + \pi h^2\)</span>。</p>
+</blockquote></li>
+<li><blockquote>
+<p>求从原点到曲线 <span class="math inline">\(y^2 = x^3\)</span> 上一点的弧长，已知这一点处的切线与 <span class="math inline">\(x\)</span> 成 <span class="math inline">\(45^{\circ}\)</span>。</p>
+</blockquote>
+<p>曲线上任意一点的斜率为 <span class="math inline">\(\frac{3x^2}{2y}\)</span>，已知曲线上的点与 <span class="math inline">\(x\)</span> 轴成 <span class="math inline">\(45^{\circ}\)</span>，所以该点 <span class="math inline">\(\frac{3x^2}{2y} = \pm 1\)</span></p>
+<p><span class="math display">\[
+\begin{cases}
+\frac{3x^2}{2y} = \pm 1
+\\
+y^2 = x^3
+\end{cases}
+\]</span></p>
+<p>解得 <span class="math inline">\(x = \frac{4}{9}\)</span>，<span class="math inline">\(y = \pm \frac{8}{27}\)</span>，由曲线关于 <span class="math inline">\(x\)</span> 轴对称，所以从原点到这两点的弧长相等，以 <span class="math inline">\((\frac{4}{9}, \frac{8}{27})\)</span> 为例，弧长</p>
+<p><span class="math display">\[
+\begin{aligned}
+l &amp;= \int_0^{\frac{4}{9}} \sqrt{(y&#39;)^2 + 1} \text{d} x
+\\
+&amp;= \frac{2}{3} \cdot \frac{4}{9} \biggl[\biggl(\frac{9}{4} \cdot \frac{4}{9} + 1\biggr)^{\frac{3}{2}} - \biggl(\frac{9}{4} \cdot 0 + 1\biggr)^{\frac{3}{2}}\biggr]
+\\
+&amp;= \frac{8}{27} (2\sqrt{2} - 1)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>证明椭圆 <span class="math inline">\(L_1: x = a\cos t\)</span>，<span class="math inline">\(y = b \sin t\)</span> 的周长，<span class="math inline">\(0 \leq t \leq 2\pi\)</span>，<span class="math inline">\(a &gt; b &gt; 0\)</span> 等于正弦曲线 <span class="math inline">\(L_2: y = c \sin \frac{x}{b}\)</span> 的一波之长，<span class="math inline">\(0 \leq x \leq 2\pi b\)</span>，其中 <span class="math inline">\(c = \sqrt{a^2 - b^2}\)</span>。</p>
+</blockquote>
+<p>正弦曲线的一波之长为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+l &amp;= \int_0^{2\pi b} \sqrt{(y&#39;)^2 + 1} \text{d} x
+\\
+&amp;= \int_0^{2\pi b} \sqrt{(\frac{c}{b} \cos \frac{x}{b})^2 + 1} \text{d} x
+\\
+&amp;= \int_0^{2\pi} \sqrt{c^2 \cos^2 u + b^2}  \text{d} u
+\\
+&amp;= \int_0^{2\pi} \sqrt{a^2 \cos^2 u + b^2 \sin^2 u} \text{d} u
+\\
+&amp;= \int_0^{2\pi} \sqrt{a^2 \sin^2 t + b^2 \cos^2 t} \text{d} t
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>在平面上有一条从点 <span class="math inline">\((a, 0)\)</span> 向右的射线，线密度为 <span class="math inline">\(\rho\)</span>。在点 <span class="math inline">\((0, h)\)</span> 处，其中 <span class="math inline">\(h &gt; 0\)</span>，有一质量为 <span class="math inline">\(m\)</span> 的质点，求射线对该质点的引力。</p>
+</blockquote>
+<p>射线从 <span class="math inline">\((a, 0)\)</span> 射向 <span class="math inline">\(x\)</span> 轴正无穷，对射线上每个点 <span class="math inline">\((x, 0)\)</span>，取微元，得到线质量为 <span class="math inline">\(\rho \text{d} x\)</span>，设引力为 <span class="math inline">\(\mathbf{F} = (F_x, F_y)\)</span>：</p>
+<p><span class="math display">\[
+\begin{aligned}
+F_x &amp;= \int_a^{+\infty} \frac{Gm\rho \text{d} x}{x^2 + h^2} \cdot \frac{x}{\sqrt{x^2 + h^2}}
+\\
+&amp;= Gm\rho\int_a^{+\infty} \frac{\text{d} (x^2 + h^2)}{2(x^2 + h^2)^{\frac{3}{2}}}
+\\
+&amp;= \frac{Gm\rho}{\sqrt{a^2 + h^2}}
+\\
+F_y &amp;= -\int_a^{+\infty} \frac{Gm\rho \text{d} x}{x^2 + h^2} \cdot \frac{h}{\sqrt{x^2 + h^2}}
+\\
+&amp;= -Gmh\rho \int_a^{+\infty} \frac{\text{d} x}{(x^2 + h^2)^{\frac{3}{2}}}
+\\
+&amp;= \frac{Gm\rho}{h} \biggl(\sin\biggl(\arctan \frac{a}{h}\biggr) - 1\biggr)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>已知两条均匀的竿子，每条质量为 <span class="math inline">\(m\)</span>，长度为 <span class="math inline">\(2a\)</span>，相互平行，相距为 <span class="math inline">\(b\)</span>，并且其中心连线与它们垂直。试计算相互引力，并考虑 <span class="math inline">\(a\)</span> 为零的情形。</p>
+</blockquote></li>
+<li><blockquote>
+<p>宽度为 <span class="math inline">\(R\)</span> 的河面上任一点的流速与该点到两岸距离的乘积成正比。已知河道中心线处水的流速为 <span class="math inline">\(v_0\)</span>。求河道上河水的平均流速。</p>
+</blockquote>
+<p>比例系数 <span class="math inline">\(\eta = \frac{4v_0}{R^2}\)</span>，则河面上距离河道 <span class="math inline">\(r\)</span> 的一点的速度为 <span class="math inline">\(\eta \cdot (R - r) \cdot r\)</span>，河面上河水的平均流速为：</p>
+<p><span class="math display">\[
+\bar{v} = \frac{\int_0^R \eta \cdot (R - r) \cdot r \text{d} r}{R} = \frac{2}{3} v_0
+\]</span></p></li>
 </ol>
 
                 
