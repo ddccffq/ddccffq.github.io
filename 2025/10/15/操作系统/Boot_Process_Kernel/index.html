@@ -19,22 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="难度：提高+&#x2F;省选-。">
+    <meta name="description" content="Basic Input Output System">
 <meta property="og:type" content="article">
-<meta property="og:title" content="P4092 [HEOI2016&#x2F;TJOI2016] 树">
-<meta property="og:url" content="https://ddccffq.github.io/2025/09/30/%E6%B4%9B%E8%B0%B7/%E5%B9%B6%E6%9F%A5%E9%9B%86/TJOI2016]%20%E6%A0%91/index.html">
+<meta property="og:title" content="Boot, Process, Kernel">
+<meta property="og:url" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="难度：提高+&#x2F;省选-。">
+<meta property="og:description" content="Basic Input Output System">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-30T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-03T07:23:21.021Z">
+<meta property="article:published_time" content="2025-10-15T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-16T07:18:41.641Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>P4092 [HEOI2016/TJOI2016] 树 - ddccffq&#39;s Blog</title>
+  <title>Boot, Process, Kernel - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="P4092 [HEOI2016/TJOI2016] 树"></span>
+            <span id="subtitle" data-typed-text="Boot, Process, Kernel"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-30 15:00" pubdate>
-          2025年9月30日 下午
+        <time datetime="2025-10-15 16:00" pubdate>
+          2025年10月15日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          663 字
+          1 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          1 分钟
         
       </span>
     
@@ -271,21 +271,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">P4092 [HEOI2016/TJOI2016] 树</h1>
+            <h1 id="seo-header">Boot, Process, Kernel</h1>
             
             
               <div class="markdown-body">
                 
-                <p>难度：<strong>提高+/省选-</strong>。</p>
-<span id="more"></span>
-<h2 id="简单的回顾">简单的回顾</h2>
-<p>显然，可以用<strong>并查集</strong>数据结构来解决这道题目，所以我的第一版代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">int</span> N, Q;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> parent[MAXN];<br><span class="hljs-type">bool</span> marked[MAXN];<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAXN; i++) &#123;<br>        parent[i] = <span class="hljs-number">0</span>;<br>        marked[i] = <span class="hljs-literal">false</span>;<br>    &#125;<br>    parent[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    marked[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (!marked[x]) &#123;<br>        x = parent[x];<br>    &#125;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-built_in">init</span>();<br>    cin &gt;&gt; N &gt;&gt; Q;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-type">int</span> p, c;<br>        cin &gt;&gt; p &gt;&gt; c;<br>        parent[c] = p;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; Q; j++) &#123;<br>        <span class="hljs-type">char</span> oper;<br>        <span class="hljs-type">int</span> t;<br>        cin &gt;&gt; oper;<br>        cin &gt;&gt; t;<br>        <span class="hljs-keyword">if</span> (oper == <span class="hljs-string">&#x27;C&#x27;</span>) &#123;<br>            <span class="hljs-keyword">if</span> (!marked[t]) marked[t] = <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oper == <span class="hljs-string">&#x27;Q&#x27;</span>) &#123;<br>            cout &lt;&lt; <span class="hljs-built_in">find</span>(t) &lt;&lt; endl;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>结果就是，这份代码没有通过 <strong>#11</strong>，返回 <strong>timeout</strong>。问题很明显，时间复杂度有点高了。</p>
-<h2 id="基于并查集结构尝试降低时间复杂度">基于并查集结构尝试降低时间复杂度</h2>
-<p>对于本题根据并查集构建的树，重要的节点是什么？很显然就是那些被标记过的节点；那重要的区域是什么？显然是两个被标记过节点之间的部分。如果查询到重要区域中的节点，返回的结果就是上端点（被标记节点，区域上闭下开）。</p>
-<p>但重要的节点和重要的区域是在变化的，从而导致维护它们的数据结构值也是在变化的。也就是说，如果按实际顺序标记，代码需要从上到下依次更新</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> MAXN = <span class="hljs-number">100000</span> + <span class="hljs-number">5</span>;<br><br><span class="hljs-type">int</span> N, Q;<br><span class="hljs-type">int</span> parentArr[MAXN]; \\ record actual parent <span class="hljs-keyword">and</span> child<br><span class="hljs-type">int</span> fa[MAXN]; \\ record DSU parent <span class="hljs-keyword">and</span> child<br><span class="hljs-type">int</span> cntC[MAXN]; \\ counts<br><span class="hljs-type">bool</span> willMarked[MAXN]; \\ <span class="hljs-function">marked</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> fa[x] == x ? x : fa[x] = <span class="hljs-built_in">Find</span>(fa[x]);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">Union</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    x = <span class="hljs-built_in">Find</span>(x); y = <span class="hljs-built_in">Find</span>(y);<br>    <span class="hljs-keyword">if</span> (x != y) fa[x] = y;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Op</span> &#123; <span class="hljs-type">char</span> type; <span class="hljs-type">int</span> v; &#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br><br>    <span class="hljs-keyword">if</span> (!(cin &gt;&gt; N &gt;&gt; Q)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) parentArr[i] = <span class="hljs-number">0</span>;<br>    parentArr[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N - <span class="hljs-number">1</span>; ++i) &#123;<br>        <span class="hljs-type">int</span> u, v; cin &gt;&gt; u &gt;&gt; v;<br>        parentArr[v] = u;<br>    &#125;<br><br>    <span class="hljs-function">vector&lt;Op&gt; <span class="hljs-title">ops</span><span class="hljs-params">(Q)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) cntC[i] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; Q; ++i) &#123;<br>        <span class="hljs-type">char</span> c; <span class="hljs-type">int</span> t; cin &gt;&gt; c &gt;&gt; t;<br>        ops[i] = &#123;c, t&#125;;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;C&#x27;</span>) cntC[t]++;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) willMarked[i] = (cntC[i] &gt; <span class="hljs-number">0</span>);<br>    willMarked[<span class="hljs-number">1</span>] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= N; ++i) fa[i] = i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> v = <span class="hljs-number">1</span>; v &lt;= N; ++v) &#123;<br>        <span class="hljs-keyword">if</span> (!willMarked[v]) &#123;<br>            <span class="hljs-built_in">Union</span>(v, parentArr[v]);<br>        &#125;<br>    &#125;<br><br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    ans.<span class="hljs-built_in">reserve</span>(Q);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = Q - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        <span class="hljs-type">char</span> c = ops[i].type; <span class="hljs-type">int</span> t = ops[i].v;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;Q&#x27;</span>) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">Find</span>(t));<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            cntC[t]--;<br>            <span class="hljs-keyword">if</span> (t != <span class="hljs-number">1</span> &amp;&amp; cntC[t] == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">Union</span>(t, parentArr[t]);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = (<span class="hljs-type">int</span>)ans.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <span id="more"></span>
+<h2 id="basic-input-output-system">Basic Input Output System</h2>
 
                 
               </div>
@@ -304,7 +296,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" class="category-chain-item">算法竞赛</a>
+  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
   
   
 
@@ -324,8 +316,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>P4092 [HEOI2016/TJOI2016] 树</div>
-      <div>https://ddccffq.github.io/2025/09/30/洛谷/并查集/TJOI2016] 树/</div>
+      <div>Boot, Process, Kernel</div>
+      <div>https://ddccffq.github.io/2025/10/15/操作系统/Boot_Process_Kernel/</div>
     </div>
     <div class="license-meta">
       
@@ -337,7 +329,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年9月30日</div>
+          <div>2025年10月15日</div>
         </div>
       
       
@@ -369,9 +361,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/01/%E6%B4%9B%E8%B0%B7/%E5%B9%B6%E6%9F%A5%E9%9B%86/P3101%20%5BUSACO14JAN%5D%20Ski%20Course%20Rating%20G/" title="P3101 [USACO14JAN] Ski Course Rating G">
+                      <a href="/2025/10/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Syllabi_and_Basics/" title="Syllabi and Basics">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">P3101 [USACO14JAN] Ski Course Rating G</span>
+                        <span class="hidden-mobile">Syllabi and Basics</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -379,8 +371,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/The_Kernel_Abstraction/" title="The Kernel Abstraction">
-                        <span class="hidden-mobile">The Kernel Abstraction</span>
+                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/" title="Thread">
+                        <span class="hidden-mobile">Thread</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
