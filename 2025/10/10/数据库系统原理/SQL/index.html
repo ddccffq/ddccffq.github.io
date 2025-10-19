@@ -19,24 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Thread Thread: a single execution sequence that represents a separately schedulable task.  Each thread executes a sequence of instructions (assignments, conditionals, loops, procedures, etc) just as">
+    <meta name="description" content="Structured Query Language，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thread">
-<meta property="og:url" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/index.html">
+<meta property="og:title" content="SQL">
+<meta property="og:url" content="https://ddccffq.github.io/2025/10/10/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/SQL/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Thread Thread: a single execution sequence that represents a separately schedulable task.  Each thread executes a sequence of instructions (assignments, conditionals, loops, procedures, etc) just as">
+<meta property="og:description" content="Structured Query Language，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/Thread%20vs.%20Process.png">
-<meta property="article:published_time" content="2025-10-15T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-15T01:26:15.661Z">
+<meta property="article:published_time" content="2025-10-10T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-19T04:16:13.212Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/Thread%20vs.%20Process.png">
   
   
   
-  <title>Thread - ddccffq&#39;s Blog</title>
+  <title>SQL - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Thread"></span>
+            <span id="subtitle" data-typed-text="SQL"></span>
           
         </div>
 
@@ -213,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-15 16:00" pubdate>
-          2025年10月15日 下午
+        <time datetime="2025-10-10 12:00" pubdate>
+          2025年10月10日 中午
         </time>
       </span>
     
@@ -225,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          276 字
+          1 字
         
       </span>
     
@@ -236,7 +234,7 @@
         
         
         
-          3 分钟
+          1 分钟
         
       </span>
     
@@ -273,52 +271,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Thread</h1>
+            <h1 id="seo-header">SQL</h1>
             
             
               <div class="markdown-body">
                 
-                <span id="more"></span>
-<h2 id="thread">Thread</h2>
-<p>Thread: a single execution <strong>sequence</strong> that represents a separately schedulable task.</p>
-<blockquote>
-<p>Each thread executes <strong>a sequence of instructions</strong> (assignments, conditionals, loops, procedures, etc) just as in the sequential programming model.</p>
-</blockquote>
-<p>Threads in the same process share memory space, but not execution context.</p>
-<blockquote>
-<p>There will be thread context switch.</p>
-</blockquote>
-<div style="display: block; margin: 0 auto; width: fit-content">
-<figure>
-<img src="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/Thread%20vs.%20Process.png" srcset="/img/loading.gif" lazyload alt="Thread vs. Process"><figcaption aria-hidden="true">Thread vs. Process</figcaption>
-</figure>
-</div>
-<h2 id="thread-control-block-tcb">Thread Control Block (TCB)</h2>
-<p>TCB</p>
-<ul>
-<li><strong>Stack pointer</strong>: each thread needs their own stack.</li>
-<li><strong>Copy of processor registers</strong>
-<ul>
-<li>General-purpose registers for storing intermediate values</li>
-<li>Special-purpose registers for storing instruction pointer and stack pointer</li>
-</ul></li>
-<li><strong>Metadata</strong>
-<ul>
-<li>Thread ID</li>
-<li>Scheduling priority</li>
-<li>Status</li>
-</ul></li>
-</ul>
-<h2 id="thread-data-structures">Thread Data Structures</h2>
-<h3 id="tcb">TCB</h3>
-<p>TCB（线程控制块）是操作系统为每个线程维护的核心数据结构，记录了线程的状态、寄存器、栈指针等关键信息。每个线程都有自己的 TCB，用于区分和管理线程。</p>
-<h3 id="shared-state">Shared state</h3>
-<p>线程之间可以共享某些状态（如全局变量、堆内存），但每个线程也有自己的私有状态（如栈、寄存器等）。TCB 记录的就是这些私有状态。</p>
-<h3 id="os-does-not-enforce-physical-division-on-threads-own-separated-states">OS does not enforce physical division on threads’ own separated states</h3>
-<p>操作系统不会对线程的私有状态（如栈）做物理隔离。也就是说，虽然每个线程有自己的栈空间，但这些空间在同一个进程的虚拟地址空间内，理论上线程 A 可以通过指针访问线程 B 的栈。</p>
-<blockquote>
-<p>If thread A has a pointer to the stack location of thread B, can A access/modify the variables on the stack of thread B? 答案是<strong>可以</strong>。因为所有线程共享同一个进程的虚拟地址空间，只要线程 A 拿到了线程 B 栈上变量的地址，就可以直接读写。操作系统不会阻止这种行为。</p>
-</blockquote>
+                <p>Structured Query Language，</p>
+<span id="more"></span>
 
                 
               </div>
@@ -337,7 +296,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
   
   
 
@@ -357,8 +316,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Thread</div>
-      <div>https://ddccffq.github.io/2025/10/15/操作系统/Thread/</div>
+      <div>SQL</div>
+      <div>https://ddccffq.github.io/2025/10/10/数据库系统原理/SQL/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +329,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月15日</div>
+          <div>2025年10月10日</div>
         </div>
       
       
@@ -402,9 +361,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Syllabi_and_Basics/" title="Syllabi and Basics">
+                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/" title="Boot, Process, Kernel">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Syllabi and Basics</span>
+                        <span class="hidden-mobile">Boot, Process, Kernel</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +371,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/" title="Boot, Process, Kernel">
-                        <span class="hidden-mobile">Boot, Process, Kernel</span>
+                      <a href="/2025/10/10/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relation_Model/" title="Relation Model">
+                        <span class="hidden-mobile">Relation Model</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
