@@ -1,0 +1,1197 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：\(平均访问时间 &#x3D; 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)   Processing is often faster than I&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TLB and Cache">
+<meta property="og:url" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：\(平均访问时间 &#x3D; 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)   Processing is often faster than I&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/A%20TLB%20lookup%20goes%20through%20each%20TLB%20entry.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Direct%20Mapped.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Set%20Associative.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Overlapping%20TLB%20and%20Cache.png">
+<meta property="article:published_time" content="2025-10-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-22T11:10:07.632Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/A%20TLB%20lookup%20goes%20through%20each%20TLB%20entry.png">
+  
+  
+  
+  <title>TLB and Cache - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TLB and Cache"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-20 08:00" pubdate>
+          2025年10月20日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TLB and Cache</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="cache">Cache</h2>
+<h3 id="concept">Concept</h3>
+<ul>
+<li>Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。</li>
+<li>目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。</li>
+<li>前提：只有在较高的“缓存命中率”下才有效。</li>
+<li>关键公式：<span class="math inline">\(平均访问时间 = 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)</span></li>
+</ul>
+<blockquote>
+<p>Processing is often faster than I/O access</p>
+</blockquote>
+<h3 id="locality">Locality</h3>
+<blockquote>
+<p>the Key to Cache Success</p>
+</blockquote>
+<ul>
+<li>时间局部性（Temporal locality）：若某地址被访问，则短期内很可能再次被访问，于是把最近访问的数据保留在靠近处理器的缓存中。</li>
+<li>空间局部性（Spatial locality）：若某地址被访问，附近地址很可能随后被访问，于是将连续的数据块一起提升到上层缓存。</li>
+<li>要点：利用时间与空间局部性可以提高缓存命中率，从而显著降低平均访问时间。</li>
+</ul>
+<h3 id="memory-hierarchy">Memory Hierarchy</h3>
+<ul>
+<li>内存层次（Memory Hierarchy）：通过多级存储（从寄存器到磁带）在速度、容量和成本之间权衡，常用数据放在更快但更小/更贵的层次以提升性能。</li>
+<li>关键收益来自局部性：时间局部性和空间局部性。</li>
+<li>关键公式：<span class="math inline">\(平均访问时间 = 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)</span>。</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table style="width:100%;">
+
+<thead>
+<tr class="header">
+<th>层级</th>
+<th style="text-align: right;">典型组件</th>
+<th style="text-align: right;">典型访问延迟（量级）</th>
+<th style="text-align: right;">典型容量</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>寄存器</td>
+<td style="text-align: right;">CPU registers</td>
+<td style="text-align: right;">≈ 1 ns（最短）</td>
+<td style="text-align: right;">数十–百字节</td>
+<td>存放当前运算操作数，最快速访问</td>
+</tr>
+<tr class="even">
+<td>On-chip cache (L1)</td>
+<td style="text-align: right;">L1/L0 缓存</td>
+<td style="text-align: right;">~1–10 ns</td>
+<td style="text-align: right;">KB–十几KB</td>
+<td>利用时间局部性，快速命中CPU近操作数据</td>
+</tr>
+<tr class="odd">
+<td>二级/片上缓存 (L2/L3, SRAM)</td>
+<td style="text-align: right;">On-chip / Second level cache</td>
+<td style="text-align: right;">~10–100 ns</td>
+<td style="text-align: right;">KBs–MBs</td>
+<td>扩展缓存容量，降低对主存访问</td>
+</tr>
+<tr class="even">
+<td>主存 (DRAM)</td>
+<td style="text-align: right;">Main Memory</td>
+<td style="text-align: right;">~100 ns</td>
+<td style="text-align: right;">MBs–GBs</td>
+<td>存放程序数据/指令，容量较大但延迟更高</td>
+</tr>
+<tr class="odd">
+<td>二级存储 (Disk)</td>
+<td style="text-align: right;">磁盘/SSD</td>
+<td style="text-align: right;">~10 ms（磁盘） / 更低（SSD）</td>
+<td style="text-align: right;">GBs–TBs</td>
+<td>持久存储，容量大但延迟高</td>
+</tr>
+<tr class="even">
+<td>三级/更慢存储 (Tape)</td>
+<td style="text-align: right;">磁带等</td>
+<td style="text-align: right;">~10 s（量级）</td>
+<td style="text-align: right;">TBs–PBs</td>
+<td>归档、离线存储，极低成本高容量但访问慢</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>要点：通过速度、容量和成本的权衡构建内存层次（Memory Hierarchy），在不同层次用缓存技术提高访问效率。</li>
+<li>直接利用的缓存技术示例：TLB（页表项缓存）、多级缓存（Cache）、分页虚拟内存（内存作为磁盘缓存）、文件系统缓存、DNS 缓存、Web 代理缓存等。</li>
+<li>原理：利用时间局部性与空间局部性提升命中率，从而降低平均访问时间。</li>
+<li>本课程关注的路径：CPU → TLB → Cache → Memory（重点讲解 TLB 与 Cache 的作用与交互）。</li>
+</ul>
+<h2 id="tlb">TLB</h2>
+<h3 id="address-translation-problem">Address Translation Problem</h3>
+<ul>
+<li>问题：虚拟地址到物理地址的多级页表翻译会显著拖慢内存访问。</li>
+<li>原因：每次内存访问可能需要多次（至少两次）额外的内存访问来查页表；而内存速度通常远慢于CPU，层级越多开销越大。</li>
+<li>图示：把虚拟地址分成若干索引字段，逐级查页表得到页框，再加上页内偏移形成物理地址，说明多次访存的过程。</li>
+<li>隐含结论：需要用TLB等缓存页表项的机制来避免频繁的多次内存访问，从而提高性能。</li>
+</ul>
+<h3 id="tlb-as-a-cache">TLB as a Cache</h3>
+<ul>
+<li>TLB（Translation Lookaside Buffer，转换检测缓冲区）：MMU 内的一个特殊高速缓存，用来缓存页表项以加速地址转换。</li>
+<li>作用：把虚拟页号直接映射到物理页框，避免每次访问都进行多级页表查找，从而降低地址翻译的延迟。</li>
+<li>依赖局部性：利用时间局部性（近期访问页）和空间局部性（相邻地址位于同一页）提高命中率。</li>
+<li>关键点：内存映射按页对齐，TLB 缓存的是页级别的映射条目；TLB 命中能显著减少对主存的额外访存。</li>
+</ul>
+<h3 id="tlb-lookup">TLB Lookup</h3>
+<ul>
+<li>关键流程：MMU 在每次访问时查找 TLB；若任一条目匹配则为命中，直接得到物理页并完成访问；若全部不匹配则为未命中，需做完整的页表翻译并将得到的映射替换进 TLB。</li>
+<li>TLB 条目包含：虚拟页号、物理页框号、访问权限。</li>
+<li>目的与要点：通过缓存页级映射避免多级页表的多次内存访问，利用时间/空间局部性提高地址转换速度并降低延迟。</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/A%20TLB%20lookup%20goes%20through%20each%20TLB%20entry.png" srcset="/img/loading.gif" lazyload alt="A TLB lookup goes through each TLB entry"><figcaption aria-hidden="true">A TLB lookup goes through each TLB entry</figcaption>
+</figure>
+</div>
+<blockquote>
+<p>TLBs are often set-associative to reduce the comparison.</p>
+</blockquote>
+<h3 id="tlb-miss">TLB Miss</h3>
+<p>TLB 未命中的主要来源概括：</p>
+<ul>
+<li>该虚拟页此前未被访问（冷启动缺失）。</li>
+<li>因 TLB 容量有限而被驱逐（替换导致未命中）。</li>
+<li>由于相联性引发页映射冲突（不同页争用同组）。</li>
+<li>其它进程或内核修改了页表条目，导致原有 TLB 条目失效。</li>
+</ul>
+<p>TLB 未命中（TLB miss）有两种处理方式——硬件遍历页表和软件遍历页表（如 MIPS），两者的流程和结果不同。</p>
+<ul>
+<li>硬件遍历：MMU 在 TLB miss 时自动走当前多级页表以填充 TLB。若 PTE 有效，硬件填入 TLB，处理器无感知；若 PTE 标记为无效，则产生页错误（page fault），由内核决定后续处理。</li>
+<li>软件遍历：处理器在 TLB miss 时产生 TLB fault，内核收到异常后遍历页表查找 PTE。若 PTE 有效，内核填充 TLB 并从异常返回；若无效，则调用页错误处理例程。</li>
+</ul>
+<h3 id="tlb-performance">TLB Performance</h3>
+<ul>
+<li><p>关键指标：TLB 命中率（hit ratio）。</p></li>
+<li><p>提高命中率的两种常用手段：超级页（superpage）和预取（prefetching）。</p></li>
+<li><p>典型参数量级：</p>
+<ul>
+<li>大小：12 位索引 → ≈ 4096 条目；</li>
+<li>命中时间：约 <span class="math inline">\(0.5\text{–}1\)</span> 个时钟周期；</li>
+<li>未命中惩罚：约 <span class="math inline">\(10\text{–}100\)</span> 个时钟周期；</li>
+<li>未命中率：约 <span class="math inline">\(0.01\%\text{–}1\%\)</span>（稀疏/图结构应用可达 <span class="math inline">\(20\%\text{–}40\%\)</span>）。</li>
+</ul></li>
+<li><p>成本公式：</p>
+<p><span class="math display">\[
+\text{Cost(address translation)} = \text{Cost(TLB lookup)} + \text{Cost(full translation)}\times P(\text{miss})
+\]</span></p></li>
+<li><p>要点：TLB 小而快，命中率对地址转换总体开销决定性；通过增加页粒度或预取能有效提升性能。</p></li>
+</ul>
+<blockquote>
+<p>If a TLB hit takes 1 clock cycle, a miss takes 30 clock cycles, a memory read takes 30 clock cycles, and the miss rate is 1%, what’s the average memory access time?</p>
+</blockquote>
+<h4 id="superpage">Superpage</h4>
+<ul>
+<li><strong>超级页（Superpage）</strong>：物理内存中一组连续页，映射到虚拟内存的连续区域，且页对齐，使它们共享同一个高位（超级页地址）。
+<ul>
+<li>这样可以用一个 TLB 条目缓存整个超级页，显著提升 TLB 命中率。</li>
+<li>但会牺牲内存分配的灵活性（需要大块连续空间）。</li>
+</ul></li>
+<li><strong>匹配方式</strong>：只比较地址的高位（超级页地址），忽略超级页内的偏移。
+<ul>
+<li>2MB 超级页：偏移为虚拟地址最低 21 位。</li>
+<li>1GB 超级页：偏移为最低 30 位。</li>
+<li>x86 架构对超级页会跳过页表的一级或两级。</li>
+</ul></li>
+<li><strong>要点</strong>：同一超级页内所有页只需一个 TLB 条目即可命中，减少 TLB 未命中次数，提高性能。</li>
+</ul>
+<h4 id="tlb-prefetching">TLB Prefetching</h4>
+<ul>
+<li>TLB 预取是指在实际使用前，将页表项提前加载到 TLB 中，以减少未命中带来的延迟。</li>
+<li>预取方式包括：
+<ol type="1">
+<li>顺序预取（Sequential）：利用空间局部性，适合线性访问。</li>
+<li>跨步预取（Strided）：适用于数组等规律访问。</li>
+<li>相关预取（Correlated）：根据历史访问模式预测下一步访问。</li>
+</ol>
+<ul>
+<li>预取可由软件或硬件实现。</li>
+</ul></li>
+<li>CPU 预取的效果与流水线结构密切相关，类似于指令预取。</li>
+</ul>
+<h4 id="memory-performance">Memory Performance</h4>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th>缓存类型</th>
+<th>缓存内容</th>
+<th>缓存位置</th>
+<th>延迟（周期）</th>
+<th>管理者</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Registers（寄存器）</td>
+<td>4-8 字节字</td>
+<td>CPU 内核</td>
+<td>0</td>
+<td>编译器</td>
+</tr>
+<tr class="even">
+<td>TLB</td>
+<td>地址转换</td>
+<td>芯片上的 TLB</td>
+<td>0</td>
+<td>硬件 MMU</td>
+</tr>
+<tr class="odd">
+<td>L1 cache</td>
+<td>64 字节块</td>
+<td>芯片上的 L1</td>
+<td>4</td>
+<td>硬件</td>
+</tr>
+<tr class="even">
+<td>L2 cache</td>
+<td>64 字节块</td>
+<td>芯片上的 L2</td>
+<td>10</td>
+<td>硬件</td>
+</tr>
+<tr class="odd">
+<td>虚拟内存</td>
+<td>4KB 页</td>
+<td>主存</td>
+<td>100</td>
+<td>硬件 + 操作系统</td>
+</tr>
+<tr class="even">
+<td>Buffer cache</td>
+<td>文件部分</td>
+<td>主存</td>
+<td>100</td>
+<td>操作系统</td>
+</tr>
+<tr class="odd">
+<td>Disk cache</td>
+<td>磁盘扇区</td>
+<td>磁盘控制器</td>
+<td>100,000</td>
+<td>磁盘固件</td>
+</tr>
+<tr class="even">
+<td>网络缓冲缓存</td>
+<td>文件部分</td>
+<td>本地磁盘</td>
+<td>10,000,000</td>
+<td>NFS 客户端</td>
+</tr>
+<tr class="odd">
+<td>浏览器缓存</td>
+<td>网页</td>
+<td>本地磁盘</td>
+<td>10,000,000</td>
+<td>浏览器</td>
+</tr>
+<tr class="even">
+<td>Web 缓存</td>
+<td>网页</td>
+<td>远程服务器磁盘</td>
+<td>1,000,000,000</td>
+<td>Web 代理服务器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="tlb-consistency">TLB Consistency</h3>
+<p>TLB 一致性（Consistency）是所有缓存系统都面临的核心问题：缓存中的内容必须与原始数据保持一致，尤其在条目被修改时。主要涉及以下场景：</p>
+<ul>
+<li>进程上下文切换（Process context switch）：切换进程时需保证 TLB 不泄漏或错误映射其他进程的数据。</li>
+<li>权限降低（Permission reduction）：当页表权限被收紧时，TLB 中的旧权限条目必须失效。</li>
+<li>TLB 失效（TLB shootdown）：多核系统中，某核修改页表后需通知其他核使相关 TLB 条目失效，确保一致性。</li>
+</ul>
+<p>要点：TLB 必须及时同步页表的变更，避免访问到过期或错误的地址映射。</p>
+<h4 id="permission-reduction">Permission Reduction</h4>
+<ul>
+<li>当映射被丢弃或访问权限降低（如从读写变为只读）时，需保证 TLB 条目失效以防止非法访问。
+<ul>
+<li>早期计算机直接清空整个 TLB；现代系统支持逐条失效（如 x86 的 <code>invlpg</code> 指令）。</li>
+<li>如果页被多个进程共享，处理更复杂。</li>
+</ul></li>
+<li>权限提升（如只读变为读写）无需特殊处理，因为旧条目不会导致安全问题。</li>
+<li>探讨是否能用硬件自动处理 TLB 失效：
+<ul>
+<li>处理器无法追踪映射来源，难以判断内存写入是否影响 TLB 条目。</li>
+<li>即使能做到，频繁检查所有写入也没有必要。</li>
+</ul></li>
+</ul>
+<p>结论：权限降低时需主动失效相关 TLB 条目，通常由软件（操作系统）完成。</p>
+<h4 id="tlb-shootdown">TLB Shootdown</h4>
+<ul>
+<li>多处理器系统中，任一处理器修改页表（及其 TLB）时，需让其他处理器的 TLB 也失效（flush），称为 TLB shootdown。</li>
+<li>具体流程：
+<ol type="1">
+<li>操作系统先修改页表；</li>
+<li>向所有处理器发送 TLB flush 请求；</li>
+<li>完成 TLB 更新的处理器可恢复运行；</li>
+<li>原始处理器需等待所有处理器确认移除旧条目后才能继续。</li>
+</ol></li>
+<li>TLB shootdown 的代价随核心数线性增长，可通过批量处理（batch）优化。</li>
+</ul>
+<p>要点：多核系统中，页表变更需同步所有核的 TLB，代价高，需优化。</p>
+<blockquote>
+<p>如果初始 CPU 没有等待其他 CPU 的 TLB 失效确认，可能导致同一页被多次读取但数据不一致</p>
+</blockquote>
+<h2 id="memory-cache">Memory Cache</h2>
+<blockquote>
+<p>Fill the speed gap of CPU and DRAM memory.</p>
+</blockquote>
+<ul>
+<li><strong>块</strong>（block）是缓存的最小单位，通常大于一个字/字节，以利用空间局部性。块大小不能太大也不能太小，现代 Intel 处理器常用 64 字节。</li>
+<li>地址查找时，地址被分为三部分：Tag（标记）、Index（索引）、Block offset（块内偏移）。
+<ul>
+<li>Index 用于选择缓存集合（Set Select）。</li>
+<li>Block offset 用于选择块内具体数据（Data Select）。</li>
+</ul></li>
+</ul>
+<h3 id="cache-lookup">Cache Lookup</h3>
+<p>缓存（Cache）的查找方式（Cache Lookup）及其三种典型结构：</p>
+<ul>
+<li><strong>全关联</strong>（Fully associative，完全关联）：每个地址可以存储在缓存表的任意位置，灵活但查找速度慢。</li>
+<li><strong>直接映射</strong>（Direct mapped）：每个地址只能存储在缓存表的一个固定位置，查找速度快但容易冲突。</li>
+<li><strong>N 路组关联</strong>（N-way set associative）：每个地址可以存储在 N 个缓存集合中的一个，兼顾查找速度和命中率。</li>
+</ul>
+<h4 id="fully-associative">Fully Associative</h4>
+<ul>
+<li><strong>查找方式</strong>：每条缓存线都需要比较其 Cache Tag（缓存标记），以判断是否命中。</li>
+<li><strong>示例参数</strong>：块大小为 32 字节（Block Size = 32B）。</li>
+<li><strong>硬件需求</strong>：需要 <span class="math inline">\(N\)</span> 个 27 位比较器（假设地址高 27 位为 Tag），以并行比较所有缓存行的 Tag。</li>
+<li><strong>地址分解</strong>：地址高位为 Cache Tag（27 位），低 5 位为 Byte Select（块内偏移）。</li>
+<li><strong>结构说明</strong>：每条缓存线包含 Cache Tag、Cache Data（数据块）、Valid Bit（有效位）。</li>
+<li><strong>查找流程</strong>：输入地址后，所有缓存行的 Tag 并行比较，若有命中则通过 Byte Select 选取块内具体字节。</li>
+</ul>
+<blockquote>
+<p>全关联缓存灵活但硬件复杂度高，适合容量较小的高速缓存。</p>
+</blockquote>
+<h4 id="direct-mapped">Direct Mapped</h4>
+<blockquote>
+<p>Map to one specific cache line through a Hash function.</p>
+</blockquote>
+<p>举个例子：1 KB Direct Mapped Cache with 32 B Blocks</p>
+<ul>
+<li>Index chooses potential block.</li>
+<li>Tag checked to ver ify block.</li>
+<li>Byte select chooses byte within block.</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Direct%20Mapped.png" srcset="/img/loading.gif" lazyload alt="Direct Mapped"><figcaption aria-hidden="true">Direct Mapped</figcaption>
+</figure>
+</div>
+<blockquote>
+<p>Drawback: frequently using two addresses that map to the same cache entry leads to thrash.</p>
+</blockquote>
+<h3 id="set-associative">Set Associative</h3>
+<p>对于每个 Cache Index（缓存索引），组关联允许有 <span class="math inline">\(N\)</span> 条缓存线（entries）并行参与查找。</p>
+<blockquote>
+<p>一个地址查找时，组内有 <span class="math inline">\(N\)</span> 个 tag 并行比较。</p>
+</blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Set%20Associative.png" srcset="/img/loading.gif" lazyload alt="Set Associative"><figcaption aria-hidden="true">Set Associative</figcaption>
+</figure>
+</div>
+<blockquote>
+<p>Why use the lower bits for index, higher bits for tag?</p>
+</blockquote>
+<ol type="1">
+<li><strong>空间局部性原理</strong>
+<ul>
+<li>地址的低比特变化快，代表相邻的数据块（如连续字节、连续数组元素）。</li>
+<li>把低比特作为 Index，可以让相邻地址映射到相邻或同一组缓存线，充分利用空间局部性，提高命中率。</li>
+</ul></li>
+<li><strong>高比特唯一性</strong>
+<ul>
+<li>高比特变化慢，代表远距离的数据（如不同数组、不同函数变量）。</li>
+<li>用高比特作为 Tag，可以区分那些映射到同一组但实际属于不同内存区域的数据，防止冲突。</li>
+</ul></li>
+</ol>
+<h3 id="cache-replacement">Cache Replacement</h3>
+<ul>
+<li><p><strong>Direct mapped（直接映射）</strong><br>
+只有一种可能：每个地址只能映射到一个固定的缓存位置，不需要替换策略。</p></li>
+<li><p><strong>Set associative 或 fully associative（组关联或全关联）</strong><br>
+一个数据块可以放在多个位置，需要替换策略来决定驱逐哪一个缓存块。常见策略有：</p>
+<ul>
+<li>Random（随机）：简单，无额外开销。</li>
+<li>FIFO（先进先出）：某些场景下效果很差。</li>
+<li>LRU（最近最少使用）：根据历史访问预测未来，优先替换最久未被访问的块。</li>
+</ul></li>
+</ul>
+<h3 id="cache-write-policies">Cache Write Policies</h3>
+<ul>
+<li><strong>Write through（直写）</strong>：数据同时写入缓存和主存。
+<ul>
+<li>优点：读未命中不会导致写操作。</li>
+<li>缺点：处理器写入时会被阻塞，除非有写缓冲。</li>
+</ul></li>
+<li><strong>Write back（回写）</strong>：数据只写入缓存，只有缓存块被替换时才写回主存。
+<ul>
+<li>需判断缓存块是否被修改（干净/脏块，dirty bit）。</li>
+<li>优点：重复写操作不会频繁写入主存，处理器写入时不被阻塞。</li>
+<li>缺点：实现更复杂，读未命中时可能需要先回写脏数据。</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>虚拟地址还是物理地址寻址？</p>
+</blockquote>
+<ul>
+<li>缓存（Cache）可以通过虚拟地址或物理地址进行寻址，但实际有多个层级的缓存。</li>
+<li>所有经过 MMU（内存管理单元）后的地址访问都是物理地址。</li>
+<li>TLB 未命中的代价非常高，因此通常会让 TLB 和一级缓存（L1 Cache）在 CPU 内部重叠，以提升性能。</li>
+<li>图示流程：CPU 先用虚拟地址经 MMU &amp; TLB 翻译为物理地址，再访问各级缓存和主存。</li>
+</ul>
+<h3 id="overlapping-tlb-and-cache">Overlapping TLB and Cache</h3>
+<ul>
+<li>虚拟地址中的 Offset（页内偏移）<strong>正好覆盖了 Cache 的 index（索引）和 byte select（字节选择）字段</strong>。</li>
+<li>这样，CPU 可以在地址转换（TLB 查找虚拟页号 → 物理页号）的同时，<strong>并行选中缓存中的字节</strong>，提升访问效率。</li>
+</ul>
+<p>实际上，虚拟地址和物理地址的结构为：</p>
+<ul>
+<li>虚拟地址结构：<code>[Virtual Page # | Offset]</code>
+<ul>
+<li>Virtual Page #：虚拟页号，用于TLB查找。</li>
+<li>Offset：页内偏移，用于定位页内具体字节。</li>
+</ul></li>
+<li>物理地址结构：<code>[tag/page # | index | byte]</code>
+<ul>
+<li>tag/page #：物理页号或缓存标记。</li>
+<li>index：缓存索引（决定落在哪个cache组）。</li>
+<li>byte：块内字节选择。</li>
+</ul></li>
+</ul>
+<p><strong>对应关系：</strong></p>
+<ul>
+<li>虚拟地址的 Offset 部分，经过TLB转换后，直接作为物理地址的 index 和 byte 字段。</li>
+<li>这样，<strong>TLB查找和Cache查找可以并行进行</strong>，不必等TLB完成后再查Cache，减少延迟。</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Overlapping%20TLB%20and%20Cache.png" srcset="/img/loading.gif" lazyload alt="Overlapping TLB and Cache"><figcaption aria-hidden="true">Overlapping TLB and Cache</figcaption>
+</figure>
+</div>
+<ul>
+<li>虚拟地址结构被分为三部分：虚拟页号（virtual page #，20位）、页内偏移（disp，10位）、块内字节选择（00，2位）。</li>
+<li>TLB 用虚拟页号查找物理页号，判断是否命中（Hit/Miss）。</li>
+<li>Cache 用偏移（disp）作为 index，块内字节选择（00）定位具体字节。</li>
+<li>两者可以<strong>并行查找</strong>，因为虚拟地址的 offset 部分直接决定了 cache 的 index 和 byte select。</li>
+<li>最终，TLB 和 Cache 都命中时，直接返回数据；否则需要进一步处理。</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li><strong>核心思想</strong>：虚拟地址中的 offset（页内偏移）正好覆盖了 cache 的 index（索引）和 byte select（字节选择），因此可以在地址转换（TLB 查找）和缓存查找时并行选中缓存字节，加速访问。</li>
+<li><strong>VIPT（Virtually Indexed, Physically Tagged）</strong>：缓存用虚拟地址索引、物理地址做 tag，常用于 L1 cache。</li>
+<li><strong>另一方案 VIVT（Virtually Indexed, Virtually Tagged）</strong>：缓存 tag 也是虚拟地址，只有缓存未命中时才做地址转换，但会带来一致性等问题。</li>
+<li><strong>实际应用</strong>：L1 cache 多为 VIPT，L2/L3 cache 多为 PIPT（Physically Indexed, Physically Tagged）。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TLB and Cache</div>
+      <div>https://ddccffq.github.io/2025/10/20/操作系统/TLB_and_Cache/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Introduction_to_SQL/" title="Introduction to SQL">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Introduction to SQL</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/19/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E5%83%8F%E6%8F%8F%E8%BF%B0%E7%94%9F%E6%88%90/" title="图像描述生成">
+                        <span class="hidden-mobile">图像描述生成</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
