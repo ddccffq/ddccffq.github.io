@@ -27,7 +27,7 @@
 <meta property="og:description" content="包括重积分、曲线积分与曲面积分和多元函数积分学的应用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-22T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-03T11:50:24.584Z">
+<meta property="article:modified_time" content="2025-10-24T03:33:33.189Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="重积分">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.7k 字
+          9.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          56 分钟
+          78 分钟
         
       </span>
     
@@ -782,6 +782,264 @@ I &amp;= \iint\limits_{u^2 + v^2 \leq 1} \frac{\text{d}u \text{d}v}{\sqrt{1 - u^
 <p>令 <span class="math inline">\(u = \frac{y^2}{x}\)</span>，<span class="math inline">\(v = xy\)</span>，则 <span class="math inline">\(y^2 = x \to u = 1\)</span>，<span class="math inline">\(y^2 = 2x \to u = 2\)</span>，<span class="math inline">\(xy = 1 \to v = 1\)</span>，<span class="math inline">\(xy = 4 \to v = 4\)</span>，<span class="math inline">\(J(u, v) = -\frac{1}{u}\)</span>，则面积为：</p>
 <p><span class="math display">\[
 |D| = \iint\limits_{D} \text{d} x \text{d} y = \iint\limits_{D&#39;} \frac{1}{u} \text{d} u \text{d} v = \ln 2
+\]</span></p></li>
+<li><blockquote>
+<p>计算由 <span class="math inline">\(y^2 = x\)</span>，<span class="math inline">\(y^2 = 2x\)</span>，<span class="math inline">\(x^2 = y\)</span>，<span class="math inline">\(x^2 = 2y\)</span> 所围比区域 <span class="math inline">\(D\)</span> 的面积 <span class="math inline">\(|D|\)</span>。</p>
+</blockquote>
+<p>作变化 <span class="math inline">\(u = \frac{x^2}{y}\)</span>，<span class="math inline">\(v = \frac{y^2}{x}\)</span>。则：<span class="math inline">\(y^2 = x \to v = 1\)</span>，<span class="math inline">\(y^2 = 2x \to v = 1\)</span>，<span class="math inline">\(x^2 = y \to u = 1\)</span>，<span class="math inline">\(x^2 = y \to u = 1\)</span>，<span class="math inline">\(x^2 = 2y \to u = 2\)</span>。新区域为 <span class="math inline">\(D&#39;\)</span>。</p>
+<p>相应的雅可比行列式为：</p>
+<p><span class="math display">\[
+J(u, v) = \frac{1}{\frac{\partial (u, v)}{\partial (x, y)}} = \frac{1}{3}
+\]</span></p>
+<p>则</p>
+<p><span class="math display">\[
+\iint\limits_{D} \text{d} \sigma = \iint\limits_{D&#39;} \frac{1}{3} \text{d} \sigma = \frac{1}{3}
+\]</span></p></li>
+<li><blockquote>
+<p>计算</p>
+<p><span class="math display">\[
+\iint\limits_{D} \frac{(x + y) \ln \biggl(1 + \frac{y}{x}\biggr)}{\sqrt{1 - x - y}} \text{d} x \text{d} y
+\]</span></p>
+<p>其中区域 <span class="math inline">\(D\)</span> 由直线 <span class="math inline">\(x + y = 1\)</span> 与两坐标轴所围成的三角形区域。</p>
+</blockquote>
+<p>做变换 <span class="math inline">\(u = x + y\)</span>，<span class="math inline">\(v = x\)</span>，则 <span class="math inline">\(x + y = 1 \to u = 1\)</span>，<span class="math inline">\(v = 0\)</span>，<span class="math inline">\(u = v\)</span> 记新区域为 <span class="math inline">\(D&#39;\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+J(u, v) = \frac{1}{\frac{\partial (u, v)}{\partial (x, y)}} &amp;= -1
+\\
+\iint\limits_{D&#39;} \frac{u \ln \biggl(\frac{u}{v}\biggr)}{\sqrt{1 - u}} \text{d} u \text{d} v &amp;= \int_0^1 \text{d} u \int_0^u \frac{u\ln u}{\sqrt{1 - u}} \text{d} v - \int_0^1 \text{d} u \int_0^u \frac{u\ln v}{\sqrt{1 - u}} \text{d} v
+\\
+\iint\limits_{D&#39;} &amp;= \int_0^1 \frac{u^2 \ln u}{\sqrt{1 - u}} \text{d} u - \int_0^1 \frac{u}{\sqrt{1 - u}} \biggl(u \ln u - u\biggr) \text{d} v
+\\
+\iint\limits_{D&#39;} &amp;= \int_0^1 \frac{u^2}{\sqrt{1 - u}} \text{d} u = \frac{16}{15}
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 是连续的偶函数，证明：</p>
+<p><span class="math display">\[
+\iint\limits_{D} f(x - y) \text{d} x \text{d} y = 2 \int_0^{2a} [(2a - u)] f(u) \text{d} u
+\]</span></p>
+<p>其中，<span class="math inline">\(D: |x| \leq a\)</span>，<span class="math inline">\(|y| \leq a (a &gt; 0)\)</span>。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = x - y\)</span>，<span class="math inline">\(v = x + y\)</span>，则 <span class="math inline">\(|u| + |v| \leq 2a\)</span>，记新区域为 <span class="math inline">\(D&#39;\)</span>，<span class="math inline">\(|J(u, v)| = \frac{1}{2}\)</span>，所以：</p>
+<p><span class="math display">\[
+\iint\limits_{D} = \iint\limits_{D&#39;} f(u) \text{d} u \text{d} v = 2 \int_{0}^{2a} \text{d} u \int_{u - 2a}^{2a - u} f(u) \text{d} v = 2 \int_0^{2a} [(2a - u)] f(u) \text{d} u
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(u)\)</span> 连续，<span class="math inline">\(k = \sqrt{a^2 + b^2 + c^2} \neq 0\)</span>。证明：</p>
+<p><span class="math display">\[
+I = \iiint\limits_{\Omega} f(ax + by + cz) \text{d} x \text{d} y \text{d} z = \pi \int_{-1}^{1} (1 - u^2) f(ku) \text{d} u
+\]</span></p>
+<p>其中，<span class="math inline">\(\Omega: x^2 + y^2 + z^2 \leq 1\)</span>。</p>
+</blockquote>
+<p>令 <span class="math inline">\(u = \frac{ax + by + cz}{k}\)</span>，对 <span class="math inline">\(Oxyz\)</span> 坐标系作旋转变换，使得新的坐标轴 <span class="math inline">\(Ou\)</span> 与 <span class="math inline">\((a, b, c)\)</span> 同向。旋转变化公式的系数行列式恰是变换的雅可比行列式 <span class="math inline">\(J = 1\)</span>。新区域 <span class="math inline">\(\Omega&#39;: u^2 + v^2 + w^2 \leq 1\)</span>，于是</p>
+<p><span class="math display">\[
+I = \int_{-1}^{1} f(ku) \text{d} u \iint\limits_{v^2 + w^2 \leq 1 - u^2} \text{d} v \text{d} w = \pi \int_{-1}^{1} (1 - u^2) f(ku) \text{d} u
+\]</span></p></li>
+<li><blockquote>
+<p>计算</p>
+<p><span class="math display">\[
+I = \int_0^1 \frac{x^b - x^a}{\ln x} \text{d} x, a &gt; 0, b &gt; 0
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+I = \int_0^1 \biggl(\frac{x^t}{\ln x} \bigg |_{a}^{b}\biggr) \text{d} x = \int_0^1 \text{d} x \int_a^b x^t \text{d} t = \int_a^b \frac{\text{d} t}{t + 1} = \ln \frac{b + 1}{a + 1}
+\]</span></p></li>
+<li><blockquote>
+<p>已知在 <span class="math inline">\([0, 1] \times [0, 1]\)</span> 上函数 <span class="math inline">\(k(x, y)\)</span> 连续，在 <span class="math inline">\(0 \leq x \leq 1\)</span> 上函数 <span class="math inline">\(f(x)\)</span>，<span class="math inline">\(g(x)\)</span> 都连续且无零点。假设对于所有满足 <span class="math inline">\(0 \leq x \leq 1\)</span> 的 <span class="math inline">\(x\)</span> 有</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^1 f(y) k(x, y) \text{d} y &amp;= g(x)
+\\
+\int_0^1 g(y) k(x, y) \text{d} y &amp;= f(x)
+\end{aligned}
+\]</span></p>
+<p>证明：对于 <span class="math inline">\(0 \leq x \leq 1\)</span>，有 <span class="math inline">\(f(x) = g(x)\)</span>。</p>
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 是 <span class="math inline">\([0, 1]\)</span> 上的连续函数，证明：</p>
+<p><span class="math display">\[
+\int_0^1 \text{e}^{f(x)} \text{d} x \int_0^1 \text{e}^{-f(x)} \text{d} x \geq 1
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\int_0^1 \text{e}^{f(x)} \text{d} x \int_0^1 \text{e}^{-f(x)} \text{d} x = \int_0^1 \text{e}^{f(x)} \text{d} x \int_0^1 \text{e}^{-f(y)} \text{d} y = \iint\limits_{D} \text{e}^{f(x) - f(y)} \text{d} x \text{d} y
+\\
+= \iint\limits_{D} \text{e}^{f(y) - f(x)} \text{d} x \text{d} y
+\]</span></p>
+<p>所以，</p>
+<p><span class="math display">\[
+\iint\limits_{D} \text{e}^{f(x) - f(y)} \text{d} x \text{d} y = \frac{1}{2} \iint\limits_{D} \biggl(\text{e}^{f(x) - f(y)} + \text{e}^{f(y) - f(x)}\biggr) \text{d} x \text{d} y \geq \iint\limits_{D} \text{d} x \text{d} y = 1
+\]</span></p></li>
+<li><blockquote>
+<p>在 <span class="math inline">\([0, 1]\)</span> 上 <span class="math inline">\(f(x) &gt; 0\)</span> 且连续、单调减少，证明：</p>
+<p><span class="math display">\[
+\frac{\int_0^1 x f^2(x) \text{d} x}{\int_0^1 x f(x) \text{d} x} \leq \frac{\int_0^1 f^2(x) \text{d} x}{\int_0^1 f(x) \text{d} x}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\biggl(\int_0^1 x f^2(x) \text{d} x\biggr) \biggl(\int_0^1 f(x) \text{d} x\biggr) - \biggl(\int_0^1 x f(x) \text{d} x\biggr) \biggl(\int_0^1 f^2(x) \text{d} x\biggr) &amp;\leq 0
+\\
+\biggl(\int_0^1 x f^2(x) \text{d} x\biggr) \biggl(\int_0^1 f(y) \text{d} y\biggr) - \biggl(\int_0^1 x f(x) \text{d} x\biggr) \biggl(\int_0^1 f^2(y) \text{d} y\biggr) &amp;\leq 0
+\\
+\iint\limits_{D} \biggl(xf^2(x) f(y) - f^2(y) f(x) x\biggr) \text{d} x \text{d} y &amp;\leq 0
+\\
+\iint\limits_{D} x f(x) f(y)\biggl(f(x) - f(y)\biggr) \text{d} x \text{d} y &amp;\leq 0
+\\
+\iint\limits_{D} x f(x) f(y)\biggl(f(x) - f(y)\biggr) \text{d} x \text{d} y  = \frac{1}{2} \iint\limits_{D} f(x) f(y)\biggl(f(x) - f(y)\biggr) (x - y)\text{d} x \text{d} y &amp;\leq 0
+\end{aligned}
+\]</span></p>
+<p>最后的等式由 <span class="math inline">\(f(x)\)</span> 的单调性得证。</p></li>
+<li><blockquote>
+<p>设区域 <span class="math inline">\(D\)</span> 在 <span class="math inline">\(x\)</span> 轴和 <span class="math inline">\(y\)</span> 轴上的投影区间分别为 <span class="math inline">\([a. b]\)</span>，<span class="math inline">\([c, d]\)</span>，<span class="math inline">\(D\)</span> 的面积为 <span class="math inline">\(|D|\)</span>，点 <span class="math inline">\((\alpha, \beta) \in D\)</span>。证明：</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\biggl|\iint\limits_{D} (x - \alpha) (y - \beta) \text{d} x \text{d} y\biggr| \leq (b - a) (d - c) |D|
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\biggl|\iint\limits_{D} (x - \alpha) (y - \beta) \text{d} x \text{d} y\biggr| \leq \frac{1}{4} (b - a)^2 (d - c)^2
+\]</span></p>
+</blockquote>
+<p>(1).</p>
+<p><span class="math display">\[
+\biggl|\iint\limits_{D} (x - \alpha) (y - \beta) \text{d} x \text{d} y\biggr| \leq \iint\limits_{D} |(x - \alpha)| |(y - \beta)| \text{d} x \text{d} y \leq \iint\limits_{D} (b - a) (d - c) \text{d} x \text{d} y = (b - a) (d - c) |D|
+\]</span></p>
+<p>(2). 设区域 <span class="math inline">\(D&#39;: [a, b] \times [c, d]\)</span>，<span class="math inline">\(D \subseteq D&#39;\)</span>。</p>
+<p><span class="math display">\[
+\biggl|\iint\limits_{D} (x - \alpha) (y - \beta) \text{d} x \text{d} y\biggr| \leq \iint\limits_{D&#39;} |(x - \alpha)| |(y - \beta)| \text{d} x \text{d} y = \int_a^b |x - \alpha| \text{d} x \int_c^d |y - \beta| \text{d} y \leq \frac{1}{4} (b - a)^2 (d - c)^2
+\]</span></p></li>
+<li><blockquote>
+<p>设区域 <span class="math inline">\(D: [0, 1] \times [0, 1]\)</span>，<span class="math inline">\(I = \iint\limits_{D} f(x, y) \text{d} x \text{d} y\)</span>，其中函数 <span class="math inline">\(f(x, y)\)</span> 在 <span class="math inline">\(D\)</span> 上有连续的二阶偏导数。若对任何 <span class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span> 有 <span class="math inline">\(f(0, y) = f(x, 0) = 0\)</span>，且 <span class="math inline">\(\frac{\partial^2 f}{\partial x \partial y} \leq A\)</span>。证明：<span class="math inline">\(I \leq \frac{A}{4}\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+I &amp;= \int_0^1 \text{d} y \int_0^1 f(x, y) \text{d} x = \int_0^1 \text{d} y \int_0^1 -f(x, y) \text{d} (1 - x)
+\\
+&amp;= \int_0^1 \text{d} y \int_0^1 (1 - x) f_1&#39;(x, y) \text{d} x
+\\
+&amp;= \int_0^1 (1 - x) \text{d} x \int_0^1 f_1&#39;(x, y) \text{d} y
+\\
+&amp;= \int_0^1 (1 - x) \text{d} x \int_0^1 (1 - y) f_{12}&#39;(x, y) \text{d} y \leq \frac{A}{4}
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>求由双叶玫瑰线 <span class="math inline">\((x^2 + y^2)^2 = 2a^2 (x^2 - y^2)\)</span> 与外圆 <span class="math inline">\(x^2 + y^2 \geq a^2 (a &gt; 0)\)</span> 所构成图形的面积 <span class="math inline">\(A\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+A = 4 \int_0^{\frac{\pi}{6}} \text{d} \theta \int_a^{\sqrt{2} a \sqrt{\cos 2 \theta}} \rho \text{d} \rho = 4 \int_0^{\frac{\pi}{6}} a^2 \biggl(\cos 2 \theta -\frac{1}{2} \biggr) \text{d} \theta = 4 a^2 \biggl(\frac{\sqrt{3}}{4} - \frac{\pi}{12}\biggr)
+\]</span></p></li>
+<li><blockquote>
+<p>计算 <span class="math inline">\(\iiint\limits_{\Omega} z \text{d} v\)</span>，其中 <span class="math inline">\(\Omega\)</span> 是由曲面 <span class="math inline">\((x^2 + y^2 + z^2)^2 = 2 (z^2 - x^2 - y^2)\)</span> 所围成的区域在 $z  $ 的部分。</p>
+</blockquote>
+<p>曲面的球坐标变换为 <span class="math inline">\(x = \rho \cos \theta \cos \varphi\)</span>，<span class="math inline">\(y = \rho \sin \theta \cos \varphi\)</span>，<span class="math inline">\(z = \rho \sin \varphi\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho^4 &amp;= 2 \rho^2 (\sin^2 \varphi - \cos^2 \varphi)
+\\
+\rho &amp;= \sqrt{- 2 \cos 2\varphi}, \quad \frac{\pi}{2} \geq \varphi \geq \frac{\pi}{4}
+\\
+\iint\limits_{\Omega} &amp;= \int_0^{2\pi} \text{d} \theta \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \sin^2 \varphi \text{d} \varphi \int_0^{\sqrt{-2\cos 2\varphi}} \rho^3 \text{d} \rho
+\\
+&amp;= 2\pi \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \sin^2 \varphi \cos^2 2\varphi \text{d} \varphi
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>求曲面 <span class="math inline">\(x^2 + y^2 = az\)</span> 和 <span class="math inline">\(z = 2a - \sqrt{x^2 + y^2}(a &gt; 0)\)</span> 所围成立体的表面积。</p>
+</blockquote>
+<p>交线：</p>
+<p><span class="math display">\[
+\begin{cases}
+z = a
+\\
+x^2 + y^2 = a^2
+\end{cases}
+\]</span></p>
+<p>立体在 <span class="math inline">\(xOy\)</span> 坐标面的投影为 <span class="math inline">\(D: x^2 + y^2 \leq a^2\)</span>，表面积 <span class="math inline">\(|S|\)</span></p>
+<p><span class="math display">\[
+|S| = \iint\limits_{D} \sqrt{2} \text{d} \sigma + \iint\limits_{D} \sqrt{\frac{a^2 + 4(x^2 + y^2)}{a^2}} \text{d} \sigma = \pi a^2 \biggl(\sqrt{2} + \frac{5\sqrt{5} - 1}{6}\biggr)
+\]</span></p></li>
+<li><blockquote>
+<p>求球面 <span class="math inline">\(x^2 + y^2 + z^2 = a^2\)</span> 在柱面 <span class="math inline">\(x^2 + y^2 = \pm ax\)</span> 外的那一部分的面积。</p>
+</blockquote>
+<p>设面积为 <span class="math inline">\(A\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+A &amp;= 4\pi a^2 - 4 \iint\limits_{(x - \frac{a}{2})^2 + y^2 \leq \frac{a^2}{4}} \frac{a}{\sqrt{a^2 - x^2 - y^2}} \text{d} x \text{d} y
+\\
+&amp;= 4\pi a^2 - 4a \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \text{d} \theta \int_0^{a\cos \theta} \frac{r}{\sqrt{a^2 - r^2}} \text{d} r
+\\
+&amp;= 4\pi a^2 - 4a \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \text{d} \theta (a - a \sin \theta) = 0
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>求锥面 <span class="math inline">\(\Sigma: z = \sqrt{3x^2 + 3y^2}\)</span> 与平面 <span class="math inline">\(\Sigma_0: x + y + z = 2a(a &gt; 0)\)</span> 所围成的立体的表面积和体积。</p>
+</blockquote>
+<p>交线在 <span class="math inline">\(xOy\)</span> 坐标面的投影 <span class="math inline">\(D: x^2 + y^2 - xy + 2a(x + y) \leq 2a^2\)</span>，记表面积为 <span class="math inline">\(S\)</span>。做变换 <span class="math inline">\(u = x -\frac{1}{2} y\)</span>，<span class="math inline">\(v = \frac{\sqrt{3}}{2} y\)</span>，则新区域为 <span class="math inline">\(D&#39;: u^2 + v^2 + 2a(u + \sqrt{3} v) \leq 2a^2\)</span>，即 <span class="math inline">\(D&#39;: (u + a)^2 + (v + \sqrt{3} a)^2 \leq 6a^2\)</span></p>
+<p><span class="math display">\[
+S = \iint\limits_{D&#39;} \biggl(\sqrt{3} + \sqrt{4}\biggr) \frac{2}{\sqrt{3}}\text{d} u \text{d} v = 4a^2 \pi (3 + 2\sqrt{3})
+\]</span></p>
+<p>记体积为 <span class="math inline">\(V\)</span>，记原点到 <span class="math inline">\(\Sigma_0\)</span> 的距离为 <span class="math inline">\(h_0\)</span>。</p>
+<p><span class="math display">\[
+h_0 = \frac{2a}{\sqrt{3}}
+\]</span></p>
+<p>所截 <span class="math inline">\(\Sigma_0\)</span> 的面积 <span class="math inline">\(S_0\)</span> 为：</p>
+<p><span class="math display">\[
+S_0 = \iint\limits_{D&#39;} \sqrt{3} \text{d} \sigma = 6\sqrt{3} \frac{2}{\sqrt{3}} a^2 \pi
+\]</span></p>
+<p>所以，</p>
+<p><span class="math display">\[
+V = \frac{1}{3} h_0 S_0 = \frac{8}{\sqrt{3}} a^3 \pi
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x, y)\)</span> 在区域 <span class="math inline">\(0 \leq x \leq 1\)</span>，<span class="math inline">\(0 \leq y \leq 1\)</span> 上可微，且 <span class="math inline">\(f(0, 0) = 0\)</span>。证明：</p>
+<p><span class="math display">\[
+\lim_{x \to 0^+} \frac{\int_0^{x^2} \text{d} t \int_{\sqrt{t}}^{x} f(t, u) \text{d} u}{1 - \text{e}^{-\frac{x^4}{4}}} = f_y(0, 0)
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{x \to 0^+} \frac{\int_0^{x^2} \text{d} t \int_{\sqrt{t}}^{x} f(t, u) \text{d} u}{1 - \text{e}^{-\frac{x^4}{4}}} &amp;= \lim_{x \to 0^+} \frac{\int_{\sqrt{t}}^{x} \bigl(\int_0^{u^2} f(t, u) \text{d} t\bigr) \text{d} u}{\frac{x^4}{4}}
+\\
+&amp;= \lim_{x \to 0^+} \frac{\int_0^{x^2} f(t, x) \text{d} t}{x^3}
+\\
+&amp;= \lim_{x \to 0^+} \frac{x^2f(\xi, x)}{x^3}, \quad x^2 &gt; \xi &gt; 0
+\\
+&amp;= \lim_{x \to 0^+} \frac{f_x(0, 0) \xi + f_y(0, 0)x + o(\sqrt{\xi^2 + x^2})}{x} = f_y(0, 0)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(D\)</span> 是平面上由光滑封闭曲线围成的有界区域，其面积 <span class="math inline">\(A &gt; 0\)</span>，函数 <span class="math inline">\(f(x, y)\)</span> 在该区域及其边界上连续且 <span class="math inline">\(f(x, y) &gt; 0\)</span>。记 <span class="math inline">\(J_n = \bigl(\frac{1}{A} \iint\limits_{D} f^{\frac{1}{n}} (x, y) \text{d} \sigma \bigr)^n\)</span>，求 <span class="math inline">\(\lim\limits_{n \to \infty} J_n\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\lim\limits_{n \to \infty} J_n &amp;= \lim\limits_{n \to \infty} \exp \biggl(n \ln \frac{1}{A} \iint\limits_{D} f^{\frac{1}{n}} (x, y) \text{d} \sigma \biggr)
+\\
+&amp;= \lim\limits_{m \to 0} \exp \biggl(\frac{\ln \frac{1}{A} \iint\limits_{D} \text{e}^{m \ln f(x, y)} \text{d} \sigma}{m} \biggr)
+\\
+&amp;= \lim\limits_{m \to 0} \exp \biggl(\frac{1}{\iint\limits_{D} \text{e}^{m \ln f(x, y)} \text{d} \sigma} \iint\limits_{D} \ln f(x, y) \text{e}^{m \ln f(x, y)} \text{d} \sigma \biggr)
+\\
+&amp;= \exp \biggl(\frac{1}{A} \iint\limits_{D} \ln f(x, y) \text{d} \sigma \biggr)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\((-\infty, +\infty)\)</span> 上非负且连续，并有 <span class="math inline">\(f(x) \int_0^{x} f(x - t) \text{d} t = \sin^4 x\)</span>。求 <span class="math inline">\(\int_0^{\pi} f(x) \text{d} x\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) \int_0^{x} f(x - t) \text{d} t &amp;= \sin^4 x
+\\
+f(x) \int_0^{x} f(u) \text{d} u &amp;= \sin^4 x
+\\
+\int_0^{\pi} \text{d} x f(x) \int_0^{x} f(u) \text{d} u &amp;= \int_0^{\pi} \sin^4 x \text{d} x
+\\
+\int_0^{\pi} \text{d} x f(x) \int_0^{x} f(u) \text{d} u &amp;= \frac{3}{8} \pi
+\\
+\biggl(\int_0^{\pi} f(x) \text{d} x\biggr)^2 &amp;= \frac{3}{4} \pi
+\\
+\int_0^{\pi} f(x) \text{d} x &amp;= \frac{\sqrt{3\pi}}{2}
+\end{aligned}
 \]</span></p></li>
 </ol>
 

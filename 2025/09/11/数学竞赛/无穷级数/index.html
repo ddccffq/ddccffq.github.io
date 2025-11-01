@@ -27,7 +27,7 @@
 <meta property="og:description" content="数项级数与函数项级数  内容要点  常数项级数收敛等价于余项极限为 0。 在级数中去掉、增加或改变有限项不改变敛散性。 两个及以上的发散级数加减结果的敛散性不定。 级数收敛的必要条件是其通项极限为 0。 p-级数：\(\sum\limits_{n &#x3D; 1}^{\infty} \frac{1}{n^p} &#x3D; \begin{cases}收敛, &amp;p &gt; 1 \\ 发散, &amp;p \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-11T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-07T04:24:55.132Z">
+<meta property="article:modified_time" content="2025-11-01T10:00:19.356Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          678 字
+          5.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          46 分钟
         
       </span>
     
@@ -299,18 +299,518 @@
 <li><blockquote>
 <p>求下列级数的和</p>
 </blockquote>
-<p>(1). <span class="math display">\[
+<p>(1).</p>
+<p><span class="math display">\[
 \sum_{n = 1}^{\infty} \frac{1}{(3n - 2)(3n + 1)} = \frac{1}{3}\sum_{n = 1}^{\infty} \frac{1}{3n - 2} - \frac{1}{3n + 1} = \frac{1}{3} (1 - \lim_{n \to \infty} \frac{1}{3n + 1}) = \frac{1}{3}
 \]</span></p>
-<p>(2). <span class="math display">\[
+<p>(2).</p>
+<p><span class="math display">\[
 \sum_{n = 1}^{\infty} \frac{1}{n(n + 1)(n + 2)} = \sum_{n = 1}^{\infty} \biggl [\frac{1}{2n} - \frac{1}{2(n + 1)} + \frac{1}{2(n + 2)} - \frac{1}{2(n + 1)} \biggl ] = \frac{1}{2} - \frac{1}{4} = \frac{1}{4}
 \]</span></p>
-<p>(3). <span class="math display">\[
+<p>(3).</p>
+<p><span class="math display">\[
 \sum_{k = 1}^{\infty} \frac{6^k}{(3^k - 2^k)(3^{k + 1} - 2^{k + 1})} = \sum_{k = 1}^{\infty} \frac{3^k}{3^k - 2^k} - \frac{3^{k + 1}}{3^{k + 1} - 2^{k + 1}} = 3 - \lim_{k \to \infty} \frac{3^{k + 1}}{3^{k + 1} - 2^{k + 1}} = 2
 \]</span></p>
-<p>(4). <span class="math display">\[
+<p>(4).</p>
+<p><span class="math display">\[
 \sum_{k = 1}^{\infty} \frac{(k + 1)(k + 2)(k + 3) - 1}{(k + 3)!} = \sum_{k = 1}^{\infty} \frac{1}{k!} - \frac{1}{(k + 3)!} = \frac{5}{3}
 \]</span></p></li>
+<li><blockquote>
+<p>求级数的和</p>
+<p><span class="math display">\[
+\sum_{n = 0}^{n} \text{arccot} (n^2 + n + 1)
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\cot (\alpha - \beta) &amp;= \frac{\cot \alpha \cot \beta + 1}{\cot \beta - \cot \alpha}
+\\
+\cot (\text{arccot} n - \text{arccot} (n + 1)) &amp;= n^2 + n + 1
+\\
+\text{arccot} (n^2 + n + 1) &amp;= \text{arccot} n - \text{arccot} (n + 1)
+\\
+\sum_{n = 0}^{\infty} \text{arccot} (n^2 + n + 1) &amp;= \lim\limits_{n \to \infty} \sum_{k = 0}^{n} \text{arccot} k - \text{arccot} (k + 1) = \frac{\pi}{2}
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>证明级数收敛并求其和</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{(n + 1)(n + 2)}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+S_n &amp;= \sum_{n = 1}^{\infty} \frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{(n + 1)(n + 2)} = \sum_{n = 1}^{\infty} \frac{a_n}{(n + 1)(n + 2)} = \sum_{n = 1}^{\infty} \biggl(\frac{a_n}{n + 1} - \frac{a_n}{n + 2}\biggr)
+\\
+&amp;= \frac{a_1}{2} - \frac{a_1}{3} + \frac{a_2}{3} - \frac{a_2}{4} + \cdots + \frac{a_n}{n + 1} - \frac{a_n}{n + 2}
+\\
+&amp;= \frac{a_1}{2} - \frac{a_1 - a_2}{3} - \frac{a_2 - a_3}{4} + \cdots + \frac{a_{n - 1} - a_{n}}{n + 1} - \frac{a_n}{n + 2}
+\\
+&amp;= \frac{1}{1 \times 2} + \frac{1}{2 \times 3} + \frac{1}{3 \times 4} + \cdots + \frac{1}{n \times (n + 1)} - \frac{a_n}{n + 2}
+\\
+&amp;= 1 - \lim\limits_{n \to \infty} \biggl(\frac{1}{n + 1} - \frac{a_n}{n + 2}\biggr) = 1
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(p &gt; 0\)</span>，<span class="math inline">\(x_1 = \frac{1}{4}\)</span>，且 <span class="math inline">\(x_{n + 1}^{p} = x_{n}^{p} + x_{n}^{2p}(n = 1, 2, \cdots)\)</span>。证明：<span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{1 + x_{n}^{p}}\)</span> 收敛且求其和。</p>
+</blockquote>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{1}{1 + x_{n}^{p}} = \sum_{n = 1}^{\infty} \biggl(\frac{x_{n}^{p}}{x_{n}^{p} + x_{n}^{2p}}\biggr) =\sum_{n = 1}^{\infty} \biggl(\frac{1}{x_{n}^{p}} - \frac{1}{x_{n + 1}^{p}}\biggr) = 4^{p}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(u_1 = 2\)</span>，<span class="math inline">\(u_{n + 1} = u_{n}^{2} - u_{n} + 1(n = 1, 2, \cdots)\)</span>。证明：<span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{u_n} = 1\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{u_{n}}{u_{n}^2} = \sum_{n = 1}^{\infty} \frac{u_n}{u_{n + 1} + u_{n} - 1} = \sum_{n = 1}^{\infty} \frac{u_n^2}{(u_{n + 1} + u_n - 1)u_n}
+\]</span></p></li>
+<li><blockquote>
+<p>判断下列级数的敛散性</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \bigg(1 + \frac{1}{n}\biggr)^{n^2} \text{e}^{-n}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \sqrt[n]{a} - \sqrt[n]{b}(a &gt; b &gt; 0)
+\]</span></p>
+</blockquote>
+<p>(1). 发散</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{\exp(n^2(\frac{1}{n} - \frac{1}{2n^2} + o(x^n)))}{\exp(n)} = \frac{1}{\sqrt{\text{e}}} \neq 0
+\]</span></p>
+<p>(2). 发散</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{\sqrt[n]{a} - \sqrt[n]{b}}{\frac{1}{n}} = \ln \frac{a}{b} &gt; 0
+\]</span></p></li>
+<li><blockquote>
+<p>已知级数收敛，求实数 <span class="math inline">\(\alpha\)</span> 的取值范围</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \biggl(\frac{1}{n} - \sin \frac{1}{n}\biggr)^{\alpha}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\lim_{n \to \infty} \biggl(\frac{1}{n} - \sin \frac{1}{n}\biggr)^{\alpha} = \lim_{n \to \infty} \biggl(\frac{1}{n} - \frac{1}{n} + \frac{1}{n^3} + o\bigg(\frac{1}{n^4}\bigg)\biggr)^{\alpha} = \lim_{n \to \infty} \biggl(n^{\alpha - 3} + o(n^{\alpha - 4})\biggr)
+\]</span></p>
+<p>所以 <span class="math inline">\(3\alpha &gt; 1\)</span>。</p></li>
+<li><blockquote>
+<p>证明级数是收敛的</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \biggl(\text{e} - \biggl(1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!}\biggr)\biggr)
+\]</span></p>
+</blockquote>
+<p><span class="math inline">\(\text{e} = 1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!} + \frac{\text{e}^\xi}{(n + 1)!}, 1 &gt; \xi &gt; 0\)</span>，所以</p>
+<p><span class="math display">\[
+0 &lt; \sum_{n = 1}^{\infty} \biggl(\frac{\text{e}^{\xi}}{(n + 1)!}\biggr) &lt; \sum_{n = 1}^{\infty} \biggl(\frac{3}{(n + 1)!}\biggr)
+\]</span></p>
+<p>所以收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a &gt; 0\)</span>，判别级数的敛散性</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{a^{\frac{n(n + 1)}{2}}}{(1 + a)(1 + a^2)\cdots(1 + a^n)}
+\]</span></p>
+</blockquote>
+<p>用比值判别法：</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{a^{n + 1}}{1 + a^{n + 1}} =
+\begin{cases}
+0, &amp;1 &gt; a &gt; 0
+\\
+\frac{1}{2}, &amp;a = 1
+\\
+1, &amp;a &gt; 1
+\end{cases}
+\]</span></p>
+<p>所以，<span class="math inline">\(1 \geq a &gt; 0\)</span> 时收敛，当 <span class="math inline">\(a &gt; 1\)</span> 时，</p>
+<p><span class="math display">\[
+1 &gt; \frac{a^{\frac{n(n + 1)}{2}}}{(1 + a)(1 + a^2)\cdots(1 + a^n)} 
+\\
+= \frac{1}{(1 + \frac{1}{a})(1 + \frac{1}{a^2}) \cdots (1 + \frac{1}{a^n})} &gt; \frac{1}{\text{e}^{\frac{1}{a}} \cdot \text{e}^{\frac{1}{a^2}} \cdots \text{e}^{\frac{1}{a^n}}} &gt; \text{e}^{-\frac{1}{a^{\frac{n(n + 1)}{2}}}} &gt; 0
+\]</span></p>
+<p>所以发散。</p></li>
+<li><blockquote>
+<p>级数是否收敛</p>
+<p><span class="math display">\[
+\sum_{n = 2}^{\infty} \frac{1}{\ln n !}
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\frac{1}{\ln n !} &gt; \frac{1}{n \ln n}
+\]</span></p>
+<p>所以发散。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\alpha &gt; 0\)</span>，<span class="math inline">\(\beta &gt; 0\)</span>，判断下列级数何时收敛与发散：</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{1}{\alpha^n + \beta^n}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{\alpha^n}{\alpha^n + \beta^n}
+\]</span></p>
+</blockquote>
+<p>(1). 当 <span class="math inline">\(\alpha &gt; 1\)</span> 或者 <span class="math inline">\(\beta &gt; 1\)</span> 时，原级数收敛，当 <span class="math inline">\(\alpha \leq 1\)</span> 且 <span class="math inline">\(\beta \leq 1\)</span> 时，原级数发散。</p>
+<p>(2). <span class="math inline">\(\beta &gt; \alpha\)</span> 时收敛，<span class="math inline">\(\alpha \geq \beta\)</span> 时发散。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{F_n\}\)</span> 是斐波那契数列，判断二级数的敛散性</p>
+<p><span class="math display">\[
+\sum_{n = 0}^{\infty} \frac{1}{F_n} \quad \sum_{n = 2}^{\infty} \frac{1}{\ln F_n}
+\]</span></p>
+</blockquote>
+<p>显然数列单调递增</p>
+<p><span class="math display">\[
+\begin{aligned}
+F_n &amp;= F_{n - 1} + F_{n - 2} &lt; 2F_{n - 1} &lt; 2^2 F_{n - 2} &lt; 2^3 F_{n - 3} &lt; \cdots &lt; 2^{n - 1}
+\\
+F_n &amp;= F_{n - 1} + F_{n - 2} &gt; \frac{3}{2} F_{n - 1} &gt; \cdots &gt; \biggl(\frac{3}{2}\biggr)^{n - 1}
+\\
+\biggl(\frac{2}{3}\biggr)^{n - 1} &amp;&gt; \frac{1}{F_n} &gt; 0
+\\
+\frac{1}{\ln F_n} &amp;&gt; \frac{1}{(n - 1) \ln 2}
+\end{aligned}
+\]</span></p>
+<p>所以，<span class="math inline">\(\sum\limits_{n = 0}^{\infty} \frac{1}{F_n}\)</span> 收敛，另一个发散。</p></li>
+<li><blockquote>
+<p>研究级数的敛散性</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{1}{x_n^2}
+\]</span></p>
+<p>其中， <span class="math inline">\(x_n\)</span> 是方程 <span class="math inline">\(x = \tan x\)</span> 的正根。</p>
+</blockquote>
+<p><span class="math inline">\(0 \leq y_n = \arctan x_n &lt; \frac{\pi}{2}\)</span>，<span class="math inline">\(x_n = n\pi + y_n\)</span>，</p>
+<p><span class="math display">\[
+\frac{1}{x_n^2} &lt; \frac{1}{(n\pi + y_n)^2} &lt; \frac{1}{n^2}
+\]</span></p>
+<p>所以收敛。</p></li>
+<li><blockquote>
+<p>讨论级数的收敛性</p>
+<p><span class="math display">\[
+\sqrt{2} + \sqrt{2 - \sqrt{2}} + \sqrt{2 - \sqrt{2 + \sqrt{2}}} + \sqrt{2 - \sqrt{2 + \sqrt{2 + \sqrt{2}}}}+\cdots
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(A_1 = \sqrt{2}\)</span>，<span class="math inline">\(A_2 = \sqrt{2 + \sqrt{2}}\)</span>，<span class="math inline">\(A_n = \sqrt{2 + A_{n - 1}}\)</span>，所以原级数可以变为：</p>
+<p><span class="math display">\[
+\sqrt{2} + \sum_{n = 1}^{\infty} \sqrt{2 - A_n}
+\]</span></p>
+<p>用比值法判断级数收敛性</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{\sqrt{2 - A_{n + 1}}}{\sqrt{2 - A_n}} = \lim_{n \to \infty} \frac{\sqrt{2 - A_n}}{\sqrt{(2 - A_n)(2 + \sqrt{2 + A_n})}} = \frac{1}{2}
+\]</span></p>
+<p>所以收敛。</p></li>
+<li><blockquote>
+<p>已知 <span class="math inline">\(c_n \geq 0\)</span> 且级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{c_n}{n}\)</span> 收敛，证明下面级数收敛：</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \sum_{k = 1}^{\infty} \frac{c_n}{k^2 + n^2}
+\]</span></p>
+</blockquote>
+<p>设 <span class="math inline">\(a_n = \sum\limits_{k = 1}^{\infty} \frac{c_n}{k^2 + n^2}\)</span>，显然级数 <span class="math inline">\(a_n\)</span> 收敛，接下来只需要证明级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛，因此</p>
+<p><span class="math display">\[
+0 \leq a_n = \frac{c_n}{n^2} \sum_{k = 1}^{\infty} \frac{1}{(\frac{k}{n})^2 + 1} \leq \frac{c_n}{n^2} \sum_{k = 1}^{\infty} \int_{k}^{k + 1} \frac{\text{d} x}{(\frac{x}{n})^2 + 1} = \frac{c_n}{n^2} \int_{1}^{\infty} \frac{\text{d} x}{(\frac{x}{n})^2 + 1} = \frac{c_n}{n} \cdot \frac{\pi}{4}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+0 \leq \sum_{n = 1}^{\infty} a_n \leq \frac{\pi}{4} \cdot \sum_{n = 1}^{\infty} \frac{c_n}{n} 
+\]</span></p>
+<p>收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a_n &gt; 0\)</span>，证明：如果级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛，则级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n^2\)</span> 收敛。</p>
+</blockquote>
+<p>当 <span class="math inline">\(n\)</span> 充分大时，<span class="math inline">\(0 &lt; a_n &lt; 1\)</span>，此时 <span class="math inline">\(a_n^2 &lt; a_n\)</span>，由比较法知级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n^2\)</span> 收敛</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{a_n\}\)</span> 是正项递减数列且级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛，证明：</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} na_n = 0
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} n(a_{n - 1} - a_n) = \sum_{n = 1}^{\infty} a_n
+\]</span></p>
+<p>其中，<span class="math inline">\(a_0 = 0\)</span>。</p>
+</blockquote>
+<p>(1). 设 <span class="math inline">\(\{S_n\}\)</span> 是 <span class="math inline">\(\sum\limits_{n \to \infty}^{\infty} a_n\)</span> 的部分和数列，故</p>
+<p><span class="math display">\[
+S_{2n} - S_{n} = a_{n + 1} + a_{n + 2} + \cdots + a_{2n} \geq n a_{2n} \geq 0
+\]</span></p>
+<p>所以，<span class="math inline">\(\{na_n\}\)</span> 的子数列 <span class="math inline">\(\{2n a_{2n}\}\)</span> 收敛，由于 <span class="math inline">\((2n - 1) a_{2n - 1} \leq (2n - 1) a_{2n} = 2n a_{2n} - a_{2n}\)</span>，则子数列 <span class="math inline">\(\{(2n - 1) a_{2n - 1}\}\)</span> 收敛，从而有 <span class="math inline">\(\lim\limits_{n \to \infty} na_n = 0\)</span>。</p>
+<p>(2). 设级数的部分和数列为 <span class="math inline">\(\{\sigma_n\}\)</span>，则</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_n &amp;= a_1 + a_2 + \cdots + a_{n - 1} - na_n = S_{n - 1} - na_n
+\\
+\lim_{n \to \infty} \sigma_n &amp;= \lim_{n \to \infty} S_{n - 1} = \sum_{n = 1}^{\infty} a_n
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a_n &gt; 0\)</span>，<span class="math inline">\((n = 1, 2, 3, \cdots)\)</span>，级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛，证明级数发散。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{a_n}{a_n + a_{n + 1} + a_{n + 2} + \cdots}
+\]</span></p>
+</blockquote>
+<p>级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 的余项记为 <span class="math inline">\(r_n = a_n + a_{n + 1} + \cdots\)</span>，级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{a_n}{r_n}\)</span> 的余项记为 <span class="math inline">\(\rho_n = \frac{a_n}{r_n} + \frac{a_{n + 1}}{r_{n + 1}} + \cdots\)</span>，因为 <span class="math inline">\(\{r_n\}\)</span> 单调递减，所以 <span class="math inline">\(\rho_n &gt; 1\)</span>，故该级数发散。</p></li>
+<li><blockquote>
+
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 与 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} b_n\)</span> 为正项级数，证明：若 <span class="math inline">\(\lim\limits_{n \to \infty} \bigl( \frac{a_n}{a_{n + 1} b_{n}} - \frac{1}{b_{n + 1}} \bigr) &gt; 0\)</span>，则 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛。</p>
+</blockquote>
+<p>设极限结果为 <span class="math inline">\(\delta &gt; 0\)</span>，由极限的保号性，存在 <span class="math inline">\(N\)</span>，当 <span class="math inline">\(n &gt; N\)</span> 时，有 <span class="math inline">\(\big(\frac{a_n}{a_{n + 1}b_n} - \frac{1}{b_{n + 1}}\big) &gt; \frac{\delta}{2} &gt; 0\)</span>，所以有</p>
+<p><span class="math display">\[
+\begin{aligned}
+\bigg(\frac{a_n}{b_n} - \frac{a_{n + 1}}{b_{n + 1}}\bigg) \frac{2}{\delta} &amp;&gt; a_{n + 1}
+\\
+\frac{2}{\delta} \sum_{n = N}^{m} \bigg(\frac{a_n}{b_n} - \frac{a_{n + 1}}{b_{n + 1}}\bigg) &amp;&gt; \sum_{n = N}^{m} a_{n + 1}
+\\
+\frac{2}{\delta} \bigg(\frac{a_N}{b_N} - \frac{a_{m + 1}}{b_{m + 1}}\bigg) &amp;&gt; \sum_{n = N}^{m} a_{n + 1}
+\end{aligned}
+\]</span></p>
+<p>这表明级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 的部分和有上界，所以收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{p_n\}\)</span> 是单调增加的正数列，证明：<span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{p_n}\)</span> 与 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{n}{p_1 + p_2 + \cdots + p_n}\)</span> 同敛散性。</p>
+</blockquote>
+<p>若 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{n}{p_1 + p_2 + \cdots + p_n}\)</span> 收敛，由 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{p_n} = \sum\limits_{n = 1}^{\infty} \frac{n}{np_n} &lt; \sum\limits_{n = 1}^{\infty} \frac{n}{p_1 + p_2 + \cdots + p_n}\)</span> 知 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{p_n}\)</span> 收敛；</p>
+<p>若 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{n}{p_1 + p_2 + \cdots + p_n}\)</span> 发散，由不等式得到</p>
+<p><span class="math display">\[
+\frac{2n}{p_1 + p_2 + \cdots + p_{2n}} \leq \frac{2n}{p_{n + 1} + p_{n + 2} + \cdots + p_{2n}} \leq \frac{2}{p_{n + 1}}
+\]</span></p>
+<p>于是</p>
+<p><span class="math display">\[
+\frac{2n}{p_1 + p_2 + \cdots + p_{2n}} + \frac{2n + 1}{p_1 + p_2 + \cdots + p_{2n + 1}} \leq \frac{5}{p_{n + 1}}
+\]</span></p>
+<p>因此</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{n}{p_1 + p_2 + \cdots + p_n} = p_1 + \sum_{n = 1}^{\infty} \bigg(\frac{2n}{p_1 + p_2 + \cdots + p_{2n}} + \frac{2n + 1}{p_1 + p_2 + \cdots + p_{2n + 1}}\bigg) 
+\\
+\leq p_1 + 5\sum_{n = 1}^{\infty}\frac{1}{p_{n + 1}}
+\]</span></p>
+<p>所以，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{p_n}\)</span> 发散</p></li>
+<li><blockquote>
+<p>设级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} u_n (u_n &gt; 0)\)</span> 发散，部分和 <span class="math inline">\(S_n = u_1 + u_2 + \cdots + u_n\)</span>。证明：</p>
+<p>(1). 级数发散</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{u_n}{S_n}
+\]</span></p>
+<p>(2). 级数收敛</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{u_n}{S_n^2}
+\]</span></p>
+</blockquote>
+<p>(1). 考虑级数的余项 <span class="math inline">\(\rho_n = \sum\limits_{k = n}^{\infty} \frac{u_k}{S_k} \geq \sum\limits_{n = k}^{n + p} \frac{u_k}{S_k} \geq \frac{1}{S_{n + p}} \sum\limits_{k = n}^{n + p} u_{k} = \frac{S_{n + p} - S_{n - 1}}{S_{n + p}} = 1 - \frac{S_{n - 1}}{S_{n + p}}\)</span>，显然，当 <span class="math inline">\(p \to \infty\)</span> 时，<span class="math inline">\(\rho_n\)</span> 不趋于 0，所以该级数发散。</p>
+<p>(2).</p>
+<p><span class="math display">\[
+\sum_{k = 2}^{n} \frac{u_k}{S^2_k} \leq \sum_{k = 2}^{n} \frac{S_k - S_{k - 1}}{S_k S_{k - 1}} = \sum_{k = 2}^{n} \bigg(\frac{1}{S_{k - 1}} - \frac{1}{S_{k}} \bigg) = \frac{1}{S_1} - \frac{1}{S_n} &lt; \frac{1}{u_1}
+\]</span></p>
+<p>故正项级数 <span class="math inline">\(\sum\limits_{k = 2}^{n} \frac{u_k}{S_k^2}\)</span> 的部分和有上界，从而收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{u_n\}\)</span> 是单调增加的正数列，证明级数收敛的充要条件是 <span class="math inline">\(\{u_n\}\)</span> 有界</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \biggl(1 - \frac{u_n}{u_{n + 1}}\biggr)
+\]</span></p>
+</blockquote>
+<p>设部分和为 <span class="math inline">\(S_n = \sum\limits_{k = 1}^{n} \big(1 - \frac{u_k}{u_{k + 1}}\big)\)</span>。</p>
+<p>假设 <span class="math inline">\(\{u_n\}\)</span> 有界，则</p>
+<p><span class="math display">\[
+S_n = \frac{u_2 - u_1}{u_2} + \cdots + \frac{u_{n + 1} - u_{n}}{u_{n + 1}} \leq \frac{u_{n + 1} - u_1}{u_2} 
+\]</span></p>
+<p>故 <span class="math inline">\(\{S_n\}\)</span> 也有界，所以收敛。</p>
+<p>假设该级数收敛，用反证法，假设此时数列 <span class="math inline">\(\{u_n\}\)</span> 无界，<span class="math inline">\(\lim\limits_{n \to \infty} u_n = \infty\)</span>，对于任意固定的正整数 <span class="math inline">\(n_0\)</span>，存在 <span class="math inline">\(n &gt; n_0\)</span>，使得 <span class="math inline">\(u_n &gt; 2u_{n_0}\)</span>。考虑余项</p>
+<p><span class="math display">\[
+\sum_{k = n_0}^{\infty} \biggl(1 - \frac{u_{k}}{u_{k + 1}}\biggr) \geq \sum_{k = n_0}^{n} \biggl(1 - \frac{u_{k}}{u_{k + 1}}\biggr) \geq \frac{u_n - u_{n_0}}{u_n} &gt; \frac{1}{2}
+\]</span></p>
+<p>所以余项不趋于 0，所以发散。</p></li>
+<li><blockquote>
+<p>给定级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n (a_n &gt; 0)\)</span>，且存在极限 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{\ln (1 / a_n)}{\ln n} = q\)</span>。证明：当 <span class="math inline">\(q &gt; 1\)</span> 时，该级数收敛；当 <span class="math inline">\(q &lt; 1\)</span> 时，该级数发散。</p>
+</blockquote>
+<p>当 <span class="math inline">\(q &gt; 1\)</span> 时，取 <span class="math inline">\(q &gt; a &gt; 1\)</span>，当 <span class="math inline">\(n\)</span> 充分大时，恒有 <span class="math inline">\(\ln (\frac{1}{a_n}) &gt; a \ln n\)</span>，即 <span class="math inline">\(a_n &lt; \frac{1}{n^a}\)</span>，所以该级数收敛；当 <span class="math inline">\(q &lt; 1\)</span> 时，取 <span class="math inline">\(q &lt; a &lt; 1\)</span>，同理得到 <span class="math inline">\(a_n &gt; \frac{1}{n^a}\)</span>，所以该级数发散。</p></li>
+<li><blockquote>
+<p>设正项级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛，证明：<span class="math inline">\(\sum\limits_{n = 1}^{\infty} (a_n)^{\frac{n}{n + 1}}\)</span> 也收敛。</p>
+</blockquote>
+<p>设集合 <span class="math inline">\(T = \{n | a^{\frac{n}{n + 1}} &lt; 2a_n\}\)</span>，则级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (a_n)^{\frac{n}{n + 1}} = \sum\limits_{n \in T} (a_n)^{\frac{n}{n + 1}} + \sum\limits_{n \notin T} (a_n)^{\frac{n}{n + 1}}\)</span>，当 <span class="math inline">\(n \in T\)</span> 时，<span class="math inline">\(\sum\limits_{n \in T} (a_n)^{\frac{n}{n + 1}} &lt; \sum\limits_{n \in T} 2a_n\)</span>，此时收敛；当 <span class="math inline">\(n \notin T\)</span> 时，此时 <span class="math inline">\((a_n)^{\frac{n}{n + 1}} \geq 2a_n \Longrightarrow (a_n)^{\frac{1}{n + 1}} \leq \frac{1}{2} \Longrightarrow (a_n)^{\frac{n}{n + 1}} \leq \frac{1}{2^n}\)</span>，则 <span class="math inline">\(\sum\limits_{n \notin T} (a_n)^{\frac{n}{n + 1}}\)</span> 收敛。综上，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} (a_n)^{\frac{n}{n + 1}}\)</span> 收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a_n \neq 0\)</span>，<span class="math inline">\(\lim\limits_{n \to \infty} a_n = a \neq 0\)</span>，证明：两个级数 $<em>{n = 1}^{} |a</em>{n + 1} - a_n| $ 与 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \bigl|\frac{1}{a_{n + 1}} - \frac{1}{a_n}\bigr|\)</span> 同敛散性。</p>
+</blockquote>
+<p>由极限的保号性，当 <span class="math inline">\(n\)</span> 充分大以后恒有不等式 <span class="math inline">\(0 &lt; \frac{|a|}{2} &lt; |a_n| &lt; 2|a|\)</span> 成立。于是有不等式</p>
+<p><span class="math display">\[
+\frac{1}{4a^2} |a_{n + 1} - a_{n}| &lt; \bigg|\frac{a_{n + 1} - a_{n}}{a_{n + 1} a_n}\bigg| &lt; \frac{4}{a^2} |a_{n + 1} - a_{n}|
+\]</span></p>
+<p>显然同敛散性。</p></li>
+<li><blockquote>
+<p>给定级数，<span class="math inline">\(p &gt; 0\)</span>，证明下列结论</p>
+<p><span class="math display">\[
+\sum_{n = 2}^{\infty} \ln \biggl(1 + \frac{(-1)^n}{n^p}\biggr)
+\]</span></p>
+<p>(1). 当 <span class="math inline">\(p &gt; 1\)</span> 时该级数绝对收敛；</p>
+<p>(2). 当 <span class="math inline">\(1 \geq p &gt; \frac{1}{2}\)</span> 时该级数条件收敛；</p>
+<p>(3). 当 <span class="math inline">\(\frac{1}{2} \geq p &gt; 0\)</span> 时该级数发散。</p>
+</blockquote>
+<p>(1).</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{\big|\ln \big(1 + \frac{(-1)^n}{n^p}\big)\big|}{\frac{1}{n^p}} = 1
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\ln \biggl(1 + \frac{(-1)^n}{n^p}\biggr) = \frac{(-1)^n}{n^p} - \frac{1}{2n^{2p}} + o(\frac{1}{n^{2p}})
+\]</span></p>
+<p>所以条件收敛。</p>
+<p>(3). 设 <span class="math inline">\(m\)</span> 是使得 <span class="math inline">\(mp &gt; 1\)</span> 的正整数。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \ln \biggl(1 + \frac{(-1)^n}{n^p}\biggr) = \sum_{n = 1}^{\infty} \bigg(\frac{(-1)^n}{n^p} - \frac{1}{2n^{2p}} + \frac{(-1)^{3n}}{3n^{3p}} - \cdots + (-1)^{m - 1} \frac{(-1)^{mn}}{mn^{mp}} + o\bigg(\frac{1}{n^{mp}}\bigg)\bigg)
+\]</span></p>
+<p>等式右端为有限个收敛数列和有限个发散数列的和，结果仍是发散数列，所以该级数发散。</p></li>
+<li><blockquote>
+<p>讨论级数的敛散性</p>
+<p><span class="math display">\[
+\sum_{n = 2}^{\infty} \biggl(\frac{1}{\sqrt{n}} - \sqrt{\ln \bigl(1 + \frac{1}{n}\bigr)}\biggr)
+\]</span></p>
+</blockquote>
+<p>对 <span class="math inline">\(\ln \big(1 + \frac{1}{n} \big)\)</span> 泰勒展开前 2 项</p>
+<p><span class="math display">\[
+\frac{1}{\sqrt{n}} - \sqrt{\ln \bigl(1 + \frac{1}{n}\bigr)} = \frac{\frac{1}{n} - \ln \big(1 + \frac{1}{n} \big)}{\frac{1}{\sqrt{n}} + \sqrt{\ln \bigl(1 + \frac{1}{n}\bigr)}} = \frac{\frac{1}{2} \frac{1}{n\sqrt{n}} + o\big(\frac{1}{n\sqrt{n}}\big)}{1 + \sqrt{n \ln \bigl(1 + \frac{1}{n}\bigr)}}
+\]</span></p>
+<p>当 <span class="math inline">\(n \to \infty\)</span> 级数一般项与 <span class="math inline">\(\frac{1}{n\sqrt{n}}\)</span> 同阶，所以绝对收敛。</p></li>
+<li><blockquote>
+<p>确定 <span class="math inline">\(\alpha\)</span> 的取值范围，使得级数收敛。</p>
+<p><span class="math display">\[
+1 - \frac{1}{2^{\alpha}} + \frac{1}{3} - \frac{1}{4^\alpha} + \frac{1}{5} - \frac{1}{6^\alpha} + \cdots
+\]</span></p>
+</blockquote>
+<p>当 <span class="math inline">\(\alpha &gt; 1\)</span> 时，显然该级数发散；当 <span class="math inline">\(\alpha = 1\)</span> 时，显然该级数收敛。当 <span class="math inline">\(\alpha &lt; 1\)</span> 时，此时 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{(2n)^{\alpha}}\)</span> 发散，原级数变为 <span class="math inline">\(1 + \sum\limits_{n = 2}^{\infty} \big(\frac{1}{(2n)^{\alpha}} - \frac{1}{2n - 1}\big)\)</span>，此级数发散。</p></li>
+<li><blockquote>
+<p>确定级数的敛散性；若收敛，请判断是条件收敛还是绝对收敛。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \sin (\pi \sqrt{n^2 + 1})
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+\sin (\pi \sqrt{n^2 + 1}) = (-1)^{n} \sin (\pi \sqrt{n^2 + 1} - n) = (-1)^n \sin \bigg(\frac{\pi}{\sqrt{n^2 + 1} + n}\bigg)
+\]</span></p>
+<p>由莱布尼茨判别法知条件收敛，显然不睡绝对收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 附近有连续的二阶导数，且 <span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x} = 0\)</span>。证明级数绝对收敛。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} f\biggl(\frac{1}{n}\biggr)
+\]</span></p>
+</blockquote>
+<p>不妨令 <span class="math inline">\(f(x) &gt; 0\)</span>，此时只需要证明该级数收敛。因为 <span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x} = 0\)</span>，所以 <span class="math inline">\(f(x) = o(x)\)</span>，将 <span class="math inline">\(f(x)\)</span> 泰勒展开前两项得 <span class="math inline">\(f(x) = f(0) + f&#39;(0) x + \frac{f&#39;&#39;(\xi) }{2} x^2\)</span>，其中 <span class="math inline">\(x &gt; \xi &gt; 0\)</span>，所以 <span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(f(\frac{1}{n})\)</span> 是 <span class="math inline">\(\frac{1}{n^2}\)</span> 的高阶无穷小，所以该级数绝对收敛。</p></li>
+<li><blockquote>
+<p><span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 附近有连续的导数，<span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x} = a &gt; 0\)</span>。证明级数条件收敛。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} (-1)^{n} f\biggl(\frac{1}{n}\biggr)
+\]</span></p>
+</blockquote>
+<p>取实数 <span class="math inline">\(k\)</span>，使得 <span class="math inline">\(0 &lt; k &lt; a\)</span>，由导函数的连续性得，在 <span class="math inline">\(x = 0\)</span> 的某个领域内，恒有 <span class="math inline">\(f&#39;(x) &gt; k &gt; 0\)</span>，这表明在领域内 <span class="math inline">\(f(x)\)</span> 严格单调递增，也就是 <span class="math inline">\(f(\frac{1}{n})\)</span> 严格单调递减，又由于</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{f(\frac{1}{n})}{\frac{1}{n}} = a
+\]</span></p>
+<p>由莱布尼茨判别法知该级数条件收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x)\)</span> 是在 <span class="math inline">\((-\infty, +\infty)\)</span> 上的可微函数，且 <span class="math inline">\(|f&#39;(x)| &lt; mf(x)\)</span>，其中，<span class="math inline">\(0 &lt; m &lt; 1\)</span>，任取实数 <span class="math inline">\(a_0\)</span>，定义 <span class="math inline">\(a_n = \ln f(a_{n - 1})(n = 1, 2, \cdots)\)</span>。证明 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (a_n - a_{n - 1})\)</span> 绝对收敛。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+a_n - a_{n - 1} &amp;= \ln f(a_{n - 1}) - \ln f(a_{n - 2}) = \frac{f&#39;(\xi)}{f(\xi)} (a_{n - 1} - a_{n - 2})
+\\
+|a_n - a_{n - 1}| &amp;&lt; m |a_{n - 1} - a_{n - 2}| &lt; m^2 |a_{n - 2} - a_{n - 3}| &lt; \cdots &lt; m^{n - 1} |a_1 - a_0|
+\end{aligned}
+\]</span></p>
+<p>所以绝对收敛。</p></li>
+<li><blockquote>
+<p>讨论级数的敛散性</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \sin \pi (3 + \sqrt{5})^{n}
+\]</span></p>
+</blockquote>
+<p>令 <span class="math inline">\(M_n = (3 + \sqrt{5})^n + (3 - \sqrt{5})^n\)</span>，分析二项式展开的形式，可知 <span class="math inline">\(M_n\)</span> 为偶数，则原级数</p>
+<p><span class="math display">\[
+= \sum_{n = 1}^{\infty} \sin \pi (M_n - (3 - \sqrt{5})^{n}) = -\sum_{n = 1}^{\infty} \sin \pi(3 - \sqrt{5})^{n}
+\]</span></p>
+<p>因为 <span class="math inline">\(1 &gt; 3 - \sqrt{5} &gt; 0\)</span>，所以该级数收敛。</p></li>
+<li><blockquote>
+
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a &gt; 1\)</span>，数列 <span class="math inline">\(\{p_n\}\)</span> 满足 <span class="math inline">\(p_{n + 1} \geq p_{n} &gt; 0\)</span>。证明级数收敛。</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{p_n - p_{n - 1}}{p_n p_{n - 1}^{\alpha}}
+\]</span></p>
+</blockquote></li>
+<li><blockquote>
+<p>设级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n^2\)</span> 收敛，证明：级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{a_n}{n}\)</span> 也收敛。</p>
+</blockquote>
+<p>由柯西不等式得</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty}\bigg|\frac{a_n}{n}\bigg| \leq \sqrt{\sum_{n = 1}^{\infty} a_n^2} \sqrt{\sum_{n = 1}^{\infty} \frac{1}{n^2}}
+\]</span></p>
+<p>故绝对收敛</p></li>
+<li><blockquote>
+
+</blockquote></li>
+<li><blockquote>
+<p>设级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span>，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} b_n\)</span> 都收敛，并有 <span class="math inline">\(a_n \leq c_n \leq b_n\)</span>，证明：级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} c_n\)</span> 收敛。</p>
+</blockquote>
+<p><span class="math inline">\(b_n - a_n &gt; c_n - a_n &gt; 0\)</span>，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} c_n = \sum\limits_{n = 1}^{\infty} (c_n - a_n) + \sum\limits_{n = 1}^{\infty} a_n\)</span>，所以收敛。</p></li>
+<li><blockquote>
+<p>设级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} u_n^2\)</span>，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} v_n^2\)</span> 都收敛，证明级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (u_n + v_n)^{p}\)</span> 也收敛，其中整数 <span class="math inline">\(p \geq 2\)</span></p>
+</blockquote>
+<p>当 <span class="math inline">\(p = 2\)</span> 时，<span class="math inline">\((u_n + v_n)^2 \leq 2(u_n^2 + v_n^2)\)</span>，显然此时收敛。<span class="math inline">\(\lim\limits_{n \to \infty} (u_n + v_n)^2 = 0\)</span>，由极限的保号知，存在 <span class="math inline">\(N\)</span>，当 <span class="math inline">\(n &gt; N\)</span> 时，<span class="math inline">\(|u_n + v_n| &lt; 1\)</span>，<span class="math inline">\(|u_n + v_n|^p \leq |u_n + v_n|^2\)</span>，故绝对收敛。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(x_1 = 2\)</span>，<span class="math inline">\(x_{n + 1} = 2 + \frac{1}{x_n}\)</span>，并求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。</p>
+</blockquote>
+<p>考虑级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (x_n - x_{n - 1})\)</span> 的敛散性</p>
+<p><span class="math display">\[
+|x_n - x_{n - 1}| = \bigg|\frac{x_{n - 1} - x_{n - 2}}{x_n x_{n - 1}}\bigg| \leq \frac{1}{4} |x_{n - 1} - x_{n - 2}| \leq \cdots \leq \frac{1}{4^{n - 2}} \frac{1}{2}
+\]</span></p>
+<p>故级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (x_n - x_{n - 1})\)</span> 绝对收敛，于是 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span> 存在，的结果为 <span class="math inline">\(1 + \sqrt{2}\)</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(x_n = \cos x_{n - 1}(n = 1, 2, \cdots)\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span> 存在。</p>
+</blockquote>
+<p>考虑级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (x_n - x_{n - 1})\)</span> 的敛散性</p>
+<p><span class="math display">\[
+|x_n - x_{n - 1}| = |\cos x_{n - 1} - \cos x_{n - 2}| \leq |\sin \xi_{n - 1}| |x_{n - 1} - x_{n - 2}|
+\\
+\leq |\sin \xi_{n - 1}||\sin \xi_{n - 2}||x_{n - 2} - x_{n - 3}|
+\\
+\leq \cdots \leq
+\\
+|\sin \xi_{n - 1}||\sin \xi_{n - 2}|\cdots|\sin \xi_{1}||x_{1} - x_{0}|
+\]</span></p>
+<p>因为 <span class="math inline">\(|\sin \xi_i| \in [0, 1]\)</span>，所以 <span class="math inline">\(|\sin \xi_{n - 1}||\sin \xi_{n - 2}|\cdots|\sin \xi_{1}||x_{1} - x_{0}|\)</span> 收敛，故级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (x_n - x_{n - 1})\)</span> 绝对收敛，所以 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span> 存在。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(x_n = 1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + \cdots + \frac{1}{\sqrt{n}} - 2\sqrt{n}(n = 1, ,2 \cdots)\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span> 存在。</p>
+</blockquote>
+<p>考虑级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (x_n - x_{n - 1})\)</span> 的敛散性</p>
+<p><span class="math display">\[
+(x_n - x_{n - 1}) = \frac{1}{\sqrt{n}} - 2 \sqrt{n} + 2 \sqrt{n - 1} = \frac{1}{\sqrt{n}} - \frac{2}{\sqrt{n} + \sqrt{n - 1}} = \frac{\sqrt{n - 1} - \sqrt{n}}{\sqrt{n} (\sqrt{n} + \sqrt{n - 1})}
+\\
+= \frac{-1}{\sqrt{n}(\sqrt{n} + \sqrt{n - 1})^2}
+\]</span></p>
+<p>所以 <span class="math inline">\(n \to \infty\)</span> 时，一般项与 <span class="math inline">\(\frac{1}{\sqrt{n^3}}\)</span> 同阶，故绝对收敛，所以 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span> 存在。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{F_n\}\)</span> 是斐波那契数列，证明 <span class="math inline">\(\lim\limits_{n \to \infty} (F_n / F_{n - 1})\)</span> 存在并求其值。</p>
+</blockquote></li>
+<li><blockquote>
+<p>证明下列级数是收敛的：</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \int_0^{\frac{1}{n}} \frac{\sqrt{x}}{1 + x^4} \text{d} x
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \int_0^{\frac{\pi}{n}} \frac{\sin x}{1 + x} \text{d} x
+\]</span></p>
+</blockquote></li>
+<li><blockquote>
+<p>令</p>
+<p><span class="math display">\[
+a_k = \int_{-\infty}^{+\infty} x^{2k} \text{e}^{-kx^2} \text{d} x (k = 1, 2, \cdots)
+\]</span></p>
+<p>讨论 <span class="math inline">\(\sum\limits_{k = 1}^{\infty} a_k\)</span> 的敛散性。</p>
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(a_n = \int_0^{\frac{\pi}{4}} \tan^n x \text{d} x(n = 1, 2, \cdots)\)</span>。</p>
+<p>(1). 求级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{n} (a_n + a_{n + 2})\)</span> 的和；</p>
+<p>(2). 证明级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (-1)^n a_n\)</span> 条件收敛；</p>
+<p>(3). 证明：对于任何 <span class="math inline">\(\lambda &gt; 0\)</span>，级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{a_n}{n^{\lambda}}\)</span> 都收敛。</p>
+</blockquote></li>
 </ol>
 
                 
