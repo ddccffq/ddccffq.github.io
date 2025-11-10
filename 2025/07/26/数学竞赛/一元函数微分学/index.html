@@ -27,7 +27,7 @@
 <meta property="og:description" content="包括导数、微分中值定理、导数与函数的单调、极值、凹凸及泰勒公式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-26T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-08T08:25:31.427Z">
+<meta property="article:modified_time" content="2025-11-04T06:45:47.418Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          4.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          37 分钟
+          36 分钟
         
       </span>
     
@@ -276,7 +276,7 @@
             
               <div class="markdown-body">
                 
-                <p>包括<strong>导数、微分中值定理</strong>、<strong>导数与函数的单调、极值、凹凸及泰勒公式</strong>。</p>
+                <p>包括导数、微分中值定理、导数与函数的单调、极值、凹凸及泰勒公式。</p>
 <span id="more"></span>
 <h2 id="必备知识点">必备知识点</h2>
 <ol type="1">
@@ -289,7 +289,7 @@ f&#39;(x) = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
 \]</span></p></li>
 <li><p>微分的定义：</p>
 <p>设函数 <span class="math inline">\(y = f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 处可导，则称 <span class="math display">\[
-dy = f&#39;(x_0) \cdot dx
+dy = f&#39;(x_0) \cdot \text{d}x
 \]</span></p>
 <p>为函数 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 处的<strong>微分</strong>，其中 <span class="math inline">\(dx\)</span> 是自变量的增量。 如果函数 <span class="math inline">\(y = f(x)\)</span> 在点 <span class="math inline">\(x\)</span> 处可微，则： <span class="math display">\[
 \Delta y = f&#39;(x) \cdot \Delta x + o(\Delta x)
@@ -310,7 +310,7 @@ dy = f&#39;(x_0) \cdot dx
 </ol></li>
 <li><p>高阶导数的莱布尼茨公式：</p>
 <p><span class="math display">\[
-(uv)^{n} = \sum_{k = 0}^{n} \binom{n}{k} u^{(k)} v^{(n - k)}
+(uv)^{(n)} = \sum_{k = 0}^{n} \binom{n}{k} u^{(k)} v^{(n - k)}
 \]</span></p></li>
 <li><p>常用的高阶导数公式：</p>
 <ol type="1">
@@ -322,10 +322,9 @@ dy = f&#39;(x_0) \cdot dx
 <li><span class="math inline">\((\frac{1}{a - x})^{(n)} = \frac{n!}{(a - x)^{n + 1}}\)</span></li>
 </ol></li>
 <li><p>曲线的曲率与曲率半径：</p>
-<p>设曲线 <span class="math inline">\(L: y = f(x)\)</span> 有连续的二阶导数。它在点 (x, y) 处的曲率定义为 <span class="math inline">\(K = \frac{|y&#39;&#39;|}{(1 + y&#39;^2)^{\frac{3}{2}}}\)</span>，曲率半径定义为 <span class="math inline">\(R = \frac{1}{K}\)</span>。</p></li>
+<p>设曲线 <span class="math inline">\(L: y = f(x)\)</span> 有连续的二阶导数。它在点 <span class="math inline">\((x, y)\)</span> 处的曲率定义为 <span class="math inline">\(K = \frac{|y&#39;&#39;|}{(1 + y&#39;^2)^{\frac{3}{2}}}\)</span>，曲率半径定义为 <span class="math inline">\(R = \frac{1}{K}\)</span>。</p></li>
 </ol>
 <h2 id="例题讲解">例题讲解</h2>
-<h3 id="导数微分中值定理">导数、微分中值定理</h3>
 <ol type="1">
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处连续，并有 <span class="math inline">\(\lim\limits_{x \to a} \frac{f(x)}{x - a} = k\)</span>。证明：<span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = a\)</span> 处可导，且 <span class="math inline">\(f&#39;(a) = k\)</span>。</p>
@@ -336,16 +335,30 @@ dy = f&#39;(x_0) \cdot dx
 <p><span class="math display">\[
 \lim_{n \to \infty} \frac{f(b_n) - f(a_n)}{b_n - a_n} = f&#39;(x_0)
 \]</span></p>
-</blockquote></li>
+</blockquote>
+<p>记 <span class="math inline">\(\lambda = f&#39;(x_0)\)</span>，由微分的定义可知 <span class="math inline">\(f(x_0 + \Delta x) = f(x_0) + \lambda \Delta x + o(\Delta x)\)</span>，于是有 <span class="math inline">\(f(b_n) = f(x_0) + \lambda(b_n - x_0) + o(b_n - x_0)\)</span>，<span class="math inline">\(f(a_n) = f(x_0) + \lambda(a_n - x_0) + o(a_n - x_0)\)</span>。考虑</p>
+<p><span class="math display">\[
+\frac{o(b_a - x_0) - o(a_n - x_0)}{b_n - a_n} = \frac{o(b_n - x_0)}{b_n - x_0} \cdot \frac{b_n - x_0}{b_n - a_n} - \frac{o(a_n - x_0)}{a_n - x_0} \cdot \frac{a_n - x_0}{b_n - a_n}
+\]</span></p>
+<p>因为 <span class="math inline">\(\big|\frac{b_n - x_0}{b_n - a_n} \big| \leq 1\)</span>，<span class="math inline">\(\big|\frac{a_n - x_0}{b_n - a_n} \big| \leq 1\)</span>，所以 <span class="math inline">\(o(b_a - x_0) - o(a_n - x_0) = o(b_n - a_n)\)</span>，于是</p>
+<p><span class="math display">\[
+f(b_n) - f(a_n) = \lambda(b_n - a_n) + o(b_a - x_0) - o(a_n - x_0) = \lambda(b_n - a_n) + o(b_n - a_n)
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{f(b_n) - f(a_n)}{b_n - a_n} = f&#39;(x_0)
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在点 <span class="math inline">\(x_0\)</span> 有二阶导数，证明：</p>
 <p><span class="math display">\[
 \lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = f&#39;&#39;(x_0)
 \]</span></p>
 </blockquote>
-<p>此时存在 <span class="math inline">\(x_0\)</span> 的领域 <span class="math inline">\((x_0 - \delta, x_0 + \delta)\)</span>，在此领域上 <span class="math inline">\(f&#39;(x)\)</span> 存在。有洛必达法则及二阶导数的定义得到：</p>
+<p>此时存在 <span class="math inline">\(x_0\)</span> 的领域 <span class="math inline">\((x_0 - \delta, x_0 + \delta)\)</span>，在此领域上 <span class="math inline">\(f&#39;(x)\)</span> 存在。由洛必达法则及二阶导数的定义得到：</p>
 <p><span class="math display">\[
-\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0 - h)}{2h} = \frac{1}{2} \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0) + f&#39;(x_0) - f&#39;(x_0 - h)}{h} = f&#39;&#39;(x_0)
+\lim_{h \to 0} \frac{f(x_0 + h) - 2f(x_0) + f(x_0 - h)}{h^2} = \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0 - h)}{2h}
+\\
+= \frac{1}{2} \lim_{h \to 0} \frac{f&#39;(x_0 + h) - f&#39;(x_0) + f&#39;(x_0) - f&#39;(x_0 - h)}{h} = f&#39;&#39;(x_0)
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 1\)</span> 点附近有定义，且在 <span class="math inline">\(x = 1\)</span> 点可导，<span class="math inline">\(f(1) = 0\)</span>，<span class="math inline">\(f&#39;(1) = 2\)</span>。求 <span class="math display">\[
@@ -371,35 +384,10 @@ dy = f&#39;(x_0) \cdot dx
 <p>构造函数 <span class="math inline">\(F(x) = (f(x) + f^{(1)}(x) + f^{(2)}(x) + \cdots + f^{(n)}(x)) \text{e}^{-x}\)</span>，<span class="math inline">\(F(a) = F(b) = 0\)</span>，所以存在 <span class="math inline">\(\xi \in (a, b)\)</span>，使得 <span class="math inline">\(F&#39;(\xi) = (f^{(n + 1)}(x) - f(x)) \text{e}^{-x} = 0\)</span>，即 <span class="math inline">\(f^{(n + 1)} (\xi) = f(\xi)\)</span>。</p></li>
 <li><blockquote>
 <p><span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\([0, 3]\)</span> 上连续，在 <span class="math inline">\((0, 3)\)</span> 内可导，<span class="math inline">\(f(0) + f(1) + f(2) = 3\)</span>，<span class="math inline">\(f(3) = 1\)</span>。证明：存在 <span class="math inline">\(\xi \in (0, 3)\)</span>，使得 <span class="math inline">\(f&#39;&#39;(\xi) = 0\)</span>。</p>
-</blockquote>
-<p><span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([0, 2]\)</span> 内必然存在一点 <span class="math inline">\(x_0\)</span> 使得 <span class="math inline">\(f(x_0) = 1\)</span>，则由则由罗尔中值定理得至少有一点 <span class="math inline">\(\xi\)</span> 使得 <span class="math inline">\(f&#39;(\xi) = 0\)</span>。</p></li>
+</blockquote></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a ,b]\)</span> 上有二阶导数，<span class="math inline">\(f(a) = f(b) = f&#39;(a) = f&#39;(b) = 0\)</span>，又存在常数 <span class="math inline">\(M\)</span>，使得在 <span class="math inline">\([a, b]\)</span> 上恒有 <span class="math inline">\(|f&#39;&#39;(x)| \leq M\)</span>。证明：在 <span class="math inline">\([a, b]\)</span> 上恒有 <span class="math inline">\(|f(x)| \leq \frac{M}{16}(b - a)^2\)</span></p>
-</blockquote>
-<p>设点 <span class="math inline">\(c\)</span> 是最大值点，由题设可得必有 <span class="math inline">\(f&#39;(c) = 0\)</span>，对点 <span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span>，<span class="math inline">\(c\)</span> 泰勒展开，得：</p>
-<p><span class="math display">\[
-\begin{aligned}
-f(x) &amp;= \frac{f&#39;&#39;(\xi_a)}{2} (x - a)^2
-\\
-f(x) &amp;= \frac{f&#39;&#39;(\xi_b)}{2} (x - b)^2
-\\
-f(x) &amp;= f(c) + \frac{f&#39;&#39;(\xi_c)}{2} (x - c)^2
-\end{aligned}
-\]</span></p>
-<p>得到：</p>
-<p><span class="math display">\[
-\begin{aligned}
-f(x) &amp;= \frac{1}{2} \biggl [\frac{f&#39;&#39;(\xi_a)}{2} (x - a)^2 + \frac{f&#39;&#39;(\xi_b)}{2} (x - b)^2 \biggl ] + \frac{f&#39;&#39;(\xi_c)}{2} (x - c)^2
-\\
-|f(x)| &amp;\leq M \biggl [ \frac{1}{4} (x - a)^2 + \frac{1}{4} (x - b)^2 + \frac{1}{2} (x - c)^2 \biggl ]
-\\
-&amp;= \frac{1}{4} M (x^2 - 2xa + a^2 + x^2 -2xb + b^2 + 2x^2 - 4xc + 2c^2)
-\\
-&amp;= M (x^2 - \frac{2a + 2b + 4c}{4} x + \frac{a^2 + b^2 + 2c^2}{4})
-\\
-&amp;\leq M(x^2 - \frac{a + b}{2} + \frac{a^2 + b^2}{4})
-\end{aligned}
-\]</span></p></li>
+</blockquote></li>
 <li><blockquote>
 <p>设函数 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([0, +\infty]\)</span> 上有二阶导数，且 <span class="math inline">\(f&#39;&#39;(x) &lt; 0\)</span>，<span class="math inline">\(f(0) = 0\)</span>。证明对任何正数 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span> 都有 <span class="math inline">\(f(x_1 + x_2) &lt; f(x_1) + f(x_2)\)</span> 成立。</p>
 </blockquote>

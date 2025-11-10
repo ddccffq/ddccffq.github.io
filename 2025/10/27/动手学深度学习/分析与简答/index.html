@@ -27,7 +27,7 @@
 <meta property="og:description" content="假设我们有一个 10 层的全连接神经网络，使用 Sigmoid 作为激活函数，采用均方误差损失函数。请从链式法则的角度定性分析，在反向传播过程中，靠近输入层的参数梯度可能会发生什么变化？为什么？如果将 Sigmoid 激活函数换成 ReLU，这个问题会得到缓解吗？请解释原因。除了更换激活函数，请再列举两种缓解梯度消失&#x2F;爆炸问题的方法，并简要说明其原理。  记隐藏层线性变换的结果为 \(Z_i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-27T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-31T07:56:16.461Z">
+<meta property="article:modified_time" content="2025-11-02T13:06:17.082Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          3.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          17 分钟
+          28 分钟
         
       </span>
     
@@ -359,31 +359,75 @@ g_{B} = \frac{1}{B} \sum_{i = 1}^{B} \nabla L_i(\theta)
 <li><blockquote>
 <p>以一个简单的 1-1-1 结构的两层神经网络为例，分别采用均方误差损失函数和交叉熵损失函数，说明这两种函数关于参数的非凸性（可作图示意和说明）。</p>
 </blockquote>
-<p>设输入为 <span class="math inline">\(X\)</span>，输出为 <span class="math inline">\(A_2\)</span>，实际标签为 <span class="math inline">\(y\)</span>，输出层变化的结果为 <span class="math inline">\(Z_2\)</span>，变换为 <span class="math inline">\(f_{2_{\theta_2}}\)</span>，隐藏层变换的结果为 <span class="math inline">\(Z_1\)</span>，输出结果为 <span class="math inline">\(A_1\)</span>，变换为 <span class="math inline">\(f_{1_{\theta_1}}\)</span>，激活函数统一为 <span class="math inline">\(g\)</span>。</p>
+<p>两种损失在 1-1-1 两层网络（标量输入、1 个隐层神经元、1 个输出）下关于参数均为非凸。可通过计算参数子集的 Hessian 并构造使其不定（行列式为负）的点来判别。</p>
+<p>设输入为 <span class="math inline">\(x \in \mathbb{R}\)</span>，输出为 <span class="math inline">\(A_2 \in \mathbb{R}\)</span>，实际标签为 <span class="math inline">\(y \in \mathbb{R}\)</span>，输出层变化的结果为 <span class="math inline">\(Z_2 \in \mathbb{R}\)</span>，隐藏层变换的结果为 <span class="math inline">\(Z_1 \in \mathbb{R}\)</span>，输出结果为 <span class="math inline">\(A_1 \in \mathbb{R}\)</span>，变换为 <span class="math inline">\(f\)</span>，激活函数统一为 <span class="math inline">\(g\)</span>（Sigmoid）。</p>
 <p><span class="math display">\[
 \begin{aligned}
-A_2 &amp;= g(Z_2)
+A_2 &amp;= g(Z_2) = s
 \\
-Z_2 &amp;= f_{2}(A_1, \theta_2)
+Z_2 &amp;= w_2 A_1 + b_2
 \\
-A_1 &amp;= g(Z_1)
+A_1 &amp;= g(Z_1) = v
 \\
-Z_1 &amp;= f_{1} (X, \theta_1)
+Z_1 &amp;= w_1 x + b_1
+\\
+g&#39;(x) &amp;= g(x) (1 - g(x))
 \end{aligned}
 \]</span></p>
-<p>损失函数 <span class="math inline">\(L\)</span> 为均方误差函数时</p>
-<p><span class="math display">\[
-L = \frac{1}{2} (A_2 - y)^2
-\]</span></p>
-<p>反向传播后，得到</p>
+<p>(1). 考虑均方误差损失</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{\partial L}{\partial \theta_2} &amp;= \frac{\partial L}{\partial A_2} \frac{\text{d} A_2}{\text{d} Z_2} \frac{\partial Z_2}{\partial \theta_2} = (A_2 - y) g&#39;(Z_2) \frac{\partial Z_2}{\partial \theta_2}
+L &amp;= \frac{1}{2} (y - A_2)^2
 \\
-\frac{\partial L}{\partial \theta_1} &amp;= \frac{\partial L}{\partial A_1} \frac{\text{d} A_1}{\text{d} Z_1} \frac{\partial Z_1}{\partial \theta_1} = (A_2 - y) g&#39;(Z_2) \frac{\partial Z_2}{\partial A_1} g&#39;(Z_1) \frac{\partial Z_1}{\partial \theta_1}
+\frac{\partial L}{\partial A_2} &amp;= (A_2 - y)
 \\
+\frac{\partial L}{\partial w_2} &amp;= (A_2 - y)g(Z_2)(1 - g(Z_2)) A_1 = (s - y)s(1 - s)A_1
+\\
+\frac{\partial L}{\partial b_2} &amp;= (A_2 - y)g(Z_2)(1 - g(Z_2)) = (s - y)s(1 - s)
+\\
+\frac{\partial L}{\partial w_1} &amp;= \frac{\partial L}{\partial A_1} \frac{\partial A_1}{\partial w_1} = (s - y)s(1 - s)v(1 - v) x w_2
+\\
+\frac{\partial L}{\partial b_1} &amp;= (s - y)s(1 - s)v(1 - v) w_2
+\\
+\frac{\partial^2 L}{\partial w_1^2} &amp;= x^2\Big[ w_2^2\,v^2(1 - v)^2\,s&#39;\big( s(1 - s) + (s - y)(1 - 2s)\big) + w_2\,(s - y)\,s&#39;\,v(1 - v)\,(1 - 2v) \Big]
+\\
+\frac{\partial^2 L}{\partial b_1^2} &amp;= w_2^2\,v^2(1 - v)^2\,s&#39;\big( s(1 - s) + (s - y)(1 - 2s)\big) + w_2\,(s - y)\,s&#39;\,v(1 - v)\,(1 - 2v)
+\\
+\frac{\partial^2 L}{\partial w_2^2} &amp;= A_1^2 s&#39; [s (1 - s) + (s - y) (1 - s) - (s - y)s]
+\\
+\frac{\partial^2 L}{\partial b_2^2} &amp;= s&#39; \big[ s (1 - s) + (s - y) (1 - 2s) \big]
+\\
+\frac{\partial^2 L}{\partial w_2 \partial w_1} &amp;= s&#39;\,v(1 - v)\,x\,\Big[ w_2\,v\,\big( s(1 - s) + (s - y)(1 - 2s) \big) + (s - y) \Big]
+\\
+\frac{\partial^2 L}{\partial b_2 \partial b_1} &amp;= s&#39; w_2 v (1 - v) [s (1 - s) + (s - y) (1 - s) - (s - y)s]
 \end{aligned}
-\]</span></p></li>
+\]</span></p>
+<p>所以，对于权重参数和偏置参数的 Hessian 矩阵为：</p>
+<p><span class="math display">\[
+H = 
+\begin{bmatrix}
+\frac{\partial^2 L}{\partial w_1^2} &amp; \frac{\partial^2 L}{\partial w_1 \partial w_2}
+\\
+\frac{\partial^2 L}{\partial w_2 \partial w_1} &amp; \frac{\partial^2 L}{\partial w_2^2}
+\end{bmatrix}
+\]</span></p>
+<p>取一组简单取值，使 <span class="math inline">\(\det(H)&lt;0\)</span>：</p>
+<p><span class="math display">\[
+x=1, \; w_1=0, \; w_2=0, \; b_1=0, \; b_2=0, \; y=0
+\]</span></p>
+<p>此时 <span class="math inline">\(v = s = \frac{1}{2} ,\; v&#39; =s&#39; = \frac{1}{4} ,\; B = \frac{1}{4}\)</span>，代入得</p>
+<p><span class="math display">\[
+H_{11}=0,\quad H_{22}=\frac{1}{64}=0.015625,\quad H_{12}=\frac{1}{32}=0.03125,
+\]</span></p>
+<p>故</p>
+<p><span class="math display">\[
+\det(H) = 0 \cdot 0.015625 - 0.03125^2 = -0.0009765625 &lt; 0,
+\]</span></p>
+<p>Hessian 不定，表明关于权重参数非凸。同理偏置参数。</p>
+<p>(2). 考虑交叉熵损失函数，、BCE + Sigmoid 在仅对最后一层的仿射参数（给定隐层激活）是凸的，但由于隐层的非线性组合，关于所有参数的联合优化仍是非凸。</p>
+<blockquote>
+<p>其实 (1) 的证明也可以通过类似 (2) 的语句表达，可还是给了 Hessian 矩阵的详细证明（主要是自己想尝试严谨证明）</p>
+</blockquote></li>
 <li><blockquote>
 <p>尝试推导：在回归问题中，假设输出中包含高斯噪音，则最小化均方误差等价于最小化负 log 似然（或最大化似然）。</p>
 </blockquote>
@@ -400,7 +444,7 @@ P(y_i | x_i) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \biggl(-\frac{(y_i - f_
 \]</span></p>
 <p>可见，</p>
 <p><span class="math display">\[
-\argmin \text{NLL} \Leftrightarrow \argmin \frac{1}{2N} \sum_{i = 1}^{N} (y_i - f_{\theta}(x_i))^2 \Leftrightarrow \argmin \frac{1}{2NK} \sum\limits_{m = 1}^{K} \sum\limits_{i = 1}^{N} (\hat{y}_{im} - y_{im})^2
+\arg \min \text{NLL} \Leftrightarrow \arg \min \frac{1}{2N} \sum_{i = 1}^{N} (y_i - f_{\theta}(x_i))^2 \Leftrightarrow \arg \min \frac{1}{2NK} \sum\limits_{m = 1}^{K} \sum\limits_{i = 1}^{N} (\hat{y}_{im} - y_{im})^2
 \]</span></p>
 <p>故等价。</p></li>
 <li><blockquote>
@@ -408,11 +452,11 @@ P(y_i | x_i) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \biggl(-\frac{(y_i - f_
 </blockquote>
 <p>假设要解决 <span class="math inline">\(K\)</span> 分类问题，模型的输入为 <span class="math inline">\(X \in \mathbb{R}^{N \times K}\)</span>，实际标签为 <span class="math inline">\(y \in \mathbb{R}^{N \times K}\)</span>（独热编码），概率分布是 <span class="math inline">\(P_{\theta}(y_i | X_i) \in \mathbb{R}^{1 \times K}\)</span>，最小化交叉损失过程为：</p>
 <p><span class="math display">\[
-\argmin H = -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
+\arg \min H = -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
 \]</span></p>
 <p>极大化似然等价于极小化负 log 似然。</p>
 <p><span class="math display">\[
-\argmin -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
+\arg \min -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
 \]</span></p>
 <p>显然等价。</p></li>
 <li><blockquote>
@@ -426,7 +470,11 @@ L_{1_i} &amp;= \lambda_{L_1} \cdot \sum_{m} |w_{im}|
 L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
 \end{aligned}
 \]</span></p>
-<p>在 <span class="math inline">\(\lambda\)</span> 相同的情况下，<span class="math inline">\(\cdot\)</span> 右边的数值影响正则化的效果，相比于绝对值求和，L2 范数</p></li>
+<ul>
+<li>将“经验损失”的等高线视为一族椭圆，加入正则化等价于在范数球约束下，寻找与等高线首次相切的点。</li>
+<li>L1 约束集：<span class="math inline">\(\{w:\sum_i |w_i|\le t\}\)</span> 是“菱形/十字多面体”，在各坐标轴方向有尖角；相切点更易落在角点/棱上，导致若干坐标恰为 <span class="math inline">\(0\)</span>，故解“稀疏”。</li>
+<li>L2 约束集：<span class="math inline">\(\{w:\sum_i w_i^2\le t\}\)</span> 是“圆/球”，各向同性且边界光滑；相切点通常不在坐标轴上，系数被连续缩小但少有精确为 <span class="math inline">\(0\)</span>，体现“平滑收缩”。</li>
+</ul></li>
 <li><blockquote>
 <p>分析 Batch normalization 对参数优化起到什么作用、如何起到这种作用。</p>
 </blockquote>
@@ -434,7 +482,50 @@ L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
 <p>批量归一化的提出正是为了应对深度模型训练的挑战。在模型训练时，批量归一化利用小批量上的均值和标准差，不断调整神经网络中间输出，从而使整个神经网络在各层的中间输出的数值更稳定。</p></li>
 <li><blockquote>
 <p>从工作原理角度，对比经典的随机梯度下降（SGD）、带动量的 SGD（SGD with Momentum）、以及 Adam 优化器。并说明“动量”项是如何帮助SGD在相关曲面上加速并减少振荡的，Adam在泛化性方面存在哪些问题。</p>
-</blockquote></li>
+</blockquote>
+<p>梯度下降<br>
+<span class="math display">\[
+\boldsymbol{x} \leftarrow \boldsymbol{x} - \eta \boldsymbol{g}_t
+\]</span></p>
+<ul>
+<li>特点：全局同一学习率，易在“峡谷型”曲面产生之字形振荡；对学习率较敏感。</li>
+</ul>
+<p>动量法</p>
+<p><span class="math display">\[
+\begin{aligned}
+\boldsymbol{v}_t &amp;\leftarrow \gamma \boldsymbol{v}_{t-1} + \eta_t \boldsymbol{g}_t \\
+\boldsymbol{x}_t &amp;\leftarrow \boldsymbol{x}_{t-1} - \boldsymbol{v}_t
+\end{aligned}
+\]</span></p>
+<ul>
+<li>原理（加速与去振荡）：<span class="math inline">\(\boldsymbol{v}_t\)</span> 是梯度的指数滑动平均。沿“长轴”方向，梯度方向长期一致，<span class="math inline">\(\boldsymbol{v}_t\)</span> 积累动量，步长变大从而加速；沿“短轴/高曲率”方向，梯度正负交替，平均后相互抵消，横向振荡被抑制。</li>
+</ul>
+<p>Adam</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{v}}_t \leftarrow \frac{\boldsymbol{v}_t}{1-\beta_1^t},\quad
+\hat{\boldsymbol{s}}_t \leftarrow \frac{\boldsymbol{s}_t}{1-\beta_2^t},\quad
+\boldsymbol{x}_t \leftarrow \boldsymbol{x}_{t-1} - \frac{\eta\,\hat{\boldsymbol{v}}_t}{\sqrt{\hat{\boldsymbol{s}}_t}+\epsilon}
+\]</span></p>
+<ul>
+<li>工作原理：对一阶、二阶矩做偏置校正并进行参数自适应步长缩放，适合稀疏/噪声梯度与冷启动阶段。</li>
+<li>泛化问题与对策：
+<ul>
+<li>倾向于找到“尖锐极小值”，泛化弱于 SGD + 动量；常见于视觉任务。<br>
+</li>
+<li>每参数缩放削弱了 SGD 的隐式正则化；权重衰减需“解耦”（AdamW）。<br>
+</li>
+<li>对策：AdamW（解耦权重衰减）、学习率预热与余弦/阶梯衰减、后期切换到 SGD+Momentum 微调。</li>
+</ul></li>
+</ul></li>
+<li><blockquote>
+<p>深度神经网络通过堆叠大量简单的非线性单元获得了将强的学习能力，你认为当前深度学习模型与大脑的学习机制之间，最大的相似之处和不同之处分别是什么？</p>
+</blockquote>
+<p>最大的相似之处：分层与模块化处理，皮层自下而上的层级加工与深度网络的多层特征抽取相呼应，均通过分布式表示组合出高阶概念。</p>
+<p>最大的不同之处：架构与动力学，大脑以强反馈、递归、时序脉冲与振荡为主；常见ANN多为前馈/离散时步、连续值神经元。</p></li>
+<li><blockquote>
+<p>由通用近似定理可知，即使只有一个隐藏层的浅层网络，只要有足够的神经元，就可以近似任何函数。那么，为什么还需要构建深层的神经网络（例如 ResNet-101 有 100 多层）？请从模型容量、计算效率、特征抽象层次三个角度阐述深度网络的优势。</p>
+</blockquote>
+<p>深度网络的优势：(1) 模型容量：同等参数量下，深度将复杂函数拆为多层组合，表达效率更高，可用多项式级参数逼近浅层需指数级宽度的函数族。(2) 计算效率：层级复用与参数共享（如卷积、残差）提升算子复用度，降低FLOPs与存储。(3) 特征抽象：逐层从低级到高级形成可迁移表示，提升样本效率与泛化；残差/归一化缓解深层训练难度。</p></li>
 </ol>
 
                 

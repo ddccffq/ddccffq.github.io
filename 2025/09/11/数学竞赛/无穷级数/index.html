@@ -27,7 +27,7 @@
 <meta property="og:description" content="数项级数与函数项级数  内容要点  常数项级数收敛等价于余项极限为 0。 在级数中去掉、增加或改变有限项不改变敛散性。 两个及以上的发散级数加减结果的敛散性不定。 级数收敛的必要条件是其通项极限为 0。 p-级数：\(\sum\limits_{n &#x3D; 1}^{\infty} \frac{1}{n^p} &#x3D; \begin{cases}收敛, &amp;p &gt; 1 \\ 发散, &amp;p \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-11T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-01T10:00:19.356Z">
+<meta property="article:modified_time" content="2025-11-03T12:23:24.996Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          6.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          46 分钟
+          57 分钟
         
       </span>
     
@@ -548,8 +548,20 @@ S_{2n} - S_{n} = a_{n + 1} + a_{n + 2} + \cdots + a_{2n} \geq n a_{2n} \geq 0
 </blockquote>
 <p>级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 的余项记为 <span class="math inline">\(r_n = a_n + a_{n + 1} + \cdots\)</span>，级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{a_n}{r_n}\)</span> 的余项记为 <span class="math inline">\(\rho_n = \frac{a_n}{r_n} + \frac{a_{n + 1}}{r_{n + 1}} + \cdots\)</span>，因为 <span class="math inline">\(\{r_n\}\)</span> 单调递减，所以 <span class="math inline">\(\rho_n &gt; 1\)</span>，故该级数发散。</p></li>
 <li><blockquote>
-
-</blockquote></li>
+<p>求幂级数的收敛域</p>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} \frac{\sin n}{n^2} x^n
+\]</span></p>
+</blockquote>
+<p>显然该级数收敛半径大于 1，在其收敛域内对其和函数求二阶导数</p>
+<p><span class="math display">\[
+S&#39;&#39;(x) = \sum_{n = 3}^{\infty} \frac{(n - 1) \sin n}{n} x^{n - 2}
+\]</span></p>
+<p>显然有</p>
+<p><span class="math display">\[
+\bigg| \frac{\sin n}{n^2} x^2 \bigg| &lt; \bigg| x^2 \bigg|
+\]</span></p>
+<p>所以收敛域包括 <span class="math inline">\((-1, 1)\)</span>，而当 <span class="math inline">\(x = 1\)</span> 时，<span class="math inline">\(\sum\limits_{n = 3}^{\infty} \frac{(n - 1) \sin n}{n}\)</span> 显然发散，所以由阿贝尔定理知当 <span class="math inline">\(|x| &gt; 1\)</span> 时，原级数发散；对于 <span class="math inline">\(x = \pm 1\)</span> 原级数为 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{\sin n}{n^2} (\pm 1)^{n}\)</span>，显然收敛。综上收敛域为 <span class="math inline">\([-1, 1]\)</span>。</p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 与 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} b_n\)</span> 为正项级数，证明：若 <span class="math inline">\(\lim\limits_{n \to \infty} \bigl( \frac{a_n}{a_{n + 1} b_{n}} - \frac{1}{b_{n + 1}} \bigr) &gt; 0\)</span>，则 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span> 收敛。</p>
 </blockquote>
@@ -725,8 +737,56 @@ a_n - a_{n - 1} &amp;= \ln f(a_{n - 1}) - \ln f(a_{n - 2}) = \frac{f&#39;(\xi)}{
 \]</span></p>
 <p>因为 <span class="math inline">\(1 &gt; 3 - \sqrt{5} &gt; 0\)</span>，所以该级数收敛。</p></li>
 <li><blockquote>
-
-</blockquote></li>
+<p>用间接法将下列函数展开为麦克劳林级数，并指出其收敛域。</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\ln (4 - 3x - x^2)
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\frac{1}{2x^2 - 3x + 1}
+\]</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+\frac{1}{(1 - x^2)^3}
+\]</span></p>
+<p>(4).</p>
+<p><span class="math display">\[
+\arctan 2x
+\]</span></p>
+</blockquote>
+<p>(1).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\ln (4 - 3x + x^2) &amp;= \ln 4 + \ln (1 + \frac{x}{4}) + \ln (1 - x)
+\\
+&amp;= \ln 4 + \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{n} \bigg(\frac{x}{4}\bigg)^{n} + \sum_{n = 1}^{\infty} \frac{-1}{n} x^{n}
+\\
+&amp;= \ln 4 + \sum_{n = 1}^{\infty} \frac{x^n}{n} \bigg[(-1)^{n - 1} \frac{1}{4^n} - 1\bigg], x \in [-1, 1)
+\end{aligned}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{2x^2 - 3x + 1} &amp;= -\frac{2}{2x - 1} + \frac{1}{x - 1}
+\\
+&amp;= \frac{2}{1 - 2x} - \frac{1}{1 - x} = 2\sum_{n = 0}^{\infty} (2x)^n - \sum_{n = 0}^{\infty} x^n
+\\
+&amp;= \sum_{n = 0}^{\infty} x^n\big(2^{n + 1} - 1\big), x \in \bigg(-\frac{1}{2}, \frac{1}{2}\bigg)
+\end{aligned}
+\]</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{(1 - x^2)^3} &amp;= \frac{1}{2} \sum_{n = 0}^{\infty} (n + 2)(n + 1) x^{2n}, x \in (-1, 1)
+\end{aligned}
+\]</span></p>
+<p>(4).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\arctan x &amp;= \sum_{n = 0}^{\infty} \frac{(-1)^{n} 2^{2n + 1}}{2n + 1} x^{2n + 1}, x \in \bigg[-\frac{1}{2}, \frac{1}{2}\bigg]
+\end{aligned}
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(a &gt; 1\)</span>，数列 <span class="math inline">\(\{p_n\}\)</span> 满足 <span class="math inline">\(p_{n + 1} \geq p_{n} &gt; 0\)</span>。证明级数收敛。</p>
 <p><span class="math display">\[
@@ -742,8 +802,15 @@ a_n - a_{n - 1} &amp;= \ln f(a_{n - 1}) - \ln f(a_{n - 2}) = \frac{f&#39;(\xi)}{
 \]</span></p>
 <p>故绝对收敛</p></li>
 <li><blockquote>
-
-</blockquote></li>
+<p>将 <span class="math inline">\(\sin x\)</span> 展开为 <span class="math inline">\((x - \frac{\pi}{4})\)</span> 的幂级数。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\sin x &amp;= \sin \bigg(x - \frac{\pi}{4} + \frac{\pi}{4}\bigg) = \frac{\sqrt{2}}{2} \sin \bigg(x - \frac{\pi}{4} \bigg) + \frac{\sqrt{2}}{2} \cos \bigg(x - \frac{\pi}{4} \bigg)
+\\
+&amp;= \frac{\sqrt{2}}{2} \sum_{n = 1}^{\infty} \bigg((-1)^{n - 1}\frac{(x - \frac{\pi}{4})^{2n - 1}}{(2n - 1)!} + (-1)^{n - 1}\frac{(x - \frac{\pi}{4})^{2n - 2}}{(2n - 2)!} \bigg), x \in (-\infty, +\infty)
+\end{aligned}
+\]</span></p></li>
 <li><blockquote>
 <p>设级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} a_n\)</span>，<span class="math inline">\(\sum\limits_{n = 1}^{\infty} b_n\)</span> 都收敛，并有 <span class="math inline">\(a_n \leq c_n \leq b_n\)</span>，证明：级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} c_n\)</span> 收敛。</p>
 </blockquote>
@@ -810,6 +877,121 @@ a_k = \int_{-\infty}^{+\infty} x^{2k} \text{e}^{-kx^2} \text{d} x (k = 1, 2, \cd
 <p>(1). 求级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{1}{n} (a_n + a_{n + 2})\)</span> 的和；</p>
 <p>(2). 证明级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} (-1)^n a_n\)</span> 条件收敛；</p>
 <p>(3). 证明：对于任何 <span class="math inline">\(\lambda &gt; 0\)</span>，级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} \frac{a_n}{n^{\lambda}}\)</span> 都收敛。</p>
+</blockquote></li>
+<li><blockquote>
+<p>将函数 <span class="math inline">\(\frac{\text{e}^{x}}{1 - x}\)</span> 展开为麦克劳林级数</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\text{e}^{x}}{1 - x} &amp;= \bigg(\sum_{n = 0}^{\infty} \frac{1}{n!} x^n\bigg) \bigg(\sum_{n = 0}^{\infty} x^n\bigg) = \sum_{n = 0}^{\infty} \bigg(1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!}\bigg) x^n, x \in (-1, 1)
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>将下列函数展开为麦克劳林级数</p>
+<p>(1).</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{(1 + x)(1 + x^2)(1 + x^4)(1 + x^8)}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{4} \ln \frac{1 + x}{1 - x} + \frac{1}{2} \arctan x - x
+\]</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+f(x) = \frac{\ln (1 + x)}{1 + x}
+\]</span></p>
+</blockquote>
+<p>(1).</p>
+<p><span class="math display">\[
+\frac{1 - x}{1 - x^{16}} = (1 - x) \sum_{n = 0}^{\infty} x^{16n}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{4} (\ln (1 + x) - \ln (1 - x)) + \frac{1}{2} \arctan x - x &amp;= \sum_{n = 0}^{\infty} \frac{x^{2n + 1}}{4(2n + 1)} + \frac{1}{2} \sum_{n = 0}^{\infty} \frac{x^{2n + 1}}{2n + 1} - x
+\\
+&amp;= \sum_{n = 0}^{\infty} \frac{3 x^{2n + 1}}{4(2n + 1)} - x
+\end{aligned}
+\]</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\ln (1 + x)}{1 + x} &amp;= \sum_{n = 1}^{\infty} \bigg(\frac{(-1)^{n - 1}}{n} x^{n} \bigg) \sum_{n = 0}^{\infty} \bigg((-1)^{n} x^{n}\bigg)
+\\
+&amp;=
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>用直接法将 <span class="math inline">\(\frac{\arctan x}{\sqrt{1 - x^2}}\)</span> 展开为麦克劳林级数。</p>
+</blockquote>
+<p>令 <span class="math inline">\(f(x) = \frac{\arctan x}{\sqrt{1 - x^2}}\)</span>，则</p>
+<p><span class="math display">\[
+f&#39;(x) = \frac{\frac{1}{\sqrt{1 - x^2}} \sqrt{1 - x^2} + \arctan x \frac{x}{\sqrt{1 - x^2}}}{1 - x^2} = \frac{1}{1 - x^2} + \frac{x}{1 - x^2} f(x)
+\]</span></p>
+<p>得到微分方程，对微分方程两端求 <span class="math inline">\(n\)</span> 阶导数。</p>
+<p><span class="math display">\[
+\begin{aligned}
+(1 - x^2) f&#39;(x) - x f(x) &amp;= 1
+\\
+\end{aligned}
+\]</span></p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(\{F_n\}\)</span> 是斐波那契数列，求它的母函数，即幂级数 <span class="math inline">\(\sum\limits_{n = 0}^{\infty} F_n x^n\)</span> 的和函数 <span class="math inline">\(S(x)\)</span>。</p>
+</blockquote>
+<p><span class="math display">\[
+\sum_{n = 1}^{\infty} F_{n + 1} x^{n + 1} = x \sum_{n = 1}^{\infty} F_n x^n + x^2 \sum_{n = 1}^{\infty} F_{n - 1} x^{n - 1} = x[S(x) - 1] + x^2 S(x)
+\]</span></p>
+<p>所以，</p>
+<p><span class="math display">\[
+S(x) = 1 + x + \sum_{n = 1}^{\infty} F_{n + 1} x^{n + 1} = 1 + x x[S(x) - 1] + x^2 S(x)
+\]</span></p>
+<p>解得 <span class="math inline">\(S(x) = \frac{1}{1 - x - x^2}, |x| &lt; G\)</span>，其中 <span class="math inline">\(G = \frac{\sqrt{5} - 1}{2}\)</span></p></li>
+<li><blockquote>
+<p>已知 <span class="math inline">\(u_n(x)\)</span> 满足 <span class="math inline">\(u_n&#39;(x) = u_n(x) + x^{n - 1}\text{e}^{x}\)</span>，其中 <span class="math inline">\(n\)</span> 为正整数，<span class="math inline">\(u_n(1) = \frac{\text{e}}{n}\)</span>。求函数项级数 <span class="math inline">\(\sum\limits_{n = 1}^{\infty} u_n(x)\)</span> 之和。</p>
+</blockquote>
+<p>容易得到 <span class="math inline">\(u_n(x) = \frac{x^n}{n} \text{e}^{x}\)</span>，所以</p>
+<p><span class="math display">\[
+\text{e}^x \sum_{n = 1}^{\infty} \frac{x^n}{n} = -\text{e}^x \ln (1 - x), -1 \leq x &lt; 1
+\]</span></p></li>
+<li><blockquote>
+<p>利用傅里叶级数求下列级数的和</p>
+<p>(1).</p>
+<p><span class="math display">\[
+\delta_1 = \sum_{n = 1}^{\infty} \frac{1}{n^2}
+\]</span></p>
+<p>(2).</p>
+<p><span class="math display">\[
+\delta_2 = \sum_{n = 1}^{\infty} \frac{1}{(2n - 1)^2}
+\]</span></p>
+<p>(3).</p>
+<p><span class="math display">\[
+\delta_3 = \sum_{n = 1}^{\infty} \frac{(-1)^{n - 1}}{2n - 1}
+\]</span></p>
+<p>(4).</p>
+<p><span class="math display">\[
+\delta_4 = \sum_{n = 1}^{\infty} \frac{1}{n^4}
+\]</span></p>
+</blockquote>
+<p>(1). 设 <span class="math inline">\(f(x)\)</span> 以 <span class="math inline">\(2\pi\)</span> 为周期，它在 <span class="math inline">\([-\pi, \pi]\)</span> 上的表达式为 <span class="math inline">\(f(x) = x^2\)</span>。有收敛定理，在区间内，其傅里叶级数为 <span class="math inline">\(\frac{\pi^2}{3} + \sum\limits_{n = 1}^{\infty}(-1)^n \frac{4}{n^2} \cos nx = x^2\)</span>。取 <span class="math inline">\(x = \pi\)</span>，由 <span class="math inline">\(\cos n\pi = (-1)^n\)</span> 及 <span class="math inline">\(f(\pi) = \pi^2\)</span> 可推出。</p></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(y = y(x) = \frac{1}{4} (1 + x - \sqrt{1 - 6x + x^2})\)</span>，其幂级数展开式为 <span class="math inline">\(y = a_1 x + a_2 x^2 + a_3 x^3 + \cdots\)</span>。证明：该幂级数展开式的系数都是正整数。</p>
+</blockquote></li>
+<li><blockquote>
+<p>幂级数 <span class="math inline">\(f(x) = \sum\limits_{n = 0}^{\infty} a_n x^n\)</span> 的每一个系数 <span class="math inline">\(a_n\)</span> 只取值 0 或 1.证明：<span class="math inline">\(f(x)\)</span> 是有理函数的充要条件为 <span class="math inline">\(f(\frac{1}{2})\)</span> 是有理数。</p>
+</blockquote></li>
+<li><blockquote>
+<p>证明：</p>
+<p><span class="math display">\[
+\int_0^1 x^{-x} \text{d} x = \sum_{n = 1}^{\infty} \bigg(\frac{1}{n}\bigg)^n
+\]</span></p>
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(f(x) = \sum_{n = 1}^{\infty} \frac{1}{n^2} x^n, x \in [0, 1]\)</span></p>
+<p>(1). 证明：<span class="math inline">\(f(x) + f(1 - x) + \ln x \cdot \ln (1 - x) \equiv \frac{\pi^2}{6}\)</span></p>
+<p>(2). 计算：<span class="math inline">\(\int_0^1 \frac{1}{x - 2} \ln x \text{d} x\)</span></p>
+</blockquote></li>
+<li><blockquote>
+<p>设 <span class="math inline">\(S_{mn} = \sum\limits_{i = 1}^{m} \sum\limits_{j = 1}^{n} \frac{(-1)^{i + j}}{i + j}\)</span>，求 <span class="math inline">\(\lim\limits_{m, n \to \infty} S_{mn}\)</span>。</p>
 </blockquote></li>
 </ol>
 

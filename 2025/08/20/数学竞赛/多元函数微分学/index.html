@@ -27,7 +27,7 @@
 <meta property="og:description" content="邻域、内点、外点、边界、开区域、闭区域以及多元函数的概念与性质 邻域 定义：设 \(P_0(x_0, y_0)\) 是平面上一点，\(\delta &gt; 0\)，称集合 \[U(P_0, \delta) &#x3D; \{P(x, y) | |P - P_0| &lt; \delta\} &#x3D; \{(x, y) | \sqrt{(x - x_0)^2 + (y - y_0)^2} &lt; \delta\">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-20T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-21T13:33:07.249Z">
+<meta property="article:modified_time" content="2025-11-07T14:56:55.975Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          4.4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          34 分钟
+          38 分钟
         
       </span>
     
@@ -707,6 +707,30 @@ f(v) &amp;= \frac{1}{25}\text{e}^{5v} + C_1 v + C_2
 <p>设 <span class="math inline">\(f(x, y)\)</span> 在区域 <span class="math inline">\(D: x^2 + y^2 \leq R^2\)</span> 上连续，满足 <span class="math inline">\(x \frac{\partial f}{\partial x} + ky\frac{\partial f}{\partial y} = 0\)</span>，其中 <span class="math inline">\(k\)</span> 是正整数。证明：在 <span class="math inline">\(D\)</span> 上 <span class="math inline">\(f(x, y)\)</span> 恒为常数。</p>
 </blockquote>
 <p>对于区域 <span class="math inline">\(D\)</span> 内的点 <span class="math inline">\((x_0, y_0)\)</span>，<span class="math inline">\(x_0 \neq 0\)</span>，不妨设 <span class="math inline">\(0 &lt; x_0 &lt; R\)</span>，做连接点与原点的曲线 <span class="math inline">\(L: x = t, y = \frac{y_0}{x_0^k} t^k\)</span>，<span class="math inline">\(t \in [0, x_0]\)</span>，构造辅助函数 <span class="math inline">\(F(t) = f(t, \frac{y_0}{x_0^k} t^k)\)</span></p></li>
+<li><blockquote>
+<p>设二元函数 <span class="math inline">\(f(x, y)\)</span> 在平面上有连续的二阶偏导数，对任何角度 <span class="math inline">\(\alpha\)</span>，定义一元函数 <span class="math inline">\(g_a(t) = f(t\cos \alpha, t\sin \alpha)\)</span>。若对于任何 <span class="math inline">\(\alpha\)</span> 都有 <span class="math inline">\(\frac{\text{d} g_a(0)}{\text{d} t} = 0\)</span> 且 <span class="math inline">\(\frac{\text{d}^2 g_a(0)}{\text{d} t^2} &gt; 0\)</span>，证明 <span class="math inline">\(f(0, 0)\)</span> 是 <span class="math inline">\(f(x, y)\)</span> 的极小值。</p>
+</blockquote>
+<p>记 <span class="math inline">\(x = t\cos \alpha\)</span>，<span class="math inline">\(y = t\sin \alpha\)</span>，由链式法则得</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial f}{\partial t} &amp;= \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial t} = f_x&#39; \cos \alpha + f_y&#39; \sin \alpha
+\\
+\frac{\partial^2 f}{\partial t^2} &amp;= \cos \alpha (f_{xx}&#39;&#39; \cos \alpha + f_{xy}&#39;&#39; \sin \alpha) + \sin \alpha (f_{xy}&#39;&#39; \cos \alpha + f_{yy}&#39;&#39; \sin \alpha)
+\end{aligned}
+\]</span></p>
+<p>函数 <span class="math inline">\(f(x, y)\)</span> 在 <span class="math inline">\((0, 0)\)</span> 的 Hessian 矩阵为 <span class="math inline">\(\mathbf{H} = \begin{bmatrix} f_{xx}&#39;&#39; \quad f_{xy}&#39;&#39; \\ f_{yx}&#39;&#39; \quad f_{yy}&#39;&#39;\end{bmatrix}\)</span>，极小值条件等价于 <span class="math inline">\(f_{xx}&#39;&#39; f_{yy}&#39;&#39; - f_{xy}&#39;&#39;^2 &gt; 0\)</span> 且 <span class="math inline">\(f_x&#39;(0, 0) = f_y&#39;(0, 0) = 0\)</span>。根据题目条件，可推出</p>
+<p><span class="math display">\[
+\frac{\partial f}{\partial t} \bigg|_{t = 0} = f_x&#39;(0, 0) \cos \alpha + f_y&#39;(0, 0) \sin \alpha = 0
+\]</span></p>
+<p>因为对于任何 <span class="math inline">\(\alpha\)</span> 都上上式，同时因为 <span class="math inline">\(f_x&#39;(0, 0)\)</span> 和 <span class="math inline">\(f_y&#39;(0, 0)\)</span> 存在，所以 <span class="math inline">\(f_x&#39;(0, 0) = f_y&#39;(0, 0) = 0\)</span>。除此之外</p>
+<p><span class="math display">\[
+\frac{\partial^2 f}{\partial t^2} \bigg|_{t = 0} = \cos \alpha (f_{xx}&#39;&#39; \cos \alpha + f_{xy}&#39;&#39; \sin \alpha) + \sin \alpha (f_{xy}&#39;&#39; \cos \alpha + f_{yy}&#39;&#39; \sin \alpha) &gt; 0
+\]</span></p>
+<p>对于任何非零向量 <span class="math inline">\(\mathbf{r} = |\mathbf{r}|(\cos \alpha, \sin \alpha)\)</span>，<span class="math inline">\(|\mathbf{r}| \neq 0\)</span>，因此二次型</p>
+<p><span class="math display">\[
+|\mathbf{r}|^2 \begin{pmatrix}\cos \alpha, \sin \alpha \end{pmatrix} \begin{pmatrix} f_{xx}&#39;&#39; (0, 0) \quad f_{xy}&#39;&#39;(0, 0) \\ f_{yx}&#39;&#39;(0, 0) \quad f_{yy}&#39;&#39;(0, 0)\end{pmatrix} \begin{pmatrix}\cos \alpha \\ \sin \alpha \end{pmatrix} &gt; 0
+\]</span></p>
+<p>于是 <span class="math inline">\(\mathbf{H}\)</span> 为正定矩阵，则其顺序主子式都大于零，即 <span class="math inline">\(f_{xx}&#39;&#39; &gt; 0\)</span>，<span class="math inline">\(f_{xx}&#39;&#39; f_{yy}&#39;&#39; - f_{xy}&#39;&#39;^2 &gt; 0\)</span>。综上，是极小值点。</p></li>
 </ol>
 
                 

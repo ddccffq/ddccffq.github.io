@@ -27,7 +27,7 @@
 <meta property="og:description" content="必备知识点  \[ \lim_{n \to \infty} \sqrt[n]{a_1^n + a_2^n \dots + a_m^n} &#x3D; \max_{1 \leq i \leq m}\{a_i\} \] 这个公式用夹逼定理证明，证明如下：记 \(\max\limits_{1 \leq i \leq m} &#x3D; a\)，则 \[ a &#x3D; \sqrt[n]{a^n} \leq \sqrt[n]{a_1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-12T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-06T06:28:54.736Z">
+<meta property="article:modified_time" content="2025-11-03T08:09:09.860Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          6.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          44 分钟
+          51 分钟
         
       </span>
     
@@ -369,7 +369,7 @@ x_n=\prod_{k = 1}^n\Bigl(1 + \frac1{2^{2^k}}\Bigr)
 <p>求 <span class="math inline">\(\lim\limits_{n \to \infty}x_n\)</span>。</p>
 </blockquote>
 <p>构造望远镜乘积 <span class="math display">\[
-\frac{1}{2^{2^n}} + 1 = \frac{\frac{1}{2^{2^{n + 1}}} - 1}{\frac{1}{2^{2^n}} - 1}
+\frac{1}{2^{2^n}} + 1 = \frac{(\frac{1}{2^{2n}} + 1)(\frac{1}{2^{2n}} - 1)}{\frac{1}{2^{2n}} - 1}= \frac{\frac{1}{2^{2^{n + 1}}} - 1}{\frac{1}{2^{2^n}} - 1}
 \]</span></p>
 <p>替换所有元素的形式，最终得到： <span class="math display">\[
 \lim_{n \to \infty}x_n = \lim_{n \to \infty} \frac{\frac{1}{2^{2^{n + 1}}} - 1}{\frac{1}{2^{2^0}} - 1} = 2
@@ -418,11 +418,18 @@ x_n=\prod_{k = 1}^n\Bigl(1 + \frac1{2^{2^k}}\Bigr)
 <p>设 <span class="math display">\[
 x_n = \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n}
 \]</span></p>
-</blockquote>
 <p>求 <span class="math display">\[
 \lim_{n \to \infty} x_n
 \]</span></p>
-<p>注意到 <span class="math inline">\(0 &lt; x_n &lt; \frac{1}{\sqrt{2n + 1}}\)</span>，所以，该极限结果为 0</p></li>
+</blockquote>
+<p><span class="math display">\[
+\frac{2n - 1}{2n}  = 1 - \frac{1}{2n} &gt; \frac{2n - 2}{2n - 1} = 1 - \frac{1}{2n - 1}
+\]</span></p>
+<p>因为 <span class="math inline">\(1 &gt; \frac{2n - 1}{2n} &gt; 0\)</span>，所以</p>
+<p><span class="math display">\[
+0 \leq \prod_{k = 1}^{n} \frac{2k - 1}{2k} \leq \prod_{k = 1}^{n} \sqrt{\frac{2k - 1}{2k + 1}} = \sqrt{\frac{1}{2n + 1}}
+\]</span></p>
+<p>所以极限为 0.</p></li>
 <li><blockquote>
 <p>设数列 <span class="math inline">\(\{a_n\}\)</span> 有界，对于任何 <span class="math inline">\(n\)</span> 总有 <span class="math inline">\(a_n \leq a_{n + 2}\)</span>，<span class="math inline">\(a_n \leq a_{n + 3}\)</span> 成立，证明 <span class="math inline">\(\lim\limits_{n \to \infty} a_n\)</span> 存在。</p>
 </blockquote>
@@ -431,29 +438,50 @@ x_n = \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n}
 <p>如果存在正整数 <span class="math inline">\(p\)</span>，使得 <span class="math display">\[
 \lim_{n \to \infty} (a_{n + p} - a_n) = \lambda
 \]</span></p>
-</blockquote>
 <p>则， <span class="math display">\[
 \lim_{n \to \infty} \frac{a_n}{n} = \frac{\lambda}{p}
 \]</span></p>
+</blockquote>
 <p>将数列 <span class="math inline">\(\{\frac{a_n}{n}\}\)</span>，划分为如下互不相交的子数列，<span class="math inline">\(\{\frac{a_{1 + (n - 1)p}}{1 + (n - 1)p}\}\)</span>，<span class="math inline">\(\{\frac{a_{2 + (n - 1)p}}{2 + (n - 1)p}\}\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(\{\frac{a_{p + (n - 1)p}}{p + (n - 1)p}\}\)</span>，<span class="math inline">\(n \geq 1\)</span>，记为 <span class="math inline">\(\{\frac{a_{i + (n - 1)p}}{i + (n - 1)p}\}\)</span>，<span class="math inline">\(1 \leq i \leq p\)</span>，只需要证明对于所有的 <span class="math inline">\(i\)</span>，都有 <span class="math display">\[
 \lim_{n \to \infty} \frac{a_{i + (n - 1)p}}{i + (n - 1)p} = \frac{\lambda}{p}
 \]</span></p>
 <p>由 stolz 定理，得 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{a_{i + (n - 1)p}}{i + (n - 1)p} = \frac{\lim\limits_{n \to \infty} a_{i + (n - 1)p} - a_{i + (n - 2)p}}{p} = \frac{\lambda}{p}\)</span>。综上，题目推论成立</p></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n + 1} = \frac{1}{2} (x_n + x_{n - 1})(n = 1, 2, \cdots)\)</span>。证明数列 <span class="math inline">\(\{x_n\}\)</span> 有极限，并求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。 还没有证明极限存在</p>
+<p>设 <span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n + 1} = \frac{1}{2} (x_n + x_{n - 1})(n = 1, 2, \cdots)\)</span>。证明数列 <span class="math inline">\(\{x_n\}\)</span> 有极限，并求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。</p>
 </blockquote>
-<p>由题目可得： <span class="math display">\[
+<p>不妨设 <span class="math inline">\(b &gt; a\)</span>，由题目可得：</p>
+<p><span class="math display">\[
 \begin{align*}
-x_{n + 1} &amp;= \frac{1}{2} (x_n + x_{n - 1})
+x_1 &amp;&gt; x_0
 \\
-x_{n} &amp;= \frac{1}{2} (x_{n - 1} + x_{n - 2})
+x_1 &amp;&gt; x_2 &gt; x_0
 \\
-&amp;\cdots
+x_1 &amp;&gt; x_3 &gt; x_2
 \\
-x_{2} &amp;= \frac{1}{2} (x_{1} + x_{0})
+x_1 &amp;&gt; x_3 &gt; x_4 &gt; x_2 &gt; x_0
+\\
+x_1 &amp;&gt; x_3 &gt; x_5 &gt; x_4 &gt; x_2 &gt; x_0
+\\
+x_1 &amp;&gt; x_3 &gt; x_5 &gt; x_6 &gt; x_4 &gt; x_2 &gt; x_0
+\\
+\cdots
 \end{align*}
 \]</span></p>
-<p>左右两边分别相加，并消项，得到 <span class="math inline">\(x_{n + 1} + \frac{1}{2} x_n = x_1 + \frac{1}{2} x_0\)</span></p></li>
+<p>有数学归纳法容易证明，数列 <span class="math inline">\(\{x_{2n - 1}\}\)</span> 单调递减，数列 <span class="math inline">\(\{x_{2n}\}\)</span> 单调递增，同时有界，所以这两个数列均有极限。</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_{2n + 1} &amp;= \frac{1}{2} (x_{2n} + x_{2n - 1})
+\\
+x_{2n} &amp;= \frac{1}{2} (x_{2n - 1} + x_{2n - 2})
+\\
+x_{2n + 1} - x_{2n} &amp;= \frac{1}{2} (x_{2n} - x_{2n - 2})
+\end{aligned}
+\]</span></p>
+<p>因为极限存在，所以</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} (x_{2n + 1} - x_{2n}) = \lim_{n \to \infty} \frac{1}{2} (x_{2n} - x_{2n - 2}) = 0
+\]</span></p>
+<p>所以奇数项和偶数项的极限相等，故改数列极限存在，同时 <span class="math inline">\(x_{n + 1} + \frac{1}{2} x_n = x_1 + \frac{1}{2} x_0\)</span>，解得极限为 <span class="math inline">\(\frac{2}{3}(b + \frac{a}{2})\)</span></p></li>
 <li><blockquote>
 <p>设数列：<span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = 1 + b x_0\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_{n + 1} = 1 + b x_n\)</span>，<span class="math inline">\(\cdots\)</span>，求 <span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span> 使得该数列收敛。</p>
 </blockquote>
@@ -471,29 +499,73 @@ x_1 &amp;= 1 + b x_0
 <p>从而推出 <span class="math inline">\(x_n = 1 + b + b^2 + \cdots + b^{n - 1} + b^n \cdot a = \frac{b^n - 1}{b - 1} + b^n \cdot a = \frac{-1}{b - 1} + b^n (\frac{1}{b - 1} + a)\)</span>，分析得：当 <span class="math inline">\(|b| &lt; 1\)</span> 时，收敛；当 <span class="math inline">\(b \leq -1\)</span> 和 <span class="math inline">\(b &gt; 1\)</span> 时，<span class="math inline">\(a = \frac{1}{1 - b}\)</span> 时，收敛。</p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_0 = a\)</span>，<span class="math inline">\(x_1 = b\)</span>，<span class="math inline">\(x_{n + 1} = \frac{x_{n - 1} + (2n - 1) x_n}{2n}(n = 1, 2, \cdots)\)</span>，求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>。</p>
-</blockquote></li>
+</blockquote>
+<p><span class="math display">\[
+x_{n + 1} - x_{n} = -\frac{x_{n} - x_{n - 1}}{2n} = (-1)^2\frac{x_{n - 1} - x_{n - 2}}{2n \cdot 2(n - 1)} = \cdots = \frac{(-1)^{n - 1} (x_2 - x_1)}{2n \cdot 2(n - 1) \cdots 2}
+\\
+= \bigg(\frac{-1}{2}\bigg)^{n} \frac{1}{n!} (b - a) = a + (b - a)\text{e}^{-\frac{1}{2}}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_{n + 1} &amp;= a + (b - a) \sum_{k = 0}^{n} \bigg(\frac{-1}{2}\bigg)^{k} \frac{1}{k!}
+\\
+\lim_{n \to \infty} x_{n + 1} &amp;= a + (b - a) \sum_{k = 0}^{\infty} \bigg(\frac{-1}{2}\bigg)^{k} \frac{1}{k!}
+\end{aligned}
+\]</span></p></li>
 <li><blockquote>
 <p>设数列由递推公式 <span class="math inline">\(u_1 = b\)</span>，<span class="math inline">\(u_{n + 1} = u_n^2 + (1 - 2a) u_n + a^2 (n = 1, 2, \cdots)\)</span> 所确定。当 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 为何值时，数列 <span class="math inline">\(\{u_n\}\)</span> 收敛？它的极限等于什么？</p>
-</blockquote></li>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+u_{n + 1} - u_{n} &amp;= (u_n - a)^2
+\\
+u_{n} - u_{n - 1} &amp;= (u_{n - 1} - a)^2
+\\
+\cdots
+\\
+u_2 - u_1 &amp;= (u_1 - a)^2
+\end{aligned}
+\]</span></p>
+<p>所以，<span class="math inline">\(u_{n + 1} = b + \sum\limits_{k = 1}^{n} (u_{k} - a)^2\)</span>，所以需要级数 <span class="math inline">\(\sum\limits_{k = 1}^{n} (u_{k} - a)^2\)</span> 收敛，必要条件是 <span class="math inline">\(\lim\limits_{n \to \infty} u_n = a\)</span>。同时，因为数列 <span class="math inline">\(\{u_n\}\)</span> 单调递增，<span class="math inline">\(\lim\limits_{n \to \infty} u_{n + 1} = \lim\limits_{n \to \infty} u_n^2 + (1 - 2a) u_n + a^2 = a\)</span>，应有 <span class="math inline">\(a - 1 \leq u_n \leq a\)</span>，故 <span class="math inline">\(a - 1 \leq b \leq a\)</span>。</p></li>
 <li><blockquote>
 <p>设数列 <span class="math inline">\(\{x_n\}\)</span> 定义如下：<span class="math inline">\(x_1 = \sqrt{5}\)</span>，<span class="math inline">\(x_{n + 1} = x_n^2 - 2(n = 1, 2, \cdots)\)</span>。求极限 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{x_1 x_2 \cdots x_n}{x_{n + 1}}\)</span>。</p>
-</blockquote></li>
+</blockquote>
+<p><span class="math display">\[
+x_{n + 1}^2 - 4 = x_n^2 (x_n^2 - 4) = x_n^2 x_{n - 1}^2 \cdots x_2^2 x_1^2
+\]</span></p>
+<p>所以，</p>
+<p><span class="math display">\[
+\lim\limits_{n \to \infty} \frac{x_1 x_2 \cdots x_{n}}{x_{n + 1}} = \lim\limits_{n \to \infty} \sqrt{\big(\frac{x_1 x_2 \cdots x_{n}}{x_{n + 1}}\big)^2} = \lim\limits_{n \to \infty} \sqrt{\frac{x_{n + 1}^2 - 4}{x_{n + 1}^2}} = 1
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_1 \in (0, 1)\)</span>，<span class="math inline">\(x_{n + 1} = x_n (1 - x_n)\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} n x_n = 1\)</span>。</p>
 </blockquote>
-<p>易证 <span class="math inline">\(\lim\limits_{n \to \infty} x_n = 0\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} n x_n = 1\)</span> 等价于证明 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{1}{n x_n} = 1\)</span>。由 stolz 定理得： <span class="math display">\[
-\lim_{n \to \infty} \frac{1}{n x_n} = \lim_{n \to \infty} \frac{1}{x_n} - \frac{1}{x_{n - 1}} = \lim_{n \to \infty} \frac{x_{n - 1} - x_n}{x_n x_{n - 1}} = \lim_{n \to \infty} \frac{x_{n - 1}^2}{x_{n - 1}^2 (1 - x_{n - 1})} = 1
+<p>因为 <span class="math inline">\(x_1 \in (0, 1)\)</span>，且 <span class="math inline">\(x_i(1 - x_i) = x_{i + 1} \leq 0.25\)</span>，容易证明数列 <span class="math inline">\(\{x_n\}\)</span> 单调递减且有界。</p>
+<p>易证 <span class="math inline">\(\lim\limits_{n \to \infty} x_n = 0\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} n x_n = 1\)</span> 等价于证明 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{1}{n x_n} = 1\)</span>。由 stolz 定理得：</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} \frac{1}{n x_n} = \lim_{n \to \infty} \bigg(\frac{1}{x_n} - \frac{1}{x_{n - 1}} \bigg)= \lim_{n \to \infty} \frac{x_{n - 1} - x_n}{x_n x_{n - 1}} = \lim_{n \to \infty} \frac{x_{n - 1}^2}{x_{n - 1}^2 (1 - x_{n - 1})} = 1
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_1 = \sin x_0 &gt; 0\)</span>，<span class="math inline">\(x_{n + 1} = \sin x_n(n = 1, 2, \cdots)\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} x_n \sqrt{\frac{n}{3}} = 1\)</span></p>
 </blockquote>
+<p><span class="math inline">\(1 &gt; x_1 = \sin x_0 &gt; x_1 = x_2 &gt; \cdots\)</span> &gt; 0，故数列 <span class="math inline">\(\{x_n\}\)</span> 单调递减且有下界，故极限存在。</p>
 <p>易证 <span class="math inline">\(\lim\limits_{n \to \infty} x_n = 0\)</span>，证明 <span class="math inline">\(\lim\limits_{n \to \infty} x_n \sqrt{\frac{n}{3}} = 1\)</span> 等价于证明 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{1}{n x_n^2} = \frac{1}{3}\)</span>，由 stolz 定理和洛必达法则得： <span class="math display">\[
 \lim_{n \to \infty} \frac{1}{n x_n^2} = \lim_{n \to \infty} \frac{1}{x_n^2} - \frac{1}{x_{n - 1}^2} = \lim_{n \to \infty} \frac{x_{n - 1}^2 - x_{n}^2}{x_n^2 x_{n - 1}^2} = \lim_{x \to 0^+} \frac{x^2 - \sin^2 x}{x^4} = \frac{1}{3}
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_n = (1 + \frac{1}{n + 1})^{n + 1} -(1 + \frac{1}{n})^n (n = 1, 2, 3, \cdots)\)</span>。证明 <span class="math inline">\(\{x_n\}\)</span> 与 <span class="math inline">\(\{\frac{1}{n^2}\}\)</span> 是同阶无穷小。</p>
 </blockquote>
-<p>只需要证明 $<em>{n }  = c = </em>{n }  $</p></li>
+<p>只需要证明 <span class="math inline">\(\lim\limits_{n \to \infty} \frac{x_n}{\frac{1}{n^2}}\)</span> 存在</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_n n^2 &amp;= \bigg(1 + \frac{1}{\xi}\bigg)^{\xi}\bigg[\ln (1 + \frac{1}{\xi}) - \frac{1}{1 + \xi}\bigg] n^2, n &lt; \xi &lt; n + 1
+\\
+\lim_{n \to \infty} x_n n^2 &amp;= \lim_{n \to \infty} n^2\bigg(1 + \frac{1}{\xi}\bigg)^{\xi}\bigg[\ln (1 + \frac{1}{\xi}) - \frac{1}{1 + \xi}\bigg]
+\\
+\lim_{n \to \infty} x_n n^2 &amp;= \text{e} n^2 \lim_{n \to \infty} \bigg(\frac{1}{\xi} - \frac{1}{2\xi^2} + o\bigg(\frac{1}{\xi^2}\bigg) - \frac{1}{1 + \xi} \bigg) = \frac{\text{e}}{2}
+\end{aligned}
+\]</span></p></li>
 <li><blockquote>
 <p>求极限 <span class="math display">\[
 \lim_{n \to \infty} \frac{\sqrt[n]{n} - 1}{\frac{1}{n^{\alpha}}}(0 &lt; \alpha &lt; 1)
@@ -504,16 +576,26 @@ x_1 &amp;= 1 + b x_0
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_1 = \sqrt{2}\)</span>，<span class="math inline">\(x_{n + 1} = \sqrt{2 + x_n}(n = 1, 2, \cdots)\)</span>，证明 <span class="math inline">\(x_n - 2 = o(\frac{1}{3^n})(n \to \infty)\)</span></p>
-</blockquote></li>
+</blockquote>
+<p>显然数列单调递增，极限为 <span class="math inline">\(A = 2\)</span>。</p>
+<p><span class="math display">\[
+x_{n + 1} - A = \sqrt{2 + x_n} - \sqrt{2 + A} = \frac{x_n - A}{\sqrt{2 + x_n} \sqrt{2 + A}} \leq \frac{x_n - A}{4} \leq \cdots \leq \frac{\sqrt{2} - 2}{4^{n}} = o\bigg(\frac{1}{3^n}\bigg)
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x) = \frac{2 + x}{1 + x}\)</span>，<span class="math inline">\(x_0 = 1\)</span>，<span class="math inline">\(x_{n + 1} = f(x_n)(n = 0, 1, 2, \cdots)\)</span>，求 <span class="math inline">\(\lim\limits_{n \to \infty} x_n\)</span>，并尽可能估计数列趋于极限得速度。</p>
-</blockquote></li>
+</blockquote>
+<p><span class="math inline">\(x_{n + 1} = \frac{2 + x_n}{1 + x_n}\)</span>，当 <span class="math inline">\(n \geq 1\)</span> 时，数列 <span class="math inline">\(\{x_n\}\)</span> 单调递减且有下界，故有极限 <span class="math inline">\(A\)</span>。</p>
+<p><span class="math display">\[
+|x_{n + 1} - A| = \bigg|\frac{1}{1 + x_n} - \frac{1}{1 + A}\bigg| = \bigg|\frac{x_n - A}{(1 + x_n)(1 + A)}\bigg| \leq \bigg|\frac{x_n - A}{(1 + \sqrt{2})^2}\bigg| \leq \cdots \leq \frac{|x_1 - A|}{(1 + \sqrt{2})^{2n}}
+\]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(x_3\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span>，<span class="math inline">\(\cdots\)</span> 是将方程 <span class="math inline">\(\tan x = x\)</span> 的全部正根按由小到大的次序编号而成的，求极限 <span class="math inline">\(\lim\limits_{n \to \infty} (x_{n} - x_{n - 1})\)</span>。</p>
-</blockquote></li>
+</blockquote>
+<p>由几何关系记 <span class="math inline">\(y_n = \arctan x_n\)</span>，<span class="math inline">\(x_n = y_n + n\pi\)</span>，所以 <span class="math inline">\(\lim\limits_{n \to \infty} (y_n - y_{n - 1} + \pi) = \pi\)</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(a &gt; 0\)</span>，<span class="math inline">\(f_n(x) = x^n + nx - a(n = 1, 2, \cdots)\)</span>，<span class="math inline">\(x_n\)</span> 是 <span class="math inline">\(f_n(x)\)</span> 在 <span class="math inline">\((0, +\infty)\)</span> 上的唯一零点，求 <span class="math inline">\(\lim\limits_{n \to \infty} (1 + x_n)^n\)</span></p>
-</blockquote></li>
+</blockquote>
+<p><span class="math inline">\(n &gt; a\)</span> 时，<span class="math inline">\(f_n(\frac{a}{n} - \frac{a}{n^2}) = (\frac{a}{n} - \frac{a}{n^2})^n - \frac{a}{n} &lt; 0\)</span>，所以 <span class="math inline">\(\frac{a}{n} - \frac{a}{n^2} &lt; x_n &lt; \frac{a}{n}\)</span>，由夹逼定理得极限为 <span class="math inline">\(\text{e}^a\)</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(x_1 = a\)</span>，<span class="math inline">\(y_1 = b(0 &lt; a &lt; b)\)</span>；<span class="math inline">\(x_{n + 1} = \sqrt{x_n y_n}\)</span>，<span class="math inline">\(y_{n + 1} = \frac{x_n + y_n}{2}\)</span>。证明：数列 <span class="math inline">\(\{x_n\}\)</span>，<span class="math inline">\(\{y_n\}\)</span> 的极限都存在且相同。</p>
 </blockquote>
@@ -528,11 +610,13 @@ x_1 &amp;= 1 + b x_0
 \]</span></p></li>
 <li><blockquote>
 <p>求极限 <span class="math display">\[
-\lim_{x \to + \infty} (\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x)
+\lim_{x \to + \infty} \bigg(\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x\bigg)
 \]</span></p>
 </blockquote>
 <p>原极限为： <span class="math display">\[
-\lim_{x \to + \infty} (\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x) = \lim_{x \to + \infty} x \cdot (\frac{1}{(1 + \frac{1}{x})^x} - \frac{1}{\text{e}}) = \lim_{t \to 0^{+}} \frac{\text{e} - (1 + t)^{\frac{1}{t}}}{t(1 + t)^{\frac{1}{t}} \text{e}} = \frac{1}{\text{e}} \lim_{t \to 0^{+}} \frac{1 - \text{e}^{\frac{1}{t} \ln (1 + t) - 1}}{t} = \frac{1}{2\text{e}}
+\lim_{x \to + \infty} \bigg(\frac{x^{1 + x}}{(1 + x)^{x}} - \text{e}^{-1} x\bigg) = \lim_{x \to + \infty} x \cdot \bigg(\frac{1}{(1 + \frac{1}{x})^x} - \frac{1}{\text{e}}\bigg) = \lim_{t \to 0^{+}} \frac{\text{e} - (1 + t)^{\frac{1}{t}}}{t(1 + t)^{\frac{1}{t}} \text{e}}=
+\\
+= \frac{1}{\text{e}} \lim_{t \to 0^{+}} \frac{1 - \text{e}^{\frac{1}{t} \ln (1 + t) - 1}}{t} = \frac{1}{2\text{e}}
 \]</span></p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\([0, 1]\)</span> 上连续，<span class="math inline">\(f(0) = 0\)</span>，<span class="math inline">\(f(1) = 1\)</span>。证明：<span class="math inline">\(F(x) = f(x)(1 - f(x)) - x(1 - x)\)</span> 在 <span class="math inline">\([0, 1]\)</span> 上至少有 <span class="math inline">\(3\)</span> 个不同的零点。</p>
@@ -543,7 +627,7 @@ x_1 &amp;= 1 + b x_0
 </blockquote>
 <p>令 <span class="math inline">\(F(x) = f(x) - f(\frac{1}{n} + x)\)</span>，只需要证明 <span class="math inline">\(F(x)\)</span> 在区间 <span class="math inline">\([0, 1 - \frac{1}{n}]\)</span> 上有零点。假设不存在零点，此时不妨设恒有 <span class="math inline">\(F(x) &gt; 0\)</span>，因此有 $F(0) + F() + + F() &gt; 0 $，也就是 <span class="math inline">\(f(0) - f(\frac{1}{n}) + f(\frac{1}{n}) - f(\frac{2}{n}) - \cdots - f(1) = f(0) - f(1) &gt; 0\)</span>，显然出现矛盾，因为 <span class="math inline">\(f(0) - f(1) = 0\)</span>，因此必然有零点。</p></li>
 <li><blockquote>
-<p>设 <span class="math inline">\(f(x)\)</span>，<span class="math inline">\(g(x)\)</span> 在闭区间 <span class="math inline">\([a, b]\)</span> 上连续，并由数列 <span class="math inline">\(\{x_0\} \subset [a, b]\)</span>，使得 <span class="math inline">\(f(x_{n + 1}) = g(x_n) (n = 1, 2, \cdots)\)</span>。证明：存在一点 <span class="math inline">\(x_0\)</span>，使得 <span class="math inline">\(f(x_0) = g(x_0)\)</span>。</p>
+<p>设 <span class="math inline">\(f(x)\)</span>，<span class="math inline">\(g(x)\)</span> 在闭区间 <span class="math inline">\([a, b]\)</span> 上连续，并有数列 <span class="math inline">\(\{x_0\} \subset [a, b]\)</span>，使得 <span class="math inline">\(f(x_{n + 1}) = g(x_n) (n = 1, 2, \cdots)\)</span>。证明：存在一点 <span class="math inline">\(x_0\)</span>，使得 <span class="math inline">\(f(x_0) = g(x_0)\)</span>。</p>
 </blockquote>
 <p>设 <span class="math inline">\(F(x) = f(x) - g(x)\)</span>，假设 <span class="math inline">\(F(x)\)</span> 在区间 <span class="math inline">\([a, b]\)</span> 不存在零点，其在区间内的最小值为 <span class="math inline">\(m\)</span>，不妨设恒有 <span class="math inline">\(F(x) &gt; 0\)</span>，$f(x_{n + 1}) = g(x_n) = g(x_n) - f(x_n) + g(x_{n - 1}) = [g(x_n) - f(x_n)] + [g(x_{n - 1}) - f(x_{n - 1})] + + [g(x_2) - f(x_2)] + g(x_1) $<span class="math inline">\(= -F(x_n) - F(x_{n - 1}) - \cdots - F(x_2) + g(x_1) \leq (1 - n)m + g(x_1)\)</span>，显然 <span class="math inline">\(\lim\limits_{n \to \infty} f(x_n) = -\infty\)</span> 和 <span class="math inline">\(f(x)\)</span> 有界条件矛盾，所以必然存在一点 <span class="math inline">\(x_0\)</span>，使得 <span class="math inline">\(f(x_0) = g(x_0)\)</span>。</p></li>
 <li><blockquote>
@@ -557,11 +641,11 @@ x_1 &amp;= 1 + b x_0
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在区间 <span class="math inline">\((0, +\infty)\)</span> 上有定义，在 <span class="math inline">\(x = 1\)</span> 处连续且 <span class="math inline">\(f(1) = 3\)</span>。如果对任意正数 <span class="math inline">\(x\)</span> 都有 <span class="math inline">\(f(x^2) = f(x)\)</span> 成立，求 <span class="math inline">\(f(x)\)</span> 的表达式。</p>
 </blockquote>
-<p><span class="math inline">\(f(x) = f(\sqrt{x}) = f(\sqrt[4]{x}) = \cdots = f(\sqrt[2^n]{x})\)</span>，<span class="math inline">\(\lim\limits_{n \to \infty} f(\sqrt[2^n]{x}) = f(1) = 3\)</span>，由于在 <span class="math inline">\(x = 1\)</span> 处连续，所以有 <span class="math inline">\(f(x) \equiv 3\)</span>。</p></li>
+<p><span class="math inline">\(f(x) = f(\sqrt{x}) = f(\sqrt[4]{x}) = \cdots = f(\sqrt[2^n]{x})\)</span>，由于在 <span class="math inline">\(x = 1\)</span> 处连续，<span class="math inline">\(\lim\limits_{n \to \infty} f(\sqrt[2^n]{x}) = f(1) = 3\)</span>，所以有 <span class="math inline">\(f(x) \equiv 3\)</span>。</p></li>
 <li><blockquote>
 <p>设函数 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\((-\infty, +\infty)\)</span> 上有定义，在 <span class="math inline">\(x = 0\)</span> 处连续且 <span class="math inline">\(f(0) = 2\)</span>。证明：恒等式 <span class="math inline">\(f(2x) = f(x) \text{e}^x\)</span> 成立的充要条件是 <span class="math inline">\(f(x) = 2 \text{e}^{x}\)</span>。</p>
 </blockquote>
-<p>充分性显然，下面证明必要性。<span class="math inline">\(f(x) = f(\frac{x}{2}) \text{e}^{\frac{x}{2}} = f(\frac{x}{4}) \text{e}^{\frac{x}{4}} \text{e}^{\frac{x}{2}} = \cdots = f(\frac{x}{2^n}) \text{e}^{x(\frac{\frac{1}{2} - \frac{1}{2^{n + 1}}}{1 - \frac{1}{2}})}\)</span>，所以 <span class="math inline">\(\lim\limits_{n \to \infty} f(x) = f(0) \text{e}^{x} = 2 \text{e}^{x}\)</span>，由于 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 处连续，所以 <span class="math inline">\(f(x) = 2 \text{e}^{x}\)</span>。综上，得证充分必要性。</p></li>
+<p>充分性显然，下面证明必要性。<span class="math inline">\(f(x) = f(\frac{x}{2}) \text{e}^{\frac{x}{2}} = f(\frac{x}{4}) \text{e}^{\frac{x}{4}} \text{e}^{\frac{x}{2}} = \cdots = f(\frac{x}{2^n}) \text{e}^{x(\frac{\frac{1}{2} - \frac{1}{2^{n + 1}}}{1 - \frac{1}{2}})}\)</span>，由于 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\(x = 0\)</span> 处连续，所以 <span class="math inline">\(\lim\limits_{n \to \infty} f(x) = f(0) \text{e}^{x} = 2 \text{e}^{x}\)</span>，所以 <span class="math inline">\(f(x) = 2 \text{e}^{x}\)</span>。综上，得证充分必要性。</p></li>
 <li><blockquote>
 <p>设 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\((-\infty. +\infty)\)</span> 上有定义，在点 <span class="math inline">\(x = 0\)</span> 处连续且 <span class="math inline">\(f(1) = 2\)</span>。又对于任何 <span class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span> 满足函数方程 <span class="math inline">\(f(x + y) = f(x) + f(y)\)</span> 成立。求 <span class="math inline">\(f(x)\)</span> 的表达式。</p>
 </blockquote>
@@ -569,7 +653,7 @@ x_1 &amp;= 1 + b x_0
 <li><blockquote>
 <p>设有一非负连续函数，对于所有的实数 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 满足函数方程 <span class="math inline">\(f(\sqrt{x^2 + y^2}) = f(x)f(y)\)</span> 及 <span class="math inline">\(f(1) = 2\)</span>，证明：<span class="math inline">\(f(x) = 2^{x^{2}}\)</span>。</p>
 </blockquote>
-<p><span class="math inline">\(f(1) = f(0)f(1)\)</span>，所以 <span class="math inline">\(f(0) = 1\)</span>。对任意正整数 <span class="math inline">\(n\)</span>，有 <span class="math inline">\(f(n) = f^{n}(\frac{n^{2^n}}{2^{2^n - 1}})\)</span></p></li>
+<p>容易得到 <span class="math inline">\(f(x) = f(-x)\)</span>。对任意正整数 <span class="math inline">\(n\)</span>，有 <span class="math inline">\(f(\sqrt{n + 1} x) = f(\sqrt{n}x)f(x) = [f(x)]^{n + 1}\)</span>。设正整数 <span class="math inline">\(p\)</span>，<span class="math inline">\(q\)</span>，得 <span class="math inline">\(f(|p|) = f(\sqrt{q^2}|\frac{p}{q}|) = [f(|\frac{p}{q}|)]^{q^2} = 2^{p^2}\)</span></p></li>
 <li><blockquote>
 <p>求极限 <span class="math display">\[
 \lim_{x \to 0^-} -\frac{1}{x^2} \text{e}^{\frac{1}{x}}
@@ -592,9 +676,9 @@ z_n = \frac{x_1 y_n + x_2 y_{n - 1} + \cdots + x_n y_1}{n}
 <p>设 <span class="math inline">\(x_n = a + \alpha_n\)</span>，<span class="math inline">\(y_n = b + \beta_n\)</span>，其中 <span class="math inline">\(\alpha_n\)</span>，<span class="math inline">\(\beta_n \to 0\)</span>，<span class="math inline">\(n \to \infty\)</span>，于是</p>
 <p><span class="math display">\[
 \begin{aligned}
-z_n &amp;= \frac{1}{n} \sum_{k = 1}^{n} (a + \alpha_n)(b + \beta_n)
+z_n &amp;= \frac{1}{n} \sum_{k = 1}^{n} (a + \alpha_n)(b + \beta_{n - k})
 \\
-&amp;= \frac{1}{n} \biggl(\sum_{k = 1}^{n} ab + \sum_{k = 1}^{n} a\beta_k + \sum_{k = 1}^{n} \alpha_kb + \sum_{k = 1}^{n} \alpha_k \beta_{n - k}\biggr)
+&amp;= \frac{1}{n} \biggl(\sum_{k = 1}^{n} ab + \sum_{k = 1}^{n} a\beta_{n - k} + \sum_{k = 1}^{n} \alpha_kb + \sum_{k = 1}^{n} \alpha_k \beta_{n - k}\biggr)
 \\
 &amp;= ab
 \end{aligned}
@@ -679,7 +763,7 @@ F(x) = \text{e}^{\frac{1}{x} [\ln (a_1^x + a_2^x + \cdots + a_n^x) - \ln n]} = \
 </blockquote>
 <p>利用等价无穷小可得：</p>
 <p><span class="math display">\[
-\lim_{x \to 0} \frac{\ln (1 + \frac{f(x)}{\sin 2x})}{3^x - 1} = \lim_{x \to 0} \frac{f(x)}{2x \cdot \ln 3 x} = 5
+\lim_{x \to 0} \frac{\ln (1 + \frac{f(x)}{\sin 2x})}{3^x - 1} = \lim_{x \to 0} \frac{f(x)}{2x \cdot \ln 3 \cdot x} = 5
 \]</span></p>
 <p>所以，<span class="math inline">\(\lim\limits_{x \to 0} \frac{f(x)}{x^2} = 10 \ln 3\)</span></p></li>
 <li><blockquote>
