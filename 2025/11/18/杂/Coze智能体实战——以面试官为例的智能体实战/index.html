@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="此文章用于 Coze 平台智能体制作入门。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coze智能体实战——以面试官为例的智能体实战">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="此文章用于 Coze 平台智能体制作入门。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E7%A1%AE%E8%AE%A4%E6%99%BA%E8%83%BD%E4%BD%93.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E5%B7%A5%E4%BD%9C%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E5%AF%B9%E8%AF%9D%E4%BD%93%E9%AA%8C.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E6%8A%80%E8%83%BD.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E7%9F%A5%E8%AF%86.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E8%AE%B0%E5%BF%86.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9D%A2%E6%9D%BF.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E5%88%9B%E5%BB%BA%E7%9F%A5%E8%AF%86.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E4%B8%8A%E4%BC%A0%E6%96%87%E6%9C%AC%E7%9F%A5%E8%AF%86.png">
+<meta property="article:published_time" content="2025-11-18T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-18T15:11:57.158Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E4%BD%93.png">
+  
+  
+  
+  <title>Coze智能体实战——以面试官为例的智能体实战 - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Coze智能体实战——以面试官为例的智能体实战"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-18 16:00" pubdate>
+          2025年11月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Coze智能体实战——以面试官为例的智能体实战</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>此文章用于 Coze 平台智能体制作入门。</p>
+<span id="more"></span>
+<h2 id="引入">引入</h2>
+<p>首先，登入 Coze 平台账号，<strong>创建</strong>并<strong>确认</strong>智能体。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/创建智能体.png" srcset="/img/loading.gif" lazyload alt="创建智能体"><figcaption aria-hidden="true">创建智能体</figcaption>
+</figure>
+</div>
+<div style="display: block; margin: 0 auto; width: 50%">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/确认智能体.png" srcset="/img/loading.gif" lazyload alt="确认智能体"><figcaption aria-hidden="true">确认智能体</figcaption>
+</figure>
+</div>
+<p>然后，我们会进入<strong>工作界面</strong>。工作界面明显地分为三个部分，从左至右分别用于<strong>提示词</strong>，<strong>功能</strong>，<strong>调试</strong>。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/工作界面.png" srcset="/img/loading.gif" lazyload alt="工作界面"><figcaption aria-hidden="true">工作界面</figcaption>
+</figure>
+</div>
+<h2 id="功能面板">功能面板</h2>
+<h3 id="对话体验模块">对话体验模块</h3>
+<p><strong>对话体验</strong>模块位于功能面板的最底下，包括如下内容：</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/对话体验.png" srcset="/img/loading.gif" lazyload alt="对话体验"><figcaption aria-hidden="true">对话体验</figcaption>
+</figure>
+</div>
+<p>其中有两个很重要的参数：<strong>开场白</strong>和<strong>用户问题建议</strong>（其余参数仅作了解）。开场白中输入的内容会同步<strong>映射</strong>到右边调试界面，你可以在其中填写问候语，本智能体的基本信息或基本使用方式；然后是<strong>用户问题建议</strong>，因为本智能体是模拟面试官，更多的是智能体问，用户回答的形式，故<strong>关闭</strong>。</p>
+<h3 id="技能模块">技能模块</h3>
+<p><strong>技能</strong>模块包括两个部分：<strong>插件</strong>和<strong>工作流</strong>。插件可以理解为工具，就像我们人可以用手机上网，笔写字一般，有了插件，你的智能体可以实现<strong>联网搜索</strong>，<strong>绘图</strong>等功能；工作流适用于复杂的任务，好比工厂生产一件产品时其流水线。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/技能.png" srcset="/img/loading.gif" lazyload alt="技能"><figcaption aria-hidden="true">技能</figcaption>
+</figure>
+</div>
+<h3 id="知识模块">知识模块</h3>
+<p><strong>知识</strong>模块包含三个部分：<strong>文本</strong>，<strong>表格</strong>和<strong>照片</strong>。知识可以理解为补充的数据，此功能用于个性化智能体的知识库。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/知识.png" srcset="/img/loading.gif" lazyload alt="知识"><figcaption aria-hidden="true">知识</figcaption>
+</figure>
+</div>
+<p><strong>记忆</strong>模块包含两个重要的部分：<strong>变量</strong>和<strong>数据库</strong>。变量的用处如图片中所述，我们可以通过设置变量保存用户的重要信息；数据库为智能体和使用者所维护，二者都可以修改和查询数据库。</p>
+<h3 id="记忆模块">记忆模块</h3>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/记忆.png" srcset="/img/loading.gif" lazyload alt="记忆"><figcaption aria-hidden="true">记忆</figcaption>
+</figure>
+</div>
+<h2 id="提示词面板">提示词面板</h2>
+<div style="display: block; margin: 0 auto; width: 50%">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/提示词面板.png" srcset="/img/loading.gif" lazyload alt="提示词面板"><figcaption aria-hidden="true">提示词面板</figcaption>
+</figure>
+</div>
+<p>我们使用<strong>任务执行</strong>模板。你应该很好奇，为什么有些字处于紫色背景中。我们将整个提示词复制，粘贴后的结果如下，可以看到有紫色背景的字都处于类似 <code>环境中，我们可以直接在提示词界面中修改紫色背景上的内容；或者，修改下面类似</code> 环境中的内容，然后将修改后的所有内容粘贴回去。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 角色 </span><br>你是&#123;#InputSlot placeholder=&quot;角色设定，比如xx领域的专家&quot;#&#125;&#123;#/InputSlot#&#125;<br>你的目标是&#123;#InputSlot placeholder=&quot;希望模型执行什么任务，达成什么目标&quot;#&#125;&#123;#/InputSlot#&#125;<br><br>&#123;#以下可以采用先总括，再展开详细说明的方式，描述你希望智能体在每一个步骤如何进行工作，具体的工作步骤数量可以根据实际需求增删#&#125;<br><span class="hljs-section">## 工作步骤 </span><br><span class="hljs-bullet">1.</span> &#123;#InputSlot placeholder=&quot;工作流程1的一句话概括&quot;#&#125;&#123;#/InputSlot#&#125; <br><span class="hljs-bullet">2.</span> &#123;#InputSlot placeholder=&quot;工作流程2的一句话概括&quot;#&#125;&#123;#/InputSlot#&#125; <br><span class="hljs-bullet">3.</span> &#123;#InputSlot placeholder=&quot;工作流程3的一句话概括&quot;#&#125;&#123;#/InputSlot#&#125;<br><br><span class="hljs-section">### 第一步 &#123;#InputSlot placeholder=&quot;工作流程1标题&quot;#&#125;&#123;#/InputSlot#&#125; </span><br>&#123;#InputSlot placeholder=&quot;工作流程步骤1的具体工作要求和举例说明，可以分点列出希望在本步骤做哪些事情，需要完成什么阶段性的工作目标&quot;#&#125;&#123;#/InputSlot#&#125;<br><span class="hljs-section">### 第二步 &#123;#InputSlot placeholder=&quot;工作流程2标题&quot;#&#125;&#123;#/InputSlot#&#125; </span><br>&#123;#InputSlot placeholder=&quot;工作流程步骤2的具体工作要求和举例说明，可以分点列出希望在本步骤做哪些事情，需要完成什么阶段性的工作目标&quot;#&#125;&#123;#/InputSlot#&#125;<br><span class="hljs-section">### 第三步 &#123;#InputSlot placeholder=&quot;工作流程3标题&quot;#&#125;&#123;#/InputSlot#&#125;</span><br>&#123;#InputSlot placeholder=&quot;工作流程步骤3的具体工作要求和举例说明，可以分点列出希望在本步骤做哪些事情，需要完成什么阶段性的工作目标&quot;#&#125;&#123;#/InputSlot#&#125;<br><br>通过这样的对话，你可以&#123;#InputSlot placeholder=&quot;智能体工作目标再次强调&quot;#&#125;&#123;#/InputSlot#&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="提示词切入">提示词切入</h3>
+<p>现在我们要完成整个智能体最核心的部分，在写提示此之前，我们可以从两方面——<strong>需求分析</strong>和<strong>任务流程</strong>。对于这个智能体，我们可能的需求如下：</p>
+<ul>
+<li>角色与语气
+<ul>
+<li>角色：潜水社“面试官/招新负责人”，专业、礼貌、鼓励式追问。</li>
+<li>语气：友好且结构化；必要时给出示例回答模板。</li>
+</ul></li>
+<li>目标与边界
+<ul>
+<li>主要目标：评估用户，可以从用户的简历，用户之间的问答中评估，根据评估结果，判断用户是否适合加入潜水社（可以记录）</li>
+</ul></li>
+<li>输入与前置
+<ul>
+<li>输入：（这里我们严格要求输入格式为以 markdown 语法书写的表格）简历。</li>
+<li>关键信息字段：姓名/昵称、年龄段、联系方式、潜水证级别、潜水次数、近一年潜水/泳龄、健康申报、空闲时段、设备拥有情况、动机与期望。</li>
+</ul></li>
+<li>输出与记录
+<ul>
+<li>面试结论：评估结果（百分制）</li>
+<li>记录：将评估信息记录至数据库。</li>
+</ul></li>
+<li>对话策略
+<ul>
+<li>询问简历内容</li>
+<li>从题库中选择若干题目考研用户</li>
+<li>轮换至用户询问潜水相关事项。</li>
+</ul></li>
+<li>知识与数据
+<ul>
+<li>内置知识：社团介绍、活动类型与费用区间、装备清单、训练大纲、报名流程与时间表、常见问答和应试题目。</li>
+<li>可配置项：报名链接、负责人联系方式、当期名额与日程。</li>
+</ul></li>
+<li>工具与插件（可选）
+<ul>
+<li>搜索/日程查询：用于返回最近活动安排。</li>
+<li>表单/表格写入：将面试结果落库（如 Coze 数据库或外部表格）。</li>
+</ul></li>
+<li>变量与记忆设计（示例）
+<ul>
+<li>user_name, contact, cert_level, dive_count, swim_years, health_flags, available_slots, gear_owned, motivation, decision, next_step_deadline。</li>
+</ul></li>
+<li>安全与合规
+<ul>
+<li>健康申报触发提示词保护：出现“心血管/耳鼻/手术/妊娠”等关键词时，统一给出风险提示与线下复核流程。</li>
+</ul></li>
+<li>评价指标
+<ul>
+<li>信息完整度（关键字段覆盖率）、澄清轮次、对话时长、用户满意度、转化率（完成报名/加群）。</li>
+</ul></li>
+<li>失败与回退
+<ul>
+<li>长篇无结构简历：先摘要后提取字段再逐项核对。</li>
+<li>用户拒答敏感项：记录“未提供”并给出继续面试的影响说明与替代材料。</li>
+</ul></li>
+</ul>
+<p>在制作任务流程前，我们先规范用户简历内容：</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>内容示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>姓名</td>
+<td>张三</td>
+<td>必填</td>
+</tr>
+<tr class="even">
+<td>年龄</td>
+<td>18</td>
+<td>必填</td>
+</tr>
+<tr class="odd">
+<td>潜水证级别</td>
+<td>OW</td>
+<td>如OW/AOW/Rescue/DM等</td>
+</tr>
+<tr class="even">
+<td>潜水次数</td>
+<td>20</td>
+<td>累计持证潜水次数</td>
+</tr>
+<tr class="odd">
+<td>近一年潜水</td>
+<td>5</td>
+<td>近一年内潜水次数</td>
+</tr>
+<tr class="even">
+<td>泳龄</td>
+<td>3</td>
+<td>游泳年数</td>
+</tr>
+<tr class="odd">
+<td>健康申报</td>
+<td>无重大疾病</td>
+<td>如有特殊情况请注明</td>
+</tr>
+<tr class="even">
+<td>空闲时段</td>
+<td>周末/寒暑假</td>
+<td>可参与活动的主要时间</td>
+</tr>
+<tr class="odd">
+<td>设备拥有情况</td>
+<td>自有面镜、脚蹼</td>
+<td>可多项填写</td>
+</tr>
+<tr class="even">
+<td>动机与期望</td>
+<td>结识同好，提升技能</td>
+<td>简述加入社团的原因与期望</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>然后，给出一个可能的任务流程</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<pre><code class=" mermaid">flowchart TD
+    A[开始] --&gt; B[评估简历] --&gt; H[评估函数1]
+    B --&gt; D[抽选5道选择题提问用户] --&gt; I[评估函数2]
+    D --&gt; E[抽选2道简单题提问用户] --&gt; J[评估函数3]
+    E --&gt; F[轮换到用户提问]
+    F --&gt; G[结束]
+</code></pre>
+</div>
+<blockquote>
+<p>上述流程图中的评估函数最终的结果需要 <span class="math inline">\(\in [0, 100]\)</span></p>
+</blockquote>
+<h2 id="初步制作">初步制作</h2>
+<p>这里提供十道有关潜水的选择题</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 有关潜水的选择题</span><br><br><span class="hljs-bullet">1.</span> 下列哪项最能解释“中性浮力”的含义？  <br>   A. 身体自然下沉到海底  <br>   B. 不上浮也不下沉，保持所处深度  <br>   C. 只能缓慢上升  <br>   D. 只能缓慢下沉  <br>   答案：B<br><br><span class="hljs-bullet">2.</span> 水肺潜水中最主要的上升原则是：  <br>   A. 快速上升缩短潜水时间  <br>   B. 屏住呼吸加速上升  <br>   C. 缓慢、持续呼吸并控制上升速率  <br>   D. 关闭气源节省空气  <br>   答案：C<br><br><span class="hljs-bullet">3.</span> 为减少氮气减压病风险的常见做法是：  <br>   A. 深潜后立即乘飞机离开  <br>   B. 严格遵守潜水表或潜水电脑指示  <br>   C. 不做安全停留  <br>   D. 只靠主观感觉判断时间  <br>   答案：B<br><br><span class="hljs-bullet">4.</span> 下列哪种症状最可能与“耳压平衡不充分”相关？  <br>   A. 皮肤瘙痒  <br>   B. 耳朵疼痛或闷胀  <br>   C. 视力暂时模糊  <br>   D. 手指麻木  <br>   答案：B<br><br><span class="hljs-bullet">5.</span> 呼吸调节器一阶段的主要作用是：  <br>   A. 直接供气到口腔  <br>   B. 将高压瓶内气体降为中间压力  <br>   C. 过滤海水  <br>   D. 加热气体  <br>   答案：B<br><br><span class="hljs-bullet">6.</span> 下列哪项最可能导致“快速失温”？  <br>   A. 水温与体温接近  <br>   B. 穿着合适厚度的湿式或干式潜水服  <br>   C. 长时间静止在冷水中  <br>   D. 缓慢移动以减小阻力  <br>   答案：C<br><br><span class="hljs-bullet">7.</span> 使用富氧空气（Nitrox）的一个主要好处是：  <br>   A. 完全避免减压病  <br>   B. 延长无减压极限时间  <br>   C. 不需分析氧浓度  <br>   D. 可以无限制深潜  <br>   答案：B<br><br><span class="hljs-bullet">8.</span> 若同伴出现“气源耗尽”信号，应首先：  <br>   A. 把自己的第二头（备用二级头）递给对方  <br>   B. 迅速单独上升  <br>   C. 拍照留证  <br>   D. 关闭对方气瓶  <br>   答案：A<br><br><span class="hljs-bullet">9.</span> 潜水结束后建议避免立即乘飞机的主要原因是：  <br>   A. 机舱温度过低  <br>   B. 氧气浓度过高  <br>   C. 气压变化可能加剧体内残余氮扩散  <br>   D. 防止器材损坏  <br>   答案：C<br><br><span class="hljs-bullet">10.</span> 下列哪项不是良好“伙伴制度”行为？  <br><span class="hljs-code">    A. 共同进行潜水计划与检查  </span><br><span class="hljs-code">    B. 入水后互相确认状态  </span><br><span class="hljs-code">    C. 独自脱离队伍加速前行  </span><br><span class="hljs-code">    D. 及时共享位置与剩余气量  </span><br><span class="hljs-code">    答案：C</span><br></code></pre></td></tr></table></figure>
+<p>然后，在<strong>功能面板</strong>中的<strong>知识</strong>模块，选择添加<strong>文本</strong>。接着按下图的顺序点击。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/创建知识.png" srcset="/img/loading.gif" lazyload alt="创建知识"><figcaption aria-hidden="true">创建知识</figcaption>
+</figure>
+</div>
+<p>然后我们会进入到如下界面，将上面的有关潜水知识的选择题复制，然后在桌面创建一个名字叫 <code>潜水选择题.md</code> 的文件，打开后粘贴进去，退出，再将这个文件上传即可。接着一直点下一步就行。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/上传文本知识.png" srcset="/img/loading.gif" lazyload alt="上传文本知识"><figcaption aria-hidden="true">上传文本知识</figcaption>
+</figure>
+</div>
+<p>按照上面流程，再创建 <code>潜水知识简答题</code> 和 <code>潜水社社团信息</code> 的<strong>文本知识</strong>。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 潜水知识简答题</span><br><br><span class="hljs-bullet">1.</span> 请解释什么是“安全停留”，通常在什么深度与时长进行？其主要目的是什么？<br><br><span class="hljs-bullet">2.</span> 简述在下潜过程中进行耳压平衡的常用方法（至少两种），并说明为何需要频繁执行。<br><br><span class="hljs-bullet">3.</span> 说明导致减压病（DCS）的主要生理机制，并列出至少三条预防措施。<br><br><span class="hljs-bullet">4.</span> 在计划使用富氧空气（Nitrox）潜水时，需要进行哪三项关键检查或计算？简述其目的。<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 关于潜水社社团</span><br><br><span class="hljs-section">## 社团概述</span><br>潜水社致力于推广安全、规范、环保的休闲与技术潜水活动，构建学习交流与团队协作社区。核心价值：安全第一 / 持续学习 / 伙伴制度 / 海洋保护。<br><br><span class="hljs-section">## 主要活动</span><br><span class="hljs-bullet">-</span> 基础培训：浮力控制、装备认知、入门环境适应。<br><span class="hljs-bullet">-</span> 开放水域活动：近岸潜点、淡水水库、离岸船潜。<br><span class="hljs-bullet">-</span> 进阶工作坊：导航、夜潜、富氧、救援情景模拟。<br><span class="hljs-bullet">-</span> 学术交流：水下摄影、海洋生态、减压理论分享。<br><span class="hljs-bullet">-</span> 公益与环保：清洁行动、海洋生物记录、科普传播。<br><br><span class="hljs-section">## 参加条件</span><br><span class="hljs-bullet">-</span> 年龄：16周岁以上（未成年人需监护授权）。<br><span class="hljs-bullet">-</span> 证书：无证可参与体验池/浅水教学；开放水域需 OW 或同等级。<br><span class="hljs-bullet">-</span> 健康：无严重心血管/呼吸/耳鼻/癫痫等潜水禁忌；近期手术需恢复评估。<br><span class="hljs-bullet">-</span> 行为规范：遵守潜水计划、气量报告制度、拒绝单独脱离。<br><br><span class="hljs-section">## 装备策略</span><br><span class="hljs-bullet">-</span> 社团公用：气瓶、配重、部分调节器/BC、基础灯具。<br><span class="hljs-bullet">-</span> 个人建议：面镜、脚蹼、防寒服、电脑（进阶后）。<br><span class="hljs-bullet">-</span> 维护：每季度统一检修；发现故障及时标记停用。<br><br><span class="hljs-section">## 安全规则</span><br><span class="hljs-bullet">1.</span> 伙伴制度：入水前双人检查（气源、阀门、电脑、释放带）。<br><span class="hljs-bullet">2.</span> 上升控制：最大上升速率不超过 9–10 m/min；常规安全停留 3–5 min @ 5 m。<br><span class="hljs-bullet">3.</span> 气量下限：回收时主气瓶剩余不低于 50 bar（或按计划阈值）。<br><span class="hljs-bullet">4.</span> 失联处理：60 秒搜索后浮标标记并按预案返回。<br><span class="hljs-bullet">5.</span> 高风险触发：反复耳痛、异常疲劳、皮疹、关节痛 → 终止并建议医疗评估。<br><br><span class="hljs-section">## 培训路径示例</span><br>体验 → OW → AOW → Rescue → Nitrox / Navigation / Deep → 进阶：技术潜水（需额外体系评估）。<br><br><span class="hljs-section">## 常见问答</span><br><span class="hljs-bullet">-</span> Q: 没有证可以直接海边下水吗？  <br>  A: 需完成体验/入门课程并在教练监护下进行。<br><span class="hljs-bullet">-</span> Q: 富氧是否更安全？  <br>  A: 可延长无减压时间，但需分析氧分压与最大使用深度，防止氧毒性。<br><span class="hljs-bullet">-</span> Q: 何时可申请进阶船潜？  <br>  A: 通常完成 ≥6 次受控开放水域潜水且浮力表现稳定。<br><br><span class="hljs-section">## 环保倡议</span><br><span class="hljs-bullet">-</span> 不触碰/采集生物。<br><span class="hljs-bullet">-</span> 控制配重与踢蹼避免搅底。<br><span class="hljs-bullet">-</span> 参与年度海底垃圾清理与数据记录。<br><br><span class="hljs-section">## 行为与退出</span><br><span class="hljs-bullet">-</span> 违反安全条款两次 → 暂停参与高级活动。<br><span class="hljs-bullet">-</span> 恶意隐瞒健康风险 → 评估小组复核，必要时永久禁止。<br><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9D%82/" class="category-chain-item">杂</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Coze智能体实战——以面试官为例的智能体实战</div>
+      <div>https://ddccffq.github.io/2025/11/18/杂/Coze智能体实战——以面试官为例的智能体实战/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context%20Switch/" title="Context Switch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Context Switch</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/16/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" title="假设检验">
+                        <span class="hidden-mobile">假设检验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
