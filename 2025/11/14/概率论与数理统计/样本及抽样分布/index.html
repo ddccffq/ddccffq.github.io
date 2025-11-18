@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="总体个体容量 在数理统计中，我们往往研究有关对象的某一项数量指标，为此，考虑与这一数量指标相联系的随机试验，对这一数量指标进行试验或观察，我们将试验的全部可能的观察值称为总体，这些值不一定都不相同，数目上也不一定是有限的，每一个可能观察值称为个体，总体中所包含的个体的个数称为总体的容量。 样本和样本值 设 \(X\) 是具有分布函数 \(F\) 的随机变量，若 \(X_1\)，\(X_2\)，\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="样本及抽样分布">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/14/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A0%B7%E6%9C%AC%E5%8F%8A%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="总体个体容量 在数理统计中，我们往往研究有关对象的某一项数量指标，为此，考虑与这一数量指标相联系的随机试验，对这一数量指标进行试验或观察，我们将试验的全部可能的观察值称为总体，这些值不一定都不相同，数目上也不一定是有限的，每一个可能观察值称为个体，总体中所包含的个体的个数称为总体的容量。 样本和样本值 设 \(X\) 是具有分布函数 \(F\) 的随机变量，若 \(X_1\)，\(X_2\)，\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-14T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-14T04:57:15.986Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>样本及抽样分布 - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="样本及抽样分布"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-14 16:00" pubdate>
+          2025年11月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">样本及抽样分布</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="总体个体容量">总体个体容量</h2>
+<p>在数理统计中，我们往往研究有关对象的某一项数量指标，为此，考虑与这一数量指标相联系的随机试验，对这一数量指标进行试验或观察，我们将试验的<strong>全部可能的观察值</strong>称为<strong>总体</strong>，这些值不一定都不相同，数目上也不一定是有限的，每一个可能观察值称为<strong>个体</strong>，总体中所包含的个体的个数称为总体的<strong>容量</strong>。</p>
+<h2 id="样本和样本值">样本和样本值</h2>
+<p>设 <span class="math inline">\(X\)</span> 是具有分布函数 <span class="math inline">\(F\)</span> 的随机变量，若 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是具有同一分布函数 <span class="math inline">\(F\)</span> 的、相互独立的随机变量，则称 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 为从分布函数 <span class="math inline">\(F\)</span>（或总体 <span class="math inline">\(F\)</span>、或总体 <span class="math inline">\(X\)</span>）得到的容量为 <span class="math inline">\(n\)</span> 的<strong>简单随机样本</strong>，简称<strong>样本</strong>，它们的观察值 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 称为样本值，又称为 <span class="math inline">\(X\)</span> 的 <span class="math inline">\(n\)</span> 个独立的观察值</p>
+<p>有定义得：若 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 为 <span class="math inline">\(F\)</span> 的一个样本，则 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 相互独立，其它们的分布函数都是 <span class="math inline">\(F\)</span>，所以 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 的分布函数为</p>
+<p><span class="math display">\[
+F^{\ast} (x_1, x_2, \cdots, x_n) = \prod_{i = 1}^{n} F(x_i)
+\]</span></p>
+<p>又若 <span class="math inline">\(X\)</span> 具有概率密度 <span class="math inline">\(f\)</span>，则 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 的概率密度为</p>
+<p><span class="math display">\[
+f^{\ast}(x_1, x_2, \cdots, x_n) = \prod_{i = 1}^{n} f(x_i)
+\]</span></p>
+<h2 id="样本分位数">样本分位数</h2>
+<p>设有容量为 <span class="math inline">\(n\)</span> 的样本观察值 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span>，样本 <span class="math inline">\(p(1 &gt; p &gt; 0)\)</span> 分位数记为 <span class="math inline">\(x_p\)</span>，它具有以下性质：</p>
+<ol type="1">
+<li>至少有 <span class="math inline">\(np\)</span> 个观察值小于等于 <span class="math inline">\(x_p\)</span>；</li>
+<li>至少有 <span class="math inline">\(n(1 - p)\)</span> 个观察值大于或等于 <span class="math inline">\(x_p\)</span>。</li>
+</ol>
+<blockquote>
+<p>样本 <span class="math inline">\(p\)</span> 分位数可按以下法则求得，将 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 按自小到大的次序排序。若 <span class="math inline">\(np\)</span> 不是整数，则取 <span class="math inline">\(\lceil np \rceil\)</span>；若 <span class="math inline">\(np\)</span> 是整数，则取 <span class="math inline">\(\overline{np + np + 1}\)</span></p>
+</blockquote>
+<h2 id="统计量">统计量</h2>
+<p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自总体 <span class="math inline">\(X\)</span> 的一个样本，<span class="math inline">\(g(X_1, X_2, \cdots, X_n)\)</span> 是 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 的函数，若 <span class="math inline">\(g\)</span> 中不含未知参数，则称 <span class="math inline">\(g(X_1, X_2, \cdots, X_n)\)</span> 是一统计量。</p>
+<p>因为 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 都是随机变量，而统计量 <span class="math inline">\(g(X_1, X_2, \cdots, X_n)\)</span> 是随机变量的函数，因此统计量是一个随机变量。设 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 是相应于样本 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 的样本值，则称 <span class="math inline">\(g(x_1, x_2, \cdots, x_n)\)</span> 是 <span class="math inline">\(g(X_1, X_2, \cdots, X_n)\)</span> 的观察值。</p>
+<h3 id="常用的统计量">常用的统计量</h3>
+<ol type="1">
+<li><p>样本均值</p>
+<p><span class="math display">\[
+\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i
+\]</span></p></li>
+<li><p>样本方差</p>
+<p><span class="math display">\[
+S^2 = \frac{1}{n - 1} \sum_{i = 1}^{n} (X_i - \overline{X})^2 = \frac{1}{n - 1} \bigg(\sum_{i = 1}^{n} X_{i}^2 - n\overline{X}^2\bigg)
+\]</span></p></li>
+<li><p>样本标准差</p>
+<p><span class="math display">\[
+S = \sqrt{\frac{1}{n - 1} \sum_{i = 1}^{n}(X_i - \overline{X}^2)}
+\]</span></p></li>
+<li><p>样本 <span class="math inline">\(k\)</span> 阶原点矩</p>
+<p><span class="math display">\[
+A_n = \frac{1}{n} \sum_{i = 1}^{n} X_i^k, \quad k = 1, 2, \cdots
+\]</span></p></li>
+<li><p>样本 <span class="math inline">\(k\)</span> 阶中心矩</p>
+<p><span class="math display">\[
+B_k = \frac{1}{n} \sum_{i = 1}^{n} (X_i - \overline{X})^k, \quad k = 2, 3, \cdots
+\]</span></p></li>
+</ol>
+<h2 id="经验分布函数">经验分布函数</h2>
+<p>设 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 是来自分布函数为 <span class="math inline">\(F(x)\)</span> 的总体 <span class="math inline">\(X\)</span> 的样本观察值。<span class="math inline">\(X\)</span> 的经验分布函数，记为 <span class="math inline">\(F_n(x)\)</span>，定义为样本观察值 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 中小于或等于指定值 <span class="math inline">\(x\)</span> 所占的比率，即</p>
+<p><span class="math display">\[
+F_n(x) = \frac{\# (x_i \leq x)}{n}, \quad -\infty &lt; x &lt; \infty
+\]</span></p>
+<p>其中 <span class="math inline">\(\# (x_i \leq x)\)</span> 表示 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 中小于或等于 <span class="math inline">\(x\)</span> 的个数。</p>
+<blockquote>
+<p>按定义，当给定样本观察值 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 时，<span class="math inline">\(F_n(x)\)</span> 是自变量 <span class="math inline">\(x\)</span> 的函数，它具有分布函数的三个条件：(1). <span class="math inline">\(F_n(x)\)</span> 是 <span class="math inline">\(x\)</span> 的不减函数；(2). <span class="math inline">\(0 \leq F_n(x) \leq 1\)</span>，且 <span class="math inline">\(F(-\infty) = 0\)</span>，且 <span class="math inline">\(F(\infty) = 1\)</span>；(3). <span class="math inline">\(F(x)\)</span> 是一个右连续函数。由此知 <span class="math inline">\(F_n(x)\)</span> 是一个分布函数，当 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 各不相同时，<span class="math inline">\(F_n(x)\)</span> 是以等概率 <span class="math inline">\(1/n\)</span> 取 <span class="math inline">\(x_1\)</span>，<span class="math inline">\(x_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(x_n\)</span> 的离散型随机变量的分布函数。</p>
+</blockquote>
+<h3 id="格里汶科定理">格里汶科定理</h3>
+<p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自以 <span class="math inline">\(F(x)\)</span> 为分布函数的总体 <span class="math inline">\(X\)</span> 的样本，<span class="math inline">\(F(x)\)</span> 是经验分布函数，则有</p>
+<p><span class="math display">\[
+P\bigg\{\lim_{n \to \infty} \sup_{-\infty &lt; x &lt; \infty} |F_n(x) - F(x)| = 0\bigg\} = 1
+\]</span></p>
+<blockquote>
+<p>此定理的含义是 <span class="math inline">\(F_n(x)\)</span> 在整个实轴上以概率 1 均匀收敛于 <span class="math inline">\(F(x)\)</span>，于是当样本容量 <span class="math inline">\(n\)</span> 充分大时，<span class="math inline">\(F_n(x)\)</span> 能够良好地逼近总体分布函数 <span class="math inline">\(F(x)\)</span>，这是在概率统计学中以样本推断总体的依据。</p>
+</blockquote>
+<h2 id="集中统计量">集中统计量</h2>
+<h3 id="卡方分布">卡方分布</h3>
+<p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自总体 <span class="math inline">\(N(0, 1)\)</span> 的样本，则称统计量</p>
+<p><span class="math display">\[
+\chi^2 = X_1^2 + X_2^2 + \cdots + X_n^2
+\]</span></p>
+<p>服从自由度为 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(\chi^2\)</span> 分布，记为 <span class="math inline">\(\chi^2 \sim \chi^2(n)\)</span>。</p>
+<p><span class="math inline">\(\chi^2(n)\)</span> 分布的概率密度为</p>
+<p><span class="math display">\[
+f(y) =
+\begin{cases}
+\frac{1}{2^{n/2} \Gamma(n/2)} y^{n/2 - 1} \text{e}^{-y/2}, &amp;y &gt; 0
+\\
+0, &amp;\text{otherwise}
+\end{cases}
+\]</span></p>
+<p>根据 <span class="math inline">\(\Gamma\)</span> 分布的可加性得：</p>
+<ol type="1">
+<li><p>设 <span class="math inline">\(\chi_{1}^2 \sim \chi^2(n_1)\)</span>，<span class="math inline">\(\chi_{2}^2 \sim \chi^2(n_2)\)</span>，并且 <span class="math inline">\(\chi_1^2\)</span>，<span class="math inline">\(\chi_2^2\)</span> 相互独立，则有</p>
+<p><span class="math display">\[
+\chi_1^2 + \chi_2^2 \sim \chi^2(n_1 + n_2)
+\]</span>。</p></li>
+<li><p>若 <span class="math inline">\(\chi^2 \sim \chi^2(n)\)</span>，则有</p>
+<p><span class="math display">\[
+E(\chi^2) = n, \quad D(\chi^2) = 2n
+\]</span></p></li>
+<li><p>对于给定的正数 <span class="math inline">\(\alpha\)</span>，<span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>，满足条件</p>
+<p><span class="math display">\[
+P\{\chi^2 &gt; \chi_\alpha^2(n)\} = \int_{\chi_\alpha^2(n)}^{\infty} f(y) \text{d}y = \alpha
+\]</span></p>
+<p>的 <span class="math inline">\(\chi_\alpha^2(n)\)</span> 就是 <span class="math inline">\(\chi^2(n)\)</span> 分布上的 <span class="math inline">\(\alpha\)</span> 分位数。</p>
+<blockquote>
+<p>当 <span class="math inline">\(n\)</span> 充分大时，近似地有</p>
+<p><span class="math display">\[
+\chi_\alpha^2(n) \approx \frac{1}{2} (z_\alpha + \sqrt{2n - 1})^2
+\]</span></p>
+<p>其中，<span class="math inline">\(z_\alpha\)</span> 是标准正态分布的上 <span class="math inline">\(\alpha\)</span> 分位数。</p>
+</blockquote></li>
+</ol>
+<h3 id="学生氏分布">学生氏分布</h3>
+<p>设 <span class="math inline">\(X \sim N(0, 1)\)</span>，<span class="math inline">\(Y \sim \chi^2(n)\)</span>，且 <span class="math inline">\(X\)</span>，<span class="math inline">\(Y\)</span> 相互独立，则称随机变量</p>
+<p><span class="math display">\[
+t = \frac{X}{\sqrt{Y/n}}
+\]</span></p>
+<p>服从自由度为 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(t\)</span> 分布，记为 <span class="math inline">\(t \sim t(n)\)</span>。</p>
+<p><span class="math inline">\(t\)</span> 分布又称为学生氏分布，<span class="math inline">\(t(n)\)</span> 分布的概率密度函数为</p>
+<p><span class="math display">\[
+h(t) = \frac{\Gamma[(n + 1)/2]}{\sqrt{n\pi}\Gamma(n/2)} \bigg(1 + \frac{t^2}{n}\bigg)^{-(n + 1)/2}, \quad -\infty &lt; t &lt; \infty
+\]</span></p>
+<p>实际上，由 <span class="math inline">\(\Gamma\)</span> 函数的性质可得</p>
+<p><span class="math display">\[
+\lim_{n \to \infty} h(t) = \frac{1}{\sqrt{2\pi}} \text{e}^{-t^2/2}
+\]</span></p>
+<p>同样，给出 <span class="math inline">\(t\)</span> 分布上分位数，对于给定的 <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>，满足条件</p>
+<p><span class="math display">\[
+P\{t &gt; t_{\alpha}(n)\} = \int_{t_{\alpha}(n)}^{\infty} h(t) \text{d}t = \alpha
+\]</span></p>
+<p>的 <span class="math inline">\(t_{\alpha}(n)\)</span> 就是 <span class="math inline">\(t(n)\)</span> 分布的上 <span class="math inline">\(\alpha\)</span> 分位数。</p>
+<blockquote>
+<p>由概率密度函数的对称性知</p>
+<p><span class="math display">\[
+t_{1 - \alpha}(n) = -t_{\alpha}
+\]</span></p>
+<p>此外，当 <span class="math inline">\(n &gt; 45\)</span> 时，对于常用的 <span class="math inline">\(\alpha\)</span>，可以用正态近似 <span class="math inline">\(t_{\alpha}(n) \approx z_{\alpha}\)</span>。</p>
+</blockquote>
+<h3 id="f-分布">F 分布</h3>
+<p>设 <span class="math inline">\(U \sim \chi^2(n_1)\)</span>，<span class="math inline">\(V \sim \chi^2(n_2)\)</span>，且 <span class="math inline">\(U\)</span>，<span class="math inline">\(V\)</span> 相互独立，则称随机变量</p>
+<p><span class="math display">\[
+F = \frac{U/n_1}{V/n_2}
+\]</span></p>
+<p>服从自由度为 <span class="math inline">\((n_1, n_2)\)</span> 的 <span class="math inline">\(F\)</span> 分布，记为 <span class="math inline">\(F \sim F(n_1, n_2)\)</span>，其概率密度函数为：</p>
+<p><span class="math display">\[
+\phi(y) =
+\begin{cases}
+\frac{\Gamma[(n_1 + n_2)/2](n_1 / n_2)^{n_1/2}y^{(n_1/2) - 1}}{\Gamma(n_1 / 2) \Gamma(n_2 / 2) [1 + (n_1 y / n_2)]^{(n_1 + n_2) / 2}}, &amp; y &gt; 0
+\\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<p>由定义可得 <span class="math inline">\(\frac{1}{F} \sim F(n_2, n_1)\)</span>。</p>
+<p>同样，给出 <span class="math inline">\(F\)</span> 分布的上 <span class="math inline">\(\alpha\)</span> 分位数，对于给定的 <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>，满足条件</p>
+<p><span class="math display">\[
+P\{F &gt; F_{\alpha}(n_1, n_2)\} = \int_{F_{\alpha}(n_1, n_2)}^{\infty} \phi(y) \text{d}y = \alpha
+\]</span></p>
+<blockquote>
+<p><span class="math display">\[
+F_{1 - \alpha} (n_1, n_2) = \frac{1}{F_{\alpha}(n_2, n_1)}
+\]</span></p>
+</blockquote>
+<h3 id="正态总体的样本均值与样本方差分布">正态总体的样本均值与样本方差分布</h3>
+<p>设总体 <span class="math inline">\(X\)</span>（不管服从什么分布，只要均值和方差存在）的均值为 <span class="math inline">\(\mu\)</span>，方差为 <span class="math inline">\(\sigma^2\)</span>，<span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自 <span class="math inline">\(X\)</span> 的一个样本，<span class="math inline">\(\overline{X}\)</span>，<span class="math inline">\(S^2\)</span> 分别是样本均值和样本方差，则有</p>
+<p><span class="math display">\[
+E(\overline{X}) = \mu, \quad D(\overline{X}) = \sigma^2 / n
+\]</span></p>
+<p>而</p>
+<p><span class="math display">\[
+E(S^2) = E\bigg[\frac{1}{n - 1} \bigg(\sum_{i = 1}^{n} X_i^2 - n\overline{X}^2\bigg)\bigg] = \frac{1}{n - 1} \bigg[\sum_{i = 1}^{n} E(X_i^2) - nE(\overline{X}^2)\bigg]
+\\
+= \frac{1}{n - 1}\bigg[\sum_{i = 1}^{n}(\sigma^2 + \mu^2) - n(\sigma^2 / n + \mu^2)\bigg] = \sigma^2
+\]</span></p>
+<p>进而，设总体 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>，知 <span class="math inline">\(\overline{X} = \frac{1}{n} \sum\limits_{i = 1}^{n} X_i\)</span>，也服从正态分布，于是得到下述结论：</p>
+<ol type="1">
+<li><p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自正态总体 <span class="math inline">\(N(\mu, \sigma^2)\)</span> 的样本，<span class="math inline">\(\overline{X}\)</span> 是样本均值，则有</p>
+<p><span class="math display">\[
+\overline{X} \sim N(\mu, \sigma^2 / n)
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自正态总体 <span class="math inline">\(N(\mu, \sigma^2)\)</span> 的样本，<span class="math inline">\(\overline{X}\)</span>，<span class="math inline">\(S^2\)</span> 分别是样本均值和样本方差，则有</p>
+<ol type="1">
+<li><span class="math inline">\(\frac{(n - 1) S^2}{\sigma^2} \sim \chi^2(n - 1)\)</span></li>
+<li><span class="math inline">\(\overline{X}\)</span> 与 <span class="math inline">\(S^2\)</span> 相互独立</li>
+</ol></li>
+<li><p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 是来自正态总体 <span class="math inline">\(N(\mu, \sigma^2)\)</span> 的样本，<span class="math inline">\(\overline{X}\)</span>，<span class="math inline">\(S^2\)</span> 分别是样本均值和样本方差，则有</p>
+<p><span class="math display">\[
+\frac{\overline{X} - \mu}{S / \sqrt{n}} \sim t(n - 1)
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 和 <span class="math inline">\(Y_1\)</span>，<span class="math inline">\(Y_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(Y_n\)</span> 分别是来自正态总体 <span class="math inline">\(N(\mu_1, \sigma_1^2)\)</span> 和 <span class="math inline">\(N(\mu_2, \sigma_2^2)\)</span> 的样本，且这两个样本相互独立，设 <span class="math inline">\(\overline{X} = \frac{1}{n_1} \sum\limits_{i = 1}^{n_1} X_{i}\)</span>，<span class="math inline">\(\overline{Y} = \frac{1}{n_2} \sum\limits_{i = 1}^{n_2} Y_{i}\)</span> 分别是这两个样本的样本均值；<span class="math inline">\(S_1^2 = \frac{1}{n_{1} - 1} \sum\limits_{i = 1}^{n_1} (X_i - \overline{X})^2\)</span>，<span class="math inline">\(S_2^2 = \frac{1}{n_2 - 1} \sum\limits_{i = 1}^{n_2} (Y_i - \overline{Y})^2\)</span> 分别是这两个样本的样本方差，则有</p>
+<ol type="1">
+<li><p><span class="math inline">\(\frac{S_1^2 / S_2^2}{\sigma_1^2 / \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)\)</span></p></li>
+<li><p>当 <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \sigma^2\)</span> 时</p>
+<p><span class="math display">\[
+\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{S_W \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t(n_1 + n_2 - 2)
+\]</span></p>
+<p>其中，</p>
+<p><span class="math display">\[
+S_W^2 = \frac{(n_1 - 1)S_1^2 + (n_2 - 1)S_2^2}{n_1 + n_2 - 2}
+\]</span></p></li>
+</ol></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" class="category-chain-item">概率论与数理统计</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>样本及抽样分布</div>
+      <div>https://ddccffq.github.io/2025/11/14/概率论与数理统计/样本及抽样分布/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">参数估计</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/" title="数据库系统原理期中试题解答">
+                        <span class="hidden-mobile">数据库系统原理期中试题解答</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

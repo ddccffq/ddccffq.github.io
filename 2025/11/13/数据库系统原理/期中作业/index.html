@@ -16,27 +16,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddccffq">
+  <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="随机变量 设随机试验的样本空间为 \(S &#x3D; \{e\}\)，\(X &#x3D; X(e)\) 是定义在样本空间 \(S\) 上的实值单值函数，称 \(X &#x3D; X(e)\) 为随机变量。 分布律 设离散型随机变量 \(X\) 所有可能的取值为 \(x_{k}(k &#x3D; 1, 2, 3, \cdots)\)，\(X\) 取各个可能值的概率，即事件 \(\{X &#x3D; x_{k}\}\) 的概率为 \[ P \{">
+    <meta name="description" content="一 给出下列关系代数操作对应的 SQL 语句  \(\sigma_{p &#x3D; 233}(r)\) 1SELECT * FROM r WHERE p &#x3D; &#x27;233&#x27;; \(\Pi_{A_1, A_2, \cdots, A_m}(r)\) 1SELECT A_1, A_2, \cdots, A_m FROM r; \(\Pi_{A_1, A_2}(\sigma_{p &#x3D; 114}(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随机变量及其分布">
-<meta property="og:url" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/index.html">
+<meta property="og:title" content="数据库系统原理期中试题解答">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="随机变量 设随机试验的样本空间为 \(S &#x3D; \{e\}\)，\(X &#x3D; X(e)\) 是定义在样本空间 \(S\) 上的实值单值函数，称 \(X &#x3D; X(e)\) 为随机变量。 分布律 设离散型随机变量 \(X\) 所有可能的取值为 \(x_{k}(k &#x3D; 1, 2, 3, \cdots)\)，\(X\) 取各个可能值的概率，即事件 \(\{X &#x3D; x_{k}\}\) 的概率为 \[ P \{">
+<meta property="og:description" content="一 给出下列关系代数操作对应的 SQL 语句  \(\sigma_{p &#x3D; 233}(r)\) 1SELECT * FROM r WHERE p &#x3D; &#x27;233&#x27;; \(\Pi_{A_1, A_2, \cdots, A_m}(r)\) 1SELECT A_1, A_2, \cdots, A_m FROM r; \(\Pi_{A_1, A_2}(\sigma_{p &#x3D; 114}(">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%8A%E5%88%86%E4%BD%8D%E6%95%B0.png">
-<meta property="article:published_time" content="2025-11-11T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-11T02:45:13.304Z">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%204.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%205.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%206(1).png">
+<meta property="article:published_time" content="2025-11-13T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-18T06:08:18.784Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%8A%E5%88%86%E4%BD%8D%E6%95%B0.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%204.png">
   
   
   
-  <title>随机变量及其分布 - ddccffq&#39;s Blog</title>
+  <title>数据库系统原理期中试题解答 - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="随机变量及其分布"></span>
+            <span id="subtitle" data-typed-text="数据库系统原理期中试题解答"></span>
           
         </div>
 
@@ -213,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-11 11:00" pubdate>
-          2025年11月11日 上午
+        <time datetime="2025-11-13 16:00" pubdate>
+          2025年11月13日 下午
         </time>
       </span>
     
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1k 字
         
       </span>
     
@@ -273,123 +275,150 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">随机变量及其分布</h1>
+            <h1 id="seo-header">数据库系统原理期中试题解答</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="随机变量">随机变量</h2>
-<p>设随机试验的样本空间为 <span class="math inline">\(S = \{e\}\)</span>，<span class="math inline">\(X = X(e)\)</span> 是定义在样本空间 <span class="math inline">\(S\)</span> 上的实值单值函数，称 <span class="math inline">\(X = X(e)\)</span> 为随机变量。</p>
-<h2 id="分布律">分布律</h2>
-<p>设离散型随机变量 <span class="math inline">\(X\)</span> 所有可能的取值为 <span class="math inline">\(x_{k}(k = 1, 2, 3, \cdots)\)</span>，<span class="math inline">\(X\)</span> 取各个可能值的概率，即事件 <span class="math inline">\(\{X = x_{k}\}\)</span> 的概率为</p>
+<h2 id="一">一</h2>
+<p>给出下列关系代数操作对应的 SQL 语句</p>
+<ol type="1">
+<li><p><span class="math inline">\(\sigma_{p = 233}(r)\)</span></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> r <span class="hljs-keyword">WHERE</span> p <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;233&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p><span class="math inline">\(\Pi_{A_1, A_2, \cdots, A_m}(r)\)</span></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> A_1, A_2, \cdots, A_m <span class="hljs-keyword">FROM</span> r;<br></code></pre></td></tr></table></figure></li>
+<li><p><span class="math inline">\(\Pi_{A_1, A_2}(\sigma_{p = 114}(r))\)</span></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> A_1, A_2 <span class="hljs-keyword">FROM</span> r <span class="hljs-keyword">WHERE</span> p <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;114&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p><span class="math inline">\(\Pi_{A, B}(\sigma_{B = 114}(r \Join S))\)</span>，假设 <span class="math inline">\(r(A, B, C)\)</span>，<span class="math inline">\(s(C, E, F)\)</span>。</p>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> r.A, r.B <span class="hljs-keyword">FROM</span> r <span class="hljs-keyword">JOIN</span> s <span class="hljs-keyword">USING</span> (C) <span class="hljs-keyword">WHERE</span> r.B <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;114&#x27;</span>;<br></code></pre></td></tr></table></figure></p></li>
+</ol>
+<h2 id="二">二</h2>
+<p>给出下列 SQL 语句对应的关系代数表达式</p>
+<ol type="1">
+<li><p><code>SELECT * FROM student WHERE SNO = '10086';</code></p>
 <p><span class="math display">\[
-P \{X = x_{k}\} = p_{k}, \quad k = 1, 2 \cdots
-\]</span></p>
-<h2 id="三种重要的离散型随机变量">三种重要的离散型随机变量</h2>
-<h3 id="分布">0-1 分布</h3>
-<p>设随机变量 <span class="math inline">\(X\)</span> 只可能取 0 与 1 两个值，它的分布律是</p>
+\sigma_{\text{SNO} = 10086}(\text{Student})
+\]</span></p></li>
+<li><p><code>SELECT Name, Class FROM Student WHERE SNO = '10086';</code></p>
 <p><span class="math display">\[
-P \{X = k\} = p^{k} (1 - p)^{1 - k}, \quad k = 0, 1 \quad (0 &lt; p &lt; 1)
-\]</span></p>
-<h3 id="伯努利试验">伯努利试验</h3>
-<p>设试验 <span class="math inline">\(E\)</span> 只有两个可能结果：<span class="math inline">\(A\)</span> 及 <span class="math inline">\(\bar{A}\)</span>，则称 <span class="math inline">\(E\)</span> 为伯努利试验。设 <span class="math inline">\(P(A) = p (0 &lt; p &lt; 1)\)</span>，此时 <span class="math inline">\(P(\bar{A}) = 1 - p\)</span>。将 <span class="math inline">\(E\)</span> 独立重复地进行 <span class="math inline">\(n\)</span> 次，则称这一串重复的独立试验为 <span class="math inline">\(n\)</span> 重伯努利试验。其分布律如下：</p>
+\Pi_{\text{Name}, \text{Class}}(\sigma_{\text{SNO} = 10086}(\text{Student}))
+\]</span></p></li>
+<li><p><code>SELECT Name FROM Student, SC WHERE SC.SNO = Student.SNO AND SC.CNO = '1';</code></p>
 <p><span class="math display">\[
-P\{X = k\} = \binom{n}{k} p^{k} (1 - p)^{n - k}，\quad k = 0, 1, 2, \cdots, n
-\]</span></p>
-<p>记作 <span class="math inline">\(X \sim b(n, p)\)</span>。</p>
-<h3 id="泊松分布">泊松分布</h3>
-<p>设随机变量 <span class="math inline">\(X\)</span> 所有可能取值为 <span class="math inline">\(0, 1, 2, \cdots\)</span>，而取各个可能值的概率为</p>
+\Pi_{\text{Name}}(\sigma_{\text{Student.SNO} = \text{SC.SNO} \land \text{SC.CNO = 1}}(\text{Student} \times \text{SC}))
+\]</span></p></li>
+<li><p><code>SELECT R.*, S.C FROM R , S WHERE R.A = S.A;</code>，假设 <span class="math inline">\(R(A, B)\)</span>，<span class="math inline">\(S(A, C)\)</span></p>
 <p><span class="math display">\[
-P\{X = k\} = \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}, \quad k = 0, 1, 2, \cdots
-\]</span></p>
-<p>其中，<span class="math inline">\(\lambda &gt; 0\)</span> 是常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\lambda\)</span> 的泊松分布，记为 <span class="math inline">\(X \sim \pi(\lambda)\)</span>。</p>
-<h4 id="泊松定理">泊松定理</h4>
-<p>设 <span class="math inline">\(\lambda &gt; 0\)</span> 是一个常数，<span class="math inline">\(n\)</span> 是任意正整数，设 <span class="math inline">\(np_n = \lambda\)</span>，则对于任一固定的的非负整数 <span class="math inline">\(k\)</span>，有</p>
-<p><span class="math display">\[
-\lim_{n \ to \infty} \binom{n}{k} p_n^k (1 - p_n)^{n - k} = \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}
-\]</span></p>
-<p>因为 <span class="math inline">\(\lambda\)</span> 是一常数，所以若 <span class="math inline">\(n\)</span> 很大，则 <span class="math inline">\(p\)</span> 会很小，在这种情况下有</p>
-<p><span class="math display">\[
-\binom{n}{k} p_n^k (1 - p_n)^{n - k} \approx \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}, \quad \lambda = np
-\]</span></p>
-<h2 id="随机变量的分布函数">随机变量的分布函数</h2>
-<p><strong>分布函数</strong>的定义 设 <span class="math inline">\(X\)</span> 是一个随机变量，<span class="math inline">\(x\)</span> 是任意实数，函数</p>
-<p><span class="math display">\[
-F(x) = P\{X \leq x\}, \quad -\infty &lt; x &lt; \infty
-\]</span></p>
-<p>称为 <span class="math inline">\(X\)</span> 的分布函数。</p>
-<h2 id="连续型随机变量及其概率密度">连续型随机变量及其概率密度</h2>
-<p>如果对于随机变量 <span class="math inline">\(X\)</span> 的分布函数 <span class="math inline">\(F(x)\)</span>，存在非负可积函数 <span class="math inline">\(f(x)\)</span>，是对于任意实数 <span class="math inline">\(x\)</span> 有</p>
-<p><span class="math display">\[
-F(x) = \int_{-\infty}^{x} f(t) \text{d} t
-\]</span></p>
-<p>则称 <span class="math inline">\(X\)</span> 为<strong>连续型随机变量</strong>，<span class="math inline">\(f(x)\)</span> 称为 <span class="math inline">\(X\)</span> 的<strong>概率密度函数</strong>，简称为<strong>概率密度</strong>。</p>
-<h2 id="三种重要的连续型随机变量">三种重要的连续型随机变量</h2>
-<h3 id="均匀分布">均匀分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 具有概率密度</p>
-<p><span class="math display">\[
-f(x) =
-\begin{cases}
-\frac{1}{b - a}, &amp;a &lt; x &lt; b
-\\
-0, &amp;\text{otherwise}
-\end{cases}
-\]</span></p>
-<p>则称 <span class="math inline">\(X\)</span> 在区间 <span class="math inline">\((a, b)\)</span> 上服从<strong>均匀分布</strong>，记为 <span class="math inline">\(X \sim U(a, b)\)</span>。</p>
-<h3 id="指数分布">指数分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 具有概率密度</p>
-<p><span class="math display">\[
-f(x) =
-\begin{cases}
-\frac{1}{\theta} \text{e}^{-x/\theta}, &amp;x &gt; 0
-\\
-0, &amp;\text{otherwise}
-\end{cases}
-\]</span></p>
-<p>其中 <span class="math inline">\(\theta &gt; 0\)</span> 为常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\theta\)</span> 的指数分布。</p>
-<blockquote>
-<p>指数分布具有无记忆性，具体如下</p>
-<p><span class="math display">\[
-\begin{aligned}
-P\{X &gt; s + t | X &gt; s\} &amp;= \frac{P\{(X &gt; s + t) \cap (X &gt; s)\}}{P\{X &gt; s\}}
-\\
-&amp;= \frac{P\{X &gt; s + t\}}{P\{X &gt; s\}} = \frac{1 - F(s + t)}{1 - F(s)}
-\\
-&amp;= \text{e}^{-t/\theta} = P\{X &gt; t\}
-\end{aligned}
-\]</span></p>
-</blockquote>
-<h3 id="正态分布">正态分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 的概率密度为</p>
-<p><span class="math display">\[
-f(t) = \frac{1}{\sqrt{2\pi}\sigma} \exp\bigg\{-\frac{(x - \mu)^{2}}{2\sigma^2}\bigg\}, \quad -\infty &lt; x &lt; \infty
-\]</span></p>
-<p>其中，<span class="math inline">\(\mu\)</span>，<span class="math inline">\(\sigma &gt; 0\)</span> 为常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\mu\)</span>，<span class="math inline">\(\sigma\)</span> 的<strong>正态分布</strong>或<strong>高斯分布</strong>，记为 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></p>
-<blockquote>
-<p>为了便于今后在数理统计中的应用，对于标准正态随机变量，我们引入上 <span class="math inline">\(\alpha\)</span> 分位数的定义 设 <span class="math inline">\(X \sim N(0, 1)\)</span>，若 <span class="math inline">\(z_{\alpha}\)</span> 满足条件</p>
-<p><span class="math display">\[
-P\{X &gt; z_{\alpha}\} = \alpha, \quad 0&lt; \alpha &lt; 1
-\]</span></p>
-<p>则称 <span class="math inline">\(z_{\alpha}\)</span> 为标准正态分布上的上 <span class="math inline">\(\alpha\)</span> 分位数。</p>
-</blockquote>
-<h2 id="随机变量的函数的分布">随机变量的函数的分布</h2>
-<p>设随机变量 <span class="math inline">\(X\)</span> 具有概率密度 <span class="math inline">\(f_{X}(x)\)</span>，<span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>，又设函数 <span class="math inline">\(g(x)\)</span> 处处可导且恒有 <span class="math inline">\(g&#39;(x) &gt; 0\)</span> 或 <span class="math inline">\(&lt; 0\)</span>，则 <span class="math inline">\(Y = g(X)\)</span> 是连续型随机变量，其概率密度为</p>
-<p><span class="math display">\[
-f_{Y}(y) =
-\begin{cases}
-f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
-\\
-0, &amp;\text{otherwise}
-\end{cases}
-\]</span></p>
-<p>其中，<span class="math inline">\(\alpha = \min \{g(-\infty), g(\infty)\}\)</span>，<span class="math inline">\(\beta = \max \{g(-\infty), g(\infty)\}\)</span>，<span class="math inline">\(h(y)\)</span> 是 <span class="math inline">\(g(x)\)</span> 的反函数。</p>
-<h2 id="补充">补充</h2>
+\Pi_{R.A, R.B, S.C}(\sigma_{R.A = S.A}(R \times S))
+\]</span></p></li>
+</ol>
+<h2 id="三">三</h2>
+<p>某银行企业数据库关系如下，划线部分为主键</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
-<figure>
-<img src="/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/标准正态分布的上分位数.png" srcset="/img/loading.gif" lazyload alt="标准正态分布的上分位数"><figcaption aria-hidden="true">标准正态分布的上分位数</figcaption>
-</figure>
+<table>
+
+<thead>
+<tr class="header">
+<th>表</th>
+<th>属性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>branch</em></td>
+<td><span class="math inline">\(\underline{\text{branch-name}}\)</span>, branch-city, assets</td>
+</tr>
+<tr class="even">
+<td><em>loan</em></td>
+<td><span class="math inline">\(\underline{\text{loan-number}}\)</span>, branch-name, amount</td>
+</tr>
+<tr class="odd">
+<td><em>borrower</em></td>
+<td><span class="math inline">\(\underline{\text{customer-name}}\)</span>, <span class="math inline">\(\underline{\text{loan-number}}\)</span></td>
+</tr>
+<tr class="even">
+<td><em>customer</em></td>
+<td><span class="math inline">\(\underline{\text{customer-name}}\)</span>, customer-street, customer-city</td>
+</tr>
+<tr class="odd">
+<td><em>account</em></td>
+<td><span class="math inline">\(\underline{\text{account-number}}\)</span>, branch-name, balance</td>
+</tr>
+<tr class="even">
+<td><em>depositor</em></td>
+<td><span class="math inline">\(\underline{\text{customer-name}}\)</span>, account-number</td>
+</tr>
+<tr class="odd">
+<td><em>employee</em></td>
+<td><span class="math inline">\(\underline{\text{employee-ID}}\)</span>, employee-name, branch-name, job-title</td>
+</tr>
+</tbody>
+</table>
 </div>
+<ol type="1">
+<li><p>使用 SQL 语句定义关系表 <em>employee</em>，其中 <em>employee-ID</em> 是主键，<em>employee-name</em> 是候选键并且不为空；表 <em>employee</em> 和 <em>branch</em> 之间存在参照完整性；员工的职位必须是 manager，teller，officer，secretary 之一。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE TABLE</span> employee (<br>  employee_ID <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">NOT NULL</span>,<br>  employee_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT NULL</span>,<br>  branch_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT NULL</span>,<br>  job_title <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">9</span>) <span class="hljs-keyword">NOT NULL</span>,<br>  <span class="hljs-keyword">PRIMARY KEY</span> (employee_ID),<br>  <span class="hljs-keyword">UNIQUE</span> (employee_name),<br>  <span class="hljs-keyword">CHECK</span> (job_title <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;manager&#x27;</span>, <span class="hljs-string">&#x27;teller&#x27;</span>, <span class="hljs-string">&#x27;officer&#x27;</span>, <span class="hljs-string">&#x27;secretary&#x27;</span>)),<br>  <span class="hljs-keyword">FOREIGN KEY</span> (branch_name) <span class="hljs-keyword">REFERENCES</span> branch(branch_name)<br>);<br></code></pre></td></tr></table></figure></li>
+<li><p>使用 SQL 语句查找在 Raccoon 市有一个或多个账户，并且这些账户的余额总额超过 10000 元的客户信息。列出客户的姓名和他在 Raccoon 市分支机构的账户总余额，客户姓名的字母降序排列。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> d.customer_name, <span class="hljs-built_in">SUM</span>(a.balance) <span class="hljs-keyword">AS</span> balance_in_Raccoon<br><span class="hljs-keyword">FROM</span> depositor d<br><span class="hljs-keyword">JOIN</span> account a <span class="hljs-keyword">on</span> d.account_number <span class="hljs-operator">=</span> a.account_number<br><span class="hljs-keyword">JOIN</span> branch b <span class="hljs-keyword">on</span> a.branch_name <span class="hljs-operator">=</span> b.branch_name<br><span class="hljs-keyword">WHERE</span> b.branch_city <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Raccoon&#x27;</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> d.customer_name<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">SUM</span>(a.balance) <span class="hljs-operator">&gt;</span> <span class="hljs-number">10000</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> d.customer_name <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="四">四</h2>
+<ol type="1">
+<li>每位老师有教师代码（唯一）、教师姓名、办公地址、职级、部门。</li>
+<li>每门课程有课程名称、课程编号（唯一）、课程学分。课程包含章节，每个章节有一个编号（唯一）和章节名，同一门课程可能有多个章节。</li>
+<li>每个学生有学生编号（唯一）、姓名、专业、出生日期。</li>
+<li>一位老师最多可以教四门课程，每门课程由两位老师教授。</li>
+<li>一个学生可以选择多门课程，每门课程可以由多个学生选择。</li>
+</ol>
+<figure>
+<img src="/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%204.png" srcset="/img/loading.gif" lazyload style="display:block; margin:auto; width:100%;" alt="E-R Diagram in Question 4"><figcaption aria-hidden="true">E-R Diagram in Question 4</figcaption>
+</figure>
+<h2 id="五">五</h2>
+<p>将下面的 E-R 图转换为相应的关系模型。对于每个模型，用 R(<span class="math inline">\(\underline{\text{A1, A2}}\)</span>, <span class="math inline">\(\cdots\)</span>, An) 的形式写出来，用下划线标出主键，并用 R.A1(FK) References S.A2(PK) 的形式说明外键。</p>
+<figure>
+<img src="/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%205.png" srcset="/img/loading.gif" lazyload style="display:block; margin:auto; width:100%;" alt="E-R Diagram in Question 5"><figcaption aria-hidden="true">E-R Diagram in Question 5</figcaption>
+</figure>
+<p>Customer(<span class="math inline">\(\underline{\text{Customer-no}}\)</span>, name, e-mail), Order(<span class="math inline">\(\underline{\text{order-no}}\)</span>, date, cost, Customer-no), Product(<span class="math inline">\(\underline{\text{product-no}}\)</span>, name, price) includes(<span class="math inline">\(\underline{\text{order-no}}\)</span>, <span class="math inline">\(\underline{\text{product-no}}\)</span>, quantity), Order.Customer-no(FK) References Customer.Customer-no(PK), includes.order-no(FK) References Order.order-no(PK), includes.product-no(FK) References Product.product-no(PK).</p>
+<h2 id="六">六·</h2>
+<p>A university student database needs to store information about <span class="math inline">\(\underline{\mathit{students}}\)</span>, <span class="math inline">\(\underline{\mathit{professors}}\)</span>, <span class="math inline">\(\underline{\mathit{projects}}\)</span>, and <span class="math inline">\(\underline{\pmb{departments}}\)</span>. Consider the following information:</p>
+<ul>
+<li>Each student has an SNo, a name, an age, and a degree program (e.g. M.S. or Ph.D.).</li>
+<li>Each professor has a PNo, a name, an age, and a research specialty.</li>
+<li>Each project has a project number, a starting date, an ending date, and a budget.</li>
+<li>Each department has a department number, a department name, and a main office.</li>
+<li>integrity constraints:
+<ol type="1">
+<li>A student studies in one (and only one) department.</li>
+<li>A Professor works in one (and only one) department.</li>
+<li>Each project must be managed by one and only one professor, and each professor must manage at least one project.</li>
+<li>Each project is worked on by some students, more than one student can participate(or work on) the same project, and some students may work on no projects.</li>
+<li>When a student work on a project, the professor managing this project must supervise the student’s work. One student may work on several projects, so he may have several supervisors.</li>
+</ol></li>
+</ul>
+<ol type="1">
+<li><p>Design and draw an E/R diagram for this database that captures the information above. &gt; <em>Note</em>: mapping cardinality of each relationship and participation of each entity to the relationship should be described in the diagram.</p>
+<figure>
+<img src="/2025/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/%E6%9C%9F%E4%B8%AD%E4%BD%9C%E4%B8%9A/E-R%20Diagram%20in%20Question%206(1).png" srcset="/img/loading.gif" lazyload style="display:block; margin:auto; width:100%;" alt="E-R Diagram in Question 6(1)"><figcaption aria-hidden="true">E-R Diagram in Question 6(1)</figcaption>
+</figure></li>
+<li><p>Convert the E-R diagram to the proper relational schema, and give the primary key of each relation schema by underlines.</p>
+<p>student(<span class="math inline">\(\underline{\text{SNo}}\)</span>, stu_name, stu_age, stu_degree, dept_number), professor(<span class="math inline">\(\underline{\text{PNo}}\)</span>, pro_name, pro_age, research_specialty, dept_number), project(<span class="math inline">\(\underline{\text{project\_number}}\)</span>, start_date, end_date, budget, PNo), department(<span class="math inline">\(\underline{\text{dept\_number}}\)</span>, dept_name, main_office), works_on(<span class="math inline">\(\underline{\text{student.SNo}}\)</span>, <span class="math inline">\(\underline{\text{project.project\_number}}\)</span>), supervise(<span class="math inline">\(\underline{\text{student.SNo}}\)</span>, <span class="math inline">\(\underline{\text{professor.PNo}}\)</span>, project_number).</p></li>
+</ol>
+<h2 id="七">七</h2>
+<p>Consider the following relation schema <span class="math inline">\(R\)</span> and the functional dependency <span class="math inline">\(F\)</span> hold on <span class="math inline">\(R = \{X, Y, Z, W, Q\}\)</span>, <span class="math inline">\(F = \{XY \to ZQ, Q \to XY, Z \to W, Q \to Z\}\)</span></p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\((XZ)+\)</span>.</p>
+<p>由 <span class="math inline">\(Z\to W\)</span> 可得 <span class="math inline">\(W\)</span>；无法由 <span class="math inline">\(XZ\)</span> 推出 <span class="math inline">\(Q\)</span> 或 <span class="math inline">\(Y\)</span>（需要 <span class="math inline">\(Q\)</span> 或 <span class="math inline">\(XY\)</span> 才能触发 <span class="math inline">\(Q\to XY\)</span> 或 <span class="math inline">\(XY\to ZQ\)</span>），因此闭包为 <span class="math inline">\(\{X,Z,W\}\)</span>。</p></li>
+<li><p>Is the decomposition <span class="math inline">\(\rho = \{R1(X, Y, Z), R2(Z, W, Q)\}\)</span> on <span class="math inline">\(R\)</span> lossless-join? Why?</p>
+<p>交集为 <span class="math inline">\(R_1\cap R_2=\{Z\}\)</span>。检查 <span class="math inline">\(Z^+=\{Z,W\}\)</span>，既不是 <span class="math inline">\(R_1(X,Y,Z)\)</span> 的超码，也不是 <span class="math inline">\(R_2(Z,W,Q)\)</span> 的超码；不满足二元分解无损充要条件“交集函数决定其中一个模式”，故分解有损。</p></li>
+</ol>
+<h2 id="八">八</h2>
+<p>The functional dependency set <span class="math inline">\(F = \{A \to C, C \to A, B \to A, D \to AC, B \to E\}\)</span> holds on the relation schema <span class="math inline">\(R = (A, B, C, D, E)\)</span>.</p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\((AB)+\)</span>.</p>
+<p>由 <span class="math inline">\(B\to A\)</span>、<span class="math inline">\(A\to C\)</span>、<span class="math inline">\(B\to E\)</span> 依次可得 <span class="math inline">\(A,C,E\)</span>；无规则推出 <span class="math inline">\(D\)</span>。</p></li>
+<li><p>List all the candidate keys of <span class="math inline">\(R\)</span>.</p>
+<p><span class="math inline">\(D\to AC\)</span>，配合 <span class="math inline">\(B\to A, B\to E\)</span> 得 <span class="math inline">\(BD\to ABCDE\)</span>，且 <span class="math inline">\(B\)</span> 与 <span class="math inline">\(D\)</span> 分别不能由其它属性函数确定（右部无 <span class="math inline">\(B\)</span>、<span class="math inline">\(D\)</span>），因此 <span class="math inline">\(BD\)</span> 最小且为唯一候选键。</p></li>
+</ol>
 
                 
               </div>
@@ -408,7 +437,7 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" class="category-chain-item">概率论与数理统计</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
   
   
 
@@ -428,20 +457,20 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>随机变量及其分布</div>
-      <div>https://ddccffq.github.io/2025/11/11/概率论与数理统计/随机变量及其分布/</div>
+      <div>数据库系统原理期中试题解答</div>
+      <div>https://ddccffq.github.io/2025/11/13/数据库系统原理/期中作业/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>ddccffq</div>
+          <div>任志诚 2023212020</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月11日</div>
+          <div>2025年11月13日</div>
         </div>
       
       
@@ -473,9 +502,9 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" title="多维随机变量及其分布">
+                      <a href="/2025/11/14/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A0%B7%E6%9C%AC%E5%8F%8A%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" title="样本及抽样分布">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多维随机变量及其分布</span>
+                        <span class="hidden-mobile">样本及抽样分布</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -483,8 +512,8 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="概率论的基本概念">
-                        <span class="hidden-mobile">概率论的基本概念</span>
+                      <a href="/2025/11/13/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86%E5%8F%8A%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/" title="大数定理及中心极限定理">
+                        <span class="hidden-mobile">大数定理及中心极限定理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,27 +16,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddccffq">
+  <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="随机变量 设随机试验的样本空间为 \(S &#x3D; \{e\}\)，\(X &#x3D; X(e)\) 是定义在样本空间 \(S\) 上的实值单值函数，称 \(X &#x3D; X(e)\) 为随机变量。 分布律 设离散型随机变量 \(X\) 所有可能的取值为 \(x_{k}(k &#x3D; 1, 2, 3, \cdots)\)，\(X\) 取各个可能值的概率，即事件 \(\{X &#x3D; x_{k}\}\) 的概率为 \[ P \{">
+    <meta name="description" content="期望 若级数 \[ \sum_{k &#x3D; 1}^{\infty} x_{k} p_{k} \] 绝对收敛，则称级数的和为随机变量 \(X\) 的数学期望，记为 \(E(X)\)。 设连续型随机变量 \(X\) 的概率密度为 \(f(x)\)，若积分 \[ \int_{-\infty}^{\infty} xf(x) \text{d}x \] 绝对收敛，则称积分的值为随机变量 \(X\) 的数学期望，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随机变量及其分布">
-<meta property="og:url" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/index.html">
+<meta property="og:title" content="随机变量的数字特征">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/12/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="随机变量 设随机试验的样本空间为 \(S &#x3D; \{e\}\)，\(X &#x3D; X(e)\) 是定义在样本空间 \(S\) 上的实值单值函数，称 \(X &#x3D; X(e)\) 为随机变量。 分布律 设离散型随机变量 \(X\) 所有可能的取值为 \(x_{k}(k &#x3D; 1, 2, 3, \cdots)\)，\(X\) 取各个可能值的概率，即事件 \(\{X &#x3D; x_{k}\}\) 的概率为 \[ P \{">
+<meta property="og:description" content="期望 若级数 \[ \sum_{k &#x3D; 1}^{\infty} x_{k} p_{k} \] 绝对收敛，则称级数的和为随机变量 \(X\) 的数学期望，记为 \(E(X)\)。 设连续型随机变量 \(X\) 的概率密度为 \(f(x)\)，若积分 \[ \int_{-\infty}^{\infty} xf(x) \text{d}x \] 绝对收敛，则称积分的值为随机变量 \(X\) 的数学期望，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%8A%E5%88%86%E4%BD%8D%E6%95%B0.png">
-<meta property="article:published_time" content="2025-11-11T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-11T02:45:13.304Z">
+<meta property="article:published_time" content="2025-11-12T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-13T05:22:26.692Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%8A%E5%88%86%E4%BD%8D%E6%95%B0.png">
   
   
   
-  <title>随机变量及其分布 - ddccffq&#39;s Blog</title>
+  <title>随机变量的数字特征 - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="随机变量及其分布"></span>
+            <span id="subtitle" data-typed-text="随机变量的数字特征"></span>
           
         </div>
 
@@ -213,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-11 11:00" pubdate>
-          2025年11月11日 上午
+        <time datetime="2025-11-12 16:00" pubdate>
+          2025年11月12日 下午
         </time>
       </span>
     
@@ -225,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -236,7 +234,7 @@
         
         
         
-          9 分钟
+          11 分钟
         
       </span>
     
@@ -273,123 +271,131 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">随机变量及其分布</h1>
+            <h1 id="seo-header">随机变量的数字特征</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="随机变量">随机变量</h2>
-<p>设随机试验的样本空间为 <span class="math inline">\(S = \{e\}\)</span>，<span class="math inline">\(X = X(e)\)</span> 是定义在样本空间 <span class="math inline">\(S\)</span> 上的实值单值函数，称 <span class="math inline">\(X = X(e)\)</span> 为随机变量。</p>
-<h2 id="分布律">分布律</h2>
-<p>设离散型随机变量 <span class="math inline">\(X\)</span> 所有可能的取值为 <span class="math inline">\(x_{k}(k = 1, 2, 3, \cdots)\)</span>，<span class="math inline">\(X\)</span> 取各个可能值的概率，即事件 <span class="math inline">\(\{X = x_{k}\}\)</span> 的概率为</p>
+<h2 id="期望">期望</h2>
+<p>若级数</p>
 <p><span class="math display">\[
-P \{X = x_{k}\} = p_{k}, \quad k = 1, 2 \cdots
+\sum_{k = 1}^{\infty} x_{k} p_{k}
 \]</span></p>
-<h2 id="三种重要的离散型随机变量">三种重要的离散型随机变量</h2>
-<h3 id="分布">0-1 分布</h3>
-<p>设随机变量 <span class="math inline">\(X\)</span> 只可能取 0 与 1 两个值，它的分布律是</p>
+<p>绝对收敛，则称级数的和为随机变量 <span class="math inline">\(X\)</span> 的<strong>数学期望</strong>，记为 <span class="math inline">\(E(X)\)</span>。</p>
+<p>设连续型随机变量 <span class="math inline">\(X\)</span> 的概率密度为 <span class="math inline">\(f(x)\)</span>，若积分</p>
 <p><span class="math display">\[
-P \{X = k\} = p^{k} (1 - p)^{1 - k}, \quad k = 0, 1 \quad (0 &lt; p &lt; 1)
+\int_{-\infty}^{\infty} xf(x) \text{d}x
 \]</span></p>
-<h3 id="伯努利试验">伯努利试验</h3>
-<p>设试验 <span class="math inline">\(E\)</span> 只有两个可能结果：<span class="math inline">\(A\)</span> 及 <span class="math inline">\(\bar{A}\)</span>，则称 <span class="math inline">\(E\)</span> 为伯努利试验。设 <span class="math inline">\(P(A) = p (0 &lt; p &lt; 1)\)</span>，此时 <span class="math inline">\(P(\bar{A}) = 1 - p\)</span>。将 <span class="math inline">\(E\)</span> 独立重复地进行 <span class="math inline">\(n\)</span> 次，则称这一串重复的独立试验为 <span class="math inline">\(n\)</span> 重伯努利试验。其分布律如下：</p>
+<p>绝对收敛，则称积分的值为随机变量 <span class="math inline">\(X\)</span> 的<strong>数学期望</strong>，记为 <span class="math inline">\(E(X)\)</span>。</p>
+<h3 id="求期望的定理">求期望的定理</h3>
+<p>设 <span class="math inline">\(Y\)</span> 是随机变量 <span class="math inline">\(X\)</span> 的函数；<span class="math inline">\(Y = g(X)\)</span>，其中 <span class="math inline">\(g\)</span> 是连续函数</p>
+<ol type="1">
+<li><p>如果 <span class="math inline">\(X\)</span> 是离散型随机变量，它的分布律为 <span class="math inline">\(P\{X = x_{k}\} = p_{k}, k = 1, 2, \cdots\)</span>，若 <span class="math inline">\(\sum\limits_{k = 1}^{\infty} g(x_{k}) p_{k}\)</span> 绝对收敛，则有</p>
 <p><span class="math display">\[
-P\{X = k\} = \binom{n}{k} p^{k} (1 - p)^{n - k}，\quad k = 0, 1, 2, \cdots, n
-\]</span></p>
-<p>记作 <span class="math inline">\(X \sim b(n, p)\)</span>。</p>
-<h3 id="泊松分布">泊松分布</h3>
-<p>设随机变量 <span class="math inline">\(X\)</span> 所有可能取值为 <span class="math inline">\(0, 1, 2, \cdots\)</span>，而取各个可能值的概率为</p>
+E(Y) = E[g(X)] = \sum\limits_{k = 1}^{\infty} g(x_{k}) p_{k}
+\]</span></p></li>
+<li><p>如果 <span class="math inline">\(X\)</span> 是连续型随机变量，它的概率密度为 <span class="math inline">\(f(x)\)</span>，若 <span class="math inline">\(\int_{-\infty}^{\infty} g(x) f(x) \text{d}x\)</span> 绝对收敛，则有</p>
 <p><span class="math display">\[
-P\{X = k\} = \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}, \quad k = 0, 1, 2, \cdots
-\]</span></p>
-<p>其中，<span class="math inline">\(\lambda &gt; 0\)</span> 是常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\lambda\)</span> 的泊松分布，记为 <span class="math inline">\(X \sim \pi(\lambda)\)</span>。</p>
-<h4 id="泊松定理">泊松定理</h4>
-<p>设 <span class="math inline">\(\lambda &gt; 0\)</span> 是一个常数，<span class="math inline">\(n\)</span> 是任意正整数，设 <span class="math inline">\(np_n = \lambda\)</span>，则对于任一固定的的非负整数 <span class="math inline">\(k\)</span>，有</p>
-<p><span class="math display">\[
-\lim_{n \ to \infty} \binom{n}{k} p_n^k (1 - p_n)^{n - k} = \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}
-\]</span></p>
-<p>因为 <span class="math inline">\(\lambda\)</span> 是一常数，所以若 <span class="math inline">\(n\)</span> 很大，则 <span class="math inline">\(p\)</span> 会很小，在这种情况下有</p>
-<p><span class="math display">\[
-\binom{n}{k} p_n^k (1 - p_n)^{n - k} \approx \frac{\lambda^{k} \text{e}^{-\lambda}}{k!}, \quad \lambda = np
-\]</span></p>
-<h2 id="随机变量的分布函数">随机变量的分布函数</h2>
-<p><strong>分布函数</strong>的定义 设 <span class="math inline">\(X\)</span> 是一个随机变量，<span class="math inline">\(x\)</span> 是任意实数，函数</p>
-<p><span class="math display">\[
-F(x) = P\{X \leq x\}, \quad -\infty &lt; x &lt; \infty
-\]</span></p>
-<p>称为 <span class="math inline">\(X\)</span> 的分布函数。</p>
-<h2 id="连续型随机变量及其概率密度">连续型随机变量及其概率密度</h2>
-<p>如果对于随机变量 <span class="math inline">\(X\)</span> 的分布函数 <span class="math inline">\(F(x)\)</span>，存在非负可积函数 <span class="math inline">\(f(x)\)</span>，是对于任意实数 <span class="math inline">\(x\)</span> 有</p>
-<p><span class="math display">\[
-F(x) = \int_{-\infty}^{x} f(t) \text{d} t
-\]</span></p>
-<p>则称 <span class="math inline">\(X\)</span> 为<strong>连续型随机变量</strong>，<span class="math inline">\(f(x)\)</span> 称为 <span class="math inline">\(X\)</span> 的<strong>概率密度函数</strong>，简称为<strong>概率密度</strong>。</p>
-<h2 id="三种重要的连续型随机变量">三种重要的连续型随机变量</h2>
-<h3 id="均匀分布">均匀分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 具有概率密度</p>
-<p><span class="math display">\[
-f(x) =
-\begin{cases}
-\frac{1}{b - a}, &amp;a &lt; x &lt; b
-\\
-0, &amp;\text{otherwise}
-\end{cases}
-\]</span></p>
-<p>则称 <span class="math inline">\(X\)</span> 在区间 <span class="math inline">\((a, b)\)</span> 上服从<strong>均匀分布</strong>，记为 <span class="math inline">\(X \sim U(a, b)\)</span>。</p>
-<h3 id="指数分布">指数分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 具有概率密度</p>
-<p><span class="math display">\[
-f(x) =
-\begin{cases}
-\frac{1}{\theta} \text{e}^{-x/\theta}, &amp;x &gt; 0
-\\
-0, &amp;\text{otherwise}
-\end{cases}
-\]</span></p>
-<p>其中 <span class="math inline">\(\theta &gt; 0\)</span> 为常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\theta\)</span> 的指数分布。</p>
+E(Y) = E[g(X)] = \int_{-\infty}^{\infty} g(x) f(x) \text{d}x
+\]</span></p></li>
+</ol>
 <blockquote>
-<p>指数分布具有无记忆性，具体如下</p>
+<p>上述 2. 可以推广到两个或两个以上随机变量的函数情况，例如，设 <span class="math inline">\(Z\)</span> 是随机变量 <span class="math inline">\(X\)</span>，<span class="math inline">\(Y\)</span> 的函数 <span class="math inline">\(Z = g(X, Y)\)</span>，<span class="math inline">\(g\)</span> 是连续函数，若二维随机变量 <span class="math inline">\((X, Y)\)</span> 的概率密度为 <span class="math inline">\(f(x, y)\)</span>，则有</p>
+<p><span class="math display">\[
+E(Z) = E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x, y) \text{d}x \text{d}y
+\]</span></p>
+<p>这里设上式右边的积分绝对收敛，又若 <span class="math inline">\((X, Y)\)</span> 为离散型随机变量，其分布律为 <span class="math inline">\(P\{X = x_{i}, Y = y_{i}\} = p_{ij}, i, j = 1, 2, \cdots\)</span>，则有</p>
+<p><span class="math display">\[
+E(Z) = E[g(X, Y)] = \sum_{j = 1}^{\infty} \sum_{i = 1}^{\infty} g(x_{i}, y_{j}) p_{ij}
+\]</span></p>
+<p>这里同样设上式右边的级数绝对收敛。</p>
+</blockquote>
+<h2 id="方差">方差</h2>
+<p><span class="math display">\[
+D(X) = \text{Var}(X) = E\{[X - E(X)]^2\} = E(X^2) - [E(X)]^2
+\]</span></p>
+<p>记 <span class="math inline">\(\sigma(X) = \sqrt{D(X)}\)</span></p>
+<h3 id="方差的性质">方差的性质</h3>
+<ol type="1">
+<li><p>设 <span class="math inline">\(C\)</span> 是常数，则 <span class="math inline">\(D(C) = 0\)</span>；</p></li>
+<li><p>设 <span class="math inline">\(X\)</span> 是随机变量，<span class="math inline">\(C\)</span> 是常数，则有</p>
+<p><span class="math display">\[
+D(CX) = C^2 D(X), \quad D(X + C) = D(X)
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(X\)</span>，<span class="math inline">\(Y\)</span> 是两个随机变量，则有</p>
+<p><span class="math display">\[
+D(X + Y) = D(X) + D(Y) + 2E\{[X - E(X)][Y - E(Y)]\}
+\]</span></p>
+<p>特别地，若 <span class="math inline">\(X\)</span>，<span class="math inline">\(Y\)</span> 相互独立，则有</p>
+<p><span class="math display">\[
+D(X + Y) = D(X) + D(Y)
+\]</span></p></li>
+<li><p><span class="math inline">\(D(X) = 0\)</span> 的充要条件是 <span class="math inline">\(X\)</span> 以概率 1 取常数 <span class="math inline">\(E(X)\)</span>，即 <span class="math inline">\(P\{X = E(X)\} = 1\)</span></p></li>
+</ol>
+<h2 id="切比雪夫不等式">切比雪夫不等式</h2>
+<p>谁随机变量 <span class="math inline">\(X\)</span> 具有数学期望 <span class="math inline">\(E(X) = \mu\)</span>，方差 <span class="math inline">\(D(X) = \sigma^2\)</span>，则对于任意正数 <span class="math inline">\(\varepsilon\)</span>，不等式</p>
+<p><span class="math display">\[
+P\{|X - \mu| \geq \varepsilon\} \leq \frac{\sigma^2}{\varepsilon^2}
+\]</span></p>
+<p>成立</p>
+<h2 id="协方差和相关系数">协方差和相关系数</h2>
+<p>量 <span class="math inline">\(E\{[X - E(X)][Y - E(Y)]\}\)</span> 称为随机变量 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> 的协方差，记为 <span class="math inline">\(\text{Cov}(X, Y)\)</span>，即</p>
+<p><span class="math display">\[
+\text{Cov}(X, Y) = E\{[X - E(X)][Y - E(Y)]\}
+\]</span></p>
+<p>而</p>
+<p><span class="math display">\[
+\rho_{XY} = \frac{\text{Cov}(X, Y)}{\sqrt{D(X) D(Y)}}
+\]</span></p>
+<p>称为随机变量 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的相关系数。</p>
+<h3 id="协方差和相关系数的性质">协方差和相关系数的性质</h3>
+<ol type="1">
+<li><p><span class="math inline">\(\text{Cov}(aX, bY) = ab\text{Cov}(X, Y)，\)</span>a<span class="math inline">\(，\)</span>b$ 是常数。</p></li>
+<li><p><span class="math inline">\(\text{Cov}(X_1 + X_2, Y) = \text{Cov}(X_1, Y) + \text{Cov}(X_2, Y)\)</span></p></li>
+<li><p><span class="math inline">\(|\rho_{XY}| \leq 1\)</span></p></li>
+<li><p>若 <span class="math inline">\(|\rho_{XY}| = 1\)</span>，从而</p>
 <p><span class="math display">\[
 \begin{aligned}
-P\{X &gt; s + t | X &gt; s\} &amp;= \frac{P\{(X &gt; s + t) \cap (X &gt; s)\}}{P\{X &gt; s\}}
+E\{[Y - (a_0 + b_0 X)]^2\} &amp;= 0
 \\
-&amp;= \frac{P\{X &gt; s + t\}}{P\{X &gt; s\}} = \frac{1 - F(s + t)}{1 - F(s)}
+D[Y - (a_0 + b_0 X)] &amp;= 0
 \\
-&amp;= \text{e}^{-t/\theta} = P\{X &gt; t\}
+E[Y - (a_0 + b_0 X)] &amp;= 0
 \end{aligned}
-\]</span></p>
-</blockquote>
-<h3 id="正态分布">正态分布</h3>
-<p>若连续型随机变量 <span class="math inline">\(X\)</span> 的概率密度为</p>
+\]</span></p></li>
+</ol>
+<h2 id="矩协方差矩阵">矩、协方差矩阵</h2>
+<h3 id="原点矩中心矩混合矩">原点矩、中心矩、混合矩</h3>
+<p>设 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 是随机变量，若 <span class="math inline">\(E(X^k), k = 1, 2, \cdots\)</span> 存在，称它为 <span class="math inline">\(X\)</span> 的 <span class="math inline">\(k\)</span> 阶<strong>原点矩</strong>，简称 <span class="math inline">\(k\)</span> 阶矩。；若 <span class="math inline">\(E\{[X - E(X)]^k\}, k = 1, 2, \cdots\)</span> 存在，称它为 <span class="math inline">\(X\)</span> 的 <span class="math inline">\(k\)</span> 阶<strong>中心矩</strong>；若 <span class="math inline">\(E(X^k Y^l), k, l = 1, 2, \cdots\)</span> 存在，称它为 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的 <span class="math inline">\(k + l\)</span> 阶<strong>混合矩</strong>；若 <span class="math inline">\(E\{[X - E(X)]^k [Y - E(Y)]^l\}, k, l = 1, 2, \cdots\)</span> 存在，称它为 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的 <span class="math inline">\(k + l\)</span> 阶<strong>混合中心矩</strong>。</p>
+<h3 id="协方差矩阵">协方差矩阵</h3>
+<p>设 <span class="math inline">\(n\)</span> 维随机变量 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 的二阶混合中心矩，<span class="math inline">\(c_{ij} = \text{Cov}(X_i, X_j) = E\{[X_i - E(X_i)][X_j - E(X_j)]\}, i, j = 1, 2, \cdots, n\)</span> 都存在，则称矩阵</p>
 <p><span class="math display">\[
-f(t) = \frac{1}{\sqrt{2\pi}\sigma} \exp\bigg\{-\frac{(x - \mu)^{2}}{2\sigma^2}\bigg\}, \quad -\infty &lt; x &lt; \infty
-\]</span></p>
-<p>其中，<span class="math inline">\(\mu\)</span>，<span class="math inline">\(\sigma &gt; 0\)</span> 为常数，则称 <span class="math inline">\(X\)</span> 服从参数为 <span class="math inline">\(\mu\)</span>，<span class="math inline">\(\sigma\)</span> 的<strong>正态分布</strong>或<strong>高斯分布</strong>，记为 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></p>
-<blockquote>
-<p>为了便于今后在数理统计中的应用，对于标准正态随机变量，我们引入上 <span class="math inline">\(\alpha\)</span> 分位数的定义 设 <span class="math inline">\(X \sim N(0, 1)\)</span>，若 <span class="math inline">\(z_{\alpha}\)</span> 满足条件</p>
-<p><span class="math display">\[
-P\{X &gt; z_{\alpha}\} = \alpha, \quad 0&lt; \alpha &lt; 1
-\]</span></p>
-<p>则称 <span class="math inline">\(z_{\alpha}\)</span> 为标准正态分布上的上 <span class="math inline">\(\alpha\)</span> 分位数。</p>
-</blockquote>
-<h2 id="随机变量的函数的分布">随机变量的函数的分布</h2>
-<p>设随机变量 <span class="math inline">\(X\)</span> 具有概率密度 <span class="math inline">\(f_{X}(x)\)</span>，<span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>，又设函数 <span class="math inline">\(g(x)\)</span> 处处可导且恒有 <span class="math inline">\(g&#39;(x) &gt; 0\)</span> 或 <span class="math inline">\(&lt; 0\)</span>，则 <span class="math inline">\(Y = g(X)\)</span> 是连续型随机变量，其概率密度为</p>
-<p><span class="math display">\[
-f_{Y}(y) =
-\begin{cases}
-f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
+\mathbf{C} =
+\begin{bmatrix}
+c_{11} &amp;c_{12} &amp;\cdots &amp;c_{1n}
 \\
-0, &amp;\text{otherwise}
-\end{cases}
+c_{21} &amp;c_{22} &amp;\cdots &amp;c_{2n}
+\\
+\vdots &amp;\vdots &amp;\quad &amp;\vdots
+\\
+c_{n1} &amp;c_{n2} &amp;\cdots &amp;c_{nn}
+\end{bmatrix}
 \]</span></p>
-<p>其中，<span class="math inline">\(\alpha = \min \{g(-\infty), g(\infty)\}\)</span>，<span class="math inline">\(\beta = \max \{g(-\infty), g(\infty)\}\)</span>，<span class="math inline">\(h(y)\)</span> 是 <span class="math inline">\(g(x)\)</span> 的反函数。</p>
-<h2 id="补充">补充</h2>
-<div style="display: block; margin: 0 auto; width: fit-content">
-<figure>
-<img src="/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/标准正态分布的上分位数.png" srcset="/img/loading.gif" lazyload alt="标准正态分布的上分位数"><figcaption aria-hidden="true">标准正态分布的上分位数</figcaption>
-</figure>
-</div>
+<p>为 <span class="math inline">\(n\)</span> 为随机变量 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 的<strong>协方差矩阵</strong>，显然是一个对称矩阵。</p>
+<h3 id="多维正态分布的随机变量的概率密度">多维正态分布的随机变量的概率密度</h3>
+<p><span class="math display">\[
+f(x_1, x_2, \cdots, x_n) = \frac{1}{(2\pi)^{\pi/2} (\det(C))^{1/2}} \exp \bigg\{-\frac{1}{2}(\mathbf{X} - \mathbf{\mu})^{\text{T}} \mathbf{C}^{-1} (\mathbf{X} - \mathbf{\mu})\bigg\}
+\]</span></p>
+<p>其中，<span class="math inline">\(\mathbf{C}\)</span> 是协方差矩阵。</p>
+<blockquote>
+<ol type="1">
+<li><span class="math inline">\(n\)</span> 维正态随机变量 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 的每一个分量 <span class="math inline">\(X_i, i = 1, 2, \cdots, n\)</span> 都是正态随机变量；反之，若 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 都是正态随机变量，且相互独立，则 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 是 <span class="math inline">\(n\)</span> 维正态随机变量。</li>
+<li><span class="math inline">\(n\)</span> 维随机变量 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 服从 <span class="math inline">\(n\)</span> 维正态分布的充要条件是 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 的任意线性组合服从一维正态分布。</li>
+<li>若 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 服从 <span class="math inline">\(n\)</span> 维正态分布，设 <span class="math inline">\(Y_1\)</span>，<span class="math inline">\(Y_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(Y_k\)</span> 是 <span class="math inline">\(X_j(j = 1, 2, \cdots, n)\)</span> 的线性函数，则 <span class="math inline">\((Y_1, Y_2, \cdots, Y_k)\)</span> 也服从多维正态分布。</li>
+<li>设 <span class="math inline">\((X_1, X_2, \cdots, X_n)\)</span> 服从 <span class="math inline">\(n\)</span> 维正态分布，则 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 相互独立与 <span class="math inline">\(X_1\)</span>，<span class="math inline">\(X_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(X_n\)</span> 两两不相关是等价的。</li>
+</ol>
+</blockquote>
 
                 
               </div>
@@ -428,20 +434,20 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>随机变量及其分布</div>
-      <div>https://ddccffq.github.io/2025/11/11/概率论与数理统计/随机变量及其分布/</div>
+      <div>随机变量的数字特征</div>
+      <div>https://ddccffq.github.io/2025/11/12/概率论与数理统计/随机变量的数字特征/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>ddccffq</div>
+          <div>任志诚 2023212020</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月11日</div>
+          <div>2025年11月12日</div>
         </div>
       
       
@@ -473,9 +479,9 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" title="多维随机变量及其分布">
+                      <a href="/2025/11/13/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86%E5%8F%8A%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/" title="大数定理及中心极限定理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多维随机变量及其分布</span>
+                        <span class="hidden-mobile">大数定理及中心极限定理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -483,8 +489,8 @@ f_{X} [h_(y)] |h&#39;(y)|, &amp;\alpha &lt; y &lt; \beta
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="概率论的基本概念">
-                        <span class="hidden-mobile">概率论的基本概念</span>
+                      <a href="/2025/11/11/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" title="多维随机变量及其分布">
+                        <span class="hidden-mobile">多维随机变量及其分布</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
