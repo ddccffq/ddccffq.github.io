@@ -16,25 +16,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddccffq">
+  <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="假设我们有一个 10 层的全连接神经网络，使用 Sigmoid 作为激活函数，采用均方误差损失函数。请从链式法则的角度定性分析，在反向传播过程中，靠近输入层的参数梯度可能会发生什么变化？为什么？如果将 Sigmoid 激活函数换成 ReLU，这个问题会得到缓解吗？请解释原因。除了更换激活函数，请再列举两种缓解梯度消失&#x2F;爆炸问题的方法，并简要说明其原理。  记隐藏层线性变换的结果为 \(Z_i">
+    <meta name="description" content="表示学习的动机  直接使用原始特征，此时特征比较单一，需要进行非线性组合才能发挥其作用。 一些特征之间可能存在相关性。 并不是所有的特征都对预测有用。 特征中存在噪声。 特征纬度过高，会导致维度灾难。   主成分分析（回顾） Def. 方差：描述一维变量偏离其均值的程度 \[ \sigma^{2} &#x3D; \frac{1}{N} \sum_{i &#x3D; 1}^{N} (X_i - \overline{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分析与简答">
-<meta property="og:url" content="https://ddccffq.github.io/2025/10/27/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%80%E7%AD%94/index.html">
+<meta property="og:title" content="无监督表示学习">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="假设我们有一个 10 层的全连接神经网络，使用 Sigmoid 作为激活函数，采用均方误差损失函数。请从链式法则的角度定性分析，在反向传播过程中，靠近输入层的参数梯度可能会发生什么变化？为什么？如果将 Sigmoid 激活函数换成 ReLU，这个问题会得到缓解吗？请解释原因。除了更换激活函数，请再列举两种缓解梯度消失&#x2F;爆炸问题的方法，并简要说明其原理。  记隐藏层线性变换的结果为 \(Z_i">
+<meta property="og:description" content="表示学习的动机  直接使用原始特征，此时特征比较单一，需要进行非线性组合才能发挥其作用。 一些特征之间可能存在相关性。 并不是所有的特征都对预测有用。 特征中存在噪声。 特征纬度过高，会导致维度灾难。   主成分分析（回顾） Def. 方差：描述一维变量偏离其均值的程度 \[ \sigma^{2} &#x3D; \frac{1}{N} \sum_{i &#x3D; 1}^{N} (X_i - \overline{">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-27T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-02T13:06:17.082Z">
+<meta property="article:published_time" content="2025-11-23T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-24T04:13:50.419Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>分析与简答 - ddccffq&#39;s Blog</title>
+  <title>无监督表示学习 - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分析与简答"></span>
+            <span id="subtitle" data-typed-text="无监督表示学习"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-27 21:00" pubdate>
-          2025年10月27日 晚上
+        <time datetime="2025-11-23 16:00" pubdate>
+          2025年11月23日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          2.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          28 分钟
+          22 分钟
         
       </span>
     
@@ -271,262 +271,242 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">分析与简答</h1>
+            <h1 id="seo-header">无监督表示学习</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<ol type="1">
-<li><blockquote>
-<p>假设我们有一个 10 层的全连接神经网络，使用 Sigmoid 作为激活函数，采用均方误差损失函数。请从链式法则的角度定性分析，在反向传播过程中，靠近输入层的参数梯度可能会发生什么变化？为什么？如果将 Sigmoid 激活函数换成 ReLU，这个问题会得到缓解吗？请解释原因。除了更换激活函数，请再列举两种缓解梯度消失/爆炸问题的方法，并简要说明其原理。</p>
+<blockquote>
+<p>表示学习的动机</p>
+<ul>
+<li>直接使用原始特征，此时特征比较单一，需要进行非线性组合才能发挥其作用。</li>
+<li>一些特征之间可能存在相关性。</li>
+<li>并不是所有的特征都对预测有用。</li>
+<li>特征中存在噪声。</li>
+<li>特征纬度过高，会导致维度灾难。</li>
+</ul>
 </blockquote>
-<p>记隐藏层线性变换的结果为 <span class="math inline">\(Z_i\)</span>，激活结果为 <span class="math inline">\(A_i\)</span>，输出层的真实标签为为 <span class="math inline">\(Y\)</span>，输入层的输入为 <span class="math inline">\(X\)</span>。损失函数为：<span class="math inline">\(L = \frac{1}{2} (Y - A_{10})^2\)</span>，考虑每层只有一个神经元，则由链式法则得：</p>
+<h2 id="主成分分析回顾">主成分分析（回顾）</h2>
+<p><strong>Def</strong>. 方差：描述一维变量偏离其均值的程度</p>
 <p><span class="math display">\[
-\begin{aligned}
-\frac{\partial L}{\partial A_{10}} &amp;= (A_{10} - Y)
-\\
-\frac{\partial L}{\partial Z_{10}} &amp;= \frac{\partial L}{\partial A_{10}} \frac{\text{d} A_{10}}{ \text{d} Z_{10}} = (A_{10} - Y)(A_{10})(1 - A_{10})
-\\
-\frac{\partial L}{\partial w_{10}} &amp;= \frac{\partial L}{\partial A_{10}} \frac{\text{d} A_{10}}{ \text{d} Z_{10}} \frac{\partial Z_{10}}{\partial w_{10}} = (A_{10} - Y)(A_{10})(1 - A_{10}) A_{9}
-\\
-\frac{\partial L}{\partial b_{10}} &amp;= \frac{\partial L}{\partial A_{10}} \frac{\text{d} A_{10}}{ \text{d} Z_{10}} \frac{\partial Z_{10}}{\partial b_{10}} = (A_{10} - Y)(A_{10})(1 - A_{10})
-\\
-\frac{\partial L}{\partial A_{9}} &amp;= \frac{\partial L}{\partial Z_{10}} \frac{\partial Z_{10}}{\partial A_9} = (A_{10} - Y)(A_{10})(1 - A_{10})w_{10}
-\\
-\frac{\partial L}{\partial Z_{9}} &amp;= \frac{\partial L}{\partial A_{9}} \frac{\partial A_{9}}{\partial Z_{9}} = (A_{10} - Y)(A_{10})(1 - A_{10})w_{10}(A_9)(1 - A_9)
-\\
-&amp;\cdots
-\end{aligned}
+\sigma^{2} = \frac{1}{N} \sum_{i = 1}^{N} (X_i - \overline{X})
 \]</span></p>
-<p>MSE 和 Sigmoid 组合中 <span class="math inline">\(A_i(1 - A_i) &lt; 0.25\)</span> 可能会导致梯度消失，如果将 Sigmoid 换成 ReLU，由于 ReLU 的导数为 <span class="math inline">\(\begin{cases} 0, x \leq 0\\ 1, x &gt; 0\end{cases}\)</span>，对于线性变换结果大于 0 的层，可以缓解梯度消失的问题；但负区间存在导致梯度消失的风险。</p>
-<p>在 MSE 和 Sigmoid 组合中，还可以通过减少层数来缓解梯度消失。除此之外，可以通过替换损失函数来缓解，比如 CrossEntropy + Sigmoid；这个组合使得输出层去掉了 <span class="math inline">\(A_{10} (1 - A_{10})\)</span>，一定程度上抑制了梯度消失。</p></li>
-<li><blockquote>
-<p>解释 Epoch、Iteration、Batch、Step 等概念及其不同，从数学的角度分析 batch_size 的选择依据和影响。</p>
+<p><strong>Def</strong>. 协方差：描述两个变量偏离各自均值的程度（描述两个变量之间相关程度）</p>
+<p><span class="math display">\[
+\text{COV}(X, Y) = \frac{1}{N} \sum_{i = 1}^{N} (X_i - \overline{X})(Y_i - \overline{Y})
+\]</span></p>
+<blockquote>
+<p>只要 <span class="math inline">\(\text{COV}(X, Y) \neq 0\)</span>，则表明 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 之间存在相关性。</p>
 </blockquote>
-<div style="display: block; margin: 0 auto; width: fit-content">
-<table>
-<thead>
-<tr class="header">
-<th>概念</th>
-<th>定义</th>
-<th>粒度/单位</th>
-<th>与其他量关系</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Batch（小批量）</td>
-<td>一次前/后向用到的样本集合</td>
-<td><span class="math inline">\(B\)</span> 样本</td>
-<td>每个 epoch 的步数 <span class="math inline">\(S=\lceil N/B\rceil\)</span></td>
-<td>可用“梯度累积”模拟更大 <span class="math inline">\(B\)</span></td>
-</tr>
-<tr class="even">
-<td>Iteration</td>
-<td>常指一次参数更新</td>
-<td>次/更新</td>
-<td>常与 Step 等价</td>
-<td>不同资料命名略异</td>
-</tr>
-<tr class="odd">
-<td>Step</td>
-<td>优化器执行一次更新</td>
-<td>次/更新</td>
-<td>每个 epoch 含 <span class="math inline">\(S\)</span> 个 step</td>
-<td>PyTorch: optimizer.step()</td>
-</tr>
-<tr class="even">
-<td>Epoch</td>
-<td>完整遍历一遍训练集</td>
-<td>轮</td>
-<td>总更新步数 <span class="math inline">\(U=E\cdot S\)</span></td>
-<td>Keras: steps_per_epoch=<span class="math inline">\(S\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>在深度学习中，采用梯度下降及类似的方式更新参数，对整个大小为 <span class="math inline">\(N\)</span> 的样本，损失函数关于参数 <span class="math inline">\(\theta\)</span> 的梯度为：</p>
+<p><strong>Def</strong>. 协方差矩阵：对于多维变量，例如：<span class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span>，<span class="math inline">\(z\)</span>，其协方差矩阵表示为</p>
 <p><span class="math display">\[
-\nabla L(\theta) = \frac{1}{N} \sum_{i = 1}^{N} \nabla L_i(\theta)
-\]</span></p>
-<p>其中 <span class="math inline">\(i\)</span> 表示第 <span class="math inline">\(i\)</span> 个样本。对于批量大小为 <span class="math inline">\(B\)</span> 时，梯度估计为：</p>
-<p><span class="math display">\[
-g_{B} = \frac{1}{B} \sum_{i = 1}^{B} \nabla L_i(\theta)
-\]</span></p>
-<p>若从大小为 <span class="math inline">\(N\)</span> 的数据集中无放回采样。这个估计的期望 <span class="math inline">\(\mathbb{E}[g_B] = \nabla L(\theta)\)</span>，但方差 <span class="math inline">\(\mathrm{Var}(g_B)=\frac{1}{B}\Sigma\cdot\frac{N - B}{N - 1}\)</span>，其中 <span class="math inline">\(\Sigma\)</span> 为单样本梯度的协方差矩阵。因此，batch_size 越大，梯度估计的方差越小，更新方向越准确，训练曲线越平滑。但方差减少的收益是递减的，即从 batch_size = 1 增加到 2 方差的减少量很大，但从 100 增加到 101 的减少量很小。</p></li>
-<li><blockquote>
-<p>以一个简单的 1-1-1 结构的两层神经网络为例，分别采用均方误差损失函数和交叉熵损失函数，说明这两种函数关于参数的非凸性（可作图示意和说明）。</p>
-</blockquote>
-<p>两种损失在 1-1-1 两层网络（标量输入、1 个隐层神经元、1 个输出）下关于参数均为非凸。可通过计算参数子集的 Hessian 并构造使其不定（行列式为负）的点来判别。</p>
-<p>设输入为 <span class="math inline">\(x \in \mathbb{R}\)</span>，输出为 <span class="math inline">\(A_2 \in \mathbb{R}\)</span>，实际标签为 <span class="math inline">\(y \in \mathbb{R}\)</span>，输出层变化的结果为 <span class="math inline">\(Z_2 \in \mathbb{R}\)</span>，隐藏层变换的结果为 <span class="math inline">\(Z_1 \in \mathbb{R}\)</span>，输出结果为 <span class="math inline">\(A_1 \in \mathbb{R}\)</span>，变换为 <span class="math inline">\(f\)</span>，激活函数统一为 <span class="math inline">\(g\)</span>（Sigmoid）。</p>
-<p><span class="math display">\[
-\begin{aligned}
-A_2 &amp;= g(Z_2) = s
-\\
-Z_2 &amp;= w_2 A_1 + b_2
-\\
-A_1 &amp;= g(Z_1) = v
-\\
-Z_1 &amp;= w_1 x + b_1
-\\
-g&#39;(x) &amp;= g(x) (1 - g(x))
-\end{aligned}
-\]</span></p>
-<p>(1). 考虑均方误差损失</p>
-<p><span class="math display">\[
-\begin{aligned}
-L &amp;= \frac{1}{2} (y - A_2)^2
-\\
-\frac{\partial L}{\partial A_2} &amp;= (A_2 - y)
-\\
-\frac{\partial L}{\partial w_2} &amp;= (A_2 - y)g(Z_2)(1 - g(Z_2)) A_1 = (s - y)s(1 - s)A_1
-\\
-\frac{\partial L}{\partial b_2} &amp;= (A_2 - y)g(Z_2)(1 - g(Z_2)) = (s - y)s(1 - s)
-\\
-\frac{\partial L}{\partial w_1} &amp;= \frac{\partial L}{\partial A_1} \frac{\partial A_1}{\partial w_1} = (s - y)s(1 - s)v(1 - v) x w_2
-\\
-\frac{\partial L}{\partial b_1} &amp;= (s - y)s(1 - s)v(1 - v) w_2
-\\
-\frac{\partial^2 L}{\partial w_1^2} &amp;= x^2\Big[ w_2^2\,v^2(1 - v)^2\,s&#39;\big( s(1 - s) + (s - y)(1 - 2s)\big) + w_2\,(s - y)\,s&#39;\,v(1 - v)\,(1 - 2v) \Big]
-\\
-\frac{\partial^2 L}{\partial b_1^2} &amp;= w_2^2\,v^2(1 - v)^2\,s&#39;\big( s(1 - s) + (s - y)(1 - 2s)\big) + w_2\,(s - y)\,s&#39;\,v(1 - v)\,(1 - 2v)
-\\
-\frac{\partial^2 L}{\partial w_2^2} &amp;= A_1^2 s&#39; [s (1 - s) + (s - y) (1 - s) - (s - y)s]
-\\
-\frac{\partial^2 L}{\partial b_2^2} &amp;= s&#39; \big[ s (1 - s) + (s - y) (1 - 2s) \big]
-\\
-\frac{\partial^2 L}{\partial w_2 \partial w_1} &amp;= s&#39;\,v(1 - v)\,x\,\Big[ w_2\,v\,\big( s(1 - s) + (s - y)(1 - 2s) \big) + (s - y) \Big]
-\\
-\frac{\partial^2 L}{\partial b_2 \partial b_1} &amp;= s&#39; w_2 v (1 - v) [s (1 - s) + (s - y) (1 - s) - (s - y)s]
-\end{aligned}
-\]</span></p>
-<p>所以，对于权重参数和偏置参数的 Hessian 矩阵为：</p>
-<p><span class="math display">\[
-H = 
+C =
 \begin{bmatrix}
-\frac{\partial^2 L}{\partial w_1^2} &amp; \frac{\partial^2 L}{\partial w_1 \partial w_2}
+\text{COV}(X, X) &amp;\text{COV}(X, Y) &amp;\text{COV}(X, Z)
 \\
-\frac{\partial^2 L}{\partial w_2 \partial w_1} &amp; \frac{\partial^2 L}{\partial w_2^2}
+\text{COV}(Y, X) &amp;\text{COV}(Y, Y) &amp;\text{COV}(Y, Z)
+\\
+\text{COV}(Z, X) &amp;\text{COV}(Y, Z) &amp;\text{COV}(Z, Z)
 \end{bmatrix}
 \]</span></p>
-<p>取一组简单取值，使 <span class="math inline">\(\det(H)&lt;0\)</span>：</p>
-<p><span class="math display">\[
-x=1, \; w_1=0, \; w_2=0, \; b_1=0, \; b_2=0, \; y=0
-\]</span></p>
-<p>此时 <span class="math inline">\(v = s = \frac{1}{2} ,\; v&#39; =s&#39; = \frac{1}{4} ,\; B = \frac{1}{4}\)</span>，代入得</p>
-<p><span class="math display">\[
-H_{11}=0,\quad H_{22}=\frac{1}{64}=0.015625,\quad H_{12}=\frac{1}{32}=0.03125,
-\]</span></p>
-<p>故</p>
-<p><span class="math display">\[
-\det(H) = 0 \cdot 0.015625 - 0.03125^2 = -0.0009765625 &lt; 0,
-\]</span></p>
-<p>Hessian 不定，表明关于权重参数非凸。同理偏置参数。</p>
-<p>(2). 考虑交叉熵损失函数，、BCE + Sigmoid 在仅对最后一层的仿射参数（给定隐层激活）是凸的，但由于隐层的非线性组合，关于所有参数的联合优化仍是非凸。</p>
+<p>主对角线上为 <span class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span>，<span class="math inline">\(z\)</span> 各自的方差；显然，协方差矩阵是一个对称矩阵。</p>
 <blockquote>
-<p>其实 (1) 的证明也可以通过类似 (2) 的语句表达，可还是给了 Hessian 矩阵的详细证明（主要是自己想尝试严谨证明）</p>
+<p>对于<strong>正交属性</strong>空间中的样本点，如何用一个超平面对所有样本进行恰当的表达？容易想到，若存在这样的超平面，那么它大概应具有这样的性质：</p>
+<ul>
+<li><strong>最近重构性</strong>：样本点到这个超平面的距离都足够近。</li>
+<li><strong>最大可分性</strong>：样本点在这个超平面上的投影能尽可能分开。</li>
+</ul>
+<p>基于最近重构性和最大可分性，能分别得到主成分分析的两种等价推导。</p>
+</blockquote>
+<p>基于最近重构性的主成分分析.</p>
+<ol type="1">
+<li><p>对样本进行<strong>中心化</strong>（<span class="math inline">\(\sum\limits_{i} x_i = 0\)</span>），再假定投影变换后得到的新坐标系为 <span class="math inline">\(\{w_1, w_2, \cdots, w_d\}\)</span>，其中 <span class="math inline">\(w_i\)</span> 是标准正交基向量，即</p>
+<p><span class="math display">\[
+||w_i||_2 = 1, \quad w_i^Tw_j = 0 (i \neq j)
+\]</span></p></li>
+<li><p>若丢弃新坐标系中的部分坐标，即将维度降到 <span class="math inline">\(d&#39; &lt; d\)</span>，则样本点在低维坐标系中的投影 <span class="math inline">\(z_i = (z_{i1}, z_{i2}, \cdots, z_{id&#39;})\)</span>，<span class="math inline">\(z_{ij} = w_{j}^{T} x_{i}\)</span>，则基于 <span class="math inline">\(z_{i}\)</span> 重构 <span class="math inline">\(x_{i}\)</span>：</p>
+<p><span class="math display">\[
+\hat{x_i} = \sum_{j = 1}^{d&#39;} z_{ij} w_{j}
+\]</span></p></li>
+<li><p>考虑整个训练集，原样本点 <span class="math inline">\(x_i\)</span> 与基于投影重构的样本点 <span class="math inline">\(\hat{x_i}\)</span> 之间的距离为</p>
+<p><span class="math display">\[
+\sum_{i = 1}^{m} \biggl|\biggl| \sum_{j = 1}^{d&#39;} z_{ij}w_j - x_i \biggr|\biggr|_2^2 = \sum_{i = 1}^{m} z_{i}^{T}z_{i} - 2 \sum_{i = 1}^{m} z_{i}^{T} W^T x_{i} + \text{const}
+\\
+\propto -\text{tr}\bigg(W^T \bigg(\sum_{i = 1}^{m} x_{i}x_{i}^{T}\bigg)W\bigg)
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(m\)</span> 表示样本数；<span class="math inline">\(\text{tr}\)</span> 表示矩阵的迹。</p>
 </blockquote></li>
 <li><blockquote>
-<p>尝试推导：在回归问题中，假设输出中包含高斯噪音，则最小化均方误差等价于最小化负 log 似然（或最大化似然）。</p>
+<p>根据最近重构性最小化上式。考虑到 <span class="math inline">\(w_{j}\)</span> 是标准正交基，<span class="math inline">\(\sum\limits_{i} x_{i} x_{i}^{T}\)</span> 是协方差矩阵，优化目标为：</p>
 </blockquote>
-<p>给定输入 <span class="math inline">\(X \in \mathbb{R}^{N \times K}\)</span>，预测连续实值的目标 <span class="math inline">\(y \in \mathbb{R}^{N \times K}\)</span> （独热编码）的任务，模型输出为 <span class="math inline">\(\hat{y} \in \mathbb{R}^{N \times K}\)</span>，<span class="math inline">\(\hat{y}_i = f_{\theta} (X_i)\)</span>，概率分布为 <span class="math inline">\(P_{\theta}(y_i | X_i)\)</span>。以均方误差为损失函数 <span class="math inline">\(L = \frac{1}{2NK} \sum\limits_{m = 1}^{K} \sum\limits_{i = 1}^{N} (\hat{y}_{im} - y_{im})^2\)</span>，以负 log 似然函数为损失函数 <span class="math inline">\(\text{NLL} = -\frac{1}{NK} \sum\limits_{m = 1}^{K} \sum\limits_{i = 1}^{N} \log P(y_{im} | x_i)\)</span>，高斯噪音 <span class="math inline">\(\varepsilon_i \sim \mathcal{N}(0,\sigma^2)\)</span>，其中 <span class="math inline">\(\sigma\)</span> 确定。<span class="math inline">\(y_i = f_\theta(x_i) + \varepsilon_i\)</span>。</p>
-<p>在上述前提下</p>
 <p><span class="math display">\[
 \begin{aligned}
-P(y_i | x_i) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \biggl(-\frac{(y_i - f_{\theta}(x_i))^2}{2 \sigma^2}\biggr)
+\min_{W} \quad &amp;-\text{tr}(W^TXX^TW)
 \\
-\log P(y_i | x_i) &amp;= -\frac{1}{2} \log (2 \pi \sigma^2) - \frac{(y_i - f_{\theta}(x_i))^2}{2 \sigma^2}
-\\
-\text{NLL} &amp;= \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2N} \sum_{i = 1}^{N} \frac{(y_i - f_{\theta}(x_i))^2}{\sigma^2}
+\text{s.t.} \quad &amp;W^TW = I
 \end{aligned}
-\]</span></p>
-<p>可见，</p>
-<p><span class="math display">\[
-\arg \min \text{NLL} \Leftrightarrow \arg \min \frac{1}{2N} \sum_{i = 1}^{N} (y_i - f_{\theta}(x_i))^2 \Leftrightarrow \arg \min \frac{1}{2NK} \sum\limits_{m = 1}^{K} \sum\limits_{i = 1}^{N} (\hat{y}_{im} - y_{im})^2
-\]</span></p>
-<p>故等价。</p></li>
-<li><blockquote>
-<p>尝试推导：在分类问题中，最小化交叉熵损失等价于极大化似然。</p>
-</blockquote>
-<p>假设要解决 <span class="math inline">\(K\)</span> 分类问题，模型的输入为 <span class="math inline">\(X \in \mathbb{R}^{N \times K}\)</span>，实际标签为 <span class="math inline">\(y \in \mathbb{R}^{N \times K}\)</span>（独热编码），概率分布是 <span class="math inline">\(P_{\theta}(y_i | X_i) \in \mathbb{R}^{1 \times K}\)</span>，最小化交叉损失过程为：</p>
-<p><span class="math display">\[
-\arg \min H = -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
-\]</span></p>
-<p>极大化似然等价于极小化负 log 似然。</p>
-<p><span class="math display">\[
-\arg \min -\frac{1}{N} \sum_{i = 1}^{N} \log P_{\theta}(y_i | X_i) y_i^T
-\]</span></p>
-<p>显然等价。</p></li>
-<li><blockquote>
-<p>分析 L1 正则化和 L2 正则化的原理，以及为什么 L1 正则化倾向于得到稀疏解、为什么 L2 正则化倾向于得到平滑的解。</p>
-</blockquote>
-<p>L1，L2 正则化都是通过在反向传播的过程中给参数多加一部分数值来避免过拟合提高泛化能力。其中</p>
-<p><span class="math display">\[
-\begin{aligned}
-L_{1_i} &amp;= \lambda_{L_1} \cdot \sum_{m} |w_{im}|
-\\
-L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
-\end{aligned}
-\]</span></p>
-<ul>
-<li>将“经验损失”的等高线视为一族椭圆，加入正则化等价于在范数球约束下，寻找与等高线首次相切的点。</li>
-<li>L1 约束集：<span class="math inline">\(\{w:\sum_i |w_i|\le t\}\)</span> 是“菱形/十字多面体”，在各坐标轴方向有尖角；相切点更易落在角点/棱上，导致若干坐标恰为 <span class="math inline">\(0\)</span>，故解“稀疏”。</li>
-<li>L2 约束集：<span class="math inline">\(\{w:\sum_i w_i^2\le t\}\)</span> 是“圆/球”，各向同性且边界光滑；相切点通常不在坐标轴上，系数被连续缩小但少有精确为 <span class="math inline">\(0\)</span>，体现“平滑收缩”。</li>
-</ul></li>
-<li><blockquote>
-<p>分析 Batch normalization 对参数优化起到什么作用、如何起到这种作用。</p>
-</blockquote>
-<p>通常来说，数据标准化预处理对于浅层模型就足够有效了。随着模型训练的进行，当每层中参数更新时，靠近输出层的输出较难出现剧烈变化。但对深层神经网络来说，即使输入数据已做标准化，训练中模型参数的更新依然很容易造成靠近输出层输出的剧烈变化。这种计算数值的不稳定性通常令我们难以训练出有效的深度模型。</p>
-<p>批量归一化的提出正是为了应对深度模型训练的挑战。在模型训练时，批量归一化利用小批量上的均值和标准差，不断调整神经网络中间输出，从而使整个神经网络在各层的中间输出的数值更稳定。</p></li>
-<li><blockquote>
-<p>从工作原理角度，对比经典的随机梯度下降（SGD）、带动量的 SGD（SGD with Momentum）、以及 Adam 优化器。并说明“动量”项是如何帮助SGD在相关曲面上加速并减少振荡的，Adam在泛化性方面存在哪些问题。</p>
-</blockquote>
-<p>梯度下降<br>
-<span class="math display">\[
-\boldsymbol{x} \leftarrow \boldsymbol{x} - \eta \boldsymbol{g}_t
-\]</span></p>
-<ul>
-<li>特点：全局同一学习率，易在“峡谷型”曲面产生之字形振荡；对学习率较敏感。</li>
-</ul>
-<p>动量法</p>
-<p><span class="math display">\[
-\begin{aligned}
-\boldsymbol{v}_t &amp;\leftarrow \gamma \boldsymbol{v}_{t-1} + \eta_t \boldsymbol{g}_t \\
-\boldsymbol{x}_t &amp;\leftarrow \boldsymbol{x}_{t-1} - \boldsymbol{v}_t
-\end{aligned}
-\]</span></p>
-<ul>
-<li>原理（加速与去振荡）：<span class="math inline">\(\boldsymbol{v}_t\)</span> 是梯度的指数滑动平均。沿“长轴”方向，梯度方向长期一致，<span class="math inline">\(\boldsymbol{v}_t\)</span> 积累动量，步长变大从而加速；沿“短轴/高曲率”方向，梯度正负交替，平均后相互抵消，横向振荡被抑制。</li>
-</ul>
-<p>Adam</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{v}}_t \leftarrow \frac{\boldsymbol{v}_t}{1-\beta_1^t},\quad
-\hat{\boldsymbol{s}}_t \leftarrow \frac{\boldsymbol{s}_t}{1-\beta_2^t},\quad
-\boldsymbol{x}_t \leftarrow \boldsymbol{x}_{t-1} - \frac{\eta\,\hat{\boldsymbol{v}}_t}{\sqrt{\hat{\boldsymbol{s}}_t}+\epsilon}
-\]</span></p>
-<ul>
-<li>工作原理：对一阶、二阶矩做偏置校正并进行参数自适应步长缩放，适合稀疏/噪声梯度与冷启动阶段。</li>
-<li>泛化问题与对策：
-<ul>
-<li>倾向于找到“尖锐极小值”，泛化弱于 SGD + 动量；常见于视觉任务。<br>
-</li>
-<li>每参数缩放削弱了 SGD 的隐式正则化；权重衰减需“解耦”（AdamW）。<br>
-</li>
-<li>对策：AdamW（解耦权重衰减）、学习率预热与余弦/阶梯衰减、后期切换到 SGD+Momentum 微调。</li>
-</ul></li>
-</ul></li>
-<li><blockquote>
-<p>深度神经网络通过堆叠大量简单的非线性单元获得了将强的学习能力，你认为当前深度学习模型与大脑的学习机制之间，最大的相似之处和不同之处分别是什么？</p>
-</blockquote>
-<p>最大的相似之处：分层与模块化处理，皮层自下而上的层级加工与深度网络的多层特征抽取相呼应，均通过分布式表示组合出高阶概念。</p>
-<p>最大的不同之处：架构与动力学，大脑以强反馈、递归、时序脉冲与振荡为主；常见ANN多为前馈/离散时步、连续值神经元。</p></li>
-<li><blockquote>
-<p>由通用近似定理可知，即使只有一个隐藏层的浅层网络，只要有足够的神经元，就可以近似任何函数。那么，为什么还需要构建深层的神经网络（例如 ResNet-101 有 100 多层）？请从模型容量、计算效率、特征抽象层次三个角度阐述深度网络的优势。</p>
-</blockquote>
-<p>深度网络的优势：(1) 模型容量：同等参数量下，深度将复杂函数拆为多层组合，表达效率更高，可用多项式级参数逼近浅层需指数级宽度的函数族。(2) 计算效率：层级复用与参数共享（如卷积、残差）提升算子复用度，降低FLOPs与存储。(3) 特征抽象：逐层从低级到高级形成可迁移表示，提升样本效率与泛化；残差/归一化缓解深层训练难度。</p></li>
+\]</span></p></li>
 </ol>
+<p>基于最大可分性的主成分分析.</p>
+<ul>
+<li>样本点 <span class="math inline">\(x_i\)</span> 在新空间中超平面上的投影是 <span class="math inline">\(w^{T}x_{i}\)</span>，若所有样本点的投影尽可能分卡，则应该使得投影后样本点的<strong>方差最大化</strong>。投影后样本点的方差是 <span class="math inline">\(\sum\limits_{i} w^{T}x_{i}x_{i}^{T}w\)</span>。于是，我们得到和基于最近重构性的主成分分析相同的最优化问题。</li>
+</ul>
+<p><strong>Algorithm - PCA</strong>.</p>
+<ol type="1">
+<li>输入：样本集 <span class="math inline">\(D = \{x_1, x_2, \cdots, x_m\}\)</span>，低维空间维数 <span class="math inline">\(d&#39;\)</span>。</li>
+<li>过程：
+<ol type="1">
+<li>对所有样本进行中心化：<span class="math inline">\(x_{i} \leftarrow x_{i} - \frac{1}{m} \sum\limits_{i = 1}^{m}x_{i}\)</span>；</li>
+<li>计算样本的协方差矩阵 <span class="math inline">\(XX^{T}\)</span>；</li>
+<li>对协方差矩阵 <span class="math inline">\(XX^{T}\)</span> 做特征值分解；</li>
+<li>取最大的 <span class="math inline">\(d&#39;\)</span> 个特征值所对应的特征向量 <span class="math inline">\(w_1\)</span>，<span class="math inline">\(w_2\)</span>，<span class="math inline">\(\cdots\)</span>，<span class="math inline">\(w_{d&#39;}\)</span>；</li>
+</ol></li>
+<li>输出：投影矩阵 <span class="math inline">\(W = (w_1, w_2, \cdots, w_{d&#39;})\)</span>。</li>
+</ol>
+<blockquote>
+<p>从重构的角度设置重构阈值，例如 <span class="math inline">\(t = 95\%\)</span>，选取使下式成立的最小 <span class="math inline">\(d&#39;\)</span></p>
+<p><span class="math display">\[
+\frac{\sum\limits_{i = 1}^{d&#39;} \lambda_{i}}{\sum\limits_{i = 1}^{d} \lambda_i} \geq t
+\]</span></p>
+</blockquote>
+<h2 id="自编码器">自编码器</h2>
+<blockquote>
+<p>自编码器是一种采用无监督方式进行特征学习的神经网络。基本思想：通过一个编码器对输入进行编码，令解码器解码得到的信号与输入信号尽可能一致，即：重构误差最小。</p>
+</blockquote>
+<ul>
+<li>网络结构：可以是任意一种网络结构，只需要保证：输入形状等于输出形状。</li>
+<li>误差函数：常用<strong>均方误差</strong>，有时也用交叉熵损失（此时输入 <span class="math inline">\(x_i \in (0, 1)\)</span>）。</li>
+<li>优化方法：采用误差反向传播进行模型求解。</li>
+</ul>
+<blockquote>
+<p>一般而言，隐藏层神经元数量小于输入层神经元数量。</p>
+</blockquote>
+<h3 id="稀疏自编码器">稀疏自编码器</h3>
+<blockquote>
+<p>基本思想：用尽可能少的神经元来表示原始数据 <span class="math inline">\(x\)</span>（也就是隐藏层神经元的激活值尽可能多的为 <span class="math inline">\(0\)</span>）。</p>
+</blockquote>
+<ul>
+<li><p>令 <span class="math inline">\(a_j^{(2)}\)</span> 表示自动编码器中第 <span class="math inline">\(j\)</span> 个隐节点的激活函数，则 <span class="math inline">\(a_j^{(2)}(x)\)</span> 表示对于特定的输入 <span class="math inline">\(x\)</span>，第 <span class="math inline">\(j\)</span> 个隐节点的激活值。</p></li>
+<li><p>第 <span class="math inline">\(j\)</span> 个隐节点的平均激活为</p>
+<p><span class="math display">\[
+\hat{\rho}_{j} = \frac{1}{m} \sum_{i = 1}^{m} \big[a_{j}^{(2)}(x_i)\big]
+\]</span></p></li>
+<li><p>增加约束：<span class="math inline">\(\hat{\rho}_j = \rho\)</span>，其中 <span class="math inline">\(\rho\)</span> 是一个<strong>稀疏参数</strong>，通常设为一个接近于 <span class="math inline">\(0\)</span> 的小数。</p>
+<ul>
+<li><p>等效于：加入一个<strong>惩罚项</strong>，使得 <span class="math inline">\(\hat{\rho}_j\)</span> 不至于偏离 <span class="math inline">\(\rho\)</span> 太远。</p>
+<p><span class="math display">\[
+\sum_{j = 1}^{s_2} \rho \log \frac{\rho}{\hat{\rho}_j} + (1 - \rho) \log \frac{1 - \rho}{1 - \hat{\rho}_j} \quad \text{OR} \quad \sum_{j = 1}^{s_2} \text{KL}(\rho || \hat{\rho}_j)
+\]</span></p></li>
+</ul></li>
+<li><p>总体损失函数为：</p>
+<p><span class="math display">\[
+J_{\text{sparse}}(W, b) = J(W, b) + \beta \sum_{j = 1}^{s_2} \text{KL}(\rho || \hat{\rho}_j)
+\]</span></p></li>
+<li><p>在目标函数 <span class="math inline">\(J_{\text{sparse}}(W, b)\)</span> 上采用梯度下降法求解模型参数。</p></li>
+</ul>
+<blockquote>
+<p>基于稀疏自编码器的 <strong>k-Sparse AutoEncoders</strong>。此编码器的稀疏策略是：找到 <span class="math inline">\(z\)</span> 中前 <span class="math inline">\(k\)</span> 个最大激活，而令其它的均为 <span class="math inline">\(0\)</span>。误差仅通过 <span class="math inline">\(z\)</span> 中的这 <span class="math inline">\(k\)</span> 个被激活的节点传播。</p>
+<p>手写书字体识别任务中，不同 <span class="math inline">\(k\)</span> 值的可视化结果不同，随着 <span class="math inline">\(k\)</span> 的减小，网络趋于学习一个关于输入数字体的更完整的表示。</p>
+</blockquote>
+<h3 id="去噪自编码器">去噪自编码器</h3>
+<p>基本思想：</p>
+<ul>
+<li>输入中加入<strong>扰动</strong>后，更高层的表示应该保持更好的<strong>稳定性和鲁棒性</strong>。</li>
+<li>通过<strong>降噪表示</strong>可以抽出关于输入信号更有用的信息。</li>
+</ul>
+<blockquote>
+<p>加噪方式：<strong>高斯噪声</strong>和<strong>二值掩码噪声</strong>（需要注意限制加噪后的数值范围）。</p>
+</blockquote>
+<h3 id="堆叠自编码器">堆叠自编码器</h3>
+<blockquote>
+<p>分阶段训练多个自编码器</p>
+</blockquote>
+<h3 id="深度自编码器">深度自编码器</h3>
+<blockquote>
+<p>整体训练</p>
+</blockquote>
+<h2 id="受限玻尔兹曼机">受限玻尔兹曼机</h2>
+<p><strong>Def</strong>. 概率无向图模型</p>
+<ul>
+<li>输入层的神经元之间以及隐藏层的神经元之间均存在<strong>连接</strong>。</li>
+<li>输入层和输出层神经元均为<strong>二值随机变量</strong>。</li>
+</ul>
+<blockquote>
+<p>概率无向图模型是一种基于<strong>能量</strong>的模型，能量越小，模型越稳定。</p>
+<p><span class="math display">\[
+E = - \bigg(\sum_{i &lt; j} w_{ij} s_{i} s_{j} + \sum_{i} \theta_{i} s_{i}\bigg)
+\]</span></p>
+<p>其中 <span class="math inline">\(s\)</span> 表示节点，<span class="math inline">\(\theta\)</span> 表示偏置。</p>
+</blockquote>
+<p>而受限玻尔兹曼机（RBM）是只有两层的概率无向图模型，但与概率无向图的性质有些不同。RBM 只有可见层（visible layer）和隐藏层（hidden layer）之间有连接，同一层之间<strong>没有连接</strong>。</p>
+<p>能量函数：</p>
+<p><span class="math display">\[
+E(\mathbf{v}, \mathbf{h}) = - \sum_{i, j} v_i W_{ij} h_{j} - \sum_{i} c_i v_i - \sum_{j} b_{j} h_{j}
+\]</span></p>
+<p>其中，<span class="math inline">\(c\)</span>，<span class="math inline">\(b\)</span> 表示偏置。</p>
+<p>由概率分布和能量函数的定义</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\mathbf{v}, \mathbf{h}) &amp;= - \sum_{i, j} v_i W_{ij} h_{j} - \sum_{i} c_i v_i - \sum_{j} b_{j} h_{j}
+\\
+p(\mathbf{v}, \mathbf{h}) &amp;= \frac{\exp (-E(\mathbf{v}, \mathbf{h}))}{Z}
+\\
+p(\mathbf{v}) &amp;= \frac{\sum_{\mathbf{h}} \exp (-E(\mathbf{v}, \mathbf{h}))}{Z}
+\\
+Z &amp;= \sum_{\mathbf{v}, \mathbf{h}} \exp (-E(\mathbf{v}, \mathbf{h}))
+\end{aligned}
+\]</span></p>
+<p>从而可以推出条件概率公式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(h_{j} = 1 | \mathbf{v}) &amp;= \frac{\exp(-E(\mathbf{v}, h_{j} = 1))}{\exp(-E(\mathbf{v}, h_{j} = 0)) + \exp(-E(\mathbf{v}, h_{j} = 1))}
+\\
+&amp;= \frac{\exp(\sum_{i} v_{i} W_{ij} + \sum_{i} c_{i}v_{i} + b_{j})}{\exp(\sum_{i}c_{i} v_{i}) + \exp(\sum_{i} v_{i} W_{ij} + \sum_{i} c_{i}v_{i} + b_{j})}
+\\
+&amp;= \frac{\exp(\sum_{i} v_{i} W_{ij} + b_{j})}{1 + \exp(\sum_{i} v_{i} W_{ij} + b_{j})} = s\bigg(\sum_{i} v_{i} W_{ij} + b_{j}\bigg)
+\end{aligned}
+\]</span></p>
+<p>其中 <span class="math inline">\(s\)</span> 是 <strong>sigmoid</strong> 函数。同理可得：</p>
+<p><span class="math display">\[
+p(v_{i} = 1 | \mathbf{h}) = s\bigg(c_{i} + \sum_{j} W_{ij} h_{j}\bigg)
+\]</span></p>
+<p>接下来，我们最大化训练集上的对数似然，即最大化 <span class="math inline">\(p(\mathbf{v})\)</span>。对 <span class="math inline">\(p(\mathbf{v})\)</span> 的对数关于参数的偏导数可以得到：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \log p(\mathbf{v})}{\partial \theta} &amp;= \frac{\partial (\log \sum_{\mathbf{h}} \exp(-E(\mathbf{v}, \mathbf{h})) - \log Z)}{\partial \theta}
+\\
+&amp;= \frac{1}{\sum_{\mathbf{h}}\exp(-E(\mathbf{v}, \mathbf{h}))} \cdot -\exp(-E(\mathbf{v}, \mathbf{h})) \cdot \frac{\partial E(\mathbf{v}, \mathbf{h})}{\partial \theta} - \frac{1}{Z} \cdot -\exp(-E(\mathbf{v}, \mathbf{h})) \cdot \frac{\partial E(\mathbf{v}, \mathbf{h})}{\partial \theta}
+\\
+&amp;= - \langle \frac{\partial E(\mathbf{v}, \mathbf{h})}{\partial \theta} \rangle_{p(\mathbf{h} | \mathbf{v})} + \langle \frac{\partial E(\mathbf{v}, \mathbf{h})}{\partial \theta} \rangle_{p(\mathbf{v}, \mathbf{h})}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\langle \rangle_{p}\)</span> 表示对概率分布 <span class="math inline">\(p\)</span> 下的期望。</p>
+<blockquote>
+<p>其中第一项 <span class="math inline">\(p(\mathbf{h} | \mathbf{v})\)</span> 代表在输入数据条件下表示层的概率分布，比较容易计算，而第二项 <span class="math inline">\(p(\mathbf{v}, \mathbf{h})\)</span> 由于归一化因子的存在，无法有效的计算该分布。</p>
+</blockquote>
+<p><strong>Algorithm - CD-k</strong>. RBM 的对称结构和其中神经元节点状态的条件独立性，使得可以通过若干步<strong>吉布斯采样</strong>来计算第二项的期望。在完成k步抽样之后，就可以近似计算模型参数的梯度，具体如下：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta W_{ij} &amp;= v_{i}^0 h_{j}^0 - v_{i}^k h_{j}^k
+\\
+\delta c_{i} &amp;= v_{i}^0 - v_{i}^{k}
+\\
+\delta b_{j} &amp;= h_{j}^0 - h_{j}^k
+\end{aligned}
+\]</span></p>
+<h3 id="gaussian-rbm">Gaussian RBM</h3>
+<p>使用高斯分布来建模输入层</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\mathbf{v}, \mathbf{h}) &amp;= \frac{1}{2} \sum_{i} \frac{(v_i - c_i)^2}{2\sigma_i^2} - \sum_{i, j} \frac{v_i}{\sigma_{i}} W_{ij} h_{j} - \sum_{i} c_{i} v_{i} - \sum_{j} b_{j} h_{j}
+\\
+p(h_{j} = 1 | \mathbf{v}) &amp;= s(b_{j} + \sum_{i} \frac{v_{i}}{\sigma_{i}} W_{ij})
+\\
+p(v_{i} = 1 | \mathbf{h}) &amp;= \mathcal{N}(c_{i} + \sigma_{i} \sum_{j} W_{ij} h_{j}, \sigma_{i}^{2})
+\end{aligned}
+\]</span></p>
 
                 
               </div>
@@ -565,20 +545,20 @@ L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>分析与简答</div>
-      <div>https://ddccffq.github.io/2025/10/27/动手学深度学习/分析与简答/</div>
+      <div>无监督表示学习</div>
+      <div>https://ddccffq.github.io/2025/11/23/神经网络与深度学习/无监督表示学习/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>ddccffq</div>
+          <div>任志诚 2023212020</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月27日</div>
+          <div>2025年11月23日</div>
         </div>
       
       
@@ -610,9 +590,9 @@ L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/10/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="概率论的基本概念">
+                      <a href="/2025/11/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock%20and%20Condition%20Variables%20Implementation/" title="Lock and Condition Variables">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">概率论的基本概念</span>
+                        <span class="hidden-mobile">Lock and Condition Variables</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -620,8 +600,8 @@ L_{2_i} &amp;= \lambda_{L_2} \cdot ||w_i||_2^2
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/25/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/" title="全连接网络">
-                        <span class="hidden-mobile">全连接网络</span>
+                      <a href="/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS%20Interfaces%20and%20Syscalls/" title="OS Interfaces and Syscalls">
+                        <span class="hidden-mobile">OS Interfaces and Syscalls</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

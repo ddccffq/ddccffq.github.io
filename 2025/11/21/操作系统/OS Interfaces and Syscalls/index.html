@@ -16,23 +16,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddccffq">
+  <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="全连接网络">
-<meta property="og:url" content="https://ddccffq.github.io/2025/10/25/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/index.html">
+    <meta name="description" content="OS Programming Interface What are the system calls? They differ from different operating system. The follow table shows some system calls in Windows and Unix.       Windows Unix     Process Control C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS Interfaces and Syscalls">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS%20Interfaces%20and%20Syscalls/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="OS Programming Interface What are the system calls? They differ from different operating system. The follow table shows some system calls in Windows and Unix.       Windows Unix     Process Control C">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-25T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-25T12:29:58.502Z">
+<meta property="article:published_time" content="2025-11-21T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-23T03:22:50.169Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>全连接网络 - ddccffq&#39;s Blog</title>
+  <title>OS Interfaces and Syscalls - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="全连接网络"></span>
+            <span id="subtitle" data-typed-text="OS Interfaces and Syscalls"></span>
           
         </div>
 
@@ -209,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-25 21:00" pubdate>
-          2025年10月25日 晚上
+        <time datetime="2025-11-21 16:00" pubdate>
+          2025年11月21日 下午
         </time>
       </span>
     
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          190 字
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -269,12 +271,154 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">全连接网络</h1>
+            <h1 id="seo-header">OS Interfaces and Syscalls</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
+<h2 id="os-programming-interface">OS Programming Interface</h2>
+<p>What are the <strong>system calls</strong>? They differ from different operating system. The follow table shows some system calls in <strong>Windows</strong> and <strong>Unix</strong>.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+
+<thead>
+<tr class="header">
+<th></th>
+<th>Windows</th>
+<th>Unix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Process Control</td>
+<td><code>CreateProcess()</code><br><code>ExitProcess()</code><br><code>WaitForSingleObject()</code></td>
+<td><code>fork()</code><br><code>exit()</code><br><code>wait()</code></td>
+</tr>
+<tr class="even">
+<td>File Manipulation</td>
+<td><code>CreateFile()</code> <br> <code>ReadFile()</code> <br> <code>WriteFile</code> <br> <code>CloseHandle()</code></td>
+<td><code>open()</code> <br> <code>read()</code> <br> <code>write()</code> <br> <code>close()</code></td>
+</tr>
+<tr class="odd">
+<td>Device Manipulation</td>
+<td><code>SetConsoleMode()</code> <br> <code>ReadConsole()</code> <br> <code>WriteConsole()</code></td>
+<td><code>ioctl()</code> <br> <code>read()</code> <br> <code>write()</code></td>
+</tr>
+<tr class="even">
+<td>Information Maintenance</td>
+<td><code>GetCurrentProcessID()</code> <br> <code>SetTimer()</code> <br> <code>Sleep()</code></td>
+<td><code>getpid()</code> <br> <code>alarm()</code> <br> <code>sleep()</code></td>
+</tr>
+<tr class="odd">
+<td>Communication</td>
+<td><code>CreatePipe()</code> <br> <code>CreateFileMapping()</code> <br> <code>MapViewOfFile()</code></td>
+<td><code>pipe()</code> <br> <code>shm_open()</code> <br> <code>mmap()</code></td>
+</tr>
+<tr class="even">
+<td>Protection</td>
+<td><code>SetFileSecurity()</code> <br> <code>InitlializeSecurityDescriptor()</code> <br> <code>SetSecurityDescriptorGroup()</code></td>
+<td><code>chmod()</code> <br> <code>umask()</code> <br> <code>chown()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="posix-and-libc">POSIX and LIBC</h3>
+<p><strong>Portable Operating System Interface</strong> (POSXI) is a standard for <strong>UNIX OSes</strong>, especially its system calls.</p>
+<p><strong>LIBC</strong>: Overview of standard <strong>C libraries</strong>.</p>
+<ul>
+<li>POSIX APIs like <code>getpid()</code> and standard C functions like <code>strcpy()</code>.</li>
+<li>Apps do not directly invoke <strong>syscalls</strong>.</li>
+<li><strong>GLIBC</strong>: GNU C library.</li>
+</ul>
+<blockquote>
+<p><em>If a software is written with only dependency to libc, it has good <strong>portability</strong> across OSes/hardware</em>.</p>
+</blockquote>
+<h2 id="case-study-process-management">Case Study: Process Management</h2>
+<blockquote>
+<p>Why we need <strong>multi-process</strong>? Early motuvation: Allow developers to write their own <strong>shell command</strong> line interpreters.</p>
+</blockquote>
+<h3 id="process-in-windows">Process in Windows</h3>
+<p><strong>Boolean</strong> <code>CreateProcess(char *prog, char *args)</code>.</p>
+<ul>
+<li>Create and initialize the <strong>process control block</strong> (PCB) in kernel.</li>
+<li>Create and initialize a new <strong>memory address space</strong>.</li>
+<li>Load the program <code>prog</code> into the address space.</li>
+<li>Copy arguments <code>args</code> into memory in the address space.</li>
+<li>Initialize the hardware context to start execution at “start”.</li>
+<li>Inform the scheduler that the new process is ready to run.</li>
+</ul>
+<blockquote>
+<p>In reality, it’s a bit more complex. The parent process may specify the child process’s privileges, where it sends its input and output, what it should store its files, what to use as a scheduling priority.</p>
+</blockquote>
+<h3 id="fork-in-unix"><code>fork()</code> in Unix</h3>
+<p><code>fork()</code> and <code>exec()</code>: The Unix way to <strong>create new process</strong>.</p>
+<blockquote>
+<p>Perhaps one of the most controversial design in Unix.</p>
+</blockquote>
+<ul>
+<li><code>fork()</code>: Create a complete copy of the parent process, except the return value:
+<ul>
+<li>0 for child process.</li>
+<li>The PID of child process for the parent process.</li>
+</ul></li>
+<li><code>exec()</code>: Load and execute a program from disk.
+<ul>
+<li><em>Note</em>: <code>exec()</code> does not create a new process.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>What actually have <code>fork()</code> and <code>exec()</code> done?</p>
+<p><code>fork()</code></p>
+<ol type="1">
+<li>Create and initialize PCB.</li>
+<li>Create a new address space.</li>
+<li>Copy the entire memory contents from parent process to the child.</li>
+<li>Inherit the execution content of the parent (e.g., open files)</li>
+<li>Inform the scheduler that new process is ready to run.</li>
+</ol>
+<p><code>exec(char *prog, char *args)</code></p>
+<ol type="1">
+<li>Load the program <code>prog</code> into the current address space.</li>
+<li>Copy arguments <code>args</code> into memory in the address space.</li>
+<li>Initialize the hardware context to start execution at “start”</li>
+</ol>
+</blockquote>
+<p>A typical example of how <code>fork()</code> and <code>exec()</code> are used.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> pid = fork();<br><span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) &#123;<br>    exec(<span class="hljs-string">&quot;foo&quot;</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    waitpid(pid. &amp;status, options);<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>The memory contents of the child process are copied twice, would taht be a waste?</p>
+<p><code>exec()</code> is not always necessary (open a new page in Google Chrome)</p>
+<p><code>wait(pid)</code>: Wait for the child process to finish execution.</p>
+<p>Signal: Terminate, stop, resume a process</p>
+</blockquote>
+<h2 id="case-study-inputoutput">Case Study: Input/Output</h2>
+<blockquote>
+<p>Computer systems have very diverse I/O devices. Having an interface for each device means the OS interface needs to expand whenever a new device is added. <strong>Unix</strong> has one interface for all of them! (“Everthing is a file” - open, read, write, clos)</p>
+</blockquote>
+<h3 id="file-descriptor-in-unix">File Descriptor in Unix</h3>
+<p><strong>File Descriptor (fd)</strong>: a number (int) that uniquely identifies an open file in a computer’s operating system. It describes a data resource, and how that resource may be accessed.</p>
+<blockquote>
+<ul>
+<li>Each process has its own file descriptor table.</li>
+<li>A file can be opened multiple times and therefore associated with many file descriptor.</li>
+<li>More in filesystem courses.</li>
+</ul>
+<p>Internally, it has everything about an opened file (where it resides; its status; how to access it; …)</p>
+</blockquote>
+<h3 id="inputoutput-in-unix">Input/Output in Unix</h3>
+<h2 id="system-calls">System Calls</h2>
+<ul>
+<li>An illusion that kernel is simply a set of library routines.
+<ul>
+<li>Actually, it’s not. They are not even in the same context!</li>
+<li>Names, arguments, return values.</li>
+</ul></li>
+<li>A key challenge: Protection from user-space errors.
+<ul>
+<li>What are to be checked?</li>
+</ul></li>
+</ul>
 
                 
               </div>
@@ -293,7 +437,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">神经网络与深度学习</a>
+  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
   
   
 
@@ -313,20 +457,20 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>全连接网络</div>
-      <div>https://ddccffq.github.io/2025/10/25/动手学深度学习/卷积网络/</div>
+      <div>OS Interfaces and Syscalls</div>
+      <div>https://ddccffq.github.io/2025/11/21/操作系统/OS Interfaces and Syscalls/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>ddccffq</div>
+          <div>任志诚 2023212020</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月25日</div>
+          <div>2025年11月21日</div>
         </div>
       
       
@@ -358,9 +502,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/27/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%80%E7%AD%94/" title="分析与简答">
+                      <a href="/2025/11/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/" title="无监督表示学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分析与简答</span>
+                        <span class="hidden-mobile">无监督表示学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -368,8 +512,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/" title="Address Translation">
-                        <span class="hidden-mobile">Address Translation</span>
+                      <a href="/2025/11/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational%20Database%20Design:%20Schema%20Normalization/" title="Relational Database Design: Schema Normalization">
+                        <span class="hidden-mobile">Relational Database Design: Schema Normalization</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

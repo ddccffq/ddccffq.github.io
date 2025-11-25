@@ -1,0 +1,1018 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="7.4 Functional Dependency (FD) Theory In this chapter, what we will talk about?  The theory shows which FDs are implied logically by a given set of FDs. Algorithms generating lossless decompositions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Relational Database Design: Schema Normalization">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational%20Database%20Design:%20Schema%20Normalization/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="7.4 Functional Dependency (FD) Theory In this chapter, what we will talk about?  The theory shows which FDs are implied logically by a given set of FDs. Algorithms generating lossless decompositions">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-20T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-25T13:34:33.881Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Relational Database Design: Schema Normalization - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Relational Database Design: Schema Normalization"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-20 16:00" pubdate>
+          2025年11月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Relational Database Design: Schema Normalization</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="functional-dependency-fd-theory">7.4 Functional Dependency (FD) Theory</h2>
+<p>In this chapter, what we will talk about?</p>
+<ul>
+<li>The theory shows which FDs are <strong>implied logically</strong> by <strong>a given set</strong> of FDs.</li>
+<li>Algorithms generating <strong>lossless decompositions</strong> into <strong>BCNF</strong> and <strong>3ND</strong>.</li>
+<li>Algorithms testing if <strong>decomposition</strong> is <strong>dependency-preserving</strong>.</li>
+</ul>
+<blockquote>
+<p>给定关系模式 <span class="math inline">\(R(A, B, C)\)</span> 和关系 <span class="math inline">\(r(R)\)</span>，利用 SQL 语句判断关系 <span class="math inline">\(r(R)\)</span> 是否满足函数依赖 <span class="math inline">\(B \to C\)</span></p>
+<p>要求：如果 <span class="math inline">\(r(R)\)</span> 不满足该函数依赖，找出导致不满足的 <span class="math inline">\(r(R)\)</span> 中的<strong>元组</strong>；设计一个<strong>断言</strong>，以保证在 <span class="math inline">\(R(A, B, C)\)</span> 上成立 <span class="math inline">\(B \to C\)</span></p>
+<p>方法：1. 使用元组变量，2. 使用 <code>GROUP BY</code>。如果查询结果为 <code>null</code>，<code>not exist</code>，则函数依赖成立。</p>
+<p>参考 SQL 语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> ASSERTION B_to_C <span class="hljs-keyword">CHECK</span><br>(<span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> B <span class="hljs-keyword">FROM</span> R <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> B <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span> (<span class="hljs-keyword">DISTINCT</span> C) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>What’s <strong>logical implication</strong> between FDs? Given an FD set <span class="math inline">\(F\)</span>, there are <strong>other FDs</strong> <span class="math inline">\(f\)</span> that <strong>logically implied</strong> by <span class="math inline">\(F\)</span></p>
+<ul>
+<li>Example: if <span class="math inline">\(A \to B\)</span> and <span class="math inline">\(B \to C\)</span>, then infer that <span class="math inline">\(A \to C\)</span>.</li>
+</ul>
+<blockquote>
+<p><strong>Def</strong>. Given a schema <span class="math inline">\(R\)</span>, a FD <span class="math inline">\(f\)</span> is <strong>logically implied</strong> by a FD set <span class="math inline">\(F\)</span>, if <strong>every</strong> instance <span class="math inline">\(r(R)\)</span> that satisfies <span class="math inline">\(F\)</span> also satisfies <span class="math inline">\(f\)</span></p>
+<ul>
+<li>Example: <span class="math inline">\(\{A \to B, B \to C\}^{+} = \{A \to B, B \to C, A \to C, \cdots\}\)</span></li>
+</ul>
+<p><strong>Def</strong>. The set of <strong>all FDs</strong> logically implied by <span class="math inline">\(F\)</span> is the <strong>closure</strong> of <span class="math inline">\(F\)</span>.</p>
+<ul>
+<li>Denote the closure of <span class="math inline">\(F\)</span> by <span class="math inline">\(F^{+}\)</span>.</li>
+<li><span class="math inline">\(F^{+} = \{f \mid f \text{ is logically implied by } F\}\)</span></li>
+</ul>
+</blockquote>
+<h3 id="closure-of-fds">7.4.1 Closure of FDs</h3>
+<p>Compute <span class="math inline">\(F^{+}\)</span>, the closure of <span class="math inline">\(F\)</span>, by repeatedly applying <strong>Armstrong’s Axioms</strong>:</p>
+<ul>
+<li><strong>Reflexive rule</strong>: if <span class="math inline">\(\beta \subseteq \alpha\)</span>, then <span class="math inline">\(\alpha \to \beta\)</span>.</li>
+<li><strong>Augmentation rule</strong>: if <span class="math inline">\(\alpha \to \beta\)</span>, then <span class="math inline">\(\gamma \alpha \to \gamma \beta\)</span>.</li>
+<li><strong>Transitivity rule</strong>: if <span class="math inline">\(\alpha \to \beta\)</span>, and <span class="math inline">\(\beta \to \gamma\)</span>, then <span class="math inline">\(\alpha \to \gamma\)</span>.</li>
+</ul>
+<blockquote>
+<p>These rules are</p>
+<ul>
+<li>Sound: generate only functional dependencies that actually hold.</li>
+<li>Complete: generate all functional dependencies that hold.</li>
+</ul>
+<p>Additional rules:</p>
+<ul>
+<li><strong>Union rule</strong>: if <span class="math inline">\(\alpha \to \beta\)</span> holds and <span class="math inline">\(\alpha \to \gamma\)</span> holds, then <span class="math inline">\(\alpha \to \beta \gamma\)</span> holds.</li>
+<li><strong>Decomposition rule</strong>: if <span class="math inline">\(\alpha \to \beta \gamma\)</span> holds, then <span class="math inline">\(\alpha \to \beta\)</span> holds and <span class="math inline">\(\alpha \to \gamma\)</span> holds.</li>
+<li><strong>Pseudotransitivity rule</strong>: if <span class="math inline">\(\alpha \to \beta\)</span> holds and <span class="math inline">\(\gamma \beta \to \delta\)</span> holds, then <span class="math inline">\(\alpha \gamma \to \delta\)</span> holds.</li>
+</ul>
+<p>“holds” 理解为”满足“</p>
+</blockquote>
+<p>Here is an example of computing <span class="math inline">\(F^{+}\)</span> with using rules mentioned abov: <span class="math inline">\(R = (A, B, C, G, H, I)\)</span>, <span class="math inline">\(F = \{A \to B, A \to C, B \to H, CG \to H, CG \to I\}\)</span>.</p>
+<p>Some members of <span class="math inline">\(F^{+}\)</span>. <span class="math inline">\(\{A \to H\} \subseteq F^{+}\)</span> (transitivity rule), <span class="math inline">\(\{AG \to I\} \subseteq F^{+}\)</span> (augmentation rule and transitivity rule), <span class="math inline">\(\{CG \to HI\}\)</span> (augmentation rule).</p>
+<h3 id="closure-of-attribute-sets">7.4.2 Closure of Attribute Sets</h3>
+<blockquote>
+<p><strong>Def</strong>. An attribute <span class="math inline">\(B\)</span> is <strong>functionally determined</strong> by <span class="math inline">\(\alpha\)</span> under <span class="math inline">\(F\)</span> if <span class="math inline">\(\alpha \to B\)</span> under <span class="math inline">\(F\)</span></p>
+<ul>
+<li><span class="math inline">\(\alpha | F \to B\)</span></li>
+</ul>
+<p><strong>Def</strong>. Given a set of attributes <span class="math inline">\(\alpha\)</span>, define the <strong>closure</strong> of <span class="math inline">\(\alpha\)</span> under <span class="math inline">\(F\)</span> (denoted by <span class="math inline">\(\alpha^{+}\)</span>) as the set of attributes that are functionally determined by <span class="math inline">\(\alpha\)</span> under <span class="math inline">\(F\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\alpha^{+} = \{\beta \mid \beta \text{ is functionally determined by } \alpha \text{ under } F\} = \{\beta \mid \alpha | F \to \beta\}\)</span></li>
+</ul>
+</blockquote>
+<p><strong>Algorithm</strong>: compute <span class="math inline">\(\alpha^{+}\)</span>, the closure of <span class="math inline">\(\alpha\)</span>, under <span class="math inline">\(F\)</span>.</p>
+<ul>
+<li><strong>Input</strong>: <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(F\)</span></li>
+<li><strong>Output</strong>: <span class="math inline">\(\alpha^{+}\)</span></li>
+<li><strong>Result</strong> <span class="math inline">\(:= \alpha\)</span></li>
+</ul>
+<p>The process is as follow:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs process">while (changes to result) do<br>  for each beta_to_gamma in F do<br>    begin<br>      if beta subseteq result then result := result cup gamma<br>    end<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><span class="math inline">\(:=\)</span> 在数学定义里表示“被定义为”</p>
+</blockquote>
+<p>Here is an example of computing attribute set closure. We suppose <span class="math inline">\(R = (A, B, C, G, H, I)\)</span>, <span class="math inline">\(F = \{A \to B, A \to C, CG \to H, CG \to I, B \to H\}\)</span>. Compute <span class="math inline">\((AG)^{+}\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(res = AG\)</span></li>
+<li><span class="math inline">\(res = ABCG\)</span> &gt; <span class="math inline">\((A \to C)\)</span> and <span class="math inline">\((A \to B)\)</span></li>
+<li><span class="math inline">\(res = ABCGH\)</span> &gt; <span class="math inline">\((CG \subseteq ABCG)\)</span> and <span class="math inline">\((CG \to H)\)</span></li>
+<li><span class="math inline">\(res = ABCGHI\)</span> &gt; <span class="math inline">\((CG \subseteq ABCGH)\)</span> and <span class="math inline">\((CG \to I)\)</span></li>
+</ol>
+<p>So <span class="math inline">\((AG)^{+} = R\)</span>, <span class="math inline">\(AG\)</span> <strong>is a superkey of</strong> <span class="math inline">\(R\)</span></p>
+<blockquote>
+<p>Is <span class="math inline">\(AG\)</span> a candidate key?</p>
+<ol type="1">
+<li>Is <span class="math inline">\(AG\)</span> a super key?
+<ul>
+<li>Does <span class="math inline">\(AG \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\((AG)^{+} \subseteq R\)</span>?, yes</li>
+</ul></li>
+<li>Is any subset of <span class="math inline">\(AG\)</span> a superkey?
+<ul>
+<li>Does <span class="math inline">\(A \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\((A)^{+} \subseteq R\)</span>?, no</li>
+<li>Does <span class="math inline">\(G \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\((G)^{+} \subseteq R\)</span>?, no</li>
+</ul></li>
+</ol>
+</blockquote>
+<p>We can use attribute closure algorithm to</p>
+<ol type="1">
+<li><strong>Test for superkey</strong>
+<ul>
+<li>To test if <span class="math inline">\(\alpha\)</span> is a superkey, we compute <span class="math inline">\(\alpha^{+}\)</span> and check if <span class="math inline">\(\alpha^{+} = R\)</span></li>
+</ul></li>
+<li><strong>Test functional dependencies</strong>
+<ul>
+<li>To check if FD <span class="math inline">\(\alpha \to \beta\)</span> holds (or, in other words, is in <span class="math inline">\(F^{+}\)</span>), just check if <span class="math inline">\(\beta \subseteq \alpha^{+}\)</span></li>
+</ul></li>
+</ol>
+<blockquote>
+<p><strong>Def</strong>. For two FDs <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span>, if <span class="math inline">\(F^{+} = G^{+}\)</span> then <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> are <strong>equivalent</strong>.</p>
+</blockquote>
+<h3 id="canonical-cover">7.4.3 Canonical Cover</h3>
+<blockquote>
+<p><strong>Def</strong>. <strong>Extraneous</strong></p>
+<ol type="1">
+<li>Sets of FDs may have redundant FDs that can be inferred from others.
+<ul>
+<li><span class="math inline">\(A \to C\)</span> is redundant in <span class="math inline">\(\{A \to B, B \to C, A \to C\}\)</span>.</li>
+</ul></li>
+<li>Some attributes in the left or right sides of a FD may be extraneous
+<ul>
+<li><span class="math inline">\(\{A \to B, B \to C, A \to CD\}\)</span> can be simplified to <span class="math inline">\(\{A \to B, B \to C, A \to D\}\)</span>.</li>
+</ul></li>
+<li>An attribute of FD in <span class="math inline">\(F\)</span> is extraneous if we can remove it wihtout changing <span class="math inline">\(F^{+}\)</span>.</li>
+</ol>
+</blockquote>
+<ol type="1">
+<li><p>Removing an attribute from the <strong>left</strong> side of a FD could <strong>make it a stronger constraint</strong>. If we have <span class="math inline">\(AB \to C\)</span>, we may remove <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>. The choice depends on what FD set <span class="math inline">\(F\)</span> happens to be. Suppose that <span class="math inline">\(F = \{AB \to C, A \to D, D \to C\}\)</span>, then we can show that <span class="math inline">\(F\)</span> logically implies <span class="math inline">\(A \to C\)</span>, making extraneous <span class="math inline">\(B\)</span> in <span class="math inline">\(AB \to C\)</span>.</p></li>
+<li><p>Removeing an attribute from the <strong>right</strong> side of a FD could <strong>make it a weaker constraint</strong>. If we have <span class="math inline">\(AB \to CD\)</span> and remove <span class="math inline">\(C\)</span>, we get possibly weaker result <span class="math inline">\(AB \to D\)</span>. Because using just <span class="math inline">\(AB \to D\)</span>, we can no longer infer <span class="math inline">\(AB \to C\)</span>. But, depending on what FD set <span class="math inline">\(F\)</span> happens to be, we may remove <span class="math inline">\(C\)</span> from <span class="math inline">\(AB \to CD\)</span> safely. Suppose that <span class="math inline">\(F = \{AB \to CD, A \to C\}\)</span>. Even after replacing <span class="math inline">\(AB \to CD\)</span> by <span class="math inline">\(AB \to D\)</span>, we can still infer <span class="math inline">\(AB \to C\)</span> and thus <span class="math inline">\(AB \to CD\)</span>.</p></li>
+<li><p>Consider a set <span class="math inline">\(F\)</span> of FD and <span class="math inline">\(\alpha \to \beta\)</span> in F.</p>
+<ul>
+<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\alpha\)</span>, if <span class="math inline">\(A \in \alpha\)</span>, and <span class="math inline">\(F\)</span> implies <span class="math inline">\((F - \{\alpha \to \beta\}) \cup {(\alpha - A) \to \beta} = F&#39;\)</span>.</li>
+<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\beta\)</span>, if <span class="math inline">\(A \in \beta\)</span>, and the set of FDs <span class="math inline">\(F&#39; = (F - \{\alpha \to \beta\}) \cup \{\alpha \to (\beta - A)\}\)</span> implies <span class="math inline">\(F\)</span>.</li>
+</ul></li>
+</ol>
+<p>How to test if an attribute is extraneous? Here are two ways to make it.</p>
+<p>Let <span class="math inline">\(R\)</span> be a relation schema and let <span class="math inline">\(F\)</span> be a set of FDs that hold on <span class="math inline">\(R\)</span>. Consider an attribute <span class="math inline">\(B\)</span> in the FD. For <span class="math inline">\(\alpha \to \beta\)</span></p>
+<ol type="1">
+<li>Testing if attribute <span class="math inline">\(B \in \beta\)</span> is extraneous in <span class="math inline">\(\beta\)</span> under <span class="math inline">\(F\)</span>?
+<ul>
+<li>Consider the set <span class="math inline">\(F&#39; = (F - \{\alpha \to \beta\}) \cup \{\alpha \to (\beta - B)\}\)</span>.</li>
+<li>Compute <span class="math inline">\(\alpha^{+}\)</span> under <span class="math inline">\(F&#39;\)</span> and check if <span class="math inline">\(B \in \alpha^{+}\)</span> under <span class="math inline">\(F&#39;\)</span>? If it does, <span class="math inline">\(B\)</span> is extraneous in <span class="math inline">\(\beta\)</span>.</li>
+</ul></li>
+<li>Testing if attribute <span class="math inline">\(A \in \alpha\)</span> is extraneous in <span class="math inline">\(\alpha\)</span> under <span class="math inline">\(F\)</span>?
+<ul>
+<li>Let <span class="math inline">\(\gamma = \alpha - \{A\}\)</span>. Compute <span class="math inline">\(\gamma^{+}\)</span> using the FDs in <span class="math inline">\(F\)</span>.</li>
+<li>If <span class="math inline">\(\gamma^{+}\)</span> includes all attributes in <span class="math inline">\(\beta\)</span>, then <span class="math inline">\(A\)</span> is extraneous in <span class="math inline">\(\alpha\)</span>.</li>
+</ul></li>
+</ol>
+<blockquote>
+<p><strong>Def</strong>. A <strong>canonical cover</strong> of <span class="math inline">\(F\)</span>, denoted as <span class="math inline">\(F_{c}\)</span>, is a <strong>minimal</strong> set of FDs equivalent to <span class="math inline">\(F\)</span> without <strong>redundant</strong> FDs or attribute.</p>
+<p>A <strong>canonical cover</strong> for <span class="math inline">\(F\)</span> is a set of FDs <span class="math inline">\(F_c\)</span> such that</p>
+<ul>
+<li><span class="math inline">\(F\)</span> logically implies all dependencies in <span class="math inline">\(F_c\)</span></li>
+<li><span class="math inline">\(F_c\)</span> logically implies all dependencies in <span class="math inline">\(F\)</span></li>
+<li>No FD in <span class="math inline">\(F_c\)</span> contains an extraneous attribute and each left side of FD in <span class="math inline">\(F_c\)</span> is unique.
+<ul>
+<li>There are no two FDs in <span class="math inline">\(F_c\)</span>, <span class="math inline">\(\alpha_1 \to \beta_1\)</span> and <span class="math inline">\(\alpha_2 \to \beta_2\)</span> such that <span class="math inline">\(\alpha_1 = \alpha_2\)</span>.</li>
+</ul></li>
+</ul>
+</blockquote>
+<p>How to compute a canonical cover for <span class="math inline">\(F\)</span>? We repeat using the <strong>union rule</strong> to replace any FDs in <span class="math inline">\(F\)</span> of the form <span class="math inline">\(\alpha_1 \to \beta_1\)</span> and <span class="math inline">\(\alpha_1 \to \beta_2\)</span> with <span class="math inline">\(\alpha_1 \to \beta_1 \beta_2\)</span>, finding a FD <span class="math inline">\(\alpha \to \beta\)</span> in <span class="math inline">\(F_c\)</span> with an <strong>extraneous attribute</strong> either in <span class="math inline">\(\alpha\)</span> or in <span class="math inline">\(\beta\)</span>, until <span class="math inline">\(F_c\)</span> not change.</p>
+<blockquote>
+<p><em>Note</em></p>
+<ol type="1">
+<li><p>Test for extraneous attributes done using <span class="math inline">\(F_c\)</span> not <span class="math inline">\(F\)</span>. IF an extraneous attribute is found, delete it from <span class="math inline">\(\alpha \to \beta\)</span></p></li>
+<li><p>Union rule may become applicable after some extraneous attributes have been deleted, so it has to be reapplied.</p></li>
+<li><p>There may be <strong>several</strong> <span class="math inline">\(F_c\)</span> for a set <span class="math inline">\(F\)</span> of FDs.</p></li>
+</ol>
+</blockquote>
+<p>Here is an example of computing a canonical cover. Suppose <span class="math inline">\(R = (A, B, C)\)</span>, <span class="math inline">\(F = \{A \to BC, B \to C, A \to B, AB \to C\}\)</span>.</p>
+<ol type="1">
+<li><p>Use <strong>union rules</strong> to combine <span class="math inline">\(A \to BC\)</span> and <span class="math inline">\(A \to B\)</span> into <span class="math inline">\(A \to BC\)</span>.</p></li>
+<li><p><span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(AB \to C\)</span>.</p></li>
+<li><p><span class="math inline">\(C\)</span> is <strong>extraneous</strong> in <span class="math inline">\(A \to BC\)</span>.</p></li>
+<li><p>The canonical cover is <span class="math inline">\(\{A \to B, B \to C\}\)</span>.</p></li>
+</ol>
+<h3 id="lossless-join-decomposition">7.4.4 Lossless-join Decomposition</h3>
+<blockquote>
+<p><strong>Def</strong>. For <span class="math inline">\(R = (R_1, R_2)\)</span>, we require that for all possible relations <span class="math inline">\(r\)</span> on schema <span class="math inline">\(R\)</span>, <span class="math inline">\(r = \Pi_{R_1}(r) \Join \Pi_{R_2}(r)\)</span>.</p>
+<p><strong>Def</strong>. Decomposition of <span class="math inline">\(R\)</span> into <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> is <strong>lossless join</strong> if at least one of the following dependencies is in <span class="math inline">\(F^{+}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(R_1 \cap R_2 \to R_1\)</span> or <span class="math inline">\(R_1 \cap R_2 \to R_2\)</span></li>
+</ul>
+<p><em>Note</em>: The above FDs are a <strong>sufficient condition</strong> for lossless join decomposition; The dependencies are a <strong>necessary condition</strong> only if all constraints are FDs.</p>
+<p><strong>Def</strong>. <strong>Lossy decomposition</strong>, <span class="math inline">\(r \neq \Pi_{R_1}(r) \Join \Pi_{R_2}(r) \cdots \Join \Pi_{R_n}(r)\)</span>, also known as <strong>lossy-join decomposition</strong>.</p>
+</blockquote>
+<p>Here is an example about lossless-join decomposition. Suppose that that <span class="math inline">\(R = (A, B, C)\)</span> and <span class="math inline">\(F = \{A \to B, B \to C\}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(R_1 = (A, B)\)</span>, <span class="math inline">\(R_2 = (B, C)\)</span>. <span class="math inline">\(R_1 \cap R_2 = \{B\}\)</span> and <span class="math inline">\(B \to BC \in F^{+}\)</span>, so lossless-join decomposition</li>
+</ul>
+<h3 id="functional-dependency-preservation">7.4.5 Functional Dependency Preservation</h3>
+<blockquote>
+<p><strong>Def</strong>. For a schema <span class="math inline">\(R\)</span>, <span class="math inline">\(F\)</span> holds on <span class="math inline">\(R\)</span>, and decomposition <span class="math inline">\(\{R_1, R_2, \cdots, R_n\}\)</span> of <span class="math inline">\(R\)</span>, the <strong>restriction</strong> of <span class="math inline">\(F\)</span> to <span class="math inline">\(R_i\)</span>, denoted as <span class="math inline">\(F_i\)</span> is defined as</p>
+<p><span class="math display">\[
+F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subseteq R_i\}
+\]</span></p>
+<p>The set of FDs in <span class="math inline">\(F^{+}\)</span> that include only attributes in <span class="math inline">\(R_i\)</span>.</p>
+<p><strong>Def</strong>. Let <span class="math inline">\(F_i\)</span> be <strong>restriction</strong> of <span class="math inline">\(F\)</span> to <span class="math inline">\(R_i\)</span>. A decomposition is <strong>dependency preserving</strong>, if <span class="math inline">\((F_1 \cup F_2 \cup \cdots \cup F_n)^{+} = F^{+}\)</span></p>
+<p><em>Note</em>: Testing for dependency preservation take s exponential time.</p>
+</blockquote>
+<p><strong>Alogrithm</strong>. How to test for dependency preservation? Check if a FD <span class="math inline">\(\alpha \to \beta\)</span> is preserved in decomposition <span class="math inline">\(R\)</span> of <span class="math inline">\(R_1\)</span>, <span class="math inline">\(R_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(R_n\)</span>. We set <span class="math inline">\(res = \alpha\)</span> and repeat updating <span class="math inline">\(t = (res \cap R_i)^{+} \cap R_i\)</span>, <span class="math inline">\(res = res \cup t\)</span> for each <span class="math inline">\(R_i\)</span> in the decomposition until <span class="math inline">\(res\)</span> does not change. If <span class="math inline">\(res\)</span> contains all attributes in <span class="math inline">\(\beta\)</span>, the FD <span class="math inline">\(\alpha \to \beta\)</span> preserved.</p>
+<p>Test on <strong>all FDs</strong> in <span class="math inline">\(F\)</span> to check if a decomposition is dependency preserving</p>
+<ul>
+<li>The decomposition is preserved, if and only if all <span class="math inline">\(\alpha \to \beta\)</span> in <span class="math inline">\(F\)</span> are preserved.</li>
+<li>This procedure takes polynomial time.</li>
+</ul>
+<p>Here is an example. Suppose <span class="math inline">\(R = (A, B, C)\)</span>, <span class="math inline">\(F = \{A \to B, B \to C\}\)</span>, <span class="math inline">\(\text{Key} = \{A\}\)</span>, <span class="math inline">\(R\)</span> is not in BCNF, and decomposition is <span class="math inline">\(R_1 = (A, B)\)</span>, <span class="math inline">\(R_2 = (B, C)\)</span></p>
+<ul>
+<li><span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> in BCNF.</li>
+<li>Lossless-join decomposition.</li>
+<li>Dependency preserving.</li>
+</ul>
+<blockquote>
+<p>Summary: In 7.4.5, we talk about the <strong>Def</strong> of <strong>Dependency Preserving</strong>, and two ways to test for dependency preservation (<span class="math inline">\((F_1 \cup F_2 \cup \cdots \cup F_n)^{+} = F^{+}\)</span> or <strong>Alogrithm</strong>)</p>
+</blockquote>
+<h2 id="algorithms-for-decomposition-using-fd">7.5 Algorithms for Decomposition Using FD</h2>
+<h3 id="bcnf">BCNF</h3>
+<p><strong>Algorithm 1</strong>. To check if a non-trivial FD <span class="math inline">\(\alpha \to \beta\)</span> causes a violation of BCNF</p>
+<ol type="1">
+<li>Compute <span class="math inline">\(\alpha^{+}\)</span> (the attribute closure of <span class="math inline">\(\alpha\)</span>).</li>
+<li>Verify that it includes all attributes of <span class="math inline">\(R\)</span>, that is, it is a superkey of <span class="math inline">\(R\)</span>.</li>
+</ol>
+<blockquote>
+<p><em>Simplified test</em>: To check if a relation schema <span class="math inline">\(R\)</span> is in BCNF, suffices to check only the FDs in <span class="math inline">\(F\)</span> for violation, rather than checking all FDs in <span class="math inline">\(F^{+}\)</span>. If none of the FDs in <span class="math inline">\(F\)</span> causes a violation of BCNF, none of the FDs in <span class="math inline">\(F^{+}\)</span> will cause a violation of BCNF either.</p>
+<p>However, <em>simplified test</em> using only <span class="math inline">\(F\)</span> is incorrect when testing a relation in a <strong>decomposition</strong> of <span class="math inline">\(R\)</span>. Consider <span class="math inline">\(R = (A, B, C, D, E)\)</span>, with <span class="math inline">\(F = \{A \to B, BC \to D\}\)</span>. We decompose <span class="math inline">\(R\)</span> into <span class="math inline">\(R_1 = (A, B)\)</span> and <span class="math inline">\(R_2 = (A, C, D, E)\)</span>. Neither of the dependencies in <span class="math inline">\(F\)</span> contain only attributes from <span class="math inline">\((A, C, D, E)\)</span>, so we might be mislead into thinking <span class="math inline">\(R_2\)</span> satisfies BCNF. In fact, dependency <span class="math inline">\(AC \to D\)</span> in <span class="math inline">\(F^{+}\)</span> shows <span class="math inline">\(R_2\)</span> is not in BCNF.</p>
+</blockquote>
+<p><strong>Algorithm 2</strong>. Check if a relation <span class="math inline">\(R_i\)</span> in a <strong>decomposition</strong> of <span class="math inline">\(R\)</span> is in BCNF.</p>
+<p>Either test <span class="math inline">\(R_i\)</span> for BCNF with respect to the restriction of <span class="math inline">\(F^{+}\)</span> to <span class="math inline">\(R_i\)</span> or use the original set of FDs <span class="math inline">\(F\)</span> that hold on <span class="math inline">\(R\)</span>, but with test:</p>
+<ul>
+<li>For every set of attributes <span class="math inline">\(\alpha \subseteq R_{i}\)</span>, check that <span class="math inline">\(\alpha^{+}\)</span> either includes no attribute of <span class="math inline">\(R_i - \alpha\)</span> or includes all attributes of <span class="math inline">\(R_i\)</span>.</li>
+</ul>
+<p>If the condition is violated by some <span class="math inline">\(\alpha \to \beta\)</span> in <span class="math inline">\(F^{+}\)</span>, the dependency <span class="math inline">\(\alpha \to (\alpha^{+} - \alpha) \cap R_i\)</span> can be shown to hold on <span class="math inline">\(R_i\)</span> and <span class="math inline">\(R_i\)</span> violates BCNF.</p>
+<p><strong>Algorithm 3</strong>. Decomposition algorithm for lossless schema in BCNF.</p>
+<blockquote>
+<ul>
+<li><span class="math inline">\(F^{+}\)</span> is computed at first to determine whether or not <span class="math inline">\(\alpha\)</span> is the superkey of subschema <span class="math inline">\(R_i\)</span>.</li>
+<li>If other methods can be used to determine whether or not <span class="math inline">\(\alpha\)</span> is the superkey of subschema <span class="math inline">\(R_i\)</span>, then <span class="math inline">\(F^{+}\)</span> need not be computed.</li>
+</ul>
+</blockquote>
+<p>Given <span class="math inline">\(R\)</span>, <span class="math inline">\(F\)</span> holding on <span class="math inline">\(R\)</span>. We set <span class="math inline">\(res := \{R\}\)</span>. If there is a non-BCNF subschema <span class="math inline">\(R_i\)</span> in <span class="math inline">\(res\)</span>, then let <span class="math inline">\(\alpha \to \beta\)</span> be a nontrivial FD that holds on <span class="math inline">\(R_i\)</span>, such that (1). <span class="math inline">\(\alpha\)</span> is not the superkey for <span class="math inline">\(R_i\)</span>; (2). <span class="math inline">\(\alpha \cap \beta = \phi\)</span>. Then update <span class="math inline">\(res := \{(res - R_{i})\} \cup \{\{(R_i - \beta)\} \cup \{(\alpha, \beta)\}\}\)</span></p>
+<blockquote>
+<p><em>Note</em></p>
+<ul>
+<li><p>To determine whether or not <span class="math inline">\(R_i\)</span> is in BCNF, the restriction of <span class="math inline">\(F\)</span> to <span class="math inline">\(R_i\)</span> and the candidate keys of <span class="math inline">\(R_i\)</span> should be computed.</p></li>
+<li><p><span class="math inline">\(R_i\)</span> is not in BCNF, because of <span class="math inline">\(\alpha \to \beta\)</span> on <span class="math inline">\(R_i\)</span>, <span class="math inline">\(\alpha\)</span> is not the superkey of <span class="math inline">\(R_i\)</span>.</p></li>
+<li><p>The algorithm replaces non-BCNF <span class="math inline">\(R_i\)</span> with <span class="math inline">\((R_i - \beta)\)</span> and <span class="math inline">\((\alpha, \beta)\)</span>.</p>
+<ul>
+<li><span class="math inline">\(R_i\)</span> is decomposed into <span class="math inline">\((R_i - \beta)\)</span> and BCNF <span class="math inline">\((\alpha, \beta)\)</span>.</li>
+</ul></li>
+<li><p>The restriction of <span class="math inline">\(F\)</span> to the schema <span class="math inline">\((\alpha, \beta)\)</span> is <span class="math inline">\(\alpha \to \beta\)</span>, and <span class="math inline">\(\alpha\)</span> is the superkey for <span class="math inline">\((\alpha, \beta)\)</span>. so <span class="math inline">\((\alpha, \beta)\)</span> is in BCNF.</p></li>
+</ul>
+</blockquote>
+<h3 id="nf">3NF</h3>
+<blockquote>
+<p>Why we decompose 3NF?</p>
+<ul>
+<li>There are some situations where
+<ul>
+<li>BCNF is not dependency preserving.</li>
+<li>Whereas checking for FD violation is important.</li>
+</ul></li>
+<li>Solution: Define a weaker normal form, called the <strong>Third Normal Form</strong> (3NF)
+<ul>
+<li>Allows some redundancy (with resultant problems).</li>
+<li>But check FDs on <strong>individual relations</strong> without computing a join.</li>
+<li>There is a lossless-join, dependency-preserving decomposition into 3NF.</li>
+</ul></li>
+</ul>
+</blockquote>
+<p><strong>Algorithm 1</strong>. A decomposition algorithm that gives <strong>lossless</strong> and <strong>dependency preserving</strong> schema in 3NF.</p>
+<blockquote>
+<p><em>Note</em></p>
+<ul>
+<li>All candidate keys should be founded out.</li>
+<li>Only one <span class="math inline">\(F_c\)</span> should be computed at first.</li>
+</ul>
+</blockquote>
+<ol type="1">
+<li><p>Find out all candidate keys for <span class="math inline">\(R\)</span>.</p></li>
+<li><p>Find out a <strong>canonical over</strong> <span class="math inline">\(F_c\)</span> for F.</p></li>
+<li><p>Do for each FD <span class="math inline">\(\alpha \to \beta\)</span> in <span class="math inline">\(F_c\)</span>. If none of the schema <span class="math inline">\(R_i\)</span>, <span class="math inline">\(1 \leq j \leq i\)</span> contains <span class="math inline">\(\alpha \beta\)</span>, then <span class="math inline">\(i := i + 1\)</span>, <span class="math inline">\(R_i := \alpha \beta\)</span>.</p></li>
+<li><p>If none of the schemas <span class="math inline">\(R_j\)</span>, <span class="math inline">\(1 \leq j \leq i\)</span> contains a candidate key for <span class="math inline">\(R\)</span>, then <span class="math inline">\(i := i + 1\)</span>, <span class="math inline">\(R_{i} :=\)</span> any candidate key for <span class="math inline">\(R\)</span>.</p></li>
+<li><p>Return <span class="math inline">\((R_1, R_2, \cdots, R_i)\)</span>.</p></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Relational Database Design: Schema Normalization</div>
+      <div>https://ddccffq.github.io/2025/11/20/数据库系统原理/Relational Database Design: Schema Normalization/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS%20Interfaces%20and%20Syscalls/" title="OS Interfaces and Syscalls">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OS Interfaces and Syscalls</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context%20Switch/" title="Context Switch">
+                        <span class="hidden-mobile">Context Switch</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
