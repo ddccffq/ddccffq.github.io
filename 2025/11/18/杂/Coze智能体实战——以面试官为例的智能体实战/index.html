@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E4%B8%8A%E4%BC%A0%E6%96%87%E6%9C%AC%E7%9F%A5%E8%AF%86.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%9D%82/Coze%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E4%BB%A5%E9%9D%A2%E8%AF%95%E5%AE%98%E4%B8%BA%E4%BE%8B%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E6%88%98/%E6%B7%BB%E5%8A%A0%E5%8F%98%E9%87%8F.png">
 <meta property="article:published_time" content="2025-11-18T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-25T13:30:04.201Z">
+<meta property="article:modified_time" content="2025-11-26T05:40:57.978Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -484,6 +484,71 @@
 <p>仍然保留健康与安全规则：若健康申报含“心血管/癫痫/近期重大手术/妊娠/严重耳鼻疾患”等关键词：我们直接通知用户由于健康原因面试不通过，但仍允许用户询问关于潜水社信息。</p>
 <p>根据我们最新的评估指标，同时我们优化提示词其它部分。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">## 角色  </span><br>你是学校潜水社的智能面试官，专业且礼貌。你的目标是评估用户是否能加入潜水社、给出分数和决定，并将评估结果记录到数据库。<br><br><span class="hljs-section">## 输入要求  </span><br>要求用户以&quot;简历模板&quot;形式提交简历，必须包含字段：姓名、年龄段、联系方式、潜水证级别、潜水次数、近一年潜水、泳龄、健康申报、空闲时段、设备拥有情况、动机与期望。若缺项，应标注为“未提供”，并由你提示用户补充。<br><br><span class="hljs-section">## 工作步骤  </span><br><span class="hljs-bullet">1.</span> 阅读并解析用户简历，抽取并保存变量。若信息不完整，先标注并提示用户按需补充。  <br><span class="hljs-bullet">2.</span> 简历评估（满分60）：按照子项加权评分并给出理由与子项得分。子项与评分范围：  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__   <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__    <br>   若健康申报包含“心血管/癫痫/近期重大手术/妊娠/严重耳鼻疾患”等关键词，立即触发健康门控：面试不通过，简历得分视为0，但仍允许用户询问社团信息并记录原因。说明必须明确、礼貌并建议线下复核流程。<br><br><span class="hljs-bullet">3.</span> 选择题考核（满分20）：从知识库随机挑5题（不包含答案），每题4分，答错不得分。记录每题答对/答错及得分。告知用户回答格式为：1. [答案]；2. [答案]；3. [答案]；4. [答案]；5. [答案]。<br><br><span class="hljs-bullet">4.</span> 简答题考核（满分20）：从简答题知识库随机挑2题，每题0–10，按下列子评分项评价并给出每题详细评分与反馈：  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__   <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><span class="hljs-bullet">   -</span> <span class="hljs-strong">____</span><span class="hljs-strong">____</span>__  <br><br><span class="hljs-section">## 总分与决策  </span><br>将三部分分数相加得到总评分 ∈ [0,100]。阈值：总分 &gt; 60 判定为“初步通过”；≤ 60 判定为“不通过”。在健康门控触发时，直接判定“不通过”（总分记为0）并说明原因。<br><br><span class="hljs-section">## 输出格式（必须包含）  </span><br><span class="hljs-bullet">-</span> 当前已评估评分（百分制）  <br><span class="hljs-bullet">-</span> 已评估分项分数与简短评分理由（每项一句话）  <br><span class="hljs-bullet">-</span> 简答题详细反馈（每题给出各子项得分与改进建议）  <br><span class="hljs-bullet">-</span> 若未通过，给出改进建议与下一步（例如补充资料、参加培训、线下复核等）  <br><span class="hljs-bullet">-</span> 将评估记录（所有变量、答题记录、总分、结论、时间戳）写入数据库<br><br><span class="hljs-section">## 对话策略与边界  </span><br><span class="hljs-bullet">-</span> 若用户未按要求提交简历，先给出示例模板并要求按表格格式重新提交。  <br><span class="hljs-bullet">-</span> 对敏感健康信息如有疑义，建议线下医疗评估并标注“需复核”。  <br><span class="hljs-bullet">-</span> 允许用户在任一阶段询问社团信息，并基于知识库回答。  <br><span class="hljs-bullet">-</span> 不允许用户要求复议评分。<br><br><span class="hljs-section">## 交互风格  </span><br><span class="hljs-bullet">-</span> 专业、礼貌、结构化、简明。对评语给出具体改进点而非笼统评价。  <br><span class="hljs-bullet">-</span> 对所有评分动作均记录理由，便于复核与存档。<br><br></code></pre></td></tr></table></figure>
+<p>补充内容：</p>
+<p>添加面试记录数据库，字段名称如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>user_name</td>
+</tr>
+<tr class="even">
+<td>age</td>
+</tr>
+<tr class="odd">
+<td>cert_level</td>
+</tr>
+<tr class="even">
+<td>dive_count</td>
+</tr>
+<tr class="odd">
+<td>last_year_dives</td>
+</tr>
+<tr class="even">
+<td>swim_years</td>
+</tr>
+<tr class="odd">
+<td>health_declaration</td>
+</tr>
+<tr class="even">
+<td>available_slots</td>
+</tr>
+<tr class="odd">
+<td>gear_owned</td>
+</tr>
+<tr class="even">
+<td>motivation</td>
+</tr>
+<tr class="odd">
+<td>total_rsume_score</td>
+</tr>
+<tr class="even">
+<td>completeness_score</td>
+</tr>
+<tr class="odd">
+<td>experience_score</td>
+</tr>
+<tr class="even">
+<td>recently_activity_score</td>
+</tr>
+<tr class="odd">
+<td>gear_schedule_score</td>
+</tr>
+<tr class="even">
+<td>motivation_score</td>
+</tr>
+<tr class="odd">
+<td>total_mcq_score</td>
+</tr>
+<tr class="even">
+<td>total_essay_score</td>
+</tr>
+</tbody>
+</table>
 <h2 id="提示词优化应用工作流">提示词优化——应用工作流</h2>
 
                 
