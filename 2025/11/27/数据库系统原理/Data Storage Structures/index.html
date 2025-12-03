@@ -19,22 +19,22 @@
   <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Basic Input Output System">
+    <meta name="description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in s sequence of fields. Each a relation table is a set of tuples.  The record size is f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Boot, Process, Kernel">
-<meta property="og:url" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/index.html">
+<meta property="og:title" content="Data Storage Structures">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data%20Storage%20Structures/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Basic Input Output System">
+<meta property="og:description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in s sequence of fields. Each a relation table is a set of tuples.  The record size is f">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-15T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-18T08:08:02.024Z">
+<meta property="article:published_time" content="2025-11-27T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-01T01:53:22.683Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Boot, Process, Kernel - ddccffq&#39;s Blog</title>
+  <title>Data Storage Structures - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Boot, Process, Kernel"></span>
+            <span id="subtitle" data-typed-text="Data Storage Structures"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-15 16:00" pubdate>
-          2025年10月15日 下午
+        <time datetime="2025-11-27 16:00" pubdate>
+          2025年11月27日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1 字
+          1.7k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          15 分钟
         
       </span>
     
@@ -271,13 +271,243 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Boot, Process, Kernel</h1>
+            <h1 id="seo-header">Data Storage Structures</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="basic-input-output-system">Basic Input Output System</h2>
+<h2 id="file-organization">File Organization</h2>
+<p>DB is stored as a collection of <strong>DB files</strong>. Each file is a sequence of <strong>records</strong>. Each record is in s sequence of <strong>fields</strong>. Each a <strong>relation table</strong> is a set of <strong>tuples</strong>.</p>
+<blockquote>
+<p>The record size is <strong>fixed</strong>. Each file has records of <strong>one particular type</strong> only. <strong>Different</strong> files are used for <strong>different relations</strong>. A tuple is stored as a record in DB.</p>
+</blockquote>
+<h3 id="fixed-length-records">Fixed-Length Records</h3>
+<p>“Fixed-Length Records”并不是指现实中每个字段的语义长度恒定不变，而是指“数据库在磁盘/页上为每条记录分配了一个固定的字节长度”。</p>
+<p>当我们尝试删除某些 fixed-length records 时，可以使用 <strong>free lists</strong>。这个表在其 header 中存储第一个会被删除的 record 地址，然后我们再使用第一个会被删除的 record 存储第二个会被删除的 record 地址，以此类推（类似 pointers）。这也说明了，records can be stored in noncontiguous space。</p>
+<h3 id="variable-length-records">Variable-Length Records</h3>
+<p>Variable-length records arise in several ways:</p>
+<ul>
+<li><strong>Record types</strong> allow variable lengths, e.g. strings(varchar).</li>
+<li><strong>Multiple record types</strong> in a file. e.g. Multitable Clustering File.</li>
+</ul>
+<p>So how to store variable-length records in block?</p>
+<ol type="1">
+<li>Attributes in the record are stored in order (step 1: fixed-length attributes, step 2: variable-length attributes).</li>
+<li><strong>Variable-length attributes</strong> represented by fixed size (offset, length), with actual data stored after all fixed length attributes.</li>
+<li>Null values represented by null-value bitmap.</li>
+</ol>
+<h4 id="slotted-page-structure">Slotted Page Structure</h4>
+<p>The storage space is divided into <strong>fixed-sized slotted pages</strong>, 4KB or 8KB records are allocated to slotted pages.</p>
+<blockquote>
+<p>分槽页结构：将 DB 文件存储空间在逻辑上为多个 page，每个 page 又多个 slot 组成。</p>
+</blockquote>
+<ol type="1">
+<li>Slotted page header contais
+<ul>
+<li>Number of record entries.</li>
+<li>End of free space in the block.</li>
+<li>Location and size of each record.</li>
+</ul></li>
+<li>Records can be moved around within a page to keep contiguous.
+<ul>
+<li><span class="math inline">\(r_{i}\)</span> is deleted, and <span class="math inline">\(r_{i + 3}\)</span>, <span class="math inline">\(r_{i + 2}\)</span>, <span class="math inline">\(r_{i + 1}\)</span> are moved to the free space created by deletion.</li>
+<li><strong>Entry in the header must be updated</strong>, e.g. set to <span class="math inline">\(-1\)</span>.</li>
+</ul></li>
+<li>Pointers should not point directly to record, instead they should point to the <strong>entry</strong> for the record in header.</li>
+</ol>
+<h2 id="organization-of-records-in-files">Organization of Records in Files</h2>
+<p>DB file can be viewed as a set of records at logical level. <strong>Logical organization</strong> of records determine how to access the records. These records are <strong>logically</strong> organized as <strong>heap</strong>, <strong>sequential</strong>, <strong>hash</strong> and <strong>clustering</strong>.</p>
+<h3 id="heap-file-organization">Heap File Organization</h3>
+<p>Any record can be placed anywhere in the file where there is space for the record.</p>
+<ul>
+<li>There is <strong>no ordering</strong> of records.</li>
+<li>Records usually do not move once allocated.</li>
+<li>There is <strong>a single file for a relation</strong>.</li>
+</ul>
+<h3 id="sequential-file-organization">Sequential File Organization</h3>
+<p>Records are logically ordered by <strong>search-keys</strong>. Records are stored in sequential order, based on the search key.</p>
+<ol type="1">
+<li>Records are physically stored in search-key order.</li>
+<li>As close to search-key order as possible to minimize the number of block accesses in sequential processing.</li>
+</ol>
+<p>Chain together records by pointers.</p>
+<ul>
+<li>The pointer in each record points to the next record in search-key order.</li>
+<li>Sequential access to the file.</li>
+</ul>
+<h3 id="clustering-file-organization">Clustering File Organization</h3>
+<p>Store several relations in one file using a <strong>mutitable clustering</strong> file organization. Records of several different relations are stored in the same file. This is because storing related records on the same block to minimize I/O.</p>
+<h3 id="hashing-file-organization">Hashing File Organization</h3>
+<p>The file records are stored in <strong>buckets</strong>, and the bucket is the address of the record. Hash function <strong>on some attributes</strong> (search key) determine the address of the records. The result of the function specifies <strong>in which</strong> block/bucket of the record should be placed.</p>
+<h2 id="data-dictionary-storage">Data Dictionary Storage</h2>
+<p>Data dictionary stores</p>
+<ul>
+<li>Metadata: Data about data, such as names of relations.</li>
+<li>User and accounting information.
+<ul>
+<li>passwords.</li>
+</ul></li>
+<li>Statistical and descriptive data.
+<ul>
+<li>number of tuples in each relation.</li>
+</ul></li>
+<li>Physical file organization information.
+<ul>
+<li>How relation is stored (sequential/hash/…).</li>
+<li>Physical location of relation.</li>
+</ul></li>
+<li>Information about indices.</li>
+</ul>
+<h2 id="data-buffer">Data Buffer</h2>
+<p>A DB file is partitioned into fixed-length storage units, called <strong>blocks</strong>. Blocks are units of both <strong>storage allocation</strong> and <strong>data transfer</strong>. DBS seeks to <strong>minimize</strong> the number of <strong>block transfers</strong> betweem the <strong>disk</strong> and <strong>main memory</strong>. We can reduce the number of disk accesses by keeping as many blocks as possible in <strong>main memory</strong>.</p>
+<p><strong>Def</strong>. <strong>Buffer</strong> is a <strong>portion of main memory</strong> available to store <strong>copies</strong> of disk blocks.</p>
+<p><strong>Def</strong>. <strong>Buffer manager</strong> allocates buffer space in main memory.</p>
+<blockquote>
+<p>The buffer size is an <strong>adjustable</strong> parameter. It has impact on the system performance, e.g. throughput.</p>
+</blockquote>
+<h3 id="buffer-management">Buffer Management</h3>
+<p>Program (requester) calls on <strong>buffer manager</strong> when need block from disk.</p>
+<ol type="1">
+<li>If the block is already in buffer, buffer manager returns the address of the block in mian memory.</li>
+<li>If the block is <strong>not in buffer</strong>, buffer manager
+<ol type="1">
+<li>Allocates space in buffer for the block
+<ol type="1">
+<li>Replacing (throwing out) some other block, if required, to make space for the new block.</li>
+<li>Replaced block written back to disk only if it was modified since the most recent time that it was written to/fetched from disk.</li>
+</ol></li>
+<li>Reads the block from disk to buffer returns the address of the block in mian memory to requester.</li>
+</ol></li>
+</ol>
+<h4 id="buffer-replacement-strategy">Buffer Replacement Strategy</h4>
+<ul>
+<li>Pinned block: Memory block that is not allowed to be written back to disk.
+<ul>
+<li>Pin done before reading/writing data from a block.</li>
+<li>Unpin done when read/write is complete.</li>
+</ul></li>
+<li>Multiple concurrent pin/unpin operations.
+<ul>
+<li>Shared and exclusive locks on buffer.</li>
+</ul></li>
+<li>Concurrent opearations for shared data.
+<ul>
+<li>Reading require shared lock.</li>
+<li>Updating require exclusive lock.</li>
+<li>Locking rules:
+<ul>
+<li>Only one process can get exclusive lock at a time.</li>
+<li>Shared lock cannot be concurrently with exclusive lock.</li>
+<li>Multiple processes may be given shared lock concurrently.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="buffer-replacement-policies">Buffer Replacement Policies</h4>
+<ul>
+<li><p>Replace the block <strong>least recently used (LRU strategy)</strong></p>
+<ul>
+<li>Idea: Use <strong>past pattern</strong> of block references as predictor of future references.</li>
+<li>Use information in user’s query to predict future references.</li>
+</ul></li>
+<li><p><strong>Toss-immediate strategy</strong>: Free the space occupied by block as soon as the final tuple of that block has been processed.</p></li>
+<li><p><strong>Most recently used (MRU)</strong> strategy: Pin the block currently being processed. After the final tuple of that block has been processed, the block is unpinned, and it becomes the most recently used block.</p></li>
+</ul>
+<ol type="1">
+<li>Buffer manager can use <strong>statistical information</strong> regarding the probability that a request will reference a particular relation, e.g. data dictionary is frequently accessed.
+<ul>
+<li>Heuristic: Keep data-dictionary blocks in main memory buffer.</li>
+</ul></li>
+<li>Buffer manager may reorder <strong>writes</strong>
+<ul>
+<li>Lead to corruption of data structures on disk.</li>
+<li>Heuristic: Careful ordering of writes.</li>
+</ul></li>
+</ol>
+<h2 id="column-oriented-storage">Column-Oriented Storage</h2>
+<p>Column-Oriented Storage known as <strong>colunmar representation</strong>. It stores each attribute of a relation separately.</p>
+<p>Benefits:</p>
+<ul>
+<li>Reduced IO if only some attributes are accessed.</li>
+<li>Improved CPU cache performance.</li>
+<li>Improved compression.</li>
+</ul>
+<p>Drawbacks:</p>
+<ul>
+<li>Cost of tuple reconstruction from columnar representation.</li>
+<li>Cost of tuple deletion and update.</li>
+</ul>
+<blockquote>
+<p>Columnar representation found to be more efficient for <strong>decision support</strong> than row-oriented representation. Row-oriented representation preferable <strong>for transaction processing</strong>.</p>
+</blockquote>
+<h2 id="data-organization-in-dbs">Data Organization in DBS</h2>
+<p>DBS provides the services of <strong>data organization and access</strong>. From DBS users, data is organized as relational tables, tuples, and attributes (user-oriented logical organization of data); From operating systems, data is stored as <strong>OS file</strong>, known as DB file.</p>
+<blockquote>
+<p>DBS 数据的基本逻辑单位——<strong>元组/数据行</strong>与 OS 文件中数据的基本逻辑单位——<strong>文件记录</strong>的对应关系。</p>
+<ul>
+<li>1 个元组对应于文件系统的 1 个逻辑记录</li>
+<li>1 个关系表对应于 1 个 OS 文件，或 1 个文件存储多个关系表的数据。</li>
+</ul>
+<p>在 DBS，1 个 block 包含多个文件逻辑记录。</p>
+</blockquote>
+<h2 id="data-access-in-dbs">Data Access in DBS</h2>
+<p>小型关系数据库系统，关系表被存储在单独文件，DBMS 利用 OS 文件系统作为 DBMS 物理层实现基础，利用 OS 文件系统实现数据组织与访问</p>
+<ul>
+<li>操作系统为 DB 分配所需的磁盘 block，有可能将逻辑上相邻数据分配到磁盘上不同区域，导致连续访问效率下降。</li>
+<li>用户对 DB 文件数据的访问需要借助于 OS 文件系统提供的文件结构和存取路径，这也说明 DBMS 对 OS 依赖太大，不利于数据库系统的移植。</li>
+<li>DBS 数据访问过程，DBMS 的 storage management，OS 文件系统，I/O 子系统完成如下地址变换
+<ul>
+<li>DB 关系表中元组/数据行到 DB 文件数据的逻辑地址（文件名，记录号）间的映射。</li>
+<li>DB 文件记录号到外设上数据物理地址（记录所在的物理块号和具体地址）的映射。</li>
+</ul></li>
+</ul>
+<p>现代大型关系数据库系统，SQL Server、Oracle，为适应数据动态变化、提供数据快速访问路径，DB 数据仍然以DB 文件的方式存在，但对 DB 文件管理并不直接依赖于 OS 文件系统。创建数据库时，DBMS 向 OS 一次申请所需外存空间（数据库文件），在此外存存储空间中，DBMS 独立地为数据库中的数据设计存储和访问结构，</p>
+<ul>
+<li>分配管理 DB 文件，提供数据访问机制。</li>
+<li>根据需要，动态扩充、压缩数据库空间</li>
+</ul>
+<p>SQL Server 中，一个数据库由用于<strong>存储表</strong>和<strong>索引</strong>的磁盘/外存存储空间构成，这些空间被分配在一个或多个操作系统文件上（主文件，辅文件，日志文件）。数据库被划分为许多逻辑<strong>页</strong>，每个逻辑页大小为 8KB。</p>
+<ul>
+<li>每个数据库文件由多个从 0 开始连续编号的页组成。每个页逻辑上划分为许多从 1 开始连续编号的槽，每个<strong>槽用于存放一个数据库表中的数据行/元组/记录</strong>。</li>
+</ul>
+<p>数据库文件所在的页可以物理上存储在外存连续区域，如想连续的 disk blocks，也可以存储在非连续的 blocks 中。</p>
+<p>对于 1 个 DB 表中的数据行/元组/记录，SQL Server 用该表所在的数据库文件 ID、数据行所在页 ID 和 槽 ID 来标识，数据行的逻辑地址：&lt;文件 ID，页 ID，槽 ID&gt;。</p>
+<ul>
+<li><p>SQL Server 以<strong>盘区</strong>为单位，为 DB 文件的页分配外存上的物理空间。盘区大小为 64KB，占用 8 个连续的页。DB 文件中数据行/元组/记录物理地址：数据行所在盘区的物理地址。</p></li>
+<li><p>SQL Server 利用<strong>全局分配映象</strong> GAM 和共享全局分配映象 SGAM 数据结构记录每个盘区的使用情况。</p></li>
+<li><p>SQL Server 利用<strong>索引分配映象</strong> IAM 数据结构记录每个数据库文件的页与该页所在物理盘区的对应关系</p></li>
+<li><p>SQL Server 利用索引实现对关系表中的数据行/元组的访问</p>
+<ul>
+<li>Index：search key <span class="math inline">\(\to\)</span> &lt;文件 ID，页 ID，槽 ID&gt;</li>
+<li>SQL Server 可对关系表的<strong>主键</strong>自动建立索引</li>
+</ul></li>
+<li><p>SQL Server 数据<strong>存储与访问</strong>机制</p>
+<ul>
+<li>二级地址映射
+<ul>
+<li>基于<strong>索引</strong>的 search key <span class="math inline">\(\to\)</span> &lt;文件 ID，页 ID，槽 ID&gt;</li>
+<li>基于<strong>IAM</strong>的<strong>数据行逻辑地址</strong> <span class="math inline">\(\to\)</span> <strong>数据行物理地址</strong>（盘区物理地址）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="opengauss-段页式存储管理">openGauss 段页式存储管理</h2>
+<blockquote>
+<p>Segmentation with Paging.</p>
+</blockquote>
+<p>数据库<strong>表空间</strong>和<strong>数据文件</strong>以段-区-页/block的逻辑组织方式，进行存储分配和管理。</p>
+<ul>
+<li>1 个 database（在一个 tablespace 中）有且仅有一个段空间（segment space），段空间的实际物理存储可以是一个物理文件，也可以拆分存储在多个物理文件上。</li>
+<li>1 个 database 中所有 table 都从该数据库的空间中分配数据，数据库中<strong>表的数目</strong>和实际物理文件个数无关。避免当数据库中的表比较多时，数据库存储所在的物理文件也比较多的问题。</li>
+</ul>
+<p>Database 中的每张 table 有一个逻辑上的 segment，该 table 所有的数据都存在该 segment 上。</p>
+<ul>
+<li>每个 segment 会挂载多个 extent，每个 extent 是外存上一块连续的物理页，但 1 个 segment 内的各个 extent 可以是不连续的。</li>
+<li>extent 的大小可是根据业务需求调整，避免碎片带来的存储空间浪费。</li>
+</ul>
+<blockquote>
+<p>段页式文件可以自动扩容，不需要用户手动指定，直到磁盘空间用满或者达到 tablespace 设置的限制。段页式存储不会自动回收磁盘空间。</p>
+<p>当某些数据表被删除之后，其在段页式文件中占据的空间，会被保留，即段页式文件中会存在一些空洞，磁盘空间没有被释放，这些空洞会被面后新扩展或者创建出来的表重用。如果不需要重用这些空洞，手动调用系统函数，进行磁盘回收，释放磁盘空间。</p>
+</blockquote>
 
                 
               </div>
@@ -296,7 +526,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
   
   
 
@@ -316,8 +546,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Boot, Process, Kernel</div>
-      <div>https://ddccffq.github.io/2025/10/15/操作系统/Boot_Process_Kernel/</div>
+      <div>Data Storage Structures</div>
+      <div>https://ddccffq.github.io/2025/11/27/数据库系统原理/Data Storage Structures/</div>
     </div>
     <div class="license-meta">
       
@@ -329,7 +559,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月15日</div>
+          <div>2025年11月27日</div>
         </div>
       
       
@@ -361,9 +591,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Syllabi_and_Basics/" title="Syllabi and Basics">
+                      <a href="/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/" title=" Indexing">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Syllabi and Basics</span>
+                        <span class="hidden-mobile"> Indexing</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -371,8 +601,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/" title="Thread">
-                        <span class="hidden-mobile">Thread</span>
+                      <a href="/2025/11/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock%20and%20Condition%20Variables%20Implementation/" title="Lock and Condition Variables">
+                        <span class="hidden-mobile">Lock and Condition Variables</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

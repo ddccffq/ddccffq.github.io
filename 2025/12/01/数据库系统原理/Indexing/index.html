@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Basic Concepts Def. Search Key Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file.">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Indexing">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Basic Concepts Def. Search Key Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-01T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-01T07:19:50.677Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title> Indexing - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=" Indexing"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-01 16:00" pubdate>
+          2025年12月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"> Indexing</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="basic-concepts">Basic Concepts</h2>
+<p><strong>Def</strong>. Search Key Search key is an <strong>attribute</strong> or a set of attributes used to look up records.</p>
+<blockquote>
+<p>Why we need indexing mechanisms. We create a DB indexed file <strong>instructor</strong> and its index file. The file <strong>instructor</strong> is logically a sequential file, but its records may be stored <strong>non-contiguously</strong> or <strong>non-ordered</strong> on disk.</p>
+</blockquote>
+<p><strong>Def</strong>. Index File An index file consists of records (called <strong>index entries</strong>) of the <strong>form</strong> below.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">search key</th>
+<th style="text-align: center;">pointer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 1: index file form
+</div>
+<p><strong>Def</strong>. Indexing The process of mapping from <strong>search key</strong> to <strong>storage locations</strong> of the <strong>records</strong> in disk (search key <span class="math inline">\(\to\)</span> storage locations).</p>
+<p>DBS files with <strong>indexing mechanism</strong> include:</p>
+<ul>
+<li><strong>Indexed file</strong>, in which <strong>data records</strong> are stored.</li>
+<li><strong>Index file</strong>, in which <strong>index entries</strong> are included.</li>
+</ul>
+<blockquote>
+<p>*Review<strong>: The </strong>indexed file** can be organized (sequential file, heap file, hash file, clustering file).</p>
+</blockquote>
+<p><strong>Def</strong>. Ordered Indices A kind of <strong>indexing</strong>. In ordered indices, search key and address of the records are stored in <strong>sorted order</strong>.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">search key</th>
+<th style="text-align: center;">pointer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_1\)</span></td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_2\)</span></td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_3\)</span></td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_4\)</span></td>
+<td style="text-align: center;">…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 2: example index file with ordered indices
+</div>
+<p><strong>Def</strong>. Hash Indices <strong>Hash function</strong> map search key to the address of the records.</p>
+<ul>
+<li>The records are stored in <strong>buckets</strong>.</li>
+<li>The number of buckets is the address of the records.</li>
+<li>Determined by hash function.</li>
+</ul>
+<blockquote>
+<p>Ordered indexing Vs Hashing</p>
+<p>Expected queries:</p>
+<ul>
+<li>Hashing is better at retrieving records having a specified value of the key.</li>
+<li>If range queries are common, the ordered indices are to be preferred. (Hashing index does not support range query)</li>
+</ul>
+</blockquote>
+<h3 id="the-primaryclustering-index">The Primary/Clustering Index</h3>
+<p><strong>Def</strong>. The Primary/Clustering Index (in the index file)</p>
+<ul>
+<li>The search key of the index specifies the sequential order of the indexed file.</li>
+<li>The indexed file is a sequential file.</li>
+</ul>
+<blockquote>
+<p>聚集索引：索引文件搜索键所规定顺序与被索引文件纪录顺序一致。</p>
+<p>主索引：</p>
+<ul>
+<li>建立在<strong>主键</strong>的索引：当表定义了主键后，DBMS 自动为该表在主键上建立<strong>聚集索引</strong>，该索引又是<strong>主索引</strong>。</li>
+<li>主索引一定是聚集索引，但聚集索引不一定是主索引。</li>
+<li>1 个表上只能建立 1 个聚集索引，也只能有 1 个主索引。</li>
+<li>如果表没有定义主键，不会有主索引；但可以为该表建立聚集索引。</li>
+</ul>
+<p>在<strong>没有定义主键</strong>的关系表中插入数据：在关系表所在数据库文件中，各个记录顺序一般是无序的，取决于数据插入顺心（heap 文件）。但在<strong>有主键</strong>的关系表中插入数据：数据库文件是有序的，按照主键顺序排列。</p>
+</blockquote>
+<h3 id="the-secondarynon-clustering-index">The Secondary/Non-clustering Index</h3>
+<p><strong>Def</strong>. The Secondary/Non-clustering Index</p>
+<ul>
+<li>A search key specifies an order <strong>different</strong> from the sequential order of the file.</li>
+<li>Secondary indices have to be <strong>dense indices</strong></li>
+</ul>
+<blockquote>
+<p>Index record points to a <strong>bucket</strong> that contains pointers to the actual records with that particular search key value.</p>
+</blockquote>
+<p><strong>Def</strong>. Index-sequential File Ordered sequential file with a primary/clustering index on the search key.</p>
+<blockquote>
+<ol type="1">
+<li>Sequential scan using <strong>primary index</strong> is efficient.</li>
+<li>Sequential scan using <strong>secondary index</strong> is expensive. This is because each record access may fetch a <strong>new block</strong> from disk.</li>
+</ol>
+</blockquote>
+<p><strong>Example</strong>.</p>
+<ul>
+<li>A DB file is made up of the 128-byte fix-sized <strong>logical records</strong>. It is stored on disk in unit of <strong>block</strong> that is of 1024-byte in size.</li>
+<li>The size of the file is 10240-byte.</li>
+<li>Physical I/O operations transfer data on disk into an DBMS <strong>buffer</strong> in main memory, in terms of 1024-byte <strong>block</strong>.</li>
+</ul>
+<p>If a transaction issues read requests in a <strong>sequential access manner</strong>, what is the percentage of read requests that result in I/O operations?</p>
+<ul>
+<li>The file contains <span class="math inline">\(10240 / 128 = 80\)</span> records.</li>
+<li>A block holds <span class="math inline">\(1024 / 128 = 8\)</span> records.</li>
+<li>The file is stored in <span class="math inline">\(10240 / 1024 = 10\)</span> blocks.</li>
+<li>Percentage <span class="math inline">\(= 10 / 80 = 12.5 \%\)</span></li>
+</ul>
+<blockquote>
+<p>按照记录存储顺序，依次访问每个记录时，每个记录的访问都对应一个 I/O 请求。每次 I/O 访问，DBMS 将 1 个 block 中的 8 个记录读取到内存 buffer 中，即当后续再访问这 8 个记录时，直接从 buffer 中读，无需访问 disk，即无需 I/O 访问。每 8 个 I/O 请求导致 1 个实际 I/O 操作。</p>
+</blockquote>
+<h3 id="dense-and-sparse-indices">Dense and Sparse Indices</h3>
+<p><strong>Def</strong>. Dense Index</p>
+<ul>
+<li>The index record appears for <strong>every</strong> search key value in the <strong>indexed file</strong>.</li>
+<li>Each value of search key corresponds to an <strong>index entry</strong> in the <strong>index file</strong>.</li>
+</ul>
+<p>For dense primary index, the index record contains the search key value.</p>
+<ul>
+<li><strong>A pointer to the first record</strong> according to that search key value.</li>
+<li>The rest of the records with the <strong>same</strong> search key value would be stored <strong>sequentially</strong> after the first record.</li>
+</ul>
+<p><strong>Def</strong>. Sparse Index Index file contains index entries for <strong>only some</strong> search key values.</p>
+<p>For sparse index, to locate a file record with the search key value <span class="math inline">\(K\)</span>.</p>
+<ul>
+<li>Find index entry with <strong>the largest search key value</strong> <span class="math inline">\(\leq K\)</span>.</li>
+<li>Search file sequentially <strong>starting</strong> at the record to which this index entry points.</li>
+</ul>
+<h2 id="multi-level-indices">Multi-level Indices</h2>
+<p>The index file may be very large, and cannot be entirely kept in memory. If primary index does not fit in memory, access becomes expensive.</p>
+<p>Solution: Treat primary index kept on disk as <strong>a sequential file</strong> and construct <strong>a sparse index</strong> on it.</p>
+<ul>
+<li>Outer index - a sparse index of primary index file.</li>
+<li>Inner index - the primary index file.</li>
+</ul>
+<blockquote>
+<p>If even outer index is too large to fit in main memory, yet another level of index can be created, and so on.</p>
+</blockquote>
+<h3 id="b-tree-properties">B<sup>+</sup>-tree Properties</h3>
+<p><strong>Def</strong>. B<sup>+</sup>-tree B<sup>+</sup>-tree is a rooted tree, with the parameter degree (branching) factor <span class="math inline">\(n\)</span>. All paths from root to leaf are of the same length: balanced tree.</p>
+<ul>
+<li>Each <strong>internal</strong> node (not root or leaf) has bewteen <span class="math inline">\(\lceil n / 2\rceil\)</span> and <span class="math inline">\(n\)</span> children.</li>
+<li>Each <strong>leaf</strong> node has bewteen <span class="math inline">\(\lceil (n - 1) / 2\rceil\)</span> and <span class="math inline">\(n - 1\)</span> search key values.</li>
+<li>Special cases for the root:
+<ul>
+<li>If the root is not a leaf, it has at least 2 children.</li>
+<li>If the root is a leaf, it has between 0 and <span class="math inline">\(n - 1\)</span> values.</li>
+</ul></li>
+</ul>
+<p>Advantages:</p>
+<ul>
+<li>Since the inter-node connections are done by <strong>pointers</strong>, logically close blocks need not be physically close.</li>
+<li>The non-leaf levels of B<sup>+</sup>-tree form a hierarchy of <strong>sparse indices</strong>. If there are <span class="math inline">\(K\)</span> search key values, the height is no more than <span class="math inline">\(\lceil \log_{\lceil n/2 \rceil}(K)\rceil\)</span></li>
+</ul>
+<h3 id="b-tree-node-structure">B<sup>+</sup>-tree Node Structure</h3>
+<p>The search keys in a node are ordered.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(P_1\)</span></th>
+<th><span class="math inline">\(K_1\)</span></th>
+<th><span class="math inline">\(P_2\)</span></th>
+<th><span class="math inline">\(K_2\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(P_{n - 1}\)</span></th>
+<th><span class="math inline">\(K_{n - 1}\)</span></th>
+<th><span class="math inline">\(P_{n}\)</span></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 3: typical B<sup>+</sup>-tree node structure
+</div>
+<ul>
+<li><span class="math inline">\(K_i\)</span> are the search key values.</li>
+<li><span class="math inline">\(P_i\)</span> are
+<ul>
+<li>pointers to childer (<strong>non-leaf nodes</strong>).</li>
+<li>pointers to records or buckets of records (<strong>leaf nodes</strong>).</li>
+</ul></li>
+</ul>
+<h3 id="leaf-nodes-in-b-tree">Leaf Nodes in B<sup>+</sup>-tree</h3>
+<p>Leaf node properties</p>
+<ul>
+<li><span class="math inline">\(P_i\)</span> points to a record with search key value <span class="math inline">\(K_i\)</span>, <span class="math inline">\(i &lt; n - 1\)</span>.</li>
+<li><span class="math inline">\(P_n\)</span> points to the next leaf node.</li>
+</ul>
+<blockquote>
+<p>If <span class="math inline">\(L_i\)</span>, <span class="math inline">\(L_j\)</span> are leaf nodes, such that <span class="math inline">\(i &lt; j\)</span>, <span class="math inline">\(L_i\)</span>’s search key values are less than or equal to <span class="math inline">\(L_j\)</span>’s search key values.</p>
+</blockquote>
+<h3 id="non-leaf-nodes-in-b-tree">Non-leaf Nodes in B<sup>+</sup>-tree</h3>
+<p>Non-leaf nodes <strong>with</strong> <span class="math inline">\(n\)</span> <strong>pointers</strong> form a multi-level sparse index on leaf nodes.</p>
+<ol type="1">
+<li><span class="math inline">\(P_1\)</span>: The search keys to which <span class="math inline">\(P_1\)</span> points have values. <span class="math inline">\(P_1 &lt; K_1\)</span>.</li>
+<li><span class="math inline">\(P_i\)</span>: The search keys to which <span class="math inline">\(P_i(2 \leq i \leq n - 1)\)</span>, points have values. <span class="math inline">\(K_{i - 1} \leq P_{i} &lt; K_i\)</span>.</li>
+<li><span class="math inline">\(P_n\)</span>: The search keys to which <span class="math inline">\(P_n\)</span> points have values. <span class="math inline">\(K_{n - 1} \leq P_{n}\)</span>.</li>
+</ol>
+<h3 id="non-unique-keys">Non-unique Keys</h3>
+<p><strong>Def</strong>. Non-unique Keys If a search key <span class="math inline">\(a_i\)</span> is not unique, create an index on a <strong>composite key</strong><span class="math inline">\((a_i, A_p)\)</span>, which is unique. <span class="math inline">\(A_p\)</span> could be a primary key, or any other attribute that guarantees uniqueness.</p>
+<h3 id="b-tree-index-files">B-tree Index Files</h3>
+<p><strong>Def</strong>. B-tree B-tree allows search key values to appear <strong>only once</strong>.</p>
+<p>Non-leaf nodes: Search keys appear <strong>nowhere else</strong>.</p>
+<ul>
+<li>An <strong>additional pointer</strong> field for each search key must be included.</li>
+<li>Pointer <span class="math inline">\(B_i\)</span> are the <strong>bucket</strong> or the <strong>record</strong> pointer to leaf node.</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(P_1\)</span></th>
+<th><span class="math inline">\(B_1\)</span></th>
+<th><span class="math inline">\(K_1\)</span></th>
+<th><span class="math inline">\(P_2\)</span></th>
+<th><span class="math inline">\(B_2\)</span></th>
+<th><span class="math inline">\(K_2\)</span></th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(P_{n - 1}\)</span></th>
+<th><span class="math inline">\(B_{n - 1}\)</span></th>
+<th><span class="math inline">\(K_{n - 1}\)</span></th>
+<th><span class="math inline">\(P_{n}\)</span></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 4: typical B-tree node structure
+</div>
+<ul>
+<li>Advantages: less tree nodes and find search key value before reaching leaf node.</li>
+<li>Disadvantages:
+<ul>
+<li>Only small fraction of all serach key are found early.</li>
+<li>Fan-out is reduced, as non-leaf nodes are larger.</li>
+<li>Insertion and deletion are more complicated.</li>
+</ul></li>
+</ul>
+<h2 id="hash-indices">Hash Indices</h2>
+<blockquote>
+<p>The records are stored in <strong>buckets</strong>.</p>
+<ul>
+<li>Bucket is a unit of storage containing records (a bucket is a disk block).</li>
+<li>Bucket can be obtained from search key using <strong>hash function</strong>.</li>
+</ul>
+</blockquote>
+<p><strong>Def</strong>. Hash function <span class="math inline">\(h\)</span></p>
+<ul>
+<li>A function from search key <span class="math inline">\(K\)</span> to bucket address.</li>
+<li>Entries with different search keys mapped to the same bucket.</li>
+<li>The entire bucket searched <strong>sequentially</strong> to locate an entry.</li>
+</ul>
+<p><strong>Def</strong>. Hash Index <strong>Buckets</strong> store entries with pointers to records.</p>
+<p><strong>Def</strong>. Hash File Organization Buckets store records of the hash file. The <strong>process</strong> of obtaining the bucket of a record from search key using <strong>hashing function</strong>.</p>
+<p><strong>Def</strong>. Static Hashing Hash function <span class="math inline">\(h\)</span> cannot be modified.</p>
+<p><strong>Def</strong>. Dynamic Hashing Hash function <span class="math inline">\(h\)</span> can be modified dynamically.</p>
+<h2 id="bucket-overflows">Bucket Overflows</h2>
+<p><strong>Def</strong>. Bucket Overflow It occurs because of</p>
+<ul>
+<li>Insufficient buckets.</li>
+<li>Non-uniform distribution of records due to:
+<ul>
+<li>Multiple records have same search key value.</li>
+<li>Hash function produces non-uniform distribution of the key values.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>the probability of bucket overflow can be reduced, but cannot be eliminated; It is handled by using <strong>overflow buckets</strong>.</p>
+</blockquote>
+<p><strong>Def</strong>. Overflow Chaining The overflow buckets of a given bucket are chained together.</p>
+<h2 id="multiple-key-access">Multiple-key Access</h2>
+<p><strong>Def</strong>. Composite Search Keys Composite search keys are search keys containing <strong>more than one</strong> attribute. e.g.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">create</span> index Multiple<span class="hljs-operator">-</span>index <span class="hljs-keyword">on</span> takes(course_id, semester, <span class="hljs-keyword">year</span>)<br></code></pre></td></tr></table></figure>
+<p><strong>Def</strong>. Lexicographic Ordering. <span class="math inline">\((a_1, a_2) &lt; (b_1, b_2)\)</span> if either <span class="math inline">\(a_1 &lt; b_1\)</span> or <span class="math inline">\(a_1 = b_1\)</span> and <span class="math inline">\(a_2 &lt; b_2\)</span>.</p>
+<blockquote>
+<p>复合索引左前缀原则</p>
+<p>Suppose we have an index on composite search keys <code>(dept_name, salary)</code> with the where clause <code>where dept_name = "Finance" and salary = 8000;</code>. Index on <code>(dept_name, salary)</code> to fetch records with both conditions.</p>
+<ul>
+<li>Can also efficiently handle <code>where dept_name = "Finance" and salary &lt; 8000;</code></li>
+<li>Can also efficiently handle <code>where dept_name = "Finance";</code></li>
+</ul>
+<p>But cannot efficiently handle</p>
+<ol type="1">
+<li><code>where dept_name &lt; "Finance" and salary = 8000;</code>. May fetch many records that satisfy the first but not the second condition.</li>
+<li><code>where salary = 8000;</code>. The index is not used for query.</li>
+</ol>
+</blockquote>
+<h2 id="creation-of-indices">Creation of Indices</h2>
+<blockquote>
+<ul>
+<li>Indices on primary key created automatically.</li>
+<li>Indices can speed up <strong>lookups</strong>, but impose <strong>cost</strong> on updates.</li>
+</ul>
+</blockquote>
+<p><strong>Def</strong>. Index Definition in SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> INDEX <span class="hljs-operator">&lt;</span>index<span class="hljs-operator">-</span>name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">on</span> <span class="hljs-operator">&lt;</span>relation<span class="hljs-operator">-</span>name<span class="hljs-operator">&gt;</span>(<span class="hljs-operator">&lt;</span>attributes<span class="hljs-operator">-</span>list<span class="hljs-operator">&gt;</span>);<br><br><span class="hljs-keyword">DROP</span> INDEX <span class="hljs-operator">&lt;</span>index<span class="hljs-operator">-</span>name<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Use <code>CREATE UNIQUE INDEX</code> to indirectly specify and enforce the condition that the search key is a <strong>candidate</strong> key.</p>
+</blockquote>
+<p>We can enforce DB to use index.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> tbMROData <span class="hljs-keyword">WITH</span> (INDEX <span class="hljs-operator">=</span> timeide) <span class="hljs-keyword">WHERE</span> ...<br></code></pre></td></tr></table></figure>
+<p>Also we can enforce not.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">ALTER</span> INDEX timeide <span class="hljs-keyword">on</span> tbMRODatanew<br>DISABLE<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> tbMRODatanew <span class="hljs-keyword">WHERE</span> ...<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>我们应该在哪些属性上建立索引，可以从以下几个角度分析。</p>
+<ol type="1">
+<li><p>对 <code>SELECT</code> 查询，针对 <code>SELECT</code>，<code>FROM</code>，<code>WHERE</code>，<code>GROUPBY</code>，<code>HAVING</code> 操作，在以下属性上建立聚集或非聚集索引，有利于提高访问速度。</p>
+<ul>
+<li><code>WHERE</code> 子句涉及到的<strong>查询属性</strong>，<strong>连接属性</strong>。</li>
+<li><code>GROUPBY</code> 子句中的<strong>分组属性</strong>。</li>
+</ul></li>
+<li><p>对 <code>DELETE</code>，<code>FROM</code>，<code>WHERE</code> 操作，如果在 <code>WHERE</code> 查询条件属性上建立索引，有利于在数据库文件中快速定位由 <code>WHERE</code> 条件定义的需要删除的元组。但删除这些元组后，将引起 DBMS 对索引进行调整重组，引起额外的系统开销，可能会降低 <code>DELETE</code> 的执行速度。</p></li>
+<li><p>对 <code>INSERT</code> 操作，在关系表中插入新元组后，DBMS 将根据新插入的元组在索引属性上的值，对表中的索引进行调整重组，必然引起额外系统开销，降低 <code>INSERT</code> 的执行速度。</p></li>
+<li><p>对 <code>UPDATE</code>，<code>SET</code>，<code>WHERE</code> 操作，如果在 <code>WHERE</code> 查询条件属性上建立了索引，有利于在数据库文件中快速定位 <code>UPDATE</code> 需要访问的元组。但如果 <code>SET</code> 操作修改了索引涉及到的属性的值，则会引发 DBMS 对索引的重组。索引重组带来额外的系统开销，降低了 <code>UPDATE</code> 的执行速度。</p></li>
+</ol>
+</blockquote>
+<h2 id="例题">例题</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div> Indexing</div>
+      <div>https://ddccffq.github.io/2025/12/01/数据库系统原理/Indexing/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Readers,%20Writers%20and%20Deadlock/" title="Readers, Writers and Deadlock">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Readers, Writers and Deadlock</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data%20Storage%20Structures/" title="Data Storage Structures">
+                        <span class="hidden-mobile">Data Storage Structures</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

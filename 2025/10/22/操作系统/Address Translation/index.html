@@ -22,22 +22,22 @@
     <meta name="description" content="Address Translation Concept  From virtual address to physical address.   Memory protection（内存保护） 地址转换允许操作系统为每个进程分配独立的虚拟地址空间。这样，一个进程无法访问或修改其他进程的内存区域，从而防止恶意或错误的访问，提升系统安全性。 Memory sharing（内存共享） 通过地址转换，多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Address Translation">
-<meta property="og:url" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/index.html">
+<meta property="og:url" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Address Translation Concept  From virtual address to physical address.   Memory protection（内存保护） 地址转换允许操作系统为每个进程分配独立的虚拟地址空间。这样，一个进程无法访问或修改其他进程的内存区域，从而防止恶意或错误的访问，提升系统安全性。 Memory sharing（内存共享） 通过地址转换，多">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Segmented%20Memory.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/One-level%20page%20table.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Multi-level%20Paging.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20directory%20entry.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20table%20entry.png">
-<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Memory%20management%20unit.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Segmented%20Memory.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/One-level%20page%20table.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Multi-level%20Paging.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/page%20directory%20entry.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/page%20table%20entry.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Memory%20management%20unit.png">
 <meta property="article:published_time" content="2025-10-22T11:00:00.000Z">
 <meta property="article:modified_time" content="2025-10-23T13:34:30.492Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Segmented%20Memory.png">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Segmented%20Memory.png">
   
   
   
@@ -307,7 +307,7 @@
 <h2 id="segmentation">Segmentation</h2>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Segmented%20Memory.png" srcset="/img/loading.gif" lazyload alt="Segmented Memory"><figcaption aria-hidden="true">Segmented Memory</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Segmented%20Memory.png" srcset="/img/loading.gif" lazyload alt="Segmented Memory"><figcaption aria-hidden="true">Segmented Memory</figcaption>
 </figure>
 </div>
 <p>在这一页的分段存储（Segmented Memory）图示中，virtual address（虚拟地址）的结构由两部分组成：</p>
@@ -375,7 +375,7 @@
 <h3 id="single-level-paging">Single-level Paging</h3>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/One-level%20page%20table.png" srcset="/img/loading.gif" lazyload alt="One-level page table"><figcaption aria-hidden="true">One-level page table</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/One-level%20page%20table.png" srcset="/img/loading.gif" lazyload alt="One-level page table"><figcaption aria-hidden="true">One-level page table</figcaption>
 </figure>
 </div>
 <p>单级页表虽然解决了很多问题（如支持页面共享），但<strong>页表本身可能非常大</strong>，甚至<strong>超过进程实际使用的内存</strong>。</p>
@@ -386,19 +386,19 @@
 <h3 id="multi-level-paging">Multi-level Paging</h3>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Multi-level%20Paging.png" srcset="/img/loading.gif" lazyload alt="Multi-level Paging"><figcaption aria-hidden="true">Multi-level Paging</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Multi-level%20Paging.png" srcset="/img/loading.gif" lazyload alt="Multi-level Paging"><figcaption aria-hidden="true">Multi-level Paging</figcaption>
 </figure>
 </div>
 <h4 id="page-directory-entry">Page Directory Entry</h4>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20directory%20entry.png" srcset="/img/loading.gif" lazyload alt="page directory entry"><figcaption aria-hidden="true">page directory entry</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/page%20directory%20entry.png" srcset="/img/loading.gif" lazyload alt="page directory entry"><figcaption aria-hidden="true">page directory entry</figcaption>
 </figure>
 </div>
 <h4 id="page-table-entry">Page Table Entry</h4>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20table%20entry.png" srcset="/img/loading.gif" lazyload alt="page table entry"><figcaption aria-hidden="true">page table entry</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/page%20table%20entry.png" srcset="/img/loading.gif" lazyload alt="page table entry"><figcaption aria-hidden="true">page table entry</figcaption>
 </figure>
 </div>
 <h3 id="memory-management-unit">Memory Management Unit</h3>
@@ -407,7 +407,7 @@
 </blockquote>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
-<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Memory%20management%20unit.png" srcset="/img/loading.gif" lazyload alt="Memory management unit"><figcaption aria-hidden="true">Memory management unit</figcaption>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address%20Translation/Memory%20management%20unit.png" srcset="/img/loading.gif" lazyload alt="Memory management unit"><figcaption aria-hidden="true">Memory management unit</figcaption>
 </figure>
 </div>
 <h3 id="page-fault">Page Fault</h3>
@@ -464,7 +464,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Address Translation</div>
-      <div>https://ddccffq.github.io/2025/10/22/操作系统/Address_Translation/</div>
+      <div>https://ddccffq.github.io/2025/10/22/操作系统/Address Translation/</div>
     </div>
     <div class="license-meta">
       

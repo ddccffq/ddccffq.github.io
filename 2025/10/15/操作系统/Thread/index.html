@@ -19,16 +19,16 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Thread Thread: a single execution sequence that represents a separately schedulable task.  Each thread executes a sequence of instructions (assignments, conditionals, loops, procedures, etc) just as">
+    <meta name="description" content="Concurrency Def. Concurrency means multiple activities at the sam time (network service handles many client requests at the same time). Thread Def. Thread: A single execution sequence that represents">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thread">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Thread Thread: a single execution sequence that represents a separately schedulable task.  Each thread executes a sequence of instructions (assignments, conditionals, loops, procedures, etc) just as">
+<meta property="og:description" content="Concurrency Def. Concurrency means multiple activities at the sam time (network service handles many client requests at the same time). Thread Def. Thread: A single execution sequence that represents">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/Thread%20vs.%20Process.png">
 <meta property="article:published_time" content="2025-10-15T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-15T01:26:15.661Z">
+<meta property="article:modified_time" content="2025-11-27T02:36:25.128Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          276 字
+          328 字
         
       </span>
     
@@ -279,12 +279,15 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
+<h2 id="concurrency">Concurrency</h2>
+<p><strong>Def</strong>. <strong>Concurrency</strong> means multiple activities at the sam time (network service handles many client requests at the same time).</p>
 <h2 id="thread">Thread</h2>
-<p>Thread: a single execution <strong>sequence</strong> that represents a separately schedulable task.</p>
+<p><strong>Def</strong>. <strong>Thread</strong>: A single execution <strong>sequence</strong> that represents a separately schedulable task. Also known as the <strong>minimal</strong> scheduling unit in OS.</p>
 <blockquote>
-<p>Each thread executes <strong>a sequence of instructions</strong> (assignments, conditionals, loops, procedures, etc) just as in the sequential programming model.</p>
+<p><strong>Execution sequence</strong>: Each thread executes <strong>a sequence of instructions</strong> (assignments, conditionals, loops, procedures, etc) just as in the sequential programming model.</p>
+<p><strong>Separately schedulable task</strong>: The OS can run, suspend, or resume a thread at any time.</p>
 </blockquote>
-<p>Threads in the same process share memory space, but not execution context.</p>
+<p>Thread<strong>s</strong> in the same process share memory space, but not execution context.</p>
 <blockquote>
 <p>There will be thread context switch.</p>
 </blockquote>
@@ -293,10 +296,12 @@
 <img src="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Thread/Thread%20vs.%20Process.png" srcset="/img/loading.gif" lazyload alt="Thread vs. Process"><figcaption aria-hidden="true">Thread vs. Process</figcaption>
 </figure>
 </div>
-<h2 id="thread-control-block-tcb">Thread Control Block (TCB)</h2>
-<p>TCB</p>
+<h2 id="thread-implementation">Thread implementation</h2>
+<h3 id="thread-data-structures">Thread Data Structures</h3>
+<h4 id="tcb">TCB</h4>
+<p><strong>Def</strong>. <strong>TCB</strong> (Thread Control Block)</p>
 <ul>
-<li><strong>Stack pointer</strong>: each thread needs their own stack.</li>
+<li><strong>Stack pointer</strong>: each thread needs their own <strong>stack</strong>.</li>
 <li><strong>Copy of processor registers</strong>
 <ul>
 <li>General-purpose registers for storing intermediate values</li>
@@ -309,16 +314,60 @@
 <li>Status</li>
 </ul></li>
 </ul>
-<h2 id="thread-data-structures">Thread Data Structures</h2>
-<h3 id="tcb">TCB</h3>
+<blockquote>
+<p>How large is the stack?</p>
+<ul>
+<li>In kernel, it’s usually small: 8KB in Linux on Intel x86.</li>
+<li>In user space, it’s library-dependent (<code>pthread.h</code>).
+<ul>
+<li>Most libraries check if there is a stack <strong>overflow</strong>.</li>
+<li>Few PL/libs such as Google Go will automatically extend the stack when needed.</li>
+</ul></li>
+</ul>
+</blockquote>
 <p>TCB（线程控制块）是操作系统为每个线程维护的核心数据结构，记录了线程的状态、寄存器、栈指针等关键信息。每个线程都有自己的 TCB，用于区分和管理线程。</p>
-<h3 id="shared-state">Shared state</h3>
+<h4 id="shared-state">Shared state</h4>
 <p>线程之间可以共享某些状态（如全局变量、堆内存），但每个线程也有自己的私有状态（如栈、寄存器等）。TCB 记录的就是这些私有状态。</p>
-<h3 id="os-does-not-enforce-physical-division-on-threads-own-separated-states">OS does not enforce physical division on threads’ own separated states</h3>
+<p>OS does not enforce physical division on threads’ own separated states.</p>
 <p>操作系统不会对线程的私有状态（如栈）做物理隔离。也就是说，虽然每个线程有自己的栈空间，但这些空间在同一个进程的虚拟地址空间内，理论上线程 A 可以通过指针访问线程 B 的栈。</p>
 <blockquote>
 <p>If thread A has a pointer to the stack location of thread B, can A access/modify the variables on the stack of thread B? 答案是<strong>可以</strong>。因为所有线程共享同一个进程的虚拟地址空间，只要线程 A 拿到了线程 B 栈上变量的地址，就可以直接读写。操作系统不会阻止这种行为。</p>
 </blockquote>
+<h3 id="kernel-thread-context-switch">Kernel Thread Context Switch</h3>
+<ul>
+<li>Voluntary kernel thread context switch
+<ul>
+<li><strong>Turn off interrupts.</strong></li>
+<li>Get a next ready thread.</li>
+<li>Mark the old thread as ready.</li>
+<li>Add the old thread to <strong>readyList</strong>.</li>
+<li>Save all registers and stack point.</li>
+<li>Set stack point to the new thread.</li>
+<li>Restores all the register values.</li>
+</ul></li>
+<li>Involuntary kernel thread context switch
+<ul>
+<li>Save the states.</li>
+<li>Run the <strong>kernel’s handler</strong>.</li>
+<li>Restore the states.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Almost identical to user-mode transfer, except:</p>
+<ul>
+<li>There is no need to switch modes (or stack).</li>
+<li>The handler can resume <strong>any</strong> thread on the ready list rather than always resuming the thread/process that was just suspended.</li>
+</ul>
+</blockquote>
+<h3 id="implementing-multi-threaded-processes">Implementing Multi-threaded Processes</h3>
+<ul>
+<li>Implementing user-level muti-threaded processes through
+<ul>
+<li>Kernel threads (each thread op traps into kernel).</li>
+<li>User-level libraries (no kernel support)</li>
+<li>Hybrid mode.</li>
+</ul></li>
+</ul>
 
                 
               </div>
@@ -402,7 +451,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/" title="Boot, Process, Kernel">
+                      <a href="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot%20Process%20Kernel/" title="Boot, Process, Kernel">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Boot, Process, Kernel</span>
                         <span class="visible-mobile">上一篇</span>
