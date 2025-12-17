@@ -1,0 +1,1178 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="任志诚 2023212020">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Threats to FS Reliability Operation interruption  A crash or power failure A file operation often consists of many I&#x2F;O updates to the storage An example: mv .&#x2F;dir1&#x2F;file1 .&#x2F;dir2&#x2F;file2  Writing the dir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reliable FS">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Reliable_FS/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Threats to FS Reliability Operation interruption  A crash or power failure A file operation often consists of many I&#x2F;O updates to the storage An example: mv .&#x2F;dir1&#x2F;file1 .&#x2F;dir2&#x2F;file2  Writing the dir">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-15T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-16T11:29:13.952Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Reliable FS - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Reliable FS"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-15 16:00" pubdate>
+          2025年12月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Reliable FS</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="threats-to-fs-reliability">Threats to FS Reliability</h2>
+<p>Operation interruption</p>
+<ul>
+<li>A <strong>crash or power</strong> failure</li>
+<li>A file operation often consists of many <strong>I/O updates</strong> to the storage</li>
+<li>An example: <code>mv ./dir1/file1 ./dir2/file2</code>
+<ul>
+<li>Writing the <code>dir1</code> directory file to remove <code>file1</code></li>
+<li>(optional) Growing the <code>dir2</code> directory’s file to include another block of storage to accommodate a new directory entry for ‘file2’</li>
+<li>Writing the new directory entry to the directory file</li>
+<li>Updating the last-modified time of the <code>dir1</code> directory</li>
+<li>Updating the file system’s free space bitmap</li>
+<li>Updating the size and last-modified time of the <code>dir2</code> directory</li>
+</ul></li>
+<li><strong>At physical level, operations complete one at a time.</strong></li>
+</ul>
+<p>Loss of stored data, either physical or electric.</p>
+<blockquote>
+<p>Reliability vs. Availability</p>
+<ul>
+<li>Reliability: the probability that storage system will continue to be reliable for some specified period of time.</li>
+<li>Availability: the probability that the storage system will be available at any given time.</li>
+</ul>
+<p>What a Reliable FS Does?</p>
+<ul>
+<li>“All or nothing”
+<ul>
+<li>Either an update is completed, or not at all</li>
+<li>Must be guaranteed whenever a crash happens</li>
+<li>Must be transparent to users/apps</li>
+</ul></li>
+<li>Quite similar to the <strong>critical section problem in concurrency</strong>
+<ul>
+<li>Avoid someone observing the state in an intermediate, inconsistent state</li>
+<li>No control over “when it happens”</li>
+</ul></li>
+</ul>
+</blockquote>
+<h2 id="reliability-approach-1">Reliability Approach 1</h2>
+<p>Careful ordering</p>
+<ul>
+<li>Sequence operations in a specific order
+<ul>
+<li>Careful design to allow sequence to be interrupted safely</li>
+</ul></li>
+<li>Post-crash recovery
+<ul>
+<li>Read data structures to see if there were any operations in progress</li>
+<li>Clean up/finish as needed</li>
+</ul></li>
+<li>Approach taken by
+<ul>
+<li>FAT and FFS (<code>fsck</code>) to protect filesystem structure/metadata</li>
+<li>Many app-level recovery schemas (e.g. Word, emacs autosaves)</li>
+</ul></li>
+</ul>
+<p>Issues with approach 1</p>
+<ul>
+<li>Complex reasoning
+<ul>
+<li>So many possible operations and failures</li>
+</ul></li>
+<li>Slow updates
+<ul>
+<li>File systems are forced to insert sync operations or barriers between dependent operations</li>
+</ul></li>
+<li>Extremely slow recovery
+<ul>
+<li>Need to scan all of its disks inconsistent metadata structures</li>
+</ul></li>
+</ul>
+<h2 id="transactions">Transactions</h2>
+<p><strong>Def</strong>. Transaction is an atomic sequence of actions (reads/writes) on a storage system (or database). That takes it from one <strong>consistent state</strong> to another</p>
+<ul>
+<li>Use <strong>transactions</strong> for atomic updates
+<ul>
+<li>Ensure that multiple related updates are performed atomically</li>
+<li>i.e. If a crash occurs in the middle, the state of the systems reflects either <strong>all or none</strong> of the updates</li>
+<li>Most modern file systems use transactions internally to update filesystem structures and metadata</li>
+<li>Many applications implement their own transactions</li>
+</ul></li>
+<li>They extend concept of atomic update from memory to stable storage
+<ul>
+<li>Atomically update multiple persistent data structures</li>
+</ul></li>
+</ul>
+<h3 id="typical-structure">Typical Structure</h3>
+<ol type="1">
+<li>Begin a transaction - get transaction <strong>id</strong>.</li>
+<li>Do a bunch of updates
+<ul>
+<li>If any fail along the way, <strong>roll-back</strong></li>
+<li>Or, if any conflicts with other transactions, <strong>roll-back</strong>.</li>
+</ul></li>
+<li><strong>Commit</strong> the transaction</li>
+</ol>
+<h3 id="the-key-properties-of-transactions">The Key Properties of Transactions</h3>
+<ul>
+<li><strong>Atomicity</strong>: all actions in the transaction happen, or none happen</li>
+<li><strong>Consistency</strong>: transactions maintain data integrity, e.g.
+<ul>
+<li>Balance cannot be negative</li>
+<li>Cannot reschedule meeting on February 30</li>
+</ul></li>
+<li><strong>Isolation</strong>: execution of one transaction is isolated from that of all others; no problem from concurrency</li>
+<li><strong>Durability</strong>: if a transaction commits, its effects persist despite crashes.</li>
+</ul>
+<h2 id="logging">Logging</h2>
+<ul>
+<li>Instead of modifying data structures on disk directly, write changes to a journal/log
+<ul>
+<li>Intention list: set of changes we intend to make</li>
+<li>Log/journal is append-only</li>
+<li>Single commit record commits transaction</li>
+</ul></li>
+<li>Once changes are in log, it is safe to apply changes to data structures on disk
+<ul>
+<li>Recovery can read log to see what changes were intended</li>
+<li>Can take our time making the changes
+<ul>
+<li>As long as new requests consult the log first</li>
+</ul></li>
+</ul></li>
+<li>Basic assumption
+<ul>
+<li>Updates to sectors are atomic and ordered</li>
+</ul></li>
+</ul>
+<p><strong>Def</strong>. <strong>Log</strong> is an append-only file containing log records</p>
+<ul>
+<li><code>&lt;start t&gt;</code>: transaction <code>t</code> has begun</li>
+<li><code>&lt;t, x, v&gt;</code>: transaction <code>t</code> has updated block <code>x</code> and its new value is <code>v</code>
+<ul>
+<li>Can log block “diffs” instead of full blocks</li>
+<li>Can log <em>operations</em> instead of data</li>
+</ul></li>
+<li><code>&lt;commit t&gt;</code>: transaction <code>t</code> has committed - updates will survive a crash</li>
+</ul>
+<blockquote>
+<ul>
+<li>Committing involves writing the records - the home data needn’t be updated at this time</li>
+<li>Logs are often kept in a separation partition</li>
+<li>Once transactions are committed, logs can be cleaned up</li>
+</ul>
+</blockquote>
+<h3 id="implementing-transactions-redo-logging">Implementing Transactions: Redo Logging</h3>
+<ol type="1">
+<li>Prepare
+<ul>
+<li>Write all changes/updates to log</li>
+<li>Can happen at once, or over time</li>
+<li>Wait until all updates are written in log</li>
+</ul></li>
+<li>Commit
+<ul>
+<li>Append a commit record to the log</li>
+<li>Or can roll back (abandoned), write a roll-back record
+<ul>
+<li>An atomic operation
+<ul>
+<li>Before it, we can safely roll-back</li>
+<li>After it, the transaction must take effect</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Write-back
+<ul>
+<li>Write all of the transaction’s updates to disk</li>
+</ul></li>
+<li>Garbage collection
+<ul>
+<li>Reclaim space in log</li>
+</ul></li>
+<li>Recovery
+<ul>
+<li>Read log</li>
+<li>Redo any operations for committed transactions</li>
+<li>Garbage collect log</li>
+</ul></li>
+</ol>
+<h3 id="implementation-details">Implementation Details</h3>
+<ul>
+<li>Deal with concurrent transactions
+<ul>
+<li>Must identify which transaction does a record belong to</li>
+</ul></li>
+<li>Repeated write-backs are OK
+<ul>
+<li>Works for idempotent updates:“write 42 to each byte of sector 74”</li>
+<li>Redo log systems do not permit non-idempotent records such as “add 42 to each byte in sector 74”.</li>
+</ul></li>
+<li>Restarting recovery is OK
+<ul>
+<li>If another crash occurs during recovery</li>
+</ul></li>
+<li>The performance of redo logging is not as bad as it looks like:
+<ul>
+<li>Log updates are sequential</li>
+<li>Asynchronous write-back
+<ul>
+<li>Low latency for commit(); high throughput as updates can be batched</li>
+</ul></li>
+<li>Group commit: combine a set of transaction commits into one log write
+<ul>
+<li>Amortize the cost of initiating the write (e.g., seek and rotational delays)</li>
+</ul></li>
+</ul></li>
+<li>New requests (e.g., reads) need to consult the log first to ensure the data consistency
+<ul>
+<li>Can be alleviated by caching</li>
+</ul></li>
+<li>Ordering is essential, as we must ensure:
+<ul>
+<li>A transaction’s updates are on disk in the log before the commit is</li>
+<li>The commit is on disk before any of the write-backs are</li>
+<li>All of the write-backs are on disk before a transaction’s log records are garbage collected.</li>
+</ul></li>
+</ul>
+<h2 id="transactional-file-systems">Transactional File Systems</h2>
+<ul>
+<li>Two ways to use transactions in file systems: journaling and logging
+<ul>
+<li>Journaling: apply updates to the system’s metadata via transactions
+<ul>
+<li>Microsoft’s NTFS,Apple’s HFS+, and Linux’s XFS/JFS</li>
+</ul></li>
+<li>(Full) Logging: apply both metadata and data in transactions
+<ul>
+<li>Linux’s ext3 and ext4 can be configured to use either journaling or logging</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="journaling-file-systems">Journaling File Systems</h3>
+<ul>
+<li>Applies updates to system metadata (inodes, bitmaps, directories, and indirect blocks) using transactions
+<ul>
+<li>So those critical data structures are always consistent</li>
+</ul></li>
+<li>Updates to non-directory files (i.e., user stuff) can be done in place (without logs), full logging optional
+<ul>
+<li>Avoids writing file contents twice</li>
+<li>If a program using a journaling file system requires atomic multi-block updates, it needs to provide them itself</li>
+</ul></li>
+</ul>
+<h3 id="copy-on-write-file-system">Copy-on-Write File System</h3>
+<ul>
+<li>To update file system, write a new version of the file system containing the update
+<ul>
+<li>Never update in place</li>
+<li>Reuse existing unchanged disk blocks</li>
+</ul></li>
+<li>Optimization: batch updates
+<ul>
+<li>Transform many small, random writes into large, sequential writes</li>
+</ul></li>
+<li>Approach taken in network file server appliances
+<ul>
+<li>NetApp’s Write Anywhere File Layout (WAFL)</li>
+<li>ZFS (Sun/Oracle) and OpenZFS</li>
+</ul></li>
+</ul>
+<h2 id="raid-redundant-arrays-of-inexpensive-disks">RAID: Redundant Arrays of Inexpensive Disks</h2>
+<blockquote>
+<p>Storage Devices Failure</p>
+<ul>
+<li>Sector and page failure: one or more individual sectors of a disk are lost, but the rest of the disk continues to operate correctly</li>
+<li>Full disk failure: a device stops being able to service reads or writes to all sectors</li>
+</ul>
+</blockquote>
+<h3 id="raid-1-disk-mirroringshadowing">RAID 1: Disk Mirroring/Shadowing</h3>
+<ul>
+<li>Each disk is fully duplicated onto its “shadow”
+<ul>
+<li>For high I/O rate, high availability environments</li>
+<li>Most expensive solution: <span class="math inline">\(100\%\)</span> capacity overhead</li>
+</ul></li>
+<li>Bandwidth sacrificed on write:
+<ul>
+<li>Logical write = two physical writes</li>
+<li>Highest bandwidth when disk heads and rotation fully synchronized (hard to do)</li>
+</ul></li>
+<li>Reads may be optimized
+<ul>
+<li>Can have two independent reads to same data</li>
+</ul></li>
+<li>Recovery:
+<ul>
+<li>Disk failure <span class="math inline">\(\Rightarrow\)</span> replace disk and copy data to new disk</li>
+<li>Hot Spare: idle disk already attached to system to be used for immediate replacement</li>
+</ul></li>
+</ul>
+<h3 id="raid-5-high-io-rate-parity">RAID 5+: High I/O Rate Parity</h3>
+<ul>
+<li>Data stripped across multiple disks
+<ul>
+<li>Successive blocks stored on successive (non-parity) disks</li>
+<li>Increased bandwidth over single disk</li>
+</ul></li>
+<li>Parity block (in green) constructed by XORing data blocks in stripe
+<ul>
+<li><span class="math inline">\(P0 = D0 \oplus D1 \oplus D2 \oplus D3\)</span></li>
+<li>Can destroy any one disk and still reconstruct data</li>
+<li>Suppose Disk 3 fails, then can reconstruct: <span class="math inline">\(D2= D0 \oplus D1 \oplus D3 \oplus P0\)</span></li>
+</ul></li>
+<li>Rotating parity
+<ul>
+<li>The parity needs to be updated more often than normal data blocks.</li>
+</ul></li>
+<li>Striping data
+<ul>
+<li>Balance parallelism vs. sequential access efficiency</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>RAID 5 can recover the failed disk only if (i) only one disk fails and (ii) the failed disk is known.</p>
+</blockquote>
+<h2 id="distributed-systems-motivationissuespromise">Distributed Systems: Motivation/Issues/Promise</h2>
+<ul>
+<li>Why do we want distributed systems?
+<ul>
+<li>Cheaper and easier to build lots of simple computers</li>
+<li>Easier to add power incrementally</li>
+<li>Users can have complete control over some components</li>
+<li>Collaboration: much easier for users to collaborate through network resources (such as network file systems)</li>
+</ul></li>
+<li>The promise of distributed systems:
+<ul>
+<li>Higher availability: one machine goes down, use another</li>
+<li>Better durability: store data in multiple locations</li>
+<li>More security: each piece easier to make secure</li>
+</ul></li>
+</ul>
+<h3 id="distributed-systems-reality">Distributed Systems: Reality</h3>
+<ul>
+<li>Reality has been disappointing
+<ul>
+<li>Worse availability: depend on every machine being up
+<ul>
+<li>Lamport: “a distributed system is one where I can’t do work because some machine I’ve never heard of isn’t working!”</li>
+</ul></li>
+<li>Worse reliability: can lose data if any machine crashes</li>
+<li>Worse security: anyone in world can break into system</li>
+</ul></li>
+<li>Coordination is more difficult
+<ul>
+<li>Must coordinate multiple copies of shared state information (using only a network)</li>
+<li>What would be easy in a centralized system becomes a lot more difficult</li>
+</ul></li>
+</ul>
+<h3 id="distributed-systems-goalsrequirements">Distributed Systems: Goals/Requirements</h3>
+<ul>
+<li>Transparency: the ability of the system to mask its complexity behind a simple interface</li>
+<li>Possible transparencies:
+<ul>
+<li>Location: Can’t tell where resources are located</li>
+<li>Migration: Resources may move without the user knowing</li>
+<li>Replication: Can’t tell how many copies of resource exist</li>
+<li>Concurrency: Can’t tell how many users there are</li>
+<li>Parallelism: System may speed up large jobs by splitting them into smaller pieces</li>
+<li>Fault Tolerance: System may hide various things that go wrong</li>
+</ul></li>
+<li>Transparency and collaboration require some way for different processors to communicate with one another</li>
+</ul>
+<h2 id="homework">Homework</h2>
+<ol type="1">
+<li>The FastFile file system uses an inode array to organize the files on disk. Each inode consists of a user id (2 bytes), three time stamps (4 bytes each), protection bits (2 bytes), a reference count (2 byte), a file type (2 bytes) and the size (4 bytes). Additionally, the inode contains 13 direct indexes, 1 index to a 1st-level index table, 1 index to a 2nd-level index table, and 1 index to a 3rd level index table. The file system also stores the first 436 bytes of each file in the inode.
+<ul>
+<li>Assume a disk sector is 512 bytes, and assume that any auxilliary index table takes up an entire sector, what is the maximum size for a file in this system.</li>
+<li>Is there any benefit for including the first 436 bytes of the file in the inode?</li>
+</ul></li>
+<li>When user tries to write a file, the file system needs to detect if that file is a directory so that it can restrict writes to maintain the directory’s internal consistency. Given a file’s name, how would you design a file system to keep track of whether each file is a regular file or a directory?
+<ul>
+<li>In FAT</li>
+<li>In FFS</li>
+<li>In NTFS</li>
+</ul></li>
+<li>Suppose a variation of FFS includes in each inode 12 direct, 1 indirect, 1 double indirect, 2 triple indirect, and 1 quadruple indirect pointers. Assuming 6 KB blocks and 6-byte pointers.
+<ul>
+<li>What is the largest file that can be accessed with direct pointers only?</li>
+<li>What is the largest file that can be accessed in total?</li>
+</ul></li>
+<li>Consider a disk queue holding requests to the following cylinders in the listed order: 116, 22, 3, 11, 75, 185, 100, 87. Using the elevator scheduling algorithm, what is the order that the requests are serviced, assuming the disk head is at cylinder 88 and moving upward through the cylinders?</li>
+</ol>
+<h2 id="答案">答案</h2>
+<h3 id="fastfile-文件系统计算">1. FastFile 文件系统计算</h3>
+<p><strong>题目分析：</strong></p>
+<ul>
+<li><strong>Inode 结构</strong>：
+<ul>
+<li>固定元数据：用户ID(2) + 时间戳(12) + 保护位(2) + 引用计数(2) + 文件类型(2) + 大小(4) = <strong>24 字节</strong>。</li>
+<li>嵌入数据：<strong>436 字节</strong>。</li>
+<li>索引指针：13个直接 + 1个一级 + 1个二级 + 1个三级 = <strong>16 个指针</strong>。</li>
+</ul></li>
+<li><strong>扇区/块大小</strong>：512 字节。</li>
+<li><strong>指针大小推断</strong>： 假设 Inode 占用一个扇区（512 字节），则剩余给指针的空间为 <span class="math inline">\(512 - 24 - 436 = 52\)</span> 字节。 <span class="math inline">\(52 \div 16 = 3.25\)</span>。因此，为了放入一个扇区，<strong>指针大小应为 3 字节（24位）</strong>。</li>
+<li><strong>每个索引块的指针数</strong>：<span class="math inline">\(512 \div 3 = 170\)</span> 个指针（向下取整）。</li>
+</ul>
+<p><strong>解答：</strong></p>
+<ul>
+<li><p><strong>最大文件大小 (Maximum size)</strong>： 文件由以下部分组成：</p>
+<ol type="1">
+<li><strong>Inode 内嵌数据</strong>：436 字节</li>
+<li><strong>直接索引</strong>：<span class="math inline">\(13 \times 512\)</span> 字节</li>
+<li><strong>一级间接索引</strong>：<span class="math inline">\(1 \times 170 \times 512\)</span> 字节</li>
+<li><strong>二级间接索引</strong>：<span class="math inline">\(1 \times 170^2 \times 512\)</span> 字节</li>
+<li><strong>三级间接索引</strong>：<span class="math inline">\(1 \times 170^3 \times 512\)</span> 字节</li>
+</ol>
+<p>计算主要由三级间接索引决定： <span class="math inline">\(170^3 \times 512 \text{ B} = 4,913,000 \times 512 \text{ B} \approx 2,515,456,000 \text{ B} \approx \mathbf{2.34 \text{ GB}}\)</span>。 <em>(精确值为：436 + 6,656 + 87,040 + 14,796,800 + 2,515,456,000 = 2,530,346,932 字节)</em></p></li>
+<li><p><strong>将前 436 字节包含在 Inode 中的好处 (Benefit)</strong>：</p>
+<ol type="1">
+<li><strong>性能优化 (Performance)</strong>：对于小于或等于 436 字节的小文件，只需读取 Inode 即可获取文件内容，无需额外的磁盘寻道和读取数据块操作（减少一次 I/O）。</li>
+<li><strong>空间节省 (Space)</strong>：小文件不需要分配一个完整的 512 字节数据块，避免了内部碎片（Internal Fragmentation），节省了磁盘空间。</li>
+</ol></li>
+</ul>
+<h3 id="区分文件与目录">2. 区分文件与目录</h3>
+<p><strong>题目分析：</strong> 文件系统需要通过元数据来区分普通文件和目录。</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li><strong>In FAT (File Allocation Table)</strong>： 在<strong>目录项 (Directory Entry)</strong> 中，有一个属性字节 (Attribute Byte)。该字节的第 4 位（通常是 <code>0x10</code>）专门用于标识该条目是否为一个子目录。</li>
+<li><strong>In FFS (Unix Fast File System)</strong>： 在 <strong>Inode</strong> 结构中，包含文件类型 (File Type) 或模式位 (Mode Bits)。例如 <code>st_mode</code> 字段中的一部分位用于指示文件类型（如 <code>S_IFDIR</code> 表示目录，<code>S_IFREG</code> 表示普通文件）。</li>
+<li><strong>In NTFS (New Technology File System)</strong>： 在 <strong>MFT (Master File Table)</strong> 记录中，标准属性（如 <code>$STANDARD_INFORMATION</code> 或 <code>$FILE_NAME</code>）包含文件属性标志，其中有一位标识是否为目录。此外，目录本质上是一个包含索引属性（如 <code>$INDEX_ROOT</code>）的文件。</li>
+</ul>
+<h3 id="ffs-变体计算">3. FFS 变体计算</h3>
+<p><strong>题目分析：</strong> - <strong>Inode 指针结构</strong>：12 直接，1 一级，1 二级，2 三级，1 四级。 - <strong>块大小</strong>：6 KB = 6144 字节。 - <strong>指针大小</strong>：6 字节。 - <strong>每块指针数</strong>：<span class="math inline">\(6144 \div 6 = 1024\)</span> 个指针。</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li><p><strong>仅使用直接指针访问的最大文件 (Largest file with direct pointers only)</strong>： <span class="math inline">\(12 \times 6 \text{ KB} = \mathbf{72 \text{ KB}}\)</span>。</p></li>
+<li><p><strong>总共可访问的最大文件 (Largest file in total)</strong>： 总大小 = 直接 + 一级 + 二级 + 三级 + 四级 <span class="math inline">\(= (12 + 1024 + 1024^2 + 2 \times 1024^3 + 1 \times 1024^4) \times 6 \text{ KB}\)</span></p>
+<p>由于 <span class="math inline">\(1024 = 2^{10}\)</span>，且四级间接指针占主导地位： 四级部分大小 = <span class="math inline">\(1 \times (2^{10})^4 \times 6 \times 2^{10} \text{ B} = 6 \times 2^{50} \text{ B} = \mathbf{6 \text{ PB}}\)</span>。 加上三级部分 (<span class="math inline">\(2 \times 1024^3 \times 6 \text{ KB} = 12 \text{ TB}\)</span>)，总大小约为 <strong>6 PB</strong> (Petabytes)。</p></li>
+</ul>
+<h3 id="磁盘调度-elevator-algorithm">4. 磁盘调度 (Elevator Algorithm)</h3>
+<p><strong>题目分析：</strong> - <strong>请求队列</strong>：116, 22, 3, 11, 75, 185, 100, 87 - <strong>当前磁头位置</strong>：88 - <strong>移动方向</strong>：向上 (Upward/Increasing) - <strong>算法</strong>：电梯算法 (Elevator/SCAN/LOOK)。通常指磁头向一个方向移动处理请求，直到没有请求或到达边缘，然后反向。</p>
+<p><strong>解答：</strong></p>
+<ol type="1">
+<li><strong>向上移动 ( &gt; 88)</strong>：
+<ul>
+<li>100</li>
+<li>116</li>
+<li>185</li>
+</ul></li>
+<li><strong>反向向下移动 ( &lt; 88)</strong>：
+<ul>
+<li>87</li>
+<li>75</li>
+<li>22</li>
+<li>11</li>
+<li>3</li>
+</ul></li>
+</ol>
+<p><strong>服务顺序 (Order serviced)</strong>： <strong>100, 116, 185, 87, 75, 22, 11, 3</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Reliable FS</div>
+      <div>https://ddccffq.github.io/2025/12/15/操作系统/Reliable_FS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>任志诚 2023212020</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/" title="FS Design">
+                        <span class="hidden-mobile">FS Design</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
