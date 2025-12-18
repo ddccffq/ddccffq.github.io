@@ -19,18 +19,22 @@
   <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Basic Input Output System  BIOS is a firmware, stored on ROM on motherboard.   Power-on self-test diagnostic Identify attached hardware and initialize their states Build HW description for advanced c">
+    <meta name="description" content="Basic Input Output System  BIOS is a firmware, stored on ROM (read only memory) on motherboard.   Power-on self-test diagnostic Identify attached hardware and initialize their states Build HW descrip">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Boot, Process, Kernel">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Basic Input Output System  BIOS is a firmware, stored on ROM on motherboard.   Power-on self-test diagnostic Identify attached hardware and initialize their states Build HW description for advanced c">
+<meta property="og:description" content="Basic Input Output System  BIOS is a firmware, stored on ROM (read only memory) on motherboard.   Power-on self-test diagnostic Identify attached hardware and initialize their states Build HW descrip">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/A%20summary%20of%20booting%20process.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/Base%20and%20Bounds.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/Protection%20Rings.png">
 <meta property="article:published_time" content="2025-10-15T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-10T01:19:42.025Z">
+<meta property="article:modified_time" content="2025-12-18T07:08:37.262Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/A%20summary%20of%20booting%20process.png">
   
   
   
@@ -223,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21 字
+          448 字
         
       </span>
     
@@ -234,7 +238,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -279,18 +283,18 @@
                 <span id="more"></span>
 <h2 id="basic-input-output-system">Basic Input Output System</h2>
 <blockquote>
-<p><strong>BIOS</strong> is a firmware, stored on <strong>ROM</strong> on motherboard.</p>
+<p><strong>BIOS</strong> is a firmware, stored on <strong>ROM</strong> (read only memory) on motherboard.</p>
 </blockquote>
 <ol type="1">
-<li>Power-on self-test diagnostic</li>
-<li>Identify attached hardware and initialize their states</li>
+<li><strong>Power-on self-test</strong> diagnostic</li>
+<li>Identify <strong>attached hardware</strong> and initialize their states</li>
 <li>Build HW description for <strong>advanced configuration and power interface</strong> (ACPI)</li>
 <li>Load a <strong>bootloader</strong> from disk to memory (usually the first disk sector <span class="math inline">\(512\)</span> bytes)</li>
 <li>Transfer the <strong>control</strong> to the bootloader (setting <code>%cs%</code> and <code>%ip</code>)</li>
 </ol>
 <h2 id="bootloader">Bootloader</h2>
 <blockquote>
-<p><strong>Bootloader</strong> is a software, a part of OS.</p>
+<p><strong>Bootloader</strong> is a software, and a part of OS.</p>
 </blockquote>
 <ol type="1">
 <li>Switch from <strong>real mode</strong> to <strong>protected mode</strong></li>
@@ -299,8 +303,234 @@
 <li>Transfer the control to <strong>real</strong> OS.</li>
 </ol>
 <blockquote>
-<p>Image is the core of OS.</p>
+<p>Kernel image is the core of OS.</p>
+<p>Real model and protected mode are different <strong>status</strong> the CPU works at</p>
 </blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/A%20summary%20of%20booting%20process.png" srcset="/img/loading.gif" lazyload alt="A summary of booting process"><figcaption aria-hidden="true">A summary of booting process</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: A summary of booting process
+</div>
+<h2 id="case-study-booting-of-jos">Case Study: Booting of JOS</h2>
+<ul>
+<li><code>[f000:fff0] 0xffff0</code>: <code>ljmp $0xf000, $0xe05b</code>
+<ul>
+<li>The <strong>first</strong> instruction run by CPU</li>
+<li>Observed through <strong>GDB</strong></li>
+<li>What we learned from it?
+<ul>
+<li>The IMB PC starts executing at physical address <code>0x000ffff0</code>, which is at the very top of the <span class="math inline">\(64\)</span> KB area reserved for the ROM BIOS.</li>
+<li>The PC starts executing with <code>CS = 0xf000</code> and <code>IP = 0xfff0</code></li>
+<li>The first instruction to be executed is a <code>jmp</code> instruction, which jumps to the segmented address <code>CS = 0xf000</code> and <code>IP = 0xe05b</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<ul>
+<li><p>在 x86 架构中，CPU 在启动时会从固定地址（通常是 <code>0xffff0</code>）开始执行代码。这个地址位于 BIOS 的内存区域，通常包含一条 <code>ljmp</code> 指令，用于跳转到实际的 BIOS 初始化代码位置。</p></li>
+<li><p><strong>Instruction</strong> 是指 <strong>CPU</strong> 执行的机器语言命令，它是计算机程序的最基本组成部分。指令告诉 CPU 应该执行什么操作，比如数据传输、算术运算、逻辑运算或控制程序流程。每条指令通常由两部分组成</p>
+<ul>
+<li>Opcode（操作码）：指定要执行的操作类型，例如加法、跳转等。</li>
+<li>Operands（操作数）：提供操作所需的数据或地址。</li>
+</ul></li>
+</ul>
+</blockquote>
+<h2 id="unified-extensible-firmware-interface-uefi">Unified Extensible Firmware Interface (UEFI)</h2>
+<p>A successor of BIOS</p>
+<ul>
+<li>It’s faster</li>
+<li>It has filesystem support</li>
+<li>It can be stored in various places: flash memory on motherboard, hard drive, or even network share</li>
+<li>It supports more input such as mouse</li>
+<li>It has secure boot</li>
+<li>It has better UI</li>
+<li>Somehow it’s more like a ”mini OS”</li>
+</ul>
+<h2 id="process">Process</h2>
+<p><strong>Def</strong>. <strong>Process</strong>: the execution of an application program with <strong>restricted rights</strong>.</p>
+<ul>
+<li>Protection from each other; <strong>OS protected</strong> from processes</li>
+<li>Owns dedicated <strong>address space</strong></li>
+<li><strong>Contexts</strong> of file descriptor, filesystem, etc..</li>
+<li><strong>One or many threads</strong></li>
+</ul>
+<blockquote>
+<p>在操作系统中，Contexts（上下文）指的是与进程相关的所有状态信息，这些信息使得操作系统能够正确地管理和调度进程。具体到 file descriptor、filesystem 等，指的是进程在文件操作和文件系统方面的上下文信息。</p>
+<p>How process differs from program?</p>
+<ul>
+<li>Process is an <strong>instance</strong> of program, like an object is an instance of a class in OOP</li>
+<li>A program can have zero, one, or many processes executing it</li>
+</ul>
+</blockquote>
+<h2 id="process-control-block">Process Control Block</h2>
+<p><strong>Def</strong>. <strong>Process control block</strong>: a data structure used by <strong>Linux</strong> to keep <strong>track</strong> of a process execution. It includes</p>
+<ul>
+<li>Process ID (PID)</li>
+<li>Process state (running, waiting, ready..)</li>
+<li>Process priority</li>
+<li>Program counter</li>
+<li>Memory related information</li>
+<li>Register information</li>
+<li>I/O status information (file descriptor, I/O devices..)</li>
+<li>Accounting information</li>
+</ul>
+<h3 id="process-in-memory">Process in Memory</h3>
+<p>There are <span class="math inline">\(5\)</span> parts of a process in memory. <strong>From high address to low address</strong> (this address is virtual), they are <strong>stack</strong>, <strong>heap</strong>, <strong>uninitialized data (.bss)</strong>, <strong>initialized data (.data)</strong>, <strong>code (.text)</strong>.</p>
+<p>For example, the following code initialize a process.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a = <span class="hljs-number">0</span>; <span class="hljs-comment">// .data</span><br><span class="hljs-type">int</span> b; <span class="hljs-comment">// .bss</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">hello</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-type">static</span> c = a + b; <span class="hljs-comment">// .data</span><br>  <span class="hljs-type">int</span> d; <span class="hljs-comment">// stack</span><br>  <span class="hljs-type">int</span> *e = <span class="hljs-built_in">malloc</span>(..); <span class="hljs-comment">// heap</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>In Linux, we use <code>readelf</code> command to checkout what’s in an executable</p>
+</blockquote>
+<h2 id="how-to-virtual">How to virtual</h2>
+<p>The basic <strong>model</strong> of CPU virtualization: run one process for a little while, then run another one, and so forth. But this model has two significant challenges.</p>
+<ul>
+<li>Performance. How to virtualize without adding <strong>excessive overhead</strong> to the system</li>
+<li>Control (isolation)
+<ul>
+<li>OS must take control whenever it wants; otherwise a process can run forever</li>
+<li>OS must control how certain resources can be accessed by processes (<strong>evil</strong> processes)</li>
+<li>A straightforward way to address this; let OS <strong>take charge of</strong> each instruction of process</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Above contents mean we allow most instructions direct run on CPU, but for sensitive instructions, we let them go through OS. This means we need to <strong>limit direct execution</strong>.</p>
+</blockquote>
+<h3 id="limited-direct-execution">Limited Direct Execution</h3>
+<p>So, how to limit direct execution? Here are two ways.</p>
+<ul>
+<li><strong>Restricted operations</strong>
+<ul>
+<li>Sensitive operations must go to OS, so the latter can guarantee its legality (reject, accept, schedule, etc..)</li>
+</ul></li>
+<li><strong>Inter-process switching</strong>
+<ul>
+<li>Voluntary switching: <strong>system calls</strong>, <code>wait()</code>, etc..</li>
+<li>Involuntary switching: <strong>timer interrupt</strong></li>
+</ul></li>
+</ul>
+<h2 id="dual-mode">Dual Mode</h2>
+<p>But, how to implement <strong>restricted operations</strong> or <strong>inter-process switching</strong>? Is software alone enough? We need hardware-assisted (<strong>user mode</strong> and <strong>kernel mode</strong>)isolation and protection.</p>
+<p>What hardware needs to provide?</p>
+<ul>
+<li><strong>Privileged instructions</strong></li>
+<li><strong>Memory protection</strong></li>
+<li>Timer interrupts</li>
+<li>Safe mode transfer</li>
+</ul>
+<h3 id="privileged-instructions">Privileged Instructions</h3>
+<p><strong>Def</strong>. <strong>Privileged instructions</strong> are available in kernel mode but not user mode. Any instructions that could affect other processors are likely to be privileged.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Privileged Instructions</th>
+<th style="text-align: center;">Non-privileged Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">I/O read/write</td>
+<td style="text-align: center;">Performing arithmetic operation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Context switch</td>
+<td style="text-align: center;">Call a function</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Changing privilege level</td>
+<td style="text-align: center;">Reading status of processor</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Set system time</td>
+<td style="text-align: center;">Read system time</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 1: Some privileged instructions and non-privileged instructions
+</div>
+<p>What if apps need those privileged instructions?</p>
+<p>What if apps executes a privileged instruction <strong>without</strong> permission?</p>
+<ul>
+<li>Processor detects it in its hardware logic, and throws an <strong>exception</strong></li>
+<li>Process halted, <strong>OS takes over</strong></li>
+</ul>
+<h3 id="memory-protection">Memory Protection</h3>
+<ul>
+<li><strong>Segmentation</strong>
+<ul>
+<li>Base and bounds registers</li>
+<li>Every memory access is checked on those registers</li>
+<li>A block copy needs to check each of the data address</li>
+<li>Kernel mode bypass this check</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>The disadvantages of this approach</p>
+<ul>
+<li>No <strong>expandable heap and stack</strong></li>
+<li>No memory <strong>sharing</strong></li>
+<li>Memory fragmentation</li>
+</ul>
+</blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/Base%20and%20Bounds.png" srcset="/img/loading.gif" lazyload alt="Base and bounds in segmentation"><figcaption aria-hidden="true">Base and bounds in segmentation</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: Base and bounds in segmentation
+</div>
+<ul>
+<li><strong>Paging</strong>
+<ul>
+<li>Every memory address a process see is <strong>discontinuously</strong> mapped to a physical address in memory</li>
+<li>Involves extensive software-hardware cooperation</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>How</strong> to translate virtual address to physical address is determined by <strong>OS in kernel mode</strong></p>
+<p>The <strong>actual</strong> translation process and permission check in done by <strong>CPU</strong></p>
+</blockquote>
+<h3 id="time-interrupts">Time Interrupts</h3>
+<p><strong>Def</strong>. <strong>Time interrupts</strong> is a way for OS to regain the control to the CPU</p>
+<ul>
+<li>An illusion: the program has the full control of CPU</li>
+<li>Otherwise, it can execute an infinite loop</li>
+<li>Hardware timer can <strong>only</strong> be reset in kernel mode</li>
+</ul>
+<p>After timer interrupts, the OS <strong>schedule</strong> another process (could be the same one being interrupted) to run</p>
+<h3 id="current-privilege-level-cpl">Current Privilege Level (CPL)</h3>
+<p>x86 architecture uses <strong>lower</strong> <span class="math inline">\(2\)</span>-bits in the CS (<code>CS</code>) Segment register (referred to as the <strong>current privilege level bits</strong>). Yet most OSes only use level <span class="math inline">\(0\)</span> (<strong>kernel mode</strong>) and level <span class="math inline">\(3\)</span> (<strong>user mode</strong>)</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Boot_Process_Kernel/Protection%20Rings.png" srcset="/img/loading.gif" lazyload alt="Protection rings"><figcaption aria-hidden="true">Protection rings</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: Protection rings
+</div>
+<p>How to <strong>switch</strong> between user and kernel modes?</p>
+<ol type="1">
+<li><code>CPL &amp;= 0x0</code></li>
+<li><code>CPL &amp;= 0x3</code></li>
+<li><code>CPL |= 0x0</code></li>
+<li><code>CPL |= 0x3</code></li>
+<li><code>CPL &amp;= 0xfffffffc</code></li>
+<li><code>CPL |= 0xfffffffc</code></li>
+</ol>
+<h2 id="some-questions">Some Questions</h2>
+<ol type="1">
+<li><p>Does user code always run in user process?</p></li>
+<li><p>Does user code always run in user mode?</p></li>
+<li><p>Does OS code always run in system process?</p></li>
+<li><p>Does OS code always run in kernel mode?</p></li>
+<li><p>How does code/CPU know if it’s in user or kernel mode?</p></li>
+</ol>
 
                 
               </div>
