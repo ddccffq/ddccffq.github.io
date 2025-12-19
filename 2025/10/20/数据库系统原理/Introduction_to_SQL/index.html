@@ -16,18 +16,18 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddccffq">
+  <meta name="author" content="任志诚 2023212020">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="SQL SQL Parts  DML（Data Manipulation Language）：用于查询&#x2F;检索及对元组的增删改查（SELECT、INSERT、DELETE、UPDATE） DDL（Data Definition Language）：用于定义&#x2F;删除&#x2F;修改模式、视图和索引等结构 完整性（Integrity）：指定完整性约束的命令 视图定义（View definition）：用于定义视图">
+    <meta name="description" content="Structured Query Language (SQL) SQL Parts  Data Manipulation Language (DML)  The ability to query&#x2F;retrieve information The ability to select, insert, delete, update tuples  Data Definition Language (">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to SQL">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Introduction_to_SQL/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="SQL SQL Parts  DML（Data Manipulation Language）：用于查询&#x2F;检索及对元组的增删改查（SELECT、INSERT、DELETE、UPDATE） DDL（Data Definition Language）：用于定义&#x2F;删除&#x2F;修改模式、视图和索引等结构 完整性（Integrity）：指定完整性约束的命令 视图定义（View definition）：用于定义视图">
+<meta property="og:description" content="Structured Query Language (SQL) SQL Parts  Data Manipulation Language (DML)  The ability to query&#x2F;retrieve information The ability to select, insert, delete, update tuples  Data Definition Language (">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-20T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-26T14:03:23.099Z">
+<meta property="article:modified_time" content="2025-12-19T07:25:56.378Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          618 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          25 分钟
+          6 分钟
         
       </span>
     
@@ -277,319 +277,284 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="sql">SQL</h2>
+<h2 id="structured-query-language-sql">Structured Query Language (SQL)</h2>
 <h3 id="sql-parts">SQL Parts</h3>
+<ol type="1">
+<li>Data Manipulation Language (DML)
 <ul>
-<li>DML（Data Manipulation Language）：用于查询/检索及对元组的增删改查（SELECT、INSERT、DELETE、UPDATE）</li>
-<li>DDL（Data Definition Language）：用于定义/删除/修改模式、视图和索引等结构</li>
-<li>完整性（Integrity）：指定完整性约束的命令</li>
-<li>视图定义（View definition）：用于定义视图的命令</li>
-<li>事务控制（Transaction control）：用于指定事务开始与结束的命令</li>
-<li>嵌入式与动态 SQL（Embedded SQL and dynamic SQL）：在编程语言中嵌入的 SQL 语句</li>
-<li>授权（Authorization）：与权限管理相关的命令</li>
-</ul>
-<p>下表是常见的功能说明及其命令</p>
-<div style="display: block; margin: 0 auto; width: fit-content">
-<table>
-
-<thead>
-<tr class="header">
-<th>功能类别</th>
-<th>说明</th>
-<th>常见命令</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>数据查询 (data query)</td>
-<td>用于检索/查询数据</td>
-<td>SELECT</td>
-</tr>
-<tr class="even">
-<td>数据操作 (data manipulation, DML)</td>
-<td>对元组进行增删改查</td>
-<td>INSERT, DELETE, UPDATE</td>
-</tr>
-<tr class="odd">
-<td>数据定义 (data definition, DDL)</td>
-<td>定义/修改/删除模式、视图、索引等结构</td>
-<td>CREATE, DROP, ALTER（on schema）</td>
-</tr>
-<tr class="even">
-<td>数据控制 (data control)</td>
-<td>权限与授权管理</td>
-<td>GRANT, REVOKE</td>
-</tr>
-<tr class="odd">
-<td>事务处理 (transaction processing)</td>
-<td>指定事务的开始与结束、保证一致性</td>
-<td>BEGIN TRANSACTION, COMMIT, ROLLBACK</td>
-</tr>
-<tr class="even">
-<td>指针/游标控制语言 (CCL)</td>
-<td>游标声明与逐行处理当前记录</td>
-<td>DECLARE CURSOR, FETCH INTO, UPDATE … WHERE CURRENT</td>
-</tr>
-</tbody>
-</table>
-</div>
+<li>The ability to <strong>query/retrieve</strong> information</li>
+<li>The ability to <strong>select, insert, delete, update</strong> tuples</li>
+</ul></li>
+<li>Data Definition Language (DDL)
+<ul>
+<li>The ability to <strong>define, drop, modify</strong> on <strong>schemas, views</strong> and <strong>index</strong></li>
+<li><strong>Integrity</strong>: commands for <strong>specifying integrity constraints</strong></li>
+<li><strong>View definition</strong>: commands for <strong>defining views</strong></li>
+</ul></li>
+<li>Transaction control
+<ul>
+<li>Commands for specifying the <strong>beginning</strong> and <strong>ending</strong> of transactions</li>
+</ul></li>
+<li>Embedded SQL and dynamic SQL
+<ul>
+<li>Statements embedded within <strong>programming languages</strong></li>
+</ul></li>
+<li>Authorization
+<ul>
+<li>Commands for specifying <strong>access rights</strong> to relations and views</li>
+</ul></li>
+</ol>
 <h3 id="sql-data-definition">SQL Data Definition</h3>
-<p>DDL（数据定义语言）用于描述关系（relation）的元信息与约束。</p>
+<p><strong>Def</strong>. DDL allows <strong>specification</strong> about relations:</p>
 <ul>
-<li>包含内容：
+<li>The <strong>schema</strong> for each relation</li>
+<li>The <strong>type of values</strong> associated with each attribute</li>
+<li>The <strong>integrity constraints</strong></li>
+<li>The <strong>indices</strong> to be maintained for each relation</li>
+<li>The <strong>security and authorization</strong> information for each relation</li>
+<li>The <strong>physical storage structure</strong> of each relation on disk</li>
+</ul>
+<h3 id="domain-types-in-sql">Domain Types in SQL</h3>
 <ul>
-<li>每个关系的模式（schema）</li>
-<li>每个属性对应的值类型</li>
-<li>完整性约束（例如 age &gt; 0）</li>
-<li>为关系维护的索引</li>
-<li>关系的安全性与授权信息</li>
-<li>关系在磁盘上的物理存储结构</li>
+<li><code>char(n)</code>. Fixed length character string, user-specified length <span class="math inline">\(n\)</span></li>
+<li><code>varchar(n)</code>. Variable length character string, user-specified length <span class="math inline">\(n\)</span></li>
+<li><code>int</code>. Integer (the integers that is machine-dependent)</li>
+<li><code>smallint</code>. Small integer (machine-dependent subset of the integer)</li>
+<li><code>numeric(p, d)</code>. <strong>Fixed point number</strong>, user-specified precision of <span class="math inline">\(p\)</span> digits, with <span class="math inline">\(d\)</span> digits to the right of decimal point</li>
+<li><code>data</code>. <strong>Dates</strong>, containing a (<span class="math inline">\(4\)</span> digit) year, month and date</li>
+<li><code>time</code>. <strong>Time</strong> of day, in hours, minutes and seconds</li>
+<li><code>timestamp</code>. <strong>Date plus time of day</strong>, e.g. <code>2001-7-27 09:00:30.75</code></li>
+<li><code>Interval</code>. Period of time
+<ul>
+<li>Subtracting a <strong>date/time/timestamp</strong> value from another gives an interval value</li>
+</ul></li>
+<li><code>Null</code>. Values allowed in all domain types. Declaring an attribute to be <strong>not null</strong> prohibits. null values for that attribute</li>
+<li><code>create domain</code>. Construct creates <strong>user-defined domain</strong> types</li>
+</ul>
+<h3 id="basic-schema-definition-create-table">Basic Schema Definition: Create Table</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">create table</span> takes (<br>  ID <span class="hljs-type">varchar</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">not null</span>,<br>  course_id <span class="hljs-type">varchar</span>(<span class="hljs-number">8</span>) <span class="hljs-keyword">not null</span>,<br>  <span class="hljs-keyword">year</span> <span class="hljs-type">numeric</span>(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">not null</span>,<br>  grade <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>),<br>  <span class="hljs-keyword">primary key</span> (ID, course_id, <span class="hljs-keyword">year</span>),<br>  <span class="hljs-keyword">foreign key</span> (ID) <span class="hljs-keyword">references</span> student(ID),<br>  <span class="hljs-keyword">foreign key</span> (course_id, <span class="hljs-keyword">year</span>) <span class="hljs-keyword">references</span> section(course_id, <span class="hljs-keyword">year</span>)<br>);<br></code></pre></td></tr></table></figure>
+<h4 id="updates-to-schemas">Updates to Schemas</h4>
+<ul>
+<li>Drop table: <code>DROP TABLE r</code></li>
+<li>Alter:
+<ul>
+<li><code>ALTER TABLE r ADD A D</code>
+<ul>
+<li>Where <span class="math inline">\(A\)</span> is the name of attribute added to <span class="math inline">\(r\)</span> and <span class="math inline">\(D\)</span> is the domain of <span class="math inline">\(A\)</span></li>
+<li>All existing tuples are assigned <strong>null</strong> as the value for the added attribute</li>
+</ul></li>
+<li><code>ALTER TABLE r DROP A</code>
+<ul>
+<li>Not supported by many database</li>
+</ul></li>
 </ul></li>
 </ul>
-<h4 id="basic-schema-definition-create-table">Basic Schema Definition: Create Table</h4>
-<ul>
-<li><p>主题：使用 CREATE TABLE 定义关系模式与完整性约束（DDL 的一部分）。</p></li>
-<li><p>CREATE TABLE 的一般形式：</p>
-<ul>
-<li>create table r (A1 D1, A2 D2, …, (integrity-constraint1), … )</li>
-<li>其中 r 为关系名，Ai 为属性名，Di 为属性的数据类型。</li>
-</ul></li>
-<li><p>DDL 在表定义中还描述：模式、属性类型、完整性约束、索引、授权与物理存储等元信息。</p></li>
-<li><p>完整性约束类型：</p>
-<ul>
-<li>主键（primary key）：保证行唯一性。</li>
-<li>外键（foreign key … references …）：维护引用完整性。</li>
-<li>NOT NULL：禁止空值。</li>
-<li>这些约束阻止任何违反完整性的插入/更新/删除操作。</li>
-</ul></li>
-<li><p>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs `sql">  create table takes (<br>    ID varchar(5) not null,<br>    course_id varchar(8) not null,<br>    year numeric(4,0) not null,<br>    grade varchar(2),<br>    primary key (ID, course_id, year),<br>    foreign key (ID) references student(ID),<br>    foreign key (course_id, year) references section(course_id, year)<br>  );<br><br>#### Updates to Schemas（模式更新）<br><br>- 模式更新会改变关系在磁盘上的组织，常见操作包括：drop table、alter table add、alter table drop。<br>- 存储布局的区别：<br>  - 行存储（row-based）：按行连续存放，适合 OLTP 操作；增加/删除属性往往需要移动整行数据，代价较高。<br>  - 列存储（column-based）：按列连续存放，适合分析型查询（OLAP）与大数据场景；按列扩展更灵活，常见于 NoSQL/列式数据库。<br>- 常用 SQL 语法示例：<br>  - 删除表： `drop table r;`<br>  - 添加属性： `alter table student add age integer;`  <br>    说明：现有元组的 age 被赋为 NULL。<br>  - 删除属性： `alter table student drop age;`  <br>    说明：许多数据库对删除属性有限制或不支持，生产环境需谨慎。<br>- 注意事项：<br>  - 在设计模式时应尽量考虑扩展性与兼容性，避免频繁结构变更带来的高昂维护成本。<br>  - 对于需要频繁按列扩展或大规模分析的场景，可考虑列式存储或 NoSQL 解决方案。<br><br>### Basic Structure of SQL Queries<br><br>- 一条典型的 SQL 查询格式：<br><br>  ```sql<br>  select A1, A2, ..., An<br>  from r1, r2, ..., rm<br>  where P<br></code></pre></td></tr></table></figure></li>
-<li><p>含义：</p>
-<ul>
-<li>Ai：属性（attribute）</li>
-<li>ri：关系/表（relation）</li>
-<li>P：谓词/筛选条件（predicate）</li>
-</ul></li>
-<li><p>查询结果是一个关系（即结果表）。</p></li>
-<li><p>与关系代数等价表示：</p>
+<p>The tuples/rows in <strong>table</strong> are stored <strong>row by row</strong>. Adding attributes or dropping the table leads to <strong>costly modifying</strong> the records and then moving these records</p>
+<h2 id="basic-structure-of-sql-queries">Basic Structure of SQL Queries</h2>
+<p>A typical SQL query has the form:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> A1, A2, ..., An<br><span class="hljs-keyword">FROM</span> r1, r2, ..., rm<br><span class="hljs-keyword">WHERE</span> P;<br></code></pre></td></tr></table></figure>
+<p>This query is <strong>equivalent</strong> to the relational algebra expression:</p>
 <p><span class="math display">\[
-\Pi_{A1,A2,\dots,An}\big(\sigma_{P}(r_1 \times r_2 \times \dots \times r_m)\big)
-\]</span></p></li>
-<li><p>流程要点：先对参与的关系做笛卡尔积（或连接），再按谓词 P 选择满足的元组，最后对所需属性做投影。</p></li>
-</ul>
-<h4 id="the-select-clause">The Select Clause</h4>
-<p>SELECT 子句（对应关系代数的投影）</p>
-<ul>
-<li><p>作用：列出要返回的属性（列），即对关系做投影，形式如 <code>select A1, A2, ... from ...</code></p></li>
-<li><p>等价关系代数表示：</p>
-<p><span class="math display">\[
-\Pi_{A1,A2,\dots,An}(\sigma_{P}(r_1\times r_2\times\dots))
-\]</span></p></li>
-<li><p>示例：查找所有教师的姓名 <code>select name from instructor</code></p></li>
-<li><p>表格要素：attributes（列）和 tuples/rows（行）</p></li>
-<li><p>注意：名字（列名）大小写不敏感（Name ≡ NAME ≡ name）</p></li>
-<li><p>无 FROM 的字面量：<code>select '437'</code> 返回一个单列单行的表；可用别名命名列（<code>select '437' as FOO</code>）。</p></li>
-<li><p>带 FROM 的字面量：<code>select 'A' from instructor</code> 返回一列 N 行的表，每行值为 <code>'A'</code>（N 为表中元组数）。</p></li>
-</ul>
-<p>SQL 查询结果可以控制重复元素</p>
-<ul>
-<li>要点：
-<ul>
-<li>SQL 查询结果允许重复元组（duplicates）。</li>
-<li>使用 DISTINCT 强制去除重复。</li>
-<li>使用 ALL 明确保留重复（默认行为）。</li>
-</ul></li>
-<li>示例：
-<ul>
-<li><code>select distinct dept_name from instructor;</code></li>
-<li><code>select all dept_name from instructor;</code></li>
-</ul></li>
-</ul>
-<p>星号 (*)：在 SELECT 子句中表示返回所有属性（例如 <code>select * from instructor</code>）。</p>
+\Pi_{A_1, A_2, \cdots, A_n} (\sigma_{P} (r_1 \times r_2 \times \cdots \times r_m))
+\]</span></p>
+<h3 id="the-select-clause">The Select Clause</h3>
+<p>The select clause lists the <strong>attributes</strong>. For example, find the names of all instructors:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> instructor;<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>注意：实际应用中尽量避免在 SELECT 中使用 <code>*</code>，以防影响索引与查询性能。</p>
+<p><em>Note</em>: names are case insensitive (Name, NAME, name).</p>
 </blockquote>
-<p>SELECT 子句可以包含算术表达式（+, -, *, /），对常量或元组的属性进行运算。</p>
+<p>SQL allows <strong>duplicates</strong> in relations. To force elimination of duplicates, <strong>insert</strong> the keyword <strong>distinct</strong>. For example, find the department names of all instructors, and remove duplicates:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> dept_name<br><span class="hljs-keyword">FROM</span> instructor;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>We also insert the keyword <strong>all</strong> to specify that duplicates should not be removed.</p>
+</blockquote>
 <ul>
-<li>示例：<code>select ID, name, salary/12 from instructor</code> 返回与 instructor 相同的结果集，但 salary 值被除以 12。</li>
-<li>可用 <code>AS</code> 为表达式重命名，例如 <code>select ID, name, salary/12 as monthly_salary</code>，将计算结果列命名为 monthly_salary。</li>
-</ul>
-<h3 id="where-clause-predicates">Where Clause Predicates</h3>
+<li>An <strong>asterisk</strong> in the select clause denotes <strong>all attributes</strong></li>
+<li>An attribute can be a literal with <strong>no from</strong> clause, e.g. <code>SELECT '437';</code>
 <ul>
-<li>Between 比较运算符：用于范围查询，含义为大于等于下限且小于等于上限。
-<ul>
-<li><p>例：查找薪水在 <span class="math inline">\(90{,}000\)</span> 到 <span class="math inline">\(100{,}000\)</span>（含端点）的教师</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">where</span> salary <span class="hljs-keyword">between</span> <span class="hljs-number">90000</span> <span class="hljs-keyword">and</span> <span class="hljs-number">100000</span>;<br></code></pre></td></tr></table></figure></li>
+<li>Results is a table with <strong>one column</strong> and <strong>a single row</strong> with value 437</li>
+<li>Can give the column a <strong>name</strong> using: <code>SELECT '437;</code> AS FOO`</li>
 </ul></li>
-<li>元组比较（Tuple comparison）：可以将多个属性作为一个元组进行比较，用于跨表或常量的多列匹配。
+<li>An attribute can be a literal with <strong>from</strong> clause, e.g. <code>SELECT 'A' FROM instructor;</code>
 <ul>
-<li><p>例：匹配 instructor 的 (ID, dept_name) 与 teaches 的 (ID, ‘Biology’)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name, course_id<br><span class="hljs-keyword">from</span> instructor, teaches<br><span class="hljs-keyword">where</span> (instructor.ID, dept_name) <span class="hljs-operator">=</span> (teaches.ID, <span class="hljs-string">&#x27;Biology&#x27;</span>);<br></code></pre></td></tr></table></figure></li>
+<li>Result is a table with <strong>one column</strong> and <span class="math inline">\(N\)</span> <strong>rows</strong>, each row with vale A.</li>
+</ul></li>
+</ul>
+<p>The select clause can contain <strong>arithmetic expressions</strong> involving operation <span class="math inline">\(+\)</span>, <span class="math inline">\(-\)</span>, <span class="math inline">\(*\)</span>, and <span class="math inline">\(/\)</span>. The query:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> ID, name <span class="hljs-keyword">and</span> salary<span class="hljs-operator">/</span><span class="hljs-number">12</span> <span class="hljs-keyword">AS</span> monthly_salary<br><span class="hljs-keyword">FROM</span> instructor;<br></code></pre></td></tr></table></figure>
+<p>would return a relation that is the same as <em>instructor</em>, except that the value of salary is divided by <span class="math inline">\(12\)</span>.</p>
+<h3 id="the-where-clause">The Where Clause</h3>
+<p>The where clause specifies <strong>conditions</strong> that the result must satisfy</p>
+<ul>
+<li>Corresponds to <strong>selection predicate</strong> of relational algebra</li>
+<li>Allows the <strong>logical connectives</strong></li>
+<li><strong>Between comparison operator</strong>
+<ul>
+<li>Find names of all instructors with salary between <span class="math inline">\(90000\)</span> and <span class="math inline">\(100000\)</span></li>
+<li><code>SELECT name FROM instructor WHERE salary BETWEEN 90000 AND 100000;</code></li>
+</ul></li>
+<li><strong>Tuple comparison operator</strong>
+<ul>
+<li><code>SELECT name, course_id FROM instructors, teaches WHERE (instructor.ID, dept_name) = (teaches.ID, 'Biology);</code></li>
 </ul></li>
 </ul>
 <h3 id="the-from-clause">The From Clause</h3>
-<p>FROM 子句列出参与的关系，对应关系代数中的笛卡尔积（Cartesian product）。</p>
-<ul>
-<li>作用：例如 <code>select * from instructor, teaches</code> 会生成每个 instructor–teaches 的所有组合，结果包含两表的所有属性。</li>
-<li>属性重名：若存在相同属性名（如 ID），结果中的属性需用关系名前缀区分（例如 <code>instructor.ID</code>）。</li>
-<li>结论：笛卡尔积本身直接用处有限，通常需配合 WHERE 子句的连接或筛选条件才能得到有意义的结果。</li>
-</ul>
+<p>The form clause lists relations corresponding to <strong>Cartesian product</strong> operation of relational algebra. For example, fin Cartesian product <em>instructor</em> and <em>teaches</em>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> instructor, teaches;<br></code></pre></td></tr></table></figure>
+<p>For <strong>common</strong> attributes, like ID, attributes in resulting table are <strong>renamed</strong> using the relation name, like instructor.ID.</p>
+<blockquote>
+<p>Cartesian product not very useful directly, but useful with <strong>where clause</strong> condition.</p>
+</blockquote>
 <h3 id="natural-join">Natural Join</h3>
-<p>在 FROM 子句中使用 natural join。</p>
+<p>Natural Join in <strong>from</strong> subclause. For example, find names of all instructors in Art who have taught some course and course_id.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, course_id<br><span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> teaches<br><span class="hljs-keyword">WHERE</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>What’s difference compared with:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, course_id<br><span class="hljs-keyword">FROM</span> instructor, teaches<br><span class="hljs-keyword">WHERE</span> instructor.ID <span class="hljs-operator">=</span> teaches.ID <span class="hljs-keyword">AND</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>SQL queries run in this order: <code>FROM + JOIN</code> <span class="math inline">\(\to\)</span> <code>WHERE</code> <span class="math inline">\(\to\)</span> <code>GROUP BY</code> <span class="math inline">\(\to\)</span> <code>HAVING</code> <span class="math inline">\(\to\)</span> <code>SELECT</code> <span class="math inline">\(\to\)</span> <code>ORDER BY</code> <span class="math inline">\(\to\)</span> <code>LIMIT</code>.</p>
+<h2 id="the-rename-operation">The Rename Operation</h2>
+<p>Renaming <strong>relations</strong> and <strong>attributes</strong> using the <strong>as</strong> clause. For example, find names of all instructors who have a higher salary than instructor in Comp.Sci.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> T.name <span class="hljs-keyword">AS</span> TeacherName<br><span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">AS</span> T, instructors <span class="hljs-keyword">AS</span> S <span class="hljs-comment">/*tuple variables*/</span><br><span class="hljs-keyword">WHERE</span> T.salary <span class="hljs-operator">&gt;</span> S.salary <span class="hljs-keyword">and</span> S.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="string-operations">String Operations</h2>
+<p><strong>String matching operator</strong> for comparison on <strong>character strings</strong>. The operator <strong>like</strong> uses patterns two special characters:</p>
 <ul>
-<li><p>要求：查找系别为 “Art” 且曾教授过课程的教师姓名和对应的 course_id。</p></li>
-<li><p>natural join 示例：</p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name, course_id<br><span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> teaches<br><span class="hljs-keyword">where</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure></p></li>
-<li><p>要点说明：</p>
+<li>Percent (<code>%</code>). The <code>%</code> character matches any <strong>substring</strong>.</li>
+<li>Underscore (<code>_</code>). The <code>_</code> character matches any <strong>character</strong>.</li>
+</ul>
+<p>For example, find the names of all instructors whose name includes the substring “dar”.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%dar%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>Or match the string “100%”, <code>LIKE '100\%' ESCAPE '\';</code>. We use backslash (<code>\</code>) as escape character.</p>
+<p>Patterns are case sensitive. Examples:</p>
 <ul>
-<li><p>natural join 会在两表中自动按照同名属性（如 ID）做等值连接，并去除重复列。</p></li>
-<li><p>等价写法为显式连接条件：</p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name, course_id<br><span class="hljs-keyword">from</span> instructor, teaches<br><span class="hljs-keyword">where</span> instructor.ID <span class="hljs-operator">=</span> teaches.ID<br>  <span class="hljs-keyword">and</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure></p></li>
-<li><p>natural join 简洁，但需注意依赖同名列，可能隐含不期望的匹配。</p></li>
+<li><code>Intro%</code> matches any string beginning with “Intro”</li>
+<li><code>%Comp%</code> matches any string containing “Comp” as a substring</li>
+<li><code>_ _ _</code> matches any string of exactly <strong>three characters</strong></li>
+<li><code>_ _ _%</code> matches any string of at <strong>least</strong> three characters.</li>
+</ul>
+<h2 id="ordering-the-display-of-tuples">Ordering the Display of Tuples</h2>
+<ul>
+<li>List in <strong>alphabetic order</strong> the names of all instructors. <code>ORDER BY name</code></li>
+<li>Specify <strong>desc</strong> for descending order or <strong>asc</strong> for ascending order (ascending order is the default), e.g. <code>ORDER BY name DESC, dept_name DESC</code></li>
+</ul>
+<h2 id="set-operation">Set Operation</h2>
+<p><strong>Def</strong>. <strong>Set operations</strong> include <strong>union</strong>, <strong>intersect</strong>, and <strong>except</strong> (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\cap\)</span>, <span class="math inline">\(-\)</span>) operate on relations.</p>
+<ul>
+<li><strong>Automatically eliminates duplicates</strong></li>
+<li><strong>Union all</strong>, <strong>Intersect all</strong> and <strong>except all</strong>, to retain duplicates</li>
+</ul>
+<h2 id="null-values">Null Values</h2>
+<p><strong>Null</strong> signifies an unknown value or a values does not exist. The <strong>result</strong> of any <strong>arithmetic expression</strong> involving <strong>null</strong> is <strong>null</strong>. The <strong>predicate is null</strong> can be used to check for null values. For example, find all instructors whose salary is null:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></td></tr></table></figure>
+<p>SQL treats as <strong>unknown</strong> the result of any comparison involving a <strong>nul</strong> value.</p>
+<p>The predicate in a <strong>where</strong> clause can involve Boolean operations (and, or, not); thus Boolean operations need to be extended to deal with <strong>unknown</strong>.</p>
+<ul>
+<li><code>True AND UNKNOWN = UNKNOWN</code></li>
+<li><code>FALSE AND UNKNOWN = UNKNOWN</code></li>
+<li><code>UNKNOWN AND UNKNOWN = UNKNOWN</code></li>
+<li><code>UNKNOWN OR TRUE = TRUE</code></li>
+<li><code>UNKNOWN OR FALSE = UNKNOWN</code></li>
+<li><code>UNKNOWN OR UNKNOWN = UNKNOWN</code></li>
+</ul>
+<blockquote>
+<p>Results of <strong>where</strong> clause predicate is treated as <strong>false</strong> if it evaluates to <strong>unknown</strong>.</p>
+</blockquote>
+<h2 id="aggregate-functions">Aggregate Functions</h2>
+<p><strong>Aggregate functions</strong> operate on values of <strong>column</strong>, but return a <strong>value</strong>.</p>
+<ul>
+<li><code>AVG</code>; average value</li>
+<li><code>MIN</code>: minimum value</li>
+<li><code>MAX</code>: maximum value</li>
+<li><code>SUM</code>: sum of values</li>
+<li><code>COUNT</code>: number of values</li>
+</ul>
+<p>Examples:</p>
+<ol type="1">
+<li><p>Find average salary of instructors in Computer Science department</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>Find <strong>total number of instructors</strong> who teach a course in Spring 2018</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> ID)<br><span class="hljs-keyword">FROM</span> teaches<br><span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>Find <strong>the number of tuples</strong> in the <em>course</em> relation</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>)<br><span class="hljs-keyword">FROM</span> course;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="group-by">Group By</h3>
+<p>Find the average salary of instructors in <strong>each department</strong>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">AS</span> avg_salary<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dept_name;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Attributes in <strong>select</strong> clause outside of aggregate functions <strong>must appear in group by</strong> list (dept_name).</p>
+<p>All aggregate operations <strong>except</strong> <code>COUNT(*)</code> <strong>ignore</strong> tuples with <strong>null</strong> values on the aggregated attributes.</p>
+</blockquote>
+<h3 id="having-clause">Having Clause</h3>
+<p>Find the names and average salaries of all departments whose average salary is more than <span class="math inline">\(42000\)</span>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">AS</span> avg_salary<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dept_name<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">42000</span>;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><em>Note</em>: predicates in <strong>having</strong> clause are applied after the formation of groups whereas predicates in <strong>where</strong> clause are applied before forming groups.</p>
+</blockquote>
+<h2 id="nested-subqueries">Nested Subqueries</h2>
+<p><strong>Subquery</strong> is a <strong>select-from-where</strong> expression nested within <strong>another</strong> query. For example, find courses offered in Fall 2009 and in Spring 2010:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> course_id<br><span class="hljs-keyword">FROM</span> section<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2009</span> <span class="hljs-keyword">AND</span> course_id <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Sprint&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2010</span>);<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Don’t recommend!</p>
+</blockquote>
+<h2 id="some-and-all-clause">Some and All Clause</h2>
+<ul>
+<li>Some: <code>F &lt;comp&gt; SOME r</code> <span class="math inline">\(\Leftrightarrow \exist t \in r\)</span> such that (<code>F &lt;comp&gt; t</code>)</li>
+<li>All: <code>F &lt;comp&gt; ALL r</code> <span class="math inline">\(\Leftrightarrow \forall t \in r\)</span> (<code>F &lt;comp&gt; t</code>)</li>
+</ul>
+<h2 id="exists-and-not-exists-clause">Exists and Not Exists Clause</h2>
+<ul>
+<li><p>Exists: find all courses taught in both Fall 2017 and Spring 2018</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> course_id<br><span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span> <span class="hljs-keyword">AND</span> S.course_id <span class="hljs-operator">=</span> T.course_id);<br></code></pre></td></tr></table></figure></li>
+<li><p>Not exists: find all students who have taken all courses offered in Biology department</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> S.ID, S.name<br><span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> ((<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Biology&#x27;</span>) <span class="hljs-keyword">EXCEPT</span> (<span class="hljs-keyword">SELECT</span> T.course_id <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> S.ID <span class="hljs-operator">=</span> T.ID));<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="unique-clause">Unique Clause</h2>
+<p>The <strong>unique</strong> tests whether a subquery has any <strong>duplicate</strong> tuples in result. For example, find all courses that were offered at most once in 2017:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> T.course_id<br><span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">AS</span> T<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">UNIQUE</span> (<span class="hljs-keyword">SELECT</span> R.course_id <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> R <span class="hljs-keyword">WHERE</span> T.course_id <span class="hljs-operator">=</span> R.course_id <span class="hljs-keyword">AND</span> R.year <span class="hljs-operator">=</span> <span class="hljs-number">2017</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="subqueries-in-from-clause">Subqueries in From Clause</h2>
+<p>Find <strong>the average instructors’ salaries</strong> of those departments where the average salary is greater than 42000:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, avg_salary<br><span class="hljs-keyword">FROM</span> (<span class="hljs-keyword">SELECT</span> dept_name, <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dept_name) <span class="hljs-keyword">AS</span> dept_avg(dept_name, avg_salary)<br><span class="hljs-keyword">WHERE</span> avg_salary <span class="hljs-operator">&gt;</span> <span class="hljs-number">42000</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="with-clause">With Clause</h2>
+<p>The <strong>with clause</strong> provides a way of defining a <strong>temporary relation</strong> available only to the query in which the <strong>with clause occurs</strong>. For example, find all departments with the maximum budget:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">WITH</span> max_budget(<span class="hljs-keyword">values</span>) <span class="hljs-keyword">AS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(budget) <span class="hljs-keyword">FROM</span> department)<br><span class="hljs-keyword">SELECT</span> department.name<br><span class="hljs-keyword">FROM</span> department, max_budget<br><span class="hljs-keyword">WHERE</span> department.budget <span class="hljs-operator">=</span> max_budget.value;<br></code></pre></td></tr></table></figure>
+<h2 id="scalar-subquery">Scalar Subquery</h2>
+<p><strong>Scalar subquery</strong> is for one where <strong>a single value</strong> is expected. For example, list all departments along with the number of instructors in each department:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">WHERE</span> department.dept_name <span class="hljs-operator">=</span> instructor.dept_name) <span class="hljs-keyword">AS</span> num_instructors<br><span class="hljs-keyword">FROM</span> department;<br></code></pre></td></tr></table></figure>
+<h2 id="modification-of-database">Modification of Database</h2>
+<h3 id="deletion">Deletion</h3>
+<ul>
+<li>Delete all instructors: <code>DELETE FROM instructor;</code></li>
+<li>Delete all instructors from Finance department: <code>DELETE FROM instructor WHERE dept_name = 'Finance';</code></li>
+<li>Delete all tuples in instructor for those instructors associated with department located in Watson building: <code>DELETE FROM instructor WHERE dept_name IN (SELECT dept_name FROM department WHERE building = 'Watson');</code></li>
+<li>Delete all instructors whose salary is less than the average salary of instructors: <code>DELETE FROM instructor WHERE salary &lt; (SELECT AVG(salary) FROM instructor);</code>
+<ul>
+<li><strong>Problem</strong>: as deleting tuples from instructor, the average salary changes. Solutions:
+<ul>
+<li>Firstly, compute average salary and find all tuples to delete</li>
+<li>Subsequently, delete all tuples found above (without recomputing)</li>
+</ul></li>
 </ul></li>
 </ul>
-<h3 id="the-rename-operation">The Rename Operation</h3>
-<p>重命名操作（Rename operation）——使用 as 子句为关系或属性起别名：old-name as new-name。</p>
+<h3 id="insertion">Insertion</h3>
 <ul>
-<li><p>目的与作用：</p>
-<ul>
-<li>引入元组变量（关系别名），便于自连接（self-join）和区分同名属性；</li>
-<li>as 关键字可选（例如 instructor as T 或 instructor T 均可）；</li>
-<li>有助于在 WHERE 中引用不同实例的同一表（如 T.salary 与 S.salary）。</li>
-</ul></li>
-<li><p>示例（查找工资高于某系（Comp. Sci.）教师的所有教师姓名）：</p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> T.name <span class="hljs-keyword">as</span> TeacherName<br><span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">as</span> T, instructor <span class="hljs-keyword">as</span> S<br><span class="hljs-keyword">where</span> T.salary <span class="hljs-operator">&gt;</span> S.salary<br>  <span class="hljs-keyword">and</span> S.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp. Sci.&#x27;</span>;<br></code></pre></td></tr></table></figure></p></li>
-<li><p>要点：重命名是为避免歧义并简化查询书写的常用手段，尤其在自连接或需要给表达式列命名时非常有用。</p></li>
+<li><p>Add a new tuple to <em>course</em>: <code>INSERT INTO course VALUES ('CS-437', 'Database Systems', 'Comp.Sci', 4);</code></p></li>
+<li><p>Add a new tuple to <em>student</em> with total_creds set to null: <code>INSERT INTO student VALUES('3003', 'Green', 'Finance', null);</code></p></li>
+<li><p>Make <strong>each student</strong> in Music department who has earned more than <span class="math inline">\(144\)</span> credits hours an instructor in the Music department <strong>with salary of</strong> <span class="math inline">\(18000\)</span></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">INSERT INTO</span> instructor<br><span class="hljs-keyword">SELECT</span> ID, name, dept_name, <span class="hljs-number">18000</span><br><span class="hljs-keyword">FROM</span> student<br><span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Music&#x27;</span> <span class="hljs-keyword">AND</span> total_cred <span class="hljs-operator">&gt;</span> <span class="hljs-number">144</span>;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="string-operations">String Operations</h3>
+<h3 id="updates">Updates</h3>
 <ul>
-<li>字符串匹配操作（LIKE）的用法与特殊通配符：
-<ul>
-<li>%：匹配任意长度的子串（任意字符串）。</li>
-<li>_：匹配任意单个字符。</li>
-</ul></li>
-<li>示例：查找名字包含子串 “dar” 的教师：
-<ul>
-<li><code>select name from instructor where name like '%dar%'</code></li>
-</ul></li>
-<li>若要匹配字面量 ‘%’，需使用转义字符（示例用反斜杠）：
-<ul>
-<li><code>like '100\%' escape '\'</code></li>
-</ul></li>
-<li>模式匹配区分大小写。</li>
-<li>常见匹配示例：
-<ul>
-<li><code>'Intro%'</code>：以 “Intro” 开头的任意长度字符串；</li>
-<li><code>'%Comp%'</code>：包含子串 “Comp” 的任意字符串；</li>
-<li><code>'___'</code>：恰好 3 个字符的字符串（下划线代表任意单字符）；</li>
-<li><code>'___%'</code>：至少 3 个字符的字符串。</li>
-</ul></li>
-<li>常用字符串操作包括：
-<ul>
-<li>连接（使用 ||）；</li>
-<li>大小写转换（upper/lower）；</li>
-<li>计算长度；</li>
-<li>提取子串等。</li>
-</ul></li>
+<li><p>Give a <span class="math inline">\(5\%\)</span> salary raise to all instructors:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>Give a <span class="math inline">\(5\%\)</span> salary raise to those instructors who earn less than <span class="math inline">\(70000\)</span>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span><br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">&lt;</span> <span class="hljs-number">70000</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>Give a <span class="math inline">\(5\%\)</span> salary raise to instructors whose salary is less than average:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span><br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">&lt;</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">FROM</span> instructor);<br></code></pre></td></tr></table></figure></li>
+<li><p>Increase salaries of instructors whose salary is over <span class="math inline">\(100000\)</span> by <span class="math inline">\(3\%\)</span>, and all others by a <span class="math inline">\(5\%\)</span>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&lt;=</span> <span class="hljs-number">100000</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span> <span class="hljs-keyword">ELSE</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.03</span> <span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure></li>
+<li><p>Recompute and update total_creds value for all students</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> student S<br><span class="hljs-keyword">SET</span> total_creds <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes, course <span class="hljs-keyword">WHERE</span> takes.course_id <span class="hljs-operator">=</span> course.course_id <span class="hljs-keyword">AND</span> S.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span> <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>Sets total_creds to null for students who have not taken any course:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> student<br><span class="hljs-keyword">SET</span> total_creds <span class="hljs-operator">=</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">THEN</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="ordering-the-display-of-tuples">Ordering the Display of Tuples</h3>
-<p>对元组显示结果进行排序（Ordering the Display of Tuples）</p>
-<ul>
-<li>主要点：
-<ul>
-<li>使用 ORDER BY 对查询结果排序，例如：<code>select distinct name from instructor order by name</code>。</li>
-<li>指定排序方向：<code>ASC</code>（默认，升序）或 <code>DESC</code>（降序），例如 <code>order by name desc</code>。</li>
-<li>可按多个属性排序，按先后顺序决定主次，例如：<code>order by dept_name, name</code> 或 <code>order by dept_name asc, name desc</code>。</li>
-<li>注意：对大数据文件使用数据库的 ORDER BY 可能开销很大（排序代价高）。</li>
-</ul></li>
-</ul>
-<h3 id="set-operations">Set Operations</h3>
-<p>集合操作（set operations）：包括 <code>union</code>、<code>intersect</code>、<code>except</code>，用于对关系进行集合运算，对应关系代数符号 <span class="math inline">\(\cup\)</span>，<span class="math inline">\(\cap\)</span>，<span class="math inline">\(-\)</span>。</p>
-<ul>
-<li><p>默认行为：自动消除重复元组；若需保留重复则使用 <code>union all</code>、<code>intersect all</code>、<code>except all</code>。</p></li>
-<li><p>示例（并集，查找 Fall 2017 或 Spring 2018 的课程）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span>)<br><span class="hljs-keyword">union</span><br>(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span>)<br></code></pre></td></tr></table></figure></li>
-<li><p>示例（交集，查找既在 Fall 2017 又在 Spring 2018 的课程）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span>)<br><span class="hljs-keyword">intersect</span><br>(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span>)<br></code></pre></td></tr></table></figure></li>
-<li><p>示例（差集，查找在 Fall 2017 但不在在 Spring 2018 的课程）：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span>)<br><span class="hljs-keyword">except</span><br>(<span class="hljs-keyword">select</span> course_id <span class="hljs-keyword">from</span> section <span class="hljs-keyword">where</span> sem <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span>)<br></code></pre></td></tr></table></figure></li>
-<li><p>说明：集合操作要求参与查询的列数和类型兼容。</p></li>
-</ul>
-<h3 id="null-values">Null Values</h3>
-<ul>
-<li>Null 表示“未知值”或“值不存在”。</li>
-<li>任何包含 null 的算术表达式结果为 null。</li>
-<li>使用谓词 <code>is null</code> 检查空值。
-<ul>
-<li><p>示例：查找 salary 为 null 的教师：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">where</span> salary <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span>;<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-</ul>
-<p>SQL 中任何与 NULL 参与的比较都被视为未知（unknown），例如 <code>5 &lt; NULL</code>、<code>NULL &lt;&gt; NULL</code>、<code>NULL = NULL</code> 都为 unknown。</p>
-<ul>
-<li>布尔运算扩展规则（处理 unknown）：
-<ul>
-<li>AND：<code>true AND unknown = unknown</code>，<code>false AND unknown = false</code>，<code>unknown AND unknown = unknown</code></li>
-<li>OR：<code>unknown OR true = true</code>，<code>unknown OR false = unknown</code>，<code>unknown OR unknown = unknown</code></li>
-</ul></li>
-<li>WHERE 子句：当谓词计算结果为 unknown 时，视为 false（即该行不会被选中）。</li>
-<li>实践建议：尽量避免在属性中引入 NULL（以免影响索引等），可用默认值替代。</li>
-</ul>
-<h3 id="aggregate-functions">Aggregate Functions</h3>
-<p>聚合函数（aggregate functions）：对列的一组值进行计算并返回单一值，常见有 <code>avg、min、max、sum、count</code>。</p>
-<ul>
-<li>GROUP BY 用法与约束：
-<ul>
-<li><p>典型结构：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> &#123;A1, A2, ..., Ai&#125;, ag_fun(Ai<span class="hljs-operator">+</span><span class="hljs-number">1</span>), ... ag_fun(Ai<span class="hljs-operator">+</span>k)<br><span class="hljs-keyword">from</span> r1, …, rm  <br><span class="hljs-keyword">where</span> P1  <br>&#123;<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> A1, A2, …, Ai  <br>&#123;<span class="hljs-keyword">having</span> P2&#125;&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>非聚合表达式必须出现在 GROUP BY 中；HAVING 的谓词 P2 针对分组属性，WHERE 的 P1 针对原始行。</p></li>
-</ul></li>
-<li>SQL 语句逻辑执行顺序（关键步骤）：FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT（窗口函数在此执行）→ ORDER BY → LIMIT。</li>
-<li>要点：聚合针对列集合计算汇总值，GROUP BY 将行分组后对每组应用聚合，HAVING 用于过滤分组结果。</li>
-</ul>
-<h4 id="group-by">Group By</h4>
-<ul>
-<li><p>用 <code>GROUP BY</code> 与聚合函数计算“每个系（dept）的教师平均工资”。</p></li>
-<li><p>核心思想：先按 <code>dept_name</code> 分组（GROUP BY），对每组使用 <code>avg(salary)</code> 计算平均值，并用 AS 重命名结果列。</p></li>
-<li><p>示例 SQL：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> dept_name, <span class="hljs-built_in">avg</span>(salary) <span class="hljs-keyword">as</span> avg_salary<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> dept_name;<br></code></pre></td></tr></table></figure></li>
-<li><p>在含有聚合函数的 SELECT 中，所有非聚合的属性必须出现在 GROUP BY 列表中。</p>
-<ul>
-<li><p>错误示例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> dept_name, ID, <span class="hljs-built_in">avg</span>(salary)<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> dept_name;<br></code></pre></td></tr></table></figure>
-<p>上述查询违法规则，因为 ID 未出现在 GROUP BY 中。</p></li>
-</ul></li>
-<li><p>空值与聚合函数：除了 <code>count(*)</code> 之外，所有聚合运算在聚合属性为 <code>NULL</code> 的元组上会被忽略（不计入计算）。</p></li>
-</ul>
-<h4 id="having">Having</h4>
-<p>聚合函数 — HAVING 子句</p>
-<ul>
-<li><p>目的示例：找出平均工资大于 42000 的系名及其平均工资。</p></li>
-<li><p>示例 SQL：</p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> dept_name, <span class="hljs-built_in">avg</span>(salary) <span class="hljs-keyword">as</span> avg_salary<br><span class="hljs-keyword">from</span> instructor<br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> dept_name<br><span class="hljs-keyword">having</span> <span class="hljs-built_in">avg</span>(salary) <span class="hljs-operator">&gt;</span> <span class="hljs-number">42000</span>;<br></code></pre></td></tr></table></figure></p></li>
-<li><p>关键要点：HAVING 的谓词在分组形成之后评估（用于过滤分组结果），而 WHERE 的谓词在分组之前评估（用于过滤原始行）。</p></li>
-</ul>
-<h3 id="nested-subqueries">Nested Subqueries</h3>
-<p><strong>嵌套子查询（Nested Subqueries）</strong>在 SQL 查询中的用法和优化建议。</p>
-<p>主要内容总结如下：</p>
-<ul>
-<li><strong>定义</strong>：子查询（subquery）是嵌套在另一条查询（select-from-where）中的 select-from-where 表达式。</li>
-<li><strong>嵌套位置</strong>：
-<ul>
-<li>from 子句：可以用任意合法的子查询替换表名 <span class="math inline">\(r_i\)</span>。</li>
-<li>where 子句：可以用表达式 <span class="math inline">\(B\ \text{&lt;operation&gt;}\ (\text{subquery})\)</span>，其中 <span class="math inline">\(B\)</span> 是属性，<code>&lt;operation&gt;</code> 是后续定义的操作。</li>
-<li>select 子句：<span class="math inline">\(A_i\)</span> 可以用产生单一值的子查询替换。</li>
-</ul></li>
-<li><strong>优点</strong>：嵌套查询有助于将复杂问题分解为多个中间结果，便于构思和实现。</li>
-<li><strong>优化建议</strong>：
-<ul>
-<li>DBMS 实现时会对嵌套查询进行优化。</li>
-<li>从 SQL 优化角度，建议尽量用多表连接（join）代替嵌套查询，有利于 DBMS 查询优化，提高效率。</li>
-</ul></li>
-<li><strong>备注</strong>：右侧的中文提示强调，嵌套查询虽然简化思路，但在实际 SQL 优化中应避免低效的嵌套查询，优先考虑 join。</li>
-</ul>
-<p><strong>结论</strong>：本页介绍了 SQL 嵌套子查询的基本用法、可嵌套位置及优化建议，强调实际开发中应关注查询效率。</p>
-<h4 id="set-membership">Set Membership</h4>
 
                 
               </div>
@@ -635,7 +600,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>ddccffq</div>
+          <div>任志诚 2023212020</div>
         </div>
       
       
