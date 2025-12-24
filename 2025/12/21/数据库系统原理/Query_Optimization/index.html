@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Based on 12 rules to optimize relational algebra expression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 16: Query Optimization">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Query_Optimization/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Based on 12 rules to optimize relational algebra expression">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-21T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-24T13:38:36.826Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Chapter 16: Query Optimization - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Chapter 16: Query Optimization"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-21 21:00" pubdate>
+          2025年12月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Chapter 16: Query Optimization</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Based on 12 rules to optimize relational algebra expression</p>
+<span id="more"></span>
+<h2 id="overview">Overview</h2>
+<p>A query statement corresponds to <strong>several</strong> equivalent expressions. Different costs for equivalent evaluation plans. What <strong>query optimization</strong> does is to choose an <strong>efficient</strong> evaluation plan with <strong>lower</strong> costs.</p>
+<p><strong>Query optimization procedure</strong>:</p>
+<ol type="1">
+<li><strong>Generating</strong> the <strong>equivalent query trees/expressions</strong>, by transforming of <strong>relational algebra expressions</strong> using <strong>equivalence rules</strong></li>
+<li><strong>Generating</strong> the alternative <strong>evaluation plans</strong>, by annotating the resultant equivalent expressions with algorithms for each operations</li>
+<li><strong>Choosing</strong> the optimal or near-optimal plan based on the <strong>estimated cost</strong>, by <strong>heuristic optimization</strong> or <strong>cost-based optimization</strong></li>
+</ol>
+<h2 id="transformation-of-relational-expressions">Transformation of Relational Expressions</h2>
+<p><strong>Def</strong>. <strong>Equivalent expression</strong> means two <strong>relational algebra</strong> expressions are <strong>equivalent</strong>, if two expressions generate the same set of tuples on all legal database instances.</p>
+<h3 id="equivalence-rules">*Equivalence Rules</h3>
+<ol type="1">
+<li><p><strong>Conjunctive</strong> selection operations can be deconstructed into a <strong>sequence</strong> of <strong>individual</strong> selections</p>
+<p><span class="math display">\[
+\sigma_{\theta_1 \land \theta_2} (E) = \sigma_{\theta_1} (\sigma_{\theta_2} (E))
+\]</span></p></li>
+<li><p>Selection operations are commutative</p>
+<p><span class="math display">\[
+\sigma_{\theta_1}(\sigma_{\theta_2}(E)) = \sigma_{\theta_2}(\sigma_{\theta_1}(E))
+\]</span></p></li>
+<li><p>Only the <strong>final</strong> operation in a sequence of project operations is needed</p>
+<p><span class="math display">\[
+\Pi_{L_1} (\Pi_{L2} (\cdots (\Pi_{L_n} (E)))) = \Pi_{L_1}(E)
+\]</span></p>
+<p>Required that <span class="math inline">\(L_1 \subseteq L_2 \subseteq \cdots \subseteq L_n\)</span></p>
+<p>e.g. <span class="math inline">\(\Pi_{\text{ID}} (\Pi_{\text{ID}. \text{name}} (\text{instructor})) = \Pi_{\text{ID}} (\text{instructor})\)</span></p></li>
+<li><p>Selections can be combined with Cartesian products and theta joins</p>
+<p><span class="math display">\[
+\sigma_{\theta_1} (E_1 \Join_{\theta_2} E_2) = E_1 \Join_{\theta_1 \land \theta_2} E_2
+\]</span></p>
+<p>Costs of the <strong>right hand</strong> are less than that of the left hand.</p>
+<ul>
+<li>Definition of <span class="math inline">\(\theta\)</span> join: <span class="math inline">\(\sigma_{\theta}(E_1 \times E_2) = E_1 \Join_{\theta} E_2\)</span></li>
+</ul>
+<p>e.g. <span class="math inline">\(\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{\text{instructor}} \Join_{\text{instructor.ID} = \text{teaches.ID}} \text{teaches}) = \text{instructor} \Join_{\text{instructor.ID} = \text{teaches.ID} \land \text{dept\_name} = \text{&#39;Music&#39;}} \text{teaches}\)</span></p></li>
+<li><p>Theta join operations are commutative</p>
+<p><span class="math display">\[
+E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1
+\]</span></p>
+<p>The expression with smaller size should be arranged as the <strong>left</strong> one in join operation</p></li>
+<li><p>Associative</p>
+<ul>
+<li><strong>Natural join</strong> operations are associative: <span class="math inline">\((E_1 \Join E_2) \Join E_3 = E_1 \Join (E_2 \Join E_3)\)</span></li>
+<li><strong>Theta joins</strong> are associative: <span class="math inline">\((E_1 \Join_{\theta_1} E_2) \Join_{\theta_2 \land \theta_3} E_3 = E_1 \Join_{\theta_1 \land \theta_3} (E_2 \Join_{\theta_2} E_3)\)</span>
+<ul>
+<li>where <span class="math inline">\(\theta_2\)</span> involves attributes from <strong>only</strong> <span class="math inline">\(E_2\)</span> and <span class="math inline">\(E_3\)</span></li>
+</ul></li>
+</ul></li>
+<li><p>Selection operation distributes over theta join</p>
+<ul>
+<li>Attributes in <span class="math inline">\(\theta_0\)</span> involve <strong>only</strong> the attributes of one of the expressions, e.g. <span class="math inline">\(E_1\)</span>, being joined <span class="math inline">\(\sigma_{\theta_0} (E_1 \Join_{\theta} E_2) = (\sigma_{\theta_0} (E_1)) \Join_{\theta} E_2\)</span></li>
+<li>Attributes in <span class="math inline">\(\theta_1\)</span> involves only attributes of <span class="math inline">\(E_1\)</span>, attributes in <span class="math inline">\(\theta_2\)</span> involves only attributes of <span class="math inline">\(E_2\)</span>, <span class="math inline">\(\sigma_{\theta_1 \land \theta_2} (E_1 \Join_{\theta} E_2) = (\sigma_{\theta_1}(E_1) \Join_{\theta} (\sigma_{\theta_2}(E_2)))\)</span></li>
+<li><em>Note</em>: When <strong>7</strong> is applied, the <strong>size</strong> of relations participating in <strong>theta join</strong> operation is <strong>reduced</strong>, thus evaluation costs are reduced</li>
+</ul></li>
+<li><p>Projection operation distributes over theta join</p>
+<ul>
+<li><span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> are the attributes of <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, respectively, if join condition <span class="math inline">\(\theta\)</span> involves only attributes in <span class="math inline">\(L_1 \cup L_2\)</span>, then</li>
+</ul>
+<p><span class="math display">\[
+\Pi_{L_1 \cup L_2} (E_1 \Join_{\theta} E_2) = (\Pi_{L_1}(E_1)) \Join_{\theta} (\Pi_{L_2}(E_2))
+\]</span></p>
+<ul>
+<li>Consider a join <span class="math inline">\(E_1 \Join_{\theta} E_2\)</span>
+<ul>
+<li>Let <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> be sets of attributes from <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, respectively</li>
+<li>Let <span class="math inline">\(L_3\)</span> be attributes of <span class="math inline">\(E_1\)</span> that involved in join condition <span class="math inline">\(\theta\)</span>, but not in <span class="math inline">\(L_1 \cup L_2\)</span></li>
+<li>Let <span class="math inline">\(L_4\)</span> be attributes of <span class="math inline">\(E_2\)</span> that involved in join condition <span class="math inline">\(\theta\)</span>, but not in <span class="math inline">\(L_1 \cup L_2\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+ \Pi_{L_1 \cup L_2} (E_1 \Join_{\theta} E_2) = \Pi_{L_1 \cup L_2} ((\Pi_{L_1 \cup L_3}(E_1)) \Join_{\theta} (\Pi_{L_2 \cup L_4} (E_2)))
+ \]</span></p></li>
+<li><p>The set operations union and intersection are <strong>commutative</strong></p></li>
+<li><p>Set union and intersection are <strong>associative</strong></p></li>
+<li><p>The selection operation distributes over <span class="math inline">\(\cup\)</span>, <span class="math inline">\(\cap\)</span> and <span class="math inline">\(-\)</span>. <span class="math inline">\(\sigma_{\theta}(E_1 - E_2) = \sigma_{\theta}(E_1) - \sigma_{\theta}(E_2)\)</span></p></li>
+<li><p>The projection operation distributes over union. <span class="math inline">\(\Pi_{L}(E_1 \cup E_2) = (\Pi_{L} (E_1)) \cup (\Pi_{L} (E_2))\)</span></p></li>
+</ol>
+<p>Here are some examples</p>
+<p>(1). Find the <strong>names</strong> of all instructors in the department Music, along with <strong>titles</strong> of the courses that they teach. The algebra expression is:</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} (\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor} \Join (\text{teaches} \Join \Pi_{\text{course\_id}, \text{title}}(\text{course}))))
+\]</span></p>
+<p>Transformation using rule <strong>7</strong>.</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} ((\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}}(\text{instructor})) \Join (\text{teaches} \Join \Pi_{\text{course\_id}, \text{title}}(\text{course})))
+\]</span></p>
+<p>(2). Find <strong>names</strong> of all instructors in Music department who taught in 2019, along with <strong>titles</strong> of the course that they taught. The algebra expression is:</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} (\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}  \land (\text{year} = 2019)} (\text{instructor} \Join (\text{teaches} \Join \Pi_{\text{course\_id}, \text{title}} (\text{course}))))
+\]</span></p>
+<p>Transformation using rule <strong>7</strong>.</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} ((\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor})) \Join (\sigma_{\text{year} = 2019} (\text{teaches})) \Join (\Pi_{\text{course\_id}, \text{title}} (\text{course})))
+\]</span></p>
+<p>(3). Why projection as early as possible reduces size of the relation to be joined?</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} ((\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor}) \Join \text{teaches}) \Join \Pi_{\text{course\_id}, \text{title}}(\text{course}))
+\]</span></p>
+<p>Computing <span class="math inline">\((\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor}) \Join \text{teaches})\)</span> resulting in a schema with <strong>unneeded</strong> attributes (what we need may be course_id and name). We add a projection to eliminate unneeded attributes.</p>
+<p><span class="math display">\[
+\Pi_{\text{course\_id}, \text{name}}(\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor}) \Join \text{teaches})
+\]</span></p>
+<h2 id="join-ordering">Join Ordering</h2>
+<p>For all relations <span class="math inline">\(r_1\)</span>, <span class="math inline">\(r_2\)</span> and <span class="math inline">\(r_3\)</span></p>
+<p><span class="math display">\[
+(r_1 \Join r_2) \Join r_3 = r_1 \Join (r_2 \Join r_3)
+\]</span></p>
+<p>If <span class="math inline">\(r_2 \Join r_3\)</span> is quite large bu <span class="math inline">\(r_1 \Join r_2\)</span> is small, choose</p>
+<p><span class="math display">\[
+(r_1 \Join r_2) \Join r_3
+\]</span></p>
+<p>For example , consider the expression</p>
+<p><span class="math display">\[
+\Pi_{\text{name}, \text{title}} (\sigma_{\text{dept\_name} = \text{Music}} (\text{instructor}) \Join \text{teaches} \Join \Pi_{\text{course\_id}, \text{title}} (\text{course}))
+\]</span></p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\((\text{teaches} \Join \Pi_{\text{course\_id}, \text{title}} (\text{course}))\)</span> first, and join result with <span class="math inline">\(\sigma_{\text{dept\_name} = \text{Music}} (\text{instructor})\)</span> as the result of the first join is likely to be a large relation</p></li>
+<li><p>If <strong>only a small fraction</strong> of instructors are likely to be, it is better to first compute <span class="math inline">\(\sigma_{\text{dept\_name} = \text{Music}} (\text{instructor}) \Join \text{teaches}\)</span></p></li>
+</ol>
+<h2 id="choice-of-evaluation-plans-query-optimization">Choice of Evaluation Plans: Query Optimization</h2>
+<p>Generate an <strong>evaluation plan</strong> for a relational algebra expression with <strong>the lowest or lower cost</strong></p>
+<ol type="1">
+<li>Generating the <strong>optimized</strong> query trees</li>
+<li>Selecting
+<ul>
+<li>Implementation algorithms for each operations in the tree</li>
+<li><strong>Pipeline</strong> or materialization strategy</li>
+</ul></li>
+</ol>
+<h3 id="heuristic-optimization">Heuristic Optimization</h3>
+<p><strong>Def</strong>. <strong>Heuristic optimization</strong></p>
+<ul>
+<li><strong>Heuristic</strong> (or <strong>heuristic rules</strong>) to choose a better plan</li>
+<li><strong>Suboptimal</strong> plan with <strong>lower</strong> costs can be obtained</li>
+</ul>
+<p>Principles: transforms query tree by <strong>heuristics</strong> to reduce cost</p>
+<ul>
+<li>Perform <strong>selection</strong> early to <strong>reduce</strong> the number of <strong>tuples</strong></li>
+<li>Perform <strong>projection</strong> early to <strong>reduce</strong> the number of <strong>attributes</strong></li>
+<li>Perform <strong>join</strong> to substitute <strong>Cartesian product</strong> and <strong>selection</strong></li>
+<li>Perform <strong>restrictive selection</strong> and <strong>join</strong> operations before other operations
+<ul>
+<li>The most <strong>restrictive operations</strong> generate relations with <strong>the smallest size</strong></li>
+</ul></li>
+</ul>
+<h3 id="steps-in-heuristic-optimization">Steps in Heuristic Optimization</h3>
+<ol type="1">
+<li>将 conjunctive selection 分解为多个单独的选择操作以使单个选择操作尽可能沿查询树下移</li>
+<li>根据选择操作的交换律和分配律，将查询树每个选择操作尽可能移向叶节点，以便尽早执行选择操作</li>
+<li>根据连接操作的结合律和交换律，重新安排查询树中的叶节点，使得具有 restrictive selection 特征的叶节点先执行</li>
+<li>利用以连接操作代替相邻的选择和笛卡尔乘积操作</li>
+<li>将查询树上投影操作尽可能下移，早执行投影操作，减少中间计算结果</li>
+</ol>
+<p>Here are some examples</p>
+<p>(1). Given</p>
+<ul>
+<li><em>S</em>(sID, sname, age, sex)</li>
+<li><em>C</em>(cID, cname, teacher)</li>
+<li><em>SC</em>(sID, cID, grade)</li>
+</ul>
+<p>Find students who are male and get grades more than <span class="math inline">\(90\)</span>, when they learn some course. Firstly, we get SQL statement.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> sname<br><span class="hljs-keyword">FROM</span> S, SC<br><span class="hljs-keyword">WHERE</span> S.S# <span class="hljs-operator">=</span> SC.S# <span class="hljs-keyword">AND</span> sex <span class="hljs-operator">=</span> male <span class="hljs-keyword">AND</span> grade <span class="hljs-operator">&gt;</span> <span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
+<p>Then, get algebra expression of statement above.</p>
+<p><span class="math display">\[
+\Pi_{\text{sname}} (\sigma_{(\text{S.sID = SC.sID}) \land (\text{sex = male}) \land (\text{grade} &gt; 90)} (\text{S} \times \text{SC}))
+\]</span></p>
+<p>Transformation using rule <strong>4</strong>.</p>
+<p><span class="math display">\[
+\Pi_{\text{sname}} (\sigma_{(\text{sex = male}) \land (\text{grade} &gt; 90)} (\text{S} \Join_{(\text{S.sID = SC.sID})} \text{SC}))
+\]</span></p>
+<p>Transformation using rule <strong>7</strong>.</p>
+<p><span class="math display">\[
+\Pi_{\text{sname}} ((\sigma_{(\text{sex = male})} (\text{S})) \Join_{(\text{S.sID = SC.sID})} (\sigma_{\text{grade} &gt; 90} (\text{SC})))
+\]</span></p>
+<p>Transformation using rule <strong>8</strong>.</p>
+<p><span class="math display">\[
+\Pi_{\text{sname}} (\Pi_{\text{sname, sID}} (\sigma_{(\text{sex = male})} (\text{S})) \Join_{(\text{S.sID = SC.sID})} \Pi_{\text{sID}} (\sigma_{\text{grade} &gt; 90} (\text{SC})))
+\]</span></p>
+<p>(2). Consider the insurance DB</p>
+<ul>
+<li><em>Person</em>(<u>driver_id</u>, name, year)</li>
+<li><em>Car</em>(<u>license</u>, model, year)</li>
+<li><em>Accident</em>(<u>report_number</u>, date, location)</li>
+<li><em>Participated</em>(<u>driver_id</u>, <u>license</u>, <u>report_number</u>, damage_amount)</li>
+</ul>
+<p>(a). Find out the <strong>driver name, license, report_number</strong> of the <strong>accidents</strong> which happened in Beijing and before May 3, 2024.</p>
+<p>The SQL statement is</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, license, Accident.report_number<br><span class="hljs-keyword">FROM</span> Person, Accident, Participated<br><span class="hljs-keyword">WHERE</span> location <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Beijing&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-type">date</span> <span class="hljs-operator">&lt;</span> <span class="hljs-string">&#x27;5/3/2024&#x27;</span> <span class="hljs-keyword">AND</span> Participated.driver_id <span class="hljs-operator">=</span> Person.driver_id <span class="hljs-keyword">AND</span> Participated.report_number <span class="hljs-operator">=</span> Accident.report_number;<br></code></pre></td></tr></table></figure>
+<p>The algebra expression of above statement is</p>
+<p><span class="math display">\[
+\Pi_{\text{name, license, Accident.report\_number}} \\
+(\sigma_{\text{location = &#39;Beijing&#39;} \land \text{date &lt; &#39;5/3/2024&#39;} \land \text{Participated.driver\_id = Person.driver\_id} \land \text{Participated.report\_number = Accident.report\_number}} \\
+(\text{Person} \times \text{Participated} \times \text{Accident}))
+\]</span></p>
+<p>(b). Give the initial query tree for this query</p>
+<p>(c). Construct an optimized relation algebra expression</p>
+<p><span class="math display">\[
+\Pi_{\text{name, license, Accident.report\_number}} \\
+(\Pi_{\text{name, license, report\_number}}((\Pi_{\text{name, drive\_id}}(\text{Person}) \Join_{\text{Participated.driver\_id = Person.driver\_id}} (\Pi_{\text{drive\_id, report\_number, license}}\text{Participated}))) \\
+\Join_{\text{Participated.report\_number = Accident.report\_number}} (\Pi_{\text{report\_number}}(\sigma_{\text{location = &#39;Beijing&#39;} \land \text{date &lt; &#39;5/3/2024&#39;}}\text{Accident})))
+\]</span></p>
+<p>(3). Consider</p>
+<ul>
+<li><em>Employee</em>(<u>Employee#</u>, Name, Address, Super-E#, E-D#)</li>
+<li><em>Department</em>(<u>D#</u>, Dname, manager#, depart-location)</li>
+<li><em>Project</em>(<u>P#</u>, Pname, Plocation, P-D#)</li>
+</ul>
+<p>For projects located in Harbin, list their project number (P#), department number (P-D#), the name of the department manager, and the manager’s address.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> P#, P<span class="hljs-operator">-</span>D#, Name, Address<br><span class="hljs-keyword">FROM</span> Project, Employee, Department<br><span class="hljs-keyword">WHERE</span> Plocation <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Harbin&#x27;</span> <span class="hljs-keyword">AND</span> manager# <span class="hljs-operator">=</span> Employee# <span class="hljs-keyword">AND</span> D# <span class="hljs-operator">=</span> P<span class="hljs-operator">-</span>D#;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chapter 16: Query Optimization</div>
+      <div>https://ddccffq.github.io/2025/12/21/数据库系统原理/Query_Optimization/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Transactions/" title="Transactions">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Transactions</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/" title="Database Design Using the ER Model">
+                        <span class="hidden-mobile">Database Design Using the ER Model</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

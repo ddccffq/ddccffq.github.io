@@ -19,22 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Def. Query processing refers to activities (DBMS) extracting data from DB, including  Translation of queries in DB language into expressions that can be used at the physical level of the system  SQL">
+    <meta name="description" content="Def. Query processing refers to activities (DBMS) extracting data from DB, including  translation of queries in DB language into expressions that can be used at the physical level of the system  SQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Query Processing">
+<meta property="og:title" content="Chapter 15: Query Processing">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Query_Processing/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Def. Query processing refers to activities (DBMS) extracting data from DB, including  Translation of queries in DB language into expressions that can be used at the physical level of the system  SQL">
+<meta property="og:description" content="Def. Query processing refers to activities (DBMS) extracting data from DB, including  translation of queries in DB language into expressions that can be used at the physical level of the system  SQL">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-07T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-23T08:16:54.174Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Query Processing - ddccffq&#39;s Blog</title>
+  <title>Chapter 15: Query Processing - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Query Processing"></span>
+            <span id="subtitle" data-typed-text="Chapter 15: Query Processing"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          647 字
+          664 字
         
       </span>
     
@@ -271,7 +271,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Query Processing</h1>
+            <h1 id="seo-header">Chapter 15: Query Processing</h1>
             
             
               <div class="markdown-body">
@@ -279,12 +279,12 @@
                 <span id="more"></span>
 <p><strong>Def</strong>. <strong>Query processing</strong> refers to activities (DBMS) <strong>extracting</strong> data from DB, including</p>
 <ul>
-<li>Translation of <strong>queries</strong> in DB language into <strong>expressions</strong> that can be used at the physical level of the system
+<li>translation of <strong>queries</strong> in DB language into <strong>expressions</strong> that can be used at the physical level of the system
 <ul>
 <li>SQL statement into a initial <strong>relational algebra expression</strong>.</li>
 </ul></li>
-<li><strong>Query-optimizing</strong> transformations.</li>
-<li><strong>Actual evaluation</strong> of queries.</li>
+<li><strong>query-optimizing</strong> transformations. (see chapter 16)</li>
+<li><strong>actual evaluation</strong> of queries.</li>
 </ul>
 <h2 id="overview">Overview</h2>
 <ol type="1">
@@ -311,11 +311,21 @@
 <li>Executes the <strong>optimized</strong> plan, and returns answers to the query.</li>
 </ul></li>
 </ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<pre><code class=" mermaid">flowchart TD
+   A[query] --&gt; |parser and translator| B[relational algebra expression]
+   B --&gt; |optimizer| C[execution plan]
+   C --&gt; |evaluation engine| D[query output]
+</code></pre>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: Steps in query processing
+</div>
 <p><strong>Def</strong>. The <strong>evaluation-plan</strong> is an annotated expression specifying the detailed evaluation strategy, such as <strong>index</strong>, <strong>evaluation algorithms</strong>, etc.</p>
 <blockquote>
 <p>A <strong>relation algebra</strong> expression has equivalent expressions.</p>
 <ul>
-<li><span class="math inline">\(\sigma_{\text{salary} &lt; 75000} (\Pi_{\text{salary}(\text{instructor})})\)</span> is equivalent to <span class="math inline">\(Pi_{\text{salary}(\sigma_{\text{salary} &lt; 75000}(\text{instructor}))}\)</span>.</li>
+<li><span class="math inline">\(\sigma_{\text{salary} &lt; 75000} (\Pi_{\text{salary}(\text{instructor})})\)</span> is equivalent to <span class="math inline">\(\Pi_{\text{salary}}(\sigma_{\text{salary} &lt; 75000}(\text{instructor}))\)</span>.</li>
 </ul>
 <p>Each <strong>relational algebra</strong> operation can be evaluated with algorithms.</p>
 <ul>
@@ -337,8 +347,8 @@
 <ul>
 <li>数据定位时间，需要访问的 records 在 DB file 中的位置。</li>
 </ul></li>
-<li><p>numebr of block read <span class="math inline">\(\times\)</span> average-block-read-cost</p></li>
-<li><p>number of block written <span class="math inline">\(\times\)</span> average-block-write-cost</p>
+<li><p>numebr of blocks read <span class="math inline">\(\times\)</span> average-block-read-cost</p></li>
+<li><p>number of blocks written <span class="math inline">\(\times\)</span> average-block-write-cost</p>
 <ul>
 <li>cost to <strong>write</strong> is greater than cost to read.</li>
 <li>data is <strong>read back</strong> after being written to be ensured successful.</li>
@@ -357,7 +367,7 @@
 </blockquote>
 <p>We suppose that</p>
 <ol type="1">
-<li>number of block transfered from disk <span class="math inline">\(t_T\)</span>.
+<li>number of blocks transfered from disk <span class="math inline">\(t_T\)</span>.
 <ul>
 <li><span class="math inline">\(t_{T}\)</span> is time to transfer one block (transfer speed in disk).</li>
 </ul></li>
@@ -394,7 +404,7 @@
 <li>Scan each block and test all records to see whether satisfy selection condition.</li>
 <li>Cost = <span class="math inline">\(b_r\)</span> block transfers <span class="math inline">\(+ 1\)</span> seek = <span class="math inline">\(b_r \times t_{T} + t_{S}\)</span></li>
 <li>If selection is on <strong>the key attribute</strong>, it can stop on finding record equality, average case:</li>
-<li>Cost = <span class="math inline">\((b_{r} / 2)\)</span> block transfers <span class="math inline">\(+ 1\)</span> seek = <span class="math inline">\((b_r / 2) \times t_{T} + t_{S}\)</span> &gt; Linear search can be applied regardless of selection condition, ordering of records, availability of indices, suitable for seeking on a relational table organized as the <strong>heap file</strong>, or seeking on a *non-index<strong> attribute (non-search-key attribute) in a relational table organized as the </strong>sequential file**, e.g. B/B<sup>+</sup>-tree file.</li>
+<li>Cost = <span class="math inline">\((b_{r} / 2)\)</span> block transfers <span class="math inline">\(+ 1\)</span> seek = <span class="math inline">\((b_r / 2) \times t_{T} + t_{S}\)</span> &gt; Linear search can be applied regardless of selection condition, ordering of records, availability of indices, suitable for seeking on a relational table organized as the <strong>heap file</strong>, or seeking on a <strong>non-index</strong> attribute (non-search-key attribute) in a relational table organized as the <strong>sequential file</strong>, e.g. B/B<sup>+</sup>-tree file.</li>
 </ul></li>
 <li><span class="math inline">\(A_2\)</span> (clustering/primary index, B<sup>+</sup>-tree index, equality on key )
 <ul>
@@ -561,7 +571,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Query Processing</div>
+      <div>Chapter 15: Query Processing</div>
       <div>https://ddccffq.github.io/2025/12/07/数据库系统原理/Query_Processing/</div>
     </div>
     <div class="license-meta">

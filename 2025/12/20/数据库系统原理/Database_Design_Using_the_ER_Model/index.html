@@ -1,0 +1,1087 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Overview of Design Process Design design consists of two phases:  Analyzing of requirements  What data should be stored What operations&#x2F;transaction are conducted such as insert, delete, and update  D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Database Design Using the ER Model">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Overview of Design Process Design design consists of two phases:  Analyzing of requirements  What data should be stored What operations&#x2F;transaction are conducted such as insert, delete, and update  D">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/one%20to%20one%20example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/one%20to%20many%20example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/cardinality%20limits%20example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/weak%20entity%20set%20example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%201.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%202.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%203.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/Alternative%20ER%20Notations.png">
+<meta property="article:published_time" content="2025-12-20T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-24T13:13:30.881Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/one%20to%20one%20example.png">
+  
+  
+  
+  <title>Database Design Using the ER Model - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Database Design Using the ER Model"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-20 20:00" pubdate>
+          2025年12月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          628 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Database Design Using the ER Model</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="overview-of-design-process">Overview of Design Process</h2>
+<p><strong>Design design</strong> consists of two phases:</p>
+<ol type="1">
+<li><strong>Analyzing</strong> of requirements
+<ul>
+<li>What data should be stored</li>
+<li>What operations/transaction are conducted such as insert, delete, and update</li>
+</ul></li>
+<li><strong>Designing</strong> of DB schemas, with the three-level <strong>data abstract</strong>
+<ul>
+<li><strong>Conceptual design</strong></li>
+<li><strong>Logical design</strong></li>
+<li><strong>Physical design</strong></li>
+</ul></li>
+</ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<pre><code class=" mermaid">flowchart TD
+    A[Application problems in real words] --&gt;|Requirements analysis| B[Specification of user requirements]
+    B --&gt;|&lt;span style=&quot;color:red;&quot;&gt;Conceptual DB design&lt;/span&gt;| C[DB conceptual schema, i.e. E-R diagram]
+    C --&gt;|Logical DB design| D[DB logical schema, i.e. relational data schema]
+    D --&gt;|Physical DB design| E[DB physical schema, e.g. physical storage structure]
+
+</code></pre>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: DB design phases
+</div>
+<blockquote>
+<p>The lifecycle of Database Application System (DBAS) design consists of five phases: <strong>project planning, requirements analysis, system design, implementation and deployment, and operation management and maintenance</strong>.</p>
+<p>Based on the composition and functionality of the software, the design is divided into three main lines: data organization and storage design, data access and processing design, and application design, which correspond to the design of the database, database transactions, and applications, respectively.</p>
+<p>According to the three-level schema structure of the database system, the design phase is divided into three steps: conceptual design, logical design, and physical design.</p>
+</blockquote>
+<h2 id="the-entity-relationship-model">The Entity-Relationship Model</h2>
+<p>ER Model employs three concepts: <strong>entity sets</strong>, <strong>relationship sets</strong>, and <strong>attributes</strong>. ER model has an associated <strong>diagrammatic representation</strong>, the ER diagram, expressing the <strong>overall logical structure</strong> of DB <strong>graphically</strong>.</p>
+<h3 id="entity-sets">Entity Sets</h3>
+<p><strong>Def</strong>. An <strong>entity</strong> is an object that exists <strong>distinguishable</strong> from other objects.</p>
+<p><strong>Def</strong>. An <strong>entity set</strong> is a set of entities of the same type, sharing the same properties.</p>
+<blockquote>
+<p><em>Note</em>: an entity is represented by a set of <strong>attributes</strong> (descriptive properties of an entity set).</p>
+</blockquote>
+<p><strong>Def</strong>. A subset of the attributes form a <strong>primary key</strong></p>
+<blockquote>
+<p><em>Note</em>: a entity consists of <strong>all values of its all attributes</strong>.</p>
+</blockquote>
+<h3 id="relationship-sets">Relationship Sets</h3>
+<p><strong>Def</strong>. A <strong>relationship</strong> is an <strong>association</strong> among several entities.</p>
+<p><strong>Def</strong>. A <strong>relationship set</strong> is a <strong>mathematic relation</strong> among <span class="math inline">\(n\)</span> entities (<span class="math inline">\(n \geq 2\)</span>).</p>
+<p><strong>Def</strong>. A <strong>relationship instance</strong> represents an <strong>association</strong> between the named entities in the real-word enterprise.</p>
+<p><strong>Def</strong>. An <strong>attribute</strong> can also be associated with a <strong>relationship set</strong>.</p>
+<p>For example, the <em>advisor</em> relationship set between <em>instructor</em> and <em>student</em> has an attribute <strong>date</strong> when student started being associated with the advisor</p>
+<p><strong>Def</strong>. A <strong>role</strong> of entity is a <strong>function</strong> that an entity plays in a relationship.</p>
+<p><strong>Def</strong>. <strong>Binary relationship</strong> involves <strong>two</strong> entity sets (<strong>degree two</strong>)</p>
+<h2 id="complex-attributes">Complex Attributes</h2>
+<p><strong>Def</strong>. The <strong>domain</strong> or values set of the attribute is the set or <strong>permitted values</strong>.</p>
+<p>Attribute types:</p>
+<ul>
+<li>Simple and composite attributes</li>
+<li>Single-valued and multi-valued attributes</li>
+<li>Derived attributes (can be computed from <strong>other attributes</strong>, e.g. age, given date_of_birth)</li>
+</ul>
+<p><strong>Null</strong> value for a attribute means</p>
+<ul>
+<li>The attribute <strong>not applicable</strong> for the entity, <strong>not existing</strong></li>
+<li>The <strong>value</strong> for the attribute <strong>exists</strong>, but is <strong>unknown</strong></li>
+</ul>
+<p><strong>Composite attributes</strong> allow us to divide attributes into <strong>subparts</strong>. For example</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<pre><code class=" mermaid">flowchart TD
+    A[name] --&gt; B[first_name]
+    A --&gt; C[middle_name]
+    A --&gt; D[last_name]
+</code></pre>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: Composite attributes example
+</div>
+<h3 id="redundant-attributes">Redundant Attributes</h3>
+<p>Suppose we have entity sets:</p>
+<ul>
+<li><em>instructor</em>, with attributes: ID, name, dept_name, salary</li>
+<li><em>department</em>, with attributes: dept_name, building, budget</li>
+</ul>
+<p><strong>Model</strong>: each instructor has an department using relationship set <em>inst_dept</em>.</p>
+<blockquote>
+<p>The attribute dept_name appears in both entity sets. Since it is <strong>the primary key</strong> for the entity set <em>department</em>, it replicates information present in the relationship. It is therefore <strong>redundant</strong> in the entity set <em>instructor</em>.</p>
+</blockquote>
+<h2 id="mapping-cardinalities-constraints">Mapping Cardinalities Constraints</h2>
+<ul>
+<li><strong>Semantic constraints</strong>, as <strong>integrity constraints</strong>, to maintain <strong>consistency</strong></li>
+<li><strong>Integrity constraints</strong> on E or R
+<ul>
+<li>Mapping cardinalities</li>
+<li>Participation constraints</li>
+<li>Cardinality limits</li>
+<li>Keys</li>
+</ul></li>
+</ul>
+<h3 id="mapping-cardinalities">Mapping Cardinalities</h3>
+<p><strong>Def</strong>. <strong>Mapping Cardinalities</strong> are the number of entities to which another entity can be associated via a <strong>relationship set</strong>.</p>
+<p><strong>Def</strong>. For a binary relationship set <span class="math inline">\(R\)</span>, from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, the mapping cardinality must be: one to one, one to many, many to one, and many to many.</p>
+<h4 id="one-to-one">One to One</h4>
+<p>A student is associated with <strong>at most</strong> one instructor via the relationship <em>advisor</em>.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/one%20to%20one%20example.png" srcset="/img/loading.gif" lazyload alt="one to one example"><figcaption aria-hidden="true">one to one example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: One to one example
+</div>
+<blockquote>
+<p><span class="math inline">\(\to\)</span> signifies <strong>one</strong>.</p>
+</blockquote>
+<h4 id="one-to-many">One to Many</h4>
+<p>An instructor is associated with <strong>several</strong> (including <span class="math inline">\(0\)</span>) students via advisor. A student is associated with <strong>at most one</strong> instructor via advisor.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/one%20to%20many%20example.png" srcset="/img/loading.gif" lazyload alt="one to many example"><figcaption aria-hidden="true">one to many example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: One to many example
+</div>
+<blockquote>
+<p><span class="math inline">\(-\)</span> signifies <strong>many</strong> (at least <strong>zero</strong>), <span class="math inline">\(=\)</span> signifies <strong>many</strong> too (at least <strong>one</strong>).</p>
+</blockquote>
+<h3 id="participate-constraints">Participate Constraints</h3>
+<p><strong>Def</strong>. The participation of an <strong>entity</strong> <span class="math inline">\(E\)</span> in a relationship <span class="math inline">\(R\)</span> is <strong>total</strong>, if every entity in <span class="math inline">\(E\)</span> participates in <strong>at least one</strong> relationship in <span class="math inline">\(R\)</span>.</p>
+<p><strong>Def</strong>. The participation of an entity <span class="math inline">\(E\)</span> in a relationship <span class="math inline">\(R\)</span> is <strong>partial</strong>, if some entities in <span class="math inline">\(E\)</span> may not participate in any relationship in <span class="math inline">\(R\)</span>.</p>
+<h3 id="cardinality-limits-for-participation">Cardinality Limits for Participation</h3>
+<p><strong>Def</strong>. <strong>Cardinality limits</strong> express <strong>quantitative</strong> constraints on participation.</p>
+<blockquote>
+<p>Explicit, recommended!</p>
+</blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/cardinality%20limits%20example.png" srcset="/img/loading.gif" lazyload alt="cardinality limits example"><figcaption aria-hidden="true">cardinality limits example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 5: Cardinality limits example
+</div>
+<blockquote>
+<p>A maximum value * indicates <strong>no limit</strong></p>
+</blockquote>
+<h2 id="primary-keys">Primary Keys</h2>
+<p><strong>Def</strong>. <strong>Key</strong> is a <strong>set</strong> of attributes (an <strong>entity set</strong> or <strong>relationship set</strong>). The values of these attributes in one <strong>entity</strong> to <strong>uniquely</strong> distinguish this entity from others and the values of these attributes in one <strong>relationship</strong> to uniquely identify the relationship.</p>
+<h3 id="keys-for-entity-set">Keys for Entity Set</h3>
+<p><strong>Def</strong>. A <strong>super key</strong> of an entity set is a set of <strong>one or more</strong> attributes, whose values <strong>uniquely</strong> determine each entity in the entity set. The super key may contain <strong>extraneous</strong> attributes.</p>
+<p><strong>Def</strong>. A <strong>candidate key</strong> is the <strong>minimal</strong> super key (non-redundant super key).</p>
+<p><strong>Def</strong>. The <strong>primary key</strong> is a candidate key chosen as the principal means of identifying entities within an entity set. Although <strong>several</strong> candidate keys may exists, <strong>one</strong> of the candidate keys is selected to be the <strong>primary key</strong>.</p>
+<h3 id="keys-for-relationship-sets">Keys for Relationship Sets</h3>
+<p><strong>Def</strong>. Keys for relationship sets <span class="math inline">\(R\)</span> on entities <span class="math inline">\(E_1\)</span>, <span class="math inline">\(E_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(E_n\)</span>, uniquely distinguish each <strong>relationship instances</strong>.</p>
+<p><strong>Def</strong>. The <strong>super keys</strong> for <span class="math inline">\(R =\)</span> <span class="math inline">\(E_1\)</span>’s primary key <span class="math inline">\(\cup \cdots \cup E_n\)</span>’s primary key.</p>
+<blockquote>
+<p><em>Note</em>: if the attribute names of primary keys are <strong>not unique</strong>, the <strong>attributes with the same names</strong> should be renamed.</p>
+</blockquote>
+<p><strong>Def</strong>. The candidate keys for <span class="math inline">\(R\)</span> (minimal, non-redundant super keys).</p>
+<h3 id="choice-of-primary-key-for-binary-relationship">Choice of Primary Key for Binary Relationship</h3>
+<p>The <strong>candidate keys</strong> or <strong>primary key</strong> for <span class="math inline">\(R\)</span> among entity sets <span class="math inline">\(A\)</span> amd <span class="math inline">\(B\)</span> can be decided, in accordance with the mapping cardinality of <span class="math inline">\(R\)</span>, as follows</p>
+<ul>
+<li>If <span class="math inline">\(R\)</span> is <strong>many to many</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key <span class="math inline">\(\cup\)</span> <span class="math inline">\(B\)</span>’s primary key (may <span class="math inline">\(&gt; 1\)</span>?)</li>
+<li>If <span class="math inline">\(R\)</span> is <strong>many to one</strong> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key</li>
+<li>If <span class="math inline">\(R\)</span> is <strong>one to many</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(B\)</span>’s primary key</li>
+<li>If <span class="math inline">\(R\)</span> is <strong>one to one</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key or <span class="math inline">\(B\)</span>’s primary key</li>
+</ul>
+<h3 id="weak-entity-sets">Weak Entity Sets</h3>
+<p><strong>Def</strong>. An entity set that does <strong>not</strong> have a primary key is a <strong>weak entity set</strong></p>
+<p>Consider <em>section</em> entity set, identified by course_id, semester, year, sec_id. Entities in <em>section</em> are related to entities in <em>course</em>.</p>
+<ul>
+<li>Suppose a relationship set <em>sec_course</em> between entity sets <em>section</em> and <em>course</em></li>
+<li>The information in <em>sec_course</em> is <strong>redundant</strong>, since <em>section</em> already has attribute course_id, which identifies the course with which the section is related</li>
+<li>To deal with <strong>redundancy</strong> is to get rid of the relationship <em>sec_course</em>; however, relationship between <em>section</em> and <em>course</em> becomes <strong>implicit</strong></li>
+</ul>
+<p>We can introduce <strong>weak entity set</strong></p>
+<ul>
+<li><strong>Not</strong> store the attribute course_id in the <em>section</em> entity, <strong>but only</strong> store the remaining attributes section_id, year, and semester</li>
+<li>However, the entity set <em>section</em> does <strong>not</strong> have enough attributes to identify a particular section entity <strong>uniquely</strong></li>
+<li>To deal with this problem, we treat relationship <em>sec_course</em> as a <strong>special relationship</strong> that provides <strong>extra information</strong> (<em>section</em> is modeled as a <strong>weak entity set</strong>).</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/weak%20entity%20set%20example.png" srcset="/img/loading.gif" lazyload alt="weak entity set example"><figcaption aria-hidden="true">weak entity set example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 6: Weak entity set example
+</div>
+<p><strong>Def</strong>. A <strong>weak entity set</strong> called <strong>identifying entity</strong> is one, whose existence is dependent on another entity.</p>
+<p><strong>Def</strong>. <strong>Identifying relationship</strong> is the relationship associating the weak entity set with the identifying entity set.</p>
+<blockquote>
+<p><em>Note</em>: use <strong>identifying entity</strong>, along with extra attributes called <strong>discriminator</strong> to uniquely identify a weak entity, instead of a primary key.</p>
+<p>Every weak entity must be associated with an <strong>identifying entity</strong>; weak entity set is <strong>existence dependent</strong> on identifying entity set.</p>
+</blockquote>
+<h3 id="expressing-weak-entity-sets">Expressing Weak Entity Sets</h3>
+<p>A <strong>weak entity set</strong> is depicted via a <strong>double rectangle</strong>. Underline the <strong>discriminator</strong> of a weak entity set with a <strong>dashed line</strong>. The <strong>relationship set</strong> connecting weak entity set to identifying string entity set is depicted by a <strong>double diamond</strong></p>
+<p><strong>Def</strong>. The <strong>discriminator (or partial key)</strong> of a weak entity set is the set of attributes that <strong>distinguishes</strong> among all those entities in weak entity set that depending on a <strong>particular strong entity</strong>.</p>
+<h2 id="removing-redundant-attributes">Removing Redundant Attributes</h2>
+<p>Suppose we have entity sets:</p>
+<ul>
+<li><em>student</em>, with attributes: ID, name, tot_cred, dept_name</li>
+<li><em>department</em>, with attributes: dept_name, building, budget</li>
+<li>Each student has an associated department using a relation set <em>stud_dept</em></li>
+</ul>
+<p>The attribute dept_name in <em>student</em> replicates information present in relationship. It is <strong>redundant</strong> and needs to be <strong>removed</strong>. But when converting back to <strong>tables</strong>, the attribute should be <strong>reintroduced</strong>.</p>
+<h2 id="reducing-er-diagrams-to-relation-schemas">Reducing ER Diagrams to Relation Schemas</h2>
+<p>Logical database design with steps: <strong>generation</strong> of initial relational schema from the ER diagram, and <strong>normalization</strong> of relational schema. Converting an ER diagram to a table format is the basis for <strong>deriving a relational database design</strong>.</p>
+<p>A database which conforms to an ER diagram can be represented by a collection of <strong>schemas/tables</strong></p>
+<ul>
+<li><strong>Entity sets</strong> and <strong>relationship sets</strong> can be expressed uniformly as <strong>relation schemas</strong> that represent the <strong>contents</strong> of the database</li>
+<li>There is a <strong>unique schema</strong> corresponding to either <strong>entity set</strong> or <strong>relationship set</strong></li>
+<li>Each table has a number of columns, corresponding to their attributes</li>
+</ul>
+<p>A <strong>strong entity set</strong> reduces to a schema with the <strong>same attributes</strong>; a <strong>weak entity set</strong> becomes a table that <strong>includes a column for the primary key</strong> of the identifying <strong>strong entity set</strong></p>
+<blockquote>
+<p>Composite attributes are <strong>flattened</strong> by separate attributes.</p>
+</blockquote>
+<h2 id="representing-relationship-sets">Representing Relationship Sets</h2>
+<p>Reduction of a <strong>relationship set</strong> into tables are <strong>strongly dependent on</strong> the <strong>mapping cardinality</strong> constraint and <strong>total/partial constraints</strong>.</p>
+<ol type="1">
+<li>A <strong>many to many</strong> relationship sets is represented as a table with columns for the <strong>primary keys</strong> of two participating entity sets, and any <strong>descriptive attributes</strong> of the relationship set</li>
+<li><strong>Many to one</strong> and <strong>one to many</strong> relationship sets that <strong>total on the many side</strong> can be represented by adding an extra attribute to the <strong>many</strong> side, containing the primary key of the <strong>one</strong> side. (one side means where <span class="math inline">\(\to\)</span> are)</li>
+<li><strong>Many to one</strong> relationship sets with <strong>partial participation on the many side</strong>. The relationship is reduced ti an <strong>independent table</strong>, avoiding <strong>null</strong> values</li>
+<li>For <strong>one to one</strong> relationship sets, either side can be chosen to act as the <strong>many</strong> side</li>
+</ol>
+<h2 id="extended-er-features">Extended ER Features</h2>
+<ol type="1">
+<li><strong>Specialization</strong>
+<ul>
+<li>Top-down design process</li>
+<li>We designate <strong>sub-groupings</strong> within an entity set that are distinctive from other entities</li>
+<li>These sub-groupings become <strong>lower-level</strong> entity sets that have attributes or participate in relationships that <strong>do</strong> apply to the <strong>higher-level</strong> entity set
+<ul>
+<li>Attributes and relationships <strong>specific to the lower-level</strong> entity sets</li>
+</ul></li>
+<li><strong>Depicted by a triangle component labeled ISA</strong></li>
+</ul></li>
+<li><strong>Attribute inheritance</strong>
+<ul>
+<li>A <strong>lower-level</strong> entity set <strong>inherits</strong> all the <strong>attributes</strong> and <strong>relationship participation</strong> of the <strong>higher-level</strong> entity set to which it is linked</li>
+<li>A <strong>higher-level</strong> entity’s attributes and relationship can apply to all of its <strong>lower-level</strong> entities</li>
+</ul></li>
+<li><strong>Generalization</strong>
+<ul>
+<li>Bottom-up design process
+<ul>
+<li>Combine a number of entity sets that share the same features into a higher-level entity set</li>
+</ul></li>
+</ul></li>
+</ol>
+<blockquote>
+<p>Specialization and generalization are simple <strong>inversion</strong> of each other. They are represented in an ER diagram in the same way. The terms specialization and generalization are <strong>used interchangeably</strong>.</p>
+</blockquote>
+<h3 id="superclass-and-subclass">Superclass and Subclass</h3>
+<p>The <strong>ISA</strong> relationship, or containment, is also referred to as <strong>superclass-subclass</strong> relationship.</p>
+<p>For the entity sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, if <span class="math inline">\(A\)</span> is the generalization of <span class="math inline">\(B\)</span>, then <span class="math inline">\(A\)</span> is the superclass of <span class="math inline">\(B\)</span>, and <span class="math inline">\(B\)</span> is the subclass of <span class="math inline">\(A\)</span>.</p>
+<h3 id="completeness-constraint">Completeness Constraint</h3>
+<p><strong>Completeness constraint</strong> specifies whether or not an entity in the <strong>higher-level</strong> entity set must <strong>belong to</strong> at least one of the <strong>lower-level</strong> entity sets within a <strong>generalization</strong>.</p>
+<ul>
+<li><strong>Total</strong>: an entity must <strong>belong to</strong> one of the lower-level entity sets</li>
+<li><strong>Partial</strong>: an entity <strong>need not</strong> belong to one of the lower-level entity sets</li>
+</ul>
+<p>We can specify total generalization by adding the keyword <strong>total</strong> in the diagram and drawing a dashed line from the keyword to the corresponding hollow arrow-head (for a total generalization), or to the set of hollow arrow-heads (for an overlapping generalization).</p>
+<p>What’s more, constraints on whether or not a <strong>higher-level</strong> entity may <strong>belong to</strong> more than one <strong>lower-level</strong> entity set within <strong>a single specialization</strong></p>
+<ul>
+<li><strong>Disjoint</strong>: a higher-level entity can belong to <strong>only one</strong> lower-level entity set</li>
+<li><strong>Overlapping</strong>: a higher-level entity can belong to <strong>more than one</strong> lower-level entity sets</li>
+</ul>
+<h3 id="representing-specialization-via-schemas">Representing Specialization via Schemas</h3>
+<ol type="1">
+<li>Method 1
+<ul>
+<li>Form a schema for the <strong>higher-level</strong> entity</li>
+<li>Form a schema for each <strong>lower-level</strong> entity set, <strong>including</strong> primary key of <strong>higher-level</strong> entity set and local attributes.</li>
+</ul></li>
+<li>Method 2
+<ul>
+<li>Form a schema for each entity set with all local and inherited attributes</li>
+</ul></li>
+<li>Method 3
+<ul>
+<li>If specialization is <strong>disjoint</strong> and <strong>complete</strong>, creating two tables</li>
+<li><span class="math inline">\(T_1(a_1, a_2, \cdots, a_m, c_1, c_2, \cdots, c_k, d_1, d_2, \cdots, d_j)\)</span></li>
+<li><span class="math inline">\(T_2(b_1, b_2, \cdots, b_n, c_1, c_2, \cdots, c_k, d_1, d_2, \cdots, d_j)\)</span></li>
+<li><span class="math inline">\(a_1\)</span>, <span class="math inline">\(a_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(a_m\)</span> are attributes of one lower-level entity set, <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(b_n\)</span> are attributes of the other lower-level entity set, and <span class="math inline">\(c_1\)</span>, <span class="math inline">\(c_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(c_k\)</span>, <span class="math inline">\(d_1\)</span>, <span class="math inline">\(d_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(d_j\)</span> are <strong>all attributes</strong> of higher-level entity set.</li>
+</ul></li>
+</ol>
+<h2 id="er-design-issues">ER Design Issues</h2>
+<ol type="1">
+<li>Not to use the <strong>primary key</strong> of an entity set as an attribute of another entity set (to represent <strong>implicitly association</strong> between two entity sets), it is better to use an <strong>relationship set</strong> to explicitly show this association.</li>
+<li>If <span class="math inline">\(E\)</span> participate in <span class="math inline">\(R\)</span>, <strong>not to designate</strong> the primary key (<span class="math inline">\(E\)</span>) as attributes of <span class="math inline">\(R\)</span>, to avoid <strong>information redundancy</strong></li>
+<li>Possible guideline is to <strong>designate</strong> a <strong>relationship</strong> set to describe an action that occurs between entities</li>
+<li><strong>Prefer to</strong> using the <strong>binary</strong> relationship set, replace a non-binary relationship set by a number of binary relationship set</li>
+</ol>
+<h3 id="converting-non-binary-relationships-to-binary-form">Converting Non-Binary Relationships to Binary Form</h3>
+<p>In general, any non-binary relationship can be represented using binary relationships by creating an artificial entity set <span class="math inline">\(E\)</span>.</p>
+<p>For example, a 3-ary relationship set <span class="math inline">\(R = \{(a_i, b_i, c_i) \mid a_i \in A, b_i \in B, c_i \in C\}\)</span> among entity sets <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, replace <span class="math inline">\(R\)</span> by an entity set <span class="math inline">\(E = \{e_{i}\}\)</span>, and three binary relationship set <span class="math inline">\(R_a\)</span>, <span class="math inline">\(R_b\)</span>, <span class="math inline">\(R_c\)</span>.</p>
+<ul>
+<li><span class="math inline">\(E = \{e_i\}\)</span>, <span class="math inline">\(|E| = |R|\)</span>, i.e. each <span class="math inline">\((a_i, b_i, c_i)\)</span> in <span class="math inline">\(R\)</span> corresponds to one <span class="math inline">\(e_i\)</span> in <span class="math inline">\(E\)</span></li>
+<li><span class="math inline">\(R_a = \{(e_i, a_i) \mid e_i \in E, a_i \in A\}\)</span>, relating <span class="math inline">\(E\)</span> and <span class="math inline">\(A\)</span></li>
+<li><span class="math inline">\(R_b = \{(e_i, b_i) \mid e_i \in E, a_i \in B\}\)</span>, relating <span class="math inline">\(E\)</span> and <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(R_c = \{(e_i, c_i) \mid e_i \in E, a_i \in C\}\)</span>, relating <span class="math inline">\(E\)</span> and <span class="math inline">\(C\)</span></li>
+<li><span class="math inline">\(E\)</span> has an identifying attribute <span class="math inline">\(e\)</span> (candidate key) to distinguish each <span class="math inline">\(e_i\)</span> in <span class="math inline">\(E\)</span></li>
+<li>All attributes of <span class="math inline">\(R\)</span> are assigned to <span class="math inline">\(E\)</span>.</li>
+</ul>
+<p>The attributes of relationship sets <span class="math inline">\(R\)</span> may be associated with one of its participating entity sets. For the attribute attr in relationship set <span class="math inline">\(R\)</span> between <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, if the cardinality of <span class="math inline">\(R\)</span> is</p>
+<ul>
+<li><strong>One to one</strong>: attr can be assigned as attribute of either <span class="math inline">\(E_1\)</span> or <span class="math inline">\(E_2\)</span>, <strong>rather than</strong> relationship set <span class="math inline">\(R\)</span></li>
+<li><strong>One to many</strong> from <span class="math inline">\(E_1\)</span> to <span class="math inline">\(E_2\)</span>: attr can <strong>only</strong> be assigned as the attribute of the entity set <span class="math inline">\(E_2\)</span> (many side), <strong>rather than</strong> the relationship set <span class="math inline">\(R\)</span></li>
+<li><strong>Many to many</strong>: attr may only be assigned as the attribute of <span class="math inline">\(R\)</span>, <strong>not</strong> of its participating entity sets <span class="math inline">\(E_1\)</span> or <span class="math inline">\(E_2\)</span></li>
+</ul>
+<h2 id="summary-of-symbols-used-in-er-notation">Summary of Symbols Used in ER Notation</h2>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%201.png" srcset="/img/loading.gif" lazyload alt="summary 1"><figcaption aria-hidden="true">summary 1</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 7: Summary 1
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%202.png" srcset="/img/loading.gif" lazyload alt="summary 2"><figcaption aria-hidden="true">summary 2</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 8: Summary 2
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%203.png" srcset="/img/loading.gif" lazyload alt="summary 3"><figcaption aria-hidden="true">summary 3</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 9: Summary 3
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/Alternative%20ER%20Notations.png" srcset="/img/loading.gif" lazyload alt="Alternative ER Notations"><figcaption aria-hidden="true">Alternative ER Notations</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 10: Alternative ER notations
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Database Design Using the ER Model</div>
+      <div>https://ddccffq.github.io/2025/12/20/数据库系统原理/Database_Design_Using_the_ER_Model/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Query_Optimization/" title="Chapter 16: Query Optimization">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Chapter 16: Query Optimization</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational_Database_Design_Schema_Normalization/" title="Relational Database Design: Schema Normalization">
+                        <span class="hidden-mobile">Relational Database Design: Schema Normalization</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

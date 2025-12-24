@@ -19,22 +19,27 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="User-to-kernel Mode Switch There are three conditions will trigger switch.  Exceptions: When the processer encounters unexpected condition like illegal memory access, divide-by-zero, perform privileg">
+    <meta name="description" content="*User to kernel Mode Switch There are three conditions will trigger switch.  Exceptions: When the processor encounters unexpected condition like illegal memory access, divide-by-zero (in C), perform">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Context Switch">
+<meta property="og:title" content="Chapter 3: Context Switch">
 <meta property="og:url" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="User-to-kernel Mode Switch There are three conditions will trigger switch.  Exceptions: When the processer encounters unexpected condition like illegal memory access, divide-by-zero, perform privileg">
+<meta property="og:description" content="*User to kernel Mode Switch There are three conditions will trigger switch.  Exceptions: When the processor encounters unexpected condition like illegal memory access, divide-by-zero (in C), perform">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/interrupt%20procedure.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/before%20interrupt.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/at%20the%20beginning%20of%20handler.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/during%20interrupt%20handler.png">
 <meta property="article:published_time" content="2025-11-18T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-23T14:01:05.338Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/interrupt%20procedure.png">
   
   
   
-  <title>Context Switch - ddccffq&#39;s Blog</title>
+  <title>Chapter 3: Context Switch - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Context Switch"></span>
+            <span id="subtitle" data-typed-text="Chapter 3: Context Switch"></span>
           
         </div>
 
@@ -223,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          147 字
+          376 字
         
       </span>
     
@@ -234,7 +239,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -271,38 +276,44 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Context Switch</h1>
+            <h1 id="seo-header">Chapter 3: Context Switch</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="user-to-kernel-mode-switch">User-to-kernel Mode Switch</h2>
+<h2 id="user-to-kernel-mode-switch">*User to kernel Mode Switch</h2>
 <p>There are three conditions will trigger switch.</p>
 <ol type="1">
-<li><strong>Exceptions</strong>: When the processer encounters <strong>unexpected condition</strong> like <strong>illegal memory access</strong>, <strong>divide-by-zero</strong>, <strong>perform privileged instructions</strong>.</li>
-<li><strong>Interrupys</strong>: <strong>Asynchronous signal</strong> to the processor that some external event has occurred that requires its attention, like <strong>timer interrupts</strong>, <strong>I/O requests</strong> such as mouse movement.</li>
+<li><strong>Exceptions</strong>: When the <strong>processor</strong> encounters <strong>unexpected condition</strong> like <strong>illegal memory access</strong>, <strong>divide-by-zero (in C)</strong>, <strong>perform privileged instructions</strong>.</li>
+<li><strong>Interrupts</strong>: <strong>Asynchronous signal</strong> to the processor that some external event has occurred that requires its attention, like <strong>timer interrupts</strong>, <strong>I/O requests</strong> such as mouse movement.</li>
 <li><strong>System calls</strong>: User processes requests the kernel do som operation on the user’s behalf, like <strong>R/W files</strong>, <strong>creating new processes</strong>, <strong>network connections</strong>.</li>
 </ol>
 <blockquote>
-<p>Here are some questions: What types of these user-to-kernel switch are they?</p>
+<p>What types of these user-to-kernel switch are they?</p>
 <ul>
 <li>inter-processor interrupt(IPI)</li>
 <li>invalid opcode</li>
 <li>segmentation fault</li>
 <li>network card interrupt</li>
-<li>divide-by-zero in python/java</li>
+<li>divide-by-zero in python/java
+<ul>
+<li>exception from interpreter (<strong>not processor</strong>)</li>
+</ul></li>
 </ul>
 </blockquote>
 <h2 id="interrupt-vector-table">Interrupt Vector Table</h2>
 <p>Interrupt vector table stores the <strong>entries</strong> of different handlers for <strong>exceptions</strong>, <strong>interrupts</strong>, and <strong>traps</strong> in real mode.</p>
 <blockquote>
-<p>There is a special register that point to the vector in kernel memory, where each entry points to the <strong>first instruction</strong> of a different handler procedure in the kernel. In x86, there are 256 entries in total. Each takes 4 bytes.</p>
+<p>There is <strong>a special register</strong> that point to the <strong>vector (array)</strong> in kernel memory, where each entry points to the <strong>first instruction</strong> of a different handler procedure in the kernel.</p>
+<p>In x86, there are <span class="math inline">\(256\)</span> entries in total. Each takes <span class="math inline">\(4\)</span> bytes.</p>
+<p><strong>Old</strong>.</p>
 </blockquote>
 <h2 id="interrupt-descriptor-table">Interrupt Descriptor Table</h2>
 <p>Interrupt descriptor table tells CPU where the <strong>interrupt service routines</strong> are located.</p>
 <blockquote>
-<p>Location calls <strong>entry</strong>, also called <strong>gate</strong>. There are 256 gates in total. Each gate is 8-bytes long on 32-bit processors; or 16-bytes long on 64-bit processors. Its location is kept in <strong>IDT register(IDTR)</strong>, loaded with <strong>LIDT</strong> assembly instruction.</p>
+<p>Location calls <strong>entry</strong>, also called <strong>gate</strong>. There are <span class="math inline">\(256\)</span> gates in total. Each gate is <span class="math inline">\(8\)</span>-bytes long on <span class="math inline">\(32\)</span>-bit processors; or <span class="math inline">\(16\)</span>-bytes long on <span class="math inline">\(64\)</span>-bit processors. Its location is kept in <strong>IDT register(IDTR)</strong>, loaded with <strong>LIDT</strong> assembly instruction.</p>
+<p>用户态到内核态只能经过这 <span class="math inline">\(256\)</span> 个门</p>
 </blockquote>
 <p>The following table is <strong>gate descriptor(32-bit)</strong> structure:</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -316,7 +327,7 @@
 <tbody>
 <tr class="odd">
 <td>0 ~ 15</td>
-<td>Offest</td>
+<td>Offset</td>
 </tr>
 <tr class="even">
 <td>16 ~ 31</td>
@@ -352,33 +363,90 @@
 <blockquote>
 <ul>
 <li><strong>Offset</strong>: A 32-bit value, split in two parts, represents the address of the <strong>interrupt service routine</strong>.</li>
-<li><strong>Selector</strong>: A <strong>segment selector</strong> which must point to a valid code segment in your <strong>GDT</strong>.</li>
+<li><strong>Selector</strong>: A <strong>segment selector</strong> which must point to a valid code segment in your <strong>GDT (Global Descriptor Table)</strong>.</li>
 <li><strong>Gate Type</strong>: A 4-bit value which defines the type of gate this interrupt descriptor represents.</li>
-<li><strong>DPL</strong>: A 2-bit value which defines the CPU privilege levels which are allowed to access this interrupt via the <strong>INT</strong>.</li>
+<li><strong>DPL</strong>: A 2-bit value which defines the CPU privilege levels which are allowed to access this interrupt via the <strong>INT (Interrupt Instruction)</strong>.</li>
 <li><strong>P</strong>: Present bit. Must be set 1 for the descriptor to be valid.</li>
 </ul>
-<p>Why offset is split into two parts?</p>
+<p>Why offset is split into two parts? For compatibility.</p>
 </blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th>特性</th>
+<th>IVT</th>
+<th>IDT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>用途</strong></td>
+<td>实模式中断向量表</td>
+<td>保护模式/长模式中断描述符表</td>
+</tr>
+<tr class="even">
+<td><strong>存储位置</strong></td>
+<td>固定在 0x0000 到 0x03FF</td>
+<td>动态位置，由 IDTR 指定</td>
+</tr>
+<tr class="odd">
+<td><strong>条目大小</strong></td>
+<td><span class="math inline">\(4\)</span> 字节</td>
+<td><span class="math inline">\(8\)</span> 字节（<span class="math inline">\(32\)</span> 位）或 <span class="math inline">\(16\)</span> 字节（<span class="math inline">\(64\)</span> 位）</td>
+</tr>
+<tr class="even">
+<td><strong>条目内容</strong></td>
+<td>中断处理程序的入口地址</td>
+<td>描述符（包含段选择器、偏移地址等）</td>
+</tr>
+<tr class="odd">
+<td><strong>支持的模式</strong></td>
+<td>实模式</td>
+<td>保护模式、长模式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 1: Comparison between IVT and IDT
+</div>
+<p>IVT 是早期的简单实现，而 IDT 是现代操作系统中更灵活和安全的中断处理机制。</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/interrupt%20procedure.png" srcset="/img/loading.gif" lazyload alt="interrupt procedure"><figcaption aria-hidden="true">interrupt procedure</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: Interrupt procedure
+</div>
 <h2 id="interrupt-masking">Interrupt Masking</h2>
 <p>There are two kinds of interrupts:</p>
 <ul>
-<li><strong>Maskable interrupts</strong>: all soffware interrupts, all system calls, and partial hardware exceptions.</li>
-<li><strong>Non-maskable interrupts</strong>: partial hardware exceptions.</li>
+<li><strong>Maskable interrupts</strong>: all software interrupts, all system calls, and partial hardware exceptions.</li>
+<li><strong>Non-Maskable interrupts</strong>: partial hardware exceptions.</li>
 <li><strong>Specified by <em>eflags registers</em></strong>.</li>
 </ul>
 <blockquote>
 <p><strong>Disable interrupts</strong> and <strong>enable interrupts</strong>. Both of them are privileged instructions.</p>
+<p>Masked interrupts are deferred, but not ignored. Given the limited buffer for interrupts, hardware buffers one interrupt of each type.</p>
 </blockquote>
-<h2 id="interrupt-stack">Interrupt Stack</h2>
-<p><strong>Interrupt stack</strong> is a special stack in kernel memory that saves interrupt process status. Empty when there is no interrupt (running in user space).</p>
+<h2 id="interrupt-stack">*Interrupt Stack</h2>
+<p><strong>Interrupt stack</strong> is a special stack in kernel memory that saves <strong>interrupt process status</strong>. Empty when there is no interrupt (running in user space).</p>
 <blockquote>
 <ol type="1">
-<li><p>Why not directly use the user-space stack?</p></li>
+<li><p>Why not directly use the user-space stack?</p>
+<p>For reliability and security</p></li>
 <li><p>How many interrupt stack in kernel?</p>
 <p>Kernel need to allocate each thread a interrupt stack</p></li>
 </ol>
+<ul>
+<li><strong>First fault</strong>: trap from user-space program to kernel-space exception handler.</li>
+<li><strong>Double fault</strong>: trap from exception handler to another handler.</li>
+<li><strong>Triple fault</strong>: reboot.</li>
+</ul>
 </blockquote>
-<h2 id="kernel-to-user-mode-switch">Kernel-to-User Mode Switch</h2>
+<h2 id="kernel-to-user-mode-switch">Kernel to User Mode Switch</h2>
 <ul>
 <li><p><strong>New process</strong></p>
 <p>When a new process is created (e.g., via <code>fork</code> and <code>exec</code> in Unix-like systems), the kernel initializes its context and then switches to user mode to start executing the user program.</p></li>
@@ -398,6 +466,79 @@
 <li><p>User-level resource allocation, such as Java garbage collection.</p></li>
 </ol>
 </blockquote>
+<h2 id="x86-example">*x86 Example</h2>
+<h3 id="x86-background">x86 Background</h3>
+<ul>
+<li>Memory is segmented, so pointers come in two parts: a segment and an offset.
+<ul>
+<li>program counter: <code>cs</code> register and <code>eip</code> register</li>
+<li>stack pointer: <code>ss</code> register and <code>esp</code> register</li>
+<li>CPL is stored as the <span class="math inline">\(2\)</span> lower-bit of <code>cs</code> register</li>
+</ul></li>
+<li>In Intel 8086: <code>cs:eip</code> = cs <span class="math inline">\(\times 16 +\)</span> <code>eip</code>
+<ul>
+<li>both <code>cs</code> and <code>eip</code> are <span class="math inline">\(16\)</span>-bits long, therefore CPU can access at most <span class="math inline">\(1\)</span> MB memory space</li>
+</ul></li>
+<li><code>eflags</code> register stores the processor status and controls its behavior. Whether interrupts are masked or not.</li>
+<li>Only a small number of instructions can change the <code>cs</code> register value
+<ul>
+<li><code>ljmp</code> (far jump)</li>
+<li><code>lcall</code> (far call), which pushes <code>eip</code> and <code>cs</code> to the stack, and then far jumps</li>
+<li><code>lref</code> (far return), which inverses the far call</li>
+<li><code>INT</code>: an assembly languages instruction for x86 processors that generates a <strong>software interrupt</strong>. It takes the interrupt number formatted as a byte value. Which read <code>cs</code>/<code>eip</code> from the IVT</li>
+<li><code>IRET</code>: returns program control from an exception or interrupt handler to a program or procedure that was interrupted previously</li>
+</ul></li>
+</ul>
+<h3 id="x86-transfer">x86 transfer</h3>
+<p>When an interrupt/exception/syscall occurs, the <strong>hardware</strong> will:</p>
+<ol type="1">
+<li>mask interrupts</li>
+<li>save the special register values to other temporary registers</li>
+<li>switch onto the kernel interrupt stack</li>
+<li>push the three key values onto the new stack</li>
+<li>optionally save an error code</li>
+<li><strong>invoke</strong> the interrupt handler (<strong>CPL changed</strong>!)</li>
+</ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/before%20interrupt.png" srcset="/img/loading.gif" lazyload alt="before interrupt"><figcaption aria-hidden="true">before interrupt</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: Before interrupt
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/at%20the%20beginning%20of%20handler.png" srcset="/img/loading.gif" lazyload alt="at the beginning of handler"><figcaption aria-hidden="true">at the beginning of handler</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: At the beginning of handler
+</div>
+<p>Then the <strong>OS</strong> will:</p>
+<ol type="1">
+<li>save the rest of the interrupted process’s state
+<ul>
+<li><code>pusha</code>/ <code>pushad</code></li>
+</ul></li>
+<li><strong>execute</strong> the handler</li>
+<li>resume the interrupted process
+<ul>
+<li><code>popa</code>/<code>popad</code> <span class="math inline">\(+\)</span> pop error cod</li>
+</ul></li>
+<li>resume the interrupted process
+<ul>
+<li><code>iret</code> (kernel mode to user mode)</li>
+</ul></li>
+</ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Context_Switch/during%20interrupt%20handler.png" srcset="/img/loading.gif" lazyload alt="during interrupt handler"><figcaption aria-hidden="true">during interrupt handler</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: During interrupt handler
+</div>
 
                 
               </div>
@@ -436,7 +577,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Context Switch</div>
+      <div>Chapter 3: Context Switch</div>
       <div>https://ddccffq.github.io/2025/11/18/操作系统/Context_Switch/</div>
     </div>
     <div class="license-meta">
@@ -481,9 +622,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational%20Database%20Design:%20Schema%20Normalization/" title="Relational Database Design: Schema Normalization">
+                      <a href="/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/" title="OS Interfaces and Syscalls">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Relational Database Design: Schema Normalization</span>
+                        <span class="hidden-mobile">OS Interfaces and Syscalls</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

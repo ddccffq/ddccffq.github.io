@@ -1,0 +1,981 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Accessing SQL from a Programming Language  API (application program interface) to interact with DB server Application conducts data processing, and makes calls to  Connect with the database server Se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advanced SQL">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Advanced_SQL/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Accessing SQL from a Programming Language  API (application program interface) to interact with DB server Application conducts data processing, and makes calls to  Connect with the database server Se">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-20T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-20T07:54:48.770Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Advanced SQL - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Advanced SQL"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-20 15:00" pubdate>
+          2025年12月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          304 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          3 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Advanced SQL</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="accessing-sql-from-a-programming-language">Accessing SQL from a Programming Language</h2>
+<blockquote>
+<p>API (application program interface) to <strong>interact</strong> with DB server</p>
+<p>Application <strong>conducts</strong> data processing, and <strong>makes calls</strong> to</p>
+<ul>
+<li><strong>Connect</strong> with the database server</li>
+<li><strong>Send</strong> SQL commands to the database server</li>
+<li><strong>Fetch</strong> tuples of result <strong>one-by-one</strong> into program variables</li>
+</ul>
+</blockquote>
+<p>There are <strong>two</strong> approaches to accessing SQL</p>
+<ol type="1">
+<li>Dynamic SQL
+<ul>
+<li>General-purpose program: connects to and communicates with DB server using <strong>functions</strong></li>
+<li>Program <strong>constructs</strong> an SQL query as <strong>a character string</strong>, <strong>submit</strong> the query, and <strong>retrieve</strong> result into program variables <strong>a tuple at a time</strong>.</li>
+<li>Includes <strong>JDBC</strong> with Java and <strong>ODBC</strong> with C, C++, etc.</li>
+</ul></li>
+<li>Embedded SQL
+<ul>
+<li>Statements are translated in high-level programs at <strong>compile time</strong> into <strong>function calls</strong></li>
+<li><strong>Function calls</strong> connect to DB using an <strong>API</strong> that provides dynamic SQL facilities</li>
+</ul></li>
+</ol>
+<h3 id="jdbc">JDBC</h3>
+<p><strong>JDBC</strong> is a Java based API.</p>
+<ul>
+<li>Supports <strong>features</strong> for <strong>querying</strong> and <strong>updating</strong> data, and for <strong>retrieving</strong> query results</li>
+<li>Supports <strong>metadata retrieval</strong> (<strong>querying</strong> about <strong>relations</strong> in DB and <strong>querying</strong> about <strong>names and types</strong> of relation attributes)</li>
+</ul>
+<p>Also known as the <strong>model</strong> for communicating with DB:</p>
+<ul>
+<li><strong>Open</strong> a connection, named as <code>conn</code>
+<ul>
+<li>Using the <code>getConnection</code> method od the <code>DriverManager</code> class</li>
+<li>Parameters: <code>(URL, user_identifier, password)</code></li>
+</ul></li>
+<li><strong>Create</strong> a SQL statement object on the connection <code>conn</code>
+<ul>
+<li>Using the <code>createStatement</code> method</li>
+<li>Its statement handle is named as <code>stmt</code></li>
+<li>Invoke methods that <strong>ship</strong> an SQL statement foe execution</li>
+</ul></li>
+<li><strong>Update</strong> to database
+<ul>
+<li>Using the <code>stmt.executeUpdate("SQL")</code></li>
+</ul></li>
+<li><strong>Execute</strong> query and fetch and print results
+<ul>
+<li><code>ResultSet</code> object</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Note</em>: <strong>execute</strong> queries using <code>Statement</code> object <code>stmt</code> to <strong>send</strong> queries and fetch results</p>
+<ul>
+<li>Using <code>execute.query</code> or <code>execute.update</code> such as **insert/delete/update/create table`</li>
+</ul>
+<ol type="1">
+<li><strong>Parameters</strong>: SQL statement to be executed, <strong>represented as a string</strong></li>
+<li><strong>Catch</strong> any exceptions or error conditions</li>
+<li><strong>Fetch</strong> the query result, using the <code>try &#123;...&#125;/catch &#123;...&#125;</code> construct
+<ul>
+<li>Retrieve the set of tuples in the result into a <code>ResultSet</code> object <code>rset</code>, <strong>fetch</strong> them on one tuple at a time</li>
+<li>The <code>next()</code> method tests whether or nor the result set has at least one tuple and if so, fetches it</li>
+</ul></li>
+<li><strong>Close</strong> the statement <code>stmt</code> and the connection <code>conn</code> at the end</li>
+</ol>
+</blockquote>
+<h3 id="jdbc-code-details">JDBC Code Details</h3>
+<ul>
+<li>Getting result fields:
+<ul>
+<li><code>rs.getString("dept_name")</code> and <code>rs.getString(1)</code> are <strong>equivalent</strong>, if dept_name is the first argument of select result</li>
+</ul></li>
+<li>Dealing with null values
+<ul>
+<li><code>rs.wasNULL()</code></li>
+</ul></li>
+</ul>
+<h3 id="jdbc-subsections">JDBC Subsections</h3>
+<ol type="1">
+<li>Prepared statements
+<ul>
+<li><code>PreparedStatement pStmt = conn.prepareStatement("insert into instructor values(?, ?, ?, ?)");</code></li>
+<li><code>pStmt.setString(1, "88877");</code></li>
+</ul></li>
+<li>Metadata Features
+<ul>
+<li>After executing query to get a <code>ResultSet rs</code></li>
+<li><code>ResultSetMetaDate rsmd = rs.getMetaData();</code></li>
+</ul></li>
+<li>Transaction Control
+<ul>
+<li>Each SQL statement is treated as <strong>a separate transaction</strong> that is committed automatically by default</li>
+<li>Turn off automatic commit on a connection: <code>conn.setAutoCommit(false);</code></li>
+<li><em>Note</em>: transactions must then be committed or rolled back explicitly
+<ul>
+<li><code>conn.commit();</code> and <code>conn.rollback();</code></li>
+</ul></li>
+</ul></li>
+<li>Calling <strong>functions</strong> and <strong>procedures</strong>
+<ul>
+<li><code>CallableStatement cStmt1 = conn.prepareCall("&#123;? = call some function(?)&#125;");</code></li>
+<li><code>CallableStatement cStmt2 = conn.prepareCall("&#123;call some procedure(?, ?)&#125;");</code></li>
+</ul></li>
+</ol>
+<h3 id="odbc">ODBC</h3>
+<p><strong>Open database connectivity</strong> standard</p>
+<ul>
+<li><strong>Application programs</strong> (as client) to communicate with DB server</li>
+<li><strong>API</strong> to
+<ul>
+<li>Open a connection with database</li>
+<li>Send queries and updates</li>
+<li>Get back results</li>
+</ul></li>
+</ul>
+<h3 id="embedded-sql">Embedded SQL</h3>
+<p>Embedded SQL</p>
+<ul>
+<li>In general-purpose programming languages, e.g. C</li>
+<li>Executing of general-purpose programming language programs with SQL statement embedded results in DB access</li>
+</ul>
+<p><strong>Def</strong>. A language to which SQL queries are embedded is referred to as <strong>host language</strong>. The SQL structures permitted in host language comprise <strong>embedded SQL</strong></p>
+<ul>
+<li>EXEC SQL statement is used to identify <strong>embedded SQL</strong> request to the preprocessor
+<ul>
+<li><code>EXEC SQL &lt;embedded SQL statement&gt;;</code></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Note</em>: this varies by language:</p>
+<ul>
+<li>In some languages, like COBOL, the <strong>semicolon</strong> is replaced with <code>END-EXEC</code></li>
+<li>In Java embedding use <code># SQL&#123;...&#125;;</code></li>
+</ul>
+</blockquote>
+<ul>
+<li>Before executing any SQL statements, the program must first connect to the database.
+<ul>
+<li><code>EXEC SQL connect to &lt;server&gt; user &lt;user_name&gt; using &lt;password&gt;;</code></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Note</em>: server identifies the server to which connection is to be established</p>
+</blockquote>
+<ul>
+<li><strong>Variables</strong> of the <strong>host</strong> language can be used within embedded SQL statements. They are <strong>preceded</strong> by colon to (<code>:</code>) to distinguish from SQL variables, e.g. <code>:credit_amount</code></li>
+</ul>
+<blockquote>
+<p><em>Note</em>: variables used as above must be <strong>declared</strong> within <code>DECLARE</code> section</p>
+<p>The <strong>syntax</strong> for <strong>declaring the variables</strong> follows the usual host language syntax.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL BEGIN DECLARE SECTION<br>  <span class="hljs-type">int</span> credit_amount;<br>EXEC SQL END DECLARE SECTION;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>Example, from a host language, find the <strong>ID</strong> and <strong>name</strong> of students who have completed more than the number of <strong>credits</strong> stored in variable <code>credit_amount</code> in the host language. (<code>credi_amount</code> is the shared variable defined in the declaration part)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL BEGIN DECLARE SECTION;<br><span class="hljs-type">int</span> credit_amount;<br>EXEC SQL END DECLARE SECTION;<br><br>credit_amount = <span class="hljs-number">100</span>;<br><br>EXEC SQL CONNECT TO my_database USER <span class="hljs-string">&#x27;username&#x27;</span> USING <span class="hljs-string">&#x27;password&#x27;</span>;<br><br>EXEC SQL<br>select ID, name<br>from student<br>where tot_cred &gt; :credit_amount<br>END-EXEC<br></code></pre></td></tr></table></figure>
+<h3 id="cursor-in-embedded-sql">Cursor in Embedded SQL</h3>
+<p>To write an embedded SQL query, we use the statement: <code>declare c cursor for &lt;SQL query&gt;</code>. The variable <code>c</code> is used to identify the query.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL<br>declare c cursor <span class="hljs-keyword">for</span><br>select ID, name<br>from student<br>where tot_cred &gt; :credit_amount<br>END-EXEC<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>When using Embedded SQL for queries, if the query result includes multiple tuples, it cannot be directly passed to the host program through shared variables. In this case, the system allocates a dedicated working area to store the query result relation and uses a cursor to point to this area. The host program retrieves each tuple from the result relation sequentially by using the cursor with <code>OPEN</code>, <code>FETCH</code>, and <code>CLOSE</code> operations.</p>
+<ul>
+<li>The <code>OPEN</code> statement executes the query and save the results **within a temporary relation`</li>
+<li>The <code>FETCH</code> statement causes the values of <strong>one tuple</strong> in the query result to <strong>to be replaced on host language variables</strong>. Repeated calls to fetch get successive tuples in the query result.</li>
+<li>The <code>CLOSE</code> statement <strong>delete</strong> the <strong>temporary</strong> relation that holds the result of the query</li>
+</ul>
+<p><em>Note</em>: above details vary with language.</p>
+</blockquote>
+<p>Example</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL BEGIN DECLARE SECTION<br><span class="hljs-type">int</span> credit_amount;<br><span class="hljs-type">char</span> si, sn;<br>EXEC SQL END DECLARE SECTION<br><br>credit_amount = <span class="hljs-number">100</span>;<br><br>EXEC SQL<br>declare c cursor <span class="hljs-keyword">for</span><br>select ID, name<br>from student<br>where tot_cred &gt; :credit_amount<br>END-EXEC<br><br>EXEC SQL open c END-EXEC<br>EXEC SQL fetch c into :si, :sn END-EXEC<br>EXEC SQL close c END-EXEC<br></code></pre></td></tr></table></figure>
+<h3 id="update-through-embedded-sql">Update Through Embedded SQL</h3>
+<p>Can <strong>update</strong> tuples <strong>fetched by cursor by declaring that the cursor is for update</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL<br>declare c cursor <span class="hljs-keyword">for</span><br>select *<br>from instructor<br>where dept_name = <span class="hljs-string">&#x27;Music&#x27;</span><br>fo update<br>END-EXEC<br></code></pre></td></tr></table></figure>
+<p>We <strong>iterate</strong> through the tuples by performing <strong>fetch</strong> operations on the cursor, after fetching each tuple we execute the following code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">EXEC SQL<br>update instructor<br><span class="hljs-built_in">set</span> salary = salary + <span class="hljs-number">1000</span><br>where current of c<br>END-EXEC<br></code></pre></td></tr></table></figure>
+<h2 id="functions-and-procedures">Functions and Procedures</h2>
+<p>SQL supports <strong>functions</strong> and <strong>procedures</strong></p>
+<ul>
+<li>Functions and procedures can be written in SQL itself, or an <strong>external programming language</strong> (C, Java)</li>
+<li>Functions written in external languages are useful with <strong>specialized data</strong> types such as images</li>
+<li>DBS support <strong>table-valued functions</strong> which can return <strong>a relation</strong> as a result.</li>
+</ul>
+<h3 id="sql-functions">SQL Functions</h3>
+<p>For example, for the given the <strong>name</strong> of a department, returns the count of the number of instructors.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">FUNCTION</span> dept_count(dept_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>))<br><span class="hljs-keyword">RETURNS</span> <span class="hljs-type">INTEGER</span><br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-keyword">DECLARE</span> dept_count <span class="hljs-type">INTEGER</span>;<br>    <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COALESCE</span>(<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>), <span class="hljs-number">0</span>) <span class="hljs-keyword">INTO</span> dept_count<br>    <span class="hljs-keyword">FROM</span> instructor<br>    <span class="hljs-keyword">WHERE</span> instructor.dept_name <span class="hljs-operator">=</span> dept_name;<br>    <span class="hljs-keyword">RETURN</span> dept_count;<br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="sql-procedures">SQL Procedures</h3>
+<p>The <code>dept_count</code> function could be written as <strong>procedure</strong>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">PROCEDURE</span> dept_count_proc(<span class="hljs-keyword">IN</span> dept_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>), <span class="hljs-keyword">OUT</span> d_count <span class="hljs-type">INTEGER</span>)<br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">INTO</span> d_count<br>    <span class="hljs-keyword">FROM</span> instructor<br>    <span class="hljs-keyword">WHERE</span> instructor.dept_name <span class="hljs-operator">=</span> dept_count_proc.dept_name;<br><span class="hljs-keyword">END</span><br></code></pre></td></tr></table></figure>
+<p>Procedures can be <strong>invoked</strong> either from an SQL procedure or from embedded SQL, using the <strong>call</strong> statement. Procedures and functions can be invoked also from <strong>dynamic SQL</strong>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">DECLARE</span> d_count <span class="hljs-type">INTEGER</span>;<br><span class="hljs-keyword">CALL</span> dept_count_proc(<span class="hljs-string">&#x27;Physics&#x27;</span>, d_count);<br></code></pre></td></tr></table></figure>
+<h2 id="trigger">Trigger</h2>
+<p><strong>Def</strong>. <strong>Trigger</strong> is an <strong>event-condition-action model</strong> based mechanism that is <strong>executed automatically</strong> as a <strong>side effect</strong> of modification to DB.</p>
+<ul>
+<li>Integrity definition, checking, and remedy</li>
+<li>Specify what events cause the trigger to be executed (insert, delete, update)</li>
+<li>Under <strong>which conditions</strong> the trigger execution will proceed
+<ul>
+<li>Integrity constraints checking</li>
+</ul></li>
+<li>Specify <strong>actions</strong> to be taken when the trigger executes
+<ul>
+<li>If <strong>constraints is violated</strong>, remedy actions are taken</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Note</em>: as an <strong>integrity control mechanism</strong>, trigger introduced to SQL-99, but supported even earlier using <strong>non-standard</strong> syntax.</p>
+<p>Syntax illustrated here may not work exactly on your DBS</p>
+</blockquote>
+<h3 id="triggering-events-and-actions">Triggering Events and Actions</h3>
+<p>Trigger event can be <strong>insert</strong>, <strong>delete</strong> or <strong>update</strong>.</p>
+<blockquote>
+<p><em>Note</em>:</p>
+<ul>
+<li>Triggers on update can be restricted to specific attributes</li>
+<li><strong>Values of attributes</strong> before and after an update can be <strong>referenced</strong></li>
+</ul>
+</blockquote>
+<p>Triggers can be activated before an event, which can serve as extra constraints. For example, convert blank grades to null.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> set_null_trigger BEFORE <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OF</span> takes<br><span class="hljs-keyword">REFERENCING</span> <span class="hljs-keyword">NEW</span> <span class="hljs-type">ROW</span> <span class="hljs-keyword">AS</span> nrow<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-type">ROW</span><br><span class="hljs-keyword">WHEN</span> (nrow.grade <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&#x27;</span>)<br><span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">ATOMIC</span><br>    <span class="hljs-keyword">SET</span> nrow.grade <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>;<br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="trigger-to-maintain-referential-integrity">Trigger to Maintain Referential Integrity</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> time_slot_check1 AFTER <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> section<br><span class="hljs-keyword">REFERENCING</span> <span class="hljs-keyword">NEW</span> <span class="hljs-type">ROW</span> <span class="hljs-keyword">AS</span> nrow<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-type">ROW</span><br><span class="hljs-keyword">WHEN</span> nrow.time_slot_id <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> time_slot_id <span class="hljs-keyword">FROM</span> timeslot)<br><span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">ATOMIC</span><br>    <span class="hljs-keyword">ROLLBACK</span><br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> time_slot_check2 AFTER <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">ON</span> timeslot<br><span class="hljs-keyword">REFERENCING</span> <span class="hljs-keyword">OLD</span> <span class="hljs-type">ROW</span> <span class="hljs-keyword">AS</span> orow<br><span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> orow b<br><span class="hljs-keyword">WHEN</span> orow.time_slot_id <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> time_slot_id <span class="hljs-keyword">FROM</span> timeslot) <span class="hljs-keyword">AND</span> orow.time_slot_id <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> time_slot_id <span class="hljs-keyword">FROM</span> section)<br><span class="hljs-keyword">BEGIN</span> <span class="hljs-keyword">ATOMIC</span><br>    <span class="hljs-keyword">ROLLBACK</span><br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="statement-level-triggers">Statement Level Triggers</h3>
+<p>Instead of <strong>executing</strong> a separate action for <strong>each affected row</strong>, a single action can be executed for <strong>all rows</strong> affected by a transaction.</p>
+<ul>
+<li>Use for each statement instead of <strong>for each row</strong></li>
+<li>Use <strong>referencing old table</strong> or <strong>referencing new table</strong> to refer to <strong>temporary tables</strong> (called transition table) containing the affected rows</li>
+<li>It’s more efficient when dealing with <strong>updates</strong> a large number of rows</li>
+</ul>
+<h3 id="when-not-to-use-triggers">When not to Use Triggers</h3>
+<ul>
+<li>Triggers were used earlier for tasks such as
+<ul>
+<li>Maintaining summary data (e.g. total salary of each department)</li>
+<li>Replicating database by recording changes to special relations (called <strong>changed</strong> or <strong>delta</strong> relations) and having a separate process that applies the changes over to a replica</li>
+</ul></li>
+<li>There are better ways of doing these now
+<ul>
+<li>Databases today provide built-n materialized view facilities to maintain summary data</li>
+<li>Databases provide built-in support for replication</li>
+</ul></li>
+<li>Encapsulation facilities can be used instead of triggers in many cases
+<ul>
+<li>Define methods to update fields</li>
+<li>Carry out actions as part of the update methods instead of through a trigger</li>
+</ul></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/" class="category-chain-item">数据库系统原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Advanced SQL</div>
+      <div>https://ddccffq.github.io/2025/12/20/数据库系统原理/Advanced_SQL/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational_Database_Design_Schema_Normalization/" title="Relational Database Design: Schema Normalization">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Relational Database Design: Schema Normalization</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Intermediate_SQL/" title="Intermediate SQL">
+                        <span class="hidden-mobile">Intermediate SQL</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

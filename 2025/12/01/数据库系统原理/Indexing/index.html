@@ -19,22 +19,27 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Basic Concepts Def. Search Key Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file.">
+    <meta name="description" content="Basic Concepts Def. Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file. The file in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Indexing">
+<meta property="og:title" content="Chapter 14: Indexing">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Basic Concepts Def. Search Key Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file.">
+<meta property="og:description" content="Basic Concepts Def. Search key is an attribute or a set of attributes used to look up records.  Why we need indexing mechanisms. We create a DB indexed file instructor and its index file. The file in">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/Comparison%20between%20B%20tree%20and%20B+%20tree.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/hash%20file%20organization%20example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/overflow%20chaining.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/seek%20and%20scan.png">
 <meta property="article:published_time" content="2025-12-01T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:11:51.519Z">
+<meta property="article:modified_time" content="2025-12-24T13:16:56.443Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/Comparison%20between%20B%20tree%20and%20B+%20tree.png">
   
   
   
-  <title>Indexing - ddccffq&#39;s Blog</title>
+  <title>Chapter 14: Indexing - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Indexing"></span>
+            <span id="subtitle" data-typed-text="Chapter 14: Indexing"></span>
           
         </div>
 
@@ -223,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.5k 字
         
       </span>
     
@@ -234,7 +239,7 @@
         
         
         
-          10 分钟
+          13 分钟
         
       </span>
     
@@ -271,18 +276,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Indexing</h1>
+            <h1 id="seo-header">Chapter 14: Indexing</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
 <h2 id="basic-concepts">Basic Concepts</h2>
-<p><strong>Def</strong>. Search Key Search key is an <strong>attribute</strong> or a set of attributes used to look up records.</p>
+<p><strong>Def</strong>. <strong>Search key</strong> is an <strong>attribute</strong> or a set of attributes used to look up records.</p>
 <blockquote>
 <p>Why we need indexing mechanisms. We create a DB indexed file <strong>instructor</strong> and its index file. The file <strong>instructor</strong> is logically a sequential file, but its records may be stored <strong>non-contiguously</strong> or <strong>non-ordered</strong> on disk.</p>
 </blockquote>
-<p><strong>Def</strong>. Index File An index file consists of records (called <strong>index entries</strong>) of the <strong>form</strong> below.</p>
+<p><strong>Def</strong>. An <strong>index file</strong> consists of records (called <strong>index entries</strong>) of the <strong>form</strong> below.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
@@ -302,16 +307,16 @@
 <div style="text-align: center; font-style: italic;">
 Table 1: index file form
 </div>
-<p><strong>Def</strong>. Indexing The process of mapping from <strong>search key</strong> to <strong>storage locations</strong> of the <strong>records</strong> in disk (search key <span class="math inline">\(\to\)</span> storage locations).</p>
+<p><strong>Def</strong>. <strong>Indexing</strong> is the process of mapping from <strong>search key</strong> to <strong>storage locations</strong> of the <strong>records</strong> in disk (search key <span class="math inline">\(\to\)</span> storage locations).</p>
 <p>DBS files with <strong>indexing mechanism</strong> include:</p>
 <ul>
 <li><strong>Indexed file</strong>, in which <strong>data records</strong> are stored.</li>
 <li><strong>Index file</strong>, in which <strong>index entries</strong> are included.</li>
 </ul>
 <blockquote>
-<p>*Review<strong>: The </strong>indexed file** can be organized (sequential file, heap file, hash file, clustering file).</p>
+<p><strong>Review</strong>: The <strong>indexed file</strong> can be organized (sequential file, heap file, hash file, clustering file).</p>
 </blockquote>
-<p><strong>Def</strong>. Ordered Indices A kind of <strong>indexing</strong>. In ordered indices, search key and address of the records are stored in <strong>sorted order</strong>.</p>
+<p><strong>Def</strong>. <strong>Ordered indices</strong>, a kind of <strong>indexing</strong>. In ordered indices, search key and address of the records are stored in <strong>sorted order</strong>.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
@@ -343,10 +348,10 @@ Table 1: index file form
 <div style="text-align: center; font-style: italic;">
 Table 2: example index file with ordered indices
 </div>
-<p><strong>Def</strong>. Hash Indices <strong>Hash function</strong> map search key to the address of the records.</p>
+<p><strong>Def</strong>. <strong>Hash Indices</strong> <strong>Hash function</strong> map search key to the address of the records.</p>
 <ul>
 <li>The records are stored in <strong>buckets</strong>.</li>
-<li>The number of buckets is the address of the records.</li>
+<li>The <strong>number</strong> of buckets is the address of the records.</li>
 <li>Determined by hash function.</li>
 </ul>
 <blockquote>
@@ -357,11 +362,11 @@ Table 2: example index file with ordered indices
 <li>If range queries are common, the ordered indices are to be preferred. (Hashing index does not support range query)</li>
 </ul>
 </blockquote>
-<h3 id="the-primaryclustering-index">The Primary/Clustering Index</h3>
-<p><strong>Def</strong>. The Primary/Clustering Index (in the index file)</p>
+<h3 id="the-primaryclustering-index">*The Primary/Clustering Index</h3>
+<p><strong>Def</strong>. The <strong>Primary/Clustering Index</strong> (in the index file)</p>
 <ul>
 <li>The search key of the index specifies the sequential order of the indexed file.</li>
-<li>The indexed file is a sequential file.</li>
+<li>The indexed file is a <strong>sequential</strong> file.</li>
 </ul>
 <blockquote>
 <p>聚集索引：索引文件搜索键所规定顺序与被索引文件纪录顺序一致。</p>
@@ -369,13 +374,18 @@ Table 2: example index file with ordered indices
 <ul>
 <li>建立在<strong>主键</strong>的索引：当表定义了主键后，DBMS 自动为该表在主键上建立<strong>聚集索引</strong>，该索引又是<strong>主索引</strong>。</li>
 <li>主索引一定是聚集索引，但聚集索引不一定是主索引。</li>
-<li>1 个表上只能建立 1 个聚集索引，也只能有 1 个主索引。</li>
+<li><span class="math inline">\(1\)</span> 个表上只能建立 <span class="math inline">\(1\)</span> 个聚集索引，也只能有 <span class="math inline">\(1\)</span> 个主索引。</li>
 <li>如果表没有定义主键，不会有主索引；但可以为该表建立聚集索引。</li>
 </ul>
-<p>在<strong>没有定义主键</strong>的关系表中插入数据：在关系表所在数据库文件中，各个记录顺序一般是无序的，取决于数据插入顺心（heap 文件）。但在<strong>有主键</strong>的关系表中插入数据：数据库文件是有序的，按照主键顺序排列。</p>
+<p>在<strong>没有定义主键</strong>的关系表中插入数据：在关系表所在数据库文件中，各个记录顺序一般是无序的，取决于数据插入顺序（heap 文件）。但在<strong>有主键</strong>的关系表中插入数据：数据库文件是有序的，按照主键顺序排列。</p>
 </blockquote>
-<h3 id="the-secondarynon-clustering-index">The Secondary/Non-clustering Index</h3>
-<p><strong>Def</strong>. The Secondary/Non-clustering Index</p>
+<p>Example: the data file instructor is stored in order of ID (the primary key).</p>
+<ul>
+<li>sequential scanning of <strong>ID</strong> of the <strong>first six</strong> tuples/records, i.e. 10101-33456, will fetch block <span class="math inline">\(n\)</span> and block <span class="math inline">\(n + 1\)</span></li>
+<li>sequential scanning on <strong>salary</strong> of the <strong>first six</strong> tuples/records, i.e. 40000-75000, will fetch block <span class="math inline">\(n\)</span>, <span class="math inline">\(n + 1\)</span>, <span class="math inline">\(n + 2\)</span>, <span class="math inline">\(n + 3\)</span></li>
+</ul>
+<h3 id="the-secondarynon-clustering-index">*The Secondary/Non-Clustering Index</h3>
+<p><strong>Def</strong>. The <strong>Secondary/Non-Clustering</strong> Index</p>
 <ul>
 <li>A search key specifies an order <strong>different</strong> from the sequential order of the file.</li>
 <li>Secondary indices have to be <strong>dense indices</strong></li>
@@ -383,7 +393,7 @@ Table 2: example index file with ordered indices
 <blockquote>
 <p>Index record points to a <strong>bucket</strong> that contains pointers to the actual records with that particular search key value.</p>
 </blockquote>
-<p><strong>Def</strong>. Index-sequential File Ordered sequential file with a primary/clustering index on the search key.</p>
+<p><strong>Def</strong>. <strong>Index-Sequential File</strong> Ordered sequential file with a primary/clustering index on the search key.</p>
 <blockquote>
 <ol type="1">
 <li>Sequential scan using <strong>primary index</strong> is efficient.</li>
@@ -392,9 +402,9 @@ Table 2: example index file with ordered indices
 </blockquote>
 <p><strong>Example</strong>.</p>
 <ul>
-<li>A DB file is made up of the 128-byte fix-sized <strong>logical records</strong>. It is stored on disk in unit of <strong>block</strong> that is of 1024-byte in size.</li>
-<li>The size of the file is 10240-byte.</li>
-<li>Physical I/O operations transfer data on disk into an DBMS <strong>buffer</strong> in main memory, in terms of 1024-byte <strong>block</strong>.</li>
+<li>A DB file is made up of the <span class="math inline">\(128\)</span>-byte fix-sized <strong>logical records</strong>. It is stored on disk in unit of <strong>block</strong> that is of <span class="math inline">\(1024\)</span>-byte in size.</li>
+<li>The size of the file is <span class="math inline">\(10240\)</span>-byte.</li>
+<li>Physical I/O operations transfer data on disk into an DBMS <strong>buffer</strong> in main memory, in terms of <span class="math inline">\(1024\)</span>-byte <strong>block</strong>.</li>
 </ul>
 <p>If a transaction issues read requests in a <strong>sequential access manner</strong>, what is the percentage of read requests that result in I/O operations?</p>
 <ul>
@@ -407,7 +417,7 @@ Table 2: example index file with ordered indices
 <p>按照记录存储顺序，依次访问每个记录时，每个记录的访问都对应一个 I/O 请求。每次 I/O 访问，DBMS 将 1 个 block 中的 8 个记录读取到内存 buffer 中，即当后续再访问这 8 个记录时，直接从 buffer 中读，无需访问 disk，即无需 I/O 访问。每 8 个 I/O 请求导致 1 个实际 I/O 操作。</p>
 </blockquote>
 <h3 id="dense-and-sparse-indices">Dense and Sparse Indices</h3>
-<p><strong>Def</strong>. Dense Index</p>
+<p><strong>Def</strong>. <strong>Dense Index</strong></p>
 <ul>
 <li>The index record appears for <strong>every</strong> search key value in the <strong>indexed file</strong>.</li>
 <li>Each value of search key corresponds to an <strong>index entry</strong> in the <strong>index file</strong>.</li>
@@ -417,7 +427,7 @@ Table 2: example index file with ordered indices
 <li><strong>A pointer to the first record</strong> according to that search key value.</li>
 <li>The rest of the records with the <strong>same</strong> search key value would be stored <strong>sequentially</strong> after the first record.</li>
 </ul>
-<p><strong>Def</strong>. Sparse Index Index file contains index entries for <strong>only some</strong> search key values.</p>
+<p><strong>Def</strong>. <strong>Sparse Index</strong> Index file contains index entries for <strong>only some</strong> search key values.</p>
 <p>For sparse index, to locate a file record with the search key value <span class="math inline">\(K\)</span>.</p>
 <ul>
 <li>Find index entry with <strong>the largest search key value</strong> <span class="math inline">\(\leq K\)</span>.</li>
@@ -434,7 +444,7 @@ Table 2: example index file with ordered indices
 <p>If even outer index is too large to fit in main memory, yet another level of index can be created, and so on.</p>
 </blockquote>
 <h3 id="b-tree-properties">B<sup>+</sup>-tree Properties</h3>
-<p><strong>Def</strong>. B<sup>+</sup>-tree B<sup>+</sup>-tree is a rooted tree, with the parameter degree (branching) factor <span class="math inline">\(n\)</span>. All paths from root to leaf are of the same length: balanced tree.</p>
+<p><strong>Def</strong>. B<sup>+</sup>-tree is a rooted tree, with the parameter degree (branching) factor <span class="math inline">\(n\)</span>. All paths from root to leaf are of the same length: balanced tree.</p>
 <ul>
 <li>Each <strong>internal</strong> node (not root or leaf) has bewteen <span class="math inline">\(\lceil n / 2\rceil\)</span> and <span class="math inline">\(n\)</span> children.</li>
 <li>Each <strong>leaf</strong> node has bewteen <span class="math inline">\(\lceil (n - 1) / 2\rceil\)</span> and <span class="math inline">\(n - 1\)</span> search key values.</li>
@@ -498,9 +508,23 @@ Table 3: typical B<sup>+</sup>-tree node structure
 </ol>
 <h3 id="non-unique-keys">Non-unique Keys</h3>
 <p><strong>Def</strong>. Non-unique Keys If a search key <span class="math inline">\(a_i\)</span> is not unique, create an index on a <strong>composite key</strong><span class="math inline">\((a_i, A_p)\)</span>, which is unique. <span class="math inline">\(A_p\)</span> could be a primary key, or any other attribute that guarantees uniqueness.</p>
+<p>Search for <span class="math inline">\(a_i = v\)</span> by a range search on composite key. More I/O operations are needed to fetch the actual records</p>
+<ul>
+<li>if the index is <strong>clustering</strong>, all accesses are sequential</li>
+<li>if the index is <strong>non-clustering</strong>, each record access may need an I/O operation</li>
+</ul>
+<blockquote>
+<p><em>Note</em>：MySQL 数据库中，索引树 <span class="math inline">\(n \leq 100\)</span>，一张表可支持 <span class="math inline">\(10\)</span> 已行数据，但为了控制 B<sup>+</sup>-tree 索引深度，一般不超过 <span class="math inline">\(2000\)</span> 万行。其中的原因是</p>
+<ul>
+<li>B<sup>+</sup>-tree 索引（非叶子结点）需要全部调入内存</li>
+<li>B<sup>+</sup>-tree 深度与索引树中非叶子结点数目 <span class="math inline">\(S\)</span> 所占内存空间取决于表中不同 search-key 数目，如 <em>instructor</em> 表中 ID 的数目</li>
+<li>假设系统分配给数据库系统可用内存大小为 <span class="math inline">\(M\)</span>，要求 <span class="math inline">\(S \leq M\)</span></li>
+<li>根据内存 <span class="math inline">\(M\)</span>、索引树节点大小 <span class="math inline">\(n\)</span> 值可以确定关系表中的行数</li>
+</ul>
+</blockquote>
 <h3 id="b-tree-index-files">B-tree Index Files</h3>
-<p><strong>Def</strong>. B-tree B-tree allows search key values to appear <strong>only once</strong>.</p>
-<p>Non-leaf nodes: Search keys appear <strong>nowhere else</strong>.</p>
+<p><strong>Def</strong>. B-tree allows search key values to appear <strong>only once</strong>.</p>
+<p>Non-Leaf nodes: search keys appear <strong>nowhere else</strong>.</p>
 <ul>
 <li>An <strong>additional pointer</strong> field for each search key must be included.</li>
 <li>Pointer <span class="math inline">\(B_i\)</span> are the <strong>bucket</strong> or the <strong>record</strong> pointer to leaf node.</li>
@@ -538,7 +562,15 @@ Table 4: typical B-tree node structure
 <li>Insertion and deletion are more complicated.</li>
 </ul></li>
 </ul>
-<h2 id="hash-indices">Hash Indices</h2>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/Comparison%20between%20B%20tree%20and%20B+%20tree.png" srcset="/img/loading.gif" lazyload alt="Comparison between B tree and B+ tree"><figcaption aria-hidden="true">Comparison between B tree and B+ tree</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: B-tree above and B<sup>+</sup>-tree below on same data
+</div>
+<h2 id="hash-indices">*Hash Indices</h2>
 <blockquote>
 <p>The records are stored in <strong>buckets</strong>.</p>
 <ul>
@@ -556,6 +588,16 @@ Table 4: typical B-tree node structure
 <p><strong>Def</strong>. Hash File Organization Buckets store records of the hash file. The <strong>process</strong> of obtaining the bucket of a record from search key using <strong>hashing function</strong>.</p>
 <p><strong>Def</strong>. Static Hashing Hash function <span class="math inline">\(h\)</span> cannot be modified.</p>
 <p><strong>Def</strong>. Dynamic Hashing Hash function <span class="math inline">\(h\)</span> can be modified dynamically.</p>
+<p><strong>Example</strong> of hash file organization</p>
+<p>Hash the <em>instructor</em> file, using dept_name as key. There are <span class="math inline">\(10\)</span> buckets. The binary representation of the <span class="math inline">\(i\)</span> character is the integer <span class="math inline">\(i\)</span>. The hash function returns the <strong>sum</strong> of the binary representations of the characters modulo <span class="math inline">\(10\)</span></p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/hash%20file%20organization%20example.png" srcset="/img/loading.gif" lazyload alt="hash file organization example"><figcaption aria-hidden="true">hash file organization example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: Possible buckets
+</div>
 <h2 id="bucket-overflows">Bucket Overflows</h2>
 <p><strong>Def</strong>. Bucket Overflow It occurs because of</p>
 <ul>
@@ -567,12 +609,20 @@ Table 4: typical B-tree node structure
 </ul></li>
 </ul>
 <blockquote>
-<p>the probability of bucket overflow can be reduced, but cannot be eliminated; It is handled by using <strong>overflow buckets</strong>.</p>
+<p>The probability of bucket overflow can be reduced, but cannot be eliminated; It is handled by using <strong>overflow buckets</strong>.</p>
 </blockquote>
 <p><strong>Def</strong>. Overflow Chaining The overflow buckets of a given bucket are chained together.</p>
-<h2 id="multiple-key-access">Multiple-key Access</h2>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/overflow%20chaining.png" srcset="/img/loading.gif" lazyload alt="overflow chaining"><figcaption aria-hidden="true">overflow chaining</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: Overflow chaining
+</div>
+<h2 id="multiple-key-access">Multiple-Key Access</h2>
 <p><strong>Def</strong>. Composite Search Keys Composite search keys are search keys containing <strong>more than one</strong> attribute. e.g.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">create</span> index Multiple<span class="hljs-operator">-</span>index <span class="hljs-keyword">on</span> takes(course_id, semester, <span class="hljs-keyword">year</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> INDEX index_name <span class="hljs-keyword">ON</span> table_name(column1, column2, ...);<br></code></pre></td></tr></table></figure>
 <p><strong>Def</strong>. Lexicographic Ordering. <span class="math inline">\((a_1, a_2) &lt; (b_1, b_2)\)</span> if either <span class="math inline">\(a_1 &lt; b_1\)</span> or <span class="math inline">\(a_1 = b_1\)</span> and <span class="math inline">\(a_2 &lt; b_2\)</span>.</p>
 <blockquote>
 <p>复合索引左前缀原则</p>
@@ -586,11 +636,12 @@ Table 4: typical B-tree node structure
 <li><code>where dept_name &lt; "Finance" and salary = 8000;</code>. May fetch many records that satisfy the first but not the second condition.</li>
 <li><code>where salary = 8000;</code>. The index is not used for query.</li>
 </ol>
+<p>查询条件必须包含复合索引的前缀列，索引才能被高效利用。</p>
 </blockquote>
 <h2 id="creation-of-indices">Creation of Indices</h2>
 <blockquote>
 <ul>
-<li>Indices on primary key created automatically.</li>
+<li>Indices on <strong>primary key</strong> created automatically.</li>
 <li>Indices can speed up <strong>lookups</strong>, but impose <strong>cost</strong> on updates.</li>
 </ul>
 </blockquote>
@@ -617,6 +668,54 @@ Table 4: typical B-tree node structure
 </ol>
 </blockquote>
 <h2 id="例题">例题</h2>
+<p>Consider the following tables:</p>
+<ul>
+<li><em>factory</em>(<u>factoryID</u>, name, manager, account)</li>
+<li><em>employee</em>(<u>employeeID</u>, name, age, factoryID)</li>
+<li><em>airconditioner</em>(<u>serialID</u>, date, model, price, factoryID)</li>
+</ul>
+<ol type="1">
+<li>Consider the following SQL query. In addition to the primary indices on the primary keys of the tables, on which attributes in the tables the indices can be further defined to speed up the query?</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> A.factoryID, <span class="hljs-built_in">AVG</span>(employeeID)<br><span class="hljs-keyword">FROM</span> factory <span class="hljs-keyword">AS</span> A, employee <span class="hljs-keyword">AS</span> B<br><span class="hljs-keyword">WHERE</span> A.factoryID <span class="hljs-operator">=</span> B.factoryID <span class="hljs-keyword">AND</span> age <span class="hljs-operator">&gt;</span> <span class="hljs-number">20</span> <span class="hljs-keyword">AND</span> account <span class="hljs-operator">&gt;</span> <span class="hljs-number">30000</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> B.factoryID;<br></code></pre></td></tr></table></figure>
+<p>factoryID, age in <em>employee</em>, account in <em>factory</em>.</p>
+<p>(2). For the following query, a non-clustered index is defined on the attribute model. Does this index speed up or slow down the operation, and why?</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> airconditioner<br><span class="hljs-keyword">SET</span> price <span class="hljs-operator">=</span> price <span class="hljs-operator">+</span> <span class="hljs-number">100</span><br><span class="hljs-keyword">WHERE</span> model <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;GL2020&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>This index will speed up the operation. Because DBMS can seek tuples in <code>UPDATE</code> and modify <code>SET</code> based on this index. What’s more, there is no necessary to modify this index.</p>
+<p>(3). For the following delete operation, a primary index has been defined on the primary key serialID. Does this index speed up or slow down the operation, and why?</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">DELETE</span><br><span class="hljs-keyword">FROM</span> airconditioner<br><span class="hljs-keyword">WHERE</span> model <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;HX8302&#x27;</span> <span class="hljs-keyword">AND</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">1500</span>;<br></code></pre></td></tr></table></figure>
+<p>The delete operation will slow down.</p>
+<p>This is because, when searching for the target tuples to be deleted based on the <code>WHERE</code> condition (involving the two attributes <code>model</code> and <code>price</code>), the primary index defined on the primary key <code>serialID</code> cannot be utilized. Moreover, after deleting the target tuples that satisfy the WHERE condition, the DBMS needs to spend additional time readjusting the primary index defined on <code>serialID</code>.</p>
+<p>Therefore, overall, the primary index on <code>serialID</code> reduces the speed of the delete operation.</p>
+<ol start="4" type="1">
+<li>If a multiple-attribute index is defined on <em>airconditioner</em> by <code>CREATE INDEX DMFIndex ON airconditioner(date, model, factoryID);</code>, can the index <em>DMFIndex</em> speed up the following queries? why?</li>
+</ol>
+<p>(i).</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> serialID<br><span class="hljs-keyword">FROM</span> airconditioner<br><span class="hljs-keyword">WHERE</span> <span class="hljs-type">date</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;2021-11-30&#x27;</span> <span class="hljs-keyword">AND</span> model <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Haier&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>The <code>WHERE</code> condition uses two attributes of <em>DMFIndex</em> and satisfies the left-prefix principle, so the index takes effect and can speed up the query.</p>
+<p>(ii).</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> serialID<br><span class="hljs-keyword">FROM</span> airconditioner<br><span class="hljs-keyword">WHERE</span> <span class="hljs-type">date</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;2021-11-30&#x27;</span> <span class="hljs-keyword">AND</span> price <span class="hljs-operator">&gt;</span> <span class="hljs-number">2000</span>;<br></code></pre></td></tr></table></figure>
+<p>The <code>WHERE</code> condition uses one attribute of <em>DMFIndex</em>, <code>date</code>, and satisfies the left-prefix principle, so the index takes effect and can speed up the query.</p>
+<p>(iii).</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> serialID<br><span class="hljs-keyword">FROM</span> airconditioner<br><span class="hljs-keyword">WHERE</span> <span class="hljs-type">date</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;2021-11-30&#x27;</span> <span class="hljs-keyword">AND</span> factoryID <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1040&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>The <code>WHERE</code> condition uses two attributes of the <em>DMFIndex</em>: <code>date</code> and <code>factoryID</code>. From the perspective of the left-prefix requirement, only the query condition <code>date = '2021-11-30'</code> can utilize the index, and the index can partially accelerate the query.</p>
+<p>(iv).</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> serialID<br><span class="hljs-keyword">FROM</span> airconditioner<br><span class="hljs-keyword">WHERE</span> model <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Haier&#x27;</span> <span class="hljs-keyword">AND</span> factoryID <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1040&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>The <code>WHERE</code> condition uses two attributes of the <em>DMFIndex</em>: <code>model</code> and <code>factoryID</code>, but it does not satisfy the left-prefix rule. Therefore, the index is ineffective and cannot accelerate the query.</p>
+<h2 id="appendix">Appendix</h2>
+<p>访问方式</p>
+<ol type="1">
+<li>聚集索引查找</li>
+<li>聚集索引扫描</li>
+</ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/seek%20and%20scan.png" srcset="/img/loading.gif" lazyload alt="seek and scan"><figcaption aria-hidden="true">seek and scan</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: 聚集索引树的查找和扫描
+</div>
 
                 
               </div>
@@ -655,7 +754,7 @@ Table 4: typical B-tree node structure
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Indexing</div>
+      <div>Chapter 14: Indexing</div>
       <div>https://ddccffq.github.io/2025/12/01/数据库系统原理/Indexing/</div>
     </div>
     <div class="license-meta">
