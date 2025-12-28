@@ -21,20 +21,20 @@
   
     <meta name="description" content="Join Expressions Def. Join operations take two relations and return as a result another relation. Def. Join operations is a Cartesian product requires that tuples in two relations match. Def. Join co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Intermediate SQL">
+<meta property="og:title" content="Chapter 4: Intermediate SQL">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Intermediate_SQL/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Join Expressions Def. Join operations take two relations and return as a result another relation. Def. Join operations is a Cartesian product requires that tuples in two relations match. Def. Join co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-19T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-26T15:35:41.291Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Intermediate SQL - ddccffq&#39;s Blog</title>
+  <title>Chapter 4: Intermediate SQL - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Intermediate SQL"></span>
+            <span id="subtitle" data-typed-text="Chapter 4: Intermediate SQL"></span>
           
         </div>
 
@@ -271,7 +271,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Intermediate SQL</h1>
+            <h1 id="seo-header">Chapter 4: Intermediate SQL</h1>
             
             
               <div class="markdown-body">
@@ -659,7 +659,7 @@ Table 8: The result table of full outer join with using clause
 </ul>
 </blockquote>
 <p><strong>Def</strong>. Any relation that is not of the <strong>conceptual</strong> model, but is made visible to a user as a <strong>virtual relation</strong>.</p>
-<p><strong>Def</strong>. <strong>View</strong> is defined using the <strong>create view</strong> statement <code>CREATE VIEW v AS &lt;query expression&gt;</code>. The view name is represented by <strong>v</strong>.</p>
+<p><strong>Def</strong>. <strong>View</strong> is defined using the <strong>create view</strong> statement <code>CREATE VIEW view_name AS &lt;query expression&gt;</code>.</p>
 <ul>
 <li>The view name can be used to refer to the <strong>virtual</strong></li>
 <li>View definition is <strong>not the same as</strong> creating a new relation. A view definition causes the saving of an expression</li>
@@ -785,7 +785,7 @@ Table 9: Classification of integrity constraints
 <h3 id="complex-check-conditions-and-assertions">Complex Check Conditions and Assertions</h3>
 <p>Some constructs such as <strong>check</strong> and <strong>assertion</strong> are defined to specify the complex integrity constraints. However, they are not currently supported by most database systems.</p>
 <p>An <strong>assertion</strong> is a predicate expressing a condition that we wish the database always to <strong>satisfy</strong>. An assertion takes the form <code>CREATE ASSERTION &lt;assertion_name&gt; CHECK &lt;predicate&gt;</code>. This testing may introduce a significant amount of <strong>overhead</strong>, hence assertions should be used with great care. Here is an example</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> ASSERTION credits_earned_constraints <span class="hljs-keyword">CHECK</span><br>(<br>  <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> ID <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> tot_cred <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> course <span class="hljs-keyword">WHERE</span> student.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">AND</span> grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span>)<br>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> ASSERTION credits_earned_constraints <span class="hljs-keyword">CHECK</span><br>(<br>  <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> ID <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> tot_cred <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> course <br>  <span class="hljs-keyword">WHERE</span> student.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">AND</span> grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span>)<br>);<br></code></pre></td></tr></table></figure>
 <h2 id="index-definition-in-sql">Index Definition in SQL</h2>
 <p>Many queries reference <strong>only a small proportion</strong> of the records in a table. It is <strong>efficient</strong> to read every record to find a record with particular value.</p>
 <p><strong>Def</strong>. An <strong>index</strong> on an attribute of a relation is a data structure that allows the DBS to find those tuples in the relation that have a specified value for that attribute efficiently, <strong>without scanning through all the tuples of the relation</strong>.</p>
@@ -815,7 +815,7 @@ Table 9: Classification of integrity constraints
 <p>The <strong>grant statement</strong> is used to confer authorization</p>
 <ul>
 <li><code>GRANT &lt;privilege_list&gt; ON &lt;relation_name or view_name&gt; TO &lt;user_list&gt;</code></li>
-<li>user_list is a user_id and public, which allows all valid users the privilege granted</li>
+<li>user_list is a user_id or public (which allows all valid users the privilege granted)</li>
 </ul>
 <blockquote>
 <p>Granting a privilege on a <strong>view</strong> does not imply granting any privileges on the underlying relations.</p>
@@ -909,7 +909,7 @@ Table 9: Classification of integrity constraints
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Intermediate SQL</div>
+      <div>Chapter 4: Intermediate SQL</div>
       <div>https://ddccffq.github.io/2025/12/19/数据库系统原理/Intermediate_SQL/</div>
     </div>
     <div class="license-meta">
@@ -954,9 +954,9 @@ Table 9: Classification of integrity constraints
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Advanced_SQL/" title="Advanced SQL">
+                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Advanced_SQL/" title="Chapter 5: Advanced SQL">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Advanced SQL</span>
+                        <span class="hidden-mobile">Chapter 5: Advanced SQL</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -19,22 +19,24 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in s sequence of fields. Each a relation table is a set of tuples.  The record size is f">
+    <meta name="description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in a sequence of fields. Each relation table is a set of tuples.  The record size is fix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Data Storage Structures">
-<meta property="og:url" content="https://ddccffq.github.io/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data%20Storage%20Structures/index.html">
+<meta property="og:title" content="Chapter 13: Data Storage Structures">
+<meta property="og:url" content="https://ddccffq.github.io/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data_Storage_Structures/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in s sequence of fields. Each a relation table is a set of tuples.  The record size is f">
+<meta property="og:description" content="File Organization DB is stored as a collection of DB files. Each file is a sequence of records. Each record is in a sequence of fields. Each relation table is a set of tuples.  The record size is fix">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data_Storage_Structures/a%20record%20is%20stored%20in%20contiguous%2046%20bytes.png">
 <meta property="article:published_time" content="2025-11-27T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-25T05:04:59.715Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data_Storage_Structures/a%20record%20is%20stored%20in%20contiguous%2046%20bytes.png">
   
   
   
-  <title>Data Storage Structures - ddccffq&#39;s Blog</title>
+  <title>Chapter 13: Data Storage Structures - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Data Storage Structures"></span>
+            <span id="subtitle" data-typed-text="Chapter 13: Data Storage Structures"></span>
           
         </div>
 
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.8k 字
         
       </span>
     
@@ -271,22 +273,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Data Storage Structures</h1>
+            <h1 id="seo-header">Chapter 13: Data Storage Structures</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
 <h2 id="file-organization">File Organization</h2>
-<p>DB is stored as a collection of <strong>DB files</strong>. Each file is a sequence of <strong>records</strong>. Each record is in s sequence of <strong>fields</strong>. Each a <strong>relation table</strong> is a set of <strong>tuples</strong>.</p>
+<p>DB is stored as a collection of <strong>DB files</strong>. Each file is a sequence of <strong>records</strong>. Each record is in a sequence of <strong>fields</strong>. Each <strong>relation table</strong> is a set of <strong>tuples</strong>.</p>
 <blockquote>
 <p>The record size is <strong>fixed</strong>. Each file has records of <strong>one particular type</strong> only. <strong>Different</strong> files are used for <strong>different relations</strong>. A tuple is stored as a record in DB.</p>
 </blockquote>
 <h3 id="fixed-length-records">Fixed-Length Records</h3>
+<p>Simple approach</p>
+<ul>
+<li>a block contains several records</li>
+<li>store record <span class="math inline">\(i\)</span> starting from byte <span class="math inline">\(n \times (i - 1)\)</span>, where <span class="math inline">\(n\)</span> is the size of each record</li>
+<li>record access is simple but records may cross blocks
+<ul>
+<li><strong>modification</strong>: do not allow records to cross block boundaries (contiguous allocation)</li>
+</ul></li>
+</ul>
+<p>Deletion of record <span class="math inline">\(i\)</span>: alternative compacting</p>
+<ol type="1">
+<li>move records <span class="math inline">\(i + 1\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(n\)</span> to <span class="math inline">\(i\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(n - 1\)</span></li>
+<li>move record <span class="math inline">\(n\)</span> to <span class="math inline">\(i\)</span></li>
+<li>do not move records, but link all free records on a <strong>free list</strong></li>
+</ol>
 <p>“Fixed-Length Records”并不是指现实中每个字段的语义长度恒定不变，而是指“数据库在磁盘/页上为每条记录分配了一个固定的字节长度”。</p>
 <p>当我们尝试删除某些 fixed-length records 时，可以使用 <strong>free lists</strong>。这个表在其 header 中存储第一个会被删除的 record 地址，然后我们再使用第一个会被删除的 record 存储第二个会被删除的 record 地址，以此类推（类似 pointers）。这也说明了，records can be stored in noncontiguous space。</p>
 <h3 id="variable-length-records">Variable-Length Records</h3>
-<p>Variable-length records arise in several ways:</p>
+<p>Variable length records arise in several ways:</p>
 <ul>
 <li><strong>Record types</strong> allow variable lengths, e.g. strings(varchar).</li>
 <li><strong>Multiple record types</strong> in a file. e.g. Multitable Clustering File.</li>
@@ -294,13 +311,21 @@
 <p>So how to store variable-length records in block?</p>
 <ol type="1">
 <li>Attributes in the record are stored in order (step 1: fixed-length attributes, step 2: variable-length attributes).</li>
-<li><strong>Variable-length attributes</strong> represented by fixed size (offset, length), with actual data stored after all fixed length attributes.</li>
+<li><strong>Variable length attributes</strong> represented by fixed size (offset, length), with actual data stored after all fixed length attributes.</li>
 <li>Null values represented by null-value bitmap.</li>
 </ol>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data_Storage_Structures/a%20record%20is%20stored%20in%20contiguous%2046%20bytes.png" srcset="/img/loading.gif" lazyload alt="a record is stored in contiguous 46 bytes"><figcaption aria-hidden="true">a record is stored in contiguous 46 bytes</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: A record is stored in contiguous 46 bytes
+</div>
 <h4 id="slotted-page-structure">Slotted Page Structure</h4>
-<p>The storage space is divided into <strong>fixed-sized slotted pages</strong>, 4KB or 8KB records are allocated to slotted pages.</p>
+<p>The storage space is divided into <strong>fixed-sized slotted pages</strong>, <span class="math inline">\(4\)</span> KB or <span class="math inline">\(8\)</span> KB records are allocated to slotted pages.</p>
 <blockquote>
-<p>分槽页结构：将 DB 文件存储空间在逻辑上为多个 page，每个 page 又多个 slot 组成。</p>
+<p>分槽页结构：将 DB 文件存储空间在逻辑上为多个 page，每个 page 由多个 slot 组成。</p>
 </blockquote>
 <ol type="1">
 <li>Slotted page header contais
@@ -309,7 +334,7 @@
 <li>End of free space in the block.</li>
 <li>Location and size of each record.</li>
 </ul></li>
-<li>Records can be moved around within a page to keep contiguous.
+<li>Records can be moved around <strong>within</strong> a page to keep contiguous.
 <ul>
 <li><span class="math inline">\(r_{i}\)</span> is deleted, and <span class="math inline">\(r_{i + 3}\)</span>, <span class="math inline">\(r_{i + 2}\)</span>, <span class="math inline">\(r_{i + 1}\)</span> are moved to the free space created by deletion.</li>
 <li><strong>Entry in the header must be updated</strong>, e.g. set to <span class="math inline">\(-1\)</span>.</li>
@@ -318,15 +343,56 @@
 </ol>
 <h2 id="organization-of-records-in-files">Organization of Records in Files</h2>
 <p>DB file can be viewed as a set of records at logical level. <strong>Logical organization</strong> of records determine how to access the records. These records are <strong>logically</strong> organized as <strong>heap</strong>, <strong>sequential</strong>, <strong>hash</strong> and <strong>clustering</strong>.</p>
-<h3 id="heap-file-organization">Heap File Organization</h3>
-<p>Any record can be placed anywhere in the file where there is space for the record.</p>
+<h3 id="heap-file-organization">*Heap File Organization</h3>
+<p>Any record can be placed anywhere in the file where there is space for the record. Data has <strong>no primary keys</strong> and <strong>no index</strong>.</p>
 <ul>
 <li>There is <strong>no ordering</strong> of records.</li>
 <li>Records usually do not move once allocated.</li>
 <li>There is <strong>a single file for a relation</strong>.</li>
 </ul>
+<p><strong>Free space</strong> map</p>
+<ul>
+<li>array with <span class="math inline">\(1\)</span> entry per block</li>
+<li>each entry records fraction of block that is <strong>free</strong></li>
+<li>for example, <span class="math inline">\(3\)</span> bits (<span class="math inline">\(0\)</span>-<span class="math inline">\(7\)</span>) per block, value divided by <span class="math inline">\(8\)</span> indicates fraction of block that is <strong>free</strong></li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">block</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">value</td>
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>block 0: <span class="math inline">\(4/8 = 50\%\)</span> free</li>
+<li>block 4: <span class="math inline">\(7/8 = 87.5\%\)</span> free</li>
+</ul>
+<p><strong>Second level free space</strong> map. For example, each entry stores maximum <span class="math inline">\(4\)</span> entries of first level free space map.</p>
 <h3 id="sequential-file-organization">Sequential File Organization</h3>
-<p>Records are logically ordered by <strong>search-keys</strong>. Records are stored in sequential order, based on the search key.</p>
+<p>Records are logically ordered by <strong>search keys</strong>. Records are stored in sequential order, based on the search key.</p>
 <ol type="1">
 <li>Records are physically stored in search-key order.</li>
 <li>As close to search-key order as possible to minimize the number of block accesses in sequential processing.</li>
@@ -336,14 +402,31 @@
 <li>The pointer in each record points to the next record in search-key order.</li>
 <li>Sequential access to the file.</li>
 </ul>
+<p>Some operations in sequential file organization</p>
+<ul>
+<li>deletion: use <strong>pointer chains</strong></li>
+<li>insertion: locate the position where the record is to be inserted
+<ul>
+<li>if there is free space insert here</li>
+<li>if no free space, insert the record in an <strong>overflow block</strong></li>
+<li>in either case, pointer chain must be <strong>updated</strong></li>
+</ul></li>
+<li><strong>need to reorganize the file from time to time to restore sequential order</strong>.</li>
+</ul>
 <h3 id="clustering-file-organization">Clustering File Organization</h3>
-<p>Store several relations in one file using a <strong>mutitable clustering</strong> file organization. Records of several different relations are stored in the same file. This is because storing related records on the same block to minimize I/O.</p>
+<p>Store several relations in one file using a <strong>multi-table clustering</strong> file organization. Records of several different relations are stored in the same file. This is because storing related records on the same block to <strong>minimize</strong> I/O.</p>
 <h3 id="hashing-file-organization">Hashing File Organization</h3>
-<p>The file records are stored in <strong>buckets</strong>, and the bucket is the address of the record. Hash function <strong>on some attributes</strong> (search key) determine the address of the records. The result of the function specifies <strong>in which</strong> block/bucket of the record should be placed.</p>
+<p>The file records are stored in <strong>buckets</strong>, and the <strong>bucket number</strong> is the address of the record. Hash function <strong>on some attributes</strong> (search key) determine the address of the records. The result of the function specifies <strong>in which</strong> block/bucket of the record should be placed.</p>
 <h2 id="data-dictionary-storage">Data Dictionary Storage</h2>
 <p>Data dictionary stores</p>
 <ul>
-<li>Metadata: Data about data, such as names of relations.</li>
+<li>Metadata: data about data, such as
+<ul>
+<li>names of relations</li>
+<li>names, types and lengths of attributes</li>
+<li>names and definition of views</li>
+<li>integrity constraints</li>
+</ul></li>
 <li>User and accounting information.
 <ul>
 <li>passwords.</li>
@@ -359,8 +442,11 @@
 </ul></li>
 <li>Information about indices.</li>
 </ul>
+<blockquote>
+<p><strong>Relational representation</strong> is a specialized data structure designed for efficient access in memory.</p>
+</blockquote>
 <h2 id="data-buffer">Data Buffer</h2>
-<p>A DB file is partitioned into fixed-length storage units, called <strong>blocks</strong>. Blocks are units of both <strong>storage allocation</strong> and <strong>data transfer</strong>. DBS seeks to <strong>minimize</strong> the number of <strong>block transfers</strong> betweem the <strong>disk</strong> and <strong>main memory</strong>. We can reduce the number of disk accesses by keeping as many blocks as possible in <strong>main memory</strong>.</p>
+<p>A DB file is partitioned into <strong>fixed-length storage units</strong>, called <strong>blocks</strong>. Blocks are units of both <strong>storage allocation</strong> and <strong>data transfer</strong>. DBS seeks to <strong>minimize</strong> the number of <strong>block transfers</strong> between the <strong>disk</strong> and <strong>main memory</strong>. We can reduce the number of disk accesses by keeping as many blocks as possible in <strong>main memory</strong>.</p>
 <p><strong>Def</strong>. <strong>Buffer</strong> is a <strong>portion of main memory</strong> available to store <strong>copies</strong> of disk blocks.</p>
 <p><strong>Def</strong>. <strong>Buffer manager</strong> allocates buffer space in main memory.</p>
 <blockquote>
@@ -369,7 +455,7 @@
 <h3 id="buffer-management">Buffer Management</h3>
 <p>Program (requester) calls on <strong>buffer manager</strong> when need block from disk.</p>
 <ol type="1">
-<li>If the block is already in buffer, buffer manager returns the address of the block in mian memory.</li>
+<li>If the block is already in buffer, buffer manager returns the address of the block in main memory.</li>
 <li>If the block is <strong>not in buffer</strong>, buffer manager
 <ol type="1">
 <li>Allocates space in buffer for the block
@@ -377,12 +463,12 @@
 <li>Replacing (throwing out) some other block, if required, to make space for the new block.</li>
 <li>Replaced block written back to disk only if it was modified since the most recent time that it was written to/fetched from disk.</li>
 </ol></li>
-<li>Reads the block from disk to buffer returns the address of the block in mian memory to requester.</li>
+<li>Reads the block from disk to buffer and returns the address of the block in main memory to requester.</li>
 </ol></li>
 </ol>
 <h4 id="buffer-replacement-strategy">Buffer Replacement Strategy</h4>
 <ul>
-<li>Pinned block: Memory block that is not allowed to be written back to disk.
+<li>Pinned block: memory block that is not allowed to be written back to disk.
 <ul>
 <li>Pin done before reading/writing data from a block.</li>
 <li>Unpin done when read/write is complete.</li>
@@ -391,7 +477,7 @@
 <ul>
 <li>Shared and exclusive locks on buffer.</li>
 </ul></li>
-<li>Concurrent opearations for shared data.
+<li>Concurrent operations for shared data.
 <ul>
 <li>Reading require shared lock.</li>
 <li>Updating require exclusive lock.</li>
@@ -407,21 +493,21 @@
 <ul>
 <li><p>Replace the block <strong>least recently used (LRU strategy)</strong></p>
 <ul>
-<li>Idea: Use <strong>past pattern</strong> of block references as predictor of future references.</li>
+<li>Idea: use <strong>past pattern</strong> of block references as predictor of future references.</li>
 <li>Use information in user’s query to predict future references.</li>
 </ul></li>
-<li><p><strong>Toss-immediate strategy</strong>: Free the space occupied by block as soon as the final tuple of that block has been processed.</p></li>
-<li><p><strong>Most recently used (MRU)</strong> strategy: Pin the block currently being processed. After the final tuple of that block has been processed, the block is unpinned, and it becomes the most recently used block.</p></li>
+<li><p><strong>Toss-immediate strategy</strong>: free the space occupied by block as soon as the final tuple of that block has been processed.</p></li>
+<li><p><strong>Most recently used (MRU)</strong> strategy: pin the block currently being processed. After the final tuple of that block has been processed, the block is unpinned, and it becomes the most recently used block.</p></li>
 </ul>
 <ol type="1">
 <li>Buffer manager can use <strong>statistical information</strong> regarding the probability that a request will reference a particular relation, e.g. data dictionary is frequently accessed.
 <ul>
-<li>Heuristic: Keep data-dictionary blocks in main memory buffer.</li>
+<li>Heuristic: keep data-dictionary blocks in main memory buffer. (chapter 16)</li>
 </ul></li>
 <li>Buffer manager may reorder <strong>writes</strong>
 <ul>
 <li>Lead to corruption of data structures on disk.</li>
-<li>Heuristic: Careful ordering of writes.</li>
+<li>Heuristic: Careful ordering of writes. (chapter 16)</li>
 </ul></li>
 </ol>
 <h2 id="column-oriented-storage">Column-Oriented Storage</h2>
@@ -546,8 +632,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Data Storage Structures</div>
-      <div>https://ddccffq.github.io/2025/11/27/数据库系统原理/Data Storage Structures/</div>
+      <div>Chapter 13: Data Storage Structures</div>
+      <div>https://ddccffq.github.io/2025/11/27/数据库系统原理/Data_Storage_Structures/</div>
     </div>
     <div class="license-meta">
       

@@ -21,7 +21,7 @@
   
     <meta name="description" content="Overview of Design Process Design design consists of two phases:  Analyzing of requirements  What data should be stored What operations&#x2F;transaction are conducted such as insert, delete, and update  D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Database Design Using the ER Model">
+<meta property="og:title" content="Chapter 6: Database Design Using the ER Model">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Overview of Design Process Design design consists of two phases:  Analyzing of requirements  What data should be stored What operations&#x2F;transaction are conducted such as insert, delete, and update  D">
@@ -34,8 +34,9 @@
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%202.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/summary%203.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/Alternative%20ER%20Notations.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/ER%20diagram.png">
 <meta property="article:published_time" content="2025-12-20T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T13:13:30.881Z">
+<meta property="article:modified_time" content="2025-12-26T07:47:51.403Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +44,7 @@
   
   
   
-  <title>Database Design Using the ER Model - ddccffq&#39;s Blog</title>
+  <title>Chapter 6: Database Design Using the ER Model - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Database Design Using the ER Model"></span>
+            <span id="subtitle" data-typed-text="Chapter 6: Database Design Using the ER Model"></span>
           
         </div>
 
@@ -232,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          628 字
+          748 字
         
       </span>
     
@@ -243,7 +244,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -280,7 +281,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Database Design Using the ER Model</h1>
+            <h1 id="seo-header">Chapter 6: Database Design Using the ER Model</h1>
             
             
               <div class="markdown-body">
@@ -321,35 +322,38 @@ Figure 1: DB design phases
 <h2 id="the-entity-relationship-model">The Entity-Relationship Model</h2>
 <p>ER Model employs three concepts: <strong>entity sets</strong>, <strong>relationship sets</strong>, and <strong>attributes</strong>. ER model has an associated <strong>diagrammatic representation</strong>, the ER diagram, expressing the <strong>overall logical structure</strong> of DB <strong>graphically</strong>.</p>
 <h3 id="entity-sets">Entity Sets</h3>
-<p><strong>Def</strong>. An <strong>entity</strong> is an object that exists <strong>distinguishable</strong> from other objects.</p>
-<p><strong>Def</strong>. An <strong>entity set</strong> is a set of entities of the same type, sharing the same properties.</p>
+<p><strong>Def</strong>. An <strong>entity</strong> is an object that exists <strong>distinguishable</strong> from other objects. e.g. a specific person.</p>
+<p><strong>Def</strong>. An <strong>entity set</strong> is a set of entities of the same type, sharing the same properties. e.g. sets of persons</p>
 <blockquote>
 <p><em>Note</em>: an entity is represented by a set of <strong>attributes</strong> (descriptive properties of an entity set).</p>
 </blockquote>
 <p><strong>Def</strong>. A subset of the attributes form a <strong>primary key</strong></p>
 <blockquote>
-<p><em>Note</em>: a entity consists of <strong>all values of its all attributes</strong>.</p>
+<p><em>Note</em>: an entity consists of <strong>all values of its all attributes</strong>.</p>
 </blockquote>
 <h3 id="relationship-sets">Relationship Sets</h3>
 <p><strong>Def</strong>. A <strong>relationship</strong> is an <strong>association</strong> among several entities.</p>
-<p><strong>Def</strong>. A <strong>relationship set</strong> is a <strong>mathematic relation</strong> among <span class="math inline">\(n\)</span> entities (<span class="math inline">\(n \geq 2\)</span>).</p>
+<p><strong>Def</strong>. A <strong>relationship set</strong> is a <strong>mathematic relation</strong> among <span class="math inline">\(n\)</span> entities (<span class="math inline">\(n \geq 2\)</span>) taken from entity sets <span class="math inline">\(\{(e_1, e_2, \cdots, e_n) \mid e_1 \in E_1, \cdots, e_n \in E_n\}\)</span></p>
 <p><strong>Def</strong>. A <strong>relationship instance</strong> represents an <strong>association</strong> between the named entities in the real-word enterprise.</p>
 <p><strong>Def</strong>. An <strong>attribute</strong> can also be associated with a <strong>relationship set</strong>.</p>
 <p>For example, the <em>advisor</em> relationship set between <em>instructor</em> and <em>student</em> has an attribute <strong>date</strong> when student started being associated with the advisor</p>
 <p><strong>Def</strong>. A <strong>role</strong> of entity is a <strong>function</strong> that an entity plays in a relationship.</p>
+<blockquote>
+<p><em>Note</em>: entity sets of a relationship need <strong>not be distinct</strong>.</p>
+</blockquote>
 <p><strong>Def</strong>. <strong>Binary relationship</strong> involves <strong>two</strong> entity sets (<strong>degree two</strong>)</p>
 <h2 id="complex-attributes">Complex Attributes</h2>
 <p><strong>Def</strong>. The <strong>domain</strong> or values set of the attribute is the set or <strong>permitted values</strong>.</p>
 <p>Attribute types:</p>
 <ul>
-<li>Simple and composite attributes</li>
-<li>Single-valued and multi-valued attributes</li>
-<li>Derived attributes (can be computed from <strong>other attributes</strong>, e.g. age, given date_of_birth)</li>
+<li>simple and composite attributes</li>
+<li>single-valued and multi-valued attributes</li>
+<li>derived attributes (can be computed from <strong>other attributes</strong>, e.g. age, given date_of_birth)</li>
 </ul>
 <p><strong>Null</strong> value for a attribute means</p>
 <ul>
-<li>The attribute <strong>not applicable</strong> for the entity, <strong>not existing</strong></li>
-<li>The <strong>value</strong> for the attribute <strong>exists</strong>, but is <strong>unknown</strong></li>
+<li>the attribute <strong>not applicable</strong> for the entity, <strong>not existing</strong></li>
+<li>the <strong>value</strong> for the attribute <strong>exists</strong>, but is <strong>unknown</strong></li>
 </ul>
 <p><strong>Composite attributes</strong> allow us to divide attributes into <strong>subparts</strong>. For example</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -385,7 +389,7 @@ Figure 2: Composite attributes example
 </ul>
 <h3 id="mapping-cardinalities">Mapping Cardinalities</h3>
 <p><strong>Def</strong>. <strong>Mapping Cardinalities</strong> are the number of entities to which another entity can be associated via a <strong>relationship set</strong>.</p>
-<p><strong>Def</strong>. For a binary relationship set <span class="math inline">\(R\)</span>, from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, the mapping cardinality must be: one to one, one to many, many to one, and many to many.</p>
+<p><strong>Def</strong>. For a binary relationship set <span class="math inline">\(R\)</span>, from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, the mapping cardinality must be: <strong>one to one, one to many, many to one, and many to many</strong>.</p>
 <h4 id="one-to-one">One to One</h4>
 <p>A student is associated with <strong>at most</strong> one instructor via the relationship <em>advisor</em>.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -432,7 +436,7 @@ Figure 5: Cardinality limits example
 <p>A maximum value * indicates <strong>no limit</strong></p>
 </blockquote>
 <h2 id="primary-keys">Primary Keys</h2>
-<p><strong>Def</strong>. <strong>Key</strong> is a <strong>set</strong> of attributes (an <strong>entity set</strong> or <strong>relationship set</strong>). The values of these attributes in one <strong>entity</strong> to <strong>uniquely</strong> distinguish this entity from others and the values of these attributes in one <strong>relationship</strong> to uniquely identify the relationship.</p>
+<p><strong>Def</strong>. <strong>Key</strong> is a <strong>set</strong> of attributes (from an <strong>entity set</strong> or a <strong>relationship set</strong>). The values of these attributes in one <strong>entity</strong> to <strong>uniquely</strong> distinguish this entity from others and the values of these attributes in one <strong>relationship</strong> to uniquely identify the relationship.</p>
 <h3 id="keys-for-entity-set">Keys for Entity Set</h3>
 <p><strong>Def</strong>. A <strong>super key</strong> of an entity set is a set of <strong>one or more</strong> attributes, whose values <strong>uniquely</strong> determine each entity in the entity set. The super key may contain <strong>extraneous</strong> attributes.</p>
 <p><strong>Def</strong>. A <strong>candidate key</strong> is the <strong>minimal</strong> super key (non-redundant super key).</p>
@@ -447,9 +451,8 @@ Figure 5: Cardinality limits example
 <h3 id="choice-of-primary-key-for-binary-relationship">Choice of Primary Key for Binary Relationship</h3>
 <p>The <strong>candidate keys</strong> or <strong>primary key</strong> for <span class="math inline">\(R\)</span> among entity sets <span class="math inline">\(A\)</span> amd <span class="math inline">\(B\)</span> can be decided, in accordance with the mapping cardinality of <span class="math inline">\(R\)</span>, as follows</p>
 <ul>
-<li>If <span class="math inline">\(R\)</span> is <strong>many to many</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key <span class="math inline">\(\cup\)</span> <span class="math inline">\(B\)</span>’s primary key (may <span class="math inline">\(&gt; 1\)</span>?)</li>
-<li>If <span class="math inline">\(R\)</span> is <strong>many to one</strong> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key</li>
-<li>If <span class="math inline">\(R\)</span> is <strong>one to many</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(B\)</span>’s primary key</li>
+<li>If <span class="math inline">\(R\)</span> is <strong>many to many</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key <span class="math inline">\(\cup\)</span> <span class="math inline">\(B\)</span>’s primary key</li>
+<li>If <span class="math inline">\(R\)</span> is <strong>many to one</strong> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key (many side)</li>
 <li>If <span class="math inline">\(R\)</span> is <strong>one to one</strong>, <span class="math inline">\(R\)</span>’s primary key <span class="math inline">\(=\)</span> <span class="math inline">\(A\)</span>’s primary key or <span class="math inline">\(B\)</span>’s primary key</li>
 </ul>
 <h3 id="weak-entity-sets">Weak Entity Sets</h3>
@@ -508,7 +511,7 @@ Figure 6: Weak entity set example
 <ol type="1">
 <li>A <strong>many to many</strong> relationship sets is represented as a table with columns for the <strong>primary keys</strong> of two participating entity sets, and any <strong>descriptive attributes</strong> of the relationship set</li>
 <li><strong>Many to one</strong> and <strong>one to many</strong> relationship sets that <strong>total on the many side</strong> can be represented by adding an extra attribute to the <strong>many</strong> side, containing the primary key of the <strong>one</strong> side. (one side means where <span class="math inline">\(\to\)</span> are)</li>
-<li><strong>Many to one</strong> relationship sets with <strong>partial participation on the many side</strong>. The relationship is reduced ti an <strong>independent table</strong>, avoiding <strong>null</strong> values</li>
+<li><strong>Many to one</strong> relationship sets with <strong>partial participation on the many side</strong>. The relationship is reduced to an <strong>independent table</strong>, avoiding <strong>null</strong> values</li>
 <li>For <strong>one to one</strong> relationship sets, either side can be chosen to act as the <strong>many</strong> side</li>
 </ol>
 <h2 id="extended-er-features">Extended ER Features</h2>
@@ -630,6 +633,80 @@ Figure 9: Summary 3
 <div style="text-align: center; font-style: italic;">
 Figure 10: Alternative ER notations
 </div>
+<h2 id="例题">例题</h2>
+<p>E-R modeling and table reductions in ordering database.</p>
+<p>A database used in an ordering system contains information about customers, products, and orders. The following information is to be included:</p>
+<ul>
+<li>for each customer
+<ul>
+<li>customer_number, ship_to_address (several per customer), name, balance, discount</li>
+</ul></li>
+<li>for each order
+<ul>
+<li>order_number, customer_number, ship_to_address (one per order), date_of_ordering (including year, month, and day), products (several kinds per order), quantity_ordered_of_each_product</li>
+</ul></li>
+<li>for each kind of product
+<ul>
+<li>product_number, name, manufacturing_plant, quantity_on_hand</li>
+</ul></li>
+<li>entity sets: <em>customer</em>, <em>order</em>, <em>product</em>, and their attribute
+<ul>
+<li>in <em>customer</em>, ship_to_address is a multi-value attribute, but in <em>order</em>, ship_to_address is a single-value attribute</li>
+<li>in <em>order</em>, date is a composite attribute</li>
+</ul></li>
+</ul>
+<p>Some constraints about this ordering system are as follows</p>
+<ul>
+<li>a customer may take one or more orders, and some customers may take no orders</li>
+<li>each order must be for one (and only one) customer</li>
+<li>each order must contain at least one kind of products
+<ul>
+<li>a kind of product may appear in several orders, but some kinds of products may not be ordered by any customers</li>
+</ul></li>
+<li>relationship sets
+<ul>
+<li><em>make</em> between <em>customer</em> and <em>order</em>
+<ul>
+<li><em>customer</em> partly participates <em>make</em>, and <em>order</em> totally participates <em>make</em></li>
+<li>in relationship set <em>make</em>, mapping cardinality from <em>customer</em> to <em>order</em> is <strong>one to many</strong></li>
+</ul></li>
+<li><em>contain</em> between <em>order</em> and <em>product</em>, and descriptive attributes quantity_of_ordered for relationship set <em>contain</em>
+<ul>
+<li><em>product</em> partly participates <em>contain</em>, and <em>order</em> totally participates <em>contain</em></li>
+<li>in relationship set <em>contain</em>, mapping cardinality from <em>order</em> to <em>product</em> is <strong>many to many</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>ER diagram of the ordering DB is shown as follows:</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Database_Design_Using_the_ER_Model/ER%20diagram.png" srcset="/img/loading.gif" lazyload alt="ER diagram"><figcaption aria-hidden="true">ER diagram</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 11: ER diagram
+</div>
+<p>The ER diagram is then reduced to some relational tables. For entity set <em>customer</em> and its multi-value attribute ship_to_address, there are two tables</p>
+<ul>
+<li><em>customer</em>(<u>C-number</u>, c-name, discount, balance)</li>
+<li><em>ship-to-address</em>(<u>C-number</u>, <u>ship-to-address</u>)</li>
+</ul>
+<p>For entity set <em>order</em> and its composite attribute date which should be decomposed, there is a table</p>
+<ul>
+<li><em>order1</em>(<u>O-number</u>, ship-to-address, year, month, day)</li>
+</ul>
+<p>For entity set <em>product</em>, there is a table</p>
+<ul>
+<li><em>product</em>(<u>P-number</u>, p-name, plant, quantity-on-hand)</li>
+</ul>
+<p>For relationship set <em>make</em>, there no descriptive attributes, mapping cardinality from <em>customer</em> to <em>order</em> is one to many, and <em>order</em> totally participates <em>make</em>. So, <em>make</em> should not be reduced into a separate table, and can be represented by adding the primary key C-number of <em>customer</em>, that is C-number into the table <em>order</em></p>
+<ul>
+<li><em>order2</em>(<u>O-number</u>, C-number, ship-to-address, year, month, day)</li>
+</ul>
+<p><em>product</em> at the many side only partly participate relationship set <em>contain</em>, <em>contain</em> should also be represented as a separate table</p>
+<ul>
+<li><em>contain</em>(<u>O-number</u>, <u>P-number</u>, quantity of ordered)</li>
+</ul>
 
                 
               </div>
@@ -668,7 +745,7 @@ Figure 10: Alternative ER notations
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Database Design Using the ER Model</div>
+      <div>Chapter 6: Database Design Using the ER Model</div>
       <div>https://ddccffq.github.io/2025/12/20/数据库系统原理/Database_Design_Using_the_ER_Model/</div>
     </div>
     <div class="license-meta">
@@ -723,8 +800,8 @@ Figure 10: Alternative ER notations
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational_Database_Design_Schema_Normalization/" title="Relational Database Design: Schema Normalization">
-                        <span class="hidden-mobile">Relational Database Design: Schema Normalization</span>
+                      <a href="/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational_Database_Design_Schema_Normalization/" title="Chapter 7: Relational Database Design: Schema Normalization">
+                        <span class="hidden-mobile">Chapter 7: Relational Database Design: Schema Normalization</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

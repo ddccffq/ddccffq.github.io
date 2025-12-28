@@ -19,16 +19,16 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Structure of Relational Databases Def. A relational database consists of a collection of tables     ID name dept_name salary     10101 Srinivasan Comp. Sci. 65000   12121 Wu Finance 90000   … … … …">
+    <meta name="description" content="Some important definition: relation schema, schema instance, super key, candidate key, primary key, foreign key, schema diagram (different from ER diagram in chapter 6), algebra expression.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Relation Model">
+<meta property="og:title" content="Chapter 2: Relation Model">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relation_Model/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Structure of Relational Databases Def. A relational database consists of a collection of tables     ID name dept_name salary     10101 Srinivasan Comp. Sci. 65000   12121 Wu Finance 90000   … … … …">
+<meta property="og:description" content="Some important definition: relation schema, schema instance, super key, candidate key, primary key, foreign key, schema diagram (different from ER diagram in chapter 6), algebra expression.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relation_Model/Schema%20Diagram.png">
 <meta property="article:published_time" content="2025-10-18T10:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T13:17:34.480Z">
+<meta property="article:modified_time" content="2025-12-28T06:42:10.153Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   
   
   
-  <title>Relation Model - ddccffq&#39;s Blog</title>
+  <title>Chapter 2: Relation Model - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Relation Model"></span>
+            <span id="subtitle" data-typed-text="Chapter 2: Relation Model"></span>
           
         </div>
 
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          483 字
+          491 字
         
       </span>
     
@@ -273,12 +273,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Relation Model</h1>
+            <h1 id="seo-header">Chapter 2: Relation Model</h1>
             
             
               <div class="markdown-body">
                 
-                <span id="more"></span>
+                <p>Some important definition: relation schema, schema instance, super key, candidate key, primary key, foreign key, schema diagram (different from ER diagram in chapter 6), algebra expression.</p>
+<span id="more"></span>
 <h2 id="structure-of-relational-databases">Structure of Relational Databases</h2>
 <p><strong>Def</strong>. <strong>A relational database</strong> consists of <strong>a collection of tables</strong></p>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -322,9 +323,9 @@ Table 1: An example table
 <li>The <strong>domain</strong> of the attribute is the <strong>set</strong> of allowed values
 <ul>
 <li>Attribute values are (normally) required to be <strong>atomic</strong>, <strong>indivisible</strong>.</li>
-<li>The special vale <strong>null</strong> is a member of every domain, indicating that the value is unknown.
+<li>The special value <strong>null</strong> is a member of every domain, indicating that the value is unknown.
 <ul>
-<li>The null values causes complications in definition of operations, e.g. <strong>index failure</strong>.</li>
+<li>The null values causes complications in definition of operations, e.g. <strong>indexing failure</strong>.</li>
 </ul></li>
 </ul></li>
 <li>A <strong>relation instance</strong> <span class="math inline">\(r\)</span> is defined over schema <span class="math inline">\(R\)</span>, denoted by <span class="math inline">\(r(R)\)</span>
@@ -410,13 +411,13 @@ Table 2: An example database instance
 <p>The super key may contain <strong>redundant</strong> attributes, e.g. {ID} and {ID, name, dept_name}.</p>
 </blockquote>
 <p><strong>Def</strong>. <span class="math inline">\(K\)</span> is a <strong>candidate key</strong> if <span class="math inline">\(K\)</span> is <strong>minimal</strong> super key, e.g. {ID}.</p>
-<p><strong>Def</strong>. <strong>Primary key</strong> is a <strong>candidate key</strong> as <strong>principal means</strong> to identify tuples.</p>
+<p><strong>Def</strong>. <strong>Primary key</strong> is a <strong>candidate key</strong> (one of candidate keys) as <strong>principal means</strong> to identify tuples.</p>
 <p><strong>Def</strong>. <strong>Integrity</strong> of primary key requires values on the primary key are not permitted to be <strong>null</strong>.</p>
-<p><strong>Def</strong>. <strong>Primary attributes</strong> are the attributes in the <strong>candidate keys</strong>, i.e. the element of the primary key.</p>
+<p><strong>Def</strong>. <strong>Primary attributes</strong> are the attributes that appear in at least one <strong>candidate key</strong>.</p>
 <blockquote>
-<p><em>Note</em>: It is recommended to select numeric (int, float) candidate keys as the primary key to improve query performance based on the primary key. Avoid selecting string-type attributes, such as varchar or datetime (e.g. student_name).</p>
+<p><em>Note</em>: It is recommended to <strong>select numeric (int, float)</strong> candidate keys as the primary key to improve query performance based on the primary key. Avoid selecting string-type attributes, such as varchar or datetime (e.g. student_name).</p>
 </blockquote>
-<p><strong>Def</strong>. <strong>Foreign key</strong></p>
+<p><strong>Def</strong>. <strong>Foreign Key</strong></p>
 <p>If <span class="math inline">\(X\)</span> is one or more attributes in schema <span class="math inline">\(r_1\)</span>, e.g. <em>instructor</em>, and <span class="math inline">\(X\)</span> is also the <strong>primary key</strong> of another schema <span class="math inline">\(r_2\)</span>, e.g. <em>department</em>.</p>
 <ul>
 <li><span class="math inline">\(X\)</span> is called a <strong>foreign key</strong> from <span class="math inline">\(r_1\)</span> referencing <span class="math inline">\(r_2\)</span>.</li>
@@ -426,8 +427,8 @@ Table 2: An example database instance
 <blockquote>
 <p><em>Note</em>: There are foreign key relationships between database tables. When importing data, first import the data of the referenced relation <span class="math inline">\(r_2\)</span> (e.g., <em>department</em>), and then import the data of the referencing relation <span class="math inline">\(r_1\)</span> (e.g., <em>instructor</em>).</p>
 </blockquote>
-<p><strong>Def</strong>. <strong>Referential integrity</strong></p>
-<p>Values appearing in <strong>foreign key</strong> attributes (dept_name) of any tuples in the <strong>referencing</strong> relation <span class="math inline">\(r_1\)</span> (<em>instructor</em>) must appear in attributes of at least <strong>one tuples</strong> in the <strong>referenced</strong> relation <span class="math inline">\(r_2\)</span> (<em>department</em>).</p>
+<p><strong>Def</strong>. <strong>Referential Integrity</strong></p>
+<p>Values appearing in <strong>foreign key</strong> attributes of any tuples in the <strong>referencing</strong> relation <span class="math inline">\(r_1\)</span> (<em>instructor</em>) must appear in attributes of at least <strong>one tuples</strong> in the <strong>referenced</strong> relation <span class="math inline">\(r_2\)</span> (<em>department</em>).</p>
 <h2 id="schema-diagram-for-university-database">Schema Diagram for University Database</h2>
 <p><strong>A database schema</strong>, with <strong>primary key</strong> and <strong>foreign key</strong> dependency, can be depicted as <strong>schema diagram</strong>.</p>
 <ul>
@@ -460,13 +461,13 @@ Figure 1: Schema diagram
 <p><strong>Def</strong>. The <strong>select</strong> operation selects <strong>tuples</strong> that satisfy a given <strong>predicate</strong>.</p>
 <ul>
 <li>Notation: <span class="math inline">\(\sigma_{p} (r)\)</span>. <span class="math inline">\(p\)</span> is called the <strong>selection predicate</strong></li>
-<li>Example: select those <strong>tuples</strong> of the <em>instructor</em> relation where the instructor is in Physics <em>department</em>
+<li>Example: select those <strong>tuples</strong> of the <em>instructor</em> relation where the instructor is in Physics department
 <ul>
 <li>Query: <span class="math inline">\(\sigma_{\text{dept\_name} = \text{&quot;Physics&quot;}} (\text{instructor})\)</span></li>
 </ul></li>
 </ul>
 <p>What’s more, we allow <strong>comparisons</strong> (<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(&gt;\)</span>, <span class="math inline">\(\geq\)</span>, <span class="math inline">\(&lt;\)</span>, <span class="math inline">\(\leq\)</span>) in the selection predicate and can <strong>combine</strong> several predicates into a larger predicate by using connectives: <span class="math inline">\(\land\)</span>, <span class="math inline">\(\lor\)</span>, <span class="math inline">\(\lnot\)</span>. For example, find the instructors in Physics with salary greater <span class="math inline">\(90000\)</span>: <span class="math inline">\(\sigma_{\text{dept\_name} = \text{&quot;Physics&quot;} \land \text{salary} &gt; 90000} (\text{instructor})\)</span>.</p>
-<p>The select predicate may include comparisons between two attributes. For example, find all departments whose name is the same as their building name: <span class="math inline">\(\sigma_{\text{dept\_name} = \text{building}} (\text{department})\)</span>.</p>
+<p>The select predicate may include comparisons between <strong>two attributes</strong>. For example, find all departments whose name is the same as their building name: <span class="math inline">\(\sigma_{\text{dept\_name} = \text{building}} (\text{department})\)</span>.</p>
 <h3 id="project-operation">Project Operation</h3>
 <p><strong>Def</strong>. <strong>Operation</strong> that returns its argument relation, with certain attributes <strong>left out</strong>.</p>
 <ul>
@@ -495,9 +496,9 @@ Figure 1: Schema diagram
 </ol>
 <p>For example, find all courses taught in the Fall 2017 semester, or in the Spring 2018 semester, or in both: <span class="math inline">\(\Pi_{\text{course\_id}}(\sigma_{\text{semester} = \text{&quot;Fall&quot;} \land \text{year} = 2017}(\text{section})) \cup \Pi_{\text{course\_id}}(\sigma_{\text{semester} = \text{&quot;Spring&quot;} \land \text{year} = 2018}(\text{section}))\)</span></p>
 <h3 id="set-intersection-operation">Set Intersection Operation</h3>
-<p><strong>Def</strong>. The <strong>set intersection operation</strong> allows us to find tuples that are in both input relations. Notation: <span class="math inline">\(r \cap s\)</span>. Similar to union operation.</p>
+<p><strong>Def</strong>. The <strong>set intersection operation</strong> allows us to find <strong>tuples</strong> that are in both input relations. Notation: <span class="math inline">\(r \cap s\)</span>. Similar to union operation.</p>
 <h3 id="set-difference-operation">Set Difference Operation</h3>
-<p><strong>Def</strong>. The <strong>set difference operation</strong> allows find tuples that are in one relation but are not in another. Notation: <span class="math inline">\(r - s\)</span>.</p>
+<p><strong>Def</strong>. The <strong>set difference operation</strong> allows find <strong>tuples</strong> that are in one relation but are not in another. Notation: <span class="math inline">\(r - s\)</span>.</p>
 <h3 id="the-assignment-operation">The Assignment Operation</h3>
 <p><strong>Def</strong>. The <strong>assignment operation</strong> is denoted by <span class="math inline">\(\leftarrow\)</span>. Working like assignment in <strong>programming language</strong>. For example, find all instructor in Physics and Music department.</p>
 <p><span class="math display">\[
@@ -514,7 +515,7 @@ Figure 1: Schema diagram
 <h3 id="equivalent-queries">Equivalent Queries</h3>
 <p>The two queries are not identical, however they give the same result on any database.</p>
 <blockquote>
-<p>We can use different queries to improve querying.</p>
+<p>We can use different queries to improve querying. (chapter 16)</p>
 </blockquote>
 
                 
@@ -554,7 +555,7 @@ Figure 1: Schema diagram
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Relation Model</div>
+      <div>Chapter 2: Relation Model</div>
       <div>https://ddccffq.github.io/2025/10/18/数据库系统原理/Relation_Model/</div>
     </div>
     <div class="license-meta">

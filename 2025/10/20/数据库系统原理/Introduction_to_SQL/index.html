@@ -19,22 +19,22 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Structured Query Language (SQL) SQL Parts  Data Manipulation Language (DML)  The ability to query&#x2F;retrieve information The ability to select, insert, delete, update tuples  Data Definition Language (">
+    <meta name="description" content="SQL introduction.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to SQL">
+<meta property="og:title" content="Chapter 3: Introduction to SQL">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Introduction_to_SQL/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Structured Query Language (SQL) SQL Parts  Data Manipulation Language (DML)  The ability to query&#x2F;retrieve information The ability to select, insert, delete, update tuples  Data Definition Language (">
+<meta property="og:description" content="SQL introduction.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-20T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-26T09:51:33.520Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Introduction to SQL - ddccffq&#39;s Blog</title>
+  <title>Chapter 3: Introduction to SQL - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Introduction to SQL"></span>
+            <span id="subtitle" data-typed-text="Chapter 3: Introduction to SQL"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          618 字
+          620 字
         
       </span>
     
@@ -271,12 +271,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Introduction to SQL</h1>
+            <h1 id="seo-header">Chapter 3: Introduction to SQL</h1>
             
             
               <div class="markdown-body">
                 
-                <span id="more"></span>
+                <p>SQL introduction.</p>
+<span id="more"></span>
 <h2 id="structured-query-language-sql">Structured Query Language (SQL)</h2>
 <h3 id="sql-parts">SQL Parts</h3>
 <ol type="1">
@@ -293,11 +294,11 @@
 </ul></li>
 <li>Transaction control
 <ul>
-<li>Commands for specifying the <strong>beginning</strong> and <strong>ending</strong> of transactions</li>
+<li>Commands for specifying the <strong>beginning</strong> and <strong>ending</strong> of transactions (chapter 17)</li>
 </ul></li>
 <li>Embedded SQL and dynamic SQL
 <ul>
-<li>Statements embedded within <strong>programming languages</strong></li>
+<li>Statements embedded within <strong>programming languages</strong> (chapter 5)</li>
 </ul></li>
 <li>Authorization
 <ul>
@@ -316,7 +317,7 @@
 </ul>
 <h3 id="domain-types-in-sql">Domain Types in SQL</h3>
 <ul>
-<li><code>char(n)</code>. Fixed length character string, user-specified length <span class="math inline">\(n\)</span></li>
+<li><code>char(n)</code>. <strong>Fixed length</strong> character string, user-specified length <span class="math inline">\(n\)</span></li>
 <li><code>varchar(n)</code>. Variable length character string, user-specified length <span class="math inline">\(n\)</span></li>
 <li><code>int</code>. Integer (the integers that is machine-dependent)</li>
 <li><code>smallint</code>. Small integer (machine-dependent subset of the integer)</li>
@@ -335,21 +336,20 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">create table</span> takes (<br>  ID <span class="hljs-type">varchar</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">not null</span>,<br>  course_id <span class="hljs-type">varchar</span>(<span class="hljs-number">8</span>) <span class="hljs-keyword">not null</span>,<br>  <span class="hljs-keyword">year</span> <span class="hljs-type">numeric</span>(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>) <span class="hljs-keyword">not null</span>,<br>  grade <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>),<br>  <span class="hljs-keyword">primary key</span> (ID, course_id, <span class="hljs-keyword">year</span>),<br>  <span class="hljs-keyword">foreign key</span> (ID) <span class="hljs-keyword">references</span> student(ID),<br>  <span class="hljs-keyword">foreign key</span> (course_id, <span class="hljs-keyword">year</span>) <span class="hljs-keyword">references</span> section(course_id, <span class="hljs-keyword">year</span>)<br>);<br></code></pre></td></tr></table></figure>
 <h4 id="updates-to-schemas">Updates to Schemas</h4>
 <ul>
-<li>Drop table: <code>DROP TABLE r</code></li>
+<li>Drop table: <code>DROP TABLE table_name;</code></li>
 <li>Alter:
 <ul>
-<li><code>ALTER TABLE r ADD A D</code>
+<li><code>ALTER TABLE table_name ADD attribute_name domain_type;</code>
 <ul>
-<li>Where <span class="math inline">\(A\)</span> is the name of attribute added to <span class="math inline">\(r\)</span> and <span class="math inline">\(D\)</span> is the domain of <span class="math inline">\(A\)</span></li>
 <li>All existing tuples are assigned <strong>null</strong> as the value for the added attribute</li>
 </ul></li>
-<li><code>ALTER TABLE r DROP A</code>
+<li><code>ALTER TABLE table_name DROP attribute_name;</code>
 <ul>
 <li>Not supported by many database</li>
 </ul></li>
 </ul></li>
 </ul>
-<p>The tuples/rows in <strong>table</strong> are stored <strong>row by row</strong>. Adding attributes or dropping the table leads to <strong>costly modifying</strong> the records and then moving these records</p>
+<p>The tuples in <strong>table</strong> are stored <strong>row by row</strong>. Adding attributes or dropping the table leads to <strong>costly modifying</strong> the records and then moving these records.</p>
 <h2 id="basic-structure-of-sql-queries">Basic Structure of SQL Queries</h2>
 <p>A typical SQL query has the form:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> A1, A2, ..., An<br><span class="hljs-keyword">FROM</span> r1, r2, ..., rm<br><span class="hljs-keyword">WHERE</span> P;<br></code></pre></td></tr></table></figure>
@@ -369,11 +369,11 @@
 <p>We also insert the keyword <strong>all</strong> to specify that duplicates should not be removed.</p>
 </blockquote>
 <ul>
-<li>An <strong>asterisk</strong> in the select clause denotes <strong>all attributes</strong></li>
+<li>An <strong>asterisk</strong> (<code>*</code>) in the select clause denotes <strong>all attributes</strong></li>
 <li>An attribute can be a literal with <strong>no from</strong> clause, e.g. <code>SELECT '437';</code>
 <ul>
 <li>Results is a table with <strong>one column</strong> and <strong>a single row</strong> with value 437</li>
-<li>Can give the column a <strong>name</strong> using: <code>SELECT '437;</code> AS FOO`</li>
+<li>Can give the column a <strong>name</strong> using: <code>SELECT '437' AS FOO;</code></li>
 </ul></li>
 <li>An attribute can be a literal with <strong>from</strong> clause, e.g. <code>SELECT 'A' FROM instructor;</code>
 <ul>
@@ -387,7 +387,7 @@
 <p>The where clause specifies <strong>conditions</strong> that the result must satisfy</p>
 <ul>
 <li>Corresponds to <strong>selection predicate</strong> of relational algebra</li>
-<li>Allows the <strong>logical connectives</strong></li>
+<li>Allows the <strong>logical connectives</strong> in <code>WHERE</code> predicate</li>
 <li><strong>Between comparison operator</strong>
 <ul>
 <li>Find names of all instructors with salary between <span class="math inline">\(90000\)</span> and <span class="math inline">\(100000\)</span></li>
@@ -401,7 +401,7 @@
 <h3 id="the-from-clause">The From Clause</h3>
 <p>The form clause lists relations corresponding to <strong>Cartesian product</strong> operation of relational algebra. For example, fin Cartesian product <em>instructor</em> and <em>teaches</em>:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> instructor, teaches;<br></code></pre></td></tr></table></figure>
-<p>For <strong>common</strong> attributes, like ID, attributes in resulting table are <strong>renamed</strong> using the relation name, like instructor.ID.</p>
+<p>For <strong>common</strong> attributes, like ID, attributes in resulting table are <strong>renamed</strong> using the relation name, like <code>instructor.ID</code>.</p>
 <blockquote>
 <p>Cartesian product not very useful directly, but useful with <strong>where clause</strong> condition.</p>
 </blockquote>
@@ -410,19 +410,22 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, course_id<br><span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> teaches<br><span class="hljs-keyword">WHERE</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <p>What’s difference compared with:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, course_id<br><span class="hljs-keyword">FROM</span> instructor, teaches<br><span class="hljs-keyword">WHERE</span> instructor.ID <span class="hljs-operator">=</span> teaches.ID <span class="hljs-keyword">AND</span> instructor.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Art&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Two SQL are equivalent but the second SQL is more costly.</p>
+</blockquote>
 <p>SQL queries run in this order: <code>FROM + JOIN</code> <span class="math inline">\(\to\)</span> <code>WHERE</code> <span class="math inline">\(\to\)</span> <code>GROUP BY</code> <span class="math inline">\(\to\)</span> <code>HAVING</code> <span class="math inline">\(\to\)</span> <code>SELECT</code> <span class="math inline">\(\to\)</span> <code>ORDER BY</code> <span class="math inline">\(\to\)</span> <code>LIMIT</code>.</p>
 <h2 id="the-rename-operation">The Rename Operation</h2>
 <p>Renaming <strong>relations</strong> and <strong>attributes</strong> using the <strong>as</strong> clause. For example, find names of all instructors who have a higher salary than instructor in Comp.Sci.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> T.name <span class="hljs-keyword">AS</span> TeacherName<br><span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">AS</span> T, instructors <span class="hljs-keyword">AS</span> S <span class="hljs-comment">/*tuple variables*/</span><br><span class="hljs-keyword">WHERE</span> T.salary <span class="hljs-operator">&gt;</span> S.salary <span class="hljs-keyword">and</span> S.dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <h2 id="string-operations">String Operations</h2>
-<p><strong>String matching operator</strong> for comparison on <strong>character strings</strong>. The operator <strong>like</strong> uses patterns two special characters:</p>
+<p><strong>String matching operator</strong> for <strong>comparison on character strings</strong>. The operator <strong>like</strong> uses patterns two special characters:</p>
 <ul>
 <li>Percent (<code>%</code>). The <code>%</code> character matches any <strong>substring</strong>.</li>
 <li>Underscore (<code>_</code>). The <code>_</code> character matches any <strong>character</strong>.</li>
 </ul>
 <p>For example, find the names of all instructors whose name includes the substring “dar”.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%dar%&#x27;</span>;<br></code></pre></td></tr></table></figure>
-<p>Or match the string “100%”, <code>LIKE '100\%' ESCAPE '\';</code>. We use backslash (<code>\</code>) as escape character.</p>
+<p>Or match the string “100%”, <code>LIKE '100\%' ESCAPE '\';</code>. We use backslash (<code>\</code>) as <strong>escape character</strong>.</p>
 <p>Patterns are case sensitive. Examples:</p>
 <ul>
 <li><code>Intro%</code> matches any string beginning with “Intro”</li>
@@ -442,13 +445,13 @@
 <li><strong>Union all</strong>, <strong>Intersect all</strong> and <strong>except all</strong>, to retain duplicates</li>
 </ul>
 <h2 id="null-values">Null Values</h2>
-<p><strong>Null</strong> signifies an unknown value or a values does not exist. The <strong>result</strong> of any <strong>arithmetic expression</strong> involving <strong>null</strong> is <strong>null</strong>. The <strong>predicate is null</strong> can be used to check for null values. For example, find all instructors whose salary is null:</p>
+<p><strong>Null</strong> signifies an unknown value or a value does not exist. The <strong>result</strong> of any <strong>arithmetic expression</strong> involving <strong>null</strong> is <strong>null</strong>. The <strong>predicate is null</strong> can be used to check for null values. For example, find all instructors whose salary is null:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></td></tr></table></figure>
-<p>SQL treats as <strong>unknown</strong> the result of any comparison involving a <strong>nul</strong> value.</p>
+<p>SQL treats as <strong>unknown</strong> the result of any comparison involving a <strong>null</strong> value.</p>
 <p>The predicate in a <strong>where</strong> clause can involve Boolean operations (and, or, not); thus Boolean operations need to be extended to deal with <strong>unknown</strong>.</p>
 <ul>
 <li><code>True AND UNKNOWN = UNKNOWN</code></li>
-<li><code>FALSE AND UNKNOWN = UNKNOWN</code></li>
+<li><code>FALSE AND UNKNOWN = FALSE</code></li>
 <li><code>UNKNOWN AND UNKNOWN = UNKNOWN</code></li>
 <li><code>UNKNOWN OR TRUE = TRUE</code></li>
 <li><code>UNKNOWN OR FALSE = UNKNOWN</code></li>
@@ -468,7 +471,7 @@
 </ul>
 <p>Examples:</p>
 <ol type="1">
-<li><p>Find average salary of instructors in Computer Science department</p>
+<li><p>Find <strong>average salary</strong> of instructors in Computer Science department</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
 <li><p>Find <strong>total number of instructors</strong> who teach a course in Spring 2018</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> ID)<br><span class="hljs-keyword">FROM</span> teaches<br><span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Comp.Sci&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
@@ -490,7 +493,7 @@
 </blockquote>
 <h2 id="nested-subqueries">Nested Subqueries</h2>
 <p><strong>Subquery</strong> is a <strong>select-from-where</strong> expression nested within <strong>another</strong> query. For example, find courses offered in Fall 2009 and in Spring 2010:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> course_id<br><span class="hljs-keyword">FROM</span> section<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2009</span> <span class="hljs-keyword">AND</span> course_id <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Sprint&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2010</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> course_id<br><span class="hljs-keyword">FROM</span> section<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2009</span> <span class="hljs-keyword">AND</span> course_id <span class="hljs-keyword">IN</span> <br>(<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Sprint&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2010</span>);<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>Don’t recommend!</p>
 </blockquote>
@@ -502,9 +505,9 @@
 <h2 id="exists-and-not-exists-clause">Exists and Not Exists Clause</h2>
 <ul>
 <li><p>Exists: find all courses taught in both Fall 2017 and Spring 2018</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> course_id<br><span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span> <span class="hljs-keyword">AND</span> S.course_id <span class="hljs-operator">=</span> T.course_id);<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> course_id<br><span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Fall&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2017</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">EXISTS</span> <br>(<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> section <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> semester <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Spring&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">year</span> <span class="hljs-operator">=</span> <span class="hljs-number">2018</span> <span class="hljs-keyword">AND</span> S.course_id <span class="hljs-operator">=</span> T.course_id);<br></code></pre></td></tr></table></figure></li>
 <li><p>Not exists: find all students who have taken all courses offered in Biology department</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> S.ID, S.name<br><span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> ((<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Biology&#x27;</span>) <span class="hljs-keyword">EXCEPT</span> (<span class="hljs-keyword">SELECT</span> T.course_id <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> S.ID <span class="hljs-operator">=</span> T.ID));<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> S.ID, S.name<br><span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> S<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> ((<span class="hljs-keyword">SELECT</span> course_id <span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">WHERE</span> dept_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Biology&#x27;</span>) <br><span class="hljs-keyword">EXCEPT</span> (<span class="hljs-keyword">SELECT</span> T.course_id <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">AS</span> T <span class="hljs-keyword">WHERE</span> S.ID <span class="hljs-operator">=</span> T.ID));<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="unique-clause">Unique Clause</h2>
 <p>The <strong>unique</strong> tests whether a subquery has any <strong>duplicate</strong> tuples in result. For example, find all courses that were offered at most once in 2017:</p>
@@ -517,7 +520,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">WITH</span> max_budget(<span class="hljs-keyword">values</span>) <span class="hljs-keyword">AS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(budget) <span class="hljs-keyword">FROM</span> department)<br><span class="hljs-keyword">SELECT</span> department.name<br><span class="hljs-keyword">FROM</span> department, max_budget<br><span class="hljs-keyword">WHERE</span> department.budget <span class="hljs-operator">=</span> max_budget.value;<br></code></pre></td></tr></table></figure>
 <h2 id="scalar-subquery">Scalar Subquery</h2>
 <p><strong>Scalar subquery</strong> is for one where <strong>a single value</strong> is expected. For example, list all departments along with the number of instructors in each department:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">WHERE</span> department.dept_name <span class="hljs-operator">=</span> instructor.dept_name) <span class="hljs-keyword">AS</span> num_instructors<br><span class="hljs-keyword">FROM</span> department;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> dept_name, <br>(<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> instructor <span class="hljs-keyword">WHERE</span> department.dept_name <span class="hljs-operator">=</span> instructor.dept_name) <span class="hljs-keyword">AS</span> num_instructors<br><span class="hljs-keyword">FROM</span> department;<br></code></pre></td></tr></table></figure>
 <h2 id="modification-of-database">Modification of Database</h2>
 <h3 id="deletion">Deletion</h3>
 <ul>
@@ -549,9 +552,9 @@
 <li><p>Give a <span class="math inline">\(5\%\)</span> salary raise to instructors whose salary is less than average:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span><br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">&lt;</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-keyword">FROM</span> instructor);<br></code></pre></td></tr></table></figure></li>
 <li><p>Increase salaries of instructors whose salary is over <span class="math inline">\(100000\)</span> by <span class="math inline">\(3\%\)</span>, and all others by a <span class="math inline">\(5\%\)</span>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&lt;=</span> <span class="hljs-number">100000</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span> <span class="hljs-keyword">ELSE</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.03</span> <span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> instructor<br><span class="hljs-keyword">SET</span> salary <span class="hljs-operator">=</span> <span class="hljs-keyword">CASE</span> <br><span class="hljs-keyword">WHEN</span> salary <span class="hljs-operator">&lt;=</span> <span class="hljs-number">100000</span> <span class="hljs-keyword">THEN</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.05</span> <span class="hljs-keyword">ELSE</span> salary <span class="hljs-operator">*</span> <span class="hljs-number">1.03</span> <br><span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure></li>
 <li><p>Recompute and update total_creds value for all students</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> student S<br><span class="hljs-keyword">SET</span> total_creds <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes, course <span class="hljs-keyword">WHERE</span> takes.course_id <span class="hljs-operator">=</span> course.course_id <span class="hljs-keyword">AND</span> S.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span> <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span>);<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> student S<br><span class="hljs-keyword">SET</span> total_creds <span class="hljs-operator">=</span> <br>(<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes, course <span class="hljs-keyword">WHERE</span> takes.course_id <span class="hljs-operator">=</span> course.course_id <span class="hljs-keyword">AND</span> S.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span> <span class="hljs-keyword">AND</span> takes.grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span>);<br></code></pre></td></tr></table></figure></li>
 <li><p>Sets total_creds to null for students who have not taken any course:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">UPDATE</span> student<br><span class="hljs-keyword">SET</span> total_creds <span class="hljs-operator">=</span> <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">THEN</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>;<br></code></pre></td></tr></table></figure></li>
 </ul>
@@ -593,7 +596,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Introduction to SQL</div>
+      <div>Chapter 3: Introduction to SQL</div>
       <div>https://ddccffq.github.io/2025/10/20/数据库系统原理/Introduction_to_SQL/</div>
     </div>
     <div class="license-meta">

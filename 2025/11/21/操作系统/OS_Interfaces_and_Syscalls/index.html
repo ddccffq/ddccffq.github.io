@@ -21,20 +21,23 @@
   
     <meta name="description" content="OS Programming Interface What are the system calls? They differ from different operating system. The follow table shows some system calls in Windows and Unix.       Windows Unix     Process Control C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OS Interfaces and Syscalls">
+<meta property="og:title" content="Chapter 4: OS Interfaces and Syscalls">
 <meta property="og:url" content="https://ddccffq.github.io/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="OS Programming Interface What are the system calls? They differ from different operating system. The follow table shows some system calls in Windows and Unix.       Windows Unix     Process Control C">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/extending%20interface.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/system%20calls%20stubs.png">
 <meta property="article:published_time" content="2025-11-21T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2025-12-27T05:28:36.098Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/extending%20interface.png">
   
   
   
-  <title>OS Interfaces and Syscalls - ddccffq&#39;s Blog</title>
+  <title>Chapter 4: OS Interfaces and Syscalls - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="OS Interfaces and Syscalls"></span>
+            <span id="subtitle" data-typed-text="Chapter 4: OS Interfaces and Syscalls"></span>
           
         </div>
 
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          190 字
+          220 字
         
       </span>
     
@@ -271,7 +274,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">OS Interfaces and Syscalls</h1>
+            <h1 id="seo-header">Chapter 4: OS Interfaces and Syscalls</h1>
             
             
               <div class="markdown-body">
@@ -317,7 +320,7 @@
 </tr>
 <tr class="even">
 <td>Protection</td>
-<td><code>SetFileSecurity()</code> <br> <code>InitlializeSecurityDescriptor()</code> <br> <code>SetSecurityDescriptorGroup()</code></td>
+<td><code>SetFileSecurity()</code> <br> <code>InitializeSecurityDescriptor()</code> <br> <code>SetSecurityDescriptorGroup()</code></td>
 <td><code>chmod()</code> <br> <code>umask()</code> <br> <code>chown()</code></td>
 </tr>
 </tbody>
@@ -332,11 +335,11 @@
 <li><strong>GLIBC</strong>: GNU C library.</li>
 </ul>
 <blockquote>
-<p><em>If a software is written with only dependency to libc, it has good <strong>portability</strong> across OSes/hardware</em>.</p>
+<p>If a software is written with only dependency to libc, it has good <strong>portability</strong> across OSes/hardware.</p>
 </blockquote>
 <h2 id="case-study-process-management">Case Study: Process Management</h2>
 <blockquote>
-<p>Why we need <strong>multi-process</strong>? Early motuvation: Allow developers to write their own <strong>shell command</strong> line interpreters.</p>
+<p>Why we need <strong>multi-process</strong>? Early motivation: allow developers to write their own <strong>shell command</strong> line interpreters.</p>
 </blockquote>
 <h3 id="process-in-windows">Process in Windows</h3>
 <p><strong>Boolean</strong> <code>CreateProcess(char *prog, char *args)</code>.</p>
@@ -394,10 +397,10 @@
 </blockquote>
 <h2 id="case-study-inputoutput">Case Study: Input/Output</h2>
 <blockquote>
-<p>Computer systems have very diverse I/O devices. Having an interface for each device means the OS interface needs to expand whenever a new device is added. <strong>Unix</strong> has one interface for all of them! (“Everthing is a file” - open, read, write, clos)</p>
+<p>Computer systems have very diverse I/O devices. Having an interface for each device means the OS interface needs to expand whenever a new device is added. <strong>Unix</strong> has one interface for all of them! (“Everything is a file” - open, read, write, clos)</p>
 </blockquote>
 <h3 id="file-descriptor-in-unix">File Descriptor in Unix</h3>
-<p><strong>File Descriptor (fd)</strong>: a number (int) that uniquely identifies an open file in a computer’s operating system. It describes a data resource, and how that resource may be accessed.</p>
+<p><strong>File Descriptor (fd)</strong>: a number (int) that uniquely identifies <strong>an open file</strong> in a computer’s operating system. It describes a data resource, and how that resource may be accessed.</p>
 <blockquote>
 <ul>
 <li>Each process has its own file descriptor table.</li>
@@ -407,6 +410,39 @@
 <p>Internally, it has everything about an opened file (where it resides; its status; how to access it; …)</p>
 </blockquote>
 <h3 id="inputoutput-in-unix">Input/Output in Unix</h3>
+<p>A uniform interface for all I/O</p>
+<ul>
+<li>Uniformity: <code>open</code>, <code>close</code>, <code>read</code> and <code>write</code></li>
+<li>Open before use</li>
+<li>Byte-Oriented
+<ul>
+<li>Even if blocks are transferred, addressing is in bytes</li>
+</ul></li>
+<li>Kernel-Buffered reads/writes
+<ul>
+<li>Streaming and block devices looks the same</li>
+<li>Read blocks process, yielding processor to other task</li>
+<li>Writes dose not block (even if it’s faster than device receiving data)</li>
+</ul></li>
+<li>Explicit close
+<ul>
+<li>Garbage collection of unused kernel data structures</li>
+</ul></li>
+</ul>
+<p>Extending the interface to inter-process communication</p>
+<ul>
+<li>Pipes: a <strong>kernel</strong> buffer with two file descriptors (reading and writing)</li>
+<li>Replace file descriptor for the child process
+<ul>
+<li>Often used in shells</li>
+</ul></li>
+<li>Wait for multiple reads</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/extending%20interface.png" srcset="/img/loading.gif" lazyload alt="extending interface"><figcaption aria-hidden="true">extending interface</figcaption>
+</figure>
+</div>
 <h2 id="system-calls">System Calls</h2>
 <ul>
 <li>An illusion that kernel is simply a set of library routines.
@@ -414,10 +450,33 @@
 <li>Actually, it’s not. They are not even in the same context!</li>
 <li>Names, arguments, return values.</li>
 </ul></li>
-<li>A key challenge: Protection from user-space errors.
+<li>A key challenge: protection from user-space errors.
 <ul>
 <li>What are to be checked?</li>
 </ul></li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/11/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS_Interfaces_and_Syscalls/system%20calls%20stubs.png" srcset="/img/loading.gif" lazyload alt="system calls stubs"><figcaption aria-hidden="true">system calls stubs</figcaption>
+</figure>
+</div>
+<h3 id="user-stub">User Stub</h3>
+<p>In x86</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">open:<br>  movl #SysCallOpen, %eax<br>  int #TrapCode<br>  ret<br></code></pre></td></tr></table></figure>
+<p>The <code>int</code> instruction:</p>
+<ul>
+<li>Saves the program counter, stack pointer, and eflags on the kernel stack</li>
+<li>Jumps to the system call handler through interrupt vector table</li>
+<li>The kernel handler examines the TrapCode and calls the correct stub</li>
+</ul>
+<h3 id="kernel-stub">Kernel Stub</h3>
+<ul>
+<li><p>Can kernel directly access the parameters without copying?</p>
+<p>Yes.</p></li>
+<li><p>Why parameters must be copied from user memory to kernel memory?</p>
+<p>Avoid user modify parameters.</p></li>
+<li><p>Can we check parameters before copying them to kernel memory?</p>
+<p>No. User program may modify parameters.</p></li>
 </ul>
 
                 
@@ -457,7 +516,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>OS Interfaces and Syscalls</div>
+      <div>Chapter 4: OS Interfaces and Syscalls</div>
       <div>https://ddccffq.github.io/2025/11/21/操作系统/OS_Interfaces_and_Syscalls/</div>
     </div>
     <div class="license-meta">
