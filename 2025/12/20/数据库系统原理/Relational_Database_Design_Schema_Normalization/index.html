@@ -19,15 +19,15 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="r(R) satisfied by function dependency and function dependency holds on R.">
+    <meta name="description" content="*Features of Good Relational Design  flowchart TD     A[Application problems in real words] --&gt;|Requirements analysis| B[Specification of user requirements]     B --&gt;|Conceptual DB design| C[DB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 7: Relational Database Design: Schema Normalization">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Relational_Database_Design_Schema_Normalization/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="r(R) satisfied by function dependency and function dependency holds on R.">
+<meta property="og:description" content="*Features of Good Relational Design  flowchart TD     A[Application problems in real words] --&gt;|Requirements analysis| B[Specification of user requirements]     B --&gt;|Conceptual DB design| C[DB">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-20T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-27T03:00:04.889Z">
+<meta property="article:modified_time" content="2025-12-29T02:19:00.848Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          23 分钟
+          24 分钟
         
       </span>
     
@@ -276,8 +276,7 @@
             
               <div class="markdown-body">
                 
-                <p>r(R) satisfied by function dependency and function dependency holds on R.</p>
-<span id="more"></span>
+                <span id="more"></span>
 <h2 id="features-of-good-relational-design">*Features of Good Relational Design</h2>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <pre><code class=" mermaid">flowchart TD
@@ -311,34 +310,30 @@ Figure 1: DB design phases
 <li>to represent directly information about a <strong>new opened</strong> department in which there no exists instructors, a tuple containing null values, such as (null, null, null, Soft.Eng, Taylor, 100000). But null values in DB will complicate data handling in DBS</li>
 </ul>
 <p>The above example introduces two problems: when should we <strong>combine</strong> relations and when should we <strong>decompose</strong> relations.</p>
-<p>Assume if there is a schema (<u>dept_name</u>, building, budget), then dept_name would be a candidate key. We denote dept_name <span class="math inline">\(\to\)</span> building, budget as a <strong>functional dependency</strong> (FD).</p>
+<p>Assume if there is a schema (dept_name, building, budget), then dept_name would be a candidate key. We denote dept_name <span class="math inline">\(\to\)</span> building, budget as a <strong>functional dependency</strong> (FD).</p>
 <p>Not all decompositions are good, for example, suppose we decompose <em>employee</em>(ID, name, street, city, salary) into <em>employee1</em>(ID, name) and <em>employee2</em>(name, street, city, salary). This is a <strong>lossy decomposition</strong>. If there exists two persons with the same name, obviously when we use <code>NATURAL JOIN</code> will generate additional tuples.</p>
 <h3 id="lossless-decomposition">*Lossless Decomposition</h3>
 <p><strong>Def</strong>. Let <span class="math inline">\(R\)</span> be a relation schema, and <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> form a decomposition of <span class="math inline">\(R\)</span>. That is <span class="math inline">\(R = R_1 \cup R_2\)</span>. The decomposition is a <strong>lossless decomposition</strong>, if there is <strong>no loss</strong> of information by replacing the schema <span class="math inline">\(R\)</span> with two relation schemas <span class="math inline">\(R_1 \cup R_2\)</span>.</p>
-<p><strong>Def</strong>. The decomposition is a <strong>lossy decomposition</strong> if <span class="math inline">\(r \subset \Pi_{R_1} (r) \Join \Pi_{R_2} (r)\)</span></p>
-<p>When certain decomposition are <strong>lossless</strong>? For <span class="math inline">\(R = (R_1, R_2)\)</span>, require that for all possible relations <span class="math inline">\(r\)</span> on schema <span class="math inline">\(R\)</span>. <span class="math inline">\(r = \Pi_{R_{1}} (r) \Join \Pi_{R_2}(r)\)</span></p>
+<p><strong>Def</strong>. The decomposition is a <strong>lossy decomposition</strong> if <span class="math inline">\(r(R) \subset \Pi_{R_1} (r(R)) \Join \Pi_{R_2} (r(R))\)</span></p>
+<p>When certain decomposition are <strong>lossless</strong>? For <span class="math inline">\(R = (R_1, R_2)\)</span>, require that for all possible relations <span class="math inline">\(r\)</span> on schema <span class="math inline">\(R\)</span>. <span class="math inline">\(r(R) = \Pi_{R_{1}} (r(R)) \Join \Pi_{R_2}(r(R))\)</span></p>
 <p><strong>Def</strong>. A decomposition of <span class="math inline">\(R\)</span> into <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> is <strong>lossless</strong> if <strong>at least one of</strong> the following dependencies is in <span class="math inline">\(F^{+}\)</span>: <span class="math inline">\(R_1 \cap R_2 \to R_1\)</span> and <span class="math inline">\(R_1 \cap R_2 \to R_2\)</span>.</p>
 <p>If only <span class="math inline">\(R_1 \cap R_2 \to R_1\)</span> holds, then <span class="math inline">\(R_1 \cap R_2\)</span> is the <strong>primary key</strong> of <span class="math inline">\(R_1\)</span>, and the <strong>foreign key</strong> of <span class="math inline">\(R_2\)</span></p>
 <p><strong>Example</strong>, consider the schema: <em>in_dep</em>(ID, name, salary, dept_name, building, budget). Decompose it into the <em>instructor</em> and <em>department</em> schemas: <em>instructor</em>(ID, name, dept_name, salary) and <em>department</em>(dept_name, building, budget).</p>
-<p>Consider the intersection of these two schemas, which is dept_name. Because of dept_name <span class="math inline">\(\to\)</span> building, budget, the <strong>lossless decomposition</strong> is satisfied</p>
+<p>Consider the intersection of these two schemas, which is dept_name. Because of dept_name <span class="math inline">\(\to\)</span> building, budget, the <strong>lossless decomposition</strong> is satisfied.</p>
 <h3 id="functional-dependencies">*Functional Dependencies</h3>
 <p><strong>Def</strong>. An instance of a relation that satisfies all such real world constraints is called a <strong>legal instance of relation</strong>.</p>
-<p><strong>Def</strong>. <strong>Functional dependency (FD)</strong></p>
-<p>Constraints on the legal relations that the value for a <strong>certain set</strong> of attributes determines uniquely the values for <strong>another set</strong> of attributes.</p>
+<p><strong>Def</strong>. <strong>Functional dependency (FD)</strong>. Constraints on the legal relations that the value for a <strong>certain set</strong> of attributes determines uniquely the values for <strong>another set</strong> of attributes.</p>
 <blockquote>
 <p>A functional dependency is a <strong>generalization</strong> of the notion of a key.</p>
 </blockquote>
 <p><strong>Def</strong>. For a <strong>schema</strong> <span class="math inline">\(R\)</span> and <span class="math inline">\(\alpha \subseteq R\)</span>, <span class="math inline">\(\beta \subseteq R\)</span>, a <strong>relation instance</strong> <span class="math inline">\(r(R)\)</span> satisfies a <strong>FD</strong> <span class="math inline">\(\alpha \to \beta\)</span>, if for pairs of tuples <span class="math inline">\(t_i\)</span>, <span class="math inline">\(t_j\)</span> <span class="math inline">\(\in r(R)\)</span> such that <span class="math inline">\(t_{i}[\alpha] = t_{j}[\alpha] \to t_{i}[\beta] = t_{j}[\beta]\)</span>.</p>
 <p><strong>Def</strong>. <span class="math inline">\(r(R)\)</span> is <strong>legal</strong> under <strong>FD</strong> <span class="math inline">\(\alpha \to \beta\)</span>, if <span class="math inline">\(\alpha \to \beta\)</span> is satisfied by <span class="math inline">\(r(R)\)</span></p>
-<blockquote>
-<p>The values for <strong>a certain set</strong> of attributes <strong>determines uniquely</strong> the values for <strong>another set</strong> of attributes.</p>
-</blockquote>
 <p>For <strong>example</strong>, given relation <span class="math inline">\(r(R)\)</span> shown below, which FD is satisfied by <span class="math inline">\(r\)</span>? (according to <span class="math inline">\(t_{i}[\alpha] = t_{j}[\alpha] \to t_{i}[\beta] = t_{j}[\beta]\)</span>, the answer is C)</p>
 <ul>
-<li>A. <span class="math inline">\(A \to B\)</span></li>
-<li>B. <span class="math inline">\(AC \to B\)</span></li>
-<li>C. <span class="math inline">\(BC \to A\)</span></li>
-<li>D. <span class="math inline">\(B \to C\)</span></li>
+<li><strong>A</strong>. <span class="math inline">\(A \to B\)</span></li>
+<li><strong>B</strong>. <span class="math inline">\(AC \to B\)</span></li>
+<li><strong>C</strong>. <span class="math inline">\(BC \to A\)</span></li>
+<li><strong>D</strong>. <span class="math inline">\(B \to C\)</span></li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
@@ -388,9 +383,9 @@ Figure 1: DB design phases
 <blockquote>
 <p>If <span class="math inline">\(\alpha \to \beta\)</span> holds on <span class="math inline">\(R\)</span>, then <strong>every legal</strong> <span class="math inline">\(r_i(R)\)</span> satisfies this <span class="math inline">\(R\)</span>, but for schema <span class="math inline">\(R\)</span> and <span class="math inline">\(\alpha \to \beta\)</span>, if only some <span class="math inline">\(r_i(R)\)</span> satisfies <span class="math inline">\(R\)</span>, <span class="math inline">\(\alpha \to \beta\)</span> may <strong>not</strong> holds on <span class="math inline">\(R\)</span></p>
 </blockquote>
-<p><strong>Example</strong> of modeling FD. Consider $R = $(<u>employee_ID</u>, turnover_per_day, <u>department_name</u>, manager). It is assumed that</p>
+<p><strong>Example</strong> of modeling FD. Consider $R = $(employee_ID, turnover_per_day, department_name, manager). It is assumed that</p>
 <ul>
-<li>every day, each employee has <strong>only one</strong> turnover per-day</li>
+<li>every day, each employee has <strong>only one</strong> turnover per day</li>
 <li>each employee works at <strong>only one</strong> department</li>
 <li>each department is managed by <strong>only one</strong> manager</li>
 </ul>
@@ -403,7 +398,7 @@ Figure 1: DB design phases
 <h3 id="keys-and-functional-dependencies">*Keys and Functional Dependencies</h3>
 <p><strong>Def</strong>. <span class="math inline">\(K\)</span> is a <strong>super key</strong> for relation schema <span class="math inline">\(R\)</span> <strong>if and only if</strong> <span class="math inline">\(K \to R\)</span>.</p>
 <p><strong>Def</strong>. <span class="math inline">\(K\)</span> is a <strong>candidate key</strong> for <span class="math inline">\(R\)</span> <strong>if and only if</strong> <span class="math inline">\(K \to R\)</span> and for no <span class="math inline">\(\alpha \subset K\)</span>, <span class="math inline">\(\alpha \to R\)</span>.</p>
-<p>For example, consider the schema: <em>in_dep</em>(<u>ID</u>, name, salary, <u>dept_name</u>, building, budget). We expect FD to hold: dept_name <span class="math inline">\(\to\)</span> building, or ID <span class="math inline">\(\to\)</span> building, but not to hold dept_name <span class="math inline">\(\to\)</span> salary.</p>
+<p>For example, consider the schema: <em>in_dep</em>(ID, name, salary, dept_name, building, budget). We expect FD to hold: dept_name <span class="math inline">\(\to\)</span> building, or ID <span class="math inline">\(\to\)</span> building, but not to hold dept_name <span class="math inline">\(\to\)</span> salary.</p>
 <h3 id="fd-as-integrity-constraints-in-db">FD as Integrity Constraints in DB</h3>
 <p>While ER diagram describe <strong>objects</strong> and <strong>associations</strong> among them, FD illustrates <strong>relationships</strong> among <strong>attributes</strong> of objects.</p>
 <blockquote>
@@ -420,7 +415,7 @@ Figure 1: DB design phases
 <h3 id="trivial-functional-dependencies">Trivial Functional Dependencies</h3>
 <p><strong>Def</strong>. A functional dependency (FD) <span class="math inline">\(\alpha \to \beta\)</span> is <strong>trivial</strong> if <span class="math inline">\(\beta \subseteq \alpha\)</span>.</p>
 <p>This means that the attributes on the right-hand side of the FD are already included in the attributes on the left-hand side. As a result, <span class="math inline">\(\alpha \to \beta\)</span> is satisfied by all possible instances of the relation schema, regardless of the data.</p>
-<p><strong>Def</strong>. <strong>Primary attribute</strong> is the attribute appears in at least one candidate key.</p>
+<p><strong>Def</strong>. <strong>Primary attribute</strong> (compared to primary key) is the attribute appears in at least one candidate key.</p>
 <h3 id="transitive-dependency">Transitive Dependency</h3>
 <p><strong>Def</strong>. A functional dependency <span class="math inline">\(\alpha \to \gamma\)</span> is <strong>transitive</strong>, if</p>
 <ul>
@@ -429,7 +424,7 @@ Figure 1: DB design phases
 <li><span class="math inline">\(\gamma\)</span> is called transitive dependent on <span class="math inline">\(\alpha\)</span></li>
 </ul>
 <h3 id="partial-dependency">*Partial Dependency</h3>
-<p><strong>Def</strong>. A FD <span class="math inline">\(\alpha \to \beta\)</span> is <strong>partial</strong>, <span class="math inline">\(\beta\)</span> is <strong>partially</strong> dependent on <span class="math inline">\(\alpha\)</span> if there is a <strong>subset</strong> <span class="math inline">\(\gamma\)</span> if <span class="math inline">\(\alpha\)</span>, i.e. <span class="math inline">\(\gamma \subset \alpha\)</span>, such that <span class="math inline">\(\gamma \to \beta\)</span></p>
+<p><strong>Def</strong>. A FD <span class="math inline">\(\alpha \to \beta\)</span> is <strong>partial</strong> or <span class="math inline">\(\beta\)</span> is <strong>partially</strong> dependent on <span class="math inline">\(\alpha\)</span> if there is a <strong>subset</strong> <span class="math inline">\(\gamma\)</span> of <span class="math inline">\(\alpha\)</span>, i.e. <span class="math inline">\(\gamma \subset \alpha\)</span>, such that <span class="math inline">\(\gamma \to \beta\)</span></p>
 <p>For example, consider <em>Student</em>(sno, sname, address, depart). Partial dependency (sno, sname) <span class="math inline">\(\to\)</span> address.</p>
 <h3 id="closure-of-fd-set">*Closure of FD Set</h3>
 <p><strong>Def</strong>. Use the notation <span class="math inline">\(F^{+}\)</span> to denote the <strong>closure</strong> of the FD set <span class="math inline">\(F\)</span>. The set of all FDs that can be inferred given the FD set <span class="math inline">\(F\)</span>. <span class="math inline">\(F^{+}\)</span> contains all of FDs in <span class="math inline">\(F\)</span>.</p>
@@ -454,7 +449,7 @@ Figure 2: The relations between each norm
 <p>Let <span class="math inline">\(R\)</span> be a relation schema with a FD set <span class="math inline">\(F\)</span> (decide whether a relation schema <span class="math inline">\(R\)</span> is in good form). When a relation schema <span class="math inline">\(R\)</span> is not in good form, decompose it into <span class="math inline">\(\{R_1, R_2, \cdots, R_n\}\)</span> such that</p>
 <ul>
 <li>each relation schema is in good form, e.g. in 2NF, 3NF, BCNF</li>
-<li>the decomposition is a <strong>lossless decomposition</strong></li>
+<li>the decomposition is a <strong>lossless decomposition</strong> (mentioned above)</li>
 <li>the decomposition should be <strong>dependency preserving</strong></li>
 </ul>
 <h3 id="atomic-domains-and-first-normal-form">Atomic Domains and First Normal Form</h3>
@@ -470,10 +465,10 @@ Figure 2: The relations between each norm
 <h3 id="second-normal-form">*Second Normal Form</h3>
 <p><strong>Def</strong>. A relation schema <span class="math inline">\(R\)</span> is in <strong>2NF</strong> with respect to a FD set <span class="math inline">\(F\)</span>, if <span class="math inline">\(R\)</span> is in 1NF, and each attribute <span class="math inline">\(A\)</span> meets one of the <strong>criteria</strong></p>
 <ul>
-<li>It appears in a <strong>candidate key</strong> (a prime attribute)</li>
+<li>It appears in a <strong>candidate key</strong> (a primary attribute)</li>
 <li>It is (not partially) dependent on a <strong>candidate key</strong></li>
 </ul>
-<p>Here is an example about 2NF. Consider <em>SLC</em>(<u>S#</u>, SDpt, SLocation, <u>C#</u>, Grade). The FDs are</p>
+<p>Here is an example about 2NF recognition. Consider <em>SLC</em>(S#, SDpt, SLocation, C#, Grade). The candidate key is {S#, C# }. The FDs are</p>
 <ul>
 <li>(S#, C#) <span class="math inline">\(\to\)</span> Grade</li>
 <li>(S#, C#) <span class="math inline">\(\to\)</span> SDpt</li>
@@ -486,14 +481,15 @@ Figure 2: The relations between each norm
 <ul>
 <li>For non-primary attribute SDpt, there exists S# <span class="math inline">\(\to\)</span> SDpt, so SDpt is partially dependent on <strong>key</strong></li>
 <li>For non-primary attribute SLocation, there exists S# <span class="math inline">\(\to\)</span> SLocation, so SLocation is partially dependent on <strong>key</strong></li>
+<li>For non-primary attributes SDpt and SLocation, there exists SDpt <span class="math inline">\(\to\)</span> SLocation</li>
 </ul>
 <h3 id="bcnf">*BCNF</h3>
-<p><strong>Def</strong>. A relation schema <span class="math inline">\(R\)</span> is in <strong>BCNF</strong> with respect to a FD set <span class="math inline">\(F\)</span> if for all functional dependencies in <span class="math inline">\(F^{+}\)</span> of the form <span class="math inline">\(\alpha \to \beta\)</span> where <span class="math inline">\(\alpha \subseteq R\)</span> and <span class="math inline">\(\beta \subseteq R\)</span>, <strong>at least one</strong> holds:</p>
+<p><strong>Def</strong>. A relation schema <span class="math inline">\(R\)</span> is in <strong>BCNF</strong> with respect to a FD set <span class="math inline">\(F\)</span>, if for all functional dependencies in <span class="math inline">\(F^{+}\)</span> of the form <span class="math inline">\(\alpha \to \beta\)</span> where <span class="math inline">\(\alpha \subseteq R\)</span> and <span class="math inline">\(\beta \subseteq R\)</span>, holds <strong>at least one</strong>:</p>
 <ul>
 <li><span class="math inline">\(\alpha \to \beta\)</span> is <strong>trivial</strong></li>
 <li><span class="math inline">\(\alpha\)</span> is a <strong>super key</strong></li>
 </ul>
-<p>Example schema that is not in BCNF. Consider <em>in_dept</em>(<u>ID</u>, name, salary, <u>dept_name</u>, budget). Because dept_name <span class="math inline">\(\to\)</span> building, budget holds on <em>in_dep</em> but dept_name is not a super key. Decompose <em>in_dep</em> into <em>instructor</em> and <em>department</em> as follow are both BCNF.</p>
+<p>Example schema that is not in BCNF. Consider <em>in_dept</em>(ID, name, salary, dept_name, budget). Because dept_name <span class="math inline">\(\to\)</span> building, budget holds on <em>in_dep</em> but dept_name is not a super key. Decompose <em>in_dep</em> into <em>instructor</em> and <em>department</em> as follow are both BCNF.</p>
 <ul>
 <li><em>instructor</em>(<u>ID</u>, name, salary, dept_name)</li>
 <li><em>department</em>(<u>dept_name</u>, building, budgets)</li>
@@ -505,9 +501,9 @@ Figure 2: The relations between each norm
 <li><span class="math inline">\((\alpha \cup \beta)\)</span></li>
 <li><span class="math inline">\((R - (\beta - \alpha))\)</span></li>
 </ul>
-<h3 id="bcnf-and-df-preservation">*BCNF and DF Preservation</h3>
+<h3 id="bcnf-and-fd-preservation">*BCNF and FD Preservation</h3>
 <p>Constraints on FDs, are <strong>costly</strong> to check in practice, unless they pertain to <strong>only one</strong> relation.</p>
-<p>If test only those DFs on <strong>each</strong> individual relation of a decomposition to ensure <strong>all</strong> FDs hold, then that decomposition is <strong>dependency preserving</strong>.</p>
+<p>If test only those FDs on <strong>each</strong> individual relation of a decomposition to ensure <strong>all</strong> FDs hold, then that decomposition is <strong>dependency preserving</strong>.</p>
 <blockquote>
 <p><em>Note</em>: because it is <strong>not always</strong> possible to achieve both BCNF and dependency preservation, we consider a <strong>weaker normal form</strong>, known as the 3NF.</p>
 </blockquote>
@@ -515,7 +511,7 @@ Figure 2: The relations between each norm
 <blockquote>
 <p>The FD can only be checked by <strong>the join of</strong> the decomposed relations.</p>
 </blockquote>
-<p>For example, consider <span class="math inline">\(R = (A, B, C)\)</span> and <span class="math inline">\(F = \{\A \to B, B \to C\}\)</span>.</p>
+<p>For example, consider <span class="math inline">\(R = (A, B, C)\)</span> and <span class="math inline">\(F = \{A \to B, B \to C\}\)</span>.</p>
 <ul>
 <li>Decomposition1: <span class="math inline">\(R_1 = (A, B)\)</span>, <span class="math inline">\(R_2 = (B, C)\)</span>
 <ul>
@@ -538,7 +534,7 @@ Figure 2: The relations between each norm
 <blockquote>
 <p>If a schema is in BCNF, it is also in 3NF.</p>
 </blockquote>
-<p><strong>Def</strong>. A schema <span class="math inline">\(R\)</span> is in <strong>3NF</strong> with respect to a FD set, if there are no non-prime attributes <span class="math inline">\(A\)</span> for which <span class="math inline">\(A\)</span> is transitive dependent on a key</p>
+<p><strong>Def</strong>. A schema <span class="math inline">\(R\)</span> is in <strong>3NF</strong> with respect to a FD set, if there are no non-primary attributes <span class="math inline">\(A\)</span> for which <span class="math inline">\(A\)</span> is transitive dependent on a key</p>
 <p>Consider a schema: <em>dept_advisor</em>(s_ID, i_ID, dept_name) with FDs: i_ID <span class="math inline">\(\to\)</span> dept_name and s_ID, dept_name <span class="math inline">\(\to\)</span> i_ID. Two candidate keys are {s_ID, dept_name} and {s_ID, i_ID}. <em>dept_advisor</em> is not in BCNF, however, <span class="math inline">\(R\)</span> is in 3NF.</p>
 <ul>
 <li>s_ID, dept_name is a super key</li>
@@ -559,7 +555,7 @@ Figure 2: The relations between each norm
 <h2 id="functional-dependency-fd-theory">Functional Dependency (FD) Theory</h2>
 <ul>
 <li>The theory shows which FDs are <strong>implied logically</strong> by <strong>a given set</strong> of FDs. (Armstrong’s Axioms)</li>
-<li>Algorithms generating <strong>lossless decompositions</strong> into <strong>BCNF</strong> and <strong>3ND</strong>.</li>
+<li>Algorithms generating <strong>lossless decompositions</strong> into <strong>BCNF</strong> and <strong>3NF</strong>.</li>
 <li>Algorithms testing if <strong>decomposition</strong> is <strong>dependency-preserving</strong>.</li>
 </ul>
 <blockquote>
@@ -632,25 +628,11 @@ Figure 2: The relations between each norm
 <p>Here is an example of computing attribute set closure. We suppose <span class="math inline">\(R = (A, B, C, G, H, I)\)</span>, <span class="math inline">\(F = \{A \to B, A \to C, CG \to H, CG \to I, B \to H\}\)</span>. Compute <span class="math inline">\((AG)^{+}\)</span>.</p>
 <ol type="1">
 <li><span class="math inline">\(res = AG\)</span></li>
-<li><span class="math inline">\(res = ABCG\)</span> &gt; <span class="math inline">\((A \to C)\)</span> and <span class="math inline">\((A \to B)\)</span></li>
-<li><span class="math inline">\(res = ABCGH\)</span> &gt; <span class="math inline">\((CG \subseteq ABCG)\)</span> and <span class="math inline">\((CG \to H)\)</span></li>
-<li><span class="math inline">\(res = ABCGHI\)</span> &gt; <span class="math inline">\((CG \subseteq ABCGH)\)</span> and <span class="math inline">\((CG \to I)\)</span></li>
+<li><span class="math inline">\(res = ABCG\)</span> (<span class="math inline">\((A \to C)\)</span> and <span class="math inline">\((A \to B)\)</span>)</li>
+<li><span class="math inline">\(res = ABCGH\)</span> (<span class="math inline">\((CG \subseteq ABCG)\)</span> and <span class="math inline">\((CG \to H)\)</span>)</li>
+<li><span class="math inline">\(res = ABCGHI\)</span> (<span class="math inline">\((CG \subseteq ABCGH)\)</span> and <span class="math inline">\((CG \to I)\)</span>)</li>
 </ol>
-<p>So <span class="math inline">\((AG)^{+} = R\)</span>, <span class="math inline">\(AG\)</span> <strong>is a superkey of</strong> <span class="math inline">\(R\)</span></p>
-<blockquote>
-<p>Is <span class="math inline">\(AG\)</span> a candidate key?</p>
-<ol type="1">
-<li>Is <span class="math inline">\(AG\)</span> a super key?
-<ul>
-<li>Does <span class="math inline">\(AG \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\(R \subseteq (AG)^{+}\)</span>?, yes</li>
-</ul></li>
-<li>Is any subset of <span class="math inline">\(AG\)</span> a superkey?
-<ul>
-<li>Does <span class="math inline">\(A \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\(R \subseteq (A)^{+}\)</span>?, no</li>
-<li>Does <span class="math inline">\(G \to R\)</span>? <span class="math inline">\(==\)</span> Is <span class="math inline">\(R \subseteq (G)^{+}\)</span>?, no</li>
-</ul></li>
-</ol>
-</blockquote>
+<p>So <span class="math inline">\((AG)^{+} = R\)</span>, <span class="math inline">\(AG\)</span> <strong>is a superkey of</strong> <span class="math inline">\(R\)</span>.</p>
 <p>We can use attribute closure algorithm to</p>
 <ol type="1">
 <li><strong>Test for super key</strong>
@@ -684,10 +666,10 @@ Figure 2: The relations between each norm
 <ol type="1">
 <li><p>Removing an attribute from the <strong>left</strong> side of a FD could <strong>make it a stronger constraint</strong>. If we have <span class="math inline">\(AB \to C\)</span>, we may remove <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>. The choice depends on what FD set <span class="math inline">\(F\)</span> happens to be. Suppose that <span class="math inline">\(F = \{AB \to C, A \to D, D \to C\}\)</span>, then we can show that <span class="math inline">\(F\)</span> logically implies <span class="math inline">\(A \to C\)</span>, making extraneous <span class="math inline">\(B\)</span> in <span class="math inline">\(AB \to C\)</span>.</p></li>
 <li><p>Removing an attribute from the <strong>right</strong> side of a FD could <strong>make it a weaker constraint</strong>. If we have <span class="math inline">\(AB \to CD\)</span> and remove <span class="math inline">\(C\)</span>, we get possibly weaker result <span class="math inline">\(AB \to D\)</span>. Because using just <span class="math inline">\(AB \to D\)</span>, we can no longer infer <span class="math inline">\(AB \to C\)</span>. But, depending on what FD set <span class="math inline">\(F\)</span> happens to be, we may remove <span class="math inline">\(C\)</span> from <span class="math inline">\(AB \to CD\)</span> safely. Suppose that <span class="math inline">\(F = \{AB \to CD, A \to C\}\)</span>. Even after replacing <span class="math inline">\(AB \to CD\)</span> by <span class="math inline">\(AB \to D\)</span>, we can still infer <span class="math inline">\(AB \to C\)</span> and thus <span class="math inline">\(AB \to CD\)</span>.</p></li>
-<li><p>Consider a set <span class="math inline">\(F\)</span> of FD and <span class="math inline">\(\alpha \to \beta\)</span> in F.</p>
+<li><p>Consider a set <span class="math inline">\(F\)</span> of FDs and <span class="math inline">\(\alpha \to \beta\)</span> in F.</p>
 <ul>
-<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\alpha\)</span>, if <span class="math inline">\(A \in \alpha\)</span>, and <span class="math inline">\(F\)</span> implies <span class="math inline">\((F - \{\alpha \to \beta\}) \cup {(\alpha - A) \to \beta} = F&#39;\)</span> (F’ F^{+}).</li>
-<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\beta\)</span>, if <span class="math inline">\(A \in \beta\)</span>, and the set of FDs <span class="math inline">\(F&#39; = (F - \{\alpha \to \beta\}) \cup \{\alpha \to (\beta - A)\}\)</span> implies <span class="math inline">\(F\)</span> (F (F’)^{+}).</li>
+<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\alpha\)</span>, if <span class="math inline">\(A \in \alpha\)</span>, and <span class="math inline">\(F\)</span> implies <span class="math inline">\((F - \{\alpha \to \beta\}) \cup {(\alpha - A) \to \beta} = F&#39;\)</span> (<span class="math inline">\(F&#39; \subseteq F^{+}\)</span>).</li>
+<li>Attribute <span class="math inline">\(A\)</span> is <strong>extraneous</strong> in <span class="math inline">\(\beta\)</span>, if <span class="math inline">\(A \in \beta\)</span>, and the set of FDs <span class="math inline">\(F&#39; = (F - \{\alpha \to \beta\}) \cup \{\alpha \to (\beta - A)\}\)</span> implies <span class="math inline">\(F\)</span> (<span class="math inline">\(F \subseteq (F&#39;)^{+}\)</span>).</li>
 </ul></li>
 </ol>
 <p>How to test if an attribute is extraneous? Here are two ways to make it.</p>
@@ -726,7 +708,7 @@ Figure 2: The relations between each norm
 <blockquote>
 <p><em>Note</em></p>
 <ol type="1">
-<li><p>Test for extraneous attributes done using <span class="math inline">\(F_c\)</span> not <span class="math inline">\(F\)</span>. IF an extraneous attribute is found, delete it from <span class="math inline">\(\alpha \to \beta\)</span></p></li>
+<li><p>Test for extraneous attributes done using <span class="math inline">\(F_c\)</span> not <span class="math inline">\(F\)</span>. If an extraneous attribute is found, delete it from <span class="math inline">\(\alpha \to \beta\)</span></p></li>
 <li><p>Union rule may become applicable after some extraneous attributes have been deleted, so it has to be reapplied.</p></li>
 <li><p>There may be <strong>several</strong> <span class="math inline">\(F_c\)</span> for a set <span class="math inline">\(F\)</span> of FDs.</p></li>
 </ol>
@@ -754,7 +736,6 @@ F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subs
 \]</span></p>
 <p>The set of FDs in <span class="math inline">\(F^{+}\)</span> that include only attributes in <span class="math inline">\(R_i\)</span>.</p>
 <p><strong>Def</strong>. Let <span class="math inline">\(F_i\)</span> be <strong>restriction</strong> of <span class="math inline">\(F\)</span> to <span class="math inline">\(R_i\)</span>. A decomposition is <strong>dependency preserving</strong>, if <span class="math inline">\((F_1 \cup F_2 \cup \cdots \cup F_n)^{+} = F^{+}\)</span></p>
-<p><em>Note</em>: Testing for dependency preservation take s exponential time.</p>
 </blockquote>
 <p><strong>Algorithm</strong>. How to test for dependency preservation? Check if a FD <span class="math inline">\(\alpha \to \beta\)</span> is preserved in decomposition <span class="math inline">\(R\)</span> of <span class="math inline">\(R_1\)</span>, <span class="math inline">\(R_2\)</span>, <span class="math inline">\(\cdots\)</span>, <span class="math inline">\(R_n\)</span>. We set <span class="math inline">\(res = \alpha\)</span> and repeat updating <span class="math inline">\(t = (res \cap R_i)^{+} \cap R_i\)</span>, <span class="math inline">\(res = res \cup t\)</span> for each <span class="math inline">\(R_i\)</span> in the decomposition until <span class="math inline">\(res\)</span> does not change. If <span class="math inline">\(res\)</span> contains all attributes in <span class="math inline">\(\beta\)</span>, the FD <span class="math inline">\(\alpha \to \beta\)</span> preserved.</p>
 <p>Test on <strong>all FDs</strong> in <span class="math inline">\(F\)</span> to check if a decomposition is dependency preserving</p>
@@ -774,7 +755,7 @@ F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subs
 <li>Using definition, because <span class="math inline">\(\{\{\text{sno} \to \text{dept}\} \cup \{\text{sno} \to \text{head}\}\}^{+} \neq F^{+}\)</span></li>
 <li>Using algorithm and checking if <span class="math inline">\(\text{dept} \to \text{head}\)</span> is preserved
 <ul>
-<li>result = <span class="math inline">\(\{text{dept}\}\)</span></li>
+<li>result = <span class="math inline">\(\{\text{dept}\}\)</span></li>
 <li><span class="math inline">\((\text{dept} \cap R_1)^{+} \cap R_1 = \{\text{dept}\}\)</span></li>
 <li><span class="math inline">\((\text{dept} \cap R_2)^{+} \cap R_2 = \phi\)</span></li>
 <li>so th FD is not preserved</li>
@@ -807,7 +788,7 @@ F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subs
 <li>If other methods can be used to determine whether or not <span class="math inline">\(\alpha\)</span> is the super key of sub-schema <span class="math inline">\(R_i\)</span>, then <span class="math inline">\(F^{+}\)</span> need not be computed.</li>
 </ul>
 </blockquote>
-<p>Given <span class="math inline">\(R\)</span>, <span class="math inline">\(F\)</span> holding on <span class="math inline">\(R\)</span>. We set <span class="math inline">\(res := \{R\}\)</span>. If there is a non-BCNF sub schema <span class="math inline">\(R_i\)</span> in <span class="math inline">\(res\)</span>, then let <span class="math inline">\(\alpha \to \beta\)</span> be a nontrivial FD that holds on <span class="math inline">\(R_i\)</span>, such that (1). <span class="math inline">\(\alpha\)</span> is not the super key for <span class="math inline">\(R_i\)</span>; (2). <span class="math inline">\(\alpha \cap \beta = \phi\)</span>. Then update <span class="math inline">\(res := \{(res - R_{i})\} \cup \{\{(R_i - \beta)\} \cup \{(\alpha, \beta)\}\}\)</span></p>
+<p>Given <span class="math inline">\(R\)</span>, <span class="math inline">\(F\)</span> holding on <span class="math inline">\(R\)</span>. We set <span class="math inline">\(res := \{R\}\)</span>. If there is a non-BCNF sub schema <span class="math inline">\(R_i\)</span> in <span class="math inline">\(res\)</span>, then let <span class="math inline">\(\alpha \to \beta\)</span> be a non-trivial FD that holds on <span class="math inline">\(R_i\)</span>, such that (1). <span class="math inline">\(\alpha\)</span> is not the super key for <span class="math inline">\(R_i\)</span>; (2). <span class="math inline">\(\alpha \cap \beta = \phi\)</span>. Then update <span class="math inline">\(res := \{(res - R_{i})\} \cup \{\{(R_i - \beta)\} \cup \{(\alpha, \beta)\}\}\)</span></p>
 <blockquote>
 <p><em>Note</em></p>
 <ul>
@@ -866,7 +847,7 @@ F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subs
 <p>(1). Consider schema <span class="math inline">\(R(X, Y, Z, W)\)</span> and <span class="math inline">\(F = \{X \to Z, Z \to X, Y \to XZ, W \to XZ\}\)</span> holds on <span class="math inline">\(R\)</span>. Give the lossless, dependency preserved decomposition into 3NF.</p>
 <ol type="1">
 <li><span class="math inline">\(\{YW\}\)</span> is the candidate key</li>
-<li><span class="math inline">\(F_c = \{X \to Z, Z \to X, Y \to Z, W \to X\}\)</span> (not only)</li>
+<li><span class="math inline">\(F_c = \{X \to Z, Z \to X, Y \to Z, W \to X\}\)</span> (not only one)</li>
 <li>On the basis of 3NF decomposition algorithm, the sub-schema responding to each functional dependency in <span class="math inline">\(F_c\)</span> are <span class="math inline">\(R_1 = (XZ)\)</span>, <span class="math inline">\(R_2 = (YZ)\)</span>, <span class="math inline">\(R_3 = (WX)\)</span></li>
 <li><span class="math inline">\(R_4 = (YW)\)</span></li>
 </ol>
@@ -892,9 +873,27 @@ F_i = \{\alpha \to \beta \mid \alpha \to \beta \in F^{+} \And \alpha \beta \subs
 <ol type="1">
 <li><p>Compute <span class="math inline">\((XZ)^{+}\)</span>.</p>
 <p><span class="math inline">\(XWZ\)</span></p></li>
-<li><p>Is the decomposition <span class="math inline">\(\rhp = \{R_1(X, Y, Z), R_2(Z, W, Q)\}\)</span> on <span class="math inline">\(R\)</span> a lossless join? Why?</p>
+<li><p>Is the decomposition <span class="math inline">\(\rho = \{R_1(X, Y, Z), R_2(Z, W, Q)\}\)</span> on <span class="math inline">\(R\)</span> a lossless join? Why?</p>
 <p>No. Because <span class="math inline">\(R_1 \cap R_2\)</span> can not infer both <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span>.</p></li>
-<li></li>
+<li><p>What is the highest normal form of <span class="math inline">\(R\)</span>? Why?</p>
+<p>Of course <span class="math inline">\(R\)</span> satisfies 1NF. The candidate keys are <span class="math inline">\(\{Q\}\)</span>, <span class="math inline">\(\{X, Y\}\)</span>, so the primary attributes are <span class="math inline">\(Q\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>. <span class="math inline">\(Z\)</span> and <span class="math inline">\(W\)</span> can be inferred by candidate key. And <span class="math inline">\(Z \to W\)</span>, <span class="math inline">\(Z\)</span> is not a super key, this FD is not trivial and <span class="math inline">\(W\)</span> is not in a candidate key. So the highest level is 2NF.</p></li>
+<li><p>Compute the canonical cover <span class="math inline">\(F_c\)</span>.</p>
+<p><span class="math inline">\(F_{c} = \{Q \to XY, Z \to W, XY \to ZQ\}\)</span></p></li>
+<li><p>Give a 3NF decomposition.</p>
+<p><span class="math inline">\(R_1 = (QXYZ)\)</span>, <span class="math inline">\(R_2 = (ZW)\)</span></p></li>
+</ol>
+<p>(2). The functional dependency set <span class="math inline">\(F = \{A \to C, C \to A, B \to A, D \to AC, B \to E\}\)</span> holds on the relation schema <span class="math inline">\(R = (A, B, C, D, E)\)</span>.</p>
+<ol type="1">
+<li><p>Compute <span class="math inline">\((AB)^{+}\)</span></p>
+<p><span class="math inline">\(ABCE\)</span></p></li>
+<li><p>List all the candidate keys of <span class="math inline">\(R\)</span>.</p>
+<p><span class="math inline">\(\{D, B\}\)</span></p></li>
+<li><p>What is the highest normal form of <span class="math inline">\(R\)</span>, and why?</p>
+<p>Not BCNF. Is 1NF. Not 2NF. Not 3NF.</p></li>
+<li><p>Compute the canonical cover <span class="math inline">\(F_c\)</span>.</p>
+<p><span class="math inline">\(F_{c} = \{A \to C, C \to A, B \to AE, D \to C\}\)</span></p></li>
+<li><p>Give a 3NF decomposition.</p>
+<p><span class="math inline">\(R_1 = (AC)\)</span>, <span class="math inline">\(R_2 = (ABE)\)</span>, <span class="math inline">\(R_3 = (CD)\)</span>, <span class="math inline">\(R_4 = (BD)\)</span>.</p></li>
 </ol>
 
                 

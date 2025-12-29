@@ -27,7 +27,7 @@
 <meta property="og:description" content="Join Expressions Def. Join operations take two relations and return as a result another relation. Def. Join operations is a Cartesian product requires that tuples in two relations match. Def. Join co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-19T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-26T15:35:41.291Z">
+<meta property="article:modified_time" content="2025-12-28T09:04:41.214Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          556 字
+          552 字
         
       </span>
     
@@ -347,8 +347,6 @@ Table 2: Prereq table
 </div>
 <h3 id="natural-join-operations">Natural Join Operations</h3>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> prereq;<br></code></pre></td></tr></table></figure>
-<p>Which is equivalent to the following SQL query if only <strong>exist one same name column</strong>.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> course <span class="hljs-keyword">JOIN</span> prereq <span class="hljs-keyword">ON</span> course.course_id <span class="hljs-operator">=</span> prereq.course_id;<br></code></pre></td></tr></table></figure>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <table>
 <thead>
@@ -650,7 +648,7 @@ Table 8: The result table of full outer join with using clause
 <li>View is known as <strong>virtual relation/table</strong>
 <ul>
 <li>Only the <strong>definition of view</strong> itself is stored in DBS, the tuples of the view is stored in relations</li>
-<li>Evaluation of view is reduced to evaluation of <strong>relation algebra expression</strong> that defines the view</li>
+<li>Evaluation of view is reduced to evaluation of <strong>relation algebra expression</strong> that defines the view (chapter 16)</li>
 </ul></li>
 <li>Differences between the <strong>with</strong> clause and the <strong>create view</strong> clause
 <ul>
@@ -661,8 +659,8 @@ Table 8: The result table of full outer join with using clause
 <p><strong>Def</strong>. Any relation that is not of the <strong>conceptual</strong> model, but is made visible to a user as a <strong>virtual relation</strong>.</p>
 <p><strong>Def</strong>. <strong>View</strong> is defined using the <strong>create view</strong> statement <code>CREATE VIEW view_name AS &lt;query expression&gt;</code>.</p>
 <ul>
-<li>The view name can be used to refer to the <strong>virtual</strong></li>
-<li>View definition is <strong>not the same as</strong> creating a new relation. A view definition causes the saving of an expression</li>
+<li>The view name can be used to refer to the <strong>virtual relation</strong></li>
+<li>View definition is <strong>not the same as</strong> creating a new relation. A view definition causes the <strong>saving of an expression</strong></li>
 </ul>
 <p>For example,</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQl"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> department_total_salary(dept_name, total_salary) <span class="hljs-keyword">AS</span><br><span class="hljs-keyword">SELECT</span> dept_name, <span class="hljs-built_in">SUM</span>(salary)<br><span class="hljs-keyword">FROM</span> instructor<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dept_name;<br></code></pre></td></tr></table></figure>
@@ -766,7 +764,7 @@ Table 9: Classification of integrity constraints
 <h3 id="type-conversion">Type Conversion</h3>
 <ul>
 <li><code>CAST e AS t</code>: convert a <strong>character string</strong> e to the type t, e.g. <code>cast '2017-07-20</code> AS DATE`</li>
-<li><code>EXTRACT VALUE d FROM DAY (or TIME)</code>: for day or time values d, its individual fields can be <strong>extracted</strong>, e.g. <code>EXTRACT (year FROM 2017-07-20) = 2017</code></li>
+<li><code>EXTRACT VALUE d FROM DAY (or TIME)</code>: for day or time values d, its individual fields can be <strong>extracted</strong>, e.g. <code>EXTRACT year FROM ’2017-07-20‘ = 2017</code></li>
 </ul>
 <h3 id="default-values">Default Values</h3>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><br><span class="hljs-keyword">CREATE TABLE</span> student (<br>  ID <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">5</span>),<br>  name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT NULL</span>,<br>  dept_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>),<br>  tot_cred <span class="hljs-type">numeric</span>(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,<br>  <span class="hljs-keyword">PRIMARY KEY</span> (ID)<br>);<br></code></pre></td></tr></table></figure>
@@ -785,9 +783,9 @@ Table 9: Classification of integrity constraints
 <h3 id="complex-check-conditions-and-assertions">Complex Check Conditions and Assertions</h3>
 <p>Some constructs such as <strong>check</strong> and <strong>assertion</strong> are defined to specify the complex integrity constraints. However, they are not currently supported by most database systems.</p>
 <p>An <strong>assertion</strong> is a predicate expressing a condition that we wish the database always to <strong>satisfy</strong>. An assertion takes the form <code>CREATE ASSERTION &lt;assertion_name&gt; CHECK &lt;predicate&gt;</code>. This testing may introduce a significant amount of <strong>overhead</strong>, hence assertions should be used with great care. Here is an example</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> ASSERTION credits_earned_constraints <span class="hljs-keyword">CHECK</span><br>(<br>  <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> ID <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> tot_cred <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> course <br>  <span class="hljs-keyword">WHERE</span> student.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">AND</span> grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span>)<br>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> ASSERTION credits_earned_constraints <span class="hljs-keyword">CHECK</span><br>(<br>  <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (<span class="hljs-keyword">SELECT</span> ID <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> tot_cred <span class="hljs-operator">&lt;&gt;</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">SUM</span>(credits) <span class="hljs-keyword">FROM</span> takes <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> course <span class="hljs-keyword">WHERE</span> student.ID <span class="hljs-operator">=</span> takes.ID <span class="hljs-keyword">AND</span> grade <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">AND</span> grade <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;F&#x27;</span>))<br>);<br></code></pre></td></tr></table></figure>
 <h2 id="index-definition-in-sql">Index Definition in SQL</h2>
-<p>Many queries reference <strong>only a small proportion</strong> of the records in a table. It is <strong>efficient</strong> to read every record to find a record with particular value.</p>
+<p>Many queries reference <strong>only a small proportion</strong> of the records in a table. It is <strong>inefficient</strong> to read every record to find a record with particular value.</p>
 <p><strong>Def</strong>. An <strong>index</strong> on an attribute of a relation is a data structure that allows the DBS to find those tuples in the relation that have a specified value for that attribute efficiently, <strong>without scanning through all the tuples of the relation</strong>.</p>
 <p>Create an index with the <strong>create index</strong> command: <code>CREATE INDEX &lt;name&gt; ON &lt;relation_name&gt; (&lt;attribute_name&gt;);</code></p>
 <blockquote>

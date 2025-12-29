@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/overflow%20chaining.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Indexing/seek%20and%20scan.png">
 <meta property="article:published_time" content="2025-12-01T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T13:16:56.443Z">
+<meta property="article:modified_time" content="2025-12-28T15:07:14.333Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -348,7 +348,7 @@ Table 1: index file form
 <div style="text-align: center; font-style: italic;">
 Table 2: example index file with ordered indices
 </div>
-<p><strong>Def</strong>. <strong>Hash Indices</strong> <strong>Hash function</strong> map search key to the address of the records.</p>
+<p><strong>Def</strong>. <strong>Hash Indices</strong>. <strong>Hash function</strong> maps search key to the address of the records.</p>
 <ul>
 <li>The records are stored in <strong>buckets</strong>.</li>
 <li>The <strong>number</strong> of buckets is the address of the records.</li>
@@ -393,7 +393,7 @@ Table 2: example index file with ordered indices
 <blockquote>
 <p>Index record points to a <strong>bucket</strong> that contains pointers to the actual records with that particular search key value.</p>
 </blockquote>
-<p><strong>Def</strong>. <strong>Index-Sequential File</strong> Ordered sequential file with a primary/clustering index on the search key.</p>
+<p><strong>Def</strong>. <strong>Index-Sequential File</strong>. Ordered sequential file with a primary/clustering index on the search key.</p>
 <blockquote>
 <ol type="1">
 <li>Sequential scan using <strong>primary index</strong> is efficient.</li>
@@ -411,7 +411,7 @@ Table 2: example index file with ordered indices
 <li>The file contains <span class="math inline">\(10240 / 128 = 80\)</span> records.</li>
 <li>A block holds <span class="math inline">\(1024 / 128 = 8\)</span> records.</li>
 <li>The file is stored in <span class="math inline">\(10240 / 1024 = 10\)</span> blocks.</li>
-<li>Percentage <span class="math inline">\(= 10 / 80 = 12.5 \%\)</span></li>
+<li>Percentage <span class="math inline">\(= 1 / 8 = 12.5 \%\)</span></li>
 </ul>
 <blockquote>
 <p>按照记录存储顺序，依次访问每个记录时，每个记录的访问都对应一个 I/O 请求。每次 I/O 访问，DBMS 将 1 个 block 中的 8 个记录读取到内存 buffer 中，即当后续再访问这 8 个记录时，直接从 buffer 中读，无需访问 disk，即无需 I/O 访问。每 8 个 I/O 请求导致 1 个实际 I/O 操作。</p>
@@ -507,7 +507,7 @@ Table 3: typical B<sup>+</sup>-tree node structure
 <li><span class="math inline">\(P_n\)</span>: The search keys to which <span class="math inline">\(P_n\)</span> points have values. <span class="math inline">\(K_{n - 1} \leq P_{n}\)</span>.</li>
 </ol>
 <h3 id="non-unique-keys">Non-unique Keys</h3>
-<p><strong>Def</strong>. Non-unique Keys If a search key <span class="math inline">\(a_i\)</span> is not unique, create an index on a <strong>composite key</strong><span class="math inline">\((a_i, A_p)\)</span>, which is unique. <span class="math inline">\(A_p\)</span> could be a primary key, or any other attribute that guarantees uniqueness.</p>
+<p><strong>Def</strong>. <strong>Non-Unique Keys</strong>. If a search key <span class="math inline">\(a_i\)</span> is not unique, create an index on a <strong>composite key</strong><span class="math inline">\((a_i, A_p)\)</span>, which is unique. <span class="math inline">\(A_p\)</span> could be a primary key, or any other attribute that guarantees uniqueness.</p>
 <p>Search for <span class="math inline">\(a_i = v\)</span> by a range search on composite key. More I/O operations are needed to fetch the actual records</p>
 <ul>
 <li>if the index is <strong>clustering</strong>, all accesses are sequential</li>
@@ -621,7 +621,7 @@ Figure 2: Possible buckets
 Figure 3: Overflow chaining
 </div>
 <h2 id="multiple-key-access">Multiple-Key Access</h2>
-<p><strong>Def</strong>. Composite Search Keys Composite search keys are search keys containing <strong>more than one</strong> attribute. e.g.</p>
+<p><strong>Def</strong>. <strong>Composite Search Keys</strong>. Composite search keys are search keys containing <strong>more than one</strong> attribute. e.g.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> INDEX index_name <span class="hljs-keyword">ON</span> table_name(column1, column2, ...);<br></code></pre></td></tr></table></figure>
 <p><strong>Def</strong>. Lexicographic Ordering. <span class="math inline">\((a_1, a_2) &lt; (b_1, b_2)\)</span> if either <span class="math inline">\(a_1 &lt; b_1\)</span> or <span class="math inline">\(a_1 = b_1\)</span> and <span class="math inline">\(a_2 &lt; b_2\)</span>.</p>
 <blockquote>

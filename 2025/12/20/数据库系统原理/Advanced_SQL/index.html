@@ -27,7 +27,7 @@
 <meta property="og:description" content="Accessing SQL from a Programming Language  API (application program interface) to interact with DB server Application conducts data processing, and makes calls to  Connect with the database server Se">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-20T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-26T07:49:19.253Z">
+<meta property="article:modified_time" content="2025-12-28T09:30:03.586Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          304 字
+          306 字
         
       </span>
     
@@ -291,7 +291,7 @@
 <ol type="1">
 <li>Dynamic SQL
 <ul>
-<li>General-purpose program: connects to and communicates with DB server using <strong>functions</strong></li>
+<li>General-Purpose program: connects to and communicates with DB server using <strong>functions</strong></li>
 <li>Program <strong>constructs</strong> an SQL query as <strong>a character string</strong>, <strong>submit</strong> the query, and <strong>retrieve</strong> result into program variables <strong>a tuple at a time</strong>.</li>
 <li>Includes <strong>JDBC</strong> with Java and <strong>ODBC</strong> with C, C++, etc.</li>
 </ul></li>
@@ -311,18 +311,18 @@
 <ul>
 <li><strong>Open</strong> a connection, named as <code>conn</code>
 <ul>
-<li>Using the <code>getConnection</code> method od the <code>DriverManager</code> class</li>
+<li>Using the <code>getConnection</code> method of the <code>DriverManager</code> class</li>
 <li>Parameters: <code>(URL, user_identifier, password)</code></li>
 </ul></li>
 <li><strong>Create</strong> a SQL statement object on the connection <code>conn</code>
 <ul>
 <li>Using the <code>createStatement</code> method</li>
-<li>Its statement handle is named as <code>stmt</code></li>
+<li>Its statement handler is named as <code>stmt</code></li>
 <li>Invoke methods that <strong>ship</strong> an SQL statement foe execution</li>
 </ul></li>
 <li><strong>Update</strong> to database
 <ul>
-<li>Using the <code>stmt.executeUpdate("SQL")</code></li>
+<li>Using the <code>stmt.executeUpdate("&lt;SQL&gt;")</code></li>
 </ul></li>
 <li><strong>Execute</strong> query and fetch and print results
 <ul>

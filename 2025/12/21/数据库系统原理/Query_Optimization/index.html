@@ -27,7 +27,7 @@
 <meta property="og:description" content="Based on 12 rules to optimize relational algebra expression">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-21T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T13:38:36.826Z">
+<meta property="article:modified_time" content="2025-12-29T01:58:03.889Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          906 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          10 分钟
+          8 分钟
         
       </span>
     
@@ -312,7 +312,7 @@
 <ul>
 <li>Definition of <span class="math inline">\(\theta\)</span> join: <span class="math inline">\(\sigma_{\theta}(E_1 \times E_2) = E_1 \Join_{\theta} E_2\)</span></li>
 </ul>
-<p>e.g. <span class="math inline">\(\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{\text{instructor}} \Join_{\text{instructor.ID} = \text{teaches.ID}} \text{teaches}) = \text{instructor} \Join_{\text{instructor.ID} = \text{teaches.ID} \land \text{dept\_name} = \text{&#39;Music&#39;}} \text{teaches}\)</span></p></li>
+<p>e.g. <span class="math inline">\(\sigma_{\text{dept\_name} = \text{&#39;Music&#39;}} (\text{instructor} \Join_{\text{instructor.ID} = \text{teaches.ID}} \text{teaches}) = \text{instructor} \Join_{\text{instructor.ID} = \text{teaches.ID} \land \text{dept\_name} = \text{&#39;Music&#39;}} \text{teaches}\)</span></p></li>
 <li><p>Theta join operations are commutative</p>
 <p><span class="math display">\[
 E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1
@@ -431,7 +431,7 @@ E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1
 <li>利用以连接操作代替相邻的选择和笛卡尔乘积操作</li>
 <li>将查询树上投影操作尽可能下移，早执行投影操作，减少中间计算结果</li>
 </ol>
-<p>Here are some examples</p>
+<p>Here an example</p>
 <p>(1). Given</p>
 <ul>
 <li><em>S</em>(sID, sname, age, sex)</li>
@@ -456,37 +456,6 @@ E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1
 <p><span class="math display">\[
 \Pi_{\text{sname}} (\Pi_{\text{sname, sID}} (\sigma_{(\text{sex = male})} (\text{S})) \Join_{(\text{S.sID = SC.sID})} \Pi_{\text{sID}} (\sigma_{\text{grade} &gt; 90} (\text{SC})))
 \]</span></p>
-<p>(2). Consider the insurance DB</p>
-<ul>
-<li><em>Person</em>(<u>driver_id</u>, name, year)</li>
-<li><em>Car</em>(<u>license</u>, model, year)</li>
-<li><em>Accident</em>(<u>report_number</u>, date, location)</li>
-<li><em>Participated</em>(<u>driver_id</u>, <u>license</u>, <u>report_number</u>, damage_amount)</li>
-</ul>
-<p>(a). Find out the <strong>driver name, license, report_number</strong> of the <strong>accidents</strong> which happened in Beijing and before May 3, 2024.</p>
-<p>The SQL statement is</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> name, license, Accident.report_number<br><span class="hljs-keyword">FROM</span> Person, Accident, Participated<br><span class="hljs-keyword">WHERE</span> location <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Beijing&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-type">date</span> <span class="hljs-operator">&lt;</span> <span class="hljs-string">&#x27;5/3/2024&#x27;</span> <span class="hljs-keyword">AND</span> Participated.driver_id <span class="hljs-operator">=</span> Person.driver_id <span class="hljs-keyword">AND</span> Participated.report_number <span class="hljs-operator">=</span> Accident.report_number;<br></code></pre></td></tr></table></figure>
-<p>The algebra expression of above statement is</p>
-<p><span class="math display">\[
-\Pi_{\text{name, license, Accident.report\_number}} \\
-(\sigma_{\text{location = &#39;Beijing&#39;} \land \text{date &lt; &#39;5/3/2024&#39;} \land \text{Participated.driver\_id = Person.driver\_id} \land \text{Participated.report\_number = Accident.report\_number}} \\
-(\text{Person} \times \text{Participated} \times \text{Accident}))
-\]</span></p>
-<p>(b). Give the initial query tree for this query</p>
-<p>(c). Construct an optimized relation algebra expression</p>
-<p><span class="math display">\[
-\Pi_{\text{name, license, Accident.report\_number}} \\
-(\Pi_{\text{name, license, report\_number}}((\Pi_{\text{name, drive\_id}}(\text{Person}) \Join_{\text{Participated.driver\_id = Person.driver\_id}} (\Pi_{\text{drive\_id, report\_number, license}}\text{Participated}))) \\
-\Join_{\text{Participated.report\_number = Accident.report\_number}} (\Pi_{\text{report\_number}}(\sigma_{\text{location = &#39;Beijing&#39;} \land \text{date &lt; &#39;5/3/2024&#39;}}\text{Accident})))
-\]</span></p>
-<p>(3). Consider</p>
-<ul>
-<li><em>Employee</em>(<u>Employee#</u>, Name, Address, Super-E#, E-D#)</li>
-<li><em>Department</em>(<u>D#</u>, Dname, manager#, depart-location)</li>
-<li><em>Project</em>(<u>P#</u>, Pname, Plocation, P-D#)</li>
-</ul>
-<p>For projects located in Harbin, list their project number (P#), department number (P-D#), the name of the department manager, and the manager’s address.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> P#, P<span class="hljs-operator">-</span>D#, Name, Address<br><span class="hljs-keyword">FROM</span> Project, Employee, Department<br><span class="hljs-keyword">WHERE</span> Plocation <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Harbin&#x27;</span> <span class="hljs-keyword">AND</span> manager# <span class="hljs-operator">=</span> Employee# <span class="hljs-keyword">AND</span> D# <span class="hljs-operator">=</span> P<span class="hljs-operator">-</span>D#;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -570,9 +539,9 @@ E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/12/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Transactions/" title="Transactions">
+                      <a href="/2025/12/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Transactions/" title="Chapter 17: Transactions">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Transactions</span>
+                        <span class="hidden-mobile">Chapter 17: Transactions</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
