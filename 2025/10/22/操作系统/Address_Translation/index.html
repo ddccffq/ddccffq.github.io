@@ -21,7 +21,7 @@
   
     <meta name="description" content="Address Translation Concept  From virtual address to physical address.   Memory protection（内存保护） 地址转换允许操作系统为每个进程分配独立的虚拟地址空间。这样，一个进程无法访问或修改其他进程的内存区域，从而防止恶意或错误的访问，提升系统安全性。 Memory sharing（内存共享） 通过地址转换，多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Address Translation">
+<meta property="og:title" content="6: Address Translation">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
 <meta property="og:description" content="Address Translation Concept  From virtual address to physical address.   Memory protection（内存保护） 地址转换允许操作系统为每个进程分配独立的虚拟地址空间。这样，一个进程无法访问或修改其他进程的内存区域，从而防止恶意或错误的访问，提升系统安全性。 Memory sharing（内存共享） 通过地址转换，多">
@@ -32,8 +32,10 @@
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20directory%20entry.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20table%20entry.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Memory%20management%20unit.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/top%20segment.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Address.png">
 <meta property="article:published_time" content="2025-10-22T11:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-23T13:34:30.492Z">
+<meta property="article:modified_time" content="2025-12-31T06:11:49.643Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -41,7 +43,7 @@
   
   
   
-  <title>Address Translation - ddccffq&#39;s Blog</title>
+  <title>6: Address Translation - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Address Translation"></span>
+            <span id="subtitle" data-typed-text="6: Address Translation"></span>
           
         </div>
 
@@ -230,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          2.4k 字
         
       </span>
     
@@ -241,7 +243,7 @@
         
         
         
-          14 分钟
+          21 分钟
         
       </span>
     
@@ -278,7 +280,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Address Translation</h1>
+            <h1 id="seo-header">6: Address Translation</h1>
             
             
               <div class="markdown-body">
@@ -304,11 +306,25 @@
 <li><p><strong>Portability（可移植性）</strong><br>
 虚拟地址空间让程序无需关心物理内存布局，提升了软件的可移植性。程序可以在不同硬件或操作系统上运行，而无需修改内存访问逻辑。</p></li>
 </ol>
+<ul>
+<li>When translation exists, processor uses virtual addresses, physical memory uses physical addresses
+<ul>
+<li>Not every processor/OS has address translation, e.g., certain embedded chips</li>
+</ul></li>
+<li>Address translation involves intensive hardware-OS cooperation</li>
+<li><strong>Address space</strong>: all the addresses and state a process can touch
+<ul>
+<li>Each process and kernel has different address space</li>
+</ul></li>
+</ul>
 <h2 id="segmentation">Segmentation</h2>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Segmented%20Memory.png" srcset="/img/loading.gif" lazyload alt="Segmented Memory"><figcaption aria-hidden="true">Segmented Memory</figcaption>
 </figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: Segmentation with a segment table
 </div>
 <p>在这一页的分段存储（Segmented Memory）图示中，virtual address（虚拟地址）的结构由两部分组成：</p>
 <ul>
@@ -316,7 +332,7 @@
 <li><strong>Offset（偏移寄存器）</strong>：表示在该段内的偏移量，即访问该段内的具体位置。</li>
 </ul>
 <p>虚拟地址结构可以用如下形式表示： <span class="math display">\[
-\text{Virtual Address} = (\text{Segment},\ \text{Offset})
+\text{Virtual Address} = (\text{Segment}, \text{Offset})
 \]</span></p>
 <p>图中的 “+” 和 “&gt;” 的意义如下：</p>
 <ul>
@@ -333,10 +349,10 @@
 </ol>
 <p>这样设计既实现了内存保护，也支持灵活的内存分布和访问控制。</p>
 <blockquote>
-<p>可以看到那张图最右边的 physical memory 中有许多 holes，为什么会形成这些 holes？如果一个 process branches into these holes 会发生什么？</p>
+<p>可以看到 Figure 1 最右边的 physical memory 中有许多 holes，为什么会形成这些 holes？如果一个 process branches into these holes 会发生什么？</p>
 </blockquote>
 <ul>
-<li>为什么物理内存会有 holes（空洞）
+<li>为什么物理内存会有 holes（空洞）(Why we abandon segmentation)
 <ul>
 <li>动态分配/释放：进程创建、退出或调整段/页大小后，物理上被释放的区域会留下不连续的空闲区（外部碎片）。<br>
 </li>
@@ -371,29 +387,74 @@
 <li>而大多数现代系统只用分段机制来管理粗粒度的内存区域（如代码段、数据段等），不再为每个小对象单独分段。</li>
 </ul>
 </blockquote>
+<p>The power of segmentation</p>
+<ul>
+<li>access control</li>
+<li>code sharing (library routine)</li>
+<li>inter-process communication</li>
+<li>efficient management of dynamically allocated memory</li>
+</ul>
+<blockquote>
+<p>Each process has its own segment table</p>
+</blockquote>
+<p>The principle downside of segmentation: overhead of managing a large number of variable size and dynamically growing memory segments</p>
+<ul>
+<li>external fragmentation: free space becomes <strong>noncontiguous</strong></li>
+<li>compacting the memory is very slow</li>
+<li>it becomes even more complex if the segments can grow (like heap)</li>
+</ul>
 <h2 id="paging">Paging</h2>
-<h3 id="single-level-paging">Single-level Paging</h3>
+<p><strong>Def</strong>. <strong>Paging</strong>: allocate memory in <strong>fixed-sized</strong> chunks called <strong>page frames</strong>.</p>
+<p>A page table stores for each process whose entries contain <strong>pointers</strong> to the page frames.</p>
+<ul>
+<li>More compact than segment table because it does not need to store “bound”</li>
+</ul>
+<blockquote>
+<p>Memory allocation becomes very simple: find a page frame.</p>
+</blockquote>
+<h3 id="single-level-paging">Single-Level Paging</h3>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/One-level%20page%20table.png" srcset="/img/loading.gif" lazyload alt="One-level page table"><figcaption aria-hidden="true">One-level page table</figcaption>
 </figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: One-Level page table example
 </div>
 <p>单级页表虽然解决了很多问题（如支持页面共享），但<strong>页表本身可能非常大</strong>，甚至<strong>超过进程实际使用的内存</strong>。</p>
 <ul>
 <li>对于大地址空间，每个进程都需要分配完整的页表，即使实际只用到很少的页面。</li>
 <li>这会导致大量内存浪费，尤其是进程数量多或每个进程实际用到的页面很少时。</li>
 </ul>
+<blockquote>
+<p>页内偏移 offset 由<strong>页的大小</strong>决定，我们应该设计一个能<strong>恰好</strong>访问整个页的 offset。</p>
+<p>page table 是一个<strong>数组</strong>，基于下标访问，也就是说，一旦创建，必定占用一定大小的内存空间。</p>
+<p>在 Figure 2 中，假设页的大小为 <span class="math inline">\(4 \ \text{KB}\)</span>，所以我们需要能映射范围最大为 <span class="math inline">\(2^{12}\)</span> 的 offset。</p>
+<p>在 Figure 2 中，我们设计的分页，一个进程能访问的最大虚拟地址为 <span class="math inline">\(2^{32} - 1\)</span>，但实际能访问的物理地址也是 <span class="math inline">\(2^{32} - 1\)</span>，这是因为 page table 中的 frame 也是 <span class="math inline">\(20\)</span> 位。</p>
+<p>整个 page table 的大小为，<span class="math inline">\(2^{20} \times 4 \ \text{bytes} = 4 \ \text{MB}\)</span>。这个数值大吗？需要注意的是，每一个进程都有一个大小为 <span class="math inline">\(4 \ \text{MB}\)</span> 的 page table，进程过多会占用巨大内存。这也引出了一个问题，实际上一个进程大概率用不完 <span class="math inline">\(4 \ \text{MB}\)</span> 大小的 page table，从而导致浪费</p>
+</blockquote>
 <h3 id="multi-level-paging">Multi-level Paging</h3>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Multi-level%20Paging.png" srcset="/img/loading.gif" lazyload alt="Multi-level Paging"><figcaption aria-hidden="true">Multi-level Paging</figcaption>
 </figure>
 </div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: Multi-Level page table example
+</div>
+<blockquote>
+<p>假设 index 都是 <span class="math inline">\(10 \ \text{bits}\)</span>，则此时一个 page table 大小好为 <span class="math inline">\(2^{10} \times 4 \ \text{bytes} = 4 \ \text{KB}\)</span></p>
+<p>x86 中有一个<strong>寄存器</strong>，<code>CR3</code>，指向 page directory 的<strong>起始地址</strong>。进程与进程之间进行切换时只需要切换 <code>CR3</code> 即可。<code>CR3</code> 保存在 PCB 中。</p>
+<p>假设一个进程只用到 <span class="math inline">\(1 \ \text{KB}\)</span> 的内存，对一级页表，需要 <span class="math inline">\(4 \ \text{MB}\)</span> 的内存，对多级页表需要 <span class="math inline">\(8 \ \text{KB}\)</span> 的内存。</p>
+</blockquote>
 <h4 id="page-directory-entry">Page Directory Entry</h4>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20directory%20entry.png" srcset="/img/loading.gif" lazyload alt="page directory entry"><figcaption aria-hidden="true">page directory entry</figcaption>
 </figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: Page Directory Entry structure
 </div>
 <h4 id="page-table-entry">Page Table Entry</h4>
 <div style="display: block; margin: 0 auto; width: fit-content">
@@ -401,30 +462,164 @@
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/page%20table%20entry.png" srcset="/img/loading.gif" lazyload alt="page table entry"><figcaption aria-hidden="true">page table entry</figcaption>
 </figure>
 </div>
+<div style="text-align: center; font-style: italic;">
+Figure 5: Page Table Entry structure
+</div>
 <h3 id="memory-management-unit">Memory Management Unit</h3>
-<blockquote>
-<p>The hardware that actually does the translation, usually located in CPU.</p>
-</blockquote>
+<p><strong>Def</strong>. <strong>Memory Management Unit</strong> (MMU): the hardware that actually does the translation, usually located in CPU.</p>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Memory%20management%20unit.png" srcset="/img/loading.gif" lazyload alt="Memory management unit"><figcaption aria-hidden="true">Memory management unit</figcaption>
 </figure>
 </div>
+<div style="text-align: center; font-style: italic;">
+Figure 6: The function of MMU
+</div>
+<blockquote>
+<p>MMU 会与 <code>CR3</code> 寄存器相连。</p>
+<p>映射的关系是由操作系统决定的，也就是操作系统<strong>填入 MMU</strong>，但这个映射过程是由硬件完成的，效率会更高。</p>
+</blockquote>
+<p>Page size shall be neither too small or too large</p>
+<ul>
+<li>too small: <strong>large page table sizes</strong>; low cache <strong>hit ratio</strong></li>
+<li>too large: <strong>memory waste</strong></li>
+<li>typical range: <span class="math inline">\(512 \ \text{B}\)</span> to <span class="math inline">\(8192 \ \text{B}\)</span>; default <span class="math inline">\(4 \ \text{KB}\)</span> on Linux</li>
+</ul>
+<p>Each process has their own page table</p>
+<ul>
+<li>the same address of different processes translate to different physical locations, <strong>unless the page is shared</strong></li>
+</ul>
+<p>Pages tables can be <strong>sparse</strong>, because not every <strong>PDE</strong> has a corresponding page table.</p>
 <h3 id="page-fault">Page Fault</h3>
 <ul>
-<li><strong>Page Fault（缺页中断）</strong>：当 CPU/MMU 访问的虚拟地址没有被映射到物理内存时发生。
+<li><strong>Page Fault（缺页中断 exception）</strong>：当 CPU/MMU 访问的虚拟地址没有被映射到物理内存时发生。
 <ul>
 <li><strong>软缺页（Pure/Soft）</strong>：如页面被换出或共享页未驻留，操作系统处理后可继续访问。</li>
 <li><strong>硬缺页（Invalid/Hard）</strong>：如写入只读页、访问未分配页等，通常导致段错误（Segmentation fault）。</li>
 </ul></li>
-<li><strong>现代操作系统中的 malloc 行为</strong>：
+<li><strong>现代操作系统中的 <code>malloc</code> 行为</strong>：
 <ul>
-<li>malloc 只分配虚拟地址空间，<strong>不会立即分配物理内存</strong>。</li>
+<li><code>malloc</code> 只分配虚拟地址空间，<strong>不会立即分配物理内存</strong>。</li>
 <li>只有当程序真正访问这块内存时，才通过缺页中断分配物理页。</li>
 <li>这样做可以节省物理内存，提高资源利用率。</li>
 </ul></li>
 </ul>
+<h3 id="x86-multi-level-paging">x86 Multi-Level Paging</h3>
+<ul>
+<li>Why PDE/PTE uses <span class="math inline">\(20\)</span> bits for addressing the next-level table or page?
+<ul>
+<li>page directory/tables are always page-aligned (<span class="math inline">\(\% 4 \ \text{K} = 0\)</span>)</li>
+</ul></li>
+<li>What needs to be switched on a context switch?
+<ul>
+<li>the page directory, stored in <code>CR3</code></li>
+</ul></li>
+<li>If a process needs <span class="math inline">\(1\)</span> page for its data, how many it will actual take?
+<ul>
+<li><span class="math inline">\(3\)</span> in total (<span class="math inline">\(1\)</span> page directory, <span class="math inline">\(1\)</span> page table, <span class="math inline">\(1\)</span> page for its data)</li>
+</ul></li>
+<li>The largest address can be accessed in 2-level paging (<span class="math inline">\(32\)</span> bits address)?
+<ul>
+<li><span class="math inline">\(2^{10} \times 2^{10} \times 4 \ \text{K} = 4 \ \text{G}\)</span></li>
+</ul></li>
+<li><code>CR3</code> stores the virtual or physical address of the page directory?
+<ul>
+<li>physical address</li>
+<li>How about the PDE/PTE?
+<ul>
+<li>physical address</li>
+</ul></li>
+</ul></li>
+<li>How can kernel manipulate the page directory/tables?
+<ul>
+<li>e.g., getting the physical address of a given virtual address?
+<ul>
+<li>想得到 <code>a : b : c</code> 这个虚拟地址的物理地址</li>
+<li>我们可以得到的 <code>CR3</code> 寄存器的物理地址</li>
+<li>新建一个虚拟地址，将其指向的页目录映射到 <code>CR3</code>，也就是自映射；将其指向的页表项指向 <code>a</code>，偏移设置为 <code>c</code></li>
+<li>我们对新虚拟地址取值，值是原先虚拟地址的对应页表的值，也就是 page frame 这个物理地址一部分，将其与 <code>c</code> 拼接，得到真正的物理地址</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Pros</p>
+<ul>
+<li>Only need to allocate as many page table entries as we need for application
+<ul>
+<li>in other words, sparse address spaces are easy</li>
+</ul></li>
+<li>Easy memory allocation</li>
+<li>Easy sharing</li>
+</ul>
+<p>Cons</p>
+<ul>
+<li>One pointer per page (typically <span class="math inline">\(4 \ \text{K}\)</span> - <span class="math inline">\(16 \ \text{K}\)</span> pages today)</li>
+<li>Page tables need to be contiguous
+<ul>
+<li>however, previous example keeps tables to exactly one page in size</li>
+</ul></li>
+<li>Two (or more, if <span class="math inline">\(&gt; 2\)</span> levels) lookups per reference
+<ul>
+<li>seems very expensive</li>
+</ul></li>
+</ul>
+<h2 id="paging-with-segments">Paging with Segments</h2>
+<p>What about a tree of tables?</p>
+<ul>
+<li>lowest level page table <span class="math inline">\(\Rightarrow\)</span> memory still allocated with bitmap</li>
+<li>higher levels often segmented</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/top%20segment.png" srcset="/img/loading.gif" lazyload alt="top segment"><figcaption aria-hidden="true">top segment</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 7: Top Segment example
+</div>
 <h3 id="copy-on-write">Copy-on-Write</h3>
+<p>How to implement an efficient <code>fork()</code>?</p>
+<ul>
+<li>Do not copy all contents immediately, but mark the pages/segment tables of both child and parent processes as “read only”</li>
+<li>When a write (from either child or parent) happens, it traps into kernel through <strong>page fault</strong>, and a private page is copied</li>
+</ul>
+<p>A <code>fork()</code> followed immediately by a <code>exec()</code>, how many pages are really copied?</p>
+<h2 id="page-coloring">Page Coloring</h2>
+<p>Page Coloring or Cache Coloring technique helps reduce the cache miss in an app.</p>
+<p>Consider two <strong>consecutive</strong> pages used by an application:</p>
+<ul>
+<li>their virtual set number must be different</li>
+<li>but their physical set number could be the same after translation (when the OS maps them to the physical pages whose page numbers have the sam last <span class="math inline">\(2 \ \text{bits}\)</span>). In such a case, two addresses with the same offset within these two pages will in contention for the cache set</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Address_Translation/Address.png" srcset="/img/loading.gif" lazyload alt="Address structure"><figcaption aria-hidden="true">Address structure</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 8: Address structure
+</div>
+<p>Solutions</p>
+<ul>
+<li>coloring the physical pages with the cache sets</li>
+<li>maps the application pages to as many colors as possible (so less contention)</li>
+</ul>
+<blockquote>
+<p>Page coloring only works for L2/L3, not L1. Page coloring does not work for full associative cache.</p>
+</blockquote>
+<h2 id="working-set">Working Set</h2>
+<p><strong>Def</strong>. <strong>Working Set</strong>; the memory needed by a program at a period</p>
+<ul>
+<li>could change at different phases</li>
+<li>better fit them into fast storage, e.g., L1 cache</li>
+</ul>
+<h2 id="zipf-model">Zipf Model</h2>
+<p><strong>Def</strong>. <strong>Zipf Model</strong>: the frequency of visit to the k-th most popular page <span class="math inline">\(\propto \frac{1}{k^{\alpha}}\)</span>, where <span class="math inline">\(1 \leq \alpha \leq 2\)</span>.</p>
+<h2 id="split-l1-cache">Split L1 Cache</h2>
+<p>L1 cache often has two cache hardware: <strong>icache</strong> and <strong>dcache</strong>.</p>
+<p>L2 and L3 are often one unified cache.</p>
+<ul>
+<li>L1 是从虚拟地址到物理地址，虚拟地址可以区分指令和数据；L2 和 L3 中的物理地址无法区分</li>
+</ul>
 
                 
               </div>
@@ -463,7 +658,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Address Translation</div>
+      <div>6: Address Translation</div>
       <div>https://ddccffq.github.io/2025/10/22/操作系统/Address_Translation/</div>
     </div>
     <div class="license-meta">

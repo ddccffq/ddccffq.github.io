@@ -19,19 +19,23 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：\(平均访问时间 &#x3D; 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)   Processing is often faster than I&#x2F;">
+    <meta name="description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：平均访问时间 \(&#x3D;\) 命中率 \(\times\) 命中时间 \(+\) 未命中率 \(\times\) 未命中时间   Why we need cache? Pro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TLB and Cache">
+<meta property="og:title" content="7: TLB and Cache">
 <meta property="og:url" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：\(平均访问时间 &#x3D; 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)   Processing is often faster than I&#x2F;">
+<meta property="og:description" content="Cache Concept  Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。 目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。 前提：只有在较高的“缓存命中率”下才有效。 关键公式：平均访问时间 \(&#x3D;\) 命中率 \(\times\) 命中时间 \(+\) 未命中率 \(\times\) 未命中时间   Why we need cache? Pro">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/A%20TLB%20lookup%20goes%20through%20each%20TLB%20entry.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Full%20Associative.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Direct%20Mapped.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Set%20Associative.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Two-Way%20Set%20Associative.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/LRU%20Example.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Multi-Level%20Cache.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Overlapping%20TLB%20and%20Cache.png">
 <meta property="article:published_time" content="2025-10-20T00:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-10T00:18:29.918Z">
+<meta property="article:modified_time" content="2025-12-31T06:48:51.970Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -39,7 +43,7 @@
   
   
   
-  <title>TLB and Cache - ddccffq&#39;s Blog</title>
+  <title>7: TLB and Cache - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="TLB and Cache"></span>
+            <span id="subtitle" data-typed-text="7: TLB and Cache"></span>
           
         </div>
 
@@ -228,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          4.2k 字
         
       </span>
     
@@ -239,7 +243,7 @@
         
         
         
-          34 分钟
+          36 分钟
         
       </span>
     
@@ -276,7 +280,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">TLB and Cache</h1>
+            <h1 id="seo-header">7: TLB and Cache</h1>
             
             
               <div class="markdown-body">
@@ -288,14 +292,15 @@
 <li>Cache（缓存）：存放数据的副本，使常用数据比原始位置更快被访问。</li>
 <li>目的：加速频繁访问，提升系统性能（适用于架构、操作系统、分布式系统等）。</li>
 <li>前提：只有在较高的“缓存命中率”下才有效。</li>
-<li>关键公式：<span class="math inline">\(平均访问时间 = 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)</span></li>
+<li>关键公式：平均访问时间 <span class="math inline">\(=\)</span> 命中率 <span class="math inline">\(\times\)</span> 命中时间 <span class="math inline">\(+\)</span> 未命中率 <span class="math inline">\(\times\)</span> 未命中时间</li>
 </ul>
 <blockquote>
+<p>Why we need cache?</p>
 <p>Processing is often faster than I/O access</p>
 </blockquote>
 <h3 id="locality">Locality</h3>
 <blockquote>
-<p>the Key to Cache Success</p>
+<p>The key to cache success: data access probability.</p>
 </blockquote>
 <ul>
 <li>时间局部性（Temporal locality）：若某地址被访问，则短期内很可能再次被访问，于是把最近访问的数据保留在靠近处理器的缓存中。</li>
@@ -309,62 +314,65 @@
 <li>关键公式：<span class="math inline">\(平均访问时间 = 命中率 \times 命中时间 + 未命中率 \times 未命中时间\)</span>。</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
-<table style="width:100%;">
+<table>
 
 <thead>
 <tr class="header">
-<th>层级</th>
-<th style="text-align: right;">典型组件</th>
-<th style="text-align: right;">典型访问延迟（量级）</th>
-<th style="text-align: right;">典型容量</th>
-<th>主要作用</th>
+<th style="text-align: center;">层级</th>
+<th style="text-align: center;">典型组件</th>
+<th style="text-align: center;">典型访问延迟（量级）</th>
+<th style="text-align: center;">典型容量</th>
+<th style="text-align: center;">主要作用</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>寄存器</td>
-<td style="text-align: right;">CPU registers</td>
-<td style="text-align: right;">≈ 1 ns（最短）</td>
-<td style="text-align: right;">数十–百字节</td>
-<td>存放当前运算操作数，最快速访问</td>
+<td style="text-align: center;">寄存器</td>
+<td style="text-align: center;">CPU registers</td>
+<td style="text-align: center;">≈ 1 ns（最短）</td>
+<td style="text-align: center;">数十–百字节</td>
+<td style="text-align: center;">存放当前运算操作数，最快速访问</td>
 </tr>
 <tr class="even">
-<td>On-chip cache (L1)</td>
-<td style="text-align: right;">L1/L0 缓存</td>
-<td style="text-align: right;">~1–10 ns</td>
-<td style="text-align: right;">KB–十几KB</td>
-<td>利用时间局部性，快速命中CPU近操作数据</td>
+<td style="text-align: center;">On-chip cache (L1)</td>
+<td style="text-align: center;">L1/L0 缓存</td>
+<td style="text-align: center;">~1–10 ns</td>
+<td style="text-align: center;">KB–十几KB</td>
+<td style="text-align: center;">利用时间局部性，快速命中CPU近操作数据</td>
 </tr>
 <tr class="odd">
-<td>二级/片上缓存 (L2/L3, SRAM)</td>
-<td style="text-align: right;">On-chip / Second level cache</td>
-<td style="text-align: right;">~10–100 ns</td>
-<td style="text-align: right;">KBs–MBs</td>
-<td>扩展缓存容量，降低对主存访问</td>
+<td style="text-align: center;">二级/片上缓存 (L2/L3, SRAM)</td>
+<td style="text-align: center;">On-chip / Second level cache</td>
+<td style="text-align: center;">~10–100 ns</td>
+<td style="text-align: center;">KBs–MBs</td>
+<td style="text-align: center;">扩展缓存容量，降低对主存访问</td>
 </tr>
 <tr class="even">
-<td>主存 (DRAM)</td>
-<td style="text-align: right;">Main Memory</td>
-<td style="text-align: right;">~100 ns</td>
-<td style="text-align: right;">MBs–GBs</td>
-<td>存放程序数据/指令，容量较大但延迟更高</td>
+<td style="text-align: center;">主存 (DRAM)</td>
+<td style="text-align: center;">Main Memory</td>
+<td style="text-align: center;">~100 ns</td>
+<td style="text-align: center;">MBs–GBs</td>
+<td style="text-align: center;">存放程序数据/指令，容量较大但延迟更高</td>
 </tr>
 <tr class="odd">
-<td>二级存储 (Disk)</td>
-<td style="text-align: right;">磁盘/SSD</td>
-<td style="text-align: right;">~10 ms（磁盘） / 更低（SSD）</td>
-<td style="text-align: right;">GBs–TBs</td>
-<td>持久存储，容量大但延迟高</td>
+<td style="text-align: center;">二级存储 (Disk)</td>
+<td style="text-align: center;">磁盘/SSD</td>
+<td style="text-align: center;">~10 ms（磁盘） / 更低（SSD）</td>
+<td style="text-align: center;">GBs–TBs</td>
+<td style="text-align: center;">持久存储，容量大但延迟高</td>
 </tr>
 <tr class="even">
-<td>三级/更慢存储 (Tape)</td>
-<td style="text-align: right;">磁带等</td>
-<td style="text-align: right;">~10 s（量级）</td>
-<td style="text-align: right;">TBs–PBs</td>
-<td>归档、离线存储，极低成本高容量但访问慢</td>
+<td style="text-align: center;">三级/更慢存储 (Tape)</td>
+<td style="text-align: center;">磁带等</td>
+<td style="text-align: center;">~10 s（量级）</td>
+<td style="text-align: center;">TBs–PBs</td>
+<td style="text-align: center;">归档、离线存储，极低成本高容量但访问慢</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div style="text-align: center; font-style: italic;">
+Table 1: Memory Hierarchy details
 </div>
 <ul>
 <li>要点：通过速度、容量和成本的权衡构建内存层次（Memory Hierarchy），在不同层次用缓存技术提高访问效率。</li>
@@ -382,7 +390,7 @@
 </ul>
 <h3 id="tlb-as-a-cache">TLB as a Cache</h3>
 <ul>
-<li>TLB（Translation Lookaside Buffer，转换检测缓冲区）：MMU 内的一个特殊高速缓存，用来缓存页表项以加速地址转换。</li>
+<li>TLB（Translation Lookaside Buffer，转换检测缓冲区）：MMU 内的一个特殊高速缓存，用来<strong>缓存页表项</strong>以加速地址转换。</li>
 <li>作用：把虚拟页号直接映射到物理页框，避免每次访问都进行多级页表查找，从而降低地址翻译的延迟。</li>
 <li>依赖局部性：利用时间局部性（近期访问页）和空间局部性（相邻地址位于同一页）提高命中率。</li>
 <li>关键点：内存映射按页对齐，TLB 缓存的是页级别的映射条目；TLB 命中能显著减少对主存的额外访存。</li>
@@ -390,13 +398,16 @@
 <h3 id="tlb-lookup">TLB Lookup</h3>
 <ul>
 <li>关键流程：MMU 在每次访问时查找 TLB；若任一条目匹配则为命中，直接得到物理页并完成访问；若全部不匹配则为未命中，需做完整的页表翻译并将得到的映射替换进 TLB。</li>
-<li>TLB 条目包含：虚拟页号、物理页框号、访问权限。</li>
+<li>TLB 条目包含：<strong>虚拟页号</strong>、<strong>物理页框号</strong>、<strong>访问权限</strong>。</li>
 <li>目的与要点：通过缓存页级映射避免多级页表的多次内存访问，利用时间/空间局部性提高地址转换速度并降低延迟。</li>
 </ul>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/A%20TLB%20lookup%20goes%20through%20each%20TLB%20entry.png" srcset="/img/loading.gif" lazyload alt="A TLB lookup goes through each TLB entry"><figcaption aria-hidden="true">A TLB lookup goes through each TLB entry</figcaption>
 </figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: A TLB lookup goes through each TLB entry
 </div>
 <blockquote>
 <p>TLBs are often set-associative to reduce the comparison.</p>
@@ -420,7 +431,7 @@
 <li><p>提高命中率的两种常用手段：超级页（superpage）和预取（prefetching）。</p></li>
 <li><p>典型参数量级：</p>
 <ul>
-<li>大小：12 位索引 → ≈ 4096 条目；</li>
+<li>大小：<span class="math inline">\(12\)</span> 位索引 <span class="math inline">\(\approx 4096\)</span> 条目；</li>
 <li>命中时间：约 <span class="math inline">\(0.5\text{–}1\)</span> 个时钟周期；</li>
 <li>未命中惩罚：约 <span class="math inline">\(10\text{–}100\)</span> 个时钟周期；</li>
 <li>未命中率：约 <span class="math inline">\(0.01\%\text{–}1\%\)</span>（稀疏/图结构应用可达 <span class="math inline">\(20\%\text{–}40\%\)</span>）。</li>
@@ -451,7 +462,7 @@
 </ul>
 <h4 id="tlb-prefetching">TLB Prefetching</h4>
 <ul>
-<li>TLB 预取是指在实际使用前，将页表项提前加载到 TLB 中，以减少未命中带来的延迟。</li>
+<li>TLB 预取是指在<strong>实际使用前</strong>，将页表项提前加载到 TLB 中，以减少未命中带来的延迟。</li>
 <li>预取方式包括：
 <ol type="1">
 <li>顺序预取（Sequential）：利用空间局部性，适合线性访问。</li>
@@ -552,11 +563,19 @@
 <h3 id="tlb-consistency">TLB Consistency</h3>
 <p>TLB 一致性（Consistency）是所有缓存系统都面临的核心问题：缓存中的内容必须与原始数据保持一致，尤其在条目被修改时。主要涉及以下场景：</p>
 <ul>
-<li>进程上下文切换（Process context switch）：切换进程时需保证 TLB 不泄漏或错误映射其他进程的数据。</li>
-<li>权限降低（Permission reduction）：当页表权限被收紧时，TLB 中的旧权限条目必须失效。</li>
+<li>进程上下文切换（Process context switch）：切换进程时需保证 TLB 不泄漏或错误映射其他进程的数据。
+<ul>
+<li>直接的方法，每次上下文切换直接<strong>清空</strong> TLB</li>
+<li>或者，给 TLB 的结构中新加一个 <code>Process ID</code> 的数据</li>
+</ul></li>
+<li>权限降低（Permission reduction）：当页表权限被收紧时，或者<strong>映射</strong>被遗弃，TLB 中的旧权限条目必须<strong>失效</strong>或<strong>调整</strong>。</li>
 <li>TLB 失效（TLB shootdown）：多核系统中，某核修改页表后需通知其他核使相关 TLB 条目失效，确保一致性。</li>
 </ul>
 <p>要点：TLB 必须及时同步页表的变更，避免访问到过期或错误的地址映射。</p>
+<p>There is nothing to be done with permission addition (e.g. heap/stack extended, read-only to read-write). Why?</p>
+<ul>
+<li>权限增加后，操作系统会检测到，然后触发<strong>异常</strong>，接着做一次地址翻译。</li>
+</ul>
 <h4 id="permission-reduction">Permission Reduction</h4>
 <ul>
 <li>当映射被丢弃或访问权限降低（如从读写变为只读）时，需保证 TLB 条目失效以防止非法访问。
@@ -586,7 +605,9 @@
 </ul>
 <p>要点：多核系统中，页表变更需同步所有核的 TLB，代价高，需优化。</p>
 <blockquote>
-<p>如果初始 CPU 没有等待其他 CPU 的 TLB 失效确认，可能导致同一页被多次读取但数据不一致</p>
+<p>如果初始 CPU 没有等待其他 CPU 的 TLB 失效确认，可能导致同一页被多次读取但数据不一致。</p>
+<p>涉及操作系统的<strong>异步中断</strong>。</p>
+<p>现代 CPU 通常包括多个核心，每个核心有其独有的 MMU 和 TLB。</p>
 </blockquote>
 <h2 id="memory-cache">Memory Cache</h2>
 <blockquote>
@@ -619,6 +640,14 @@
 <blockquote>
 <p>全关联缓存灵活但硬件复杂度高，适合容量较小的高速缓存。</p>
 </blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Full%20Associative.png" srcset="/img/loading.gif" lazyload alt="Full Associative"><figcaption aria-hidden="true">Full Associative</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: Full Associative
+</div>
 <h4 id="direct-mapped">Direct Mapped</h4>
 <blockquote>
 <p>Map to one specific cache line through a Hash function.</p>
@@ -626,13 +655,20 @@
 <p>举个例子：1 KB Direct Mapped Cache with 32 B Blocks</p>
 <ul>
 <li>Index chooses potential block.</li>
-<li>Tag checked to ver ify block.</li>
+<li>Tag checked to verify block.</li>
 <li>Byte select chooses byte within block.</li>
 </ul>
+<blockquote>
+<p>如何设置 cache index 和 offset 的大小？cache index 的数目等于 cache line 的数目，offset 的数目等于 block size</p>
+<p>为什么 cache tag 就是剩下的？首先，cache tag 不能少（这里的不能少指的是，本可以用 22 位但实际只用了 20 位），不然会出现不同 cache tag 命中同一个 cache data。</p>
+</blockquote>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Direct%20Mapped.png" srcset="/img/loading.gif" lazyload alt="Direct Mapped"><figcaption aria-hidden="true">Direct Mapped</figcaption>
 </figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: Direct Mapped
 </div>
 <blockquote>
 <p>Drawback: frequently using two addresses that map to the same cache entry leads to thrash.</p>
@@ -647,9 +683,24 @@
 <img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Set%20Associative.png" srcset="/img/loading.gif" lazyload alt="Set Associative"><figcaption aria-hidden="true">Set Associative</figcaption>
 </figure>
 </div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: Two-Way Set Associative
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Two-Way%20Set%20Associative.png" srcset="/img/loading.gif" lazyload alt="Two-Way Set Associative"><figcaption aria-hidden="true">Two-Way Set Associative</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 5: Two-Way Set Associative details
+</div>
+<ul>
+<li>cache index selects a “set” from the cache</li>
+<li>all tags in a “set” are compared to input in parallel</li>
+<li>data is selected based on the tag result</li>
+</ul>
 <blockquote>
 <p>Why use the lower bits for index, higher bits for tag?</p>
-</blockquote>
 <ol type="1">
 <li><strong>空间局部性原理</strong>
 <ul>
@@ -662,6 +713,9 @@
 <li>用高比特作为 Tag，可以区分那些映射到同一组但实际属于不同内存区域的数据，防止冲突。</li>
 </ul></li>
 </ol>
+<p>When <span class="math inline">\(n = 1\)</span>, it becomes directed mapped.</p>
+<p>When <span class="math inline">\(n = \text{cache line}\)</span>, it becomes fully associative.</p>
+</blockquote>
 <h3 id="cache-replacement">Cache Replacement</h3>
 <ul>
 <li><p><strong>Direct mapped（直接映射）</strong><br>
@@ -671,9 +725,20 @@
 <ul>
 <li>Random（随机）：简单，无额外开销。</li>
 <li>FIFO（先进先出）：某些场景下效果很差。</li>
-<li>LRU（最近最少使用）：根据历史访问预测未来，优先替换最久未被访问的块。</li>
+<li>LRU（最近最少使用）：根据历史访问预测未来，优先替换最久未被访问的块。
+<ul>
+<li>记录每个 block 的时间戳</li>
+</ul></li>
 </ul></li>
 </ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/LRU%20Example.png" srcset="/img/loading.gif" lazyload alt="LRU Example"><figcaption aria-hidden="true">LRU Example</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 6: LRU example
+</div>
 <h3 id="cache-write-policies">Cache Write Policies</h3>
 <ul>
 <li><strong>Write through（直写）</strong>：数据同时写入缓存和主存。
@@ -687,16 +752,19 @@
 <li>优点：重复写操作不会频繁写入主存，处理器写入时不被阻塞。</li>
 <li>缺点：实现更复杂，读未命中时可能需要先回写脏数据。</li>
 </ul></li>
-</ul>
-<blockquote>
-<p>虚拟地址还是物理地址寻址？</p>
-</blockquote>
-<ul>
-<li>缓存（Cache）可以通过虚拟地址或物理地址进行寻址，但实际有多个层级的缓存。</li>
+<li>缓存（Cache）可以通过虚拟地址和物理地址进行寻址，但实际有多个层级的缓存。</li>
 <li>所有经过 MMU（内存管理单元）后的地址访问都是物理地址。</li>
 <li>TLB 未命中的代价非常高，因此通常会让 TLB 和一级缓存（L1 Cache）在 CPU 内部重叠，以提升性能。</li>
 <li>图示流程：CPU 先用虚拟地址经 MMU &amp; TLB 翻译为物理地址，再访问各级缓存和主存。</li>
 </ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Multi-Level%20Cache.png" srcset="/img/loading.gif" lazyload alt="Multi-Level Cache"><figcaption aria-hidden="true">Multi-Level Cache</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 7: Multi-Level Cache
+</div>
 <h3 id="overlapping-tlb-and-cache">Overlapping TLB and Cache</h3>
 <ul>
 <li>虚拟地址中的 Offset（页内偏移）<strong>正好覆盖了 Cache 的 index（索引）和 byte select（字节选择）字段</strong>。</li>
@@ -716,11 +784,11 @@
 <li>byte：块内字节选择。</li>
 </ul></li>
 </ul>
-<p><strong>对应关系：</strong></p>
-<ul>
-<li>虚拟地址的 Offset 部分，经过TLB转换后，直接作为物理地址的 index 和 byte 字段。</li>
-<li>这样，<strong>TLB查找和Cache查找可以并行进行</strong>，不必等TLB完成后再查Cache，减少延迟。</li>
-</ul>
+<blockquote>
+<p>地址翻译时，offset 不变</p>
+<p>需确保，<span class="math inline">\(\text{offset} = \text{index + byte}\)</span>。</p>
+<p>下面举个例子，假设虚拟地址的 offset 位有 <span class="math inline">\(12\)</span> 位，则 index 加上 byte 位数要保证 <span class="math inline">\(12\)</span> 位，假设其中低两位在物理地址中时 byte，并且缓存机制为 four-way set associative，则缓存大小为 $ 2^{12 - 2}    $。此时一个 index 寻址到一个 set，每个 set 有 <span class="math inline">\(4\)</span> cache line，每个 cache line 有 <span class="math inline">\(4 \ \text{bytes}\)</span>。</p>
+</blockquote>
 <div style="display: block; margin: 0 auto; width: fit-content">
 <figure>
 <img src="/2025/10/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/TLB_and_Cache/Overlapping%20TLB%20and%20Cache.png" srcset="/img/loading.gif" lazyload alt="Overlapping TLB and Cache"><figcaption aria-hidden="true">Overlapping TLB and Cache</figcaption>
@@ -740,6 +808,9 @@
 <li><strong>另一方案 VIVT（Virtually Indexed, Virtually Tagged）</strong>：缓存 tag 也是虚拟地址，只有缓存未命中时才做地址转换，但会带来一致性等问题。</li>
 <li><strong>实际应用</strong>：L1 cache 多为 VIPT，L2/L3 cache 多为 PIPT（Physically Indexed, Physically Tagged）。</li>
 </ul>
+<blockquote>
+<p>仅限于 L1 cache。</p>
+</blockquote>
 
                 
               </div>
@@ -778,7 +849,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>TLB and Cache</div>
+      <div>7: TLB and Cache</div>
       <div>https://ddccffq.github.io/2025/10/20/操作系统/TLB_and_Cache/</div>
     </div>
     <div class="license-meta">

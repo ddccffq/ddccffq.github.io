@@ -19,20 +19,24 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="Lock and Condition Variables">
-<meta property="og:url" content="https://ddccffq.github.io/2025/11/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock%20and%20Condition%20Variables%20Implementation/index.html">
+    <meta name="description" content="OS Conceptual Framework   OS Conceptual Framework    Figure 1: OS Conceptual Framework   physical addresses shared  processes and address translation  CPU must be shared  threads  processes aren’t tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10: Lock and Condition Variables Design">
+<meta property="og:url" content="https://ddccffq.github.io/2026/01/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock_and_Conditional_Variable_Design/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="OS Conceptual Framework   OS Conceptual Framework    Figure 1: OS Conceptual Framework   physical addresses shared  processes and address translation  CPU must be shared  threads  processes aren’t tr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-11-25T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.043Z">
+<meta property="og:image" content="https://ddccffq.github.io/2026/01/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock_and_Conditional_Variable_Design/OS%20Conceptual%20Framework.png">
+<meta property="article:published_time" content="2026-01-01T08:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-01T12:46:05.313Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2026/01/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock_and_Conditional_Variable_Design/OS%20Conceptual%20Framework.png">
   
   
   
-  <title>Lock and Condition Variables - ddccffq&#39;s Blog</title>
+  <title>10: Lock and Condition Variables Design - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Lock and Condition Variables"></span>
+            <span id="subtitle" data-typed-text="10: Lock and Condition Variables Design"></span>
           
         </div>
 
@@ -209,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-25 16:00" pubdate>
-          2025年11月25日 下午
+        <time datetime="2026-01-01 16:00" pubdate>
+          2026年1月1日 下午
         </time>
       </span>
     
@@ -221,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          87 字
         
       </span>
     
@@ -269,12 +273,140 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Lock and Condition Variables</h1>
+            <h1 id="seo-header">10: Lock and Condition Variables Design</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
+<h2 id="os-conceptual-framework">OS Conceptual Framework</h2>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2026/01/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock_and_Conditional_Variable_Design/OS%20Conceptual%20Framework.png" srcset="/img/loading.gif" lazyload alt="OS Conceptual Framework"><figcaption aria-hidden="true">OS Conceptual Framework</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: OS Conceptual Framework
+</div>
+<ul>
+<li>physical addresses shared
+<ul>
+<li>processes and address translation</li>
+</ul></li>
+<li>CPU must be shared
+<ul>
+<li>threads</li>
+</ul></li>
+<li>processes aren’t trusted
+<ul>
+<li>kernel/user split</li>
+</ul></li>
+<li>threads might not cooperate
+<ul>
+<li>user timer interrupts to context switch</li>
+</ul></li>
+</ul>
+<h2 id="correctness-for-systems-with-concurrency">Correctness for Systems with Concurrency</h2>
+<p>A dispatcher can schedule thread in <strong>any way</strong>, programs must work under all circumstances.</p>
+<ul>
+<li>independent threads
+<ul>
+<li>no state shared with other threads</li>
+<li><strong>deterministic</strong> <span class="math inline">\(\Rightarrow\)</span> input state determines results</li>
+<li><strong>reproducible</strong> <span class="math inline">\(\Rightarrow\)</span> can recreate starting conditions, I/O</li>
+<li>scheduling order doesn’t matter</li>
+</ul></li>
+<li>cooperating threads
+<ul>
+<li>shared state between multiple threads</li>
+<li><strong>non-deterministic</strong></li>
+<li><strong>non-reproducible</strong></li>
+</ul></li>
+</ul>
+<h2 id="atomic-operations">Atomic Operations</h2>
+<p><strong>Def</strong>. <strong>Atomic Operations</strong>: an operation that always runs to completion or not at all.</p>
+<ul>
+<li>it is <strong>indivisible</strong>: it cannot be stopped in the middle and state cannot be modified by someone else in the middle</li>
+<li><strong>fundamental building block</strong> - if no atomic operations, then have no way for threads to work together</li>
+</ul>
+<blockquote>
+<p>On most machines, <strong>memory references</strong> and <strong>assignments</strong> of words are atomic.</p>
+<p>Many instructions are not atomic</p>
+<ul>
+<li><strong>double-precision</strong> floating point store often not atomic</li>
+<li><strong>VAX</strong> and <strong>IBM</strong> 360 had an instruction to copy a whole array</li>
+</ul>
+</blockquote>
+<h2 id="some-definition">Some Definition</h2>
+<ul>
+<li><strong>Def</strong>. <strong>Synchronization</strong>: using <strong>atomic operations</strong> to ensure cooperation between threads
+<ul>
+<li>for now, <strong>only loads and stores</strong> are atomic</li>
+</ul></li>
+<li><strong>Def</strong>. <strong>Mutual Exclusion</strong>: ensuring that only one thread does a particular thing at a time
+<ul>
+<li>one thread <strong>exclude</strong> the other while doing its task</li>
+</ul></li>
+<li><strong>Def</strong>. <strong>Critical Section</strong>: piece of code that only one thread can execute at once
+<ul>
+<li>critical section is the <strong>result</strong> of mutual exclusion</li>
+<li>critical section and mutual exclusion are two ways of describing the same thing</li>
+</ul></li>
+<li><strong>Def</strong>. <strong>Lock</strong>: prevent someone from doing something
+<ul>
+<li>lock before entering critical section and before accessing shard data</li>
+<li>unlock when leaving, after accessing shared data</li>
+<li>wait if locked</li>
+</ul></li>
+</ul>
+<h2 id="lock">Lock</h2>
+<p>Suppose we have some sort of implementation of a lock</p>
+<ul>
+<li><code>lock.Acquire()</code> - wait until lock is free, then grab</li>
+<li><code>lock.Release()</code> - unlock, waking up anyone waiting</li>
+<li>these must be atomic operations - if two threads are waiting for the lock and both see it’s free, only one succeeds to grab the lock</li>
+</ul>
+<p>Three formal properties</p>
+<ul>
+<li><strong>mutual exclusion</strong>: at most one thread holds the lock</li>
+<li><strong>progress</strong>: if no thread holds the lock and any thread attempts to acquire the lock, then eventually some thread succeeds in acquiring the lock</li>
+<li><strong>bounded waiting</strong>: if thread <span class="math inline">\(T\)</span> attempts to acquire a lock, then there exists a bound on the number of times other threads can successfully acquire the lock before <span class="math inline">\(T\)</span> does.
+<ul>
+<li>yet, it does not promise that waiting threads acquire the lock in FIFO order</li>
+</ul></li>
+</ul>
+<h2 id="conditional-variable">Conditional Variable</h2>
+<p><strong>Def</strong>. <strong>Conditional Variable</strong>: a <strong>queue</strong> of threads waiting for something inside a critical section.</p>
+<ul>
+<li>key idea: allow sleeping inside critical section by atomically releasing lock at time we go to sleep</li>
+</ul>
+<p>Operations:</p>
+<ul>
+<li><code>wait(&amp;lock)</code>: atomically release lock and go to sleep. Reacquire lock later, before returning</li>
+<li><code>signal()</code>; wake up one waiter, if any</li>
+<li><code>broadcast()</code>: wake up all waiters</li>
+</ul>
+<h2 id="semaphores">Semaphores</h2>
+<p><strong>Def</strong>. <strong>Semaphores</strong> are a kind of generalized lock.A semaphore has a non-negative integer value and supports the following two operations:</p>
+<ul>
+<li><code>P()</code>: an atomic operation that waits for semaphore to become positive, then decrements it by <code>1</code>
+<ul>
+<li>think of this as the <code>wait()</code> operation</li>
+</ul></li>
+<li><code>V()</code>: an atomic operation that increments the semaphore by <code>1</code>, waking up a waiting <code>P</code>, if any
+<ul>
+<li>think of this as the <code>signal()</code> operation</li>
+</ul></li>
+</ul>
+<h3 id="the-uses-of-semaphores">The Uses of Semaphores</h3>
+<ol type="1">
+<li><strong>mutual exclusion</strong> (initial value <code>1</code>)</li>
+<li><strong>schedule constraints</strong> (initial value <code>0</code>)
+<ul>
+<li>allow thread 1 to wait for a signal from thread 2, i.e., thread 2 schedules thread 1 when a given event occurs</li>
+<li>example: suppose you had to implement <code>threadjoin()</code> which must wait for thread to terminate</li>
+</ul></li>
+</ol>
 
                 
               </div>
@@ -313,8 +445,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Lock and Condition Variables</div>
-      <div>https://ddccffq.github.io/2025/11/25/操作系统/Lock and Condition Variables Implementation/</div>
+      <div>10: Lock and Condition Variables Design</div>
+      <div>https://ddccffq.github.io/2026/01/01/操作系统/Lock_and_Conditional_Variable_Design/</div>
     </div>
     <div class="license-meta">
       
@@ -326,7 +458,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月25日</div>
+          <div>2026年1月1日</div>
         </div>
       
       
@@ -358,18 +490,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/Data_Storage_Structures/" title="Chapter 13: Data Storage Structures">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Chapter 13: Data Storage Structures</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/23/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/" title="无监督表示学习">
-                        <span class="hidden-mobile">无监督表示学习</span>
+                      <a href="/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/" title="9: Scheduling">
+                        <span class="hidden-mobile">9: Scheduling</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

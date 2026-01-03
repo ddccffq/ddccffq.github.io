@@ -19,17 +19,25 @@
   <meta name="author" content="ddccffq">
   <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
   
-    <meta name="description" content="Directory Structure  Directory is treated as a file with a list of &lt;file name: file number&gt; mappings The file number of the root directory is agreed ahead of time (in many Unix FSs. it’s 2).">
+    <meta name="description" content="File System Def. File System: a layer of OS that transforms block interface of disks (or other block devices) into files, directories, etc… Components:  naming: interface to find files by name, not b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FS Design">
+<meta property="og:title" content="14: FS Design">
 <meta property="og:url" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/index.html">
 <meta property="og:site_name" content="ddccffq&#39;s Blog">
-<meta property="og:description" content="Directory Structure  Directory is treated as a file with a list of &lt;file name: file number&gt; mappings The file number of the root directory is agreed ahead of time (in many Unix FSs. it’s 2).">
+<meta property="og:description" content="File System Def. File System: a layer of OS that transforms block interface of disks (or other block devices) into files, directories, etc… Components:  naming: interface to find files by name, not b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Example%20directory%20structure%20in%20Unix.png">
 <meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Example%20directory%20internals%20in%20Unix.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Multi-Level%20Index.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Sprase%20Files%20in%20FFS.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/MFT.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Small%20File.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Medium%20File.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Large%20or%20Fragmented%20File.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Multiple%20Indirect%20Blocks.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/VFS.png">
 <meta property="article:published_time" content="2025-12-14T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.028Z">
+<meta property="article:modified_time" content="2026-01-02T13:54:15.838Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +45,7 @@
   
   
   
-  <title>FS Design - ddccffq&#39;s Blog</title>
+  <title>14: FS Design - ddccffq&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="FS Design"></span>
+            <span id="subtitle" data-typed-text="14: FS Design"></span>
           
         </div>
 
@@ -226,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          94 字
+          414 字
         
       </span>
     
@@ -237,7 +245,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -274,13 +282,128 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">FS Design</h1>
+            <h1 id="seo-header">14: FS Design</h1>
             
             
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="directory-structure">Directory Structure</h2>
+<h2 id="file-system">File System</h2>
+<p><strong>Def</strong>. <strong>File System</strong>: a layer of OS that transforms <strong>block interface</strong> of disks (or other block devices) into files, directories, etc…</p>
+<p>Components:</p>
+<ul>
+<li>naming: interface to <strong>find</strong> files by name, not by blocks</li>
+<li><strong>disk management</strong>: collecting disk blocks into files</li>
+<li><strong>protection</strong>: layers to keep data secure</li>
+<li>reliability/durability: keeping of files durable despite crashes, media failures, attacks, etc…</li>
+</ul>
+<h2 id="disk-management-policies">Disk Management Policies</h2>
+<ul>
+<li>basic entities on a disk;
+<ul>
+<li><strong>file</strong>: user-visible group of blocks arranged sequentially in logical space</li>
+<li><strong>directory</strong>: user-visible index mapping names to files</li>
+</ul></li>
+<li>access disk as linear array of sectors, two options:
+<ul>
+<li>identify sectors as vectors [cylinder, surface, sector], sort in cylinder-major order</li>
+<li>logical Block Addressing (LBA, 逻辑块寻址): every sector has integer address from zero up to max number of sectors</li>
+<li>controller translates from address <span class="math inline">\(\Rightarrow\)</span> physical position
+<ul>
+<li>first case: OS/BIOS must deal with bad sectors</li>
+<li>second case: hardware shields OS from structure of disk</li>
+</ul></li>
+</ul></li>
+<li>need way to track free disk blocks
+<ul>
+<li>link free blocks together <span class="math inline">\(\Rightarrow\)</span> too slow today</li>
+<li><strong>use bitmap to represent free space on disk</strong></li>
+</ul></li>
+<li>need way to structure files: <strong>file header</strong>
+<ul>
+<li>track which blocks belong at which offsets within the logical file structure</li>
+<li>optimize placement of files’ disk blocks to match access and usage patterns</li>
+</ul></li>
+</ul>
+<h2 id="file">File</h2>
+<p><strong>Def</strong>. <strong>File</strong>: named permanent storage. Contain:</p>
+<ul>
+<li><strong>data</strong>: <strong>blocks</strong> on disk somewhere</li>
+<li><strong>metadata</strong>:
+<ul>
+<li>owner, size, last opened, …</li>
+<li>access rights
+<ul>
+<li>R, W, X</li>
+<li>owner, group, other (in Unix systems)</li>
+<li>access control list in Windows system</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="directory">Directory</h2>
+<p><strong>Def</strong>. <strong>Directory</strong>: basically a <strong>hierarchical</strong> structure. Contain</p>
+<ul>
+<li><strong>files</strong></li>
+<li><strong>directories</strong>: a link to another entries</li>
+</ul>
+<p>Conventions of directory:</p>
+<ul>
+<li><strong>root directory</strong></li>
+<li><strong>home directory</strong></li>
+<li><strong>absolute path</strong></li>
+<li><strong>relative path</strong></li>
+</ul>
+<p><strong>Def</strong>. <strong>Volume</strong>: a collection of physical storage resources that form a logical storage device. Could be a part of or many physical devices.</p>
+<p><strong>Def</strong>. <strong>Mount</strong>: an operation that creates a mapping from some path in the existing file system to the root directory of the mounted volume’s file system.</p>
+<h2 id="designing-a-file-system">Designing a File System</h2>
+<ul>
+<li>durable data store</li>
+<li>disks performance</li>
+<li>open before read/write
+<ul>
+<li>can perform protection checks and look up where the actual file resource are</li>
+</ul></li>
+<li>size is determined as they used
+<ul>
+<li>can write (or read zeros) to <strong>expand</strong> the file</li>
+<li>start small and grow, need to make room</li>
+</ul></li>
+<li>organized into directories</li>
+<li>need to allocate/free blocks</li>
+</ul>
+<h2 id="inode">inode</h2>
+<p><strong>Def</strong>. An <strong>inode</strong> is a data structure on a filesystem on Linux and other Unix-like operating systems that stores all the information about a file except its name and its actual data.</p>
+<p>Each file has exactly one corresponding one inode?</p>
+<ul>
+<li>true for most traditional Unix-like filesystems</li>
+<li>no true with hard links</li>
+</ul>
+<blockquote>
+<p>When a file is copied - a new inode when a file is moved - nothing changed (unless to another filesystem)</p>
+<p>How many inodes in Linux？For 32-bit inode number, it’s <span class="math inline">\(2^{32}\)</span>. It also configurable in many file systems</p>
+</blockquote>
+<h2 id="typical-file-systems">Typical File Systems</h2>
+<ul>
+<li>FAT (Microsoft File Allocation Table), 1970s.
+<ul>
+<li>extremely simple index structure: a linked list.</li>
+<li>still widely used in devices like flash memory sticks and digital cameras</li>
+</ul></li>
+<li>FFS (Unix Fast File System), 1980s.
+<ul>
+<li>tree-based multilevel index to improve random access efficiency.</li>
+<li>uses a collection of locality heuristics to get good spatial locality.</li>
+<li>EXT2 and EXT3 are based on FFS.</li>
+</ul></li>
+<li>NTFS (Microsoft NewTechnology File System): 1990s.
+<ul>
+<li>more flexible tree structure.</li>
+<li>mainstream file system on MS.</li>
+<li>it’s representative to EXT4, XFS, and Apple’s Hierarchical File Systems (HFS and HFS+).</li>
+</ul></li>
+</ul>
+<h2 id="how-do-we-convert-a-file-name-to-the-file-number">How do we convert a file name to the file number?</h2>
+<h3 id="directory-structure">Directory Structure</h3>
 <ul>
 <li>Directory is treated as a file with a list of <code>&lt;file name: file number&gt;</code> mappings</li>
 <li>The file number of the root directory is agreed ahead of time (in many Unix FSs. it’s 2).</li>
@@ -320,8 +443,8 @@ Figure 1: Example directory structure in Unix
 <li><code>int readdir_r(DIR *dirstream, struct dirent *entry, struct dirent **result)</code></li>
 </ul></li>
 </ul>
-<h2 id="directory-internals">Directory Internals</h2>
-<p>Early implementations simply stored linear lists of <code>&lt;file name, file number&gt;</code> in directory files.</p>
+<h3 id="directory-internals">Directory Internals</h3>
+<p>Early implementations simply stored <strong>linear lists</strong> of <code>&lt;file name, file number&gt;</code> in directory files.</p>
 <ul>
 <li>Free spaces are for new entries. Note: files can be added/deleted.</li>
 </ul>
@@ -331,17 +454,18 @@ Figure 1: Example directory structure in Unix
 </figure>
 </div>
 <div style="text-align: center; font-style: italic;">
-Figure 1: Example directory internals in Unix
+Figure 2: Example directory internals in Unix
 </div>
 <blockquote>
-<p>Works fine in most cases. But when there are thousands of files in a directory. The access could be slow!</p>
+<p>Works fine in most cases. But when there are thousands of files in a directory. The access could be <strong>slow</strong>!</p>
+<p>其中 <code>.</code> 是当级目录，<code>..</code> 是上级目录</p>
 </blockquote>
 <p>Modern FSs (Linux XFS, Microsoft NTFS, and Oracle ZFS) organize directory’s contents as a <strong>tree</strong>.</p>
 <ul>
 <li><strong>B/B<sup>+</sup></strong> tree: fast lookup, insert, and removal.</li>
 <li>Names are first <strong>hashed into a key</strong>, which is used to find the file number in the tree.</li>
 </ul>
-<h2 id="directory-structure-access-cost">Directory Structure Access Cost</h2>
+<h3 id="directory-structure-access-cost">Directory Structure Access Cost</h3>
 <p>How many disk accesses to resolve <code>/my/book/count</code>?</p>
 <ul>
 <li>Read in file header for <strong>root</strong> (fixed spot on disk)</li>
@@ -359,21 +483,237 @@ Figure 1: Example directory internals in Unix
 <ul>
 <li>Allow user to specify relative filename instead of absolute path</li>
 </ul>
-<h2 id="hard-link">Hard Link</h2>
+<h3 id="hard-link">Hard Link</h3>
 <ul>
-<li>In command <code>link()</code>
+<li><code>ln</code> command - <code>link()</code>
 <ul>
-<li>It creates another name in the directory you are creating the link to, and refers it to the same inode number of the original file.</li>
+<li>It creates another name in the directory you are creating the link to, and refers it to the <strong>same inode number</strong> of the original file.</li>
 <li>OS maintains a reference count for each inode</li>
 </ul></li>
 </ul>
-<h2 id="soft-link">Soft Link</h2>
+<blockquote>
+<p>When shall I use hard link?</p>
 <ul>
-<li>In <code>-s</code> command - soft (or symbolic) <code>link()</code>
+<li>I don’t want to increase inode number</li>
+<li>I want the linked file/directory keep working even when the original file/directory is deleted</li>
+<li><strong>version control</strong></li>
+</ul>
+</blockquote>
+<h3 id="soft-link">Soft Link</h3>
 <ul>
-<li>A special type of file (as against regular file/dir) whose contents are the pathname of the linked-to file.</li>
+<li><code>ln -s</code> command - soft (or symbolic) <code>link()</code>
+<ul>
+<li>A special type of file (as against regular file/dir) whose contents are the <strong>pathname</strong> of the linked-to file.</li>
 </ul></li>
 </ul>
+<blockquote>
+<p>When shall I use soft link?</p>
+<ul>
+<li>I want to link to a directory. Using hard link to directory might result in cycle in the directory tree.</li>
+<li>I want to link to files in other disk partitions. Because inode numbers are only unique within a particular file system, not across file systems.</li>
+<li><strong>shortcuts</strong> (快捷访问)</li>
+</ul>
+</blockquote>
+<h2 id="how-do-we-locate-storage-block-based-on-file-number">How do we locate storage block based on file number?</h2>
+<h3 id="fat-file-allocation-table">FAT (File Allocation Table)</h3>
+<ul>
+<li>FAT is a linked list as 1-1 map with blocks
+<ul>
+<li>represented as a list of 32-bit entries</li>
+</ul></li>
+<li>each entry in FAT contains a pointer to the next FAT <strong>entry</strong> of the same file</li>
+<li>where is FAT stored?
+<ul>
+<li>on disk, on boot cache in memory, second (backup) copy on disk</li>
+</ul></li>
+<li><strong>free space</strong>: FAT free <strong>list</strong>, i.e., <code>FAT[i] = 0</code> (i-th block is free space)</li>
+<li>locality (storing a file in sequential blocks) is important for fast I/O
+<ul>
+<li>sequential I/O is much faster than random I/O</li>
+<li>imagine you want to append 100 MB to a 200 MB file, FS cannot guarantee they are stored sequential</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>How to ensure good locality heuristics in FAT?</p>
+<ul>
+<li>simple strategy: <code>next fit</code>, i.e, scans sequentially through the FAT <strong>starting from the last entry that was allocated</strong> and return the next free entry</li>
+<li>still, there will be increasing fragment</li>
+<li>defragmentation tool: read files and rewrite them to new locations with better locality</li>
+</ul>
+</blockquote>
+<ul>
+<li>READ: just get block by block with FAT</li>
+<li>WRITE
+<ul>
+<li>get blocks from free list</li>
+<li>linking them into a file</li>
+</ul></li>
+<li>format a disk
+<ul>
+<li>zero the blocks, link up the FAT free list</li>
+</ul></li>
+<li>quick format
+<ul>
+<li>link up the FAT free list</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Issues</p>
+<ul>
+<li><strong>poor locality</strong>: there will be fragmentation</li>
+<li><strong>poor random access</strong>: need to traverse the file’s FAT entries till the block is reached</li>
+<li>file metadata stored in directory entries, therefore being limited
+<ul>
+<li>only has file’s name, size, and creation time, but cannot specify the file’s owner or group</li>
+</ul></li>
+<li>limitations on volume and file size
+<ul>
+<li>with top 4 bits reserved.</li>
+<li><span class="math inline">\(2^{28}\)</span> blocks <span class="math inline">\(\times\)</span> <span class="math inline">\(4\)</span> KB block size</li>
+<li>large block size</li>
+<li>file size is encoded in <span class="math inline">\(32\)</span> bits, so less than <span class="math inline">\(4\)</span> GB</li>
+</ul></li>
+<li>no support for hard links, hard to maintain a link count (not use inode)</li>
+</ul>
+</blockquote>
+<h3 id="unix-file-system-fast-file-system-ffs">Unix File System (Fast File System FFS)</h3>
+<blockquote>
+<p>File Number is index into inode arrays.</p>
+</blockquote>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Multi-Level%20Index.png" srcset="/img/loading.gif" lazyload alt="Multi-Level Index"><figcaption aria-hidden="true">Multi-Level Index</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 3: Multi-Level Index
+</div>
+<blockquote>
+<p>Data block’s size is <span class="math inline">\(4\)</span> KB</p>
+<p>Indirect pointers: point to a disk block containing only pointers</p>
+<p><span class="math inline">\(4\)</span> KB blocks <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(1024\)</span> ptrs (each pointer with <span class="math inline">\(4\)</span> bytes size)</p>
+<ul>
+<li>indirect pointer <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(4\)</span> MB</li>
+<li>double indirect pointer <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(4\)</span>GB</li>
+<li>triple indirect pointer <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(4\)</span>TB</li>
+</ul>
+<p>The maximal file size is <span class="math inline">\(4 \text{KB} \times 12 + 4 \text{MB} + 4 \text{GB} + 4 \text{TB}\)</span> The maximal disk size is <span class="math inline">\(2^{32} \times 4 \text{KB} = 16 \text{TB}\)</span></p>
+</blockquote>
+<p>Characteristics:</p>
+<ul>
+<li><strong>tree structure</strong></li>
+<li><strong>high degree</strong>: the FFS tree uses internal nodes with many children.</li>
+<li><strong>fixed structure</strong></li>
+<li><strong>asymmetric</strong></li>
+</ul>
+<p>FFS can support sparse files, in which one or more ranges of empty space are surrounded by file data. Those empty space shall not consume disk space.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/Sprase%20Files%20in%20FFS.png" srcset="/img/loading.gif" lazyload alt="Sparse Files in FFS"><figcaption aria-hidden="true">Sparse Files in FFS</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 4: Sparse Files in FFS
+</div>
+<p>Pros</p>
+<ul>
+<li>efficient storage for both small and large files</li>
+<li>locality for both small and large files</li>
+<li>locality for metadata and data</li>
+<li>no defragmentation necessary</li>
+</ul>
+<p>Cons</p>
+<ul>
+<li>inefficient for tiny files (a 1 byte file requires both an inode and a data block)</li>
+<li>inefficient encoding when file is mostly contiguous on disk</li>
+<li>need to reserve 10-20% of free space to prevent fragmentation</li>
+</ul>
+<h4 id="free-space-management">Free Space Management</h4>
+<ul>
+<li>FFS allocates a bitmap with one bit per storage block. The i-th bit in the bitmap indicates whether the i-th blocks is free or in use</li>
+<li>the position of FFS’s bitmap is fixed when the file system is formatted. So it is easy to find the part of the bitmap that identifies free blocks near any location of interest</li>
+</ul>
+<h4 id="locality-heuristics">Locality Heuristics</h4>
+<ul>
+<li><strong>block group placement</strong>: FFS places data to optimize for the common case where a file’s data blocks, a file’s data and metadata, and different files from the same directory are accessed together
+<ul>
+<li>files in the same directory are placed in the same block group
+<ul>
+<li>the same for the “directory file” as well, i.e., when a new file is created, find an inode number within the block where its directory resides and give it to the file</li>
+</ul></li>
+<li>but don’t put the directory and its sub-directory together</li>
+<li><strong>First-Free</strong> allocation of new file blocks</li>
+</ul></li>
+<li><strong>reserved space</strong>: FFS reserves some fraction of the disk’s space (e.g., 10%) and presents a slightly reduced disk size to applications
+<ul>
+<li>when disk is full, there’s little opportunity for file system to optimize locality</li>
+<li>sacrifices a little disk capacity for better locality thus reduced seek times</li>
+</ul></li>
+</ul>
+<h3 id="new-technology-file-system-ntfs">New Technology File System (NTFS)</h3>
+<blockquote>
+<p>Block size variable</p>
+</blockquote>
+<p><strong>Def</strong>. <strong>Master File Table</strong></p>
+<ul>
+<li>database with flexible <span class="math inline">\(1\)</span>KB entries for metadata/data</li>
+<li>variable-sized attribute records (data or metadata)</li>
+<li>extend with variable depth tree (non-resident attribute, 非常驻属性)</li>
+</ul>
+<p>Extents – variable length contiguous regions</p>
+<ul>
+<li>block pointers cover runs of blocks</li>
+</ul>
+<p>Journal for reliability</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/MFT.png" srcset="/img/loading.gif" lazyload alt="MFT"><figcaption aria-hidden="true">MFT</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 5: MFT
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Small%20File.png" srcset="/img/loading.gif" lazyload alt="NTFS Small File"><figcaption aria-hidden="true">NTFS Small File</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 6: NTFS Small File
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Medium%20File.png" srcset="/img/loading.gif" lazyload alt="NTFS Medium File"><figcaption aria-hidden="true">NTFS Medium File</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 7: NTFS Medium File
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Large%20or%20Fragmented%20File.png" srcset="/img/loading.gif" lazyload alt="NTFS Large or Fragmented File"><figcaption aria-hidden="true">NTFS Large or Fragmented File</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 8: NTFS Large or Fragmented File
+</div>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/NTFS%20Multiple%20Indirect%20Blocks.png" srcset="/img/loading.gif" lazyload alt="NTFS Multiple Indirect Blocks"><figcaption aria-hidden="true">NTFS Multiple Indirect Blocks</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 9: NTFS Multiple Indirect Blocks
+</div>
+<h2 id="virtual-file-system-vfs">Virtual File System (VFS)</h2>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/FS_Design/VFS.png" srcset="/img/loading.gif" lazyload alt="VFS"><figcaption aria-hidden="true">VFS</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 10: VFS
+</div>
 
                 
               </div>
@@ -412,7 +752,7 @@ Figure 1: Example directory internals in Unix
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FS Design</div>
+      <div>14: FS Design</div>
       <div>https://ddccffq.github.io/2025/12/14/操作系统/FS_Design/</div>
     </div>
     <div class="license-meta">

@@ -1,0 +1,1107 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddccffq">
+  <meta name="keywords" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+  
+    <meta name="description" content="Scheduling Concept Why we need scheduling? For multitasks and concurrency. Scheduling is only useful when there is not enough resources.  preemption is the basic assumption for fine-grained schedulin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9: Scheduling">
+<meta property="og:url" content="https://ddccffq.github.io/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/index.html">
+<meta property="og:site_name" content="ddccffq&#39;s Blog">
+<meta property="og:description" content="Scheduling Concept Why we need scheduling? For multitasks and concurrency. Scheduling is only useful when there is not enough resources.  preemption is the basic assumption for fine-grained schedulin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/FCFS%20example&#39;s%20Gantt%20chart.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/a%20few%20illustrative%20examples%20of%20naive%20MFQ.png">
+<meta property="og:image" content="https://ddccffq.github.io/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/details.png">
+<meta property="article:published_time" content="2025-12-31T09:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-01T09:02:57.123Z">
+<meta property="article:author" content="ddccffq">
+<meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ddccffq.github.io/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/FCFS%20example&#39;s%20Gantt%20chart.png">
+  
+  
+  
+  <title>9: Scheduling - ddccffq&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ddccffq.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="9: Scheduling"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-31 17:00" pubdate>
+          2025年12月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          557 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">9: Scheduling</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="scheduling-concept">Scheduling Concept</h2>
+<p>Why we need scheduling? For multitasks and concurrency. Scheduling is only useful when there is not enough resources.</p>
+<ul>
+<li>preemption is the basic assumption for fine-grained scheduling (time interrupts)</li>
+<li>who schedules processes/threads?
+<ul>
+<li>mostly by OS</li>
+<li>user-level thread libraries schedule the threads by themselves</li>
+</ul></li>
+</ul>
+<h3 id="scheduling-policy-goals">Scheduling Policy Goals</h3>
+<ul>
+<li>minimize response time</li>
+<li>maximize throughput
+<ul>
+<li>maximize operations (or jobs) per second</li>
+<li>throughput related to response time, but not identical
+<ul>
+<li>minimizing response time will lead to more context switching than if you only maximized throughput</li>
+</ul></li>
+<li>Two parts to maximize throughput
+<ul>
+<li>minimize overhead (for example, context-switching)</li>
+<li>efficient use of resources (CPU, disk, memory, etc)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="fcfs">FCFS</h3>
+<p>First-Come, First-Served (FCFS).</p>
+<p>For example, suppose processes arrive in the order: <span class="math inline">\(P_1\)</span>, <span class="math inline">\(P_2\)</span>, <span class="math inline">\(P_3\)</span>.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Process</th>
+<th style="text-align: center;">Burst Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(P_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Gantt chart for the schedule is:</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/FCFS%20example&#39;s%20Gantt%20chart.png" srcset="/img/loading.gif" lazyload alt="FCFS Gannt"><figcaption aria-hidden="true">FCFS Gannt</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 1: FCFS example’s Gantt Chart
+</div>
+<ul>
+<li>waiting time for <span class="math inline">\(P_1 = 0\)</span>, <span class="math inline">\(P_2 = 24\)</span>, <span class="math inline">\(P_3 = 27\)</span></li>
+<li>average waiting time: <span class="math inline">\((0 + 24 + 27) / 3 = 17\)</span></li>
+<li>average completion time: <span class="math inline">\((24 + 27 + 30) / 3 = 27\)</span></li>
+</ul>
+<blockquote>
+<p><strong>Def</strong>. <strong>Convoy</strong> effect: short process behind long process</p>
+</blockquote>
+<h3 id="sjf">SJF</h3>
+<p><strong>Def</strong>. <strong>Shortest Job First</strong> (SJF): always schedule the job with the shortest <strong>remaining</strong> time (so sometimes it’s also called shortest-remaining-time-first, SRTF).</p>
+<blockquote>
+<p>It theoretically minimizes the average response time, why?</p>
+<p>Cons:</p>
+<ol type="1">
+<li>starvation. If small jobs keep coming, the long jobs will not be served. Fairness issue</li>
+<li>implementation. It’s hard to know the task remaining time</li>
+</ol>
+</blockquote>
+<h3 id="rr">RR</h3>
+<p><strong>Def</strong>. <strong>Round Robin</strong> (RR): each process gets a small unit of CPU time (<em>time quantum</em>), usually 10-100 milliseconds. After quantum expires, the process is preempted and added to the end of the ready queue.</p>
+<p><span class="math inline">\(n\)</span> processes in ready queue and time quantum is <span class="math inline">\(q\)</span> <span class="math inline">\(\Rightarrow\)</span></p>
+<ul>
+<li>each process gets <span class="math inline">\(1 / n\)</span> of the CPU time</li>
+<li>in chunks of at most <span class="math inline">\(q\)</span> time units</li>
+<li>no process waits more than <span class="math inline">\((n - 1)q\)</span> time units</li>
+</ul>
+<p>For example</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Process</th>
+<th style="text-align: center;">Burst Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(53\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(P_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(8\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(68\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(P_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>quantum is <span class="math inline">\(20\)</span></li>
+</ul>
+<p>the Gantt chart is</p>
+<table style="width:100%;">
+
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\text{0-20}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{20-28}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{28-48}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{48-68}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{68-88}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{88-108}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{108-112}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{112-125}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{125-145}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{145-153}\)</span></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>the average waiting time is <span class="math inline">\(((0 + 68 - 20 + 112 - 88) + (20 - 0) + (28 - 0 + 88 - 48 + 125 - 108) + (48 - 0 + 108 - 68 )) / 4 = 66.26\)</span></li>
+<li>the average completion time is <span class="math inline">\((28 + 112 + 125 + 153) / 4 = 104.5\)</span></li>
+</ul>
+<p>Thus, RR pros and cons:</p>
+<ul>
+<li>better for short jobs</li>
+<li>context switch time adds up for long jobs</li>
+</ul>
+<p>How do we choose time slice?</p>
+<ul>
+<li>too large: response time suffers (infinite, falls back to FCFS)</li>
+<li>too small: throughput suffers</li>
+</ul>
+<blockquote>
+<p>CPU 越强，时间片切片可以设置越小</p>
+</blockquote>
+<h3 id="comparing-fcfs-and-rr">Comparing FCFS and RR</h3>
+<p>Assuming zero cost context switching time, is RR always better than FCFS? We consider that existing 10 jobs, each take 100s of CPU time, RR scheduler quantum of 1s, all jobs start at the same time, and all jobs have same length.</p>
+<p>Obviously, RR is bad (compute completion time). Also, cache state must be shared between all jobs with RR but can be devoted to each job with FCFS.</p>
+<h3 id="strict-priority-scheduling">Strict Priority Scheduling</h3>
+<p><strong>Def</strong>. <strong>Strict Priority Scheduling</strong>: always executes highest priority runnable jobs to completion. Each queue can be processed in RR with some time quantum.</p>
+<p>Problems:</p>
+<ul>
+<li>starvation: lower priority jobs don’t get to run because higher priority jobs</li>
+<li>deadlock: <strong>priority inversion</strong>
+<ul>
+<li>not strictly a problem with priority scheduling, but happens when low priority task lock needed by high priority task</li>
+</ul></li>
+</ul>
+<p><strong>Def</strong>. <strong>Dynamic Priority</strong>: adjust base level priority up or down based on heuristics about interactivity, locking, burst behavior, etc…</p>
+<h3 id="earliest-deadline-first-edf">Earliest Deadline First (EDF)</h3>
+<ul>
+<li>tasks periodic with period <span class="math inline">\(P\)</span> and computation <span class="math inline">\(C\)</span> in each period: <span class="math inline">\((P, C)\)</span></li>
+<li>preemptive priority based dynamic scheduling</li>
+<li>each task is assigned a (current) priority based on how close the absolute deadline is</li>
+<li>the scheduler always schedules the active task with the closest absolute deadline</li>
+</ul>
+<h2 id="scheduling-fairness">Scheduling Fairness</h2>
+<blockquote>
+<p>fairness gained by hurting avg response time</p>
+</blockquote>
+<p>How to implement fairness?</p>
+<ul>
+<li>could give each queue some fraction of the CPU
+<ul>
+<li>what if one lone running job and 100 short running ones?</li>
+<li>like express lanes in a supermarket, sometimes express lanes get so long, get better service by going into one of the other lines</li>
+</ul></li>
+<li>could increase priority of jobs that don’t get service
+<ul>
+<li>what is done in some variants of UNIX</li>
+<li>as system gets overloaded, no job gets CPU time, so everyone increases in priority <span class="math inline">\(\Rightarrow\)</span> interactive jobs suffer</li>
+</ul></li>
+</ul>
+<p>If every tasks need the same resource, fairness is easy: RR.</p>
+<p><strong>Def</strong>. <strong>Max-Min</strong> Fairness: iteratively maximize the minimum allocation given to a particular process (or threads/users/applications) until all resources are assigned. (mostly used in network)</p>
+<h3 id="multi-level-feedback-queue-mfq-scheduling">Multi-Level Feedback Queue (MFQ) Scheduling</h3>
+<p><strong>Def</strong>. <strong>Multi-Level Feedback Queue (MFQ) Scheduling</strong>: achieves responsiveness (short jobs quickly as SJF), low overhead (minimizing the preemptions and scheduling decision time), and starvation free (as RR), and fairness (approximately max-min fair share).</p>
+<p>Assuming a mix of two kinds of <strong>workloads</strong></p>
+<ol type="1">
+<li><strong>interactive tasks</strong> (e.g.waiting for user keyboard input): using CPU for a short time, then yield for I/O waiting. <strong>Low latency</strong> is critical.</li>
+<li><strong>CPU intensive tasks</strong> (e.g. compressing files): using CPU for a long period of time. The response time often does not matter much.</li>
+</ol>
+<p>A naive version of MFQ: maintaining many tasks queues with different priorities, and use following schedule rules</p>
+<ul>
+<li>rule 1: if <span class="math inline">\(\text{priority A} &gt; \text{priority B}\)</span>, <span class="math inline">\(A\)</span> runs</li>
+<li>rule 2: if <span class="math inline">\(\text{priority A} = \text{priority B}\)</span>, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> run in RR</li>
+</ul>
+<p>The key here is how to set the priority.</p>
+<ul>
+<li>intuitively, if a job repeatedly relinquishes the CPU while waiting for input from the keyboard, it shall be kept in <strong>high priority</strong></li>
+<li>otherwise, if a job uses CPU intensively for long periods of time, its priority shall be reduced</li>
+</ul>
+<p>Our solution: assign a quota for each job at a given priority level, and reduces its priority once the quota is used up.</p>
+<ul>
+<li>rule 3: when a job enters the system, it is placed at the highest priority (the topmost queue)</li>
+<li>rule 4a: if a job <strong>uses up its allotment</strong> while running, its priority is <strong>reduced</strong> (i.e., it moves down one queue)</li>
+<li>rule 4b: if a job <strong>gives up the CPU</strong> (for example, by performing an I/O operation) before the allotment is up, it stays at <strong>the same priority</strong> level (i.e., its allotment is reset)</li>
+</ul>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/a%20few%20illustrative%20examples%20of%20naive%20MFQ.png" srcset="/img/loading.gif" lazyload alt="a few illustrative examples of naive MFQ"><figcaption aria-hidden="true">a few illustrative examples of naive MFQ</figcaption>
+</figure>
+</div>
+<div style="text-align: center; font-style: italic;">
+Figure 2: a few illustrative examples of naive MFQ
+</div>
+<p>There are many issues with this naive version of MFQ</p>
+<ul>
+<li>starvation: if there are too many interactive jobs in the system, they will consume all CPU time, and thus long-running jobs will starve
+<ul>
+<li>solution 1, rule 5: after some time period <span class="math inline">\(S\)</span>, move all the jobs in the system to topmost queue</li>
+<li><span class="math inline">\(S\)</span> shall be neither too large or too small</li>
+<li>solution 2: time slice across queues
+<ul>
+<li>each queue gets a certain amount of CPU time</li>
+</ul></li>
+</ul></li>
+<li>countermeasure: user action that can foil intent of OS designers, e.g., put in a bunch of meaningless I/O to keep job’s priority high</li>
+<li>how to parameterize the scheduler: how many queues should there be? how big should the time slice be per queue?</li>
+</ul>
+<p>To further extend the MFQ design: each queue has its own scheduling parameters or even different algorithms</p>
+<ul>
+<li>e.g. foreground - RR, background - FCFS</li>
+<li>sometimes multiple RR priorities with quantum increasing exponentially (highest: 1ms, next: 2ms, next: 4ms, etc..)</li>
+</ul>
+<p>Adjust each job’s priority as follows (details vary)</p>
+<ul>
+<li>job starts in highest priority queue</li>
+<li>if timeout expires, drop one level</li>
+<li>if timeout doesn’t expire, push up one level (or stay at the same one)</li>
+</ul>
+<p>A test, assume we have <span class="math inline">\(4\)</span> processes in a system with multilevel feedback queue scheduling policy. All the process arrived at time <span class="math inline">\(0\)</span> and located in the highest level queue in the order of their IDs (<span class="math inline">\(1\)</span> to <span class="math inline">\(4\)</span>).</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<figure>
+<img src="/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Scheduling/details.png" srcset="/img/loading.gif" lazyload alt="details"><figcaption aria-hidden="true">details</figcaption>
+</figure>
+</div>
+<p>(1). Calculate the average waiting time and average turnaround time.</p>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\text{0-8}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{8-16}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{16-24}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{24-32}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{32-35}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{35-51}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{51-67}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{67-83}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{83-85}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{85-92}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\text{92-113}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The average waiting time is:</p>
+<ul>
+<li><span class="math inline">\(P_1 = 0 + 32 - 8 = 24\)</span></li>
+<li><span class="math inline">\(P_2 = 8 + 35 - 16 + 83 - 51 = 59\)</span></li>
+<li><span class="math inline">\(P_3 = 16 + 51 - 24 + 86 - 67 = 62\)</span></li>
+<li><span class="math inline">\(P_4 = 24 + 67 - 32 + 93 - 83 = 69\)</span></li>
+</ul>
+<p>The average completion time is:</p>
+<ul>
+<li><span class="math inline">\(P_1 = 35\)</span></li>
+<li><span class="math inline">\(P_2 = 85\)</span></li>
+<li><span class="math inline">\(P_3 = 92\)</span></li>
+<li><span class="math inline">\(P_4 = 113\)</span></li>
+</ul>
+<p>(2). If a new process <span class="math inline">\(P_5\)</span> enters the system at time <span class="math inline">\(35\)</span> how the Gantt chart is going to change?</p>
+<p>需要注意的是，<span class="math inline">\(P_5\)</span> 并不会打断此时的 <span class="math inline">\(P_4\)</span>，也就是放后面，因为二者处于同一优先级</p>
+<h2 id="fair-share-scheduler">Fair-Share Scheduler</h2>
+<p>This type of scheduler aims to guarantee that each job obtain a certain percentage of CPU time.</p>
+<h3 id="lottery-scheduling">Lottery Scheduling</h3>
+<ul>
+<li>give each job some number of lottery tickets</li>
+<li>on each time slice, randomly pick a winning ticket</li>
+<li>on average, CPU time is proportional to number of tickets given to each job (but not deterministically)</li>
+</ul>
+<p>How to assign tickets?</p>
+<ul>
+<li>to approximate <strong>SRTF</strong>, short running jobs get more, long running jobs get fewer</li>
+<li>to avoid starvation, every job gets at least one ticket (everyone makes progress)</li>
+</ul>
+<p>Advantage over strict priority scheduling: behaves gracefully as load changes</p>
+<ul>
+<li>adding or deleting a job affects all jobs proportionally, independent of how many tickets each job possesses</li>
+</ul>
+<h2 id="completely-fair-scheduler-cfs">Completely Fair Scheduler (CFS)</h2>
+<p>The default Linux scheduler sin v2.6.23. The goal of CFS: to fairly divided a CPU evenly among all competing processes.</p>
+<p>CFS uses a counting-based technique known as virtual runtime</p>
+<ul>
+<li>as each process runs, it accumulates virtual runtime, e.g., in proportion with the physical (real) time</li>
+<li>when a scheduling decision occurs, CFS will pick the process with the lowest virtual time to run next</li>
+</ul>
+<p>How does CFS know when to stop the running process? The scheduling time slice.</p>
+<h2 id="real-time-scheduling">Real-Time Scheduling</h2>
+<h2 id="scheduling-on-multiprocessor">Scheduling on Multiprocessor</h2>
+<p>What’s wrong with a centralized MFQ?</p>
+<ul>
+<li>contention for the MFQ lock
+<ul>
+<li>teh lock could become a bottleneck especially with large number of processors</li>
+</ul></li>
+<li>cache coherence overhead
+<ul>
+<li>the MFQ data structure will be modified often and cause miss when a processor gets its lock to use MFQ</li>
+</ul></li>
+<li>limit cache reuse
+<ul>
+<li>a thread is likely to be scheduled on different processors, so the L1 cache needs to be fetched from the memory again</li>
+</ul></li>
+</ul>
+<p>Modern OSes use per-processor MFQ</p>
+<p><strong>Def</strong>. <strong>Affinity Scheduling</strong>: a thread is always scheduled to the same processor. Rebalancing across processors only happens when necessary.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/The-Operating-System/" class="category-chain-item">The Operating System</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>9: Scheduling</div>
+      <div>https://ddccffq.github.io/2025/12/31/操作系统/Scheduling/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddccffq</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Lock_and_Conditional_Variable_Design/" title="10: Lock and Condition Variables Design">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10: Lock and Condition Variables Design</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Demand%20Paging/" title="8: Demand Paging">
+                        <span class="hidden-mobile">8: Demand Paging</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"ddccffq/ddccffq.github.io","repo-id":"R_kgDOPtFBqg","category":"Announcements","category-id":"DIC_kwDOPtFBqs4CvlN9","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span>&copy; 2025 <a href="https://github.com/ddccffq" target="_blank">ddccffq</a>. All Rights Reserved.</span> <br> <span style="font-size: 12px; color: #999;">用代码改变世界，以技术创造价值</span> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
