@@ -27,7 +27,7 @@
 <meta property="og:description" content="Threats to FS Reliability Operation interruption  A crash or power failure A file operation often consists of many I&#x2F;O updates to the storage An example: mv .&#x2F;dir1&#x2F;file1 .&#x2F;dir2&#x2F;file2  Writing the dir">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-15T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-19T13:12:15.964Z">
+<meta property="article:modified_time" content="2026-01-04T14:28:58.462Z">
 <meta property="article:author" content="ddccffq">
 <meta property="article:tag" content="���,�㷨,����ѧϰ,���������,��������,��������,ѧϰ�ʼ�">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -640,93 +640,141 @@
 </ul></li>
 <li>Transparency and collaboration require some way for different processors to communicate with one another</li>
 </ul>
-<h2 id="homework">Homework</h2>
+<h2 id="例题">例题</h2>
+<h3 id="计算示例-ffs-的最大文件容量及其设计分析">计算示例 FFS 的最大文件容量及其设计分析</h3>
+<p>(1). The FastFile file system uses an inode array to organize the files on disk. Each inode consists of a user id (2 bytes), three time stamps (4 bytes each), protection bits (2 bytes), a reference count (2 byte), a file type (2 bytes) and the size (4 bytes). Additionally, the inode contains 13 direct indexes, 1 index to a 1st-level index table, 1 index to a 2nd-level index table, and 1 index to a 3rd level index table. The file system also stores the first 436 bytes of each file in the inode.</p>
 <ol type="1">
-<li>The FastFile file system uses an inode array to organize the files on disk. Each inode consists of a user id (2 bytes), three time stamps (4 bytes each), protection bits (2 bytes), a reference count (2 byte), a file type (2 bytes) and the size (4 bytes). Additionally, the inode contains 13 direct indexes, 1 index to a 1st-level index table, 1 index to a 2nd-level index table, and 1 index to a 3rd level index table. The file system also stores the first 436 bytes of each file in the inode.
+<li>Assume a disk sector is 512 bytes, and assume that any auxiliary index table takes up an entire sector, what is the maximum size for a file in this system.
 <ul>
-<li>Assume a disk sector is 512 bytes, and assume that any auxilliary index table takes up an entire sector, what is the maximum size for a file in this system.</li>
-<li>Is there any benefit for including the first 436 bytes of the file in the inode?</li>
+<li>每个 inode 必定带有 <span class="math inline">\((2 + 4 + 2 + 2 + 2 + 4 = 16) \text{bytes}\)</span></li>
+<li>每个 inode 带有 size 字段，表明所指文件理论最大大小为 <span class="math inline">\(2^{32} - 1 \approx 4 \text{GB}\)</span></li>
+<li>假设每个索引大小为 <span class="math inline">\(4 \text{bytes}\)</span>，每个 block 大小为 <span class="math inline">\(512 \text{bytes}\)</span>，则每个 block 存储的索引数目为 <span class="math inline">\(\frac{512}{4} = 2^{7}\)</span></li>
+<li>则很容易算出实际的最大大小为 <span class="math display">\[
+(16 + 436 + 13 \times 512 + 2^7 \times 512 + 2^{14} \times 512 + 2^{21} \times 512)\text{bytes} = 1.008 \text{GB}
+\]</span></li>
 </ul></li>
-<li>When user tries to write a file, the file system needs to detect if that file is a directory so that it can restrict writes to maintain the directory’s internal consistency. Given a file’s name, how would you design a file system to keep track of whether each file is a regular file or a directory?
+<li>Is there any benefit for including the first 436 bytes of the file in the inode?
 <ul>
-<li>In FAT</li>
-<li>In FFS</li>
-<li>In NTFS</li>
-</ul></li>
-<li>Suppose a variation of FFS includes in each inode 12 direct, 1 indirect, 1 double indirect, 2 triple indirect, and 1 quadruple indirect pointers. Assuming 6 KB blocks and 6-byte pointers.
-<ul>
-<li>What is the largest file that can be accessed with direct pointers only?</li>
-<li>What is the largest file that can be accessed in total?</li>
-</ul></li>
-<li>Consider a disk queue holding requests to the following cylinders in the listed order: 116, 22, 3, 11, 75, 185, 100, 87. Using the elevator scheduling algorithm, what is the order that the requests are serviced, assuming the disk head is at cylinder 88 and moving upward through the cylinders?</li>
-</ol>
-<h2 id="答案">答案</h2>
-<h3 id="fastfile-文件系统计算">1. FastFile 文件系统计算</h3>
-<p><strong>题目分析：</strong></p>
-<ul>
-<li><strong>Inode 结构</strong>：
-<ul>
-<li>固定元数据：用户ID(2) + 时间戳(12) + 保护位(2) + 引用计数(2) + 文件类型(2) + 大小(4) = <strong>24 字节</strong>。</li>
-<li>嵌入数据：<strong>436 字节</strong>。</li>
-<li>索引指针：13个直接 + 1个一级 + 1个二级 + 1个三级 = <strong>16 个指针</strong>。</li>
-</ul></li>
-<li><strong>扇区/块大小</strong>：512 字节。</li>
-<li><strong>指针大小推断</strong>： 假设 Inode 占用一个扇区（512 字节），则剩余给指针的空间为 <span class="math inline">\(512 - 24 - 436 = 52\)</span> 字节。 <span class="math inline">\(52 \div 16 = 3.25\)</span>。因此，为了放入一个扇区，<strong>指针大小应为 3 字节（24位）</strong>。</li>
-<li><strong>每个索引块的指针数</strong>：<span class="math inline">\(512 \div 3 = 170\)</span> 个指针（向下取整）。</li>
-</ul>
-<p><strong>解答：</strong></p>
-<ul>
-<li><p><strong>最大文件大小 (Maximum size)</strong>： 文件由以下部分组成：</p>
-<ol type="1">
-<li><strong>Inode 内嵌数据</strong>：436 字节</li>
-<li><strong>直接索引</strong>：<span class="math inline">\(13 \times 512\)</span> 字节</li>
-<li><strong>一级间接索引</strong>：<span class="math inline">\(1 \times 170 \times 512\)</span> 字节</li>
-<li><strong>二级间接索引</strong>：<span class="math inline">\(1 \times 170^2 \times 512\)</span> 字节</li>
-<li><strong>三级间接索引</strong>：<span class="math inline">\(1 \times 170^3 \times 512\)</span> 字节</li>
-</ol>
-<p>计算主要由三级间接索引决定： <span class="math inline">\(170^3 \times 512 \text{ B} = 4,913,000 \times 512 \text{ B} \approx 2,515,456,000 \text{ B} \approx \mathbf{2.34 \text{ GB}}\)</span>。 <em>(精确值为：436 + 6,656 + 87,040 + 14,796,800 + 2,515,456,000 = 2,530,346,932 字节)</em></p></li>
-<li><p><strong>将前 436 字节包含在 Inode 中的好处 (Benefit)</strong>：</p>
-<ol type="1">
-<li><strong>性能优化 (Performance)</strong>：对于小于或等于 436 字节的小文件，只需读取 Inode 即可获取文件内容，无需额外的磁盘寻道和读取数据块操作（减少一次 I/O）。</li>
-<li><strong>空间节省 (Space)</strong>：小文件不需要分配一个完整的 512 字节数据块，避免了内部碎片（Internal Fragmentation），节省了磁盘空间。</li>
-</ol></li>
-</ul>
-<h3 id="区分文件与目录">2. 区分文件与目录</h3>
-<p><strong>题目分析：</strong> 文件系统需要通过元数据来区分普通文件和目录。</p>
-<p><strong>解答：</strong></p>
-<ul>
-<li><strong>In FAT (File Allocation Table)</strong>： 在<strong>目录项 (Directory Entry)</strong> 中，有一个属性字节 (Attribute Byte)。该字节的第 4 位（通常是 <code>0x10</code>）专门用于标识该条目是否为一个子目录。</li>
-<li><strong>In FFS (Unix Fast File System)</strong>： 在 <strong>Inode</strong> 结构中，包含文件类型 (File Type) 或模式位 (Mode Bits)。例如 <code>st_mode</code> 字段中的一部分位用于指示文件类型（如 <code>S_IFDIR</code> 表示目录，<code>S_IFREG</code> 表示普通文件）。</li>
-<li><strong>In NTFS (New Technology File System)</strong>： 在 <strong>MFT (Master File Table)</strong> 记录中，标准属性（如 <code>$STANDARD_INFORMATION</code> 或 <code>$FILE_NAME</code>）包含文件属性标志，其中有一位标识是否为目录。此外，目录本质上是一个包含索引属性（如 <code>$INDEX_ROOT</code>）的文件。</li>
-</ul>
-<h3 id="ffs-变体计算">3. FFS 变体计算</h3>
-<p><strong>题目分析：</strong> - <strong>Inode 指针结构</strong>：12 直接，1 一级，1 二级，2 三级，1 四级。 - <strong>块大小</strong>：6 KB = 6144 字节。 - <strong>指针大小</strong>：6 字节。 - <strong>每块指针数</strong>：<span class="math inline">\(6144 \div 6 = 1024\)</span> 个指针。</p>
-<p><strong>解答：</strong></p>
-<ul>
-<li><p><strong>仅使用直接指针访问的最大文件 (Largest file with direct pointers only)</strong>： <span class="math inline">\(12 \times 6 \text{ KB} = \mathbf{72 \text{ KB}}\)</span>。</p></li>
-<li><p><strong>总共可访问的最大文件 (Largest file in total)</strong>： 总大小 = 直接 + 一级 + 二级 + 三级 + 四级 <span class="math inline">\(= (12 + 1024 + 1024^2 + 2 \times 1024^3 + 1 \times 1024^4) \times 6 \text{ KB}\)</span></p>
-<p>由于 <span class="math inline">\(1024 = 2^{10}\)</span>，且四级间接指针占主导地位： 四级部分大小 = <span class="math inline">\(1 \times (2^{10})^4 \times 6 \times 2^{10} \text{ B} = 6 \times 2^{50} \text{ B} = \mathbf{6 \text{ PB}}\)</span>。 加上三级部分 (<span class="math inline">\(2 \times 1024^3 \times 6 \text{ KB} = 12 \text{ TB}\)</span>)，总大小约为 <strong>6 PB</strong> (Petabytes)。</p></li>
-</ul>
-<h3 id="磁盘调度-elevator-algorithm">4. 磁盘调度 (Elevator Algorithm)</h3>
-<p><strong>题目分析：</strong> - <strong>请求队列</strong>：116, 22, 3, 11, 75, 185, 100, 87 - <strong>当前磁头位置</strong>：88 - <strong>移动方向</strong>：向上 (Upward/Increasing) - <strong>算法</strong>：电梯算法 (Elevator/SCAN/LOOK)。通常指磁头向一个方向移动处理请求，直到没有请求或到达边缘，然后反向。</p>
-<p><strong>解答：</strong></p>
-<ol type="1">
-<li><strong>向上移动 ( &gt; 88)</strong>：
-<ul>
-<li>100</li>
-<li>116</li>
-<li>185</li>
-</ul></li>
-<li><strong>反向向下移动 ( &lt; 88)</strong>：
-<ul>
-<li>87</li>
-<li>75</li>
-<li>22</li>
-<li>11</li>
-<li>3</li>
+<li>显然，对于任何 <span class="math inline">\(\text{size} \leq 436 \text{bytes}\)</span>，其信息只需要和存储在其 inode 中。这既可以<strong>优化性能</strong>，减少对磁盘扇区的读取，又可以<strong>节省空间</strong>。</li>
 </ul></li>
 </ol>
-<p><strong>服务顺序 (Order serviced)</strong>： <strong>100, 116, 185, 87, 75, 22, 11, 3</strong></p>
+<h3 id="设计文件系统以区分普通文件和目录">设计文件系统以区分普通文件和目录</h3>
+<p>(2). When user tries to write a file, the file system needs to detect if that file is a directory so that it can restrict writes to maintain the directory’s internal consistency. Given a file’s name, how would you design a file system to keep track of whether each file is a regular file or a directory?</p>
+<ol type="1">
+<li>In FAT
+<ul>
+<li>在 <strong>目录项 (Directory Entry)</strong> 中，有一个 <strong>属性字节 (Attribute Byte)</strong>。</li>
+<li>属性字节的第 4 位（通常为 <code>0x10</code>）用于标识该条目是否为目录。</li>
+<li>如果该位为 <code>1</code>，表示该条目是目录；否则为普通文件。</li>
+</ul></li>
+<li>In FFS
+<ul>
+<li>在 <strong>inode</strong> 的元数据部分，包含一个 <strong>文件类型字段 (File Type)</strong> 或 <strong>模式位 (Mode Bits)</strong>。</li>
+<li>例如：
+<ul>
+<li><code>S_IFDIR</code> 表示目录。</li>
+<li><code>S_IFREG</code> 表示普通文件。</li>
+</ul></li>
+<li>文件系统通过检查 inode 的文件类型字段来区分文件和目录。</li>
+</ul></li>
+<li>In NTFS
+<ul>
+<li>在 <strong>MFT (Master File Table)</strong> 条目中，通过 <strong>标准属性 (Attribute Records)</strong> 标识文件类型。</li>
+<li>文件属性标志中有一位用于标识是否为目录。</li>
+<li>目录本质上是一个包含索引属性（如 <code>$INDEX_ROOT</code>）的文件。</li>
+</ul></li>
+</ol>
+<h3 id="ffs-变体">FFS 变体</h3>
+<p>(3). Suppose a variation of FFS includes in each inode 12 direct, 1 indirect, 1 double indirect, 2 triple indirect, and 1 quadruple indirect pointers. Assuming 6 KB blocks and 6-byte pointers.</p>
+<ol type="1">
+<li>What is the largest file that can be accessed with direct pointers only?
+<ul>
+<li>类似问题 (1)，最大文件大小为 <span class="math display">\[
+(12 \times 6) \text{KB} = 72 \text{KB}
+\]</span></li>
+</ul></li>
+<li>What is the largest file that can be accessed in total?
+<ul>
+<li>类似问题 (1)，最大文件大小为 <span class="math display">\[
+(12 \times 6 + 2^{10} \times 6 + 2^{20} \times 6 + 2^{31} \times 6 + 2^{40} \times 6) \text{KB} \approx 6.01 \text{PB}
+\]</span></li>
+</ul></li>
+</ol>
+<h3 id="电梯算法考察">电梯算法考察</h3>
+<p>(4). Consider a disk queue holding requests to the following cylinders in the listed order: 116, 22, 3, 11, 75, 185, 100, 87. Using the elevator scheduling algorithm, what is the order that the requests are serviced, assuming the disk head is at cylinder 88 and moving upward through the cylinders?</p>
+<ol type="1">
+<li>允许<strong>反向</strong>，则
+<ul>
+<li><strong>向上</strong>：<span class="math inline">\(100 \to 116 \to 185\)</span></li>
+<li><strong>向下</strong>：<span class="math inline">\(87 \to 75 \to 22 \to 11 \to 3\)</span></li>
+<li>服务序列为：<span class="math inline">\(100 \to 116 \to 185 \to 87 \to 75 \to 22 \to 11 \to 3\)</span></li>
+</ul></li>
+<li>不允许<strong>反向</strong>，始终<strong>向上</strong>，则
+<ul>
+<li>阶段一：<span class="math inline">\(100 \to 116 \to 185\)</span></li>
+<li>阶段二：<span class="math inline">\(3 \to 11 \to 22 \to 75 \to 87\)</span></li>
+<li>服务序列为：<span class="math inline">\(100 \to 116 \to 185 \to 3 \to 11 \to 22 \to 75 \to 87\)</span></li>
+</ul></li>
+</ol>
+<p>(5). Search for how different RAID versions (at least 5) work differently and list a table to compare them.</p>
+<h3 id="raid-个版本对比总结">RAID 个版本对比总结</h3>
+<div style="display: block; margin: 0 auto; width: fit-content">
+<table>
+
+<thead>
+<tr class="header">
+<th><strong>RAID 版本</strong></th>
+<th><strong>特点</strong></th>
+<th><strong>优点</strong></th>
+<th><strong>缺点</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>RAID 0</strong></td>
+<td>数据条带化（Striping），将数据分布到多个磁盘上，无冗余。</td>
+<td>提高读写性能，磁盘空间利用率为 100%。</td>
+<td>无容错能力，任意一块磁盘故障都会导致数据丢失。</td>
+</tr>
+<tr class="even">
+<td><strong>RAID 1</strong></td>
+<td>镜像（Mirroring），每块磁盘都有一个完全相同的备份磁盘。</td>
+<td>高数据可靠性，磁盘故障时可快速恢复；读性能提升。</td>
+<td>磁盘利用率低（50%），写性能较差（需写两次）。</td>
+</tr>
+<tr class="odd">
+<td><strong>RAID 5</strong></td>
+<td>数据条带化 + 分布式奇偶校验，奇偶校验数据分布在所有磁盘上。</td>
+<td>提供容错能力（允许 1 块磁盘故障）；读性能较高，写性能适中。</td>
+<td>奇偶校验计算增加写入开销；仅支持单盘故障恢复，多盘故障会导致数据丢失。</td>
+</tr>
+<tr class="even">
+<td><strong>RAID 6</strong></td>
+<td>RAID 5 的扩展版，使用双重奇偶校验，允许两块磁盘同时故障。</td>
+<td>提供更高的容错能力（允许 2 块磁盘故障）；读性能较高。</td>
+<td>奇偶校验计算开销更大；磁盘利用率较低（需要至少 4 块磁盘）。</td>
+</tr>
+<tr class="odd">
+<td><strong>RAID 10</strong></td>
+<td>RAID 1 + RAID 0，先镜像后条带化。</td>
+<td>结合 RAID 1 的高可靠性和 RAID 0 的高性能；读写性能均较高。</td>
+<td>磁盘利用率低（50%），需要至少 4 块磁盘；成本较高。</td>
+</tr>
+<tr class="even">
+<td><strong>RAID 50</strong></td>
+<td>RAID 5 + RAID 0，多个 RAID 5 组条带化组合。</td>
+<td>提供 RAID 5 的容错能力和 RAID 0 的高性能；适合大规模存储系统。</td>
+<td>奇偶校验计算增加写入开销；成本较高，配置复杂。</td>
+</tr>
+<tr class="odd">
+<td><strong>RAID 60</strong></td>
+<td>RAID 6 + RAID 0，多个 RAID 6 组条带化组合。</td>
+<td>提供 RAID 6 的双盘容错能力和 RAID 0 的高性能；适合高可靠性需求场景。</td>
+<td>奇偶校验计算开销更大；成本高，配置复杂。</td>
+</tr>
+</tbody>
+</table>
+</div>
 
                 
               </div>
